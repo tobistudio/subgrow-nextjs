@@ -7,7 +7,7 @@ import { SimpleRolesIsAuthorized } from "@blitzjs/auth"
  * I have to put this here since using generated
  */
 export type User = {
-  id: any
+  id: any // FIXME: THIS FIXES SERIOUS BLITZ ERROR
   createdAt: Date
   updatedAt: Date
   username: string

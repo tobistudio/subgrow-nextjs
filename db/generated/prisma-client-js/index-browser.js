@@ -119,6 +119,12 @@ exports.Prisma.BankAccountScalarFieldEnum = {
   bic: 'bic'
 };
 
+exports.Prisma.BlahScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.CustomerScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -339,7 +345,8 @@ exports.Prisma.ModelName = {
   Invoice: 'Invoice',
   InvoiceItems: 'InvoiceItems',
   TermsOfPayment: 'TermsOfPayment',
-  Profile: 'Profile'
+  Profile: 'Profile',
+  Blah: 'Blah'
 };
 
 /**

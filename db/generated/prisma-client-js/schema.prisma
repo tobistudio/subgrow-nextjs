@@ -4,6 +4,7 @@ generator client {
 }
 
 // TODO: may be issue with string https://github.com/prisma/prisma/issues/15041
+
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
@@ -11,6 +12,7 @@ datasource db {
 
 // id String @db.Uuid @default(uuid()) @id
 //   id             Int   @id @default(autoincrement())
+
 model User {
   id             Int            @id @default(autoincrement())
   createdAt      DateTime       @default(now())
@@ -293,4 +295,10 @@ model Profile {
   user        User     @relation(fields: [userId], references: [id])
   //username              User?   @relation(fields: [username], references: [username])
   Site        Site[]
+}
+
+model Blah {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

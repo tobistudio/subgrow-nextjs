@@ -270,6 +270,16 @@ export type Profile = {
   updatedAt: Date
 }
 
+/**
+ * Model Blah
+ * 
+ */
+export type Blah = {
+  id: number
+  createdAt: Date
+  updatedAt: Date
+}
+
 
 /**
  * Enums
@@ -571,6 +581,16 @@ export class PrismaClient<
     * ```
     */
   get profile(): Prisma.ProfileDelegate<GlobalReject>;
+
+  /**
+   * `prisma.blah`: Exposes CRUD operations for the **Blah** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Blahs
+    * const blahs = await prisma.blah.findMany()
+    * ```
+    */
+  get blah(): Prisma.BlahDelegate<GlobalReject>;
 }
 
 export namespace Prisma {
@@ -1054,7 +1074,8 @@ export namespace Prisma {
     Invoice: 'Invoice',
     InvoiceItems: 'InvoiceItems',
     TermsOfPayment: 'TermsOfPayment',
-    Profile: 'Profile'
+    Profile: 'Profile',
+    Blah: 'Blah'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -16852,6 +16873,906 @@ export namespace Prisma {
 
 
   /**
+   * Model Blah
+   */
+
+
+  export type AggregateBlah = {
+    _count: BlahCountAggregateOutputType | null
+    _avg: BlahAvgAggregateOutputType | null
+    _sum: BlahSumAggregateOutputType | null
+    _min: BlahMinAggregateOutputType | null
+    _max: BlahMaxAggregateOutputType | null
+  }
+
+  export type BlahAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type BlahSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type BlahMinAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BlahMaxAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BlahCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BlahAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type BlahSumAggregateInputType = {
+    id?: true
+  }
+
+  export type BlahMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BlahMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BlahCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BlahAggregateArgs = {
+    /**
+     * Filter which Blah to aggregate.
+     */
+    where?: BlahWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Blahs to fetch.
+     */
+    orderBy?: Enumerable<BlahOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BlahWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Blahs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Blahs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Blahs
+    **/
+    _count?: true | BlahCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BlahAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BlahSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BlahMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BlahMaxAggregateInputType
+  }
+
+  export type GetBlahAggregateType<T extends BlahAggregateArgs> = {
+        [P in keyof T & keyof AggregateBlah]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBlah[P]>
+      : GetScalarType<T[P], AggregateBlah[P]>
+  }
+
+
+
+
+  export type BlahGroupByArgs = {
+    where?: BlahWhereInput
+    orderBy?: Enumerable<BlahOrderByWithAggregationInput>
+    by: BlahScalarFieldEnum[]
+    having?: BlahScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BlahCountAggregateInputType | true
+    _avg?: BlahAvgAggregateInputType
+    _sum?: BlahSumAggregateInputType
+    _min?: BlahMinAggregateInputType
+    _max?: BlahMaxAggregateInputType
+  }
+
+
+  export type BlahGroupByOutputType = {
+    id: number
+    createdAt: Date
+    updatedAt: Date
+    _count: BlahCountAggregateOutputType | null
+    _avg: BlahAvgAggregateOutputType | null
+    _sum: BlahSumAggregateOutputType | null
+    _min: BlahMinAggregateOutputType | null
+    _max: BlahMaxAggregateOutputType | null
+  }
+
+  type GetBlahGroupByPayload<T extends BlahGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickArray<BlahGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BlahGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BlahGroupByOutputType[P]>
+            : GetScalarType<T[P], BlahGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BlahSelect = {
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+
+  export type BlahGetPayload<S extends boolean | null | undefined | BlahArgs> =
+    S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
+    S extends true ? Blah :
+    S extends undefined ? never :
+    S extends { include: any } & (BlahArgs | BlahFindManyArgs)
+    ? Blah 
+    : S extends { select: any } & (BlahArgs | BlahFindManyArgs)
+      ? {
+    [P in TruthyKeys<S['select']>]:
+    P extends keyof Blah ? Blah[P] : never
+  } 
+      : Blah
+
+
+  type BlahCountArgs = 
+    Omit<BlahFindManyArgs, 'select' | 'include'> & {
+      select?: BlahCountAggregateInputType | true
+    }
+
+  export interface BlahDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
+
+    /**
+     * Find zero or one Blah that matches the filter.
+     * @param {BlahFindUniqueArgs} args - Arguments to find a Blah
+     * @example
+     * // Get one Blah
+     * const blah = await prisma.blah.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends BlahFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, BlahFindUniqueArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'Blah'> extends True ? Prisma__BlahClient<BlahGetPayload<T>> : Prisma__BlahClient<BlahGetPayload<T> | null, null>
+
+    /**
+     * Find one Blah that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {BlahFindUniqueOrThrowArgs} args - Arguments to find a Blah
+     * @example
+     * // Get one Blah
+     * const blah = await prisma.blah.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends BlahFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, BlahFindUniqueOrThrowArgs>
+    ): Prisma__BlahClient<BlahGetPayload<T>>
+
+    /**
+     * Find the first Blah that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlahFindFirstArgs} args - Arguments to find a Blah
+     * @example
+     * // Get one Blah
+     * const blah = await prisma.blah.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends BlahFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, BlahFindFirstArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'Blah'> extends True ? Prisma__BlahClient<BlahGetPayload<T>> : Prisma__BlahClient<BlahGetPayload<T> | null, null>
+
+    /**
+     * Find the first Blah that matches the filter or
+     * throw `NotFoundError` if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlahFindFirstOrThrowArgs} args - Arguments to find a Blah
+     * @example
+     * // Get one Blah
+     * const blah = await prisma.blah.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends BlahFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, BlahFindFirstOrThrowArgs>
+    ): Prisma__BlahClient<BlahGetPayload<T>>
+
+    /**
+     * Find zero or more Blahs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlahFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Blahs
+     * const blahs = await prisma.blah.findMany()
+     * 
+     * // Get first 10 Blahs
+     * const blahs = await prisma.blah.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const blahWithIdOnly = await prisma.blah.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends BlahFindManyArgs>(
+      args?: SelectSubset<T, BlahFindManyArgs>
+    ): Prisma.PrismaPromise<Array<BlahGetPayload<T>>>
+
+    /**
+     * Create a Blah.
+     * @param {BlahCreateArgs} args - Arguments to create a Blah.
+     * @example
+     * // Create one Blah
+     * const Blah = await prisma.blah.create({
+     *   data: {
+     *     // ... data to create a Blah
+     *   }
+     * })
+     * 
+    **/
+    create<T extends BlahCreateArgs>(
+      args: SelectSubset<T, BlahCreateArgs>
+    ): Prisma__BlahClient<BlahGetPayload<T>>
+
+    /**
+     * Create many Blahs.
+     *     @param {BlahCreateManyArgs} args - Arguments to create many Blahs.
+     *     @example
+     *     // Create many Blahs
+     *     const blah = await prisma.blah.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends BlahCreateManyArgs>(
+      args?: SelectSubset<T, BlahCreateManyArgs>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Blah.
+     * @param {BlahDeleteArgs} args - Arguments to delete one Blah.
+     * @example
+     * // Delete one Blah
+     * const Blah = await prisma.blah.delete({
+     *   where: {
+     *     // ... filter to delete one Blah
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends BlahDeleteArgs>(
+      args: SelectSubset<T, BlahDeleteArgs>
+    ): Prisma__BlahClient<BlahGetPayload<T>>
+
+    /**
+     * Update one Blah.
+     * @param {BlahUpdateArgs} args - Arguments to update one Blah.
+     * @example
+     * // Update one Blah
+     * const blah = await prisma.blah.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends BlahUpdateArgs>(
+      args: SelectSubset<T, BlahUpdateArgs>
+    ): Prisma__BlahClient<BlahGetPayload<T>>
+
+    /**
+     * Delete zero or more Blahs.
+     * @param {BlahDeleteManyArgs} args - Arguments to filter Blahs to delete.
+     * @example
+     * // Delete a few Blahs
+     * const { count } = await prisma.blah.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends BlahDeleteManyArgs>(
+      args?: SelectSubset<T, BlahDeleteManyArgs>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Blahs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlahUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Blahs
+     * const blah = await prisma.blah.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends BlahUpdateManyArgs>(
+      args: SelectSubset<T, BlahUpdateManyArgs>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Blah.
+     * @param {BlahUpsertArgs} args - Arguments to update or create a Blah.
+     * @example
+     * // Update or create a Blah
+     * const blah = await prisma.blah.upsert({
+     *   create: {
+     *     // ... data to create a Blah
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Blah we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends BlahUpsertArgs>(
+      args: SelectSubset<T, BlahUpsertArgs>
+    ): Prisma__BlahClient<BlahGetPayload<T>>
+
+    /**
+     * Count the number of Blahs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlahCountArgs} args - Arguments to filter Blahs to count.
+     * @example
+     * // Count the number of Blahs
+     * const count = await prisma.blah.count({
+     *   where: {
+     *     // ... the filter for the Blahs we want to count
+     *   }
+     * })
+    **/
+    count<T extends BlahCountArgs>(
+      args?: Subset<T, BlahCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends _Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BlahCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Blah.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlahAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BlahAggregateArgs>(args: Subset<T, BlahAggregateArgs>): Prisma.PrismaPromise<GetBlahAggregateType<T>>
+
+    /**
+     * Group by Blah.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlahGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BlahGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BlahGroupByArgs['orderBy'] }
+        : { orderBy?: BlahGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends TupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BlahGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBlahGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Blah.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export class Prisma__BlahClient<T, Null = never> implements Prisma.PrismaPromise<T> {
+    private readonly _dmmf;
+    private readonly _queryType;
+    private readonly _rootField;
+    private readonly _clientMethod;
+    private readonly _args;
+    private readonly _dataPath;
+    private readonly _errorFormat;
+    private readonly _measurePerformance?;
+    private _isList;
+    private _callsite;
+    private _requestPromise?;
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
+
+
+    private get _document();
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
+  }
+
+
+
+  // Custom InputTypes
+
+  /**
+   * Blah base type for findUnique actions
+   */
+  export type BlahFindUniqueArgsBase = {
+    /**
+     * Select specific fields to fetch from the Blah
+     */
+    select?: BlahSelect | null
+    /**
+     * Filter, which Blah to fetch.
+     */
+    where: BlahWhereUniqueInput
+  }
+
+  /**
+   * Blah findUnique
+   */
+  export interface BlahFindUniqueArgs extends BlahFindUniqueArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * Blah findUniqueOrThrow
+   */
+  export type BlahFindUniqueOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the Blah
+     */
+    select?: BlahSelect | null
+    /**
+     * Filter, which Blah to fetch.
+     */
+    where: BlahWhereUniqueInput
+  }
+
+
+  /**
+   * Blah base type for findFirst actions
+   */
+  export type BlahFindFirstArgsBase = {
+    /**
+     * Select specific fields to fetch from the Blah
+     */
+    select?: BlahSelect | null
+    /**
+     * Filter, which Blah to fetch.
+     */
+    where?: BlahWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Blahs to fetch.
+     */
+    orderBy?: Enumerable<BlahOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Blahs.
+     */
+    cursor?: BlahWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Blahs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Blahs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Blahs.
+     */
+    distinct?: Enumerable<BlahScalarFieldEnum>
+  }
+
+  /**
+   * Blah findFirst
+   */
+  export interface BlahFindFirstArgs extends BlahFindFirstArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * Blah findFirstOrThrow
+   */
+  export type BlahFindFirstOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the Blah
+     */
+    select?: BlahSelect | null
+    /**
+     * Filter, which Blah to fetch.
+     */
+    where?: BlahWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Blahs to fetch.
+     */
+    orderBy?: Enumerable<BlahOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Blahs.
+     */
+    cursor?: BlahWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Blahs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Blahs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Blahs.
+     */
+    distinct?: Enumerable<BlahScalarFieldEnum>
+  }
+
+
+  /**
+   * Blah findMany
+   */
+  export type BlahFindManyArgs = {
+    /**
+     * Select specific fields to fetch from the Blah
+     */
+    select?: BlahSelect | null
+    /**
+     * Filter, which Blahs to fetch.
+     */
+    where?: BlahWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Blahs to fetch.
+     */
+    orderBy?: Enumerable<BlahOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Blahs.
+     */
+    cursor?: BlahWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Blahs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Blahs.
+     */
+    skip?: number
+    distinct?: Enumerable<BlahScalarFieldEnum>
+  }
+
+
+  /**
+   * Blah create
+   */
+  export type BlahCreateArgs = {
+    /**
+     * Select specific fields to fetch from the Blah
+     */
+    select?: BlahSelect | null
+    /**
+     * The data needed to create a Blah.
+     */
+    data: XOR<BlahCreateInput, BlahUncheckedCreateInput>
+  }
+
+
+  /**
+   * Blah createMany
+   */
+  export type BlahCreateManyArgs = {
+    /**
+     * The data used to create many Blahs.
+     */
+    data: Enumerable<BlahCreateManyInput>
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Blah update
+   */
+  export type BlahUpdateArgs = {
+    /**
+     * Select specific fields to fetch from the Blah
+     */
+    select?: BlahSelect | null
+    /**
+     * The data needed to update a Blah.
+     */
+    data: XOR<BlahUpdateInput, BlahUncheckedUpdateInput>
+    /**
+     * Choose, which Blah to update.
+     */
+    where: BlahWhereUniqueInput
+  }
+
+
+  /**
+   * Blah updateMany
+   */
+  export type BlahUpdateManyArgs = {
+    /**
+     * The data used to update Blahs.
+     */
+    data: XOR<BlahUpdateManyMutationInput, BlahUncheckedUpdateManyInput>
+    /**
+     * Filter which Blahs to update
+     */
+    where?: BlahWhereInput
+  }
+
+
+  /**
+   * Blah upsert
+   */
+  export type BlahUpsertArgs = {
+    /**
+     * Select specific fields to fetch from the Blah
+     */
+    select?: BlahSelect | null
+    /**
+     * The filter to search for the Blah to update in case it exists.
+     */
+    where: BlahWhereUniqueInput
+    /**
+     * In case the Blah found by the `where` argument doesn't exist, create a new Blah with this data.
+     */
+    create: XOR<BlahCreateInput, BlahUncheckedCreateInput>
+    /**
+     * In case the Blah was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BlahUpdateInput, BlahUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Blah delete
+   */
+  export type BlahDeleteArgs = {
+    /**
+     * Select specific fields to fetch from the Blah
+     */
+    select?: BlahSelect | null
+    /**
+     * Filter which Blah to delete.
+     */
+    where: BlahWhereUniqueInput
+  }
+
+
+  /**
+   * Blah deleteMany
+   */
+  export type BlahDeleteManyArgs = {
+    /**
+     * Filter which Blahs to delete
+     */
+    where?: BlahWhereInput
+  }
+
+
+  /**
+   * Blah without action
+   */
+  export type BlahArgs = {
+    /**
+     * Select specific fields to fetch from the Blah
+     */
+    select?: BlahSelect | null
+  }
+
+
+
+  /**
    * Enums
    */
 
@@ -16898,6 +17819,15 @@ export namespace Prisma {
   };
 
   export type BankAccountScalarFieldEnum = (typeof BankAccountScalarFieldEnum)[keyof typeof BankAccountScalarFieldEnum]
+
+
+  export const BlahScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BlahScalarFieldEnum = (typeof BlahScalarFieldEnum)[keyof typeof BlahScalarFieldEnum]
 
 
   export const CustomerScalarFieldEnum: {
@@ -18228,6 +19158,45 @@ export namespace Prisma {
     theme?: JsonNullableWithAggregatesFilter
     widgets?: JsonNullableWithAggregatesFilter
     current?: EnumYesnoWithAggregatesFilter | Yesno
+    createdAt?: DateTimeWithAggregatesFilter | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter | Date | string
+  }
+
+  export type BlahWhereInput = {
+    AND?: Enumerable<BlahWhereInput>
+    OR?: Enumerable<BlahWhereInput>
+    NOT?: Enumerable<BlahWhereInput>
+    id?: IntFilter | number
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
+  }
+
+  export type BlahOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BlahWhereUniqueInput = {
+    id?: number
+  }
+
+  export type BlahOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: BlahCountOrderByAggregateInput
+    _avg?: BlahAvgOrderByAggregateInput
+    _max?: BlahMaxOrderByAggregateInput
+    _min?: BlahMinOrderByAggregateInput
+    _sum?: BlahSumOrderByAggregateInput
+  }
+
+  export type BlahScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<BlahScalarWhereWithAggregatesInput>
+    OR?: Enumerable<BlahScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<BlahScalarWhereWithAggregatesInput>
+    id?: IntWithAggregatesFilter | number
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
   }
@@ -19651,6 +20620,45 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type BlahCreateInput = {
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BlahUncheckedCreateInput = {
+    id?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BlahUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlahUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlahCreateManyInput = {
+    id?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BlahUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlahUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter = {
     equals?: number
     in?: Enumerable<number>
@@ -20835,6 +21843,32 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter
     _min?: NestedJsonNullableFilter
     _max?: NestedJsonNullableFilter
+  }
+
+  export type BlahCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BlahAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type BlahMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BlahMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BlahSumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type AccountCreateNestedManyWithoutUserInput = {

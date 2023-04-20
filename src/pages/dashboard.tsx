@@ -52,12 +52,26 @@ export const DashboardBox = () => {
   // const [profile]: any = useQuery(getProfile, { userId: user.id, current: "yes" })
 
   // in widget, sites will be simplified as links with basic data
-  const [{ sites }] = usePaginatedQuery(getSites, {
-    orderBy: { id: "asc" },
-    skip: ITEMS_PER_PAGE * page,
-    take: ITEMS_PER_PAGE,
-  })
+  // const [{ sites }] = usePaginatedQuery(getSites, {
+  //   orderBy: { id: "asc" },
+  //   skip: ITEMS_PER_PAGE * page,
+  //   take: ITEMS_PER_PAGE,
+  // })
 
+  // const [{ sites }] = useQuery(getSites)
+  // sites id is a fucking string
+
+  // TODO: where this user
+  const [{ sites }]  = useQuery(getSites,
+    {
+      orderBy: { order: "asc" },
+      skip: ITEMS_PER_PAGE * page,
+      take: ITEMS_PER_PAGE,
+      where: {
+        userId: 'elsa@prisma.io',
+      },
+    },
+  )
   console.log("links", sites)
   // minHeight="100vh"
   return (
