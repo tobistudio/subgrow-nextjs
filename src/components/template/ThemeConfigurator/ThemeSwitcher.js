@@ -41,7 +41,8 @@ const ColorBadge = ({ className, themeColor }) => {
   const primaryColorLevel = useSelector((state) => state.theme.primaryColorLevel)
 
   return (
-    <Badge className={className} innerClass={classNames(`bg-${themeColor}-${primaryColorLevel}`)} />
+    <div>batch theme switch</div>
+    //<Badge className={className} innerClass={classNames(`bg-${themeColor}-${primaryColorLevel}`)} />
   )
 }
 

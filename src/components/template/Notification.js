@@ -64,9 +64,12 @@ const NotificationToggle = ({ className, dot }) => {
   return (
     <div className={classNames("text-2xl", className)}>
       {dot ? (
-        <Badge badgeStyle={{ top: "3px", right: "6px" }}>
+          // <Badge badgeStyle={{ top: "3px", right: "6px" }}>
+          //   <HiOutlineBell />
+          // </Badge>
+        <div>
           <HiOutlineBell />
-        </Badge>
+        </div>
       ) : (
         <HiOutlineBell />
       )}
@@ -182,10 +185,11 @@ export const Notification = ({ className }) => {
                   </div>
                   <span className="text-xs">{item.date}</span>
                 </div>
-                <Badge
-                  className="absolute top-4 ltr:right-4 rtl:left-4 mt-1.5"
-                  innerClass={`${item.readed ? "bg-gray-300" : bgTheme} `}
-                />
+                <div>badge</div>
+                {/*<Badge*/}
+                {/*  className="absolute top-4 ltr:right-4 rtl:left-4 mt-1.5"*/}
+                {/*  innerClass={`${item.readed ? "bg-gray-300" : bgTheme} `}*/}
+                {/*/>*/}
               </div>
             ))}
           {loading && (
