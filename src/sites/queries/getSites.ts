@@ -2,8 +2,8 @@ import { paginate } from "blitz"
 import { resolver } from "@blitzjs/rpc"
 import db, { Prisma } from "../../../db"
 
-interface GetSitesInput
-  extends Pick<Prisma.SiteFindManyArgs, "where" | "orderBy" | "skip" | "take"> {}
+// interface GetSitesInput
+//   extends Pick<Prisma.SiteFindManyArgs, "where" | "orderBy" | "skip" | "take"> {}
 
 // export type SiteFindManyArgs = {
 //   /**

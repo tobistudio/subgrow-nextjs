@@ -1,6 +1,25 @@
 import { SimpleRolesIsAuthorized } from "@blitzjs/auth"
-import { User } from "./db"
+// import { User } from "./db"
+// import { User } from "./db/generated/prisma-client-js" / /creates serious blitz-serer error
 
+/**
+ * Model User
+ * I have to put this here since using generated
+ */
+export type User = {
+  id: number
+  createdAt: Date
+  updatedAt: Date
+  username: string
+  name: string | null
+  email: string
+  emailVerified: Date | null
+  image: string | null
+  balance: number | null
+  hashedPassword: string | null
+  role: string
+  level: string | null
+}
 export type Role = "ADMIN" | "USER"
 
 declare module "@blitzjs/auth" {
