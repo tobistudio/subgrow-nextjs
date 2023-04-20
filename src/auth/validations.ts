@@ -12,6 +12,7 @@ export const password = z
   .transform((str) => str.trim())
 
 export const Signup = z.object({
+  username: z.string(), // TODO: can add fancier validation to check for certain characters
   email,
   password,
 })
