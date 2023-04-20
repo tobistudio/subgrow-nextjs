@@ -5,7 +5,7 @@ import Link from "next/link"
 import {usePaginatedQuery, useQuery} from "@blitzjs/rpc"
 import { useRouter } from "next/router"
 import AdminLayout from "core/layouts/AdminLayout"
-import getProfiles from "profiles/queries/getProfiles"
+import getProfile from "profiles/queries/getProfile"
 import getSites from "sites/queries/getSites"
 import AddLinkWidget from "components/dashboard/AddLinkWidget"
 import {
@@ -21,7 +21,7 @@ import {
   Stack,
 } from "@mui/material"
 import getSite from "../sites/queries/getSite";
-import getProfile from "../profiles/queries/getProfile";
+
 // import ShowProfileIndexAdminPage from "./[profileId]"
 // import { FORM_ERROR, ProfileForm } from "../profiles/components/ProfileForm"
 // import ProfileListCard from "components/lists/ProfileListCard"

@@ -2,7 +2,6 @@ import { NotFoundError } from "blitz"
 import { resolver } from "@blitzjs/rpc"
 import db from "../../../db"
 import { z } from "zod"
-import { ForgotPassword } from "@blitzjs/generator/dist/templates/app/auth/schemas"
 
 const yesno = ["yes", "no"] as const
 
