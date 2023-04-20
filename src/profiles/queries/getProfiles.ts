@@ -2,8 +2,8 @@ import { paginate } from "blitz"
 import { resolver } from "@blitzjs/rpc"
 import db, { Prisma } from "../../../db"
 
-interface GetProfilesInput
-  extends Pick<Prisma.ProfileFindManyArgs, "where" | "orderBy" | "skip" | "take"> {}
+// interface GetProfilesInput
+//   extends Pick<Prisma.ProfileFindManyArgs, "where" | "orderBy" | "skip" | "take"> {}
 
 export default resolver.pipe(
   resolver.authorize(),
