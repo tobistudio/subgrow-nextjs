@@ -1,12 +1,17 @@
 import { paginate } from "blitz"
 import { resolver } from "@blitzjs/rpc"
+// import db, { Prisma } from "../../../db"
 import db, { Prisma } from "../../../db"
+
+import { PrismaClient } from "../../../db/generated/prisma-client-js";
 // import {SiteFindManyArgs} from "../../../db/generated/prisma-client-js";
+import SiteFindManyArgs from "../../../db/generated/prisma-client-js";
+// import SiteFindManyArgs from "../../../db"
 
 
 interface GetSitesInput
   extends Pick<
-    Prisma.SiteFindManyArgs,
+    PrismaClient.SiteFindManyArgs, //
     "where" | "orderBy" | "skip" | "take"
     > {}
 

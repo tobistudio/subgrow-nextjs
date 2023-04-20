@@ -5,5 +5,6 @@ const EnhancedPrisma = enhancePrisma(PrismaClient)
 
 export * from "@prisma/client"
 const db = new EnhancedPrisma()
-export const User = db
+// export const User = db
+// export const SiteFindManyArgs = db
 export default db
