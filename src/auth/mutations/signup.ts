@@ -59,7 +59,7 @@ export default resolver.pipe(resolver.zod(Signup), async ({ username, email, pas
   // await ctx.session.$create({ userId: user.id as string, username: user.username, role: user.role as Role })
   await ctx.session.$create({
     userId: user.id,
-    username: username,
+    // username: username,
     role: user.role as Role,
   })
   // FIXME: string issue BROKEN,, ID STRING, DOES NOT MATTER
