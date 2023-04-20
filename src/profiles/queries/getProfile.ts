@@ -13,7 +13,7 @@ const GetProfile = z.object({
 
 export default resolver.pipe(
   resolver.zod(GetProfile),
-  resolver.authorize(),
+  // resolver.authorize(),
   async ({ userId, current }) => {
     // TODO: in multi-tenant app, you must add validation to ensure correct tenant
     const profile = await db.profile.findFirst({ where: { userId, current } })

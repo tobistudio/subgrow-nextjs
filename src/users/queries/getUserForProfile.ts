@@ -16,6 +16,7 @@ import { z } from "zod"
 
 const GetUserForProfile = z.object({
   // username: z.string().optional(),
+  // username: z.string(),
   username: z.string(),
 })
 

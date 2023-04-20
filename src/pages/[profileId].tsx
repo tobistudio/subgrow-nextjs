@@ -24,12 +24,19 @@ import getSites from "../sites/queries/getSites"
 
 // lazy load available templates
 const Modern = React.lazy(() => import("profiles/layouts/modern"))
-
+// export const ProfileIndex = () => {
+//   return (<div>sdf</div>)
+// }
 export const ProfileIndex = () => {
   const router = useRouter()
   const profileId = useParam("profileId", "string")
   console.log("profileId", profileId)
   const [user] = useQuery(getUserForProfile, { username: profileId })
+
+  console.log("profileId",profileId);
+  console.log("user",user);
+
+  // debugger
   const [profile]: any = useQuery(getProfile, { userId: user.id, current: "yes" })
   const [sites] = useQuery(getSiteForProfile, { userId: user.id })
 

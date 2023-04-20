@@ -2,6 +2,8 @@
   "name": "blitz-app",
   "version": "1.0.0",
   "scripts": {
+    "db": "prisma format && prisma validate && prisma generate && prisma db push",
+    "clean": "rm -Rf node_modules && rm -Rf .next && yarn",
     "dev": "blitz dev",
     "build": "blitz build",
     "start": "blitz start",
