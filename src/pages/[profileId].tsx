@@ -31,6 +31,7 @@ export const ProfileIndex = () => {
   const router = useRouter()
   const profileId = useParam("profileId", "string")
   console.log("profileId", profileId)
+  // @ts-ignore
   const [user] = useQuery(getUserForProfile, { username: profileId })
 
   console.log("profileId",profileId);

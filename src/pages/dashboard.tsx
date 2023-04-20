@@ -2,7 +2,7 @@ import React, { Suspense } from "react"
 import { Routes } from "@blitzjs/next"
 import Head from "next/head"
 import Link from "next/link"
-import { usePaginatedQuery } from "@blitzjs/rpc"
+import {usePaginatedQuery, useQuery} from "@blitzjs/rpc"
 import { useRouter } from "next/router"
 import AdminLayout from "core/layouts/AdminLayout"
 import getProfiles from "profiles/queries/getProfiles"
@@ -20,6 +20,8 @@ import {
   Typography,
   Stack,
 } from "@mui/material"
+import getSite from "../sites/queries/getSite";
+import getProfile from "../profiles/queries/getProfile";
 // import ShowProfileIndexAdminPage from "./[profileId]"
 // import { FORM_ERROR, ProfileForm } from "../profiles/components/ProfileForm"
 // import ProfileListCard from "components/lists/ProfileListCard"
@@ -34,11 +36,20 @@ const ITEMS_PER_PAGE = 100
 export const DashboardBox = () => {
   const router = useRouter()
   const page = Number(router.query.page) || 0
-  const [{ profiles }] = usePaginatedQuery(getProfiles, {
-    orderBy: { id: "asc" },
-    skip: ITEMS_PER_PAGE * page,
-    take: ITEMS_PER_PAGE,
-  })
+  // const [{ profiles }] = usePaginatedQuery(getProfiles, {
+  //   orderBy: { id: "asc" },
+  //   skip: ITEMS_PER_PAGE * page,
+  //   take: ITEMS_PER_PAGE,
+  // })
+
+  // just one
+  // const [{ profiles }] = usePaginatedQuery(getProfiles, {
+  //   orderBy: { id: "asc" },
+  //   skip: ITEMS_PER_PAGE * page,
+  //   take: ITEMS_PER_PAGE,
+  // })
+
+  // const [profile]: any = useQuery(getProfile, { userId: user.id, current: "yes" })
 
   // in widget, sites will be simplified as links with basic data
   const [{ sites }] = usePaginatedQuery(getSites, {
