@@ -3,7 +3,7 @@ import Head from "next/head"
 import Link from "next/link"
 import { Routes } from "@blitzjs/next"
 import React, { Suspense, useLayoutEffect } from "react"
-import { ProfilesList } from "../../pages/profiles"
+//import { ProfilesList } from "../../pages/profiles"
 import { FacebookProvider } from "react-facebook"
 import { faFacebook } from "@fortawesome/free-brands-svg-icons"
 
