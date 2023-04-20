@@ -1,0 +1,14 @@
+.how_works_arrow {
+  font-size: 45px;
+  @extend .gredient-color;
+}
+
+.how-it-box {
+  @extend .service-box;
+  i {
+    @extend .gredient-color;
+  }
+  h4 {
+    margin-bottom: 20px;
+  }
+}

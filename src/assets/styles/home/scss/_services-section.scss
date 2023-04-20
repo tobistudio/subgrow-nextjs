@@ -1,0 +1,25 @@
+.service-box {
+  border: 1px solid $border_color;
+  background: $white_color;
+  @include transition(0.3s);
+  &:hover {
+    @include transform(translateY(-10px));
+    @include box-shadow(0px 25px 35px 0px rgba(0, 0, 0, 0.1));
+  }
+  i {
+    margin-bottom: 30px;
+    font-size: 40px;
+    display: inline-block;
+  }
+  &:hover i {
+    @extend .gredient-color;
+  }
+  h4 {
+    margin-bottom: 25px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  p {
+    margin-bottom: 0px;
+  }
+}

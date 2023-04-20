@@ -1,0 +1,127 @@
+.gredient-bg,
+.btn-filled,
+.btn-default:hover,
+.circle,
+.loader:before,
+.hero-area,
+.bordered-circle,
+.bordered-circle2,
+.bordered-box,
+.filled-circle,
+.testimonials,
+.screenshot-swiper .swiper-button-prev:hover,
+.screenshot-swiper .swiper-container-rtl .swiper-button-next:hover,
+.screenshot-swiper .swiper-button-next:hover,
+.screenshot-swiper .swiper-container-rtl .swiper-button-prev:hover,
+.swiper-pagination-bullet-active,
+.single-pricing:before,
+.pricing-head .wave,
+.pricing-head .wave:nth-of-type(3),
+.featured-2,
+.read-more,
+.social-network .social-icon:hover,
+#page-header,
+.blog-tag a,
+.app-pagenation .page-item.active .page-link,
+.single-widget ul.tags-cloud li a:hover,
+a.comment-reply-link:hover {
+  background-color: #ff0000;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1000 1000'%3E%3Cdefs%3E%3CradialGradient id='a' cx='500' cy='500' r='60%25' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23ff0000'/%3E%3Cstop offset='1' stop-color='%23900'/%3E%3C/radialGradient%3E%3CradialGradient id='b' cx='500' cy='500' r='70%25' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23FF0' stop-opacity='1'/%3E%3Cstop offset='1' stop-color='%23FF0' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='1000' height='1000'/%3E%3Cg fill='none' stroke='%23F40' stroke-width='2' stroke-miterlimit='10' stroke-opacity='.5'%3E%3Ccircle cx='500' cy='500' r='725'/%3E%3Ccircle cx='500' cy='500' r='700'/%3E%3Ccircle cx='500' cy='500' r='675'/%3E%3Ccircle cx='500' cy='500' r='650'/%3E%3Ccircle cx='500' cy='500' r='625'/%3E%3Ccircle cx='500' cy='500' r='600'/%3E%3Ccircle cx='500' cy='500' r='575'/%3E%3Ccircle cx='500' cy='500' r='550'/%3E%3Ccircle cx='500' cy='500' r='525'/%3E%3Ccircle cx='500' cy='500' r='500'/%3E%3Ccircle cx='500' cy='500' r='475'/%3E%3Ccircle cx='500' cy='500' r='450'/%3E%3Ccircle cx='500' cy='500' r='425'/%3E%3Ccircle cx='500' cy='500' r='400'/%3E%3Ccircle cx='500' cy='500' r='375'/%3E%3Ccircle cx='500' cy='500' r='350'/%3E%3Ccircle cx='500' cy='500' r='325'/%3E%3Ccircle cx='500' cy='500' r='300'/%3E%3Ccircle cx='500' cy='500' r='275'/%3E%3Ccircle cx='500' cy='500' r='250'/%3E%3Ccircle cx='500' cy='500' r='225'/%3E%3Ccircle cx='500' cy='500' r='200'/%3E%3Ccircle cx='500' cy='500' r='175'/%3E%3Ccircle cx='500' cy='500' r='150'/%3E%3Ccircle cx='500' cy='500' r='125'/%3E%3Ccircle cx='500' cy='500' r='100'/%3E%3Ccircle cx='500' cy='500' r='75'/%3E%3Ccircle cx='500' cy='500' r='50'/%3E%3Ccircle cx='500' cy='500' r='25'/%3E%3C/g%3E%3Crect fill-opacity='.5' fill='url(%23b)' width='1000' height='1000'/%3E %3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.gredient-bg-hover,
+.animated-btn:before,
+.loader:after,
+.read-more:hover,
+.read-more:before {
+  background-color: #990000;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1000 1000'%3E%3Cdefs%3E%3CradialGradient id='a' cx='500' cy='500' r='60%25' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23990000'/%3E%3Cstop offset='1' stop-color='%23ff0000'/%3E%3C/radialGradient%3E%3CradialGradient id='b' cx='500' cy='500' r='70%25' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23FF0' stop-opacity='1'/%3E%3Cstop offset='1' stop-color='%23FF0' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='1000' height='1000'/%3E%3Cg fill='none' stroke='%23F40' stroke-width='2' stroke-miterlimit='10' stroke-opacity='.5'%3E%3Ccircle cx='500' cy='500' r='725'/%3E%3Ccircle cx='500' cy='500' r='700'/%3E%3Ccircle cx='500' cy='500' r='675'/%3E%3Ccircle cx='500' cy='500' r='650'/%3E%3Ccircle cx='500' cy='500' r='625'/%3E%3Ccircle cx='500' cy='500' r='600'/%3E%3Ccircle cx='500' cy='500' r='575'/%3E%3Ccircle cx='500' cy='500' r='550'/%3E%3Ccircle cx='500' cy='500' r='525'/%3E%3Ccircle cx='500' cy='500' r='500'/%3E%3Ccircle cx='500' cy='500' r='475'/%3E%3Ccircle cx='500' cy='500' r='450'/%3E%3Ccircle cx='500' cy='500' r='425'/%3E%3Ccircle cx='500' cy='500' r='400'/%3E%3Ccircle cx='500' cy='500' r='375'/%3E%3Ccircle cx='500' cy='500' r='350'/%3E%3Ccircle cx='500' cy='500' r='325'/%3E%3Ccircle cx='500' cy='500' r='300'/%3E%3Ccircle cx='500' cy='500' r='275'/%3E%3Ccircle cx='500' cy='500' r='250'/%3E%3Ccircle cx='500' cy='500' r='225'/%3E%3Ccircle cx='500' cy='500' r='200'/%3E%3Ccircle cx='500' cy='500' r='175'/%3E%3Ccircle cx='500' cy='500' r='150'/%3E%3Ccircle cx='500' cy='500' r='125'/%3E%3Ccircle cx='500' cy='500' r='100'/%3E%3Ccircle cx='500' cy='500' r='75'/%3E%3Ccircle cx='500' cy='500' r='50'/%3E%3Ccircle cx='500' cy='500' r='25'/%3E%3C/g%3E%3Crect fill-opacity='.5' fill='url(%23b)' width='1000' height='1000'/%3E %3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.gredient-color,
+.service-box:hover i,
+.how-it-box:hover i,
+.address-box:hover i,
+.single-feature:hover i,
+.how_works_arrow,
+.how-it-box i,
+.address-box i,
+.single-feature:hover h4,
+.border-color {
+  background-color: #990000;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1000 1000'%3E%3Cdefs%3E%3CradialGradient id='a' cx='500' cy='500' r='60%25' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23990000'/%3E%3Cstop offset='1' stop-color='%23ff0000'/%3E%3C/radialGradient%3E%3CradialGradient id='b' cx='500' cy='500' r='70%25' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23FF0' stop-opacity='1'/%3E%3Cstop offset='1' stop-color='%23FF0' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='1000' height='1000'/%3E%3Cg fill='none' stroke='%23F40' stroke-width='2' stroke-miterlimit='10' stroke-opacity='.5'%3E%3Ccircle cx='500' cy='500' r='725'/%3E%3Ccircle cx='500' cy='500' r='700'/%3E%3Ccircle cx='500' cy='500' r='675'/%3E%3Ccircle cx='500' cy='500' r='650'/%3E%3Ccircle cx='500' cy='500' r='625'/%3E%3Ccircle cx='500' cy='500' r='600'/%3E%3Ccircle cx='500' cy='500' r='575'/%3E%3Ccircle cx='500' cy='500' r='550'/%3E%3Ccircle cx='500' cy='500' r='525'/%3E%3Ccircle cx='500' cy='500' r='500'/%3E%3Ccircle cx='500' cy='500' r='475'/%3E%3Ccircle cx='500' cy='500' r='450'/%3E%3Ccircle cx='500' cy='500' r='425'/%3E%3Ccircle cx='500' cy='500' r='400'/%3E%3Ccircle cx='500' cy='500' r='375'/%3E%3Ccircle cx='500' cy='500' r='350'/%3E%3Ccircle cx='500' cy='500' r='325'/%3E%3Ccircle cx='500' cy='500' r='300'/%3E%3Ccircle cx='500' cy='500' r='275'/%3E%3Ccircle cx='500' cy='500' r='250'/%3E%3Ccircle cx='500' cy='500' r='225'/%3E%3Ccircle cx='500' cy='500' r='200'/%3E%3Ccircle cx='500' cy='500' r='175'/%3E%3Ccircle cx='500' cy='500' r='150'/%3E%3Ccircle cx='500' cy='500' r='125'/%3E%3Ccircle cx='500' cy='500' r='100'/%3E%3Ccircle cx='500' cy='500' r='75'/%3E%3Ccircle cx='500' cy='500' r='50'/%3E%3Ccircle cx='500' cy='500' r='25'/%3E%3C/g%3E%3Crect fill-opacity='.5' fill='url(%23b)' width='1000' height='1000'/%3E %3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.dark-purple-color,
+#testimonials .rotate-heading h2,
+.single-blog h2:hover,
+.page-content h2:hover,
+.post-comments h2:hover,
+.post-meta ul li a:hover,
+.single-widget ul a:hover {
+  color: #ff0000;
+}
+
+.medium-purple-color {
+  color: #990000;
+}
+
+.border-color {
+  color: #dfdfdf;
+}
+
+.dark-purple,
+.header-nav .navbar-nav > li .sub-menu li > a:hover,
+.header-nav.fixed-header {
+  background: #ff0000;
+}
+
+.medium-purple {
+  background: #990000;
+}
+
+.primary_color,
+body,
+.post-meta ul li a {
+  color: #858585;
+}
+
+.heading_color,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.screenshot-swiper .swiper-button-prev,
+.screenshot-swiper .swiper-container-rtl .swiper-button-next,
+.screenshot-swiper .swiper-button-next,
+.screenshot-swiper .swiper-container-rtl .swiper-button-prev,
+.blog-content h2,
+.blog-content .blog-meta,
+.single-blog-post {
+  color: #151515;
+}
+
+.primary-border-color,
+.screenshot-swiper .swiper-button-prev,
+.screenshot-swiper .swiper-container-rtl .swiper-button-next,
+.screenshot-swiper .swiper-button-next,
+.screenshot-swiper .swiper-container-rtl .swiper-button-prev,
+.contact-form input:focus,
+.contact-form textarea:focus,
+.single-widget h3,
+.single-widget .form-control:focus {
+  border-color: #ff0000 !important;
+}
+.gray-bg,
+.contact-address,
+.contact-form {
+  background-color: #f1f1f1;
+}

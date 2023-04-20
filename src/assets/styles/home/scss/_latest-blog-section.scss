@@ -1,0 +1,59 @@
+.single-blog {
+  background: $white_color;
+  margin-bottom: 25px;
+  @include transition(0.4s);
+  .blog-content {
+    padding: 25px;
+  }
+  .blog-content .blog-meta {
+    font-weight: 600;
+    color: $primary_color;
+    a {
+      color: $primary_color;
+    }
+  }
+  h2 {
+    &:hover {
+      @extend .dark-purple-color;
+    }
+  }
+}
+
+.blog-content {
+  h2 {
+    font-size: 20px;
+    @extend .heading_color;
+    margin-bottom: 20px;
+  }
+  .blog-meta {
+    @extend .heading_color;
+    font-size: 12px;
+  }
+}
+.col-lg-4 .page-content .blog-content {
+  padding: 15px;
+  h2 {
+    font-size: 20px;
+  }
+  .post-meta li {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    border: none;
+  }
+}
+
+.read-more {
+  padding: 8px 15px;
+  border: 1px solid $border_color;
+  display: inline-block;
+  text-transform: uppercase;
+  color: $white_color;
+  font-weight: 600;
+  @include transition(0.4s);
+  @extend .gredient-bg;
+  &:hover {
+    @extend .gredient-bg-hover;
+    color: $white_color;
+  }
+}

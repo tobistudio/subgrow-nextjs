@@ -1,0 +1,248 @@
+body {
+  @extend .body_font;
+  @extend .primary_color;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @extend .heading_font;
+  @extend .heading_color;
+  font-weight: 700;
+}
+
+a:hover {
+  @extend .medium-purple-color;
+  text-decoration: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+.btn.focus,
+.btn:focus {
+  @include box-shadow(none);
+}
+
+.section-title h2 {
+  font-size: 42px;
+}
+
+h1 {
+  font-size: 34px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 26px;
+}
+
+h4 {
+  font-size: 22px;
+}
+
+h5 {
+  font-size: 20px;
+}
+
+h6 {
+  font-size: 22px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.section-title h2 {
+  text-transform: uppercase;
+}
+
+.bg-overlay .section-title h2 {
+  color: $white_color;
+}
+
+/* 
+BACKGROUNDS
+*/
+
+.parallax {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  @include background-size(cover);
+}
+
+.bg-overlay {
+  position: relative;
+}
+
+.bg-overlay:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(21, 21, 21, 0.8);
+}
+
+/* BUTTTONS */
+
+.btn-default {
+  padding: 15px 25px;
+  border: 1px solid $white_color;
+  background-color: $white_color;
+  @extend .heading_color;
+  font-weight: 700;
+  overflow: hidden;
+  border-radius: 0px;
+}
+
+.btn-filled {
+  @extend .gredient-bg;
+  color: $white_color;
+}
+
+.btn-default.btn-default-outline {
+  background-color: transparent;
+  color: $white_color;
+}
+
+.btn-default:hover {
+  @extend .gredient-bg;
+  color: $white_color;
+}
+
+.animated-btn:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  @extend .gredient-bg-hover;
+  z-index: -1;
+  opacity: 0;
+  -webkit-transform: rotate3d(0, 0, 1, -45deg) translate3d(0, -3em, 0);
+  transform: rotate3d(0, 0, 1, -45deg) translate3d(0, -3em, 0);
+  -webkit-transform-origin: 0% 100%;
+  transform-origin: 0% 100%;
+  @include transition(transform 0.5s, background-color 0.5s);
+}
+
+.animated-btn:hover:before {
+  @include opacity(1);
+  @include transform(rotate3d(0, 0, 1, 0deg));
+  @include transition-timing-function(cubic-bezier(0.2, 1, 0.3, 1));
+}
+
+.animated-btn {
+  @include transition(0.4s);
+}
+
+.animated-btn:hover {
+  @include transform(translateY(-3px));
+  @include box-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+}
+
+.animated-btn:active {
+  @include transform(translateY(-1px));
+  @include box-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+}
+.read-more {
+  @extend .animated-btn;
+  overflow: hidden;
+  border: none;
+}
+/* Circle animation */
+
+.circle-wrap {
+  overflow: hidden;
+  position: relative;
+}
+
+.circle {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  overflow: hidden;
+  @include border-radius(50%);
+  @extend .gredient-bg;
+}
+
+.x1 {
+  @include animation(movecircles 15s linear infinite);
+  top: 150px;
+}
+
+.x2 {
+  left: 200px;
+  top: 200px;
+  @include transform(scale(0.6));
+  @include animation(movecircles 25s linear infinite);
+}
+
+.x3 {
+  left: -250px;
+  top: 250px;
+  @include transform(scale(0.8));
+  @include animation(movecircles 20s linear infinite);
+}
+
+.x4 {
+  left: 470px;
+  top: 300px;
+  @include transform(scale(0.75));
+  @include animation(movecircles 18s linear infinite);
+}
+
+.x5 {
+  left: -150px;
+  top: 100px;
+  @include transform(scale(0.8));
+  @include animation(movecircles 20s linear infinite);
+}
+
+.x6 {
+  @include animation(movecircles 15s linear infinite);
+  bottom: 150px;
+}
+
+.x7 {
+  left: 200px;
+  bottom: 200px;
+  @include transform(scale(0.6));
+  @include animation(movecircles 25s linear infinite);
+}
+
+.x8 {
+  left: -250px;
+  bottom: 250px;
+  @include transform(scale(0.8));
+  @include animation(movecircles 20s linear infinite);
+}
+
+.x9 {
+  left: 470px;
+  bottom: 300px;
+  @include transform(scale(0.75));
+  @include animation(movecircles 18s linear infinite);
+}
+
+.x10 {
+  left: -150px;
+  bottom: 100px;
+  @include transform(scale(0.8));
+  @include animation(movecircles 20s linear infinite);
+}

@@ -1,0 +1,174 @@
+@media only screen and (min-width: 1200px) and (max-width: 1431px) {
+  .bordered-box {
+    width: 70%;
+    top: 30px;
+  }
+  .phone-2 {
+    left: 150px;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .bordered-box {
+    width: 50%;
+    height: 80%;
+    top: 30px;
+  }
+  .phone-2 {
+    left: 110px;
+  }
+  .phone-1,
+  .phone-2 {
+    width: 70%;
+  }
+  .featured-mockup,
+  .featured-mockup2 {
+    max-height: 300px;
+  }
+  #testimonials .rotate-heading {
+    left: 10px;
+  }
+  .pricing-head .wave {
+    left: -85px;
+  }
+}
+/* Tablet Layout: 768px. */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .hero-area h2 {
+    font-size: 28px;
+  }
+  .bordered-box {
+    width: 50%;
+    height: 80%;
+    top: 80px;
+  }
+  .bordered-circle {
+    width: 400px;
+    height: 400px;
+    left: -200px;
+  }
+  .how_works_arrow {
+    @include transform(rotate(90deg));
+  }
+  #testimonials .rotate-heading {
+    left: 0px;
+  }
+  #testimonials .rotate-heading h2 {
+    font-size: 50px;
+  }
+  .section-title h2.tlt1 {
+    font-size: 25px;
+  }
+  .featured-1 .bordered-circle2 {
+    right: inherit;
+    left: -60px;
+  }
+  .featured-mockup2 .phone-2 {
+    bottom: -70px;
+    left: 50px;
+  }
+  .apps-buttons .btn.btn-default {
+    margin-right: 10px;
+    padding-left: 40px;
+    font-size: 14px;
+    padding-right: 15px;
+  }
+  .apps-buttons .btn.btn-default i {
+    left: 10px;
+    font-size: 20px;
+  }
+}
+/* Mobile Layout: 320px. */
+@media only screen and (max-width: 767px) {
+  .hero-area h2 {
+    font-size: 28px;
+    font-weight: 600;
+  }
+  .btn-default {
+    padding: 12px 15px;
+  }
+  .apps-buttons .btn.btn-default {
+    margin-right: 10px;
+  }
+  #feature2 .apps-buttons .btn.btn-default {
+    margin-bottom: 15px;
+  }
+  .hero-area .btn {
+    margin-right: 12px;
+  }
+  .btn-default:last-child {
+    margin-right: 0px;
+  }
+  .section-title h2 {
+    font-size: 32px;
+  }
+  .apps-buttons {
+    text-align: center;
+  }
+  .how_works_arrow {
+    @include transform(rotate(90deg));
+  }
+  .bordered-box {
+    width: 60%;
+    top: 30px;
+    height: 50%;
+  }
+  .bordered-circle,
+  .bordered-circle2 {
+    width: 300px;
+    height: 300px;
+    left: -150px;
+    right: inherit;
+  }
+  .section-title h2.tlt1 {
+    font-size: 25px;
+  }
+  .single-testimonial {
+    text-align: center;
+  }
+  .single-testimonial img {
+    margin-bottom: 25px;
+  }
+  #testimonials .rotate-heading {
+    top: 20px;
+    left: 15px;
+    @include transform(translateY(0%) rotate(-0deg));
+  }
+  #testimonials .rotate-heading h2 {
+    font-size: 25px;
+  }
+  .single-testimonial {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .phone-2 {
+    left: 100px;
+    z-index: 0;
+    bottom: -50px;
+  }
+  .featured-mockup2 .phone-2 {
+    left: 0;
+    bottom: -60px;
+  }
+  .address-box {
+    h5 {
+      font-size: 16px;
+    }
+  }
+}
+/* Wide Mobile Layout: 480px. */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .phone-2 {
+    left: 180px;
+    bottom: 0px;
+  }
+  .featured-mockup2 .phone-2 {
+    left: 0;
+    bottom: 40px;
+  }
+  .pricing-head .wave {
+    top: -265px;
+    left: -40px;
+    width: 595px;
+    height: 450px;
+  }
+}

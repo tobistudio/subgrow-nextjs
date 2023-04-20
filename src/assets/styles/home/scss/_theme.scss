@@ -1,0 +1,58 @@
+$medium_purple: #6509e2;
+$dark_purple: #5a02b4;
+$primary_color: #858585;
+$heading_color: #151515;
+$white_color: #ffffff;
+$gray_color: #f1f1f1;
+$border_color: #dfdfdf;
+.gredient-bg {
+  @include linear-gradient($medium_purple, $dark_purple, to right bottom, 40%, 70%);
+  background-color: $dark_purple;
+}
+.gredient-bg-hover {
+  @include linear-gradient($dark_purple, $medium_purple, to right bottom, 40%, 70%);
+  background-color: $medium_purple;
+}
+.gredient-color {
+  @include linear-gradient($medium_purple, $dark_purple, to right bottom, 40%, 70%);
+  @include background-clip(text);
+  @include text-fill-color(transparent);
+  color: $dark_purple;
+}
+.border-color {
+  @include linear-gradient($medium_purple, $dark_purple, to right bottom, 40%, 70%);
+  background-color: $dark_purple;
+}
+.dark-purple-color {
+  color: $dark_purple;
+}
+.medium-purple-color {
+  color: $medium_purple;
+}
+.border-color {
+  color: $border_color;
+}
+.dark-purple {
+  background: $dark_purple;
+}
+.medium-purple {
+  background: $medium_purple;
+}
+.primary_color {
+  color: $primary_color;
+}
+.heading_color {
+  color: $heading_color;
+}
+.primary-border-color {
+  border-color: $dark_purple !important;
+}
+.gray-bg {
+  background-color: $gray_color;
+}
+.body_font {
+  font-family: $body_font;
+}
+.heading_font {
+  font-family: $heading_font;
+}

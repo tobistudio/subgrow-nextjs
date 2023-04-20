@@ -1,0 +1,61 @@
+.contact-address,
+.contact-form {
+  @extend .gray-bg;
+}
+
+.address-box {
+  @extend .how-it-box;
+  h5 {
+    font-weight: 600;
+  }
+  &:hover {
+    @include transform(translateY(0px));
+  }
+  i {
+    margin-bottom: 10px;
+  }
+  p {
+    font-weight: 400;
+  }
+}
+
+.contact-address {
+  border-right: 1px solid $border_color;
+}
+
+.email-success,
+.email-failed,
+.email-loading,
+.success-msg,
+.error-msg {
+  padding: 10px;
+  display: none;
+}
+
+.email-loading img {
+  width: 20px;
+  margin: 0 auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  border: none;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: $white_color;
+  border-bottom: 2px solid transparent;
+  @include transition(0.4s);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border: none;
+  border-bottom: 2px solid;
+  @extend .primary-border-color;
+}
+
+.contact-form textarea {
+  min-height: 92px;
+}

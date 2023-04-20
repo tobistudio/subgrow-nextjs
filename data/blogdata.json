@@ -1,0 +1,106 @@
+{
+  "blogs": [
+    {
+      "title": "New feature added: New version of apps added new features",
+      "fullwidth": true,
+      "url": "#",
+      "author": "Saira H.",
+      "date": "08 Nov. 2022",
+      "category": "AppFeatures",
+      "comments": "05 Comments",
+      "image": "/assets/img/blog/1.jpeg",
+      "content": "Smile spoke total few great had never their too. Amongst moments do in arrived at my replied. Fat weddings servants but man believed prospect. Companions understood is as especially pianoforte connection introduced. Nay newspaper can sportsman are admitting gentleman belonging his. Is oppose no he summer lovers twenty in. Not his difficulty boisterous surrounded bed. Seems folly if in given scale. Sex contented dependent conveying advantage can use."
+    },
+    {
+      "title": "Booming news: Google play apps has been relese",
+      "url": "#",
+      "author": "Saira H.",
+      "date": "08 Nov. 2022",
+      "category": "GooglePlay",
+      "comments": "05 Comments",
+      "image": "/assets/img/blog/2.jpeg",
+      "content": "Smile spoke total few great had never their too. Amongst moments do in arrived at my replied. Fat weddings servants but man believed prospect. Companions understood is as especially pianoforte connection introduced. Nay newspaper can sportsman are admitting gentleman belonging his. Is oppose no he summer lovers twenty in. Not his difficulty boisterous surrounded bed. Seems folly if in given scale. Sex contented dependent conveying advantage can use."
+    },
+    {
+      "title": "IOS version has been relese: Exited to share with you",
+      "url": "#",
+      "author": "Saira H.",
+      "date": "08 Nov. 2022",
+      "category": "AppleStore",
+      "comments": "05 Comments",
+      "image": "/assets/img/blog/1.jpeg",
+      "content": "Smile spoke total few great had never their too. Amongst moments do in arrived at my replied. Fat weddings servants but man believed prospect. Companions understood is as especially pianoforte connection introduced. Nay newspaper can sportsman are admitting gentleman belonging his. Is oppose no he summer lovers twenty in. Not his difficulty boisterous surrounded bed. Seems folly if in given scale. Sex contented dependent conveying advantage can use."
+    },
+    {
+      "title": "Top inspirational apps UI for you 2019",
+      "fullwidth": true,
+      "url": "#",
+      "author": "Saira H.",
+      "date": "08 Nov. 2022",
+      "category": "Apps UI",
+      "comments": "05 Comments",
+      "image": "/assets/img/blog/3.jpeg",
+      "content": "Smile spoke total few great had never their too. Amongst moments do in arrived at my replied. Fat weddings servants but man believed prospect. Companions understood is as especially pianoforte connection introduced. Nay newspaper can sportsman are admitting gentleman belonging his. Is oppose no he summer lovers twenty in. Not his difficulty boisterous surrounded bed. Seems folly if in given scale. Sex contented dependent conveying advantage can use."
+    },
+    {
+      "title": "Trendy Google apps you should check 2019",
+      "url": "#",
+      "author": "Saira H.",
+      "date": "08 Nov. 2022",
+      "category": "AppFeatures",
+      "comments": "05 Comments",
+      "image": "/assets/img/blog/4.jpg",
+      "content": "Smile spoke total few great had never their too. Amongst moments do in arrived at my replied. Fat weddings servants but man believed prospect. Companions understood is as especially pianoforte connection introduced. Nay newspaper can sportsman are admitting gentleman belonging his. Is oppose no he summer lovers twenty in. Not his difficulty boisterous surrounded bed. Seems folly if in given scale. Sex contented dependent conveying advantage can use."
+    },
+    {
+      "title": "New feature added: New version of apps added new features",
+      "url": "#",
+      "author": "Saira H.",
+      "date": "08 Nov. 2022",
+      "category": "AppFeatures",
+      "comments": "05 Comments",
+      "image": "/assets/img/blog/5.jpeg",
+      "content": "Smile spoke total few great had never their too. Amongst moments do in arrived at my replied. Fat weddings servants but man believed prospect. Companions understood is as especially pianoforte connection introduced. Nay newspaper can sportsman are admitting gentleman belonging his. Is oppose no he summer lovers twenty in. Not his difficulty boisterous surrounded bed. Seems folly if in given scale. Sex contented dependent conveying advantage can use."
+    }
+  ],
+  "relatedposts": [
+    {
+      "title": "New feature added: New version of apps added new features",
+      "fullwidth": true,
+      "url": "#",
+      "author": "Saira H.",
+      "date": "08 Nov. 2022",
+      "category": "AppFeatures",
+      "comments": "05 Comments",
+      "image": "/assets/img/blog/1.jpeg",
+      "content": "Smile spoke total few great had never their too. Amongst moments do in arrived at my replied. Fat weddings servants but man believed prospect. Companions understood is as especially pianoforte connection introduced. Nay newspaper can sportsman are admitting gentleman belonging his. Is oppose no he summer lovers twenty in. Not his difficulty boisterous surrounded bed. Seems folly if in given scale. Sex contented dependent conveying advantage can use."
+    },
+    {
+      "title": "Booming news: Google play apps has been relese",
+      "url": "#",
+      "author": "Saira H.",
+      "date": "08 Nov. 2022",
+      "category": "GooglePlay",
+      "comments": "05 Comments",
+      "image": "/assets/img/blog/2.jpeg",
+      "content": "Smile spoke total few great had never their too. Amongst moments do in arrived at my replied. Fat weddings servants but man believed prospect. Companions understood is as especially pianoforte connection introduced. Nay newspaper can sportsman are admitting gentleman belonging his. Is oppose no he summer lovers twenty in. Not his difficulty boisterous surrounded bed. Seems folly if in given scale. Sex contented dependent conveying advantage can use."
+    },
+    {
+      "title": "IOS version has been relese: Exited to share with you",
+      "url": "#",
+      "author": "Saira H.",
+      "date": "08 Nov. 2022",
+      "category": "AppleStore",
+      "comments": "05 Comments",
+      "image": "/assets/img/blog/1.jpeg",
+      "content": "Smile spoke total few great had never their too. Amongst moments do in arrived at my replied. Fat weddings servants but man believed prospect. Companions understood is as especially pianoforte connection introduced. Nay newspaper can sportsman are admitting gentleman belonging his. Is oppose no he summer lovers twenty in. Not his difficulty boisterous surrounded bed. Seems folly if in given scale. Sex contented dependent conveying advantage can use."
+    }
+  ],
+  "pagetitle": {
+    "blogfulltitle": "Blog Full",
+    "blog2coltitle": "Blog 2 column",
+    "blog3coltitle": "Blog 3 column",
+    "blogfullleftsidetitle": "Blog Full Left Sidebar",
+    "blogfullrightsidetitle": "Blog Full Right Sidebar"
+  }
+}

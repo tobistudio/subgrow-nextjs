@@ -1,0 +1,236 @@
+/* FULL WIDTH BLOG */
+#page-header {
+  @extend .gredient-bg;
+}
+.white-text {
+  color: $white_color;
+}
+.post-meta {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      display: inline-block;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      a {
+        font-weight: 600;
+        font-size: 12px;
+        @extend .primary_color;
+        &:hover {
+          @extend .dark-purple-color;
+        }
+      }
+    }
+  }
+}
+.blog-tag a {
+  display: inline-block;
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  margin: 15px;
+  color: #fff;
+  padding: 10px 15px;
+  opacity: 0;
+  font-weight: 600;
+  @include transition(0.4s);
+  @extend .gredient-bg;
+}
+.single-blog:hover .blog-tag a {
+  bottom: 0;
+  opacity: 1;
+}
+.page-content {
+  @extend .single-blog;
+  margin-bottom: 35px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 76px 0px rgba(231, 231, 231, 0.66);
+  .blog-tag a {
+    margin: 5px;
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+}
+.page-content h2 {
+  font-size: 26px;
+}
+.blog-post-img {
+  position: relative;
+}
+.app-pagenation {
+  .page-link {
+    margin-right: 10px;
+    border: 1px solid $border_color;
+    color: $heading_color;
+  }
+  .page-item:first-child .page-link,
+  .page-item:last-child .page-link {
+    border-radius: 0px;
+  }
+  .page-item.active .page-link {
+    @extend .gredient-bg;
+    border: transparent;
+  }
+}
+/* BLOG SIDEBAR */
+.single-widget {
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0px 0px 76px 0px rgba(231, 231, 231, 0.66);
+  border: 1px solid $border_color;
+  background: $white_color;
+  h3 {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid;
+    @extend .primary-border-color;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      &:last-child a {
+        border: none;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+      }
+    }
+    a {
+      @include transition(0.4s);
+      margin-bottom: 5px;
+      padding-bottom: 5px;
+      color: $primary_color;
+      border-bottom: 1px solid $border_color;
+      display: block;
+      &:hover {
+        @extend .dark-purple-color;
+      }
+    }
+  }
+  ul.tags-cloud {
+    li {
+      display: inline;
+      a {
+        padding: 2px 5px;
+        display: inline-block;
+        border: 1px solid $border_color;
+        &:hover {
+          @extend .gredient-bg;
+          color: #fff;
+        }
+      }
+    }
+  }
+  .search .form-control {
+    border-radius: 0px;
+    height: 45px;
+  }
+  .form-control:focus {
+    @include box-shadow(0px 1px 27px -3px rgba(0, 0, 0, 0.2));
+    @extend .primary-border-color;
+  }
+}
+.add-banner {
+  padding: 5px;
+}
+/* SINGLE BLOG */
+.single-blog-post {
+  @extend .heading_color;
+}
+.social-share {
+  p {
+    display: inline-block;
+    margin-bottom: 0px;
+    margin-top: 15px;
+    margin-right: 10px;
+    float: left;
+  }
+  .social-network {
+    .social-icon {
+      color: $heading_color;
+      @include box-shadow(0 0 0 2px $border_color);
+      &:hover {
+        color: $white_color;
+      }
+    }
+  }
+}
+.post-comments {
+  @extend .page-content;
+  padding: 25px;
+}
+
+/*  Comment lists */
+.comment-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.comment-list .the-comment {
+  border-bottom: 1px solid #e1e1e1;
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+}
+.comment-box {
+  padding-left: 80px;
+}
+.avatar {
+  float: left;
+  margin-right: 15px;
+  padding: 3px;
+  bottom: $border_color;
+}
+.avatar img {
+  max-width: 60px;
+  border-radius: 100%;
+}
+.comment-author.meta {
+  margin-bottom: 10px;
+}
+.children {
+  list-style: none;
+}
+.comment-reply-link {
+  background: #e1e1e1;
+  color: #000;
+  padding: 3px 5px;
+  margin-left: 5px;
+  display: inline-block;
+  @include transition(0.4s);
+}
+a.comment-reply-link:hover {
+  @extend .gredient-bg;
+  color: #fff;
+}
+/* Comment form */
+.card-block {
+  padding: 20px;
+  overflow: hidden;
+}
+.post-comments input {
+  padding: 10px;
+  width: 100%;
+  border: 1px solid $border_color;
+  margin-bottom: 15px;
+}
+.post-comments textarea {
+  resize: none;
+  padding: 10px;
+  height: 130px;
+  width: 100%;
+  border: 1px solid $border_color;
+  margin-bottom: 15px;
+}
+.card-block button {
+  margin-top: 15px;
+}
+.post-comments .btn-group button:hover {
+  background: $border_color;
+}
+.card-block .form-control {
+  border-radius: 0px;
+}

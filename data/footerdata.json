@@ -1,0 +1,35 @@
+{
+  "footerlogo": "/assets/img/logo.png",
+  "footertext": "May indulgence difficulty ham can put especially. Bringing remember for supplied her why was confined. Middleton principle did she procuring extensive believing add.",
+  "socialicon": [
+    {
+      "icon": "icofont-drawing-tablet",
+      "url": "#"
+    },
+    {
+      "icon": "icofont-responsive",
+      "url": "#"
+    },
+    {
+      "icon": "icofont-ui-note",
+      "url": ""
+    },
+    {
+      "icon": "icofont-file-avi-mp4",
+      "url": "#"
+    },
+    {
+      "icon": "icofont-code-alt",
+      "url": "#"
+    },
+    {
+      "icon": "icofont-cloud-refresh",
+      "url": "#"
+    },
+    {
+      "icon": "icofont-cloud-refresh",
+      "url": "#"
+    }
+  ],
+  "copyrighttext": "Copyright © Appiya  2022. All Rights Reserved. Made with <i ClassName='icofont-heart'></i> by <a href='#'>ThemeAtelier</a>"
+}

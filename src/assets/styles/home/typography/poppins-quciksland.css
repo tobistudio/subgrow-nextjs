@@ -1,0 +1,20 @@
+/*  ----------------------------------------------------
+1. IMPORT GOOGLE FONTS
+-------------------------------------------------------- */
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i");
+@import url("https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700");
+
+.body_font,
+body {
+  font-family: "Quicksand", sans-serif;
+}
+
+.heading_font,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Poppins", sans-serif;
+}

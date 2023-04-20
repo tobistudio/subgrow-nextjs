@@ -1,0 +1,43 @@
+.featured-1 {
+  overflow: hidden;
+  h2 {
+    margin-bottom: 15px;
+  }
+  p {
+    margin-bottom: 25px;
+  }
+  .bordered-circle2 {
+    top: -60px;
+    right: -60px;
+    left: inherit;
+    opacity: 0.8;
+  }
+}
+
+.featured-2 {
+  @extend .gredient-bg;
+  overflow: hidden;
+  h2 {
+    margin-bottom: 20px;
+  }
+  p {
+    margin-bottom: 50px;
+  }
+  h2,
+  p {
+    color: $white_color;
+  }
+}
+
+.bordered-circle2 {
+  @extend .bordered-circle;
+  width: 300px;
+  height: 300px;
+  top: -80px;
+  left: -70px;
+}
+
+.featured-mockup2 {
+  @extend .featured-mockup;
+  min-height: 265px;
+}

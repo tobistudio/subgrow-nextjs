@@ -1,0 +1,127 @@
+.gredient-bg,
+.btn-filled,
+.btn-default:hover,
+.circle,
+.loader:before,
+.hero-area,
+.bordered-circle,
+.bordered-circle2,
+.bordered-box,
+.filled-circle,
+.testimonials,
+.screenshot-swiper .swiper-button-prev:hover,
+.screenshot-swiper .swiper-container-rtl .swiper-button-next:hover,
+.screenshot-swiper .swiper-button-next:hover,
+.screenshot-swiper .swiper-container-rtl .swiper-button-prev:hover,
+.swiper-pagination-bullet-active,
+.single-pricing:before,
+.pricing-head .wave,
+.pricing-head .wave:nth-of-type(3),
+.featured-2,
+.read-more,
+.social-network .social-icon:hover,
+#page-header,
+.blog-tag a,
+.app-pagenation .page-item.active .page-link,
+.single-widget ul.tags-cloud li a:hover,
+a.comment-reply-link:hover {
+  background-color: #ff9d00;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg stroke='%23000' stroke-width='66.7' stroke-opacity='0.05' %3E%3Ccircle fill='%23ff9d00' cx='0' cy='0' r='1800'/%3E%3Ccircle fill='%23fb8d17' cx='0' cy='0' r='1700'/%3E%3Ccircle fill='%23f47d24' cx='0' cy='0' r='1600'/%3E%3Ccircle fill='%23ed6e2d' cx='0' cy='0' r='1500'/%3E%3Ccircle fill='%23e35f34' cx='0' cy='0' r='1400'/%3E%3Ccircle fill='%23d85239' cx='0' cy='0' r='1300'/%3E%3Ccircle fill='%23cc453e' cx='0' cy='0' r='1200'/%3E%3Ccircle fill='%23be3941' cx='0' cy='0' r='1100'/%3E%3Ccircle fill='%23b02f43' cx='0' cy='0' r='1000'/%3E%3Ccircle fill='%23a02644' cx='0' cy='0' r='900'/%3E%3Ccircle fill='%23901e44' cx='0' cy='0' r='800'/%3E%3Ccircle fill='%23801843' cx='0' cy='0' r='700'/%3E%3Ccircle fill='%236f1341' cx='0' cy='0' r='600'/%3E%3Ccircle fill='%235e0f3d' cx='0' cy='0' r='500'/%3E%3Ccircle fill='%234e0c38' cx='0' cy='0' r='400'/%3E%3Ccircle fill='%233e0933' cx='0' cy='0' r='300'/%3E%3Ccircle fill='%232e062c' cx='0' cy='0' r='200'/%3E%3Ccircle fill='%23210024' cx='0' cy='0' r='100'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.gredient-bg-hover,
+.animated-btn:before,
+.loader:after,
+.read-more:hover,
+.read-more:before {
+  background-color: #210024;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg stroke='%23000' stroke-width='66.7' stroke-opacity='0.05' %3E%3Ccircle fill='%23210024' cx='0' cy='0' r='1800'/%3E%3Ccircle fill='%232e062c' cx='0' cy='0' r='1700'/%3E%3Ccircle fill='%233e0933' cx='0' cy='0' r='1600'/%3E%3Ccircle fill='%234e0c38' cx='0' cy='0' r='1500'/%3E%3Ccircle fill='%235e0f3d' cx='0' cy='0' r='1400'/%3E%3Ccircle fill='%236f1341' cx='0' cy='0' r='1300'/%3E%3Ccircle fill='%23801843' cx='0' cy='0' r='1200'/%3E%3Ccircle fill='%23901e44' cx='0' cy='0' r='1100'/%3E%3Ccircle fill='%23a02644' cx='0' cy='0' r='1000'/%3E%3Ccircle fill='%23b02f43' cx='0' cy='0' r='900'/%3E%3Ccircle fill='%23be3941' cx='0' cy='0' r='800'/%3E%3Ccircle fill='%23cc453e' cx='0' cy='0' r='700'/%3E%3Ccircle fill='%23d85239' cx='0' cy='0' r='600'/%3E%3Ccircle fill='%23e35f34' cx='0' cy='0' r='500'/%3E%3Ccircle fill='%23ed6e2d' cx='0' cy='0' r='400'/%3E%3Ccircle fill='%23f47d24' cx='0' cy='0' r='300'/%3E%3Ccircle fill='%23fb8d17' cx='0' cy='0' r='200'/%3E%3Ccircle fill='%23ff9d00' cx='0' cy='0' r='100'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.gredient-color,
+.service-box:hover i,
+.how-it-box:hover i,
+.address-box:hover i,
+.single-feature:hover i,
+.how_works_arrow,
+.how-it-box i,
+.address-box i,
+.single-feature:hover h4,
+.border-color {
+  background-color: #210024;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg stroke='%23000' stroke-width='66.7' stroke-opacity='0.05' %3E%3Ccircle fill='%23210024' cx='0' cy='0' r='1800'/%3E%3Ccircle fill='%232e062c' cx='0' cy='0' r='1700'/%3E%3Ccircle fill='%233e0933' cx='0' cy='0' r='1600'/%3E%3Ccircle fill='%234e0c38' cx='0' cy='0' r='1500'/%3E%3Ccircle fill='%235e0f3d' cx='0' cy='0' r='1400'/%3E%3Ccircle fill='%236f1341' cx='0' cy='0' r='1300'/%3E%3Ccircle fill='%23801843' cx='0' cy='0' r='1200'/%3E%3Ccircle fill='%23901e44' cx='0' cy='0' r='1100'/%3E%3Ccircle fill='%23a02644' cx='0' cy='0' r='1000'/%3E%3Ccircle fill='%23b02f43' cx='0' cy='0' r='900'/%3E%3Ccircle fill='%23be3941' cx='0' cy='0' r='800'/%3E%3Ccircle fill='%23cc453e' cx='0' cy='0' r='700'/%3E%3Ccircle fill='%23d85239' cx='0' cy='0' r='600'/%3E%3Ccircle fill='%23e35f34' cx='0' cy='0' r='500'/%3E%3Ccircle fill='%23ed6e2d' cx='0' cy='0' r='400'/%3E%3Ccircle fill='%23f47d24' cx='0' cy='0' r='300'/%3E%3Ccircle fill='%23fb8d17' cx='0' cy='0' r='200'/%3E%3Ccircle fill='%23ff9d00' cx='0' cy='0' r='100'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.dark-purple-color,
+#testimonials .rotate-heading h2,
+.single-blog h2:hover,
+.page-content h2:hover,
+.post-comments h2:hover,
+.post-meta ul li a:hover,
+.single-widget ul a:hover {
+  color: #ff9d00;
+}
+
+.medium-purple-color {
+  color: #210024;
+}
+
+.border-color {
+  color: #dfdfdf;
+}
+
+.dark-purple,
+.header-nav .navbar-nav > li .sub-menu li > a:hover,
+.header-nav.fixed-header {
+  background: #ff9d00;
+}
+
+.medium-purple {
+  background: #210024;
+}
+
+.primary_color,
+body,
+.post-meta ul li a {
+  color: #858585;
+}
+
+.heading_color,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.screenshot-swiper .swiper-button-prev,
+.screenshot-swiper .swiper-container-rtl .swiper-button-next,
+.screenshot-swiper .swiper-button-next,
+.screenshot-swiper .swiper-container-rtl .swiper-button-prev,
+.blog-content h2,
+.blog-content .blog-meta,
+.single-blog-post {
+  color: #151515;
+}
+
+.primary-border-color,
+.screenshot-swiper .swiper-button-prev,
+.screenshot-swiper .swiper-container-rtl .swiper-button-next,
+.screenshot-swiper .swiper-button-next,
+.screenshot-swiper .swiper-container-rtl .swiper-button-prev,
+.contact-form input:focus,
+.contact-form textarea:focus,
+.single-widget h3,
+.single-widget .form-control:focus {
+  border-color: #ff9d00 !important;
+}
+.gray-bg,
+.contact-address,
+.contact-form {
+  background-color: #f1f1f1;
+}

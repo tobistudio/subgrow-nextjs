@@ -1,0 +1,113 @@
+{
+  "search": {
+    "title": "Blog Search"
+  },
+  "categorywidget": {
+    "title": "Categories",
+    "listitems": [
+      {
+        "item": "App Features",
+        "url": "#"
+      },
+      {
+        "item": "Google Play",
+        "url": "#"
+      },
+      {
+        "item": "IOS",
+        "url": "#"
+      },
+      {
+        "item": "App store",
+        "url": "#"
+      },
+      {
+        "item": "Treandy",
+        "url": "#"
+      }
+    ]
+  },
+  "quicklinks": {
+    "title": "Quick links",
+    "listitems": [
+      {
+        "item": "Home",
+        "url": "#"
+      },
+      {
+        "item": "About",
+        "url": "#"
+      },
+      {
+        "item": "Blog",
+        "url": "#"
+      },
+      {
+        "item": "Contact us",
+        "url": "#"
+      }
+    ]
+  },
+  "latestposts": {
+    "title": "Latest posts",
+    "listitems": [
+      {
+        "item": "Latest posts New feature added: New version of apps added new features",
+        "url": "#"
+      },
+      {
+        "item": "Booming news: Google play apps has been relese",
+        "url": "#"
+      },
+      {
+        "item": "IOS version has been relese: Exited to share with you",
+        "url": "#"
+      },
+      {
+        "item": "Top inspirational apps UI for you 2019",
+        "url": "#"
+      },
+      {
+        "item": "Trendy Google apps you should check 2019",
+        "url": "#"
+      }
+    ]
+  },
+  "tagscloud": {
+    "title": "Tags Cloud",
+    "listitems": [
+      {
+        "item": "Apps",
+        "url": "#"
+      },
+      {
+        "item": "PlayStore",
+        "url": "#"
+      },
+      {
+        "item": "GooglePlay",
+        "url": "#"
+      },
+      {
+        "item": "Android",
+        "url": "#"
+      },
+      {
+        "item": "IOS",
+        "url": "#"
+      },
+      {
+        "item": "2019",
+        "url": "#"
+      },
+      {
+        "item": "Responsive",
+        "url": "#"
+      }
+    ]
+  },
+  "addimage": {
+    "imageurl": "/assets/img/advertise.jpg",
+    "url": "#"
+  }
+}

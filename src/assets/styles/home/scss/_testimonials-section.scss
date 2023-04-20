@@ -1,0 +1,56 @@
+.testimonials {
+  @extend .gredient-bg;
+}
+
+.rotate-heading {
+  @include transform(rotate(-90deg));
+}
+
+.rotate-heading h2 {
+  font-size: 100px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+#testimonials .rotate-heading {
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  @include transform(translateY(-50%) rotate(-90deg));
+}
+
+#testimonials .rotate-heading h2 {
+  @extend .dark-purple-color;
+  @include opacity(0.3);
+}
+
+.single-testimonial {
+  color: $white_color;
+  img {
+    border: 3px solid $border_color;
+  }
+  p {
+    margin-bottom: 25px;
+  }
+  h5 {
+    color: $white_color;
+    font-size: 20px;
+    margin-bottom: 0px;
+  }
+  .designation {
+    font-size: 12px;
+    margin-bottom: 0px;
+  }
+  .ratings {
+    color: #e79120;
+    font-size: 12px;
+    margin-bottom: 0px;
+    i {
+      marginr-right: 5px;
+    }
+  }
+}
+
+.testimonialSwiper .swiper-pagination-bullet-active {
+  background: $white_color;
+}

@@ -1,0 +1,51 @@
+#screenshots {
+  overflow: hidden;
+}
+.screenshot-swiper .col-sm-4 {
+  padding: 0px;
+  text-align: center;
+}
+
+.screenshot-swiper img {
+  margin: 0 auto;
+}
+.screenshot-swiper .swiper-button-prev,
+.screenshot-swiper .swiper-container-rtl .swiper-button-next,
+.screenshot-swiper .swiper-button-next,
+.screenshot-swiper .swiper-container-rtl .swiper-button-prev {
+  background: none;
+  line-height: 44px;
+  font-size: 28px;
+  text-align: center;
+  width: 44px;
+  height: 44px;
+  @extend .heading_color;
+  @include border-radius(100%);
+  border-width: 2px;
+  border-style: solid;
+  @extend .primary-border-color;
+  @include transition(0.3s);
+  @include opacity(0.5);
+}
+
+.screenshot-swiper .swiper-button-prev:hover,
+.screenshot-swiper .swiper-container-rtl .swiper-button-next:hover {
+  @include opacity(1);
+}
+
+.screenshot-swiper .swiper-button-next:hover,
+.screenshot-swiper .swiper-container-rtl .swiper-button-prev:hover {
+  @include opacity(1);
+}
+
+.screenshot-swiper .swiper-button-prev:hover,
+.screenshot-swiper .swiper-container-rtl .swiper-button-next:hover,
+.screenshot-swiper .swiper-button-next:hover,
+.screenshot-swiper .swiper-container-rtl .swiper-button-prev:hover {
+  @extend .gredient-bg;
+  color: $white_color;
+}
+
+.swiper-pagination-bullet-active {
+  @extend .gredient-bg;
+}

@@ -1,0 +1,78 @@
+/* moveInLeft Animation */
+@include keyframes(moveInLeft) {
+  0% {
+    @include opacity(0);
+    @include transform(translateX(-50px));
+  }
+  80% {
+    @include transform(translateX(10px));
+  }
+  100% {
+    @include opacity(1);
+    @include transform(translate(0));
+  }
+}
+/* moveInRight Animation */
+@include keyframes(moveInRight) {
+  0% {
+    @include opacity(0);
+    @include transform(translateX(50px));
+  }
+  80% {
+    @include transform(translateX(-10px));
+  }
+  100% {
+    @include opacity(1);
+    @include transform(translate(0));
+  }
+}
+/* movecircles Animation */
+@include keyframes(movecircles) {
+  0% {
+    margin-left: 1000px;
+  }
+  100% {
+    margin-left: -1000px;
+  }
+}
+/* Rotate Animation */
+@include keyframes(roatateAnim) {
+  0% {
+    @include opacity(1);
+    @include transform(translateY(10px));
+    @include transform(rotate(10deg));
+  }
+  100% {
+    @include opacity(2);
+    @include transform(translate(0));
+    @include transform(rotate(360deg));
+  }
+}
+/* MoveUpDown Animation */
+@include keyframes(MoveUpDown) {
+  0% {
+    @include transform(translateY(0));
+  }
+  100% {
+    @include transform(translateY(30px));
+  }
+}
+/* Drift Animation */
+@include keyframes(drift) {
+  from {
+    @include transform(rotate(360deg));
+  }
+}
+/* Left Animation */
+@include keyframes(animationLeft) {
+  49% {
+    @include transform(translateX(100%));
+  }
+  50% {
+    @include opacity(0);
+    @include transform(translateX(-100%));
+  }
+  51% {
+    @include opacity(1);
+  }
+}

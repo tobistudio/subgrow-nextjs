@@ -1,0 +1,243 @@
+{
+  "heroarea": {
+    "imgurl1": "/theme/img/hero-mock.png",
+    "title": "One link for them all",
+    "content": "Sub Grow.",
+    "btn1label": "Download App",
+    "btn1url": "#",
+    "btn2label": "More Details",
+    "btn2url": "#"
+  },
+  "features": {
+    "sectiontitle": "APP FEATURES",
+    "imgurl1": "/theme/img/iphone-1.png",
+    "imgurl2": "/theme/img/iphone-2.png",
+    "featurescontent": [
+      {
+        "title": "Easy Installation",
+        "icon": "icofont-drawing-tablet",
+        "content": "Way nor furnished sir procuring therefore but. Warmth far manner myself active are cannot"
+      },
+      {
+        "title": "Responsive Design",
+        "icon": "icofont-responsive",
+        "content": "Way nor furnished sir procuring therefore but. Warmth far manner myself active are cannot"
+      },
+      {
+        "title": "Flexible Interface",
+        "icon": "icofont-ui-note",
+        "content": "Way nor furnished sir procuring therefore but. Warmth far manner myself active are cannot"
+      },
+      {
+        "title": "High Resolution",
+        "icon": "icofont-file-avi-mp4",
+        "content": "Way nor furnished sir procuring therefore but. Warmth far manner myself active are cannot"
+      },
+      {
+        "title": "Bug Free Code",
+        "icon": "icofont-code-alt",
+        "content": "Way nor furnished sir procuring therefore but. Warmth far manner myself active are cannot"
+      },
+      {
+        "title": "Cloud Storage",
+        "icon": "icofont-cloud-refresh",
+        "content": "Way nor furnished sir procuring therefore but. Warmth far manner myself active are cannot"
+      }
+    ]
+  },
+  "feature1": {
+    "imgurl1": "/theme/img/experience.png",
+    "title": "EXPERIENCEAWSOME,MODERNAPP",
+    "content": "Now for manners use has company believe parlors. Least nor party who wrote while did. Excuse formed as is agreed admire so on result parish. Put use set uncommonly announcing and travelling. Allowance sweetness direction to as necessary. Principle oh explained excellent do my suspected conveying in. Excellent you did therefore perfectly supposing described.",
+    "btn1label": "More detail",
+    "btn1url": "#"
+  },
+  "feature2": {
+    "imgurl1": "/theme/img/6mockup1.png",
+    "imgurl2": "/theme/img/6mockup2.png",
+    "title": "Download App",
+    "content": "Over fact all son tell this any his. No insisted confined of weddings to returned to debating rendered. Keeps order fully so do party means young. Table nay him jokes quick.",
+    "btn1label": "Available on<br/>Google store",
+    "btn1url": "#",
+    "btn2label": "Available on<br/>Apple store",
+    "btn2url": "#"
+  },
+  "services": [
+    {
+      "title": "Easy Customize",
+      "icon": "icofont-law-document",
+      "content": "Eat him four are rich nor calm. By an packages rejoiced exercise. To ought on am marry rooms doubt music"
+    },
+    {
+      "title": "Bug Free Code",
+      "icon": "icofont-code",
+      "content": "Eat him four are rich nor calm. By an packages rejoiced exercise. To ought on am marry rooms doubt music"
+    },
+    {
+      "title": "High Resolution",
+      "icon": "icofont-file-avi-mp4",
+      "content": "Eat him four are rich nor calm. By an packages rejoiced exercise. To ought on am marry rooms doubt music"
+    }
+  ],
+  "howitworks": {
+    "sectiontitle": "HOW IT WORKS",
+    "features": [
+      {
+        "title": "Configuration",
+        "icon": "icofont-iphone",
+        "content": "Literature admiration frequently indulgence announcing"
+      },
+      {
+        "title": "Refresh Setup",
+        "icon": "icofont-refresh",
+        "content": "Literature admiration frequently indulgence announcing"
+      },
+      {
+        "title": "Start Using App",
+        "icon": "icofont-hand-drag1",
+        "content": "Literature admiration frequently indulgence announcing"
+      }
+    ]
+  },
+  "screenshots": {
+    "sectiontitle": "APP SCREENSHOTS",
+    "images": [
+      "/theme/img/ss1.png",
+      "/theme/img/ss2.png",
+      "/theme/img/ss3.png",
+      "/theme/img/ss4.png",
+      "/theme/img/ss5.png"
+    ]
+  },
+  "preface": {
+    "sectiontitle": "APP PREFACE",
+    "imgurl": "/theme/img/preface.png",
+    "title": "Booming news: Google play apps has been relese",
+    "content": "Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors",
+    "btn1label": "Available on<br/>Google store",
+    "btn1url": "#",
+    "btn2label": "Available on<br/>Apple store",
+    "btn2url": "#"
+  },
+  "pricingtable": {
+    "sectiontitle": "Pricing Plans",
+    "tables": [
+      {
+        "title": "Starter",
+        "currency": "$",
+        "price": "17",
+        "duration": "/ Month",
+        "url": "#",
+        "features": [
+          "5 Projects",
+          "5 GB of Storage",
+          "Up to 10 Users",
+          "Reliable Backup",
+          "Security Suite"
+        ]
+      },
+      {
+        "title": "Popular",
+        "currency": "$",
+        "price": "34",
+        "duration": "/ Month",
+        "url": "#",
+        "features": [
+          "5 Projects",
+          "5 GB of Storage",
+          "Up to 10 Users",
+          "Reliable Backup",
+          "Security Suite"
+        ]
+      },
+      {
+        "title": "Premium",
+        "currency": "$",
+        "price": "99",
+        "duration": "/ Month",
+        "url": "#",
+        "features": [
+          "5 Projects",
+          "5 GB of Storage",
+          "Up to 10 Users",
+          "Reliable Backup",
+          "Security Suite"
+        ]
+      }
+    ]
+  },
+  "testimonial": [
+    {
+      "client": "Jenifar deo.",
+      "designation": "Apps Developer",
+      "imgurl": "/theme/img/avater1.jpeg",
+      "content": "“ Is he staying arrival address earnest. To preference considered it themselves inquietude collecting estimating. View park for why gay knew face. ”"
+    },
+    {
+      "client": "Kate Hauly",
+      "designation": "Digital Marketer",
+      "imgurl": "/theme/img/avater1.jpeg",
+      "content": "“ Is he staying arrival address earnest. To preference considered it themselves inquietude collecting estimating. View park for why gay knew face. ”"
+    },
+    {
+      "client": "John Deo",
+      "designation": "Web Developer",
+      "imgurl": "/theme/img/avater1.jpeg",
+      "content": "“ Is he staying arrival address earnest. To preference considered it themselves inquietude collecting estimating. View park for why gay knew face. ”"
+    }
+  ],
+  "blogs": {
+    "sectiontitle": "LATEST BLOG",
+    "blogs": [
+      {
+        "title": "Top inspirational apps UI for you 2019",
+        "date": "08 Nov. 2022",
+        "imgurl": "/theme/img/blog/4.jpg",
+        "author": "Appiya",
+        "comment": "05 Comments",
+        "category": "Apps UI",
+        "content": "Far curiosity incommode now led smallness allowance. Favour bed assure son things yet. She consisted consulted elsewhere happiness disposing household any old the. Widow downs you new shade drift hopes small."
+      },
+      {
+        "title": "Trendy Google apps you should check 2019",
+        "date": "08 Nov. 2022",
+        "imgurl": "/theme/img/blog/4.jpg",
+        "author": "Appiya",
+        "comment": "05 Comments",
+        "category": "Google Play",
+        "content": "Far curiosity incommode now led smallness allowance. Favour bed assure son things yet. She consisted consulted elsewhere happiness disposing household any old the. Widow downs you new shade drift hopes small."
+      },
+      {
+        "title": "Booming news: Google play apps has been relese",
+        "date": "08 Nov. 2022",
+        "imgurl": "/theme/img/blog/4.jpg",
+        "author": "Appiya",
+        "comment": "05 Comments",
+        "category": "App Features",
+        "content": "Far curiosity incommode now led smallness allowance. Favour bed assure son things yet. She consisted consulted elsewhere happiness disposing household any old the. Widow downs you new shade drift hopes small."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Get in touch",
+    "contactinfo": {
+      "address": {
+        "title": "Address",
+        "icon": "icofont-google-map",
+        "info": "49 Park Avenue, <br> Newyork , NY 10016"
+      },
+      "phone": {
+        "title": "Phone",
+        "icon": "icofont-phone",
+        "info": "0123 45600 7892 <br> 0027 11566 0124"
+      },
+      "email": {
+        "title": "Email Address",
+        "icon": "icofont-envelope-open",
+        "info": "info@domainname.com<br>contact@domainname.com"
+      }
+    },
+    "formtitle": "Ask any kind of questions",
+    "formdescription": "To shewing another demands to. Marianne property cheerful informed at striking at. Clothes parlors however by cottage on."
+  }
+}

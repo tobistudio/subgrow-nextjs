@@ -1,7 +1,7 @@
-import { LabeledTextField } from "src/core/components/LabeledTextField"
-import { Form, FORM_ERROR } from "src/core/components/Form"
-import signup from "src/auth/mutations/signup"
-import { Signup } from "src/auth/validations"
+import { LabeledTextField } from "core/components/LabeledTextField"
+import { Form, FORM_ERROR } from "core/components/Form"
+import signup from "auth/mutations/signup"
+import { Signup } from "auth/validations"
 import { useMutation } from "@blitzjs/rpc"
 
 type SignupFormProps = {

@@ -1,0 +1,893 @@
+$color_1: #000;
+$color_2: #333;
+$color_3: #fff;
+$color_4: #555;
+$color_5: #777;
+$color_6: #959599;
+$color_7: #797979;
+$color_8: #eee;
+$font-family_1: "Open Sans", sans-serif;
+$font-family_2: "Poppins", sans-serif;
+$background-color_1: #fff;
+
+/* Main Style CSS File
+	===================
+	Item Name: Valuation - Modern slider pricing tables.
+	Author: Ashishmaraviya
+	Version: 1.0
+	Copyright 2020
+===================*/
+
+/** [00. General css] **/
+@-webkit-keyframes setting-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes setting-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+/** [01. Pricing Package css] **/
+/* Responsive CSS File
+	===================
+	Item Name: Valuation - Modern slider pricing tables.
+	Author: Ashishmaraviya
+	Version: 1.0
+	Copyright 2020
+===================*/
+/* Main Style CSS File
+	===================
+	Item Name: Valuation - Modern slider pricing tables.
+	Author: Ashishmaraviya
+	Version: 1.0
+	Copyright 2020
+===================*/
+
+/** [00. General css] **/
+@-webkit-keyframes setting-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes setting-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+/** [01. Pricing Package css] **/
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+  color: $color_1;
+  font-family: $font-family_1;
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+  color: $color_1;
+  font-family: $font-family_1;
+}
+a {
+  outline: none !important;
+  text-decoration: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  outline: none !important;
+  text-decoration: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    outline: none;
+    text-decoration: none;
+    outline: none;
+    text-decoration: none;
+  }
+  &:focus {
+    outline: none;
+    text-decoration: none;
+    outline: none;
+    text-decoration: none;
+  }
+}
+select {
+  &:focus {
+    outline: none;
+    text-decoration: none;
+    outline: none;
+    text-decoration: none;
+  }
+  outline: none !important;
+  font-family: $font-family_2;
+  outline: none !important;
+  font-family: $font-family_2;
+}
+button {
+  &:focus {
+    outline: none;
+    text-decoration: none;
+    outline: none;
+    text-decoration: none;
+  }
+  outline: none !important;
+  font-family: $font-family_2;
+  outline: none !important;
+  font-family: $font-family_2;
+}
+* {
+  margin: 0;
+  padding: 0;
+  margin: 0;
+  padding: 0;
+}
+img {
+  border: none;
+  vertical-align: middle;
+  width: 100%;
+  border: none;
+  vertical-align: middle;
+  width: 100%;
+}
+li {
+  list-style: none;
+  list-style: none;
+}
+p {
+  letter-spacing: 0.01rem;
+  letter-spacing: 0.01rem;
+}
+h1 {
+  outline: none !important;
+  font-family: $font-family_2;
+  outline: none !important;
+  font-family: $font-family_2;
+}
+h2 {
+  outline: none !important;
+  font-family: $font-family_2;
+  outline: none !important;
+  font-family: $font-family_2;
+}
+h3 {
+  outline: none !important;
+  font-family: $font-family_2;
+  outline: none !important;
+  font-family: $font-family_2;
+}
+h4 {
+  outline: none !important;
+  font-family: $font-family_2;
+  outline: none !important;
+  font-family: $font-family_2;
+}
+h5 {
+  outline: none !important;
+  font-family: $font-family_2;
+  outline: none !important;
+  font-family: $font-family_2;
+}
+h6 {
+  outline: none !important;
+  font-family: $font-family_2;
+  outline: none !important;
+  font-family: $font-family_2;
+}
+input {
+  outline: none !important;
+  font-family: $font-family_2;
+  outline: none !important;
+  font-family: $font-family_2;
+}
+textarea {
+  outline: none !important;
+  font-family: $font-family_2;
+  outline: none !important;
+  font-family: $font-family_2;
+}
+section {
+  padding: 70px 0;
+  padding: 70px 0;
+}
+.setting-icon {
+  padding: 10px;
+  animation: setting-spin 2s infinite linear;
+  padding: 10px;
+  animation: setting-spin 2s infinite linear;
+}
+.section_bg {
+  background: #f8f8f8;
+  background: #f8f8f8;
+}
+.global_title {
+  margin-bottom: 40px;
+  color: $color_2;
+  margin-bottom: 40px;
+  color: $color_2;
+}
+.color-picker {
+  position: fixed;
+  right: -190px;
+  top: 100px;
+  width: 190px;
+  z-index: 99;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  position: fixed;
+  right: -190px;
+  top: 100px;
+  width: 190px;
+  z-index: 99;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  .settings-header {
+    background: -webkit-gradient(linear, left top, left bottom, from(#777), to(#444));
+    background: linear-gradient(to right, #777, #444);
+    padding: 5px 15px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#777), to(#444));
+    background: linear-gradient(to right, #777, #444);
+    padding: 5px 15px;
+    h3 {
+      color: $color_3;
+      margin: 0;
+      font-size: 20px;
+      text-align: center;
+      padding: 4px 9px;
+      color: $color_3;
+      margin: 0;
+      font-size: 20px;
+      text-align: center;
+      padding: 4px 9px;
+    }
+  }
+  .section {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #444;
+    overflow: auto;
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #444;
+    overflow: auto;
+    i {
+      font-size: 16px;
+      margin-right: 10px;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+  }
+  a.handle {
+    position: absolute;
+    right: 190px;
+    width: 50px;
+    height: 43px;
+    color: $color_3;
+    -webkit-transition: all ease-in 0.3s;
+    transition: all ease-in 0.3s;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-size: 25px;
+    z-index: -1;
+    text-decoration: none;
+    background: linear-gradient(to right, #777, #444);
+    top: 0;
+    position: absolute;
+    right: 190px;
+    width: 50px;
+    height: 43px;
+    color: $color_3;
+    -webkit-transition: all ease-in 0.3s;
+    transition: all ease-in 0.3s;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-size: 25px;
+    z-index: -1;
+    text-decoration: none;
+    background: linear-gradient(to right, #777, #444);
+    top: 0;
+  }
+  .colors {
+    a {
+      width: 35px;
+      height: 35px;
+      margin: 7px 7px;
+      float: left;
+      -webkit-transition: all ease-in 0.3s;
+      transition: all ease-in 0.3s;
+      width: 35px;
+      height: 35px;
+      margin: 7px 7px;
+      float: left;
+      -webkit-transition: all ease-in 0.3s;
+      transition: all ease-in 0.3s;
+    }
+  }
+  .skin {
+    a {
+      display: block;
+      width: 70px;
+      height: 30px;
+      margin-left: 0;
+      margin-top: 0;
+      margin-right: 5px;
+      float: left;
+      text-align: center;
+      line-height: 30px;
+      border: 2px transparent solid;
+      display: block;
+      width: 70px;
+      height: 30px;
+      margin-left: 0;
+      margin-top: 0;
+      margin-right: 5px;
+      float: left;
+      text-align: center;
+      line-height: 30px;
+      border: 2px transparent solid;
+    }
+    a.actt {
+      border: 2px #fff solid;
+      border: 2px #fff solid;
+    }
+  }
+}
+.color-1 {
+  background: #4c3bb3;
+  background: #4c3bb3;
+}
+.color-2 {
+  background: #5076db;
+  background: #5076db;
+}
+.color-3 {
+  background: #f46731;
+  background: #f46731;
+}
+.color-4 {
+  background: #2eb04c;
+  background: #2eb04c;
+}
+.color-5 {
+  background: #c9634d;
+  background: #c9634d;
+}
+.color-6 {
+  background: #646464;
+  background: #646464;
+}
+.setting-link {
+  margin-top: 10px;
+  display: block;
+  color: $color_4;
+  margin-top: 10px;
+  display: block;
+  color: $color_4;
+  &:hover {
+    margin-left: 5px;
+    color: $color_5;
+    margin-left: 5px;
+    color: $color_5;
+  }
+}
+.package_sec {
+  width: 100%;
+  margin: 0;
+  background-color: $background-color_1;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+  background-color: $background-color_1;
+  position: relative;
+  overflow: hidden;
+  .inner {
+    width: 100%;
+    margin: -8px 0 0 0;
+    padding: 0;
+    position: relative;
+    z-index: 98;
+    width: 100%;
+    margin: -8px 0 0 0;
+    padding: 0;
+    position: relative;
+    z-index: 98;
+  }
+  .package_block {
+    border: 1px solid #4c3bb3;
+    width: 100%;
+    margin: 0;
+    padding: 25px 35px 25px 50px;
+    background: #fff;
+    border-radius: 15px;
+    text-align: center;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    h3 {
+      margin: 0;
+      padding: 0;
+      font-size: 22px;
+      font-weight: 500;
+      margin: 0;
+      padding: 0;
+      font-size: 22px;
+      font-weight: 500;
+    }
+    .price {
+      display: block;
+      margin: 10px 0;
+      padding: 0;
+      font-size: 45px;
+      font-family: $font-family_2;
+      color: $color_4;
+      font-weight: 700;
+      position: relative;
+      z-index: 2;
+      small {
+        font-size: 16px;
+        color: $color_6;
+        font-weight: 300;
+      }
+    }
+  }
+  .buy_btn {
+    margin: 13px 0 5px 0;
+    padding: 8px 30px;
+    display: inline-block;
+    color: $color_3;
+    border: 1px solid transparent;
+    box-shadow: 0px 4px 15px 10px #e9e9e9;
+    border-radius: 30px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    margin: 13px 0 5px 0;
+    padding: 8px 30px;
+    display: inline-block;
+    color: $color_3;
+    border: 1px solid transparent;
+    box-shadow: 0px 4px 15px 10px #e9e9e9;
+    border-radius: 30px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+  .package_block.first {
+    border-radius: 10px 0 0 10px;
+    border-radius: 10px 0 0 10px;
+  }
+  .package_block.last {
+    border-radius: 0 10px 10px 0;
+    border-radius: 0 10px 10px 0;
+  }
+
+  .item {
+    &.first {
+      .package_block {
+        padding: 25px 60px 25px 25px;
+      }
+    }
+  }
+  .item.active.center {
+    position: relative;
+    z-index: 999;
+    &:before {
+      content: "";
+      height: 90px;
+
+      position: absolute;
+      bottom: 5px;
+      left: -30px;
+      right: -30px;
+      background-size: 100% 100%;
+    }
+
+    .package_block {
+      background: #4c3bb3;
+
+      width: 98%;
+      padding: 25px 30px;
+      margin: auto;
+      background-image: url("/img/pricing/plan-bg.png");
+      /*background-image: url('../img/plan-bg.png'); */
+      background-size: cover;
+      border: 0;
+      transform: scale(1.1);
+      -ms-transform: scale(1.1);
+      -moz-transform: scale(1.1);
+      -webkit-transform: scale(1.1);
+      -o-transform: scale(1.1);
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+      .price {
+        color: $color_3;
+        small {
+          color: $color_3;
+          opacity: 0.7;
+        }
+      }
+      ul.package_list {
+        li {
+          color: $color_8;
+          &:before {
+            color: $color_3;
+          }
+          span {
+            color: $color_3;
+          }
+        }
+      }
+    }
+    .radial-out {
+      &:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        -webkit-transform-origin: 50% 0;
+        transform-origin: 50% 0;
+        -webkit-transition-property: transform;
+        transition-property: transform;
+        -webkit-transition-duration: 0.5s;
+        transition-duration: 0.5s;
+        -webkit-transition-timing-function: ease-out;
+        transition-timing-function: ease-out;
+      }
+      &:hover {
+        background: #fff;
+        color: $color_1;
+      }
+    }
+  }
+}
+ul.package_list {
+  width: 100%;
+  margin: 0 0 10px 0;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+  margin: 0 0 10px 0;
+  padding: 0;
+  text-align: center;
+  li {
+    margin: 0 8px 15px 0;
+    display: block;
+    font-size: 14px;
+    color: $color_7;
+    position: relative;
+    font-weight: 300;
+    margin: 0 8px 15px 0;
+    display: block;
+    font-size: 14px;
+    color: $color_7;
+    position: relative;
+    font-weight: 300;
+    i {
+      font-size: 12px;
+      margin-right: 5px;
+      font-size: 12px;
+      margin-right: 5px;
+    }
+    span {
+      color: $color_4;
+      font-weight: 600;
+      color: $color_4;
+      font-weight: 600;
+    }
+  }
+}
+@media (max-width: 1366px) {
+  .global_title {
+    font-size: 40px;
+    line-height: 28px;
+  }
+  .package_sec {
+    .package_block {
+      .price {
+        font-size: 40px;
+      }
+      h3 {
+        font-size: 20px;
+      }
+    }
+  }
+}
+@media (max-width: 1199px) {
+  .global_title {
+    font-size: 37px;
+  }
+  ul.package_list {
+    li {
+      font-size: 14px;
+    }
+  }
+}
+@media (max-width: 991px) {
+  section {
+    width: 100%;
+    margin: 0px;
+    padding: 50px 0;
+  }
+  .global_title {
+    margin: 0 0 35px 0;
+    line-height: 21px;
+    font-size: 30px;
+  }
+  .package_sec {
+    .owl-carousel.owl-drag {
+      .item {
+        padding: 20px 0 40px 0;
+      }
+    }
+    .inner {
+      margin: 0;
+      padding: 0;
+    }
+    .package_block {
+      h3 {
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+      .price {
+        font-size: 38px;
+        small {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  ul.package_list {
+    li {
+      margin: 0 0 10px 0;
+    }
+  }
+  .package_sec.sec_pricing {
+    .package_block.middle {
+      &:before {
+        display: none;
+      }
+    }
+    padding-bottom: 40px;
+  }
+  .package_sec.package_inn {
+    padding-bottom: 90px;
+  }
+}
+@media (max-width: 767px) {
+  section {
+    width: 100%;
+    margin: 0px;
+    padding: 40px 0;
+  }
+  .global_title {
+    margin: 0 0 30px 0;
+  }
+  .package_sec {
+    .inner {
+      margin: -2px 0 0 0;
+    }
+    .package_block {
+      text-align: center;
+      .price {
+        font-size: 35px;
+      }
+    }
+    .item.active.center {
+      .package_block {
+        width: 100%;
+      }
+    }
+    .buy_btn {
+      font-size: 15px;
+      padding: 8px 30px;
+    }
+  }
+  ul.package_list {
+    li {
+      font-size: 13px;
+      i {
+        margin-right: 5px;
+        font-size: 13px;
+      }
+    }
+  }
+  .package_sec.sec_pricing {
+    .package_block {
+      .top_info {
+        h3 {
+          margin: 0;
+        }
+        &:before {
+          height: 20px;
+        }
+        padding: 25px 30px 20px 30px;
+      }
+      ul.package_list {
+        padding: 25px 20px 0 20px;
+      }
+    }
+    padding-bottom: 20px;
+  }
+  .package_sec.third_pricing {
+    .package_block {
+      .top_info {
+        &:before {
+          height: 40px;
+        }
+        padding: 25px 30px 38px 30px;
+      }
+    }
+  }
+  .package_sec.package_inn {
+    .package_block.select {
+      transform: scale(1);
+      -ms-transform: scale(1);
+      -moz-transform: scale(1);
+      -webkit-transform: scale(1);
+      -o-transform: scale(1);
+    }
+    .inner {
+      padding: 0 10%;
+    }
+    .package_block {
+      margin-bottom: 30px;
+    }
+    padding-bottom: 15px;
+  }
+}
+@media (max-width: 600px) {
+  .global_title {
+    font-size: 26px;
+    line-height: 18px;
+  }
+  .package_sec {
+    .inner {
+      padding: 0;
+    }
+    .item.active.center {
+      .package_block {
+        padding: 25px 20px;
+        .price {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+  .package_sec.package_inn {
+    .inner {
+      padding: 0;
+    }
+  }
+}
+@media (max-width: 575px) {
+  .package_sec {
+    .owl-carousel.owl-drag {
+      .item {
+        padding: 20px 0;
+      }
+    }
+    .owl-carousel {
+      .owl-dots {
+        margin: 18px 0 -5px 0;
+      }
+    }
+    .package_block {
+      h3 {
+        text-align: center;
+      }
+    }
+    .item.active.center {
+      .package_block {
+        .price {
+          text-align: center;
+        }
+      }
+    }
+  }
+  .team_sec {
+    .owl-carousel {
+      .owl-dots {
+        margin: 18px 0 -5px 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .package_sec {
+    .item.active.center {
+      .package_block {
+        transform: none;
+        -ms-transform: none;
+        -moz-transform: none;
+        -webkit-transform: none;
+        -o-transform: none;
+      }
+      &:before {
+        display: none;
+      }
+    }
+    .owl-carousel.owl-drag {
+      .item {
+        padding: 0;
+      }
+    }
+    .owl-carousel {
+      .owl-nav {
+        button.owl-prev {
+          right: 37px;
+          width: 35px;
+          height: 30px;
+          top: -30px;
+          &:after {
+            position: absolute;
+            top: -4px;
+            left: 7px;
+          }
+        }
+        button.owl-next {
+          width: 35px;
+          height: 30px;
+          top: -30px;
+          &:after {
+            position: absolute;
+            top: -4px;
+            left: 4px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+.bordered-circle {
+  width: 600px;
+  height: 600px;
+  top: -50px;
+  position: absolute;
+  left: -300px;
+  z-index: 0;
+  @include border-radius(100%);
+  @extend .gredient-bg;
+}
+#preface img {
+  position: relative;
+}
+
+.apps-buttons .btn.btn-default {
+  margin-right: 30px;
+  margin-bottom: 25px;
+  padding-left: 60px;
+  position: relative;
+}
+
+.apps-buttons .btn.btn-default i {
+  position: absolute;
+  left: 25px;
+  top: 50%;
+  font-size: 30px;
+  @include transform(translate(0, -50%));
+}

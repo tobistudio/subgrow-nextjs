@@ -13,11 +13,11 @@ const Prisma = {}
 exports.Prisma = Prisma
 
 /**
- * Prisma Client JS version: 4.6.0
+ * Prisma Client JS version: 4.13.0
  * Query Engine version: 2e719efb80b56a3f32d18a62489de95bb9c130e3
  */
 Prisma.prismaVersion = {
-  client: "4.6.0",
+  client: "4.13.0",
   engine: "2e719efb80b56a3f32d18a62489de95bb9c130e3"
 }
 
@@ -85,11 +85,8 @@ Prisma.NullTypes = {
 /**
  * Enums
  */
-// Based on
-// https://github.com/microsoft/TypeScript/issues/3192#issuecomment-261720275
-function makeEnum(x) { return x; }
 
-exports.Prisma.AccountScalarFieldEnum = makeEnum({
+exports.Prisma.AccountScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   type: 'type',
@@ -102,27 +99,27 @@ exports.Prisma.AccountScalarFieldEnum = makeEnum({
   scope: 'scope',
   id_token: 'id_token',
   session_state: 'session_state'
-});
+};
 
-exports.Prisma.ActivityScalarFieldEnum = makeEnum({
+exports.Prisma.ActivityScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   title: 'title',
   content: 'content',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
-});
+};
 
-exports.Prisma.BankAccountScalarFieldEnum = makeEnum({
+exports.Prisma.BankAccountScalarFieldEnum = {
   id: 'id',
   customerId: 'customerId',
   bank_name: 'bank_name',
   account_owner: 'account_owner',
   iban: 'iban',
   bic: 'bic'
-});
+};
 
-exports.Prisma.CustomerScalarFieldEnum = makeEnum({
+exports.Prisma.CustomerScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   companyId: 'companyId',
@@ -147,9 +144,9 @@ exports.Prisma.CustomerScalarFieldEnum = makeEnum({
   note: 'note',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
-});
+};
 
-exports.Prisma.FileScalarFieldEnum = makeEnum({
+exports.Prisma.FileScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   customerId: 'customerId',
@@ -159,9 +156,9 @@ exports.Prisma.FileScalarFieldEnum = makeEnum({
   description: 'description',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
-});
+};
 
-exports.Prisma.InvoiceItemsScalarFieldEnum = makeEnum({
+exports.Prisma.InvoiceItemsScalarFieldEnum = {
   id: 'id',
   project: 'project',
   amount: 'amount',
@@ -174,9 +171,9 @@ exports.Prisma.InvoiceItemsScalarFieldEnum = makeEnum({
   discount: 'discount',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
-});
+};
 
-exports.Prisma.InvoiceScalarFieldEnum = makeEnum({
+exports.Prisma.InvoiceScalarFieldEnum = {
   id: 'id',
   customerId: 'customerId',
   termsOfPaymentId: 'termsOfPaymentId',
@@ -188,22 +185,22 @@ exports.Prisma.InvoiceScalarFieldEnum = makeEnum({
   sendAt: 'sendAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
-});
+};
 
-exports.Prisma.JsonNullValueFilter = makeEnum({
+exports.Prisma.JsonNullValueFilter = {
   DbNull: Prisma.DbNull,
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
-});
+};
 
-exports.Prisma.MessageScalarFieldEnum = makeEnum({
+exports.Prisma.MessageScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
-});
+};
 
-exports.Prisma.NotificationScalarFieldEnum = makeEnum({
+exports.Prisma.NotificationScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   title: 'title',
@@ -213,14 +210,14 @@ exports.Prisma.NotificationScalarFieldEnum = makeEnum({
   description: 'description',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
-});
+};
 
-exports.Prisma.NullableJsonNullValueInput = makeEnum({
+exports.Prisma.NullableJsonNullValueInput = {
   DbNull: Prisma.DbNull,
   JsonNull: Prisma.JsonNull
-});
+};
 
-exports.Prisma.ProfileScalarFieldEnum = makeEnum({
+exports.Prisma.ProfileScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   title: 'title',
@@ -231,9 +228,9 @@ exports.Prisma.ProfileScalarFieldEnum = makeEnum({
   current: 'current',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
-});
+};
 
-exports.Prisma.SessionScalarFieldEnum = makeEnum({
+exports.Prisma.SessionScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
@@ -244,9 +241,9 @@ exports.Prisma.SessionScalarFieldEnum = makeEnum({
   publicData: 'publicData',
   privateData: 'privateData',
   userId: 'userId'
-});
+};
 
-exports.Prisma.SiteScalarFieldEnum = makeEnum({
+exports.Prisma.SiteScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   name: 'name',
@@ -263,21 +260,21 @@ exports.Prisma.SiteScalarFieldEnum = makeEnum({
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   profileId: 'profileId'
-});
+};
 
-exports.Prisma.SortOrder = makeEnum({
+exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
-});
+};
 
-exports.Prisma.TermsOfPaymentScalarFieldEnum = makeEnum({
+exports.Prisma.TermsOfPaymentScalarFieldEnum = {
   id: 'id',
   name: 'name',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
-});
+};
 
-exports.Prisma.TokenScalarFieldEnum = makeEnum({
+exports.Prisma.TokenScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
@@ -286,7 +283,7 @@ exports.Prisma.TokenScalarFieldEnum = makeEnum({
   expiresAt: 'expiresAt',
   sentTo: 'sentTo',
   userId: 'userId'
-});
+};
 
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   ReadUncommitted: 'ReadUncommitted',
@@ -295,7 +292,7 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.UserScalarFieldEnum = makeEnum({
+exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
@@ -308,26 +305,26 @@ exports.Prisma.UserScalarFieldEnum = makeEnum({
   hashedPassword: 'hashedPassword',
   role: 'role',
   level: 'level'
-});
-exports.Sitetype = makeEnum({
+};
+exports.Sitetype = {
   custom: 'custom',
   site: 'site',
   email: 'email',
   phone: 'phone'
-});
+};
 
-exports.Status = makeEnum({
+exports.Status = {
   active: 'active',
   archived: 'archived',
   inactive: 'inactive'
-});
+};
 
-exports.Yesno = makeEnum({
+exports.Yesno = {
   yes: 'yes',
   no: 'no'
-});
+};
 
-exports.Prisma.ModelName = makeEnum({
+exports.Prisma.ModelName = {
   User: 'User',
   Session: 'Session',
   Token: 'Token',
@@ -343,7 +340,7 @@ exports.Prisma.ModelName = makeEnum({
   InvoiceItems: 'InvoiceItems',
   TermsOfPayment: 'TermsOfPayment',
   Profile: 'Profile'
-});
+};
 
 /**
  * Create the Client

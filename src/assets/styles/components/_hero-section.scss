@@ -1,0 +1,85 @@
+.hero-area {
+  /*@extend .gredient-bg;*/
+  @extend .gredient-bg;
+  color: #ffffff;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+  backface-visibility: hidden;
+}
+
+.full-height {
+  min-height: 100vh;
+}
+
+.moveUpDown {
+  @include animation-name(MoveUpDown);
+  @include animation-duration(3s);
+  @include animation-iteration-count(infinite);
+  @include animation-direction(alternate);
+}
+
+.animate-left {
+  @include animation-name(moveInLeft);
+  @include animation-duration(2s);
+  @include animation-timing-function(ease-in);
+}
+
+.animate-right {
+  @include animation-name(moveInRight);
+  @include animation-duration(2s);
+  @include animation-timing-function(ease-in);
+}
+
+.hero-area img {
+  @extend .moveUpDown;
+}
+
+.hero-area h2 {
+  @extend .animate-left;
+  font-size: 45px;
+}
+
+.hero-area p {
+  @extend .animate-right;
+}
+
+.hero-area .btn-default {
+  @extend .animate-left;
+}
+
+.hero-area .btn-default.btn-default-outline {
+  @extend .animate-right;
+}
+
+.hero-area .btn {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.hero-area h1,
+.hero-area h2,
+.hero-area h3,
+.hero-area h4,
+.hero-area h5,
+.hero-area h6 {
+  color: #ffffff;
+}
+
+.hero-area {
+  background: -webkit-linear-gradient(to right bottom, #6509e2, #5a02b4);
+  background: -moz-linear-gradient(to right bottom, #6509e2, #5a02b4);
+  background: -o-linear-gradient(to right bottom, #6509e2, #5a02b4);
+  background: -ms-linear-gradient(to right bottom, #6509e2 40%, #5a02b4 70%);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, start-colorstr=#6509e2, end-colorstr=#5a02b4);
+  ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, start-colorstr=#6509e2, end-colorstr=#5a02b4)";
+  background: linear-gradient(to right bottom, #6509e2 40%, #5a02b4 70%);
+  background-color: #5a02b4;
+  color: #ffffff;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+  backface-visibility: hidden;
+}

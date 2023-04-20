@@ -1,0 +1,64 @@
+#feature {
+  overflow: hidden;
+}
+.single-feature {
+  @extend .service-box;
+  border: none;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background: transparent;
+  i {
+    margin-bottom: 15px;
+  }
+  h4 {
+    margin-bottom: 15px;
+  }
+  &:hover {
+    @include box-shadow(none);
+  }
+  &:hover h4 {
+    @extend .gredient-color;
+  }
+}
+
+.featured-mockup {
+  min-height: 450px;
+}
+
+.bordered-box {
+  @extend .gredient-bg;
+  @include box-sizing(border-box);
+  @include background-size(100% 100%);
+  @include animation(roatateAnim 15s linear infinite);
+  background-position: 0 0, 0 100%;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 80px;
+  top: -30px;
+}
+
+.filled-circle {
+  @extend .gredient-bg;
+  @include border-radius(100%);
+  @include animation(movecircles 15s linear infinite);
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  top: 150px;
+  z-index: -1;
+}
+
+.phone-1 {
+  @extend .moveUpDown;
+  position: absolute;
+  left: 0;
+  z-index: 1;
+}
+
+.phone-2 {
+  @extend .phone-1;
+  left: 180px;
+  z-index: 0;
+}

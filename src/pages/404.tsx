@@ -1,6 +1,6 @@
 import Head from "next/head"
 import { ErrorComponent } from "@blitzjs/next"
-
+//
 // ------------------------------------------------------
 // This page is rendered if a route match is not found
 // ------------------------------------------------------
@@ -18,3 +18,16 @@ export default function Page404() {
     </>
   )
 }
+
+// TODO: redirect didn't work, build a better 404 page
+// import { useEffect } from "react"
+// import { useRouter } from "next/router"
+
+// export default function Page404() {
+//   const router = useRouter()
+//
+//   useEffect(() => {
+//     router.replace("/")
+//   }, [])
+//   return null
+// }
