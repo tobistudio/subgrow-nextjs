@@ -299,5 +299,4 @@ export const SignupForm = (props: SignupFormProps) => {
     </Grid>
   )
 }
-
 export default SignupForm
