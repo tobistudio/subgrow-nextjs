@@ -20,6 +20,7 @@ export type User = {
   role: string
   level: string | null
 }
+
 export type Role = "ADMIN" | "USER"
 
 declare module "@blitzjs/auth" {

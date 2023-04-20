@@ -20,7 +20,8 @@ import {
   Typography,
   Stack,
 } from "@mui/material"
-import getSite from "../sites/queries/getSite";
+import getSiteForProfile from "../sites/queries/getSiteForProfile";
+// import getSite from "../sites/queries/getSite";
 
 // import ShowProfileIndexAdminPage from "./[profileId]"
 // import { FORM_ERROR, ProfileForm } from "../profiles/components/ProfileForm"
@@ -62,16 +63,19 @@ export const DashboardBox = () => {
   // sites id is a fucking string
 
   // TODO: where this user
-  const [{ sites }]  = useQuery(getSites,
-    {
-      orderBy: { order: "asc" },
-      skip: ITEMS_PER_PAGE * page,
-      take: ITEMS_PER_PAGE,
-      where: {
-        userId: 'elsa@prisma.io',
-      },
-    },
-  )
+  // const [{ sites }]  = useQuery(getSites,
+  //   {
+  //     orderBy: { order: "asc" },
+  //     skip: ITEMS_PER_PAGE * page,
+  //     take: ITEMS_PER_PAGE,
+  //     where: {
+  //       userId: 'elsa@prisma.io',
+  //     },
+  //   },
+  // )
+  // const [sites] = useQuery(getSiteForProfile, { userId: user.id })
+  const [sites] = useQuery(getSiteForProfile, { userId: 1 })
+
   console.log("links", sites)
   // minHeight="100vh"
   return (
