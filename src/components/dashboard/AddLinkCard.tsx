@@ -1,5 +1,6 @@
 import * as React from "react"
 import Link from "next/link"
+import { useSession } from "@blitzjs/auth"
 // import { useSelector, RootStateOrAny } from "react-redux"
 import { Provider, RootStateOrAny, useSelector } from "react-redux"
 import { useRouter } from "next/router"
@@ -67,14 +68,10 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 // need {} or else it's a object in object
 export default function LinkListCard({ link }) {
-  const router = useRouter()
   const [expanded, setExpanded] = React.useState(false)
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
   const [createSiteMutation] = useMutation(createSite)
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded)
-  }
   const simpleMemoize = (fn) => {
     let lastArg
     let lastResult
@@ -138,25 +135,6 @@ export default function LinkListCard({ link }) {
     return str
   }
 
-  // const isValidUrl = (url) => {
-  //   try {
-  //
-  //     // to make sure it's valid, add https to domain
-  //
-  //     const newUrl = new URL(url);
-  //
-  //     // check to see if it's a valid domain, ignore protocoal
-  //     console.log("newUrl",newUrl)
-  //
-  //
-  //
-  //
-  //     return newUrl.protocol === 'http:' || newUrl.protocol === 'https:';
-  //   } catch (err) {
-  //     return false;
-  //   }
-  // }
-
   const onSubmit = async (values) => {
     await sleep(300)
 
@@ -212,6 +190,12 @@ export default function LinkListCard({ link }) {
     //button = <LoginButton onClick={this.handleLoginClick} />;
   }
 
+  const activeChecked = true
+
+  const handleActiveChange = () => {
+    setExpanded(!expanded)
+  }
+
   //  style={{maxHeight: 300}}
   // color={mode === 'dark' ? "#ffffff" : "#000000"}
 
@@ -226,13 +210,13 @@ export default function LinkListCard({ link }) {
         //   </Avatar>
         // }
         // action={<FontAwesomeIcon icon={faGear} spin color={"#3f50b5"} /> }
-        // action={
-        //   <Switch
-        //     checked={activeChecked}
-        //     onChange={handleActiveChange}
-        //     inputProps={{ "aria-label": "controlled" }}
-        //   />
-        // }
+        action={
+          <Switch
+            checked={activeChecked}
+            onChange={handleActiveChange}
+            inputProps={{ "aria-label": "controlled" }}
+          />
+        }
         title="Add New Link"
         //subheader="September 14, 2016"
       />
@@ -336,23 +320,11 @@ export default function LinkListCard({ link }) {
         />
       </CardContent>
       <CardActions disableSpacing>
-        {/*<ExpandMore*/}
-        {/*  expand={expanded}*/}
-        {/*  onClick={handleExpandClick}*/}
-        {/*  aria-expanded={expanded}*/}
-        {/*  aria-label="show more"*/}
-        {/*>*/}
-        {/*  <ExpandMoreIcon />*/}
-        {/*</ExpandMore>*/}
-
         <IconButton aria-label="add to favorites" onClick={(e) => handleFavoriteClick(e, link.id)}>
           <FontAwesomeIcon icon={faUserPlus} style={{ color: "#e5e6f1", paddingRight: 7 }} />
-          <FavoriteIcon
-          // color={theme.mode === "dark" ? 'icon' : 'secondary'}
-          />
         </IconButton>
         <IconButton aria-label="share" onClick={(e) => handleEditClick(e, link.id)}>
-          <ShareIcon />
+          <FontAwesomeIcon icon={faUserPlus} style={{ color: "#e5e6f1", paddingRight: 7 }} />
         </IconButton>
 
         <IconButton

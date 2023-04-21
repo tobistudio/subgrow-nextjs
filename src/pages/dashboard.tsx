@@ -1,5 +1,5 @@
 import React, { Suspense } from "react"
-import { Routes } from "@blitzjs/next"
+import { useSession } from "@blitzjs/auth"
 import Head from "next/head"
 import Link from "next/link"
 import { usePaginatedQuery, useQuery } from "@blitzjs/rpc"
@@ -21,62 +21,16 @@ import {
   Stack,
 } from "@mui/material"
 import getSiteForProfile from "../sites/queries/getSiteForProfile"
-// import getSite from "../sites/queries/getSite";
 
-// import ShowProfileIndexAdminPage from "./[profileId]"
-// import { FORM_ERROR, ProfileForm } from "../profiles/components/ProfileForm"
-// import ProfileListCard from "components/lists/ProfileListCard"
-// import SiteListCard from "../components/lists/SiteListCard";
-// import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-// import {faPlus, faTrash} from "@fortawesome/pro-duotone-svg-icons";
-// import Alert from "@mui/material/Alert";
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
-const ITEMS_PER_PAGE = 100
-
 export const DashboardBox = () => {
-  const router = useRouter()
-  const page = Number(router.query.page) || 0
-  // const [{ profiles }] = usePaginatedQuery(getProfiles, {
-  //   orderBy: { id: "asc" },
-  //   skip: ITEMS_PER_PAGE * page,
-  //   take: ITEMS_PER_PAGE,
-  // })
+  const session = useSession()
 
-  // just one
-  // const [{ profiles }] = usePaginatedQuery(getProfiles, {
-  //   orderBy: { id: "asc" },
-  //   skip: ITEMS_PER_PAGE * page,
-  //   take: ITEMS_PER_PAGE,
-  // })
-
-  // const [profile]: any = useQuery(getProfile, { userId: user.id, current: "yes" })
-
-  // in widget, sites will be simplified as links with basic data
-  // const [{ sites }] = usePaginatedQuery(getSites, {
-  //   orderBy: { id: "asc" },
-  //   skip: ITEMS_PER_PAGE * page,
-  //   take: ITEMS_PER_PAGE,
-  // })
-
-  // const [{ sites }] = useQuery(getSites)
-  // sites id is a fucking string
-
-  // TODO: where this user
-  // const [{ sites }]  = useQuery(getSites,
-  //   {
-  //     orderBy: { order: "asc" },
-  //     skip: ITEMS_PER_PAGE * page,
-  //     take: ITEMS_PER_PAGE,
-  //     where: {
-  //       userId: 'elsa@prisma.io',
-  //     },
-  //   },
-  // )
   // const [sites] = useQuery(getSiteForProfile, { userId: user.id })
-  const [sites] = useQuery(getSiteForProfile, { userId: 1 })
+  const [sites] = useQuery(getSiteForProfile, { userId: session.userId })
 
-  // console.log("links", sites)
+  console.log("links", sites)
   // minHeight="100vh"
   return (
     <Container
