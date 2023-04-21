@@ -121,11 +121,21 @@ export default function LinkListCard({ link }) {
     )
 
     console.log("pattern.test(str)", pattern.test(str))
-    console.log("pastr)", str)
+
     if (!pattern.test(str)) {
       return false
     }
-    return pattern.test(str)
+
+    // add https
+    if (str.slice(0, 8) === "https://") {
+      console.log("https://  -- ", str)
+      return str
+    } else if (str.slice(0, 7) === "http://") {
+      console.log("http://  -- ", str.replace("http://", "https://"))
+      return str.replace("http://", "https://")
+    }
+
+    return str
   }
 
   // const isValidUrl = (url) => {
@@ -153,13 +163,12 @@ export default function LinkListCard({ link }) {
     //let isValid = isValidUrlReg(values.url)
     console.log("submit values", values)
     const result = isValidUrlReg(values.url)
-    console.log("submit error", result)
+    console.log("submit result", result)
     if (!result) {
       return { url: "Please enter a valid domain name" }
     }
-    // return {
-    //   [FORM_ERROR]: "Please enter a valid domain name",
-    // }
+
+    values.url = result
 
     try {
       const site = await createSiteMutation(values)
@@ -293,14 +302,6 @@ export default function LinkListCard({ link }) {
                           ),
                         }}
                       />
-
-                      {/*<div style={{ paddingTop: 7 }}>*/}
-                      {/*  {meta.error !== "Username Required" && meta.touched && (*/}
-                      {/*    <div role="alert" className="btn-danger">*/}
-                      {/*      {meta.error}*/}
-                      {/*    </div>*/}
-                      {/*  )}*/}
-                      {/*</div>*/}
                     </Stack>
                   )}
                 </Field>
