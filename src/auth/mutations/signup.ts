@@ -4,6 +4,7 @@ import { resolver } from "@blitzjs/rpc"
 import db from "../../../db"
 import { Role } from "../../../types"
 import { Signup } from "../validations"
+// import {modern} from "../../../data/userthemes/modern"
 
 export default resolver.pipe(resolver.zod(Signup), async ({ username, email, password }, ctx) => {
   const hashedPassword = await SecurePassword.hash(password.trim())
@@ -48,7 +49,7 @@ export default resolver.pipe(resolver.zod(Signup), async ({ username, email, pas
     },
   })
 
-  console.log("profile username", username)
+  console.log("profile profile", profile)
 
   // ameshkin10
   // amir.meshkin10@gmail.com
