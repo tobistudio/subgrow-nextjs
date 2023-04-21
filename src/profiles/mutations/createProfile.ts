@@ -56,21 +56,7 @@ export default resolver.pipe(
     })
 
     console.log("update", update)
-    // let data: object
     const profile = await db.profile.create({ data: input })
-    // const profile = await db.profile.create({
-    //   // data: input
-    //
-    //   ...input,
-    //   // userId: userId,
-    //   // userId: userId as string,
-    //   userId,
-    // })
-
     return profile
   }
 )
-// <html>TS2322:
-// Type '{ userId: string; username?: string; title?: string; description?: string; theme?: Json; widgets?: string; current?: &quot;yes&quot; | &quot;no&quot;; titleColor?: string; descColor?: string; }' is not assignable to type '(Without&lt;ProfileCreateInput, ProfileUncheckedCreateInput&gt; &amp; ProfileUncheckedCreateInput) | (Without&lt;...&gt; &amp; ProfileCreateInput)'.<br/>Type '{ userId: string; username?: string; title?: string; description?: string; theme?: Json; widgets?: string; current?: &quot;yes&quot; | &quot;no&quot;; titleColor?: string; descColor?: string; }' is not assignable to type 'Without&lt;ProfileUncheckedCreateInput, ProfileCreateInput&gt; &amp; ProfileCreateInput'.<br/>Type '{ userId: string; username?: string; title?: string; description?: string; theme?: Json; widgets?: string; current?: &quot;yes&quot; | &quot;no&quot;; titleColor?: string; descColor?: string; }' is not assignable to type 'Without&lt;ProfileUncheckedCreateInput, ProfileCreateInput&gt;'.<br/>
-//
-// Types of property 'userId' are incompatible.<br/>Type 'string' is not assignable to type 'never'.

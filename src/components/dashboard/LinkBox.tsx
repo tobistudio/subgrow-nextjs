@@ -76,7 +76,7 @@ export default function AddLinkWidget({ link }) {
   } else {
     //button = <LoginButton onClick={this.handleLoginClick} />;
   }
-  console.log("theme.mode", theme.mode)
+
   //  style={{maxHeight: 300}}
   // color={mode === 'dark' ? "#ffffff" : "#000000"}
   return (

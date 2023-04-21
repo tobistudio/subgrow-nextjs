@@ -24,8 +24,12 @@ declare module "@mui/material/Button" {
   }
 }
 // TypeError: Cannot read properties of undefined (reading 'muiName')
-declare module "@mui/material/TextField" {
-  interface TextFieldPropsVariantOverrides {
+declare module "@mui/material/Input" {
+  interface InputPropsVariantOverrides {
+    signup: true
+  }
+
+  interface StandardTextFieldProps {
     signup: true
   }
 }
@@ -193,6 +197,27 @@ const Theme = (props) => {
           // TODO: cannot get custom variants to work for text fields
           // {
           //   props: { variant: "signup", color: "primary" },
+          //   style: {
+          //     background: `linear-gradient(45deg, ${blue[700]} 35%, ${blue[300]} 90%)`,
+          //     color: "#fff",
+          //   },
+          // },
+        ],
+        styleOverrides: {
+          root: {
+            // this is styles for the new variants
+            ".urlbox": {
+              width: 100,
+              height: 20,
+            },
+          },
+        },
+      },
+      MuiInput: {
+        variants: [
+          // TODO: cannot get custom variants to work for text fields
+          // {
+          //   props: { variant: "outlined", color: "primary" },
           //   style: {
           //     background: `linear-gradient(45deg, ${blue[700]} 35%, ${blue[300]} 90%)`,
           //     color: "#fff",

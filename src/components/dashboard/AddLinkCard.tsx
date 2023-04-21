@@ -105,10 +105,60 @@ export default function LinkListCard({ link }) {
     // return true;    // wont work
   })
 
+  /**
+   * Regex works best for domains without https or http
+   * @param str
+   */
+  function isValidUrlReg(str) {
+    const pattern = new RegExp(
+      "^([a-zA-Z]+:\\/\\/)?" + // protocol
+        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+        "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+        "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+        "(\\#[-a-z\\d_]*)?$", // fragment locator
+      "i"
+    )
+
+    if (!pattern.test(str)) {
+      return "Please enter a valid url"
+    }
+    return pattern.test(str)
+  }
+
+  // const isValidUrl = (url) => {
+  //   try {
+  //
+  //     // to make sure it's valid, add https to domain
+  //
+  //     const newUrl = new URL(url);
+  //
+  //     // check to see if it's a valid domain, ignore protocoal
+  //     console.log("newUrl",newUrl)
+  //
+  //
+  //
+  //
+  //     return newUrl.protocol === 'http:' || newUrl.protocol === 'https:';
+  //   } catch (err) {
+  //     return false;
+  //   }
+  // }
+
   const onSubmit = async (values) => {
     await sleep(300)
 
-    console.log("submit values", values)
+    //let isValid = isValidUrlReg(values.url)
+
+    const error = isValidUrlReg(values.revalidate)
+    console.log("submit error", error)
+    if (error) {
+      return { revalidate: error }
+    }
+    return {
+      [FORM_ERROR]: "Please enter a valid domain name",
+    }
+
     try {
       const site = await createSiteMutation(values)
       //await router.push(Routes.ShowSitePage({ siteId: site.id }))
@@ -150,7 +200,7 @@ export default function LinkListCard({ link }) {
   } else {
     //button = <LoginButton onClick={this.handleLoginClick} />;
   }
-  console.log("theme.mode", theme.mode)
+
   //  style={{maxHeight: 300}}
   // color={mode === 'dark' ? "#ffffff" : "#000000"}
 
@@ -176,7 +226,7 @@ export default function LinkListCard({ link }) {
         //subheader="September 14, 2016"
       />
 
-      <CardContent1
+      <CardContent
         // sx={{ p:0, '&:last-child': { pb: 0 }}}
         sx={{ py: 0 }}
       >
@@ -218,7 +268,7 @@ export default function LinkListCard({ link }) {
                         type="text"
                         style={{ maxWidth: 380 }}
                         className="input input-md"
-                        // url check
+                        size="small"
                         InputProps={{
                           endAdornment: (
                             <InputAdornment position="end">
@@ -256,7 +306,7 @@ export default function LinkListCard({ link }) {
                   label="Link Name"
                   name="name"
                   style={{ maxWidth: 380 }}
-
+                  size="small"
                   // TODO: could add bad word check, leave off for now
                   // InputProps={{
                   //   //placeholder: "Email Address",
@@ -273,7 +323,6 @@ export default function LinkListCard({ link }) {
                     type="submit"
                     disabled={submitting}
                     sx={{ width: 200 }}
-                    // onClick={onClick}
                   >
                     Save Link
                   </Button>
@@ -282,7 +331,7 @@ export default function LinkListCard({ link }) {
             </form>
           )}
         />
-      </CardContent1>
+      </CardContent>
       <CardActions disableSpacing>
         {/*<ExpandMore*/}
         {/*  expand={expanded}*/}

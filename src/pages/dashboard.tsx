@@ -2,7 +2,7 @@ import React, { Suspense } from "react"
 import { Routes } from "@blitzjs/next"
 import Head from "next/head"
 import Link from "next/link"
-import {usePaginatedQuery, useQuery} from "@blitzjs/rpc"
+import { usePaginatedQuery, useQuery } from "@blitzjs/rpc"
 import { useRouter } from "next/router"
 import AdminLayout from "core/layouts/AdminLayout"
 import getProfile from "profiles/queries/getProfile"
@@ -20,7 +20,7 @@ import {
   Typography,
   Stack,
 } from "@mui/material"
-import getSiteForProfile from "../sites/queries/getSiteForProfile";
+import getSiteForProfile from "../sites/queries/getSiteForProfile"
 // import getSite from "../sites/queries/getSite";
 
 // import ShowProfileIndexAdminPage from "./[profileId]"
@@ -76,7 +76,7 @@ export const DashboardBox = () => {
   // const [sites] = useQuery(getSiteForProfile, { userId: user.id })
   const [sites] = useQuery(getSiteForProfile, { userId: 1 })
 
-  console.log("links", sites)
+  // console.log("links", sites)
   // minHeight="100vh"
   return (
     <Container
