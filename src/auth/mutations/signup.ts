@@ -5,7 +5,6 @@ import db from "../../../db"
 import { Role } from "../../../types"
 import { Signup } from "../validations"
 
-
 export default resolver.pipe(resolver.zod(Signup), async ({ username, email, password }, ctx) => {
   const hashedPassword = await SecurePassword.hash(password.trim())
 
@@ -19,6 +18,7 @@ export default resolver.pipe(resolver.zod(Signup), async ({ username, email, pas
   }
 
   console.log("usernasd fsadf asdf asdfsa fsme", username)
+  console.log("usernasd fsadf asdf asdfsa email", email)
 
   // TODO: check for username
   // const findUser = await db.user.findUnique({
@@ -66,7 +66,6 @@ export default resolver.pipe(resolver.zod(Signup), async ({ username, email, pas
   // await ctx.session.$create({ userId: user.id, role: user.role as Role })
   return user
 })
-
 
 // export default resolver.pipe(resolver.zod(Signup), async ({ email, password }, ctx) => {
 //   const hashedPassword = await SecurePassword.hash(password.trim())

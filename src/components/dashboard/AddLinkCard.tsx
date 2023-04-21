@@ -18,6 +18,7 @@ import {
   Stack,
   Button,
   Switch,
+  Tooltip,
 } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2"
 
@@ -174,7 +175,8 @@ export default function LinkListCard({ link }) {
         title="Add New Link"
         //subheader="September 14, 2016"
       />
-      <CardContent
+
+      <CardContent1
         // sx={{ p:0, '&:last-child': { pb: 0 }}}
         sx={{ py: 0 }}
       >
@@ -280,7 +282,7 @@ export default function LinkListCard({ link }) {
             </form>
           )}
         />
-      </CardContent>
+      </CardContent1>
       <CardActions disableSpacing>
         {/*<ExpandMore*/}
         {/*  expand={expanded}*/}
@@ -316,7 +318,7 @@ export default function LinkListCard({ link }) {
 
 // https://linktr.ee/admin
 // TODO: replace with fontawesome
-
+// TODO: add tooltips
 // TODO: add details
 // TODO: add tooltips
 // TODO: add draggable and ordering

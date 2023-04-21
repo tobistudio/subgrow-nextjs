@@ -49,3 +49,17 @@ heroku config:set SESSION_SECRET_KEY=
 
 
 ```
+
+
+### database
+
+```mysql
+
+
+SET FOREIGN_KEY_CHECKS=0;  -- turn off foreign key checks
+TRUNCATE TABLE User;  -- truncate tables
+TRUNCATE TABLE Session;
+TRUNCATE TABLE Site;
+TRUNCATE TABLE Profile;
+SET FOREIGN_KEY_CHECKS=1;  -- turn on foreign key checks
+```
