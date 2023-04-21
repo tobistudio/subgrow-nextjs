@@ -11,10 +11,14 @@ https://blog.bitsrc.io/why-you-should-replace-babel-with-swc-in-next-js-7d47510d
 
 
 ## heroku
-
+```bash
+# https://blitzjs.com/docs/deploy-heroku
 heroku logs --app=subgrow --tail
 
 
+
+
+```
 
 ```bash
 
@@ -38,5 +42,10 @@ nvm alias default
 
 
 ANALYZE=true npm run build
+
+
+heroku config:set SESSION_SECRET_KEY=
+
+
 
 ```

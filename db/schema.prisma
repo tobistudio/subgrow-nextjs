@@ -6,8 +6,9 @@ generator client {
 // TODO: may be issue with string https://github.com/prisma/prisma/issues/15041
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL") // godaddy issues?
 }
 
 // id String @db.Uuid @default(uuid()) @id
