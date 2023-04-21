@@ -79,8 +79,18 @@ const AdminLayout: BlitzLayout<{
         <link href="/styles.css" rel="stylesheet" />
       </Head>
 
-      <main>
+      <main className="flex flex-auto min-w-0">
+        <aside className="side-nav side-nav-transparent side-nav-expand">
+          <SideNav />
+        </aside>
         {header}
+        {/*<View {...props} /> TODO: figure out how to put views back in here*/}
+
+        {/*TODO: better sizing for mobile, 100 on phones, */}
+        {/*
+            // may need to replace wiht material ui
+            */}
+
         <Container fixed>{children}</Container>
       </main>
       {footer}

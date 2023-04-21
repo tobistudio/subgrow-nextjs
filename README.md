@@ -30,5 +30,13 @@ npx tsc
 # https://www.npmjs.com/package/fb-react-sdk
 
 
+# most recent node
+
+nvm install 18
+nvm use 18
+nvm alias default
+
+
+ANALYZE=true npm run build
 
 ```
