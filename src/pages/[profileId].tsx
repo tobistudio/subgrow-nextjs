@@ -34,12 +34,14 @@ export const ProfileIndex = () => {
   // @ts-ignore
   const [user] = useQuery(getUserForProfile, { username: profileId })
 
-  console.log("profileId",profileId);
-  console.log("user",user);
+  console.log("profileId", profileId)
 
   // debugger
   const [profile]: any = useQuery(getProfile, { userId: user.id, current: "yes" })
   const [sites] = useQuery(getSiteForProfile, { userId: user.id })
+
+  console.log("profile", profile)
+  console.log("sites", sites)
 
   // TODO: proper 404 page if username not found
 

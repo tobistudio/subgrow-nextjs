@@ -120,8 +120,10 @@ export default function LinkListCard({ link }) {
       "i"
     )
 
+    console.log("pattern.test(str)", pattern.test(str))
+    console.log("pastr)", str)
     if (!pattern.test(str)) {
-      return "Please enter a valid url"
+      return false
     }
     return pattern.test(str)
   }
@@ -149,15 +151,15 @@ export default function LinkListCard({ link }) {
     await sleep(300)
 
     //let isValid = isValidUrlReg(values.url)
-
-    const error = isValidUrlReg(values.revalidate)
-    console.log("submit error", error)
-    if (error) {
-      return { revalidate: error }
+    console.log("submit values", values)
+    const result = isValidUrlReg(values.url)
+    console.log("submit error", result)
+    if (!result) {
+      return { url: "Please enter a valid domain name" }
     }
-    return {
-      [FORM_ERROR]: "Please enter a valid domain name",
-    }
+    // return {
+    //   [FORM_ERROR]: "Please enter a valid domain name",
+    // }
 
     try {
       const site = await createSiteMutation(values)
