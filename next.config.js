@@ -1,7 +1,7 @@
 const { withBlitz } = require("@blitzjs/next")
 const { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD } = require("next/constants")
 // TODO: twin.macro has issues https://github.com/ben-rogerson/twin.macro/discussions/219
-
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
 // ValidationError: Invalid configuration object. Webpack has been initialized using a configuration object that does not match the API schema.
 // module.exports = {
 //   webpack: config => {

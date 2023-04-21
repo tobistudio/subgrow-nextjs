@@ -13,3 +13,22 @@ https://blog.bitsrc.io/why-you-should-replace-babel-with-swc-in-next-js-7d47510d
 ## heroku
 
 heroku logs --app=subgrow --tail
+
+
+
+```bash
+
+# find port and kill
+lsof -i :3000
+kill -9 <PID>
+
+# run typescript linter
+
+npx tsc
+
+
+# https://www.npmjs.com/package/fb-react-sdk
+
+
+
+```
