@@ -1,8 +1,6 @@
 import { Form, FormProps } from "core/components/Form"
 import { LabeledTextField } from "core/components/LabeledTextField"
 import { Field, FormSpy, useField } from "react-final-form"
-import { MdTextField } from "core/components/MdTextField"
-import useDarkMode from "utils/hooks/useDarkMode"
 import { z } from "zod"
 import React, { useCallback } from "react"
 export { FORM_ERROR } from "core/components/Form"
@@ -11,7 +9,7 @@ export { FORM_ERROR } from "core/components/Form"
 import CheckIcon from "@mui/icons-material/Check"
 import { Checkbox, TextField, ToggleButton } from "@mui/material"
 import { MuiColorInput } from "mui-color-input"
-import { useSelector } from "react-redux"
+// import { useSelector } from "react-redux"
 
 export function ProfileForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
   const label = {

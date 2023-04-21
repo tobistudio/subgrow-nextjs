@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from "react"
 import useMergedRef from "../hooks/useMergeRef"
 import PropTypes from "prop-types"
 import classNames from "classnames"
-import Alert from "../Alert"
+import Image from "next/image"
+// import Alert from "../Alert"
 
 const Avatar = React.forwardRef((props, ref) => {
   const { size, src, srcSet, shape, alt, className, icon, ...rest } = props
@@ -53,8 +54,10 @@ const Avatar = React.forwardRef((props, ref) => {
 
   if (src) {
     children = (
-      <img
+      <Image
         className={`avatar-img avatar-${shape}`}
+        width={100}
+        height={100}
         src={src}
         srcSet={srcSet}
         alt={alt}
