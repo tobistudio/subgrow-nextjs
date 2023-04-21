@@ -109,12 +109,13 @@ const Theme = (props) => {
             props: { variant: "fbbutton" },
             style: {
               // backgroundColor: "#2374F2",
-              backgroundColor: "#4267B2",
-              color: "#ffffff",
+              backgroundColor: "#e9efef",
+              color: "#4267B2",
               // border: `2px dashed grey${blue[500]}`,
               // border: `2px dashed grey${blue[500]}`,
               "&:hover": {
-                backgroundColor: "#3c52b2",
+                // backgroundColor: "#3c52b2",
+                backgroundColor: "#4267B2",
                 color: "#dee3f8",
               },
             },
@@ -122,11 +123,11 @@ const Theme = (props) => {
           {
             props: { variant: "twbutton" },
             style: {
-              backgroundColor: "#1D9BF0",
-              color: "#ffffff",
+              backgroundColor: "#e9efef",
+              color: "#1D9BF0",
               // border: `2px dashed grey${blue[500]}`,
               "&:hover": {
-                backgroundColor: "#2374F2",
+                backgroundColor: "#1D9BF0",
                 color: "#dee3f8",
               },
             },
@@ -134,8 +135,9 @@ const Theme = (props) => {
           {
             props: { variant: "igbutton" },
             style: {
-              backgroundColor: "#E1306C",
-              color: "#ffffff",
+              // backgroundColor: "#E1306C",
+              backgroundColor: "#e9efef",
+              color: "#E1306C",
               // border: `2px dashed grey${blue[500]}`,
               "&:hover": {
                 backgroundColor: "#C13584",
@@ -147,11 +149,11 @@ const Theme = (props) => {
             props: { variant: "ttbutton" },
             style: {
               // backgroundColor: "#2374F2",
-              backgroundColor: "#00F2EA",
-              color: "#ffffff",
+              backgroundColor: "#e9efef",
+              color: "#00F2EA",
               // border: `2px dashed grey${blue[500]}`,
               "&:hover": {
-                backgroundColor: "#1D9BF0",
+                backgroundColor: "#00F2EA",
                 color: "#dee3f8",
               },
             },
@@ -160,11 +162,12 @@ const Theme = (props) => {
             props: { variant: "gbutton" },
             style: {
               // backgroundColor: "#2374F2",
-              backgroundColor: "#CF4232",
-              color: "#ffffff",
+              // backgroundColor: "#CF4232",
+              backgroundColor: "#e9efef",
+              color: "#CF4232",
               // border: `2px dashed grey${blue[500]}`,
               "&:hover": {
-                backgroundColor: "#cb2812",
+                backgroundColor: "#CF4232",
                 color: "#f8dede",
               },
             },
