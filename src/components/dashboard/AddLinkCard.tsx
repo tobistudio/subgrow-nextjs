@@ -68,7 +68,8 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 // need {} or else it's a object in object
 export default function LinkListCard({ link }) {
-  const [expanded, setExpanded] = React.useState(false)
+  const router = useRouter()
+  const theme = useSelector((state: RootStateOrAny) => state.theme)
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
   const [createSiteMutation] = useMutation(createSite)
 
@@ -107,15 +108,25 @@ export default function LinkListCard({ link }) {
    * @param str
    */
   function isValidUrlReg(str) {
+    // const pattern = new RegExp(
+    //   "^([a-zA-Z]+:\\/\\/)?" +
+    //     "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+    //     "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+    //     "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+    //     "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+    //     "(\\#[-a-z\\d_]*)?$", // fragment locator
+    //   "i"
+    // )
+
     const pattern = new RegExp(
-      "^([a-zA-Z]+:\\/\\/)?" + // protocol
+      "^(https?:\\/\\/)?" + // protocol
         "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
         "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
         "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
         "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-        "(\\#[-a-z\\d_]*)?$", // fragment locator
+        "(\\#[-a-z\\d_]*)?$",
       "i"
-    )
+    ) // fragment locator
 
     console.log("pattern.test(str)", pattern.test(str))
 
@@ -123,16 +134,24 @@ export default function LinkListCard({ link }) {
       return false
     }
 
-    // add https
+    // if it already has https, then return
     if (str.slice(0, 8) === "https://") {
-      console.log("https://  -- ", str)
       return str
     } else if (str.slice(0, 7) === "http://") {
       console.log("http://  -- ", str.replace("http://", "https://"))
       return str.replace("http://", "https://")
     }
 
-    return str
+    // at this point, this is possible value that is flagged as VALID: htps://dib.com
+    let url
+    try {
+      url = new URL(str)
+    } catch (e) {
+      console.log("url e", e)
+      return false
+    }
+    console.log("url catch", url)
+    return url
   }
 
   const onSubmit = async (values) => {
@@ -150,8 +169,6 @@ export default function LinkListCard({ link }) {
 
     try {
       const site = await createSiteMutation(values)
-      //await router.push(Routes.ShowSitePage({ siteId: site.id }))
-
       console.log("on submit site", site)
       // TODO: remove the edit box, and refresh list of sites!
     } catch (error: any) {
@@ -162,42 +179,15 @@ export default function LinkListCard({ link }) {
     }
   }
 
-  const handleFavoriteClick = (event: React.MouseEvent<HTMLElement>, id: string) => {
-    console.log(event.target)
-    console.log("handleFavoriteClick", id)
-    event.preventDefault()
-  }
-
-  // Opens a modal for edits  // TODO: add edit modal
-  const handleEditClick = (event: React.MouseEvent<HTMLElement>, id: string) => {
-    console.log(event.target)
-
-    console.log("handleEditClick", id)
-    event.preventDefault()
-  }
-
-  const handleEditDetailsClick = (event: React.MouseEvent<HTMLElement>, id: string) => {
-    console.log(event.target)
+  // onClick={async () => {
+  //   await router.push(Routes.LoginPage())
+  // }}
+  const handleEditDetailsClick = async (event: React.MouseEvent<HTMLElement>, id: string) => {
+    //console.log(event.target)
     console.log("handleEditDetailsClick", id)
-    event.preventDefault()
+    await router.push(Routes.ShowSitePage({ siteId: id }))
+    // event.preventDefault()
   }
-
-  const theme = useSelector((state: RootStateOrAny) => state.theme)
-
-  if (theme.mode === "dark") {
-    //button = <LogoutButton onClick={this.handleLogoutClick} />;
-  } else {
-    //button = <LoginButton onClick={this.handleLoginClick} />;
-  }
-
-  const activeChecked = true
-
-  const handleActiveChange = () => {
-    setExpanded(!expanded)
-  }
-
-  //  style={{maxHeight: 300}}
-  // color={mode === 'dark' ? "#ffffff" : "#000000"}
 
   // TODO: link this to state???
 
@@ -221,10 +211,7 @@ export default function LinkListCard({ link }) {
         //subheader="September 14, 2016"
       />
 
-      <CardContent
-        // sx={{ p:0, '&:last-child': { pb: 0 }}}
-        sx={{ py: 0 }}
-      >
+      <CardContent sx={{ py: 0 }}>
         <FinalForm
           onSubmit={onSubmit}
           validate={(values) => {
@@ -267,18 +254,13 @@ export default function LinkListCard({ link }) {
                         InputProps={{
                           endAdornment: (
                             <InputAdornment position="end">
-                              {/*<FontAwesomeIcon icon={theme.mode} spin color={"#3f50b5"} />*/}
-
                               {meta.error !== "bad" && meta.error && meta.touched && (
                                 <FontAwesomeIcon icon={faXmarkLarge} color={fonts["alert"]} />
-                                // <FontAwesomeIcon icon={faXmarkLarge} color={"#e10000"} />
                               )}
-
                               {meta.error === "bad" && meta.error && meta.touched && (
                                 <FontAwesomeIcon icon={faFaceAnguished} color={fonts["alert"]} />
                                 // <FontAwesomeIcon icon={faXmarkLarge} color={"#e10000"} />
                               )}
-
                               {submitting && (
                                 <FontAwesomeIcon icon={faGear} spin color={fonts["gear"]} />
                               )}
@@ -320,32 +302,26 @@ export default function LinkListCard({ link }) {
         />
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites" onClick={(e) => handleFavoriteClick(e, link.id)}>
-          <FontAwesomeIcon icon={faUserPlus} style={{ color: "#e5e6f1", paddingRight: 7 }} />
-        </IconButton>
-        <IconButton aria-label="share" onClick={(e) => handleEditClick(e, link.id)}>
-          <FontAwesomeIcon icon={faUserPlus} style={{ color: "#e5e6f1", paddingRight: 7 }} />
-        </IconButton>
-
-        <IconButton
-          aria-label="details"
-          style={{ marginLeft: "auto" }}
-          onClick={(e) => handleEditDetailsClick(e, link.id)}
-        >
-          {/*<ArrowForwardIosTwoTone color="icon" />*/}
-          <ArrowForwardIosTwoTone />
-        </IconButton>
+        <Tooltip title="Details">
+          <IconButton
+            aria-label="details"
+            style={{ marginLeft: "auto" }}
+            onClick={(e) => handleEditDetailsClick(e, link.id)}
+          >
+            <ArrowForwardIosTwoTone />
+          </IconButton>
+        </Tooltip>
       </CardActions>
     </Card>
   )
 }
 
 // https://linktr.ee/admin
-// TODO: replace with fontawesome
-// TODO: add tooltips
-// TODO: add details
+
+// TODO: add details link
 // TODO: add tooltips
 // TODO: add draggable and ordering
+// TODO: refresh the list of links after an add or delete
 
 // <Typography variant="body2" color={theme.mode === "dark" ? "text.light" : "text.dark"}>
 //   name {link.name}

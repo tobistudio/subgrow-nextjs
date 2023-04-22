@@ -1,8 +1,6 @@
 import * as React from "react"
 import Link from "next/link"
-import { useSelector, RootStateOrAny } from "react-redux"
 import { Routes } from "@blitzjs/next"
-import { styled } from "@mui/material/styles"
 import {
   Card,
   CardHeader,
@@ -12,8 +10,16 @@ import {
   Typography,
   Box,
   Switch,
+  Tooltip,
+  FormGroup,
+  FormControlLabel,
+  Paper,
+  Dialog,
+  DialogTitle,
 } from "@mui/material"
-
+import { Draggable } from "react-beautiful-dnd"
+import { makeStyles } from "@mui/styles"
+import { DragDropContext, Droppable, OnDragEndResponder } from "react-beautiful-dnd"
 import IconButton, { IconButtonProps } from "@mui/material/IconButton"
 import {
   Favorite as FavoriteIcon,
@@ -21,59 +27,87 @@ import {
   ArrowForwardIosTwoTone,
 } from "@mui/icons-material"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faUserPlus } from "@fortawesome/pro-duotone-svg-icons"
+// import { faTrash } from "@fortawesome/pro-duotone-svg-icons"
+import { faTrashCan } from "@fortawesome/sharp-solid-svg-icons"
 import { useEffect, useState } from "react"
+import { useRouter } from "next/router"
 
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean
+import { DropResult } from "react-beautiful-dnd"
+
+import pick from "@cahil/utils/accessors/pick"
+// import { getItems, reorder } from './drag';
+import List from "@mui/material/List"
+import ListItem from "@mui/material/ListItem"
+import ListItemButton from "@mui/material/ListItemButton"
+import ListItemAvatar from "@mui/material/ListItemAvatar"
+import Avatar from "@mui/material/Avatar"
+import { blue } from "@mui/material/colors"
+import PersonIcon from "@mui/icons-material/Person"
+import ListItemText from "@mui/material/ListItemText"
+import AddIcon from "@mui/icons-material/Add"
+
+const emails = ["username@gmail.com", "user02@gmail.com"]
+
+export interface SimpleDialogProps {
+  open: boolean
+  selectedValue: string
+  onClose: (value: string) => void
+}
+function DeleteDialog(props: SimpleDialogProps) {
+  const { onClose, selectedValue, open } = props
+
+  const handleClose = () => {
+    onClose(selectedValue)
+  }
+
+  const handleListItemClick = (value: string) => {
+    onClose(value)
+  }
+
+  return (
+    <Dialog onClose={handleClose} open={open}>
+      <DialogTitle>Set backup account</DialogTitle>
+      <List sx={{ pt: 0 }}>
+        {emails.map((email, index) => (
+          <ListItem key={index} disableGutters>
+            <ListItemButton onClick={() => handleListItemClick(email)} key={email}>
+              <ListItemAvatar>
+                <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
+                  <PersonIcon />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary={email} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+        <ListItem disableGutters>
+          <ListItemButton autoFocus onClick={() => handleListItemClick("addAccount")}>
+            <ListItemAvatar>
+              <Avatar>
+                <AddIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="Add account" />
+          </ListItemButton>
+        </ListItem>
+      </List>
+    </Dialog>
+  )
 }
 
-const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props
-  return <IconButton {...other} />
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}))
+export type DraggableListItemProps = {
+  link: any
+  index: number
+  mode: string
+}
 
+// TODO: draggable https://codesandbox.io/s/draggable-material-ui-oj3wz?file=/src/components/DraggableList.tsx:764-773
 // need {} or else it's a object in object
-export default function LinkListCard({ link }) {
-  const [expanded, setExpanded] = React.useState(false)
+const LinkListCard = ({ link, index, mode }: DraggableListItemProps) => {
+  // const LinkListCard = React.memo(({ link, mode }: DraggableListProps) => {
+  const router = useRouter()
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded)
-  }
-
-  const handleFavoriteClick = (event: React.MouseEvent<HTMLElement>, id: string) => {
-    console.log(event.target)
-    console.log("handleFavoriteClick", id)
-    event.preventDefault()
-  }
-
-  // Opens a modal for edits  // TODO: add edit modal
-  const handleEditClick = (event: React.MouseEvent<HTMLElement>, id: string) => {
-    console.log(event.target)
-
-    console.log("handleEditClick", id)
-    event.preventDefault()
-  }
-
-  const handleEditDetailsClick = (event: React.MouseEvent<HTMLElement>, id: string) => {
-    console.log(event.target)
-    console.log("handleEditDetailsClick", id)
-    event.preventDefault()
-  }
-
-  const theme = useSelector((state: RootStateOrAny) => state.theme)
-
-  if (theme.mode === "dark") {
-    //button = <LogoutButton onClick={this.handleLogoutClick} />;
-  } else {
-    //button = <LoginButton onClick={this.handleLoginClick} />;
-  }
+  // TODO: set checkboxes OUTSIDE of this loop
 
   let checked
   if (link.status === "active") {
@@ -82,110 +116,109 @@ export default function LinkListCard({ link }) {
     checked = false
   }
 
-  const defaultChecked = true
-
-  const [switcherChecked, setSwitcherChecked] = useState(defaultChecked || checked)
-
-  useEffect(() => {
-    console.log("useEffect checked", checked)
-    if (typeof checked !== "undefined") {
-      setSwitcherChecked(checked)
-    }
-  }, [checked])
-
-  const getControlProps = () => {
-    let checkedValue = switcherChecked
-
-    let checked = { value: checkedValue }
-
-    //
-    console.log("getControlProps checked", checked)
-    // console.log("checkedValue",checkedValue);
-    // console.log("checked",checked);
-
-    // if (field) {
-    //   checkedValue = typeof field.value === "boolean" ? field.value : defaultChecked
-    //   checked = { value: checkedValue, checked: checkedValue }
-    // }
-
-    checked = { value: checkedValue, checked: checkedValue }
-
-    // if (defaultChecked) {
-    //   checked.defaultChecked = defaultChecked
-    // }
-    return checked
+  const handleEditDetailsClick = async (event: React.MouseEvent<HTMLElement>, id) => {
+    await router.push(Routes.EditSitePage({ siteId: id }))
   }
 
-  const controlProps = getControlProps()
+  // Opens a modal for edits  // TODO: add edit modal
+  const handleDeleteClick = (event: React.MouseEvent<HTMLElement>, id: string) => {
+    // console.log(event.target)
+    console.log("handleDeleteClick", id)
+    // DeleteDialog.tsx
 
-  const handleActiveChange = (link) => {
-    // link.id
-    const nextChecked = !switcherChecked
-    console.log("handleActiveChange nextChecked", nextChecked)
-    // if (disabled || readOnly || isLoading) {
-    //   return
-    // }
-
-    if (typeof checked === "undefined") {
-      console.log("handleActiveChange undefined")
-      setSwitcherChecked(nextChecked)
-    } else {
-      console.log("handleActiveChange else")
-    }
+    //event.preventDefault()
   }
-  console.log("link.status", link.status)
-  //  style={{maxHeight: 300}}
-  // color={mode === 'dark' ? "#ffffff" : "#000000"}
+  const emails = ["username@gmail.com", "user02@gmail.com"]
+  const [open, setOpen] = React.useState(false)
+  const [selectedValue, setSelectedValue] = React.useState(emails[1])
+  // delete dialog
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = (value: string) => {
+    setOpen(false)
+    setSelectedValue(value)
+  }
+
+  // TODO: need to get status switch working
+
   return (
-    <Card key={link.id} className="card">
-      <CardHeader
-        title={link.name}
-        action={
-          <Switch
-            // checked={!!link.status}
-            // checked={link.status === 'active'}
-            checked={checked}
-            onChange={handleActiveChange}
-            inputProps={{ "aria-label": "controlled" }}
-          />
-        }
-        // subheader={`Last updated on ${link.updatedAt.toDateString()}`}
-      />
-      <CardContent
-        // sx={{ p:0, '&:last-child': { pb: 0 }}}
-        sx={{ py: 0 }}
-      >
-        <Typography variant="body2" color={theme.mode === "dark" ? "text.light" : "text.dark"}>
-          {link.name}
-        </Typography>
-
-        {link.description && (
-          <Typography variant="body2" color={theme.mode === "dark" ? "text.light" : "text.dark"}>
-            {link.description}
-          </Typography>
-        )}
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites" onClick={(e) => handleFavoriteClick(e, link.id)}>
-          <FontAwesomeIcon icon={faUserPlus} style={{ color: "#e5e6f1", paddingRight: 7 }} />
-          <FavoriteIcon
-          // color={theme.mode === "dark" ? 'icon' : 'secondary'}
-          />
-        </IconButton>
-        <IconButton aria-label="share" onClick={(e) => handleEditClick(e, link.id)}>
-          <ShareIcon />
-        </IconButton>
-
-        <IconButton
-          aria-label="details"
-          style={{ marginLeft: "auto" }}
-          onClick={(e) => handleEditDetailsClick(e, link.id)}
+    <Draggable draggableId={link.id} index={index}>
+      {(provided, snapshot) => (
+        <ListItem
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          className={snapshot.isDragging ? "dragging" : "not-dragging"}
         >
-          {/*<ArrowForwardIosTwoTone color="icon" />*/}
-          <ArrowForwardIosTwoTone />
-        </IconButton>
-      </CardActions>
-    </Card>
+          <Card key={link.id} className="card">
+            <CardHeader
+              title={link.name}
+              action={
+                <Switch
+                  // checked={!!link.status}
+                  // checked={link.status === 'active'}
+                  checked={checked}
+                  //onChange={handleActiveChange(link.id)} // TODO: handle properly outside of loop
+                  inputProps={{ "aria-label": "controlled" }}
+                />
+              }
+            />
+
+            <CardContent
+              // sx={{ p:0, '&:last-child': { pb: 0 }}}
+              sx={{ py: 0 }}
+            >
+              <ListItemAvatar>
+                <Avatar>
+                  {/*<InboxIcon />*/}
+                  avatar
+                </Avatar>
+              </ListItemAvatar>
+              {/*<ListItemText primary={item.primary} secondary={item.secondary} />*/}
+              {/*<DeleteDialog*/}
+              {/*  //selectedValue={selectedValue}*/}
+              {/*  open={open}*/}
+              {/*  onClose={handleClose}*/}
+              {/*/>*/}
+              <Typography variant="body1" color={mode === "dark" ? "text.light" : "text.dark"}>
+                <Link href={link.url} target="_blank">
+                  {link.url}
+                </Link>
+              </Typography>
+
+              {link.description && (
+                <Typography variant="body2" color={mode === "dark" ? "text.light" : "text.dark"}>
+                  {link.description}
+                </Typography>
+              )}
+            </CardContent>
+            <CardActions disableSpacing>
+              <Tooltip title="Delete">
+                <IconButton
+                  size="medium"
+                  aria-label="delete"
+                  onClick={(e) => handleDeleteClick(e, link.id)}
+                >
+                  <FontAwesomeIcon icon={faTrashCan} size="sm" />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Details">
+                <IconButton
+                  aria-label="details"
+                  style={{ marginLeft: "auto" }}
+                  onClick={(e) => handleEditDetailsClick(e, link.id)}
+                >
+                  {/*<ArrowForwardIosTwoTone color="icon" />*/}
+                  <ArrowForwardIosTwoTone />
+                </IconButton>
+              </Tooltip>
+            </CardActions>
+          </Card>
+        </ListItem>
+      )}
+    </Draggable>
   )
 }
 
@@ -195,3 +228,5 @@ export default function LinkListCard({ link }) {
 // TODO: add details
 // TODO: add tooltips
 // TODO: add draggable and ordering
+
+export default LinkListCard

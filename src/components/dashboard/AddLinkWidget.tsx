@@ -1,3 +1,4 @@
+import * as React from "react"
 import { useState } from "react"
 import Link from "next/link"
 import { useSelector, RootStateOrAny } from "react-redux"
@@ -15,8 +16,9 @@ import {
   Stack,
   Button,
   Grid,
+  Paper,
 } from "@mui/material"
-
+import { DragDropContext, Droppable, OnDragEndResponder } from "react-beautiful-dnd"
 import IconButton, { IconButtonProps } from "@mui/material/IconButton"
 import {
   Favorite as FavoriteIcon,
@@ -29,6 +31,10 @@ import Alert from "@mui/material/Alert"
 import LinkListCard from "./LinkListCard"
 // import LinkBox from "components/dashboard/LinkBox"
 import AddLinkCard from "components/dashboard/AddLinkCard"
+
+import pick from "@cahil/utils/accessors/pick"
+import { getLinks, reorder } from "./drag"
+import { DropResult } from "react-beautiful-dnd"
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean
@@ -47,23 +53,26 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 // need {} or else it's a object in object
 export default function AddLinkWidget({ links }) {
-  const [expanded, setExpanded] = useState(false)
+  const [setLinks] = links
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded)
+  const onDragEnd = ({ destination, source }: DropResult) => {
+    // dropped outside the list
+    if (!destination) return
+
+    const newLinks = reorder(links, source.index, destination.index)
+
+    setLinks(newLinks)
   }
-
-  const handleFavoriteClick = (event: React.MouseEvent<HTMLElement>, text: string) => {
-    console.log(event.target)
-
-    event.preventDefault()
-  }
-
-  const handleShareClick = (event: React.MouseEvent<HTMLElement>, text: string) => {
-    console.log(event.target)
-
-    event.preventDefault()
-  }
+  // TODO: handle checks outside of loop with arrays
+  //   const [checked, setChecked] = React.useState(true);
+  // const handleActiveChange = (e: React.ChangeEvent<HTMLInputElement>,id) => {
+  //   setSwitcherChecked(e.target.checked);
+  //
+  //   console.log("handleActiveChange id",id);
+  //   console.log("handleActiveChange id",e);
+  //
+  //   // TODO: update db
+  // };
 
   const theme = useSelector((state: RootStateOrAny) => state.theme)
 
@@ -84,19 +93,7 @@ export default function AddLinkWidget({ links }) {
 
   return (
     <Stack minWidth={600} maxWidth={800} spacing={4}>
-      <Box
-        textAlign="center"
-        sx={
-          {
-            //width: 300,
-            // backgroundColor: 'primary.dark',
-            // '&:hover': {
-            //   backgroundColor: 'primary.main',
-            //   opacity: [0.9, 0.8, 0.7],
-            // },
-          }
-        }
-      >
+      <Box textAlign="center">
         <Button variant="addlink" onClick={addComponent}>
           <FontAwesomeIcon icon={faPlus} style={{ color: "#e5e6f1", paddingRight: 7 }} />
           <span>Add Link</span>
@@ -112,16 +109,34 @@ export default function AddLinkWidget({ links }) {
         </Alert>
       )}
 
-      {links && (
-        <>
-          {/*<Typography variant="body1" pt={2}>*/}
-          {/*  <Link href={Routes.NewSitePage()}>Your Links</Link>*/}
-          {/*</Typography>*/}
-          {links.map((link) => (
-            <LinkListCard key={link.id} link={link} />
-          ))}
-        </>
-      )}
+      <Paper>
+        {links && (
+          <DragDropContext onDragEnd={onDragEnd}>
+            <Droppable droppableId="droppable-list">
+              {(provided) => (
+                <div ref={provided.innerRef} {...provided.droppableProps}>
+                  {/*<Typography variant="body1" pt={2}>*/}
+                  {/*  <Link href={Routes.NewSitePage()}>Your Links</Link>*/}
+                  {/*</Typography>*/}
+                  {links.map((link, index) => (
+                    <LinkListCard index={index} key={link.id} link={link} mode={theme.mode} />
+                  ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
+        )}
+      </Paper>
+      <Paper>
+        <pre>
+          {JSON.stringify(
+            links.map((item) => pick(item, "id", "primary")),
+            null,
+            2
+          )}
+        </pre>
+      </Paper>
     </Stack>
   )
 }

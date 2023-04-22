@@ -94,6 +94,8 @@ model Site {
   name        String // remove
   title       String?
   type        Sitetype @default(custom)
+  icon        String?
+  image       String?
   url         String
   description String?
   api_key     String?
