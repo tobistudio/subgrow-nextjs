@@ -100,11 +100,15 @@ export type DraggableListItemProps = {
   link: LinkType
   index: number
   mode: string
+  name: string
+  description: string
+  url: string
 }
 
 // TODO: draggable https://codesandbox.io/s/draggable-material-ui-oj3wz?file=/src/components/DraggableList.tsx:764-773
 // need {} or else it's a object in object
-const LinkListCard = ({ link, index, mode }: DraggableListItemProps) => {
+// const LinkListCard = ({ link, index, mode }: DraggableListItemProps) => {
+const LinkListCard = ({ link, index, mode }) => {
   // const LinkListCard = React.memo(({ link, mode }: DraggableListProps) => {
   const router = useRouter()
 

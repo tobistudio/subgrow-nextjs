@@ -1,3 +1,4 @@
+// @ts-ignore
 import { Suspense } from "react"
 import { Routes } from "@blitzjs/next"
 import Head from "next/head"
@@ -13,7 +14,11 @@ import { ProfileForm, FORM_ERROR } from "profiles/components/ProfileForm"
 
 export const EditProfile = () => {
   const router = useRouter()
-  const profileId = useParam("profileId", "number")
+  // const profileId = useParam("profileId", "string")
+  const profileId = useParam("profileId", "string")
+  // const profileId = useParam("profileId")
+
+  // const profileId = useParam("profileId")
   const [profile, { setQueryData }] = useQuery(
     getProfileForEdit,
     { id: profileId },

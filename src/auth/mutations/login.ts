@@ -23,11 +23,11 @@ export const authenticateUser = async (rawEmail: string, rawPassword: string) =>
   return rest
 }
 
-export default resolver.pipe(resolver.zod(Login), async ({ username, email, password }, ctx) => {
+export default resolver.pipe(resolver.zod(Login), async ({ email, password }, ctx) => {
   // This throws an error if credentials are invalid
   const user = await authenticateUser(email, password)
-
-  await ctx.session.$create({ username: username, userId: user.id, role: user.role as Role })
+  console.log("user login", user)
+  await ctx.session.$create({ username: user.username, userId: user.id, role: user.role as Role })
 
   return user
 })
