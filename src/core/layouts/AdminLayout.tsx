@@ -76,7 +76,6 @@ const AdminLayout: BlitzLayout<{
       <Head>
         <title>{title || "Sub Grow Admin"}</title>
         <link rel="icon" href="/favicon.ico" />
-        <link href="/styles.css" rel="stylesheet" />
       </Head>
 
       <main>

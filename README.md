@@ -72,3 +72,37 @@ needs to delete if user is deleted, or user logs out
 
 
 
+
+
+FIVER
+
+Drag Drop
+
+DB mutation
+https://github.com/ameshkin/subgrow/blob/324456f1cf466f438c1fda5142b295d08c57ff4e/src/sites/mutations/updateLinkOrder.ts
+
+
+Check Widget
+
+
+
+
+Finish the widget
+
+Update lists
+
+Delete button
+https://github.com/ameshkin/subgrow/blob/324456f1cf466f438c1fda5142b295d08c57ff4e/src/components/dashboard/LinkListCard.tsx
+
+
+
+
+Hello there. I need some help with a blitz/next js website.   Mostly minor UI things that have to do with material UI and connecting it to the database.
+
+Such as drag drop.
+
+Most of the work is done.  I just need someone to finish the mutations.
+
+I will point you directly to the code, and it should be very easy.
+
+https://github.com/ameshkin/subgrow/blob/324456f1cf466f438c1fda5142b295d08c57ff4e/src/components/dashboard/AddLinkWidget.tsx

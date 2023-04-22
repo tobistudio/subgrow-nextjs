@@ -6,7 +6,7 @@ const UpdateLinkOrder = z.object({
   id: z.string(),
   source: z.string(),
   destination: z.string(),
-  index: z.number(),
+  order: z.number(), // TODO: fiver this needs to be the index from drag drop
 })
 
 export default resolver.pipe(

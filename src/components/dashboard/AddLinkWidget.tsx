@@ -19,6 +19,8 @@ import {
   Button,
   Grid,
   Paper,
+  Dialog,
+  DialogTitle,
 } from "@mui/material"
 import { DragDropContext, Droppable, OnDragEndResponder } from "react-beautiful-dnd"
 import IconButton, { IconButtonProps } from "@mui/material/IconButton"
@@ -30,7 +32,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from "@fortawesome/pro-duotone-svg-icons"
 import Alert from "@mui/material/Alert"
-import LinkListCard from "./LinkListCard"
+import LinkListCard, { SimpleDialogProps } from "./LinkListCard"
 // import LinkBox from "components/dashboard/LinkBox"
 import AddLinkCard from "components/dashboard/AddLinkCard"
 
@@ -38,6 +40,15 @@ import pick from "@cahil/utils/accessors/pick"
 import { getLinks, reorder } from "./drag"
 import { DropResult } from "react-beautiful-dnd"
 import updateLinkOrder from "../../sites/mutations/updateLinkOrder"
+import List from "@mui/material/List"
+import ListItem from "@mui/material/ListItem"
+import ListItemButton from "@mui/material/ListItemButton"
+import ListItemAvatar from "@mui/material/ListItemAvatar"
+import Avatar from "@mui/material/Avatar"
+import { blue } from "@mui/material/colors"
+import PersonIcon from "@mui/icons-material/Person"
+import ListItemText from "@mui/material/ListItemText"
+import AddIcon from "@mui/icons-material/Add"
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean
@@ -54,14 +65,55 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }))
 
+// TODO: fiver finish dialog box
+// const DeleteDialog = async (props: SimpleDialogProps) => {
+//   const { onClose, selectedValue, open } = props
+//
+//
+//   // Opens a modal for edits  // TODO: add edit modal
+//   const handleDeleteClick = (event: React.MouseEvent<HTMLElement>, id: string) => {
+//     // console.log(event.target)
+//
+//     console.log("handleDeleteClick", id)
+//     // DeleteDialog.tsx
+//     setOpen(true);
+//     //event.preventDefault()
+//   }
+//
+//   // delete dialog
+//   // const handleClickOpen = () => {
+//   //   setOpen(true)
+//   // }
+//   //
+//   // const handleClose = (value: string) => {
+//   //   setOpen(false)
+//   //   setSelectedValue(value)
+//   // }
+//
+//   const handleClose = () => {
+//     onClose(selectedValue)
+//   }
+//
+//   const handleListItemClick = (value: string) => {
+//     onClose(value)
+//   }
+//
+//
+//   return (
+//     <Dialog onClose={handleClose} open={open}>
+//       <DialogTitle>Set backup account</DialogTitle>
+//
+//       <p>Are you sure you want to delete?</p>
+//     </Dialog>
+//   )
+// }
+
 // need {} or else it's a object in object
 export default function AddLinkWidget({ sites }) {
-  //const [setLinks] = links
-
   const [links, setLinks] = React.useState(sites)
   const [updateLinkMutation] = useMutation(updateLinkOrder)
 
-  // TODO: finish and fix drag and dro, change order
+  // TODO: fiver finish and fix drag and dro, change order
   const onDragEnd = async ({ destination, source, id }: DropResult) => {
     // dropped outside the list
     //if (!destination) return
@@ -96,15 +148,6 @@ export default function AddLinkWidget({ sites }) {
 
   const theme = useSelector((state: RootStateOrAny) => state.theme)
 
-  if (theme.mode === "dark") {
-    //button = <LogoutButton onClick={this.handleLogoutClick} />;
-  } else {
-    //button = <LoginButton onClick={this.handleLoginClick} />;
-  }
-
-  //  style={{maxHeight: 300}}
-  // color={mode === 'dark' ? "#ffffff" : "#000000"}
-
   const [components, setComponents] = useState(["Sample Component"])
 
   function addComponent() {
@@ -114,6 +157,7 @@ export default function AddLinkWidget({ sites }) {
   return (
     <Stack minWidth={600} maxWidth={800} spacing={4}>
       <Box textAlign="center">
+        {/*<DeleteDialog />*/}
         <Button variant="addlink" onClick={addComponent}>
           <FontAwesomeIcon icon={faPlus} style={{ color: "#e5e6f1", paddingRight: 7 }} />
           <span>Add Link</span>

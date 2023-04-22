@@ -5,7 +5,7 @@ import { z } from "zod"
 const AddLinkWidget = z.object({
   // userId: z.number().int().nullish(), // TODO: FIXME: string
   //userId: z.number(),
-  name: z.string(),
+  title: z.string(),
   url: z.string().url(),
 })
 

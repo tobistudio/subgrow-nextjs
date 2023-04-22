@@ -4,7 +4,7 @@ import { z } from "zod"
 
 const UpdateSite = z.object({
   id: z.string(),
-  name: z.string(),
+  title: z.string(),
   description: z.string().optional(),
   api_key: z.string(),
   api_secret: z.string(),

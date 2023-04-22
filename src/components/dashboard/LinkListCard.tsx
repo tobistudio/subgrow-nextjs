@@ -60,48 +60,6 @@ export interface SimpleDialogProps {
 //   onDragEnd: OnDragEndResponder;
 // };
 
-function DeleteDialog(props: SimpleDialogProps) {
-  const { onClose, selectedValue, open } = props
-
-  const handleClose = () => {
-    onClose(selectedValue)
-  }
-
-  const handleListItemClick = (value: string) => {
-    onClose(value)
-  }
-
-  return (
-    <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Set backup account</DialogTitle>
-      <List sx={{ pt: 0 }}>
-        {emails.map((email, index) => (
-          <ListItem key={index} disableGutters>
-            <ListItemButton onClick={() => handleListItemClick(email)} key={email}>
-              <ListItemAvatar>
-                <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
-                  <PersonIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={email} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-        <ListItem disableGutters>
-          <ListItemButton autoFocus onClick={() => handleListItemClick("addAccount")}>
-            <ListItemAvatar>
-              <Avatar>
-                <AddIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Add account" />
-          </ListItemButton>
-        </ListItem>
-      </List>
-    </Dialog>
-  )
-}
-
 export type DraggableListItemProps = {
   link: LinkType
   index: number
@@ -117,10 +75,11 @@ export type DraggableListItemProps = {
 const LinkListCard = ({ link, index, mode, snapshot }) => {
   // const LinkListCard = React.memo(({ link, mode }: DraggableListProps) => {
   const router = useRouter()
+  const emails = ["username@gmail.com", "user02@gmail.com"]
+  const [open, setOpen] = React.useState(false)
+  const [selectedValue, setSelectedValue] = React.useState(emails[1])
 
-  //console.log("snapshot", snapshot)
-  // TODO: set checkboxes OUTSIDE of this loop
-
+  // TODO: handle switch update, turn on status switch in db
   let checked
   if (link.status === "active") {
     checked = true
@@ -132,32 +91,11 @@ const LinkListCard = ({ link, index, mode, snapshot }) => {
     await router.push(Routes.EditSitePage({ siteId: id }))
   }
 
-  // Opens a modal for edits  // TODO: add edit modal
-  const handleDeleteClick = (event: React.MouseEvent<HTMLElement>, id: string) => {
-    // console.log(event.target)
-    console.log("handleDeleteClick", id)
-    // DeleteDialog.tsx
-
-    //event.preventDefault()
-  }
-  const emails = ["username@gmail.com", "user02@gmail.com"]
-  const [open, setOpen] = React.useState(false)
-  const [selectedValue, setSelectedValue] = React.useState(emails[1])
-  // delete dialog
-  const handleClickOpen = () => {
-    setOpen(true)
-  }
-
-  const handleClose = (value: string) => {
-    setOpen(false)
-    setSelectedValue(value)
-  }
-
   // TODO: need to get status switch working
   return (
     <Card key={link.id} className="card" style={{ margin: 30 }}>
       <CardHeader
-        title={link.name}
+        title={link.title}
         action={
           <Switch
             // checked={!!link.status}
@@ -179,7 +117,7 @@ const LinkListCard = ({ link, index, mode, snapshot }) => {
         {/*    <FontAwesomeIcon icon={faFacebook} color={"#3f50b5"} />*/}
         {/*  </Avatar>*/}
         {/*</ListItemAvatar>*/}
-        <ListItemText primary={link.name} secondary={link.url} />
+        {/*<ListItemText primary={link.name} secondary={link.url} />*/}
         {/*<DeleteDialog*/}
         {/*  //selectedValue={selectedValue}*/}
         {/*  open={open}*/}
@@ -202,7 +140,7 @@ const LinkListCard = ({ link, index, mode, snapshot }) => {
           <IconButton
             size="medium"
             aria-label="delete"
-            onClick={(e) => handleDeleteClick(e, link.id)}
+            //onClick={(e) => handleDeleteClick(e, link.id)} // TODO: fiver delete button
           >
             <FontAwesomeIcon icon={faTrashCan} size="sm" />
           </IconButton>

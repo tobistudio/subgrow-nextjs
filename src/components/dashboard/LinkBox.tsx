@@ -71,14 +71,6 @@ export default function AddLinkWidget({ link }) {
     setExpanded(!expanded)
   }
 
-  if (theme.mode === "dark") {
-    //button = <LogoutButton onClick={this.handleLogoutClick} />;
-  } else {
-    //button = <LoginButton onClick={this.handleLoginClick} />;
-  }
-
-  //  style={{maxHeight: 300}}
-  // color={mode === 'dark' ? "#ffffff" : "#000000"}
   return (
     <div>
       <Card className="card">
