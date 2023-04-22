@@ -52,8 +52,10 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }))
 
 // need {} or else it's a object in object
-export default function AddLinkWidget({ links }) {
-  const [setLinks] = links
+export default function AddLinkWidget({ sites }) {
+  //const [setLinks] = links
+
+  const [links, setLinks] = React.useState(sites)
 
   const onDragEnd = ({ destination, source }: DropResult) => {
     // dropped outside the list
@@ -115,9 +117,6 @@ export default function AddLinkWidget({ links }) {
             <Droppable droppableId="droppable-list">
               {(provided) => (
                 <div ref={provided.innerRef} {...provided.droppableProps}>
-                  {/*<Typography variant="body1" pt={2}>*/}
-                  {/*  <Link href={Routes.NewSitePage()}>Your Links</Link>*/}
-                  {/*</Typography>*/}
                   {links.map((link, index) => (
                     <LinkListCard index={index} key={link.id} link={link} mode={theme.mode} />
                   ))}

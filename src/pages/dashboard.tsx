@@ -46,7 +46,7 @@ export const DashboardBox = () => {
           justifyContent="center"
           alignItems="center"
         >
-          <AddLinkWidget links={sites} />
+          <AddLinkWidget sites={sites} />
         </Grid>
       </Grid>
     </Container>

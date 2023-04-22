@@ -84,7 +84,9 @@ const config = withBlitz({
   },
   output: "standalone",
 })
-config.reactStrictMode = true
+// config.reactStrictMode = true //  set to false act-beautiful-dndUnable to find draggable with id:
+// https://stackoverflow.com/questions/60029734/react-beautiful-dnd-i-get-unable-to-find-draggable-with-id-1
+config.reactStrictMode = false // setting to false fixes draggable error
 config.output = "standalone"
 delete config.target
 module.exports = config

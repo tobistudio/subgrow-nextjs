@@ -18,6 +18,7 @@ import {
   DialogTitle,
 } from "@mui/material"
 import { Draggable } from "react-beautiful-dnd"
+import { LinkType } from "./typings"
 import { makeStyles } from "@mui/styles"
 import { DragDropContext, Droppable, OnDragEndResponder } from "react-beautiful-dnd"
 import IconButton, { IconButtonProps } from "@mui/material/IconButton"
@@ -96,7 +97,7 @@ function DeleteDialog(props: SimpleDialogProps) {
 }
 
 export type DraggableListItemProps = {
-  link: any
+  link: LinkType
   index: number
   mode: string
 }
@@ -142,7 +143,6 @@ const LinkListCard = ({ link, index, mode }: DraggableListItemProps) => {
   }
 
   // TODO: need to get status switch working
-
   return (
     <Draggable draggableId={link.id} index={index}>
       {(provided, snapshot) => (
@@ -176,7 +176,7 @@ const LinkListCard = ({ link, index, mode }: DraggableListItemProps) => {
                   avatar
                 </Avatar>
               </ListItemAvatar>
-              {/*<ListItemText primary={item.primary} secondary={item.secondary} />*/}
+              <ListItemText primary={link.name} secondary={link.url} />
               {/*<DeleteDialog*/}
               {/*  //selectedValue={selectedValue}*/}
               {/*  open={open}*/}

@@ -5,7 +5,7 @@ import Link from "next/link"
 import { usePaginatedQuery } from "@blitzjs/rpc"
 import { useRouter } from "next/router"
 import AdminLayout from "core/layouts/AdminLayout"
-import getProfiles from "profiles/queries/getProfiles"
+import getProfile from "profiles/queries/getProfile"
 import { Box, Paper, Grid, Button } from "@mui/material"
 
 const ITEMS_PER_PAGE = 100
