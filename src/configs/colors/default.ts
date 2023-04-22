@@ -36,10 +36,36 @@ export const blue = {
   900: "#002459",
 }
 
+export const red = {
+  50: "#ffffff",
+  100: "#bec8dd",
+  200: "#94a4c5",
+  300: "#6b81ae",
+  400: "#9f4a4a",
+  500: "#902525",
+  600: "#1e4688",
+  700: "#143d7c",
+  800: "#0b3470",
+  900: "#590000",
+}
+
 // colors for theme, fonts, etc
 export const fonts = {
   alert: "#b91313",
   gear: "#4a679f",
+
+  300: "#6b81ae",
+  400: "#4a679f",
+  500: "#254e90",
+  600: "#1e4688",
+  700: "#143d7c",
+  800: "#0b3470",
+  900: "#002459",
+}
+
+export const misc = {
+  white: "#ffffff",
+  100: "#bec8dd",
   200: "#94a4c5",
   300: "#6b81ae",
   400: "#4a679f",

@@ -5,7 +5,7 @@ import useDarkMode from "utils/hooks/useDarkMode"
 import { themeConfig } from "configs/theme.config"
 import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles"
 // import { blue, green, purple } from "@mui/material/colors"
-import { blue, green, purple } from "configs/colors/default"
+import { blue, green, purple, red } from "configs/colors/default"
 
 // <ThemeProvider theme={theme}>
 // needed for typescript
@@ -78,7 +78,7 @@ const Theme = (props) => {
     typography: {
       fontSize: 14,
       // fontFamily: ["Roboto", '"Helvetica Neue"'].join(","),
-      fontFamily: ["Poppins", "Quicksand"].join(","),
+      fontFamily: ["Poppins", "sans-serif"].join(","),
       subtitle1: {
         fontSize: 10,
       },
@@ -181,7 +181,7 @@ const Theme = (props) => {
             style: {
               // backgroundColor: "#2374F2",
               // backgroundColor: theme.mode === "dark" ? themeConfig.colors.dark.addbgcolor : themeConfig.colors.light.addbgcolor,
-              backgroundColor: theme.mode === "dark" ? blue[500] : purple[500],
+              backgroundColor: theme.mode === "dark" ? red[500] : red[700],
               color: theme.mode === "dark" ? blue[100] : purple[100],
               // border: `2px dashed grey${blue[500]}`,
               "&:hover": {

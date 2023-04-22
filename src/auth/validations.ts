@@ -18,6 +18,7 @@ export const Signup = z.object({
 })
 
 export const Login = z.object({
+  username: z.string(), // needed for session
   email,
   password: z.string(),
 })

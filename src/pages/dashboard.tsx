@@ -30,7 +30,6 @@ export const DashboardBox = () => {
   // const [sites] = useQuery(getSiteForProfile, { userId: user.id })
   const [sites] = useQuery(getSiteForProfile, { userId: session.userId })
 
-  console.log("links", sites)
   // minHeight="100vh"
   return (
     <Container

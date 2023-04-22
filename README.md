@@ -63,3 +63,12 @@ TRUNCATE TABLE Site;
 TRUNCATE TABLE Profile;
 SET FOREIGN_KEY_CHECKS=1;  -- turn on foreign key checks
 ```
+
+
+// TOdo: bug with session and Session table.
+needs to delete if user is deleted, or user logs out
+
+// TODO: dashboard page, when facebook link, icon appears
+
+
+

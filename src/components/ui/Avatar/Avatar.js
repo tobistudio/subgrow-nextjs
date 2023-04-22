@@ -4,6 +4,9 @@ import PropTypes from "prop-types"
 import classNames from "classnames"
 import Image from "next/image"
 // import Alert from "../Alert"
+import { faUser } from "@fortawesome/pro-thin-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { misc, blue } from "configs/colors/default"
 
 const Avatar = React.forwardRef((props, ref) => {
   const { size, src, srcSet, shape, alt, className, icon, ...rest } = props
@@ -54,18 +57,20 @@ const Avatar = React.forwardRef((props, ref) => {
 
   if (src) {
     children = (
-      <Image
-        className={`avatar-img avatar-${shape}`}
-        width={100}
-        height={100}
-        src={src}
-        srcSet={srcSet}
-        alt={alt}
-        loading="lazy"
-      />
+      <FontAwesomeIcon icon={faUser} color={blue[500]} />
+      // <Image
+      //   className={`avatar-img avatar-${shape}`}
+      //   width={100}
+      //   height={100}
+      //   src={src}
+      //   srcSet={srcSet}
+      //   alt={alt}
+      //   loading="lazy"
+      // />
     )
   } else if (icon) {
-    children = <span className={classNames("avatar-icon", `avatar-icon-${size}`)}>{icon}</span>
+    // children = <span className={classNames("avatar-icon", `avatar-icon-${size}`)}>{icon}</span>
+    children = <span>{icon}</span>
   } else {
     const childrenSizeStyle = typeof size === "number" ? { lineHeight: `${size}px` } : {}
     const stringCentralized = {
@@ -73,7 +78,7 @@ const Avatar = React.forwardRef((props, ref) => {
     }
     children = (
       <span
-        className={`avatar-string ${typeof size === "number" ? "" : `avatar-inner-${size}`}`}
+        //className={`avatar-string ${typeof size === "number" ? "" : `avatar-inner-${size}`}`}
         style={{
           ...childrenSizeStyle,
           ...stringCentralized,

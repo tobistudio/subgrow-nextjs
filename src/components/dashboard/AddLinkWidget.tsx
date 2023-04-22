@@ -26,7 +26,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from "@fortawesome/pro-duotone-svg-icons"
 import Alert from "@mui/material/Alert"
-import LinkListCard from "../lists/LinkListCard"
+import LinkListCard from "./LinkListCard"
 // import LinkBox from "components/dashboard/LinkBox"
 import AddLinkCard from "components/dashboard/AddLinkCard"
 

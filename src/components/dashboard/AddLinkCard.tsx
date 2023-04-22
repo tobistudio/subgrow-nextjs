@@ -210,13 +210,13 @@ export default function LinkListCard({ link }) {
         //   </Avatar>
         // }
         // action={<FontAwesomeIcon icon={faGear} spin color={"#3f50b5"} /> }
-        action={
-          <Switch
-            checked={activeChecked}
-            onChange={handleActiveChange}
-            inputProps={{ "aria-label": "controlled" }}
-          />
-        }
+        // action={
+        //   <Switch
+        //     checked={activeChecked}
+        //     onChange={handleActiveChange}
+        //     inputProps={{ "aria-label": "controlled" }}
+        //   />
+        // }
         title="Add New Link"
         //subheader="September 14, 2016"
       />
