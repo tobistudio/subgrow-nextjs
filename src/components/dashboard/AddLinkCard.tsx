@@ -275,8 +275,8 @@ export default function LinkListCard({ link }) {
                   )}
                 </Field>
                 <TextField
-                  label="Link Name"
-                  name="name"
+                  label="Link Title"
+                  name="title"
                   style={{ maxWidth: 380 }}
                   size="small"
                   // TODO: could add bad word check, leave off for now

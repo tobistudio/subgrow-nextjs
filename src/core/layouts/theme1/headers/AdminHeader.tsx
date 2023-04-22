@@ -11,6 +11,7 @@ import Notification from "components/template/Notification"
 import SideNavToggle from "components/template/SideNavToggle"
 import MobileNav from "components/template/MobileNav"
 import SideNav from "components/template/SideNav"
+import Logo from "./Logo"
 const SidePanel = React.lazy(() => import("components/template/SidePanel"))
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
@@ -23,13 +24,13 @@ const AdminHeader: BlitzLayout<{ title?: string; type?: string }> = ({ title, ty
     <header className="header-wrapper">
       <Grid container spacing={2}>
         <Grid xs={6}>
-          logo
+          <Logo imageSource="https://place-hold.it/100x30.jpg/666/fff/000">{children}</Logo>
           {/*<MobileNav />*/}
           {/*<SideNavToggle />*/}
         </Grid>
         <Grid xs={6}>
           <div className={"user-info-wrapper"}>
-            <Suspense fallback={<LoadingSvg />}>
+            <Suspense>
               <UserInfo />
               {/*<LanguageSelector />*/}
               {/*<Notification />*/}

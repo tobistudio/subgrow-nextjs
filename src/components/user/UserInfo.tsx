@@ -13,8 +13,9 @@ import Grid from "@mui/material/Unstable_Grid2" // Grid version 2
 // import SideNavToggle from "components/template/SideNavToggle"
 
 import UserDropdown from "components/template/UserDropdown"
-import { faRightToBracket, faUserPlus } from "@fortawesome/pro-duotone-svg-icons"
+import { faRightToBracket, faUser, faSignOut } from "@fortawesome/pro-duotone-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { misc } from "configs/colors/default"
 
 const UserInfo = () => {
   const currentUser = useCurrentUser()
@@ -23,36 +24,42 @@ const UserInfo = () => {
 
   if (currentUser) {
     return (
-      <>
-        {/*<LanguageSelector />*/}
-        {/*<Notification />*/}
-        {/*<SidePanel />*/}
-        <Grid
-          container
-          // justify="flex-end"
-          alignItems="center"
-          justifyContent="flex-end"
-          spacing={2}
-          my={2}
-          mr={3}
-        >
-          <Grid xs={8} alignContent="right">
-            <UserDropdown hoverable={false} />
-          </Grid>
-          <Grid xs={4} pr={6}>
-            <Button
-              onClick={async () => {
-                await logoutMutation()
-              }}
-              variant="contained"
-              // aria-label="Logout"
-              // edge="start"
-            >
-              <strong>Logout</strong>
-            </Button>
-          </Grid>
-        </Grid>
-      </>
+      <Grid
+        container
+        // justify="flex-end"
+        // alignItems="center"
+        justifyContent="flex-end"
+        spacing={2}
+        my={2}
+        mr={3}
+      >
+        <Stack direction="row" spacing={2} my={2} mr={3}>
+          <Button
+            onClick={async () => {
+              // await router.push(Routes.SignupPage())
+              await router.push("/" + currentUser.username)
+            }}
+            variant="outlined"
+            aria-label="Profile"
+            //edge="start"
+          >
+            {/*<FontAwesomeIcon icon={faUser} style={{ color: "#0014ee", paddingRight: 7 }} />*/}
+            <FontAwesomeIcon icon={faUser} style={{ color: "#0014ee", paddingRight: 7 }} />
+            <span>Profile</span>
+          </Button>
+
+          <Button
+            onClick={async () => {
+              await logoutMutation()
+            }}
+            variant="contained"
+            aria-label="Logout"
+          >
+            <FontAwesomeIcon icon={faSignOut} style={{ color: "#e5e6f1", paddingRight: 7 }} />
+            <span>Logout</span>
+          </Button>
+        </Stack>
+      </Grid>
     )
   } else {
     return (
@@ -65,20 +72,20 @@ const UserInfo = () => {
           aria-label="Sign Up"
           //edge="start"
         >
-          <FontAwesomeIcon icon={faUserPlus} style={{ color: "#e5e6f1", paddingRight: 7 }} />
+          <FontAwesomeIcon icon={faUser} style={{ color: misc.ff_secondary, paddingRight: 7 }} />
           <span>Sign Up</span>
         </Button>
 
         <Button
           variant="outlined"
-          // color="inherit"
-          //aria-label={t('login')}
-          //edge="start"
           onClick={async () => {
             await router.push(Routes.LoginPage())
           }}
         >
-          <FontAwesomeIcon icon={faRightToBracket} style={{ color: "#3647af", paddingRight: 7 }} />
+          <FontAwesomeIcon
+            icon={faRightToBracket}
+            style={{ color: misc.ff_primary, paddingRight: 7 }}
+          />
           <span>Login</span>
         </Button>
       </Stack>

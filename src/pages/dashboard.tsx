@@ -94,5 +94,5 @@ const Dashboard = () => {
     </AdminLayout>
   )
 }
-
+Dashboard.authenticate = true
 export default Dashboard
