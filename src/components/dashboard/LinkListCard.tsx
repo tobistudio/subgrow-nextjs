@@ -45,17 +45,18 @@ import PersonIcon from "@mui/icons-material/Person"
 import ListItemText from "@mui/material/ListItemText"
 import AddIcon from "@mui/icons-material/Add"
 import { faFacebook } from "@fortawesome/free-brands-svg-icons"
-
+import { OnDragEndResponder } from "react-beautiful-dnd"
 const emails = ["username@gmail.com", "user02@gmail.com"]
 
 export interface SimpleDialogProps {
   open: boolean
   selectedValue: string
   onClose: (value: string) => void
+  onDragEnd: OnDragEndResponder
 }
 //
 // export type DraggableListProps = {
-//   items: Item[];
+//   links: links[];
 //   onDragEnd: OnDragEndResponder;
 // };
 
@@ -117,7 +118,7 @@ const LinkListCard = ({ link, index, mode, snapshot }) => {
   // const LinkListCard = React.memo(({ link, mode }: DraggableListProps) => {
   const router = useRouter()
 
-  console.log("snapshot", snapshot)
+  //console.log("snapshot", snapshot)
   // TODO: set checkboxes OUTSIDE of this loop
 
   let checked
@@ -154,7 +155,7 @@ const LinkListCard = ({ link, index, mode, snapshot }) => {
 
   // TODO: need to get status switch working
   return (
-    <Card key={link.id} className="card">
+    <Card key={link.id} className="card" style={{ margin: 30 }}>
       <CardHeader
         title={link.name}
         action={

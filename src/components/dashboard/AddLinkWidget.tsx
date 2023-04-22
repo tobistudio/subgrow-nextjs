@@ -61,12 +61,19 @@ export default function AddLinkWidget({ sites }) {
   const [links, setLinks] = React.useState(sites)
   const [updateLinkMutation] = useMutation(updateLinkOrder)
 
-  const onDragEnd = async ({ destination, source }: DropResult) => {
+  // TODO: finish and fix drag and dro, change order
+  const onDragEnd = async ({ destination, source, id }: DropResult) => {
     // dropped outside the list
     //if (!destination) return
+    // let result = helper.reorder(val.source,val.destination,taskList);
+    // setTasks(result)
+    // let result = drag.reorder(source,destination,taskList);
 
+    // TODO: change order and also reload list
     console.log("destination", destination)
+    console.log("id", id)
     console.log("source", source)
+    console.log("links", links)
 
     const project = await updateLinkMutation(source, destination)
 
@@ -122,76 +129,73 @@ export default function AddLinkWidget({ sites }) {
         </Alert>
       )}
 
-      <Paper>
-        {links && (
-          <DragDropContext onDragEnd={onDragEnd}>
-            <Droppable droppableId="link-list">
-              {(provided, snapshot) => (
-                <div {...provided.droppableProps} ref={provided.innerRef}>
-                  {links.map((link, index) => (
-                    // <Draggable draggableId={link.id} index={index}>
-                    //   {(provided, snapshot) => (
-                    //     <ListItem
-                    //       ref={provided.innerRef}
-                    //       {...provided.draggableProps}
-                    //       {...provided.dragHandleProps}
-                    //       className={snapshot.isDragging ? "dragging" : "not-dragging"}
-                    //     >
-                    //
-                    //     </ListItem></Draggable>
-                    //
+      {links && (
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="link-list">
+            {(provided, snapshot) => (
+              <div {...provided.droppableProps} ref={provided.innerRef}>
+                {links.map((link, index) => (
+                  // <Draggable draggableId={link.id} index={index}>
+                  //   {(provided, snapshot) => (
+                  //     <ListItem
+                  //       ref={provided.innerRef}
+                  //       {...provided.draggableProps}
+                  //       {...provided.dragHandleProps}
+                  //       className={snapshot.isDragging ? "dragging" : "not-dragging"}
+                  //     >
+                  //
+                  //     </ListItem></Draggable>
+                  //
 
-                    <Draggable key={index} draggableId={link.id} index={index}>
-                      {(provided, snapshot) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                        >
-                          <LinkListCard
-                            snapshot={snapshot}
-                            index={index}
-                            key={link.id}
-                            link={link}
-                            mode={theme.mode}
-                          />
-                        </div>
-                      )}
-                    </Draggable>
+                  <Draggable key={link.id} draggableId={link.id} index={index}>
+                    {(provided, snapshot) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                      >
+                        <LinkListCard
+                          snapshot={snapshot}
+                          index={index}
+                          key={link.id}
+                          link={link}
+                          mode={theme.mode}
+                        />
+                      </div>
+                    )}
+                  </Draggable>
 
-                    //
-                  ))}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-          </DragDropContext>
+                  //
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
+      )}
+
+      {/*{links && (*/}
+      {/*  <DragDropContext onDragEnd={onDragEnd}>*/}
+      {/*    <Droppable droppableId="link-list">*/}
+      {/*      {(provided, snapshot) => (*/}
+      {/*        <div ref={provided.innerRef} {...provided.droppableProps}>*/}
+      {/*          {links.map((link, index) => (*/}
+      {/*            <LinkListCard snapshot={snapshot} index={index} key={link.id} link={link} mode={theme.mode} />*/}
+      {/*          ))}*/}
+      {/*          {provided.placeholder}*/}
+      {/*        </div>*/}
+      {/*      )}*/}
+      {/*    </Droppable>*/}
+      {/*  </DragDropContext>*/}
+      {/*)}*/}
+
+      <pre>
+        {JSON.stringify(
+          links.map((item) => pick(item, "id", "title", "order")),
+          null,
+          2
         )}
-
-        {/*{links && (*/}
-        {/*  <DragDropContext onDragEnd={onDragEnd}>*/}
-        {/*    <Droppable droppableId="link-list">*/}
-        {/*      {(provided, snapshot) => (*/}
-        {/*        <div ref={provided.innerRef} {...provided.droppableProps}>*/}
-        {/*          {links.map((link, index) => (*/}
-        {/*            <LinkListCard snapshot={snapshot} index={index} key={link.id} link={link} mode={theme.mode} />*/}
-        {/*          ))}*/}
-        {/*          {provided.placeholder}*/}
-        {/*        </div>*/}
-        {/*      )}*/}
-        {/*    </Droppable>*/}
-        {/*  </DragDropContext>*/}
-        {/*)}*/}
-      </Paper>
-      <Paper>
-        <pre>
-          {JSON.stringify(
-            links.map((item) => pick(item, "id", "primary")),
-            null,
-            2
-          )}
-        </pre>
-      </Paper>
+      </pre>
     </Stack>
   )
 }
