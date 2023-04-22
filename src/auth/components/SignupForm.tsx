@@ -28,11 +28,7 @@ import login from "../mutations/login"
 import AccountCircle from "@mui/icons-material/AccountCircle"
 import { TextField } from "mui-rff"
 import InputAdornment from "@mui/material/InputAdornment"
-
-// console.log("UserList", UserList)
-// type SignupFormProps = {
-//   onSuccess?: () => void
-// }
+import { fonts, misc } from "configs/colors/default"
 
 type SignupFormProps = {
   onSuccess?: (user: PromiseReturnType<typeof login>) => void
@@ -88,15 +84,18 @@ export const SignupForm = (props: SignupFormProps) => {
     }
     await sleep(100)
     // TODO: need to check value to see if bad word shows up "badbad" should flag, if "bad" is in badwords.json
+
+    // TODO: set meta or figure out how to get this into InputProps
     if (~BadWords.indexOf(value && value.toLowerCase())) {
       console.log("BadWords")
-      return <FontAwesomeIcon icon={faFaceAnguished} size="xl" style={{ color: "#c90000" }} />
+      return <FontAwesomeIcon icon={faFaceAnguished} style={{ color: "#c90000" }} />
     }
 
     if (~UserList.indexOf(value && value.toLowerCase())) {
       // TODO: disable button
       console.log("UserList", UserList)
-      return <FontAwesomeIcon icon={faXmarkLarge} size="xl" style={{ color: "#c62a2a" }} />
+      //return 'Username Not Available'
+      return <FontAwesomeIcon icon={faXmarkLarge} style={{ color: "#c62a2a" }} />
     }
     // return true doesnt work, return anything
     // if (!value) {
@@ -174,7 +173,7 @@ export const SignupForm = (props: SignupFormProps) => {
                 errors.email = "Email Required"
               }
               if (!values.username) {
-                errors.username = "Username Required"
+                errors.username = <FontAwesomeIcon icon={faXmarkLarge} color={"#a0a0ce"} />
                 errors.textflag = true
               }
               if (!values.password) {
@@ -208,7 +207,14 @@ export const SignupForm = (props: SignupFormProps) => {
                           style={{ maxWidth: 380 }}
                           className="input input-md"
                           type="text"
-                          //placeholder="subgrow.com/"
+                          // InputProps={{
+                          //   placeholder: "Reenter Password",
+                          //   startAdornment: (
+                          //     <InputAdornment position="start">
+                          //       <FontAwesomeIcon icon={faUnlock} color={"#a0a0ce"} />
+                          //     </InputAdornment>
+                          //   ),
+                          // }}
                           InputProps={{
                             //placeholder: "Username",
                             startAdornment: (
@@ -216,25 +222,18 @@ export const SignupForm = (props: SignupFormProps) => {
                                 <FontAwesomeIcon icon={faUser} color={"#3f50b5"} />
                               </InputAdornment>
                             ),
+                            // TODO: fixme get rid of grey ex and error under box
                             endAdornment: (
                               <InputAdornment position="end">
-                                <FontAwesomeIcon icon={faGear} spin color={"#3f50b5"} />
+                                {meta.validating ? (
+                                  <FontAwesomeIcon icon={faGear} spin color={misc.ff_primary} />
+                                ) : (
+                                  meta.error
+                                )}
                               </InputAdornment>
                             ),
                           }}
                         />
-
-                        <div style={{ paddingTop: 7 }}>
-                          {meta.validating && (
-                            <FontAwesomeIcon icon={faGear} spin size="xl" color={"#3f50b5"} />
-                          )}
-
-                          {meta.error !== "Username Required" && meta.touched && (
-                            <div role="alert" className="btn-danger">
-                              {meta.error}
-                            </div>
-                          )}
-                        </div>
                       </Stack>
                     )}
                   </Field>

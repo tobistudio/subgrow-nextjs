@@ -76,6 +76,16 @@ needs to delete if user is deleted, or user logs out
 
 FIVER
 
+
+### Fix error with state
+redux-persist failed to create sync storage. falling back to noop storage.
+problem with action { type: '@@redux/INITr.o.o.s.s' }
+
+Also store state in local storage
+
+// TODO: endAdornment with if else condtional instead of state
+
+
 ### Drag Drop
 
 DB mutation
@@ -109,3 +119,11 @@ Most of the work is done.  I just need someone to finish the mutations.
 I will point you directly to the code, and it should be very easy.
 
 https://github.com/ameshkin/subgrow/blob/324456f1cf466f438c1fda5142b295d08c57ff4e/src/components/dashboard/AddLinkWidget.tsx
+
+
+
+
+
+### Remember Me Check
+
+Store remember me in local storage

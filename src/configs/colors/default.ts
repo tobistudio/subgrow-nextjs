@@ -67,6 +67,7 @@ export const misc = {
   white: "#ffffff",
   ff_primary: "#254e90",
   ff_secondary: "#b9ccf1",
+  error: "#b9ccf1",
   300: "#6b81ae",
   400: "#4a679f",
   500: "#254e90",
