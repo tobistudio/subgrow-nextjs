@@ -158,7 +158,7 @@ const Modern = ({ user, profile, sites }) => {
                     <li key={site.id} style={{ marginTop: linkMargin }}>
                       {theme.linkType === "link" ? (
                         <Link href={site.url} target="_blank" className={theme.linkStyle}>
-                          {site.name}
+                          {site.title}
                         </Link>
                       ) : (
                         <Button
@@ -168,7 +168,7 @@ const Modern = ({ user, profile, sites }) => {
                           variant={theme.buttonStyle ? theme.buttonStyle : "outlined"}
                           className={theme.linkStyle ? theme.linkStyle : "outlined"}
                         >
-                          {site.name}
+                          {site.title}
                         </Button>
                       )}
                     </li>

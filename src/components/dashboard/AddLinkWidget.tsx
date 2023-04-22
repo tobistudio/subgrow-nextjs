@@ -2,8 +2,10 @@ import * as React from "react"
 import { useState } from "react"
 import Link from "next/link"
 import { useSelector, RootStateOrAny } from "react-redux"
+import { useQuery, useMutation } from "@blitzjs/rpc"
 import { Routes } from "@blitzjs/next"
 import { styled } from "@mui/material/styles"
+import { Draggable } from "react-beautiful-dnd"
 // https://mui.com/material-ui/guides/minimizing-bundle-size/#option-two-use-a-babel-plugin
 import {
   Card,
@@ -35,6 +37,7 @@ import AddLinkCard from "components/dashboard/AddLinkCard"
 import pick from "@cahil/utils/accessors/pick"
 import { getLinks, reorder } from "./drag"
 import { DropResult } from "react-beautiful-dnd"
+import updateLinkOrder from "../../sites/mutations/updateLinkOrder"
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean
@@ -56,12 +59,20 @@ export default function AddLinkWidget({ sites }) {
   //const [setLinks] = links
 
   const [links, setLinks] = React.useState(sites)
+  const [updateLinkMutation] = useMutation(updateLinkOrder)
 
-  const onDragEnd = ({ destination, source }: DropResult) => {
+  const onDragEnd = async ({ destination, source }: DropResult) => {
     // dropped outside the list
-    if (!destination) return
+    //if (!destination) return
+
+    console.log("destination", destination)
+    console.log("source", source)
+
+    const project = await updateLinkMutation(source, destination)
 
     const newLinks = reorder(links, source.index, destination.index)
+
+    // TODO: change order in the database
 
     setLinks(newLinks)
   }
@@ -114,11 +125,41 @@ export default function AddLinkWidget({ sites }) {
       <Paper>
         {links && (
           <DragDropContext onDragEnd={onDragEnd}>
-            <Droppable droppableId="droppable-list">
-              {(provided) => (
-                <div ref={provided.innerRef} {...provided.droppableProps}>
+            <Droppable droppableId="link-list">
+              {(provided, snapshot) => (
+                <div {...provided.droppableProps} ref={provided.innerRef}>
                   {links.map((link, index) => (
-                    <LinkListCard index={index} key={link.id} link={link} mode={theme.mode} />
+                    // <Draggable draggableId={link.id} index={index}>
+                    //   {(provided, snapshot) => (
+                    //     <ListItem
+                    //       ref={provided.innerRef}
+                    //       {...provided.draggableProps}
+                    //       {...provided.dragHandleProps}
+                    //       className={snapshot.isDragging ? "dragging" : "not-dragging"}
+                    //     >
+                    //
+                    //     </ListItem></Draggable>
+                    //
+
+                    <Draggable key={index} draggableId={link.id} index={index}>
+                      {(provided, snapshot) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <LinkListCard
+                            snapshot={snapshot}
+                            index={index}
+                            key={link.id}
+                            link={link}
+                            mode={theme.mode}
+                          />
+                        </div>
+                      )}
+                    </Draggable>
+
+                    //
                   ))}
                   {provided.placeholder}
                 </div>
@@ -126,6 +167,21 @@ export default function AddLinkWidget({ sites }) {
             </Droppable>
           </DragDropContext>
         )}
+
+        {/*{links && (*/}
+        {/*  <DragDropContext onDragEnd={onDragEnd}>*/}
+        {/*    <Droppable droppableId="link-list">*/}
+        {/*      {(provided, snapshot) => (*/}
+        {/*        <div ref={provided.innerRef} {...provided.droppableProps}>*/}
+        {/*          {links.map((link, index) => (*/}
+        {/*            <LinkListCard snapshot={snapshot} index={index} key={link.id} link={link} mode={theme.mode} />*/}
+        {/*          ))}*/}
+        {/*          {provided.placeholder}*/}
+        {/*        </div>*/}
+        {/*      )}*/}
+        {/*    </Droppable>*/}
+        {/*  </DragDropContext>*/}
+        {/*)}*/}
       </Paper>
       <Paper>
         <pre>

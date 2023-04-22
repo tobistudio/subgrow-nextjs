@@ -91,15 +91,17 @@ model Account {
 model Site {
   id          String   @id @default(cuid())
   userId      Int
-  name        String // remove
   title       String?
+  url         String
+  order       Int      @default(0)
   type        Sitetype @default(custom)
   icon        String?
   image       String?
-  url         String
   description String?
   api_key     String?
   api_secret  String?
+  admin_name  String? // may be used later
+  site_name   String? // facebook
   status      Status   @default(active)
   show_feed   Yesno    @default(no)
   show_share  Yesno    @default(no)

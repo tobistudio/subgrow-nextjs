@@ -19,8 +19,6 @@ import {
 } from "@mui/material"
 import { Draggable } from "react-beautiful-dnd"
 import { LinkType } from "./typings"
-import { makeStyles } from "@mui/styles"
-import { DragDropContext, Droppable, OnDragEndResponder } from "react-beautiful-dnd"
 import IconButton, { IconButtonProps } from "@mui/material/IconButton"
 import {
   Favorite as FavoriteIcon,
@@ -46,6 +44,7 @@ import { blue } from "@mui/material/colors"
 import PersonIcon from "@mui/icons-material/Person"
 import ListItemText from "@mui/material/ListItemText"
 import AddIcon from "@mui/icons-material/Add"
+import { faFacebook } from "@fortawesome/free-brands-svg-icons"
 
 const emails = ["username@gmail.com", "user02@gmail.com"]
 
@@ -54,6 +53,12 @@ export interface SimpleDialogProps {
   selectedValue: string
   onClose: (value: string) => void
 }
+//
+// export type DraggableListProps = {
+//   items: Item[];
+//   onDragEnd: OnDragEndResponder;
+// };
+
 function DeleteDialog(props: SimpleDialogProps) {
   const { onClose, selectedValue, open } = props
 
@@ -108,10 +113,11 @@ export type DraggableListItemProps = {
 // TODO: draggable https://codesandbox.io/s/draggable-material-ui-oj3wz?file=/src/components/DraggableList.tsx:764-773
 // need {} or else it's a object in object
 // const LinkListCard = ({ link, index, mode }: DraggableListItemProps) => {
-const LinkListCard = ({ link, index, mode }) => {
+const LinkListCard = ({ link, index, mode, snapshot }) => {
   // const LinkListCard = React.memo(({ link, mode }: DraggableListProps) => {
   const router = useRouter()
 
+  console.log("snapshot", snapshot)
   // TODO: set checkboxes OUTSIDE of this loop
 
   let checked
@@ -148,81 +154,70 @@ const LinkListCard = ({ link, index, mode }) => {
 
   // TODO: need to get status switch working
   return (
-    <Draggable draggableId={link.id} index={index}>
-      {(provided, snapshot) => (
-        <ListItem
-          ref={provided.innerRef}
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-          className={snapshot.isDragging ? "dragging" : "not-dragging"}
-        >
-          <Card key={link.id} className="card">
-            <CardHeader
-              title={link.name}
-              action={
-                <Switch
-                  // checked={!!link.status}
-                  // checked={link.status === 'active'}
-                  checked={checked}
-                  //onChange={handleActiveChange(link.id)} // TODO: handle properly outside of loop
-                  inputProps={{ "aria-label": "controlled" }}
-                />
-              }
-            />
+    <Card key={link.id} className="card">
+      <CardHeader
+        title={link.name}
+        action={
+          <Switch
+            // checked={!!link.status}
+            // checked={link.status === 'active'}
+            checked={checked}
+            //onChange={handleActiveChange(link.id)} // TODO: handle properly outside of loop
+            inputProps={{ "aria-label": "controlled" }}
+          />
+        }
+      />
 
-            <CardContent
-              // sx={{ p:0, '&:last-child': { pb: 0 }}}
-              sx={{ py: 0 }}
-            >
-              <ListItemAvatar>
-                <Avatar>
-                  {/*<InboxIcon />*/}
-                  avatar
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={link.name} secondary={link.url} />
-              {/*<DeleteDialog*/}
-              {/*  //selectedValue={selectedValue}*/}
-              {/*  open={open}*/}
-              {/*  onClose={handleClose}*/}
-              {/*/>*/}
-              <Typography variant="body1" color={mode === "dark" ? "text.light" : "text.dark"}>
-                <Link href={link.url} target="_blank">
-                  {link.url}
-                </Link>
-              </Typography>
+      <CardContent
+        // sx={{ p:0, '&:last-child': { pb: 0 }}}
+        sx={{ py: 0 }}
+      >
+        {/*// TODO: add icon for social media*/}
+        {/*<ListItemAvatar>*/}
+        {/*  <Avatar>*/}
+        {/*    <FontAwesomeIcon icon={faFacebook} color={"#3f50b5"} />*/}
+        {/*  </Avatar>*/}
+        {/*</ListItemAvatar>*/}
+        <ListItemText primary={link.name} secondary={link.url} />
+        {/*<DeleteDialog*/}
+        {/*  //selectedValue={selectedValue}*/}
+        {/*  open={open}*/}
+        {/*  onClose={handleClose}*/}
+        {/*/>*/}
+        <Typography variant="body1" color={mode === "dark" ? "text.light" : "text.dark"}>
+          <Link href={link.url} target="_blank">
+            {link.url}
+          </Link>
+        </Typography>
 
-              {link.description && (
-                <Typography variant="body2" color={mode === "dark" ? "text.light" : "text.dark"}>
-                  {link.description}
-                </Typography>
-              )}
-            </CardContent>
-            <CardActions disableSpacing>
-              <Tooltip title="Delete">
-                <IconButton
-                  size="medium"
-                  aria-label="delete"
-                  onClick={(e) => handleDeleteClick(e, link.id)}
-                >
-                  <FontAwesomeIcon icon={faTrashCan} size="sm" />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Details">
-                <IconButton
-                  aria-label="details"
-                  style={{ marginLeft: "auto" }}
-                  onClick={(e) => handleEditDetailsClick(e, link.id)}
-                >
-                  {/*<ArrowForwardIosTwoTone color="icon" />*/}
-                  <ArrowForwardIosTwoTone />
-                </IconButton>
-              </Tooltip>
-            </CardActions>
-          </Card>
-        </ListItem>
-      )}
-    </Draggable>
+        {link.description && (
+          <Typography variant="body2" color={mode === "dark" ? "text.light" : "text.dark"}>
+            {link.description}
+          </Typography>
+        )}
+      </CardContent>
+      <CardActions disableSpacing>
+        <Tooltip title="Delete">
+          <IconButton
+            size="medium"
+            aria-label="delete"
+            onClick={(e) => handleDeleteClick(e, link.id)}
+          >
+            <FontAwesomeIcon icon={faTrashCan} size="sm" />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Details">
+          <IconButton
+            aria-label="details"
+            style={{ marginLeft: "auto" }}
+            onClick={(e) => handleEditDetailsClick(e, link.id)}
+          >
+            {/*<ArrowForwardIosTwoTone color="icon" />*/}
+            <ArrowForwardIosTwoTone />
+          </IconButton>
+        </Tooltip>
+      </CardActions>
+    </Card>
   )
 }
 

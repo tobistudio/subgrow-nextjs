@@ -91,15 +91,17 @@ export type Account = {
 export type Site = {
   id: string
   userId: number
-  name: string
   title: string | null
+  url: string
+  order: number
   type: Sitetype
   icon: string | null
   image: string | null
-  url: string
   description: string | null
   api_key: string | null
   api_secret: string | null
+  admin_name: string | null
+  site_name: string | null
   status: Status
   show_feed: Yesno
   show_share: Yesno
@@ -5873,24 +5875,28 @@ export namespace Prisma {
 
   export type SiteAvgAggregateOutputType = {
     userId: number | null
+    order: number | null
   }
 
   export type SiteSumAggregateOutputType = {
     userId: number | null
+    order: number | null
   }
 
   export type SiteMinAggregateOutputType = {
     id: string | null
     userId: number | null
-    name: string | null
     title: string | null
+    url: string | null
+    order: number | null
     type: Sitetype | null
     icon: string | null
     image: string | null
-    url: string | null
     description: string | null
     api_key: string | null
     api_secret: string | null
+    admin_name: string | null
+    site_name: string | null
     status: Status | null
     show_feed: Yesno | null
     show_share: Yesno | null
@@ -5903,15 +5909,17 @@ export namespace Prisma {
   export type SiteMaxAggregateOutputType = {
     id: string | null
     userId: number | null
-    name: string | null
     title: string | null
+    url: string | null
+    order: number | null
     type: Sitetype | null
     icon: string | null
     image: string | null
-    url: string | null
     description: string | null
     api_key: string | null
     api_secret: string | null
+    admin_name: string | null
+    site_name: string | null
     status: Status | null
     show_feed: Yesno | null
     show_share: Yesno | null
@@ -5924,15 +5932,17 @@ export namespace Prisma {
   export type SiteCountAggregateOutputType = {
     id: number
     userId: number
-    name: number
     title: number
+    url: number
+    order: number
     type: number
     icon: number
     image: number
-    url: number
     description: number
     api_key: number
     api_secret: number
+    admin_name: number
+    site_name: number
     status: number
     show_feed: number
     show_share: number
@@ -5945,24 +5955,28 @@ export namespace Prisma {
 
   export type SiteAvgAggregateInputType = {
     userId?: true
+    order?: true
   }
 
   export type SiteSumAggregateInputType = {
     userId?: true
+    order?: true
   }
 
   export type SiteMinAggregateInputType = {
     id?: true
     userId?: true
-    name?: true
     title?: true
+    url?: true
+    order?: true
     type?: true
     icon?: true
     image?: true
-    url?: true
     description?: true
     api_key?: true
     api_secret?: true
+    admin_name?: true
+    site_name?: true
     status?: true
     show_feed?: true
     show_share?: true
@@ -5975,15 +5989,17 @@ export namespace Prisma {
   export type SiteMaxAggregateInputType = {
     id?: true
     userId?: true
-    name?: true
     title?: true
+    url?: true
+    order?: true
     type?: true
     icon?: true
     image?: true
-    url?: true
     description?: true
     api_key?: true
     api_secret?: true
+    admin_name?: true
+    site_name?: true
     status?: true
     show_feed?: true
     show_share?: true
@@ -5996,15 +6012,17 @@ export namespace Prisma {
   export type SiteCountAggregateInputType = {
     id?: true
     userId?: true
-    name?: true
     title?: true
+    url?: true
+    order?: true
     type?: true
     icon?: true
     image?: true
-    url?: true
     description?: true
     api_key?: true
     api_secret?: true
+    admin_name?: true
+    site_name?: true
     status?: true
     show_feed?: true
     show_share?: true
@@ -6101,15 +6119,17 @@ export namespace Prisma {
   export type SiteGroupByOutputType = {
     id: string
     userId: number
-    name: string
     title: string | null
+    url: string
+    order: number
     type: Sitetype
     icon: string | null
     image: string | null
-    url: string
     description: string | null
     api_key: string | null
     api_secret: string | null
+    admin_name: string | null
+    site_name: string | null
     status: Status
     show_feed: Yesno
     show_share: Yesno
@@ -6139,15 +6159,17 @@ export namespace Prisma {
   export type SiteSelect = {
     id?: boolean
     userId?: boolean
-    name?: boolean
     title?: boolean
+    url?: boolean
+    order?: boolean
     type?: boolean
     icon?: boolean
     image?: boolean
-    url?: boolean
     description?: boolean
     api_key?: boolean
     api_secret?: boolean
+    admin_name?: boolean
+    site_name?: boolean
     status?: boolean
     show_feed?: boolean
     show_share?: boolean
@@ -18306,15 +18328,17 @@ export namespace Prisma {
   export const SiteScalarFieldEnum: {
     id: "id"
     userId: "userId"
-    name: "name"
     title: "title"
+    url: "url"
+    order: "order"
     type: "type"
     icon: "icon"
     image: "image"
-    url: "url"
     description: "description"
     api_key: "api_key"
     api_secret: "api_secret"
+    admin_name: "admin_name"
+    site_name: "site_name"
     status: "status"
     show_feed: "show_feed"
     show_share: "show_share"
@@ -18702,15 +18726,17 @@ export namespace Prisma {
     NOT?: Enumerable<SiteWhereInput>
     id?: StringFilter | string
     userId?: IntFilter | number
-    name?: StringFilter | string
     title?: StringNullableFilter | string | null
+    url?: StringFilter | string
+    order?: IntFilter | number
     type?: EnumSitetypeFilter | Sitetype
     icon?: StringNullableFilter | string | null
     image?: StringNullableFilter | string | null
-    url?: StringFilter | string
     description?: StringNullableFilter | string | null
     api_key?: StringNullableFilter | string | null
     api_secret?: StringNullableFilter | string | null
+    admin_name?: StringNullableFilter | string | null
+    site_name?: StringNullableFilter | string | null
     status?: EnumStatusFilter | Status
     show_feed?: EnumYesnoFilter | Yesno
     show_share?: EnumYesnoFilter | Yesno
@@ -18725,15 +18751,17 @@ export namespace Prisma {
   export type SiteOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
-    name?: SortOrder
     title?: SortOrder
+    url?: SortOrder
+    order?: SortOrder
     type?: SortOrder
     icon?: SortOrder
     image?: SortOrder
-    url?: SortOrder
     description?: SortOrder
     api_key?: SortOrder
     api_secret?: SortOrder
+    admin_name?: SortOrder
+    site_name?: SortOrder
     status?: SortOrder
     show_feed?: SortOrder
     show_share?: SortOrder
@@ -18752,15 +18780,17 @@ export namespace Prisma {
   export type SiteOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
-    name?: SortOrder
     title?: SortOrder
+    url?: SortOrder
+    order?: SortOrder
     type?: SortOrder
     icon?: SortOrder
     image?: SortOrder
-    url?: SortOrder
     description?: SortOrder
     api_key?: SortOrder
     api_secret?: SortOrder
+    admin_name?: SortOrder
+    site_name?: SortOrder
     status?: SortOrder
     show_feed?: SortOrder
     show_share?: SortOrder
@@ -18781,15 +18811,17 @@ export namespace Prisma {
     NOT?: Enumerable<SiteScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
     userId?: IntWithAggregatesFilter | number
-    name?: StringWithAggregatesFilter | string
     title?: StringNullableWithAggregatesFilter | string | null
+    url?: StringWithAggregatesFilter | string
+    order?: IntWithAggregatesFilter | number
     type?: EnumSitetypeWithAggregatesFilter | Sitetype
     icon?: StringNullableWithAggregatesFilter | string | null
     image?: StringNullableWithAggregatesFilter | string | null
-    url?: StringWithAggregatesFilter | string
     description?: StringNullableWithAggregatesFilter | string | null
     api_key?: StringNullableWithAggregatesFilter | string | null
     api_secret?: StringNullableWithAggregatesFilter | string | null
+    admin_name?: StringNullableWithAggregatesFilter | string | null
+    site_name?: StringNullableWithAggregatesFilter | string | null
     status?: EnumStatusWithAggregatesFilter | Status
     show_feed?: EnumYesnoWithAggregatesFilter | Yesno
     show_share?: EnumYesnoWithAggregatesFilter | Yesno
@@ -19931,15 +19963,17 @@ export namespace Prisma {
 
   export type SiteCreateInput = {
     id?: string
-    name: string
     title?: string | null
+    url: string
+    order?: number
     type?: Sitetype
     icon?: string | null
     image?: string | null
-    url: string
     description?: string | null
     api_key?: string | null
     api_secret?: string | null
+    admin_name?: string | null
+    site_name?: string | null
     status?: Status
     show_feed?: Yesno
     show_share?: Yesno
@@ -19953,15 +19987,17 @@ export namespace Prisma {
   export type SiteUncheckedCreateInput = {
     id?: string
     userId: number
-    name: string
     title?: string | null
+    url: string
+    order?: number
     type?: Sitetype
     icon?: string | null
     image?: string | null
-    url: string
     description?: string | null
     api_key?: string | null
     api_secret?: string | null
+    admin_name?: string | null
+    site_name?: string | null
     status?: Status
     show_feed?: Yesno
     show_share?: Yesno
@@ -19973,15 +20009,17 @@ export namespace Prisma {
 
   export type SiteUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
     type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
+    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
+    site_name?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
     show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
     show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
@@ -19995,15 +20033,17 @@ export namespace Prisma {
   export type SiteUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
     type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
+    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
+    site_name?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
     show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
     show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
@@ -20016,15 +20056,17 @@ export namespace Prisma {
   export type SiteCreateManyInput = {
     id?: string
     userId: number
-    name: string
     title?: string | null
+    url: string
+    order?: number
     type?: Sitetype
     icon?: string | null
     image?: string | null
-    url: string
     description?: string | null
     api_key?: string | null
     api_secret?: string | null
+    admin_name?: string | null
+    site_name?: string | null
     status?: Status
     show_feed?: Yesno
     show_share?: Yesno
@@ -20036,15 +20078,17 @@ export namespace Prisma {
 
   export type SiteUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
     type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
+    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
+    site_name?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
     show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
     show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
@@ -20056,15 +20100,17 @@ export namespace Prisma {
   export type SiteUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
     type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
+    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
+    site_name?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
     show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
     show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
@@ -21512,15 +21558,17 @@ export namespace Prisma {
   export type SiteCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    name?: SortOrder
     title?: SortOrder
+    url?: SortOrder
+    order?: SortOrder
     type?: SortOrder
     icon?: SortOrder
     image?: SortOrder
-    url?: SortOrder
     description?: SortOrder
     api_key?: SortOrder
     api_secret?: SortOrder
+    admin_name?: SortOrder
+    site_name?: SortOrder
     status?: SortOrder
     show_feed?: SortOrder
     show_share?: SortOrder
@@ -21532,20 +21580,23 @@ export namespace Prisma {
 
   export type SiteAvgOrderByAggregateInput = {
     userId?: SortOrder
+    order?: SortOrder
   }
 
   export type SiteMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    name?: SortOrder
     title?: SortOrder
+    url?: SortOrder
+    order?: SortOrder
     type?: SortOrder
     icon?: SortOrder
     image?: SortOrder
-    url?: SortOrder
     description?: SortOrder
     api_key?: SortOrder
     api_secret?: SortOrder
+    admin_name?: SortOrder
+    site_name?: SortOrder
     status?: SortOrder
     show_feed?: SortOrder
     show_share?: SortOrder
@@ -21558,15 +21609,17 @@ export namespace Prisma {
   export type SiteMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    name?: SortOrder
     title?: SortOrder
+    url?: SortOrder
+    order?: SortOrder
     type?: SortOrder
     icon?: SortOrder
     image?: SortOrder
-    url?: SortOrder
     description?: SortOrder
     api_key?: SortOrder
     api_secret?: SortOrder
+    admin_name?: SortOrder
+    site_name?: SortOrder
     status?: SortOrder
     show_feed?: SortOrder
     show_share?: SortOrder
@@ -21578,6 +21631,7 @@ export namespace Prisma {
 
   export type SiteSumOrderByAggregateInput = {
     userId?: SortOrder
+    order?: SortOrder
   }
 
   export type EnumSitetypeWithAggregatesFilter = {
@@ -23931,15 +23985,17 @@ export namespace Prisma {
 
   export type SiteCreateWithoutUserInput = {
     id?: string
-    name: string
     title?: string | null
+    url: string
+    order?: number
     type?: Sitetype
     icon?: string | null
     image?: string | null
-    url: string
     description?: string | null
     api_key?: string | null
     api_secret?: string | null
+    admin_name?: string | null
+    site_name?: string | null
     status?: Status
     show_feed?: Yesno
     show_share?: Yesno
@@ -23951,15 +24007,17 @@ export namespace Prisma {
 
   export type SiteUncheckedCreateWithoutUserInput = {
     id?: string
-    name: string
     title?: string | null
+    url: string
+    order?: number
     type?: Sitetype
     icon?: string | null
     image?: string | null
-    url: string
     description?: string | null
     api_key?: string | null
     api_secret?: string | null
+    admin_name?: string | null
+    site_name?: string | null
     status?: Status
     show_feed?: Yesno
     show_share?: Yesno
@@ -24297,15 +24355,17 @@ export namespace Prisma {
     NOT?: Enumerable<SiteScalarWhereInput>
     id?: StringFilter | string
     userId?: IntFilter | number
-    name?: StringFilter | string
     title?: StringNullableFilter | string | null
+    url?: StringFilter | string
+    order?: IntFilter | number
     type?: EnumSitetypeFilter | Sitetype
     icon?: StringNullableFilter | string | null
     image?: StringNullableFilter | string | null
-    url?: StringFilter | string
     description?: StringNullableFilter | string | null
     api_key?: StringNullableFilter | string | null
     api_secret?: StringNullableFilter | string | null
+    admin_name?: StringNullableFilter | string | null
+    site_name?: StringNullableFilter | string | null
     status?: EnumStatusFilter | Status
     show_feed?: EnumYesnoFilter | Yesno
     show_share?: EnumYesnoFilter | Yesno
@@ -26222,15 +26282,17 @@ export namespace Prisma {
 
   export type SiteCreateWithoutProfileInput = {
     id?: string
-    name: string
     title?: string | null
+    url: string
+    order?: number
     type?: Sitetype
     icon?: string | null
     image?: string | null
-    url: string
     description?: string | null
     api_key?: string | null
     api_secret?: string | null
+    admin_name?: string | null
+    site_name?: string | null
     status?: Status
     show_feed?: Yesno
     show_share?: Yesno
@@ -26243,15 +26305,17 @@ export namespace Prisma {
   export type SiteUncheckedCreateWithoutProfileInput = {
     id?: string
     userId: number
-    name: string
     title?: string | null
+    url: string
+    order?: number
     type?: Sitetype
     icon?: string | null
     image?: string | null
-    url: string
     description?: string | null
     api_key?: string | null
     api_secret?: string | null
+    admin_name?: string | null
+    site_name?: string | null
     status?: Status
     show_feed?: Yesno
     show_share?: Yesno
@@ -26428,15 +26492,17 @@ export namespace Prisma {
 
   export type SiteCreateManyUserInput = {
     id?: string
-    name: string
     title?: string | null
+    url: string
+    order?: number
     type?: Sitetype
     icon?: string | null
     image?: string | null
-    url: string
     description?: string | null
     api_key?: string | null
     api_secret?: string | null
+    admin_name?: string | null
+    site_name?: string | null
     status?: Status
     show_feed?: Yesno
     show_share?: Yesno
@@ -26737,15 +26803,17 @@ export namespace Prisma {
 
   export type SiteUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
     type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
+    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
+    site_name?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
     show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
     show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
@@ -26757,15 +26825,17 @@ export namespace Prisma {
 
   export type SiteUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
     type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
+    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
+    site_name?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
     show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
     show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
@@ -26777,15 +26847,17 @@ export namespace Prisma {
 
   export type SiteUncheckedUpdateManyWithoutSiteInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
     type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
+    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
+    site_name?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
     show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
     show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
@@ -26985,15 +27057,17 @@ export namespace Prisma {
   export type SiteCreateManyProfileInput = {
     id?: string
     userId: number
-    name: string
     title?: string | null
+    url: string
+    order?: number
     type?: Sitetype
     icon?: string | null
     image?: string | null
-    url: string
     description?: string | null
     api_key?: string | null
     api_secret?: string | null
+    admin_name?: string | null
+    site_name?: string | null
     status?: Status
     show_feed?: Yesno
     show_share?: Yesno
@@ -27004,15 +27078,17 @@ export namespace Prisma {
 
   export type SiteUpdateWithoutProfileInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
     type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
+    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
+    site_name?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
     show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
     show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
@@ -27025,15 +27101,17 @@ export namespace Prisma {
   export type SiteUncheckedUpdateWithoutProfileInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
     type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
+    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
+    site_name?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
     show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
     show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
