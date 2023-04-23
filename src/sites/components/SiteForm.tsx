@@ -1,3 +1,4 @@
+// TODO: use only for adds, not edits
 import { Form, FormProps } from "core/components/Form"
 import { LabeledTextField } from "core/components/LabeledTextField"
 import { z } from "zod"
@@ -38,7 +39,6 @@ export function SiteForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
           required={true}
         />
 
-
         <LabeledTextField
           name="api_secret"
           label="API Secret"
@@ -60,7 +60,6 @@ export function SiteForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
         {/*  type="password"*/}
         {/*  required={true}*/}
         {/*/>*/}
-
       </div>
     </Form>
   )

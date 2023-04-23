@@ -75,35 +75,6 @@ export default function LinkListCard({ link }) {
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
   const [createSiteMutation] = useMutation(createSite)
 
-  const simpleMemoize = (fn) => {
-    let lastArg
-    let lastResult
-    return (arg) => {
-      if (arg !== lastArg) {
-        lastArg = arg
-        lastResult = fn(arg)
-      }
-      return lastResult
-    }
-  }
-  const validateUrl = simpleMemoize(async (value) => {
-    // No lookups unless 4 characters or more
-    if (value.length < 4) {
-      return ""
-    }
-    await sleep(100)
-    // TODO: need to check value to see if bad word shows up "badbad" should flag, if "bad" is in badwords.json
-    if (~BadWords.indexOf(value && value.toLowerCase())) {
-      console.log("BadWords")
-      //return "bad"
-      return <FontAwesomeIcon icon={faFaceAnguished} size="xl" style={{ color: "#c90000" }} />
-    }
-
-    return ""
-
-    // return true;    // wont work
-  })
-
   /**
    * Regex works best for domains without https or http
    * @param str
@@ -154,6 +125,37 @@ export default function LinkListCard({ link }) {
     console.log("url catch", url)
     return url
   }
+
+  const simpleMemoize = (fn) => {
+    let lastArg
+    let lastResult
+    return (arg) => {
+      if (arg !== lastArg) {
+        lastArg = arg
+        lastResult = fn(arg)
+      }
+      return lastResult
+    }
+  }
+  const validateUrl = simpleMemoize(async (value) => {
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+
+    // No lookups unless 4 characters or more
+    if (value.length < 4) {
+      return ""
+    }
+    await sleep(100)
+    // TODO: need to check value to see if bad word shows up "badbad" should flag, if "bad" is in badwords.json
+    if (~BadWords.indexOf(value && value.toLowerCase())) {
+      console.log("BadWords")
+      //return "bad"
+      return <FontAwesomeIcon icon={faFaceAnguished} size="xl" style={{ color: "#c90000" }} />
+    }
+
+    return ""
+
+    // return true;    // wont work
+  })
 
   const onSubmit = async (values) => {
     await sleep(300)

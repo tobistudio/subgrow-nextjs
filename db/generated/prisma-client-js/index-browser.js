@@ -112,12 +112,6 @@ exports.Prisma.BankAccountScalarFieldEnum = {
   bic: "bic",
 }
 
-exports.Prisma.BlahScalarFieldEnum = {
-  id: "id",
-  createdAt: "createdAt",
-  updatedAt: "updatedAt",
-}
-
 exports.Prisma.CustomerScalarFieldEnum = {
   id: "id",
   userId: "userId",
@@ -229,6 +223,21 @@ exports.Prisma.ProfileScalarFieldEnum = {
   updatedAt: "updatedAt",
 }
 
+exports.Prisma.ServicesScalarFieldEnum = {
+  id: "id",
+  name: "name",
+  order: "order",
+  api_key: "api_key",
+  api_secret: "api_secret",
+  description: "description",
+  site_name: "site_name",
+  show_feed: "show_feed",
+  show_share: "show_share",
+  show_sub: "show_sub",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+}
+
 exports.Prisma.SessionScalarFieldEnum = {
   id: "id",
   createdAt: "createdAt",
@@ -252,14 +261,7 @@ exports.Prisma.SiteScalarFieldEnum = {
   icon: "icon",
   image: "image",
   description: "description",
-  api_key: "api_key",
-  api_secret: "api_secret",
-  admin_name: "admin_name",
-  site_name: "site_name",
   status: "status",
-  show_feed: "show_feed",
-  show_share: "show_share",
-  show_sub: "show_sub",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
   profileId: "profileId",
@@ -343,7 +345,7 @@ exports.Prisma.ModelName = {
   InvoiceItems: "InvoiceItems",
   TermsOfPayment: "TermsOfPayment",
   Profile: "Profile",
-  Blah: "Blah",
+  Services: "Services",
 }
 
 /**

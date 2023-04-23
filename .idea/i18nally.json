@@ -1,0 +1,111 @@
+{
+  "version": "1.2",
+  "profiles": [
+    {
+      "id": "6f69c83f-1cfa-492c-a9f1-e2e7f21ca552",
+      "name": "React-i18n",
+      "keyNamingPattern": "CAMEL_CASE_PATTERN",
+      "sink": {
+        "id": "ba5e4406-35f8-4e64-af55-f7bad98c6363",
+        "type": "namespaced",
+        "translationsDirectory": "$PROJECT_DIR$/src/locales/lang",
+        "fileType": "json",
+        "defaultLocale": "en",
+        "namespaces": ["messages"],
+        "outputFilenameTemplate": "%locale%.json",
+        "nestingType": "DOT",
+        "placeholderFormatterName": "I18NEXT"
+      },
+      "sources": [
+        {
+          "id": "2698c436-fae9-4a80-955c-5db6eb91b61a",
+          "type": "js",
+          "scopeName": "Project Files",
+          "scopePattern": "",
+          "defaultReplacementTemplate": "t('%namespace%:%key%', %map%)",
+          "recognizedReplacementTemplates": [],
+          "skipDefaultNamespace": true
+        },
+        {
+          "id": "9ab0195c-c0b4-48b8-98d3-be40086b1155",
+          "type": "jsx",
+          "scopeName": "Project Files",
+          "scopePattern": "",
+          "defaultReplacementTemplate": "t('%namespace%:%key%', %map%)",
+          "attributeReplacementTemplate": "",
+          "inlineTagsReplacementTemplate": "",
+          "recognizedReplacementTemplates": [],
+          "inlineTagNames": [
+            "a",
+            "abbr",
+            "acronym",
+            "b",
+            "bdi",
+            "bdo",
+            "big",
+            "br",
+            "cite",
+            "code",
+            "data",
+            "del",
+            "dfn",
+            "em",
+            "i",
+            "img",
+            "input",
+            "ins",
+            "kbd",
+            "label",
+            "mark",
+            "meter",
+            "output",
+            "progress",
+            "q",
+            "ruby",
+            "s",
+            "samp",
+            "slot",
+            "small",
+            "span",
+            "strong",
+            "sub",
+            "sup",
+            "time",
+            "u",
+            "tt",
+            "var",
+            "wbr"
+          ],
+          "translatableAttributeNames": ["title", "alt", "placeholder", "label", "aria-label"],
+          "skipDefaultNamespace": true,
+          "inlineTagHandler": "I18NEXT"
+        }
+      ]
+    }
+  ],
+  "ignores": {
+    "valuesInProject": ["use strict"],
+    "valuesInFile": {},
+    "filesInProject": [],
+    "unignoredFunctionNames": [],
+    "unignoredFunctionArguments": {},
+    "ignoredArrayKeys": [
+      "class",
+      "selector",
+      "template",
+      "middleware",
+      "layout",
+      "el",
+      "component",
+      "type",
+      "name",
+      "id",
+      "key",
+      "sql",
+      "query",
+      "dateFormat",
+      "date",
+      "condition"
+    ]
+  }
+}

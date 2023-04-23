@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.husky/pre-push" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/blitz-app.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/i18nally.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/services/[serviceId].tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/services/[serviceId]/edit.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/services/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/services/new.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/components/ServiceForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/mutations/createService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/mutations/deleteService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/mutations/updateService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/queries/getService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/queries/getServices.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/schemas.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index-browser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/runtime/library.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/runtime/library.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/schema.prisma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.prisma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/dashboard/AddLinkCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dashboard/AddLinkCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/template/ThemeConfigurator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/ThemeConfigurator/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/[profileId].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/[profileId].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/auth/forgot-password.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/forgot-password.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sites/[siteId]/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sites/[siteId]/edit.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sites/components/SiteForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sites/components/SiteForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sites/mutations/updateSite.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/sites/mutations/updateSite.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sites/queries/getSiteForProfile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/sites/queries/getSiteForProfile.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="false" />
+    <option name="myAllFileTypesSelected" value="true" />
+    <option name="mySelectedFileTypes">
+      <set />
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/opt/homebrew/Cellar/php/8.2.3/bin/php" />
+  <component name="ProjectId" id="2OeEUaXLSq0zrqo5Ut6mRytJ98U" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/amirmeshkin/_code/_business/blitz-app/.husky",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/amirmeshkin/_code/_business/blitz-app/node_modules/prettier",
+    "settings.editor.selected.configurable": "preferences.fileTypes",
+    "ts.external.directory.path": "/Users/amirmeshkin/_code/_business/blitz-app/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="ReactDesignerToolWindowState">
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.rcb.reactComponents" value="false" />
+        <entry key="com.haulmont.rcb.reactInspector" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.husky" />
+      <recent name="$PROJECT_DIR$/src/sites/components" />
+      <recent name="$PROJECT_DIR$/src/components/user" />
+      <recent name="$PROJECT_DIR$/src/components/template/SidePanel" />
+      <recent name="$PROJECT_DIR$/src/components/template/ThemeConfigurator" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/dashboard" />
+      <recent name="$PROJECT_DIR$/src/pages" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="" />
+      <created>1681912663416</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1681912663416</updated>
+      <workItem from="1681912664563" duration="1436000" />
+      <workItem from="1681943767112" duration="4328000" />
+      <workItem from="1682006031719" duration="45314000" />
+      <workItem from="1682110781520" duration="1023000" />
+      <workItem from="1682113338059" duration="57654000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/pages/[profileId].tsx</url>
+          <line>21</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/templates/page/__modelIdParam__.tsx</url>
+          <line>4</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/core/layouts/ProfileLayout.tsx</url>
+          <line>13</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

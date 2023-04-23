@@ -26,7 +26,7 @@ const ThemeConfigurator = ({ callBackClose }) => {
         <Stack>
           <div>
             <Button variant="outlined" startIcon={<ManageAccountsIcon />}>
-              Edit
+              Edit Details
             </Button>
 
             <CopyBlock
@@ -45,10 +45,6 @@ const ThemeConfigurator = ({ callBackClose }) => {
           <div>
             <h6 className="mb-3">Theme</h6>
             <ThemeSwitcher />
-          </div>
-          <div>
-            <h6 className="mb-3">Layout</h6>
-            <LayoutSwitcher />
           </div>
 
           <Button variant="outlined" startIcon={<ManageAccountsIcon />}>

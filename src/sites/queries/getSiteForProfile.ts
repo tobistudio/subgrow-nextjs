@@ -14,6 +14,11 @@ export default resolver.pipe(resolver.zod(GetSiteForProfile), async ({ userId })
   const site = await db.site.findMany({
     // fields
     where: { userId },
+    orderBy: [
+      {
+        order: "asc",
+      },
+    ],
   })
   if (!site) throw new NotFoundError()
   return site

@@ -1,4 +1,4 @@
-import Layout from "core/layouts/Layout"
+import AdminLayout from "core/layouts/AdminLayout"
 import { LabeledTextField } from "core/components/LabeledTextField"
 import { Form, FORM_ERROR } from "core/components/Form"
 import { ForgotPassword } from "auth/validations"
@@ -10,7 +10,7 @@ const ForgotPasswordPage: BlitzPage = () => {
   const [forgotPasswordMutation, { isSuccess }] = useMutation(forgotPassword)
 
   return (
-    <Layout title="Forgot Your Password?">
+    <AdminLayout title="Forgot Your Password?">
       <h1>Forgot your password?</h1>
 
       {isSuccess ? (
@@ -39,7 +39,7 @@ const ForgotPasswordPage: BlitzPage = () => {
           <LabeledTextField name="email" label="Email" placeholder="Email" />
         </Form>
       )}
-    </Layout>
+    </AdminLayout>
   )
 }
 

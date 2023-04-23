@@ -89,6 +89,15 @@ export type Account = {
  *
  */
 export type Site = {
+  name:
+    | string
+    | number
+    | boolean
+    | ReactElement<any, string | JSXElementConstructor<any>>
+    | ReactFragment
+    | ReactPortal
+    | null
+    | undefined
   id: string
   userId: number
   title: string | null
@@ -98,14 +107,7 @@ export type Site = {
   icon: string | null
   image: string | null
   description: string | null
-  api_key: string | null
-  api_secret: string | null
-  admin_name: string | null
-  site_name: string | null
   status: Status
-  show_feed: Yesno
-  show_share: Yesno
-  show_sub: Yesno
   createdAt: Date
   updatedAt: Date
   profileId: string | null
@@ -277,11 +279,20 @@ export type Profile = {
 }
 
 /**
- * Model Blah
+ * Model Services
  *
  */
-export type Blah = {
+export type Services = {
   id: number
+  name: string | null
+  order: number
+  api_key: string | null
+  api_secret: string | null
+  description: string | null
+  site_name: string | null
+  show_feed: Yesno
+  show_share: Yesno
+  show_sub: Yesno
   createdAt: Date
   updatedAt: Date
 }
@@ -618,14 +629,14 @@ export class PrismaClient<
   get profile(): Prisma.ProfileDelegate<GlobalReject>
 
   /**
-   * `prisma.blah`: Exposes CRUD operations for the **Blah** model.
+   * `prisma.services`: Exposes CRUD operations for the **Services** model.
    * Example usage:
    * ```ts
-   * // Fetch zero or more Blahs
-   * const blahs = await prisma.blah.findMany()
+   * // Fetch zero or more Services
+   * const services = await prisma.services.findMany()
    * ```
    */
-  get blah(): Prisma.BlahDelegate<GlobalReject>
+  get services(): Prisma.ServicesDelegate<GlobalReject>
 }
 
 export namespace Prisma {
@@ -1104,7 +1115,7 @@ export namespace Prisma {
     InvoiceItems: "InvoiceItems"
     TermsOfPayment: "TermsOfPayment"
     Profile: "Profile"
-    Blah: "Blah"
+    Services: "Services"
   }
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -5893,14 +5904,7 @@ export namespace Prisma {
     icon: string | null
     image: string | null
     description: string | null
-    api_key: string | null
-    api_secret: string | null
-    admin_name: string | null
-    site_name: string | null
     status: Status | null
-    show_feed: Yesno | null
-    show_share: Yesno | null
-    show_sub: Yesno | null
     createdAt: Date | null
     updatedAt: Date | null
     profileId: string | null
@@ -5916,14 +5920,7 @@ export namespace Prisma {
     icon: string | null
     image: string | null
     description: string | null
-    api_key: string | null
-    api_secret: string | null
-    admin_name: string | null
-    site_name: string | null
     status: Status | null
-    show_feed: Yesno | null
-    show_share: Yesno | null
-    show_sub: Yesno | null
     createdAt: Date | null
     updatedAt: Date | null
     profileId: string | null
@@ -5939,14 +5936,7 @@ export namespace Prisma {
     icon: number
     image: number
     description: number
-    api_key: number
-    api_secret: number
-    admin_name: number
-    site_name: number
     status: number
-    show_feed: number
-    show_share: number
-    show_sub: number
     createdAt: number
     updatedAt: number
     profileId: number
@@ -5973,14 +5963,7 @@ export namespace Prisma {
     icon?: true
     image?: true
     description?: true
-    api_key?: true
-    api_secret?: true
-    admin_name?: true
-    site_name?: true
     status?: true
-    show_feed?: true
-    show_share?: true
-    show_sub?: true
     createdAt?: true
     updatedAt?: true
     profileId?: true
@@ -5996,14 +5979,7 @@ export namespace Prisma {
     icon?: true
     image?: true
     description?: true
-    api_key?: true
-    api_secret?: true
-    admin_name?: true
-    site_name?: true
     status?: true
-    show_feed?: true
-    show_share?: true
-    show_sub?: true
     createdAt?: true
     updatedAt?: true
     profileId?: true
@@ -6019,14 +5995,7 @@ export namespace Prisma {
     icon?: true
     image?: true
     description?: true
-    api_key?: true
-    api_secret?: true
-    admin_name?: true
-    site_name?: true
     status?: true
-    show_feed?: true
-    show_share?: true
-    show_sub?: true
     createdAt?: true
     updatedAt?: true
     profileId?: true
@@ -6126,14 +6095,7 @@ export namespace Prisma {
     icon: string | null
     image: string | null
     description: string | null
-    api_key: string | null
-    api_secret: string | null
-    admin_name: string | null
-    site_name: string | null
     status: Status
-    show_feed: Yesno
-    show_share: Yesno
-    show_sub: Yesno
     createdAt: Date
     updatedAt: Date
     profileId: string | null
@@ -6166,14 +6128,7 @@ export namespace Prisma {
     icon?: boolean
     image?: boolean
     description?: boolean
-    api_key?: boolean
-    api_secret?: boolean
-    admin_name?: boolean
-    site_name?: boolean
     status?: boolean
-    show_feed?: boolean
-    show_share?: boolean
-    show_sub?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     profileId?: boolean
@@ -17212,205 +17167,281 @@ export namespace Prisma {
   }
 
   /**
-   * Model Blah
+   * Model Services
    */
 
-  export type AggregateBlah = {
-    _count: BlahCountAggregateOutputType | null
-    _avg: BlahAvgAggregateOutputType | null
-    _sum: BlahSumAggregateOutputType | null
-    _min: BlahMinAggregateOutputType | null
-    _max: BlahMaxAggregateOutputType | null
+  export type AggregateServices = {
+    _count: ServicesCountAggregateOutputType | null
+    _avg: ServicesAvgAggregateOutputType | null
+    _sum: ServicesSumAggregateOutputType | null
+    _min: ServicesMinAggregateOutputType | null
+    _max: ServicesMaxAggregateOutputType | null
   }
 
-  export type BlahAvgAggregateOutputType = {
+  export type ServicesAvgAggregateOutputType = {
     id: number | null
+    order: number | null
   }
 
-  export type BlahSumAggregateOutputType = {
+  export type ServicesSumAggregateOutputType = {
     id: number | null
+    order: number | null
   }
 
-  export type BlahMinAggregateOutputType = {
+  export type ServicesMinAggregateOutputType = {
     id: number | null
+    name: string | null
+    order: number | null
+    api_key: string | null
+    api_secret: string | null
+    description: string | null
+    site_name: string | null
+    show_feed: Yesno | null
+    show_share: Yesno | null
+    show_sub: Yesno | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
-  export type BlahMaxAggregateOutputType = {
+  export type ServicesMaxAggregateOutputType = {
     id: number | null
+    name: string | null
+    order: number | null
+    api_key: string | null
+    api_secret: string | null
+    description: string | null
+    site_name: string | null
+    show_feed: Yesno | null
+    show_share: Yesno | null
+    show_sub: Yesno | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
-  export type BlahCountAggregateOutputType = {
+  export type ServicesCountAggregateOutputType = {
     id: number
+    name: number
+    order: number
+    api_key: number
+    api_secret: number
+    description: number
+    site_name: number
+    show_feed: number
+    show_share: number
+    show_sub: number
     createdAt: number
     updatedAt: number
     _all: number
   }
 
-  export type BlahAvgAggregateInputType = {
+  export type ServicesAvgAggregateInputType = {
     id?: true
+    order?: true
   }
 
-  export type BlahSumAggregateInputType = {
+  export type ServicesSumAggregateInputType = {
     id?: true
+    order?: true
   }
 
-  export type BlahMinAggregateInputType = {
+  export type ServicesMinAggregateInputType = {
     id?: true
+    name?: true
+    order?: true
+    api_key?: true
+    api_secret?: true
+    description?: true
+    site_name?: true
+    show_feed?: true
+    show_share?: true
+    show_sub?: true
     createdAt?: true
     updatedAt?: true
   }
 
-  export type BlahMaxAggregateInputType = {
+  export type ServicesMaxAggregateInputType = {
     id?: true
+    name?: true
+    order?: true
+    api_key?: true
+    api_secret?: true
+    description?: true
+    site_name?: true
+    show_feed?: true
+    show_share?: true
+    show_sub?: true
     createdAt?: true
     updatedAt?: true
   }
 
-  export type BlahCountAggregateInputType = {
+  export type ServicesCountAggregateInputType = {
     id?: true
+    name?: true
+    order?: true
+    api_key?: true
+    api_secret?: true
+    description?: true
+    site_name?: true
+    show_feed?: true
+    show_share?: true
+    show_sub?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
   }
 
-  export type BlahAggregateArgs = {
+  export type ServicesAggregateArgs = {
     /**
-     * Filter which Blah to aggregate.
+     * Filter which Services to aggregate.
      */
-    where?: BlahWhereInput
+    where?: ServicesWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      *
-     * Determine the order of Blahs to fetch.
+     * Determine the order of Services to fetch.
      */
-    orderBy?: Enumerable<BlahOrderByWithRelationInput>
+    orderBy?: Enumerable<ServicesOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      *
      * Sets the start position
      */
-    cursor?: BlahWhereUniqueInput
+    cursor?: ServicesWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Take `±n` Blahs from the position of the cursor.
+     * Take `±n` Services from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Skip the first `n` Blahs.
+     * Skip the first `n` Services.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      *
-     * Count returned Blahs
+     * Count returned Services
      **/
-    _count?: true | BlahCountAggregateInputType
+    _count?: true | ServicesCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      *
      * Select which fields to average
      **/
-    _avg?: BlahAvgAggregateInputType
+    _avg?: ServicesAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      *
      * Select which fields to sum
      **/
-    _sum?: BlahSumAggregateInputType
+    _sum?: ServicesSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      *
      * Select which fields to find the minimum value
      **/
-    _min?: BlahMinAggregateInputType
+    _min?: ServicesMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      *
      * Select which fields to find the maximum value
      **/
-    _max?: BlahMaxAggregateInputType
+    _max?: ServicesMaxAggregateInputType
   }
 
-  export type GetBlahAggregateType<T extends BlahAggregateArgs> = {
-    [P in keyof T & keyof AggregateBlah]: P extends "_count" | "count"
+  export type GetServicesAggregateType<T extends ServicesAggregateArgs> = {
+    [P in keyof T & keyof AggregateServices]: P extends "_count" | "count"
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateBlah[P]>
-      : GetScalarType<T[P], AggregateBlah[P]>
+        : GetScalarType<T[P], AggregateServices[P]>
+      : GetScalarType<T[P], AggregateServices[P]>
   }
 
-  export type BlahGroupByArgs = {
-    where?: BlahWhereInput
-    orderBy?: Enumerable<BlahOrderByWithAggregationInput>
-    by: BlahScalarFieldEnum[]
-    having?: BlahScalarWhereWithAggregatesInput
+  export type ServicesGroupByArgs = {
+    where?: ServicesWhereInput
+    orderBy?: Enumerable<ServicesOrderByWithAggregationInput>
+    by: ServicesScalarFieldEnum[]
+    having?: ServicesScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: BlahCountAggregateInputType | true
-    _avg?: BlahAvgAggregateInputType
-    _sum?: BlahSumAggregateInputType
-    _min?: BlahMinAggregateInputType
-    _max?: BlahMaxAggregateInputType
+    _count?: ServicesCountAggregateInputType | true
+    _avg?: ServicesAvgAggregateInputType
+    _sum?: ServicesSumAggregateInputType
+    _min?: ServicesMinAggregateInputType
+    _max?: ServicesMaxAggregateInputType
   }
 
-  export type BlahGroupByOutputType = {
+  export type ServicesGroupByOutputType = {
     id: number
+    name: string | null
+    order: number
+    api_key: string | null
+    api_secret: string | null
+    description: string | null
+    site_name: string | null
+    show_feed: Yesno
+    show_share: Yesno
+    show_sub: Yesno
     createdAt: Date
     updatedAt: Date
-    _count: BlahCountAggregateOutputType | null
-    _avg: BlahAvgAggregateOutputType | null
-    _sum: BlahSumAggregateOutputType | null
-    _min: BlahMinAggregateOutputType | null
-    _max: BlahMaxAggregateOutputType | null
+    _count: ServicesCountAggregateOutputType | null
+    _avg: ServicesAvgAggregateOutputType | null
+    _sum: ServicesSumAggregateOutputType | null
+    _min: ServicesMinAggregateOutputType | null
+    _max: ServicesMaxAggregateOutputType | null
   }
 
-  type GetBlahGroupByPayload<T extends BlahGroupByArgs> = Prisma.PrismaPromise<
+  type GetServicesGroupByPayload<T extends ServicesGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickArray<BlahGroupByOutputType, T["by"]> & {
-        [P in keyof T & keyof BlahGroupByOutputType]: P extends "_count"
+      PickArray<ServicesGroupByOutputType, T["by"]> & {
+        [P in keyof T & keyof ServicesGroupByOutputType]: P extends "_count"
           ? T[P] extends boolean
             ? number
-            : GetScalarType<T[P], BlahGroupByOutputType[P]>
-          : GetScalarType<T[P], BlahGroupByOutputType[P]>
+            : GetScalarType<T[P], ServicesGroupByOutputType[P]>
+          : GetScalarType<T[P], ServicesGroupByOutputType[P]>
       }
     >
   >
 
-  export type BlahSelect = {
+  export type ServicesSelect = {
     id?: boolean
+    name?: boolean
+    order?: boolean
+    api_key?: boolean
+    api_secret?: boolean
+    description?: boolean
+    site_name?: boolean
+    show_feed?: boolean
+    show_share?: boolean
+    show_sub?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type BlahGetPayload<S extends boolean | null | undefined | BlahArgs> = S extends {
+  export type ServicesGetPayload<S extends boolean | null | undefined | ServicesArgs> = S extends {
     select: any
     include: any
   }
     ? "Please either choose `select` or `include`"
     : S extends true
-    ? Blah
+    ? Services
     : S extends undefined
     ? never
-    : S extends { include: any } & (BlahArgs | BlahFindManyArgs)
-    ? Blah
-    : S extends { select: any } & (BlahArgs | BlahFindManyArgs)
+    : S extends { include: any } & (ServicesArgs | ServicesFindManyArgs)
+    ? Services
+    : S extends { select: any } & (ServicesArgs | ServicesFindManyArgs)
     ? {
-        [P in TruthyKeys<S["select"]>]: P extends keyof Blah ? Blah[P] : never
+        [P in TruthyKeys<S["select"]>]: P extends keyof Services ? Services[P] : never
       }
-    : Blah
+    : Services
 
-  type BlahCountArgs = Omit<BlahFindManyArgs, "select" | "include"> & {
-    select?: BlahCountAggregateInputType | true
+  type ServicesCountArgs = Omit<ServicesFindManyArgs, "select" | "include"> & {
+    select?: ServicesCountAggregateInputType | true
   }
 
-  export interface BlahDelegate<
+  export interface ServicesDelegate<
     GlobalRejectSettings extends
       | Prisma.RejectOnNotFound
       | Prisma.RejectPerOperation
@@ -17418,159 +17449,159 @@ export namespace Prisma {
       | undefined
   > {
     /**
-     * Find zero or one Blah that matches the filter.
-     * @param {BlahFindUniqueArgs} args - Arguments to find a Blah
+     * Find zero or one Services that matches the filter.
+     * @param {ServicesFindUniqueArgs} args - Arguments to find a Services
      * @example
-     * // Get one Blah
-     * const blah = await prisma.blah.findUnique({
+     * // Get one Services
+     * const services = await prisma.services.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      **/
     findUnique<
-      T extends BlahFindUniqueArgs,
+      T extends ServicesFindUniqueArgs,
       LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound
         ? T["rejectOnNotFound"]
         : undefined
     >(
-      args: SelectSubset<T, BlahFindUniqueArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, "findUnique", "Blah"> extends True
-      ? Prisma__BlahClient<BlahGetPayload<T>>
-      : Prisma__BlahClient<BlahGetPayload<T> | null, null>
+      args: SelectSubset<T, ServicesFindUniqueArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, "findUnique", "Services"> extends True
+      ? Prisma__ServicesClient<ServicesGetPayload<T>>
+      : Prisma__ServicesClient<ServicesGetPayload<T> | null, null>
 
     /**
-     * Find one Blah that matches the filter or throw an error  with `error.code='P2025'`
+     * Find one Services that matches the filter or throw an error  with `error.code='P2025'`
      *     if no matches were found.
-     * @param {BlahFindUniqueOrThrowArgs} args - Arguments to find a Blah
+     * @param {ServicesFindUniqueOrThrowArgs} args - Arguments to find a Services
      * @example
-     * // Get one Blah
-     * const blah = await prisma.blah.findUniqueOrThrow({
+     * // Get one Services
+     * const services = await prisma.services.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      **/
-    findUniqueOrThrow<T extends BlahFindUniqueOrThrowArgs>(
-      args?: SelectSubset<T, BlahFindUniqueOrThrowArgs>
-    ): Prisma__BlahClient<BlahGetPayload<T>>
+    findUniqueOrThrow<T extends ServicesFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, ServicesFindUniqueOrThrowArgs>
+    ): Prisma__ServicesClient<ServicesGetPayload<T>>
 
     /**
-     * Find the first Blah that matches the filter.
+     * Find the first Services that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {BlahFindFirstArgs} args - Arguments to find a Blah
+     * @param {ServicesFindFirstArgs} args - Arguments to find a Services
      * @example
-     * // Get one Blah
-     * const blah = await prisma.blah.findFirst({
+     * // Get one Services
+     * const services = await prisma.services.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      **/
     findFirst<
-      T extends BlahFindFirstArgs,
+      T extends ServicesFindFirstArgs,
       LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound
         ? T["rejectOnNotFound"]
         : undefined
     >(
-      args?: SelectSubset<T, BlahFindFirstArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, "findFirst", "Blah"> extends True
-      ? Prisma__BlahClient<BlahGetPayload<T>>
-      : Prisma__BlahClient<BlahGetPayload<T> | null, null>
+      args?: SelectSubset<T, ServicesFindFirstArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, "findFirst", "Services"> extends True
+      ? Prisma__ServicesClient<ServicesGetPayload<T>>
+      : Prisma__ServicesClient<ServicesGetPayload<T> | null, null>
 
     /**
-     * Find the first Blah that matches the filter or
+     * Find the first Services that matches the filter or
      * throw `NotFoundError` if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {BlahFindFirstOrThrowArgs} args - Arguments to find a Blah
+     * @param {ServicesFindFirstOrThrowArgs} args - Arguments to find a Services
      * @example
-     * // Get one Blah
-     * const blah = await prisma.blah.findFirstOrThrow({
+     * // Get one Services
+     * const services = await prisma.services.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      **/
-    findFirstOrThrow<T extends BlahFindFirstOrThrowArgs>(
-      args?: SelectSubset<T, BlahFindFirstOrThrowArgs>
-    ): Prisma__BlahClient<BlahGetPayload<T>>
+    findFirstOrThrow<T extends ServicesFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, ServicesFindFirstOrThrowArgs>
+    ): Prisma__ServicesClient<ServicesGetPayload<T>>
 
     /**
-     * Find zero or more Blahs that matches the filter.
+     * Find zero or more Services that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {BlahFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {ServicesFindManyArgs=} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Blahs
-     * const blahs = await prisma.blah.findMany()
+     * // Get all Services
+     * const services = await prisma.services.findMany()
      *
-     * // Get first 10 Blahs
-     * const blahs = await prisma.blah.findMany({ take: 10 })
+     * // Get first 10 Services
+     * const services = await prisma.services.findMany({ take: 10 })
      *
      * // Only select the `id`
-     * const blahWithIdOnly = await prisma.blah.findMany({ select: { id: true } })
+     * const servicesWithIdOnly = await prisma.services.findMany({ select: { id: true } })
      *
      **/
-    findMany<T extends BlahFindManyArgs>(
-      args?: SelectSubset<T, BlahFindManyArgs>
-    ): Prisma.PrismaPromise<Array<BlahGetPayload<T>>>
+    findMany<T extends ServicesFindManyArgs>(
+      args?: SelectSubset<T, ServicesFindManyArgs>
+    ): Prisma.PrismaPromise<Array<ServicesGetPayload<T>>>
 
     /**
-     * Create a Blah.
-     * @param {BlahCreateArgs} args - Arguments to create a Blah.
+     * Create a Services.
+     * @param {ServicesCreateArgs} args - Arguments to create a Services.
      * @example
-     * // Create one Blah
-     * const Blah = await prisma.blah.create({
+     * // Create one Services
+     * const Services = await prisma.services.create({
      *   data: {
-     *     // ... data to create a Blah
+     *     // ... data to create a Services
      *   }
      * })
      *
      **/
-    create<T extends BlahCreateArgs>(
-      args: SelectSubset<T, BlahCreateArgs>
-    ): Prisma__BlahClient<BlahGetPayload<T>>
+    create<T extends ServicesCreateArgs>(
+      args: SelectSubset<T, ServicesCreateArgs>
+    ): Prisma__ServicesClient<ServicesGetPayload<T>>
 
     /**
-     * Create many Blahs.
-     *     @param {BlahCreateManyArgs} args - Arguments to create many Blahs.
+     * Create many Services.
+     *     @param {ServicesCreateManyArgs} args - Arguments to create many Services.
      *     @example
-     *     // Create many Blahs
-     *     const blah = await prisma.blah.createMany({
+     *     // Create many Services
+     *     const services = await prisma.services.createMany({
      *       data: {
      *         // ... provide data here
      *       }
      *     })
      *
      **/
-    createMany<T extends BlahCreateManyArgs>(
-      args?: SelectSubset<T, BlahCreateManyArgs>
+    createMany<T extends ServicesCreateManyArgs>(
+      args?: SelectSubset<T, ServicesCreateManyArgs>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Blah.
-     * @param {BlahDeleteArgs} args - Arguments to delete one Blah.
+     * Delete a Services.
+     * @param {ServicesDeleteArgs} args - Arguments to delete one Services.
      * @example
-     * // Delete one Blah
-     * const Blah = await prisma.blah.delete({
+     * // Delete one Services
+     * const Services = await prisma.services.delete({
      *   where: {
-     *     // ... filter to delete one Blah
+     *     // ... filter to delete one Services
      *   }
      * })
      *
      **/
-    delete<T extends BlahDeleteArgs>(
-      args: SelectSubset<T, BlahDeleteArgs>
-    ): Prisma__BlahClient<BlahGetPayload<T>>
+    delete<T extends ServicesDeleteArgs>(
+      args: SelectSubset<T, ServicesDeleteArgs>
+    ): Prisma__ServicesClient<ServicesGetPayload<T>>
 
     /**
-     * Update one Blah.
-     * @param {BlahUpdateArgs} args - Arguments to update one Blah.
+     * Update one Services.
+     * @param {ServicesUpdateArgs} args - Arguments to update one Services.
      * @example
-     * // Update one Blah
-     * const blah = await prisma.blah.update({
+     * // Update one Services
+     * const services = await prisma.services.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -17580,34 +17611,34 @@ export namespace Prisma {
      * })
      *
      **/
-    update<T extends BlahUpdateArgs>(
-      args: SelectSubset<T, BlahUpdateArgs>
-    ): Prisma__BlahClient<BlahGetPayload<T>>
+    update<T extends ServicesUpdateArgs>(
+      args: SelectSubset<T, ServicesUpdateArgs>
+    ): Prisma__ServicesClient<ServicesGetPayload<T>>
 
     /**
-     * Delete zero or more Blahs.
-     * @param {BlahDeleteManyArgs} args - Arguments to filter Blahs to delete.
+     * Delete zero or more Services.
+     * @param {ServicesDeleteManyArgs} args - Arguments to filter Services to delete.
      * @example
-     * // Delete a few Blahs
-     * const { count } = await prisma.blah.deleteMany({
+     * // Delete a few Services
+     * const { count } = await prisma.services.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      *
      **/
-    deleteMany<T extends BlahDeleteManyArgs>(
-      args?: SelectSubset<T, BlahDeleteManyArgs>
+    deleteMany<T extends ServicesDeleteManyArgs>(
+      args?: SelectSubset<T, ServicesDeleteManyArgs>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Blahs.
+     * Update zero or more Services.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {BlahUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {ServicesUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Blahs
-     * const blah = await prisma.blah.updateMany({
+     * // Update many Services
+     * const services = await prisma.services.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -17617,59 +17648,59 @@ export namespace Prisma {
      * })
      *
      **/
-    updateMany<T extends BlahUpdateManyArgs>(
-      args: SelectSubset<T, BlahUpdateManyArgs>
+    updateMany<T extends ServicesUpdateManyArgs>(
+      args: SelectSubset<T, ServicesUpdateManyArgs>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Blah.
-     * @param {BlahUpsertArgs} args - Arguments to update or create a Blah.
+     * Create or update one Services.
+     * @param {ServicesUpsertArgs} args - Arguments to update or create a Services.
      * @example
-     * // Update or create a Blah
-     * const blah = await prisma.blah.upsert({
+     * // Update or create a Services
+     * const services = await prisma.services.upsert({
      *   create: {
-     *     // ... data to create a Blah
+     *     // ... data to create a Services
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Blah we want to update
+     *     // ... the filter for the Services we want to update
      *   }
      * })
      **/
-    upsert<T extends BlahUpsertArgs>(
-      args: SelectSubset<T, BlahUpsertArgs>
-    ): Prisma__BlahClient<BlahGetPayload<T>>
+    upsert<T extends ServicesUpsertArgs>(
+      args: SelectSubset<T, ServicesUpsertArgs>
+    ): Prisma__ServicesClient<ServicesGetPayload<T>>
 
     /**
-     * Count the number of Blahs.
+     * Count the number of Services.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {BlahCountArgs} args - Arguments to filter Blahs to count.
+     * @param {ServicesCountArgs} args - Arguments to filter Services to count.
      * @example
-     * // Count the number of Blahs
-     * const count = await prisma.blah.count({
+     * // Count the number of Services
+     * const count = await prisma.services.count({
      *   where: {
-     *     // ... the filter for the Blahs we want to count
+     *     // ... the filter for the Services we want to count
      *   }
      * })
      **/
-    count<T extends BlahCountArgs>(
-      args?: Subset<T, BlahCountArgs>
+    count<T extends ServicesCountArgs>(
+      args?: Subset<T, ServicesCountArgs>
     ): Prisma.PrismaPromise<
       T extends _Record<"select", any>
         ? T["select"] extends true
           ? number
-          : GetScalarType<T["select"], BlahCountAggregateOutputType>
+          : GetScalarType<T["select"], ServicesCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Blah.
+     * Allows you to perform aggregations operations on a Services.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {BlahAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {ServicesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -17689,15 +17720,15 @@ export namespace Prisma {
      *   take: 10,
      * })
      **/
-    aggregate<T extends BlahAggregateArgs>(
-      args: Subset<T, BlahAggregateArgs>
-    ): Prisma.PrismaPromise<GetBlahAggregateType<T>>
+    aggregate<T extends ServicesAggregateArgs>(
+      args: Subset<T, ServicesAggregateArgs>
+    ): Prisma.PrismaPromise<GetServicesAggregateType<T>>
 
     /**
-     * Group by Blah.
+     * Group by Services.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {BlahGroupByArgs} args - Group by arguments.
+     * @param {ServicesGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -17712,11 +17743,11 @@ export namespace Prisma {
      *
      **/
     groupBy<
-      T extends BlahGroupByArgs,
+      T extends ServicesGroupByArgs,
       HasSelectOrTake extends Or<Extends<"skip", Keys<T>>, Extends<"take", Keys<T>>>,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: BlahGroupByArgs["orderBy"] }
-        : { orderBy?: BlahGroupByArgs["orderBy"] },
+        ? { orderBy: ServicesGroupByArgs["orderBy"] }
+        : { orderBy?: ServicesGroupByArgs["orderBy"] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T["orderBy"]>>>,
       ByFields extends TupleToUnion<T["by"]>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -17761,17 +17792,17 @@ export namespace Prisma {
               : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
           }[OrderFields]
     >(
-      args: SubsetIntersection<T, BlahGroupByArgs, OrderByArg> & InputErrors
-    ): {} extends InputErrors ? GetBlahGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+      args: SubsetIntersection<T, ServicesGroupByArgs, OrderByArg> & InputErrors
+    ): {} extends InputErrors ? GetServicesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Blah.
+   * The delegate class that acts as a "Promise-like" for Services.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export class Prisma__BlahClient<T, Null = never> implements Prisma.PrismaPromise<T> {
+  export class Prisma__ServicesClient<T, Null = never> implements Prisma.PrismaPromise<T> {
     private readonly _dmmf
     private readonly _queryType
     private readonly _rootField
@@ -17827,23 +17858,23 @@ export namespace Prisma {
   // Custom InputTypes
 
   /**
-   * Blah base type for findUnique actions
+   * Services base type for findUnique actions
    */
-  export type BlahFindUniqueArgsBase = {
+  export type ServicesFindUniqueArgsBase = {
     /**
-     * Select specific fields to fetch from the Blah
+     * Select specific fields to fetch from the Services
      */
-    select?: BlahSelect | null
+    select?: ServicesSelect | null
     /**
-     * Filter, which Blah to fetch.
+     * Filter, which Services to fetch.
      */
-    where: BlahWhereUniqueInput
+    where: ServicesWhereUniqueInput
   }
 
   /**
-   * Blah findUnique
+   * Services findUnique
    */
-  export interface BlahFindUniqueArgs extends BlahFindUniqueArgsBase {
+  export interface ServicesFindUniqueArgs extends ServicesFindUniqueArgsBase {
     /**
      * Throw an Error if query returns no results
      * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
@@ -17852,67 +17883,67 @@ export namespace Prisma {
   }
 
   /**
-   * Blah findUniqueOrThrow
+   * Services findUniqueOrThrow
    */
-  export type BlahFindUniqueOrThrowArgs = {
+  export type ServicesFindUniqueOrThrowArgs = {
     /**
-     * Select specific fields to fetch from the Blah
+     * Select specific fields to fetch from the Services
      */
-    select?: BlahSelect | null
+    select?: ServicesSelect | null
     /**
-     * Filter, which Blah to fetch.
+     * Filter, which Services to fetch.
      */
-    where: BlahWhereUniqueInput
+    where: ServicesWhereUniqueInput
   }
 
   /**
-   * Blah base type for findFirst actions
+   * Services base type for findFirst actions
    */
-  export type BlahFindFirstArgsBase = {
+  export type ServicesFindFirstArgsBase = {
     /**
-     * Select specific fields to fetch from the Blah
+     * Select specific fields to fetch from the Services
      */
-    select?: BlahSelect | null
+    select?: ServicesSelect | null
     /**
-     * Filter, which Blah to fetch.
+     * Filter, which Services to fetch.
      */
-    where?: BlahWhereInput
+    where?: ServicesWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      *
-     * Determine the order of Blahs to fetch.
+     * Determine the order of Services to fetch.
      */
-    orderBy?: Enumerable<BlahOrderByWithRelationInput>
+    orderBy?: Enumerable<ServicesOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      *
-     * Sets the position for searching for Blahs.
+     * Sets the position for searching for Services.
      */
-    cursor?: BlahWhereUniqueInput
+    cursor?: ServicesWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Take `±n` Blahs from the position of the cursor.
+     * Take `±n` Services from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Skip the first `n` Blahs.
+     * Skip the first `n` Services.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      *
-     * Filter by unique combinations of Blahs.
+     * Filter by unique combinations of Services.
      */
-    distinct?: Enumerable<BlahScalarFieldEnum>
+    distinct?: Enumerable<ServicesScalarFieldEnum>
   }
 
   /**
-   * Blah findFirst
+   * Services findFirst
    */
-  export interface BlahFindFirstArgs extends BlahFindFirstArgsBase {
+  export interface ServicesFindFirstArgs extends ServicesFindFirstArgsBase {
     /**
      * Throw an Error if query returns no results
      * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
@@ -17921,199 +17952,199 @@ export namespace Prisma {
   }
 
   /**
-   * Blah findFirstOrThrow
+   * Services findFirstOrThrow
    */
-  export type BlahFindFirstOrThrowArgs = {
+  export type ServicesFindFirstOrThrowArgs = {
     /**
-     * Select specific fields to fetch from the Blah
+     * Select specific fields to fetch from the Services
      */
-    select?: BlahSelect | null
+    select?: ServicesSelect | null
     /**
-     * Filter, which Blah to fetch.
+     * Filter, which Services to fetch.
      */
-    where?: BlahWhereInput
+    where?: ServicesWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      *
-     * Determine the order of Blahs to fetch.
+     * Determine the order of Services to fetch.
      */
-    orderBy?: Enumerable<BlahOrderByWithRelationInput>
+    orderBy?: Enumerable<ServicesOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      *
-     * Sets the position for searching for Blahs.
+     * Sets the position for searching for Services.
      */
-    cursor?: BlahWhereUniqueInput
+    cursor?: ServicesWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Take `±n` Blahs from the position of the cursor.
+     * Take `±n` Services from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Skip the first `n` Blahs.
+     * Skip the first `n` Services.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      *
-     * Filter by unique combinations of Blahs.
+     * Filter by unique combinations of Services.
      */
-    distinct?: Enumerable<BlahScalarFieldEnum>
+    distinct?: Enumerable<ServicesScalarFieldEnum>
   }
 
   /**
-   * Blah findMany
+   * Services findMany
    */
-  export type BlahFindManyArgs = {
+  export type ServicesFindManyArgs = {
     /**
-     * Select specific fields to fetch from the Blah
+     * Select specific fields to fetch from the Services
      */
-    select?: BlahSelect | null
+    select?: ServicesSelect | null
     /**
-     * Filter, which Blahs to fetch.
+     * Filter, which Services to fetch.
      */
-    where?: BlahWhereInput
+    where?: ServicesWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      *
-     * Determine the order of Blahs to fetch.
+     * Determine the order of Services to fetch.
      */
-    orderBy?: Enumerable<BlahOrderByWithRelationInput>
+    orderBy?: Enumerable<ServicesOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      *
-     * Sets the position for listing Blahs.
+     * Sets the position for listing Services.
      */
-    cursor?: BlahWhereUniqueInput
+    cursor?: ServicesWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Take `±n` Blahs from the position of the cursor.
+     * Take `±n` Services from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Skip the first `n` Blahs.
+     * Skip the first `n` Services.
      */
     skip?: number
-    distinct?: Enumerable<BlahScalarFieldEnum>
+    distinct?: Enumerable<ServicesScalarFieldEnum>
   }
 
   /**
-   * Blah create
+   * Services create
    */
-  export type BlahCreateArgs = {
+  export type ServicesCreateArgs = {
     /**
-     * Select specific fields to fetch from the Blah
+     * Select specific fields to fetch from the Services
      */
-    select?: BlahSelect | null
+    select?: ServicesSelect | null
     /**
-     * The data needed to create a Blah.
+     * The data needed to create a Services.
      */
-    data: XOR<BlahCreateInput, BlahUncheckedCreateInput>
+    data: XOR<ServicesCreateInput, ServicesUncheckedCreateInput>
   }
 
   /**
-   * Blah createMany
+   * Services createMany
    */
-  export type BlahCreateManyArgs = {
+  export type ServicesCreateManyArgs = {
     /**
-     * The data used to create many Blahs.
+     * The data used to create many Services.
      */
-    data: Enumerable<BlahCreateManyInput>
+    data: Enumerable<ServicesCreateManyInput>
     skipDuplicates?: boolean
   }
 
   /**
-   * Blah update
+   * Services update
    */
-  export type BlahUpdateArgs = {
+  export type ServicesUpdateArgs = {
     /**
-     * Select specific fields to fetch from the Blah
+     * Select specific fields to fetch from the Services
      */
-    select?: BlahSelect | null
+    select?: ServicesSelect | null
     /**
-     * The data needed to update a Blah.
+     * The data needed to update a Services.
      */
-    data: XOR<BlahUpdateInput, BlahUncheckedUpdateInput>
+    data: XOR<ServicesUpdateInput, ServicesUncheckedUpdateInput>
     /**
-     * Choose, which Blah to update.
+     * Choose, which Services to update.
      */
-    where: BlahWhereUniqueInput
+    where: ServicesWhereUniqueInput
   }
 
   /**
-   * Blah updateMany
+   * Services updateMany
    */
-  export type BlahUpdateManyArgs = {
+  export type ServicesUpdateManyArgs = {
     /**
-     * The data used to update Blahs.
+     * The data used to update Services.
      */
-    data: XOR<BlahUpdateManyMutationInput, BlahUncheckedUpdateManyInput>
+    data: XOR<ServicesUpdateManyMutationInput, ServicesUncheckedUpdateManyInput>
     /**
-     * Filter which Blahs to update
+     * Filter which Services to update
      */
-    where?: BlahWhereInput
+    where?: ServicesWhereInput
   }
 
   /**
-   * Blah upsert
+   * Services upsert
    */
-  export type BlahUpsertArgs = {
+  export type ServicesUpsertArgs = {
     /**
-     * Select specific fields to fetch from the Blah
+     * Select specific fields to fetch from the Services
      */
-    select?: BlahSelect | null
+    select?: ServicesSelect | null
     /**
-     * The filter to search for the Blah to update in case it exists.
+     * The filter to search for the Services to update in case it exists.
      */
-    where: BlahWhereUniqueInput
+    where: ServicesWhereUniqueInput
     /**
-     * In case the Blah found by the `where` argument doesn't exist, create a new Blah with this data.
+     * In case the Services found by the `where` argument doesn't exist, create a new Services with this data.
      */
-    create: XOR<BlahCreateInput, BlahUncheckedCreateInput>
+    create: XOR<ServicesCreateInput, ServicesUncheckedCreateInput>
     /**
-     * In case the Blah was found with the provided `where` argument, update it with this data.
+     * In case the Services was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<BlahUpdateInput, BlahUncheckedUpdateInput>
+    update: XOR<ServicesUpdateInput, ServicesUncheckedUpdateInput>
   }
 
   /**
-   * Blah delete
+   * Services delete
    */
-  export type BlahDeleteArgs = {
+  export type ServicesDeleteArgs = {
     /**
-     * Select specific fields to fetch from the Blah
+     * Select specific fields to fetch from the Services
      */
-    select?: BlahSelect | null
+    select?: ServicesSelect | null
     /**
-     * Filter which Blah to delete.
+     * Filter which Services to delete.
      */
-    where: BlahWhereUniqueInput
+    where: ServicesWhereUniqueInput
   }
 
   /**
-   * Blah deleteMany
+   * Services deleteMany
    */
-  export type BlahDeleteManyArgs = {
+  export type ServicesDeleteManyArgs = {
     /**
-     * Filter which Blahs to delete
+     * Filter which Services to delete
      */
-    where?: BlahWhereInput
+    where?: ServicesWhereInput
   }
 
   /**
-   * Blah without action
+   * Services without action
    */
-  export type BlahArgs = {
+  export type ServicesArgs = {
     /**
-     * Select specific fields to fetch from the Blah
+     * Select specific fields to fetch from the Services
      */
-    select?: BlahSelect | null
+    select?: ServicesSelect | null
   }
 
   /**
@@ -18164,14 +18195,6 @@ export namespace Prisma {
 
   export type BankAccountScalarFieldEnum =
     (typeof BankAccountScalarFieldEnum)[keyof typeof BankAccountScalarFieldEnum]
-
-  export const BlahScalarFieldEnum: {
-    id: "id"
-    createdAt: "createdAt"
-    updatedAt: "updatedAt"
-  }
-
-  export type BlahScalarFieldEnum = (typeof BlahScalarFieldEnum)[keyof typeof BlahScalarFieldEnum]
 
   export const CustomerScalarFieldEnum: {
     id: "id"
@@ -18309,6 +18332,24 @@ export namespace Prisma {
   export type ProfileScalarFieldEnum =
     (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]
 
+  export const ServicesScalarFieldEnum: {
+    id: "id"
+    name: "name"
+    order: "order"
+    api_key: "api_key"
+    api_secret: "api_secret"
+    description: "description"
+    site_name: "site_name"
+    show_feed: "show_feed"
+    show_share: "show_share"
+    show_sub: "show_sub"
+    createdAt: "createdAt"
+    updatedAt: "updatedAt"
+  }
+
+  export type ServicesScalarFieldEnum =
+    (typeof ServicesScalarFieldEnum)[keyof typeof ServicesScalarFieldEnum]
+
   export const SessionScalarFieldEnum: {
     id: "id"
     createdAt: "createdAt"
@@ -18335,14 +18376,7 @@ export namespace Prisma {
     icon: "icon"
     image: "image"
     description: "description"
-    api_key: "api_key"
-    api_secret: "api_secret"
-    admin_name: "admin_name"
-    site_name: "site_name"
     status: "status"
-    show_feed: "show_feed"
-    show_share: "show_share"
-    show_sub: "show_sub"
     createdAt: "createdAt"
     updatedAt: "updatedAt"
     profileId: "profileId"
@@ -18733,14 +18767,7 @@ export namespace Prisma {
     icon?: StringNullableFilter | string | null
     image?: StringNullableFilter | string | null
     description?: StringNullableFilter | string | null
-    api_key?: StringNullableFilter | string | null
-    api_secret?: StringNullableFilter | string | null
-    admin_name?: StringNullableFilter | string | null
-    site_name?: StringNullableFilter | string | null
     status?: EnumStatusFilter | Status
-    show_feed?: EnumYesnoFilter | Yesno
-    show_share?: EnumYesnoFilter | Yesno
-    show_sub?: EnumYesnoFilter | Yesno
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     profileId?: StringNullableFilter | string | null
@@ -18758,14 +18785,7 @@ export namespace Prisma {
     icon?: SortOrder
     image?: SortOrder
     description?: SortOrder
-    api_key?: SortOrder
-    api_secret?: SortOrder
-    admin_name?: SortOrder
-    site_name?: SortOrder
     status?: SortOrder
-    show_feed?: SortOrder
-    show_share?: SortOrder
-    show_sub?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     profileId?: SortOrder
@@ -18787,14 +18807,7 @@ export namespace Prisma {
     icon?: SortOrder
     image?: SortOrder
     description?: SortOrder
-    api_key?: SortOrder
-    api_secret?: SortOrder
-    admin_name?: SortOrder
-    site_name?: SortOrder
     status?: SortOrder
-    show_feed?: SortOrder
-    show_share?: SortOrder
-    show_sub?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     profileId?: SortOrder
@@ -18818,14 +18831,7 @@ export namespace Prisma {
     icon?: StringNullableWithAggregatesFilter | string | null
     image?: StringNullableWithAggregatesFilter | string | null
     description?: StringNullableWithAggregatesFilter | string | null
-    api_key?: StringNullableWithAggregatesFilter | string | null
-    api_secret?: StringNullableWithAggregatesFilter | string | null
-    admin_name?: StringNullableWithAggregatesFilter | string | null
-    site_name?: StringNullableWithAggregatesFilter | string | null
     status?: EnumStatusWithAggregatesFilter | Status
-    show_feed?: EnumYesnoWithAggregatesFilter | Yesno
-    show_share?: EnumYesnoWithAggregatesFilter | Yesno
-    show_sub?: EnumYesnoWithAggregatesFilter | Yesno
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
     profileId?: StringNullableWithAggregatesFilter | string | null
@@ -19519,41 +19525,77 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
   }
 
-  export type BlahWhereInput = {
-    AND?: Enumerable<BlahWhereInput>
-    OR?: Enumerable<BlahWhereInput>
-    NOT?: Enumerable<BlahWhereInput>
+  export type ServicesWhereInput = {
+    AND?: Enumerable<ServicesWhereInput>
+    OR?: Enumerable<ServicesWhereInput>
+    NOT?: Enumerable<ServicesWhereInput>
     id?: IntFilter | number
+    name?: StringNullableFilter | string | null
+    order?: IntFilter | number
+    api_key?: StringNullableFilter | string | null
+    api_secret?: StringNullableFilter | string | null
+    description?: StringNullableFilter | string | null
+    site_name?: StringNullableFilter | string | null
+    show_feed?: EnumYesnoFilter | Yesno
+    show_share?: EnumYesnoFilter | Yesno
+    show_sub?: EnumYesnoFilter | Yesno
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
   }
 
-  export type BlahOrderByWithRelationInput = {
+  export type ServicesOrderByWithRelationInput = {
     id?: SortOrder
+    name?: SortOrder
+    order?: SortOrder
+    api_key?: SortOrder
+    api_secret?: SortOrder
+    description?: SortOrder
+    site_name?: SortOrder
+    show_feed?: SortOrder
+    show_share?: SortOrder
+    show_sub?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type BlahWhereUniqueInput = {
+  export type ServicesWhereUniqueInput = {
     id?: number
   }
 
-  export type BlahOrderByWithAggregationInput = {
+  export type ServicesOrderByWithAggregationInput = {
     id?: SortOrder
+    name?: SortOrder
+    order?: SortOrder
+    api_key?: SortOrder
+    api_secret?: SortOrder
+    description?: SortOrder
+    site_name?: SortOrder
+    show_feed?: SortOrder
+    show_share?: SortOrder
+    show_sub?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    _count?: BlahCountOrderByAggregateInput
-    _avg?: BlahAvgOrderByAggregateInput
-    _max?: BlahMaxOrderByAggregateInput
-    _min?: BlahMinOrderByAggregateInput
-    _sum?: BlahSumOrderByAggregateInput
+    _count?: ServicesCountOrderByAggregateInput
+    _avg?: ServicesAvgOrderByAggregateInput
+    _max?: ServicesMaxOrderByAggregateInput
+    _min?: ServicesMinOrderByAggregateInput
+    _sum?: ServicesSumOrderByAggregateInput
   }
 
-  export type BlahScalarWhereWithAggregatesInput = {
-    AND?: Enumerable<BlahScalarWhereWithAggregatesInput>
-    OR?: Enumerable<BlahScalarWhereWithAggregatesInput>
-    NOT?: Enumerable<BlahScalarWhereWithAggregatesInput>
+  export type ServicesScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<ServicesScalarWhereWithAggregatesInput>
+    OR?: Enumerable<ServicesScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<ServicesScalarWhereWithAggregatesInput>
     id?: IntWithAggregatesFilter | number
+    name?: StringNullableWithAggregatesFilter | string | null
+    order?: IntWithAggregatesFilter | number
+    api_key?: StringNullableWithAggregatesFilter | string | null
+    api_secret?: StringNullableWithAggregatesFilter | string | null
+    description?: StringNullableWithAggregatesFilter | string | null
+    site_name?: StringNullableWithAggregatesFilter | string | null
+    show_feed?: EnumYesnoWithAggregatesFilter | Yesno
+    show_share?: EnumYesnoWithAggregatesFilter | Yesno
+    show_sub?: EnumYesnoWithAggregatesFilter | Yesno
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
   }
@@ -19970,14 +20012,7 @@ export namespace Prisma {
     icon?: string | null
     image?: string | null
     description?: string | null
-    api_key?: string | null
-    api_secret?: string | null
-    admin_name?: string | null
-    site_name?: string | null
     status?: Status
-    show_feed?: Yesno
-    show_share?: Yesno
-    show_sub?: Yesno
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutSiteInput
@@ -19994,14 +20029,7 @@ export namespace Prisma {
     icon?: string | null
     image?: string | null
     description?: string | null
-    api_key?: string | null
-    api_secret?: string | null
-    admin_name?: string | null
-    site_name?: string | null
     status?: Status
-    show_feed?: Yesno
-    show_share?: Yesno
-    show_sub?: Yesno
     createdAt?: Date | string
     updatedAt?: Date | string
     profileId?: string | null
@@ -20016,14 +20044,7 @@ export namespace Prisma {
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    api_key?: NullableStringFieldUpdateOperationsInput | string | null
-    api_secret?: NullableStringFieldUpdateOperationsInput | string | null
-    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
-    site_name?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
-    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
-    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
-    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutSiteNestedInput
@@ -20040,14 +20061,7 @@ export namespace Prisma {
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    api_key?: NullableStringFieldUpdateOperationsInput | string | null
-    api_secret?: NullableStringFieldUpdateOperationsInput | string | null
-    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
-    site_name?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
-    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
-    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
-    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     profileId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20063,14 +20077,7 @@ export namespace Prisma {
     icon?: string | null
     image?: string | null
     description?: string | null
-    api_key?: string | null
-    api_secret?: string | null
-    admin_name?: string | null
-    site_name?: string | null
     status?: Status
-    show_feed?: Yesno
-    show_share?: Yesno
-    show_sub?: Yesno
     createdAt?: Date | string
     updatedAt?: Date | string
     profileId?: string | null
@@ -20085,14 +20092,7 @@ export namespace Prisma {
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    api_key?: NullableStringFieldUpdateOperationsInput | string | null
-    api_secret?: NullableStringFieldUpdateOperationsInput | string | null
-    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
-    site_name?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
-    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
-    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
-    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20107,14 +20107,7 @@ export namespace Prisma {
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    api_key?: NullableStringFieldUpdateOperationsInput | string | null
-    api_secret?: NullableStringFieldUpdateOperationsInput | string | null
-    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
-    site_name?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
-    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
-    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
-    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     profileId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21005,41 +20998,104 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type BlahCreateInput = {
+  export type ServicesCreateInput = {
+    name?: string | null
+    order?: number
+    api_key?: string | null
+    api_secret?: string | null
+    description?: string | null
+    site_name?: string | null
+    show_feed?: Yesno
+    show_share?: Yesno
+    show_sub?: Yesno
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type BlahUncheckedCreateInput = {
+  export type ServicesUncheckedCreateInput = {
     id?: number
+    name?: string | null
+    order?: number
+    api_key?: string | null
+    api_secret?: string | null
+    description?: string | null
+    site_name?: string | null
+    show_feed?: Yesno
+    show_share?: Yesno
+    show_sub?: Yesno
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type BlahUpdateInput = {
+  export type ServicesUpdateInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    api_key?: NullableStringFieldUpdateOperationsInput | string | null
+    api_secret?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    site_name?: NullableStringFieldUpdateOperationsInput | string | null
+    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type BlahUncheckedUpdateInput = {
+  export type ServicesUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    api_key?: NullableStringFieldUpdateOperationsInput | string | null
+    api_secret?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    site_name?: NullableStringFieldUpdateOperationsInput | string | null
+    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type BlahCreateManyInput = {
+  export type ServicesCreateManyInput = {
     id?: number
+    name?: string | null
+    order?: number
+    api_key?: string | null
+    api_secret?: string | null
+    description?: string | null
+    site_name?: string | null
+    show_feed?: Yesno
+    show_share?: Yesno
+    show_sub?: Yesno
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type BlahUpdateManyMutationInput = {
+  export type ServicesUpdateManyMutationInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    api_key?: NullableStringFieldUpdateOperationsInput | string | null
+    api_secret?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    site_name?: NullableStringFieldUpdateOperationsInput | string | null
+    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type BlahUncheckedUpdateManyInput = {
+  export type ServicesUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    api_key?: NullableStringFieldUpdateOperationsInput | string | null
+    api_secret?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    site_name?: NullableStringFieldUpdateOperationsInput | string | null
+    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -21543,13 +21599,6 @@ export namespace Prisma {
     not?: NestedEnumStatusFilter | Status
   }
 
-  export type EnumYesnoFilter = {
-    equals?: Yesno
-    in?: Enumerable<Yesno>
-    notIn?: Enumerable<Yesno>
-    not?: NestedEnumYesnoFilter | Yesno
-  }
-
   export type ProfileRelationFilter = {
     is?: ProfileWhereInput | null
     isNot?: ProfileWhereInput | null
@@ -21565,14 +21614,7 @@ export namespace Prisma {
     icon?: SortOrder
     image?: SortOrder
     description?: SortOrder
-    api_key?: SortOrder
-    api_secret?: SortOrder
-    admin_name?: SortOrder
-    site_name?: SortOrder
     status?: SortOrder
-    show_feed?: SortOrder
-    show_share?: SortOrder
-    show_sub?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     profileId?: SortOrder
@@ -21593,14 +21635,7 @@ export namespace Prisma {
     icon?: SortOrder
     image?: SortOrder
     description?: SortOrder
-    api_key?: SortOrder
-    api_secret?: SortOrder
-    admin_name?: SortOrder
-    site_name?: SortOrder
     status?: SortOrder
-    show_feed?: SortOrder
-    show_share?: SortOrder
-    show_sub?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     profileId?: SortOrder
@@ -21616,14 +21651,7 @@ export namespace Prisma {
     icon?: SortOrder
     image?: SortOrder
     description?: SortOrder
-    api_key?: SortOrder
-    api_secret?: SortOrder
-    admin_name?: SortOrder
-    site_name?: SortOrder
     status?: SortOrder
-    show_feed?: SortOrder
-    show_share?: SortOrder
-    show_sub?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     profileId?: SortOrder
@@ -21652,16 +21680,6 @@ export namespace Prisma {
     _count?: NestedIntFilter
     _min?: NestedEnumStatusFilter
     _max?: NestedEnumStatusFilter
-  }
-
-  export type EnumYesnoWithAggregatesFilter = {
-    equals?: Yesno
-    in?: Enumerable<Yesno>
-    notIn?: Enumerable<Yesno>
-    not?: NestedEnumYesnoWithAggregatesFilter | Yesno
-    _count?: NestedIntFilter
-    _min?: NestedEnumYesnoFilter
-    _max?: NestedEnumYesnoFilter
   }
 
   export type MessageCountOrderByAggregateInput = {
@@ -22179,6 +22197,13 @@ export namespace Prisma {
     not?: InputJsonValue | JsonNullValueFilter
   }
 
+  export type EnumYesnoFilter = {
+    equals?: Yesno
+    in?: Enumerable<Yesno>
+    notIn?: Enumerable<Yesno>
+    not?: NestedEnumYesnoFilter | Yesno
+  }
+
   export type ProfileCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -22250,30 +22275,69 @@ export namespace Prisma {
     _max?: NestedJsonNullableFilter
   }
 
-  export type BlahCountOrderByAggregateInput = {
+  export type EnumYesnoWithAggregatesFilter = {
+    equals?: Yesno
+    in?: Enumerable<Yesno>
+    notIn?: Enumerable<Yesno>
+    not?: NestedEnumYesnoWithAggregatesFilter | Yesno
+    _count?: NestedIntFilter
+    _min?: NestedEnumYesnoFilter
+    _max?: NestedEnumYesnoFilter
+  }
+
+  export type ServicesCountOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
+    order?: SortOrder
+    api_key?: SortOrder
+    api_secret?: SortOrder
+    description?: SortOrder
+    site_name?: SortOrder
+    show_feed?: SortOrder
+    show_share?: SortOrder
+    show_sub?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type BlahAvgOrderByAggregateInput = {
+  export type ServicesAvgOrderByAggregateInput = {
     id?: SortOrder
+    order?: SortOrder
   }
 
-  export type BlahMaxOrderByAggregateInput = {
+  export type ServicesMaxOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
+    order?: SortOrder
+    api_key?: SortOrder
+    api_secret?: SortOrder
+    description?: SortOrder
+    site_name?: SortOrder
+    show_feed?: SortOrder
+    show_share?: SortOrder
+    show_sub?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type BlahMinOrderByAggregateInput = {
+  export type ServicesMinOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
+    order?: SortOrder
+    api_key?: SortOrder
+    api_secret?: SortOrder
+    description?: SortOrder
+    site_name?: SortOrder
+    show_feed?: SortOrder
+    show_share?: SortOrder
+    show_sub?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type BlahSumOrderByAggregateInput = {
+  export type ServicesSumOrderByAggregateInput = {
     id?: SortOrder
+    order?: SortOrder
   }
 
   export type AccountCreateNestedManyWithoutUserInput = {
@@ -22910,10 +22974,6 @@ export namespace Prisma {
     set?: Status
   }
 
-  export type EnumYesnoFieldUpdateOperationsInput = {
-    set?: Yesno
-  }
-
   export type UserUpdateOneRequiredWithoutSiteNestedInput = {
     create?: XOR<UserCreateWithoutSiteInput, UserUncheckedCreateWithoutSiteInput>
     connectOrCreate?: UserCreateOrConnectWithoutSiteInput
@@ -23396,6 +23456,10 @@ export namespace Prisma {
     connect?: Enumerable<SiteWhereUniqueInput>
   }
 
+  export type EnumYesnoFieldUpdateOperationsInput = {
+    set?: Yesno
+  }
+
   export type UserUpdateOneRequiredWithoutProfileNestedInput = {
     create?: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput>
     connectOrCreate?: UserCreateOrConnectWithoutProfileInput
@@ -23640,13 +23704,6 @@ export namespace Prisma {
     not?: NestedEnumStatusFilter | Status
   }
 
-  export type NestedEnumYesnoFilter = {
-    equals?: Yesno
-    in?: Enumerable<Yesno>
-    notIn?: Enumerable<Yesno>
-    not?: NestedEnumYesnoFilter | Yesno
-  }
-
   export type NestedEnumSitetypeWithAggregatesFilter = {
     equals?: Sitetype
     in?: Enumerable<Sitetype>
@@ -23665,16 +23722,6 @@ export namespace Prisma {
     _count?: NestedIntFilter
     _min?: NestedEnumStatusFilter
     _max?: NestedEnumStatusFilter
-  }
-
-  export type NestedEnumYesnoWithAggregatesFilter = {
-    equals?: Yesno
-    in?: Enumerable<Yesno>
-    notIn?: Enumerable<Yesno>
-    not?: NestedEnumYesnoWithAggregatesFilter | Yesno
-    _count?: NestedIntFilter
-    _min?: NestedEnumYesnoFilter
-    _max?: NestedEnumYesnoFilter
   }
 
   export type NestedFloatNullableWithAggregatesFilter = {
@@ -23708,6 +23755,13 @@ export namespace Prisma {
     _min?: NestedFloatFilter
     _max?: NestedFloatFilter
   }
+
+  export type NestedEnumYesnoFilter = {
+    equals?: Yesno
+    in?: Enumerable<Yesno>
+    notIn?: Enumerable<Yesno>
+    not?: NestedEnumYesnoFilter | Yesno
+  }
   export type NestedJsonNullableFilter =
     | PatchUndefined<
         Either<
@@ -23732,6 +23786,16 @@ export namespace Prisma {
     gt?: InputJsonValue
     gte?: InputJsonValue
     not?: InputJsonValue | JsonNullValueFilter
+  }
+
+  export type NestedEnumYesnoWithAggregatesFilter = {
+    equals?: Yesno
+    in?: Enumerable<Yesno>
+    notIn?: Enumerable<Yesno>
+    not?: NestedEnumYesnoWithAggregatesFilter | Yesno
+    _count?: NestedIntFilter
+    _min?: NestedEnumYesnoFilter
+    _max?: NestedEnumYesnoFilter
   }
 
   export type AccountCreateWithoutUserInput = {
@@ -23992,14 +24056,7 @@ export namespace Prisma {
     icon?: string | null
     image?: string | null
     description?: string | null
-    api_key?: string | null
-    api_secret?: string | null
-    admin_name?: string | null
-    site_name?: string | null
     status?: Status
-    show_feed?: Yesno
-    show_share?: Yesno
-    show_sub?: Yesno
     createdAt?: Date | string
     updatedAt?: Date | string
     Profile?: ProfileCreateNestedOneWithoutSiteInput
@@ -24014,14 +24071,7 @@ export namespace Prisma {
     icon?: string | null
     image?: string | null
     description?: string | null
-    api_key?: string | null
-    api_secret?: string | null
-    admin_name?: string | null
-    site_name?: string | null
     status?: Status
-    show_feed?: Yesno
-    show_share?: Yesno
-    show_sub?: Yesno
     createdAt?: Date | string
     updatedAt?: Date | string
     profileId?: string | null
@@ -24362,14 +24412,7 @@ export namespace Prisma {
     icon?: StringNullableFilter | string | null
     image?: StringNullableFilter | string | null
     description?: StringNullableFilter | string | null
-    api_key?: StringNullableFilter | string | null
-    api_secret?: StringNullableFilter | string | null
-    admin_name?: StringNullableFilter | string | null
-    site_name?: StringNullableFilter | string | null
     status?: EnumStatusFilter | Status
-    show_feed?: EnumYesnoFilter | Yesno
-    show_share?: EnumYesnoFilter | Yesno
-    show_sub?: EnumYesnoFilter | Yesno
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     profileId?: StringNullableFilter | string | null
@@ -26289,14 +26332,7 @@ export namespace Prisma {
     icon?: string | null
     image?: string | null
     description?: string | null
-    api_key?: string | null
-    api_secret?: string | null
-    admin_name?: string | null
-    site_name?: string | null
     status?: Status
-    show_feed?: Yesno
-    show_share?: Yesno
-    show_sub?: Yesno
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutSiteInput
@@ -26312,14 +26348,7 @@ export namespace Prisma {
     icon?: string | null
     image?: string | null
     description?: string | null
-    api_key?: string | null
-    api_secret?: string | null
-    admin_name?: string | null
-    site_name?: string | null
     status?: Status
-    show_feed?: Yesno
-    show_share?: Yesno
-    show_sub?: Yesno
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -26499,14 +26528,7 @@ export namespace Prisma {
     icon?: string | null
     image?: string | null
     description?: string | null
-    api_key?: string | null
-    api_secret?: string | null
-    admin_name?: string | null
-    site_name?: string | null
     status?: Status
-    show_feed?: Yesno
-    show_share?: Yesno
-    show_sub?: Yesno
     createdAt?: Date | string
     updatedAt?: Date | string
     profileId?: string | null
@@ -26810,14 +26832,7 @@ export namespace Prisma {
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    api_key?: NullableStringFieldUpdateOperationsInput | string | null
-    api_secret?: NullableStringFieldUpdateOperationsInput | string | null
-    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
-    site_name?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
-    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
-    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
-    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Profile?: ProfileUpdateOneWithoutSiteNestedInput
@@ -26832,14 +26847,7 @@ export namespace Prisma {
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    api_key?: NullableStringFieldUpdateOperationsInput | string | null
-    api_secret?: NullableStringFieldUpdateOperationsInput | string | null
-    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
-    site_name?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
-    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
-    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
-    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     profileId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -26854,14 +26862,7 @@ export namespace Prisma {
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    api_key?: NullableStringFieldUpdateOperationsInput | string | null
-    api_secret?: NullableStringFieldUpdateOperationsInput | string | null
-    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
-    site_name?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
-    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
-    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
-    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     profileId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27064,14 +27065,7 @@ export namespace Prisma {
     icon?: string | null
     image?: string | null
     description?: string | null
-    api_key?: string | null
-    api_secret?: string | null
-    admin_name?: string | null
-    site_name?: string | null
     status?: Status
-    show_feed?: Yesno
-    show_share?: Yesno
-    show_sub?: Yesno
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -27085,14 +27079,7 @@ export namespace Prisma {
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    api_key?: NullableStringFieldUpdateOperationsInput | string | null
-    api_secret?: NullableStringFieldUpdateOperationsInput | string | null
-    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
-    site_name?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
-    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
-    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
-    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutSiteNestedInput
@@ -27108,14 +27095,7 @@ export namespace Prisma {
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    api_key?: NullableStringFieldUpdateOperationsInput | string | null
-    api_secret?: NullableStringFieldUpdateOperationsInput | string | null
-    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
-    site_name?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
-    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
-    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
-    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

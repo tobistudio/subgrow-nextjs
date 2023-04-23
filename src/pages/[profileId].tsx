@@ -35,23 +35,6 @@ export const ProfileIndex = () => {
   console.log("profile", profile)
   console.log("sites", sites)
 
-  // TODO: proper 404 page if username not found
-
-  // TODO: video background, image background, etc
-
-  // TODO: checks to make sure this user has premium account advanced features
-
-  // TODO: allow user to select to show profile pic, or select from which account
-
-  // TODO: allow headers, parralax options, and footers
-
-  // TODO: dragon lord gradient color picker for link colors, background colors, etc
-
-  // TODO: if logged in, put an edit button top right corner
-
-  /*
-
- */
   // TODO: the layout should be set on dashboard page.
   let userLayout
   // shouldn't be empty, for errors
@@ -105,3 +88,17 @@ ShowProfileIndexPage.getLayout = (page) => <ProfileLayout>{page}</ProfileLayout>
 // TODO: some type of flashing font material ui issue
 
 export default ShowProfileIndexPage
+
+// TODO: proper 404 page if username not found
+
+// TODO: video background, image background, etc
+
+// TODO: checks to make sure this user has premium account advanced features
+
+// TODO: allow user to select to show profile pic, or select from which account
+
+// TODO: allow headers, parralax options, and footers
+
+// TODO: dragon lord gradient color picker for link colors, background colors, etc
+
+// TODO: if logged in, put an edit button top right corner
