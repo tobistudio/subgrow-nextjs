@@ -89,15 +89,6 @@ export type Account = {
  *
  */
 export type Site = {
-  name:
-    | string
-    | number
-    | boolean
-    | ReactElement<any, string | JSXElementConstructor<any>>
-    | ReactFragment
-    | ReactPortal
-    | null
-    | undefined
   id: string
   userId: number
   title: string | null

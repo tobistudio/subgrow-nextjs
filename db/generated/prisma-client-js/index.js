@@ -397,6 +397,7 @@ const config = {
   datasourceNames: ["db"],
   activeProvider: "mysql",
   dataProxy: false,
+  postinstall: false,
 }
 config.dirname = dirname
 config.document = dmmf
