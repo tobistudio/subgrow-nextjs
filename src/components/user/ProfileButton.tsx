@@ -19,18 +19,20 @@ export const ProfileButton = (username) => {
   //const username = props.username
   const router = useRouter()
 
+  console.log("username", username.username)
+
   return (
     <Button
       onClick={async () => {
         // await router.push(Routes.SignupPage())
-        await router.push("/" + username)
+        await router.push("/" + username.username)
       }}
       variant="outlined"
       aria-label="Profile"
       //edge="start"
     >
       {/*<FontAwesomeIcon icon={faUser} style={{ color: "#0014ee", paddingRight: 7 }} />*/}
-      <FontAwesomeIcon icon={faUser} style={{ color: "#0014ee", paddingRight: 7 }} />
+      <FontAwesomeIcon icon={faUser} size="sm" style={{ color: "#0014ee", paddingRight: 7 }} />
       <span>Profile</span>
     </Button>
   )

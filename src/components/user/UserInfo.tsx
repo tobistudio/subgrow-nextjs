@@ -1,6 +1,5 @@
 import { useCurrentUser } from "../../users/hooks/useCurrentUser"
-import { useMutation } from "@blitzjs/rpc"
-import logout from "../../auth/mutations/logout"
+
 import { useRouter } from "next/router"
 import Link from "next/link"
 import { Routes } from "@blitzjs/next"
@@ -20,17 +19,25 @@ import LoginButton from "./LoginButton"
 import SignupButton from "./SignupButton"
 import LogoutButton from "./LogoutButton"
 import ProfileButton from "./ProfileButton"
+import ProfileDesignPanel from "components/template/SidePanel/ProfileDesignPanel"
 
-const ProfileDesignPanel = React.lazy(
-  () => import("components/template/SidePanel/ProfileDesignPanel")
-)
+// const ProfileDesignPanel = React.lazy(
+//   () => import("components/template/SidePanel/ProfileDesignPanel")
+// )
 
 const UserInfo = () => {
   const currentUser = useCurrentUser()
   const router = useRouter()
+  //const username = useParam("username", "string")
+
+  console.log("router", router)
 
   if (currentUser) {
-    let myownpage = true
+    let myownpage = false
+
+    if ("/" + currentUser.username === router.asPath) {
+      myownpage = true
+    }
 
     return (
       <Stack direction="row" spacing={2} my={2} mr={3}>

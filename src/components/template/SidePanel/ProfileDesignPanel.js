@@ -1,7 +1,5 @@
 import React from "react"
-import classNames from "classnames"
 import { Drawer } from "components/ui"
-import { HiOutlineCog } from "react-icons/hi"
 import SidePanelContent from "./SidePanelContent"
 import withHeaderItem from "utils/hoc/withHeaderItem"
 import { setPanelExpand } from "store/theme/themeSlice"
@@ -31,11 +29,12 @@ export const ProfileDesignPanel = (props) => {
     }
   }
 
+  // TODO: unknown bug with buttons
   return (
     <>
-      <Button {...rest} onClick={openPanel} variant="contained" aria-label="profile">
-        <FontAwesomeIcon icon={faUser} color={"#a0a0ce"} />
-        <span>Profile</span>
+      <Button onClick={openPanel} variant="contained" aria-label="profile">
+        <FontAwesomeIcon size="sm" icon={faUser} color={"#a0a0ce"} />
+        <span>Edit</span>
       </Button>
 
       <Drawer

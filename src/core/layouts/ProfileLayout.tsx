@@ -1,7 +1,9 @@
 import Head from "next/head"
-import React, { FC } from "react"
+import React, { FC, Suspense } from "react"
 import { BlitzLayout } from "@blitzjs/next"
-const ProfileHeader = React.lazy(() => import("core/layouts/theme1/headers/ProfileHeader"))
+import Grid from "@mui/material/Unstable_Grid2"
+import UserInfo from "../../components/user/UserInfo"
+// const ProfileHeader = React.lazy(() => import("core/layouts/theme1/headers/ProfileHeader"))
 
 const ProfileLayout: BlitzLayout<{
   title?: string
@@ -15,9 +17,20 @@ const ProfileLayout: BlitzLayout<{
         <title>{title || "Sub Grow Profile"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ProfileHeader title="My Profile" type="profile">
-        a
-      </ProfileHeader>
+      <main>
+        <header className="header-wrapper">
+          <Grid container spacing={2}>
+            <Grid xs={6}>logo</Grid>
+            <Grid xs={6}>
+              <div className={"user-info-wrapper"}>
+                <Suspense>
+                  <UserInfo />
+                </Suspense>
+              </div>
+            </Grid>
+          </Grid>
+        </header>
+      </main>
       {children}
     </div>
   )
