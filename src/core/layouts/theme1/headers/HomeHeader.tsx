@@ -7,7 +7,7 @@ import LanguageSelector from "components/template/LanguageSelector"
 import Notification from "components/template/Notification"
 import Logo from "./Logo"
 import Grid from "@mui/material/Unstable_Grid2"
-const SidePanel = React.lazy(() => import("components/template/SidePanel"))
+// const SidePanel = React.lazy(() => import("components/template/SidePanel"))
 // error caused in phpstorm, {children} but fixes typescript error
 const HomeHeader: BlitzLayout<{ title?: string; type?: string }> = ({ title, type, children }) => {
   return (
@@ -20,7 +20,7 @@ const HomeHeader: BlitzLayout<{ title?: string; type?: string }> = ({ title, typ
           <div className={"user-info-wrapper"}>
             <Suspense>
               <UserInfo />
-              <SidePanel />
+              {/*<SidePanel />*/}
             </Suspense>
           </div>
         </Grid>

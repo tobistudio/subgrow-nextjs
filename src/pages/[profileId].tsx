@@ -17,7 +17,6 @@ import getCurrentUser from "../users/queries/getCurrentUser"
 // import getUser from "../users/queries/getUser"
 import getUserForProfile from "../users/queries/getUserForProfile"
 import getSiteForProfile from "../sites/queries/getSiteForProfile"
-import getSites from "../sites/queries/getSites"
 
 // TODO: tik tok video feed
 // https://open-api.tiktok.com/oauth/access_token/
@@ -106,13 +105,13 @@ export const ProfileIndex = () => {
         {/*<FacebookProvider appId="123456789">*/}
         {/*  <Comments href="http://www.facebook.com" />*/}
         {/*</FacebookProvider>*/}
-        <pre>{JSON.stringify(user, null, 2)}</pre>
+        {/*<pre>{JSON.stringify(user, null, 2)}</pre>*/}
 
-        <h2>profile</h2>
-        <pre>{JSON.stringify(profile, null, 2)}</pre>
+        {/*<h2>profile</h2>*/}
+        {/*<pre>{JSON.stringify(profile, null, 2)}</pre>*/}
 
-        <h2>site</h2>
-        <pre>{JSON.stringify(sites, null, 2)}</pre>
+        {/*<h2>site</h2>*/}
+        {/*<pre>{JSON.stringify(sites, null, 2)}</pre>*/}
       </div>
     </>
   )

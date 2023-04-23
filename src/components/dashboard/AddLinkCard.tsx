@@ -95,9 +95,8 @@ export default function LinkListCard({ link }) {
     // TODO: need to check value to see if bad word shows up "badbad" should flag, if "bad" is in badwords.json
     if (~BadWords.indexOf(value && value.toLowerCase())) {
       console.log("BadWords")
-
-      return "bad"
-      //return <FontAwesomeIcon icon={faFaceAnguished} size="xl" style={{ color: "#c90000" }} />
+      //return "bad"
+      return <FontAwesomeIcon icon={faFaceAnguished} size="xl" style={{ color: "#c90000" }} />
     }
 
     return ""
@@ -218,13 +217,14 @@ export default function LinkListCard({ link }) {
         <FinalForm
           onSubmit={onSubmit}
           validate={(values) => {
+            console.log("valuessa dfasdfsadfsadf", values)
             // const errors = {}
             // Fixes build error
             // https://stackoverflow.com/questions/48539216/error-ts2339-property-email-does-not-exist-on-type-object
             const errors: any = {}
 
-            if (!values.name) {
-              errors.name = "A Link Name is required"
+            if (!values.title) {
+              errors.title = "A Link Name is required"
             }
 
             if (!values.url) {

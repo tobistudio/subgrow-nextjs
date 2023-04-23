@@ -1,6 +1,7 @@
 import Head from "next/head"
 import React, { FC } from "react"
 import { BlitzLayout } from "@blitzjs/next"
+const ProfileHeader = React.lazy(() => import("core/layouts/theme1/headers/ProfileHeader"))
 
 const ProfileLayout: BlitzLayout<{
   title?: string
@@ -14,6 +15,9 @@ const ProfileLayout: BlitzLayout<{
         <title>{title || "Sub Grow Profile"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <ProfileHeader title="My Profile" type="profile">
+        a
+      </ProfileHeader>
       {children}
     </div>
   )

@@ -7,8 +7,6 @@ import { BlitzLayout } from "@blitzjs/next"
 // #202A37
 const HomeHeader = React.lazy(() => import("core/layouts/theme1/headers/HomeHeader"))
 const HomeFooter = React.lazy(() => import("core/layouts/theme1/footers/HomeFooter"))
-const LoginFooter = React.lazy(() => import("core/layouts/theme1/footers/LoginFooter"))
-const LoginHeader = React.lazy(() => import("core/layouts/theme1/headers/LoginHeader"))
 
 const HomeLayout: BlitzLayout<{
   title?: string

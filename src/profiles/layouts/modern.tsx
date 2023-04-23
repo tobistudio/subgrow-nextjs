@@ -54,59 +54,6 @@ const Modern = ({ user, profile, sites }) => {
     )
   }
 
-  // useLayoutEffect(() => {
-  //   // no provider without init
-  //   window.FB.init({
-  //     appId            : '241448415049637',
-  //     autoLogAppEvents : true,
-  //     xfbml            : true,
-  //     version          : 'v16.0'
-  //   });
-  //   window.FB.api(
-  //     "/{user-id}/posts",
-  //     function (response) {
-  //       if (response && !response.error) {
-  //         console.log("posts response", response)
-  //       }
-  //     }
-  //   );
-  // }, []);
-
-  // useEffect(() => {
-  //   window.fbAsyncInit = () => {
-  //     window.FB.init({
-  //       appId            : '241448415049637',
-  //       autoLogAppEvents : true,
-  //       xfbml            : true,
-  //       version          : 'v16.0'
-  //     });
-  //
-  //     // https://stackoverflow.com/questions/13944940/facebook-javascript-sdk-uncaught-typeerror-cannot-read-property-userid-of-und
-  //
-  //
-  //     // will only work with https
-  //     // window.FB.getLoginStatus(function(response) {
-  //     //   const uid = response.authResponse && response.authResponse.userID;
-  //     //   console.log("uid",uid);
-  //     // });
-  //
-  //   };
-  //
-  //
-  {
-    /*  // (function (d, s, id) {*/
-  }
-  //   //   var js, fjs = d.getElementsByTagName(s)[0];
-  //   //   if (d.getElementById(id)) { return; }
-  //   //   js = d.createElement(s); js.id = id;
-  //   //   js.src = "https://connect.facebook.net/en_US/sdk.js";
-  //   //   fjs.parentNode.insertBefore(js, fjs);
-  //   // }(document, 'script', 'facebook-jssdk'));
-  //
-  //
-  //
-  // }, []);
-
   return (
     <main style={{ backgroundColor: theme.bgColor ? theme.bgColor : "#202A37" }}>
       <FacebookProvider appId="241448415049637">

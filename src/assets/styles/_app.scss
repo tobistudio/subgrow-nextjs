@@ -3,8 +3,8 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700");
 
 @import "_vars.scss";
-//@import "./components/index.css";
+@import "_mixin.scss";
+@import "./components/_drawer.scss";
 @import "./template/index.scss";
 //@import "./vendors/index.css";
-@import "_mixin.scss";
 @import "_custom.scss";

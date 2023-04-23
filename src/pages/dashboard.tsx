@@ -75,9 +75,9 @@ const Dashboard = () => {
 
             <Grid item xs={4} pl={5}>
               <Card variant="outlined">
-                <CardHeader title="Design" />
+                <CardHeader title="Your Links" />
 
-                <CardContent>Select box with Template And theme</CardContent>
+                <CardContent></CardContent>
               </Card>
 
               {/*<FacebookProvider appId="123456789">*/}

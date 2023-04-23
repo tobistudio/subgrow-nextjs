@@ -6,8 +6,11 @@ import SidePanelContent from "./SidePanelContent"
 import withHeaderItem from "utils/hoc/withHeaderItem"
 import { setPanelExpand } from "store/theme/themeSlice"
 import { useSelector, useDispatch } from "react-redux"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSignOut, faUser } from "@fortawesome/pro-duotone-svg-icons"
+import { Button, Stack } from "@mui/material"
 
-export const SidePanel = (props) => {
+export const ProfileDesignPanel = (props) => {
   const dispatch = useDispatch()
 
   const { className, ...rest } = props
@@ -30,9 +33,11 @@ export const SidePanel = (props) => {
 
   return (
     <>
-      <div className={classNames("text-2xl", className)} onClick={openPanel} {...rest}>
-        <HiOutlineCog />
-      </div>
+      <Button {...rest} onClick={openPanel} variant="contained" aria-label="profile">
+        <FontAwesomeIcon icon={faUser} color={"#a0a0ce"} />
+        <span>Profile</span>
+      </Button>
+
       <Drawer
         title="Profile Design"
         isOpen={panelExpand}
@@ -47,4 +52,4 @@ export const SidePanel = (props) => {
   )
 }
 
-export default withHeaderItem(SidePanel)
+export default withHeaderItem(ProfileDesignPanel)

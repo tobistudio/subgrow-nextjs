@@ -1,5 +1,4 @@
 .hero-area {
-  @extend .gredient-bg;
   color: $white_color;
   background-size: cover;
   background-attachment: fixed;
@@ -30,27 +29,27 @@
   @include animation-duration(2s);
   @include animation-timing-function(ease-in);
 }
-
-.hero-area img {
-  @extend .moveUpDown;
-}
-
-.hero-area h2 {
-  @extend .animate-left;
-  font-size: 45px;
-}
-
-.hero-area p {
-  @extend .animate-right;
-}
-
-.hero-area .btn-default {
-  @extend .animate-left;
-}
-
-.hero-area .btn-default.btn-default-outline {
-  @extend .animate-right;
-}
+//
+//.hero-area img {
+//  @extend .moveUpDown;
+//}
+//
+//.hero-area h2 {
+//  @extend .animate-left;
+//  font-size: 45px;
+//}
+//
+//.hero-area p {
+//  @extend .animate-right;
+//}
+//
+//.hero-area .btn-default {
+//  @extend .animate-left;
+//}
+//
+//.hero-area .btn-default.btn-default-outline {
+//  @extend .animate-right;
+//}
 
 .hero-area .btn {
   margin-right: 20px;

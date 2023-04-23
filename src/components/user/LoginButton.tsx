@@ -3,7 +3,7 @@ import { useMutation } from "@blitzjs/rpc"
 import logout from "../../auth/mutations/logout"
 import { useRouter } from "next/router"
 import Link from "next/link"
-import { Routes } from "@blitzjs/next"
+import { BlitzLayout, Routes } from "@blitzjs/next"
 import React from "react"
 import { Box, Typography, Container, Button, Stack, IconButton } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2" // Grid version 2
@@ -16,39 +16,24 @@ import UserDropdown from "components/template/UserDropdown"
 import { faRightToBracket, faUser, faSignOut } from "@fortawesome/pro-duotone-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { misc } from "configs/colors/default"
-import LoginButton from "./LoginButton"
-import SignupButton from "./SignupButton"
-import LogoutButton from "./LogoutButton"
-import ProfileButton from "./ProfileButton"
 
-const ProfileDesignPanel = React.lazy(
-  () => import("components/template/SidePanel/ProfileDesignPanel")
-)
-
-const UserInfo = () => {
-  const currentUser = useCurrentUser()
+const LoginButton = ({ title }) => {
   const router = useRouter()
 
-  if (currentUser) {
-    let myownpage = true
-
-    return (
-      <Stack direction="row" spacing={2} my={2} mr={3}>
-        {/*{ TODO: show edit button if on your own profile page   }*/}
-
-        {myownpage ? <ProfileDesignPanel /> : <ProfileButton username={currentUser.username} />}
-
-        <LogoutButton />
-      </Stack>
-    )
-  } else {
-    return (
-      <Stack direction="row" spacing={2} my={2} mr={3}>
-        <SignupButton />
-        <LoginButton title="login" />
-      </Stack>
-    )
-  }
+  return (
+    <Button
+      variant="outlined"
+      onClick={async () => {
+        await router.push(Routes.LoginPage())
+      }}
+    >
+      <FontAwesomeIcon
+        icon={faRightToBracket}
+        style={{ color: misc.ff_primary, paddingRight: 7 }}
+      />
+      <span>{title}</span>
+    </Button>
+  )
 }
 
-export default UserInfo
+export default LoginButton

@@ -1,0 +1,99 @@
+//.drawer-content {
+//    @apply bg-white dark:bg-gray-800 shadow-xl absolute flex flex-col;
+//
+//    &.vertical {
+//        @apply h-full;
+//    }
+//
+//    &.horizontal {
+//        @apply w-full;
+//    }
+//}
+//
+//.drawer-header {
+//    @apply flex items-center justify-between py-4 px-6 border-b border-gray-200 dark:border-gray-700;
+//}
+//
+//.drawer-body {
+//    @apply p-6 h-full overflow-y-auto;
+//}
+//
+//.drawer-footer {
+//    @apply flex items-center justify-between py-4 px-6 border-t border-gray-200 dark:border-gray-700;
+//}
+//
+//.drawer-open {
+//    &.drawer-lock-scroll {
+//        @apply overflow-hidden;
+//    }
+//}
+//
+//.drawer-overlay {
+//    transition: all 0.3s ease-in-out;
+//    @apply bg-black bg-opacity-80 inset-0 fixed z-30;
+//}
+
+.drawer-overlay-after-open {
+  opacity: 1;
+}
+
+.drawer-overlay-before-close {
+  opacity: 0;
+}
+
+.drawer-overlay-after-open {
+  opacity: 1;
+}
+.drawer-overlay {
+  --tw-bg-opacity: 0.8;
+  background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: all 0.3s ease-in-out;
+  z-index: 30;
+}
+.drawer-content {
+  --tw-bg-opacity: 1;
+  --tw-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color),
+    0 8px 10px -6px var(--tw-shadow-color);
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+  box-shadow: 0 0 transparent, 0 0 transparent, var(--tw-shadow);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 transparent), var(--tw-ring-shadow, 0 0 transparent),
+    var(--tw-shadow);
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+}
+
+.drawer-content.vertical {
+  height: 100%;
+}
+
+.drawer-header {
+  align-items: center;
+  border-bottom-width: 1px;
+  border-color: rgba(229, 231, 235, var(--tw-border-opacity));
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+}
+
+.close-btn-default,
+.close-btn-default:hover {
+  --tw-text-opacity: 1;
+}
+.close-btn-default {
+  border-radius: 0.25rem;
+  color: rgba(156, 163, 175, var(--tw-text-opacity));
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  padding: 0.25rem;
+}
+.close-btn {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
