@@ -195,14 +195,6 @@ export default function LinkListCard({ link }) {
   return (
     <Card className="card">
       <CardHeader
-        // TODO:
-        action={<FontAwesomeIcon icon={faFacebook} color={"#3f50b5"} />}
-        // avatar={
-        //   <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-        //     R
-        //   </Avatar>
-        // }
-
         // action={
         //   <Switch
         //     checked={activeChecked}

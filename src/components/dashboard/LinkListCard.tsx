@@ -96,6 +96,13 @@ const LinkListCard = ({ link, index, mode, snapshot }) => {
     <Card key={link.id} className="card" style={{ margin: 30 }}>
       <CardHeader
         title={link.title}
+        // TODO: show icon for this link/site
+        // avatar={
+        //   <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+        //     R
+        //   </Avatar>
+        // }
+        // action={<FontAwesomeIcon icon={faFacebook} color={"#3f50b5"} />}
         action={
           <Switch
             // checked={!!link.status}
@@ -107,22 +114,7 @@ const LinkListCard = ({ link, index, mode, snapshot }) => {
         }
       />
 
-      <CardContent
-        // sx={{ p:0, '&:last-child': { pb: 0 }}}
-        sx={{ py: 0 }}
-      >
-        {/*// TODO: add icon for social media*/}
-        {/*<ListItemAvatar>*/}
-        {/*  <Avatar>*/}
-        {/*    <FontAwesomeIcon icon={faFacebook} color={"#3f50b5"} />*/}
-        {/*  </Avatar>*/}
-        {/*</ListItemAvatar>*/}
-        {/*<ListItemText primary={link.name} secondary={link.url} />*/}
-        {/*<DeleteDialog*/}
-        {/*  //selectedValue={selectedValue}*/}
-        {/*  open={open}*/}
-        {/*  onClose={handleClose}*/}
-        {/*/>*/}
+      <CardContent sx={{ py: 0 }}>
         <Typography variant="body1" color={mode === "dark" ? "text.light" : "text.dark"}>
           <Link href={link.url} target="_blank">
             {link.url}
@@ -162,7 +154,7 @@ const LinkListCard = ({ link, index, mode, snapshot }) => {
 
 // https://linktr.ee/admin
 // TODO: replace with fontawesome
-
+// TODO: delete button
 // TODO: add details
 // TODO: add tooltips
 // TODO: add draggable and ordering

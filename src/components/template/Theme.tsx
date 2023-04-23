@@ -40,7 +40,7 @@ const Theme = (props) => {
   const theme = useSelector((state: RootStateOrAny) => state.theme)
 
   const locale = useSelector((state: RootStateOrAny) => state.locale.currentLang)
-  const [isDark] = useDarkMode()
+  //const [isDark] = useDarkMode()
 
   console.log("theasd fasdf asdf asdf me", theme)
   // console.log("theme.palette.primary.main",theme.palette.primary.main);
@@ -245,8 +245,6 @@ const Theme = (props) => {
   })
 
   const currentTheme = {
-    // mode: isDark ? "dark" : "light", // TODO: build error Type error: 'mode' is specified more than once, so this usage will be overwritten.
-    // mode: "dark",
     ...themeConfig,
     ...theme,
     ...{ locale },

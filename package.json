@@ -67,6 +67,7 @@
     "postcss-import": "15.1.0",
     "react": "18.2.0",
     "react-beautiful-dnd": "13.1.1",
+    "react-code-blocks": "0.0.9-0",
     "react-custom-scrollbars-2": "4.5.0",
     "react-dom": "18.2.0",
     "react-facebook": "9.0.12",

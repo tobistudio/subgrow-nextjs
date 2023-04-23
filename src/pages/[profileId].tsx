@@ -15,11 +15,12 @@ import UserInfo from "../components/user/UserInfo"
 
 // lazy load available templates
 const Modern = React.lazy(() => import("profiles/layouts/modern"))
-// export const ProfileIndex = () => {
-//   return (<div>sdf</div>)
-// }
+export const ProfileIndex2 = () => {
+  return <div>sdf</div>
+}
+
 export const ProfileIndex = () => {
-  const router = useRouter()
+  // const router = useRouter()
   const profileId = useParam("profileId", "string")
   console.log("profileId", profileId)
   // @ts-ignore
@@ -63,12 +64,7 @@ export const ProfileIndex = () => {
   let layoutType
   switch (userLayout) {
     case "modern":
-      // layoutType = lazy(() => import('profiles/layouts/modern'))
       layoutType = <Modern user={user} profile={profile} sites={sites} />
-      //layoutType = <div>test layout</div>
-      break
-    case "y":
-      // code block
       break
     default:
       layoutType = <Modern user={user} profile={profile} sites={sites} />
@@ -91,30 +87,7 @@ export const ProfileIndex = () => {
           </Grid>
         </Grid>
       </header>
-
       {layoutType}
-
-      {/*<FacebookProvider appId="100091929967851" target="_top">*/}
-      {/*  <Like href="http://www.facebook.com" colorScheme="dark" showFaces share />*/}
-      {/*</FacebookProvider>*/}
-
-      {/*<ShareBtn*/}
-      {/*  url={`https://facebook.com/${profile.username}`}*/}
-      {/*  text={"share"}*/}
-      {/*  className='ib'*/}
-      {/*  displayText='Share'*/}
-      {/*/>*/}
-
-      {/*<FacebookProvider appId="123456789">*/}
-      {/*  <Comments href="http://www.facebook.com" />*/}
-      {/*</FacebookProvider>*/}
-      {/*<pre>{JSON.stringify(user, null, 2)}</pre>*/}
-
-      {/*<h2>profile</h2>*/}
-      {/*<pre>{JSON.stringify(profile, null, 2)}</pre>*/}
-
-      {/*<h2>site</h2>*/}
-      {/*<pre>{JSON.stringify(sites, null, 2)}</pre>*/}
     </>
   )
 }

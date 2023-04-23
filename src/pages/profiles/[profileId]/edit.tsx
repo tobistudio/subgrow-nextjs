@@ -31,39 +31,33 @@ export const EditProfile = () => {
 
   return (
     <>
-      <Head>
-        <title>Edit Profile {profile.id}</title>
-      </Head>
+      <h1>Edit Profile {profile.id}</h1>
+      <pre>{JSON.stringify(profile, null, 2)}</pre>
 
-      <AdminLayout>
-        <h1>Edit Profile {profile.id}</h1>
-        <pre>{JSON.stringify(profile, null, 2)}</pre>
-
-        <ProfileForm
-          submitText="Update Profile"
-          // TODO use a zod schema for form validation
-          //  - Tip: extract mutation's schema into a shared `validations.ts` file and
-          //         then import and use it here
-          // schema={UpdateProfile}
-          initialValues={profile}
-          onSubmit={async (values) => {
-            try {
-              const updated = await updateProfileMutation({
-                id: profile.id,
-                ...values,
-              })
-              await setQueryData(updated)
-              // await router.push(Routes.ShowProfileIndexAdminPage({ profileId: updated.id }))
-              await router.push(`/${updated.username}`)
-            } catch (error: any) {
-              console.error(error)
-              return {
-                [FORM_ERROR]: error.toString(),
-              }
+      <ProfileForm
+        submitText="Update Profile"
+        // TODO use a zod schema for form validation
+        //  - Tip: extract mutation's schema into a shared `validations.ts` file and
+        //         then import and use it here
+        // schema={UpdateProfile}
+        initialValues={profile}
+        onSubmit={async (values) => {
+          try {
+            const updated = await updateProfileMutation({
+              id: profile.id,
+              ...values,
+            })
+            await setQueryData(updated)
+            // await router.push(Routes.ShowProfileIndexAdminPage({ profileId: updated.id }))
+            await router.push(`/${updated.username}`)
+          } catch (error: any) {
+            console.error(error)
+            return {
+              [FORM_ERROR]: error.toString(),
             }
-          }}
-        />
-      </AdminLayout>
+          }
+        }}
+      />
     </>
   )
 }
