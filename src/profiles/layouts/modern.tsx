@@ -95,8 +95,6 @@ const Modern = ({ user, profile, sites }) => {
 
               <Box
                 display="flex"
-                // width={500} height={80}
-                //bgcolor="lightgreen"
                 alignItems={theme.linkAlign ? theme.linkAlign : "center"}
                 justifyContent={theme.linkAlign ? theme.linkAlign : "center"}
               >

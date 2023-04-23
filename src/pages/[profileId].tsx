@@ -1,22 +1,14 @@
-import React, { lazy, Suspense, useEffect } from "react"
-import { Routes } from "@blitzjs/next"
+import React, { Suspense } from "react"
 import Head from "next/head"
-import Link from "next/link"
 import { useRouter } from "next/router"
 import { useQuery, useMutation, usePaginatedQuery } from "@blitzjs/rpc"
 import { useParam } from "@blitzjs/next"
-// import ShareBtn from 'react-share-button';
-import AdminLayout from "core/layouts/AdminLayout"
+import ProfileLayout from "core/layouts/ProfileLayout"
 import getProfile from "profiles/queries/getProfile"
-import deleteProfile from "profiles/mutations/deleteProfile"
-import { Button } from "@mui/material"
-import ProfileLayout from "../core/layouts/ProfileLayout"
-
-import { FacebookProvider, Like, ShareButton, Comments } from "react-facebook"
-import getCurrentUser from "../users/queries/getCurrentUser"
-// import getUser from "../users/queries/getUser"
 import getUserForProfile from "../users/queries/getUserForProfile"
 import getSiteForProfile from "../sites/queries/getSiteForProfile"
+import Grid from "@mui/material/Unstable_Grid2"
+import UserInfo from "../components/user/UserInfo"
 
 // TODO: tik tok video feed
 // https://open-api.tiktok.com/oauth/access_token/
@@ -87,32 +79,42 @@ export const ProfileIndex = () => {
       <Head>
         <title>{profile.title ? profile.username : profile.username}</title>
       </Head>
+      <header>
+        <Grid container spacing={2} display="flex" justifyContent="flex-end" alignItems="flex-end">
+          <Grid xs={6}>logo</Grid>
+          <Grid xs={6}>
+            <div className={"user-info-wrapper"}>
+              <Suspense>
+                <UserInfo />
+              </Suspense>
+            </div>
+          </Grid>
+        </Grid>
+      </header>
 
-      <div>
-        {layoutType}
+      {layoutType}
 
-        {/*<FacebookProvider appId="100091929967851" target="_top">*/}
-        {/*  <Like href="http://www.facebook.com" colorScheme="dark" showFaces share />*/}
-        {/*</FacebookProvider>*/}
+      {/*<FacebookProvider appId="100091929967851" target="_top">*/}
+      {/*  <Like href="http://www.facebook.com" colorScheme="dark" showFaces share />*/}
+      {/*</FacebookProvider>*/}
 
-        {/*<ShareBtn*/}
-        {/*  url={`https://facebook.com/${profile.username}`}*/}
-        {/*  text={"share"}*/}
-        {/*  className='ib'*/}
-        {/*  displayText='Share'*/}
-        {/*/>*/}
+      {/*<ShareBtn*/}
+      {/*  url={`https://facebook.com/${profile.username}`}*/}
+      {/*  text={"share"}*/}
+      {/*  className='ib'*/}
+      {/*  displayText='Share'*/}
+      {/*/>*/}
 
-        {/*<FacebookProvider appId="123456789">*/}
-        {/*  <Comments href="http://www.facebook.com" />*/}
-        {/*</FacebookProvider>*/}
-        {/*<pre>{JSON.stringify(user, null, 2)}</pre>*/}
+      {/*<FacebookProvider appId="123456789">*/}
+      {/*  <Comments href="http://www.facebook.com" />*/}
+      {/*</FacebookProvider>*/}
+      {/*<pre>{JSON.stringify(user, null, 2)}</pre>*/}
 
-        {/*<h2>profile</h2>*/}
-        {/*<pre>{JSON.stringify(profile, null, 2)}</pre>*/}
+      {/*<h2>profile</h2>*/}
+      {/*<pre>{JSON.stringify(profile, null, 2)}</pre>*/}
 
-        {/*<h2>site</h2>*/}
-        {/*<pre>{JSON.stringify(sites, null, 2)}</pre>*/}
-      </div>
+      {/*<h2>site</h2>*/}
+      {/*<pre>{JSON.stringify(sites, null, 2)}</pre>*/}
     </>
   )
 }
@@ -125,7 +127,8 @@ const ShowProfileIndexPage = () => {
   )
 }
 
-ShowProfileIndexPage.authenticate = false
+// ShowProfileIndexPage.authenticate = false
 ShowProfileIndexPage.getLayout = (page) => <ProfileLayout>{page}</ProfileLayout>
+// TODO: some type of flashing font material ui issue
 
 export default ShowProfileIndexPage
