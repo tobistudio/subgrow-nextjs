@@ -100,8 +100,9 @@ export const EditSite = () => {
                   //   id: site.id,
                   //   ...values,
                   // })
-
-                  const updated = await updateSiteMutation(...values)
+                  console.log("values", values)
+                  // const updated = await updateSiteMutation(...values)
+                  const updated = await updateSiteMutation(values)
 
                   await setQueryData(updated)
                   await router.push(Routes.ShowSitePage({ siteId: updated.id }))

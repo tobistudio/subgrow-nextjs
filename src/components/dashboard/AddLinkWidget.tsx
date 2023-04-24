@@ -152,9 +152,7 @@ export default function AddLinkWidget({ sites }) {
         <Button
           variant="addlink"
           onClick={addComponent}
-          startIcon={
-            <FontAwesomeIcon icon={faPlus} style={{ color: misc.fa_primary, paddingRight: 7 }} />
-          }
+          startIcon={<FontAwesomeIcon icon={faPlus} style={{ color: misc.fa_primary }} />}
         >
           <span>Add Link</span>
         </Button>

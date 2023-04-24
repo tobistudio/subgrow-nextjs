@@ -1,8 +1,8 @@
 import React from "react"
 import { Button } from "@mui/material"
-import { faRightToBracket, faUser, faSignOut } from "@fortawesome/pro-duotone-svg-icons"
+import { faUser } from "@fortawesome/pro-duotone-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-
+import { misc } from "configs/colors/default"
 import { useRouter } from "next/router"
 
 export const ProfileButton = (username) => {
@@ -15,9 +15,7 @@ export const ProfileButton = (username) => {
       }}
       variant="outlined"
       aria-label="Profile"
-      startIcon={
-        <FontAwesomeIcon icon={faUser} size="sm" style={{ color: "#0014ee", paddingRight: 7 }} />
-      }
+      startIcon={<FontAwesomeIcon icon={faUser} size="sm" style={{ color: misc.fa_secondary }} />}
     >
       <span>Profile</span>
     </Button>
