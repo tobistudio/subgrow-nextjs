@@ -1,8 +1,21 @@
 ## setup
 
+
+Login using this account with username tester
+http://localhost:3000/auth/login
+
 tester@gmail.com
 welcome123
 
+Profile Page
+http://localhost:3000/tester
+
+Dashboard Page
+http://localhost:3000/dashboard
+
+
+Signup
+http://localhost:3000/auth/signup
 
 
 
@@ -15,6 +28,14 @@ amir.meshkin@gmail.com
 
 DB mutation
 https://github.com/ameshkin/subgrow/blob/324456f1cf466f438c1fda5142b295d08c57ff4e/src/sites/mutations/updateLinkOrder.ts
+
+
+### TODO: fiver finish delete dialog box
+
+When someone clicks delete, open dialog box. On OK delete
+https://github.com/ameshkin/subgrow/blob/52faba6ea95d2a30c7a927674fdb175522e5422d/src/components/dashboard/LinkListCard.tsx
+
+
 
 
 
@@ -35,13 +56,6 @@ Also, cleanup to stop the state from running a bunch of times
 
 Fix Sidepanel State
 https://github.com/ameshkin/subgrow/blob/b535280ad63dc7c530b80bb0cafc3935da903fb8/src/components/template/SidePanel/ProfileDesignPanel.js
-
-
-
-### TODO: fiver finish delete dialog box
-
-When someone clicks delete, open dialog box. On OK delete
-https://github.com/ameshkin/subgrow/blob/52faba6ea95d2a30c7a927674fdb175522e5422d/src/components/dashboard/LinkListCard.tsx
 
 
 

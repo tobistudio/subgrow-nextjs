@@ -92,13 +92,13 @@ model Account {
 model Site {
   id          String   @id @default(cuid())
   userId      Int
-  title       String?
   url         String
+  title       String?
+  description String?
   order       Int      @default(0)
   type        Sitetype @default(custom)
   icon        String?
   image       String?
-  description String?
   status      Status   @default(active)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

@@ -91,13 +91,13 @@ export type Account = {
 export type Site = {
   id: string
   userId: number
-  title: string | null
   url: string
+  title: string | null
+  description: string | null
   order: number
   type: Sitetype
   icon: string | null
   image: string | null
-  description: string | null
   status: Status
   createdAt: Date
   updatedAt: Date
@@ -5888,13 +5888,13 @@ export namespace Prisma {
   export type SiteMinAggregateOutputType = {
     id: string | null
     userId: number | null
-    title: string | null
     url: string | null
+    title: string | null
+    description: string | null
     order: number | null
     type: Sitetype | null
     icon: string | null
     image: string | null
-    description: string | null
     status: Status | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -5904,13 +5904,13 @@ export namespace Prisma {
   export type SiteMaxAggregateOutputType = {
     id: string | null
     userId: number | null
-    title: string | null
     url: string | null
+    title: string | null
+    description: string | null
     order: number | null
     type: Sitetype | null
     icon: string | null
     image: string | null
-    description: string | null
     status: Status | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -5920,13 +5920,13 @@ export namespace Prisma {
   export type SiteCountAggregateOutputType = {
     id: number
     userId: number
-    title: number
     url: number
+    title: number
+    description: number
     order: number
     type: number
     icon: number
     image: number
-    description: number
     status: number
     createdAt: number
     updatedAt: number
@@ -5947,13 +5947,13 @@ export namespace Prisma {
   export type SiteMinAggregateInputType = {
     id?: true
     userId?: true
-    title?: true
     url?: true
+    title?: true
+    description?: true
     order?: true
     type?: true
     icon?: true
     image?: true
-    description?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -5963,13 +5963,13 @@ export namespace Prisma {
   export type SiteMaxAggregateInputType = {
     id?: true
     userId?: true
-    title?: true
     url?: true
+    title?: true
+    description?: true
     order?: true
     type?: true
     icon?: true
     image?: true
-    description?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -5979,13 +5979,13 @@ export namespace Prisma {
   export type SiteCountAggregateInputType = {
     id?: true
     userId?: true
-    title?: true
     url?: true
+    title?: true
+    description?: true
     order?: true
     type?: true
     icon?: true
     image?: true
-    description?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -6079,13 +6079,13 @@ export namespace Prisma {
   export type SiteGroupByOutputType = {
     id: string
     userId: number
-    title: string | null
     url: string
+    title: string | null
+    description: string | null
     order: number
     type: Sitetype
     icon: string | null
     image: string | null
-    description: string | null
     status: Status
     createdAt: Date
     updatedAt: Date
@@ -6112,13 +6112,13 @@ export namespace Prisma {
   export type SiteSelect = {
     id?: boolean
     userId?: boolean
-    title?: boolean
     url?: boolean
+    title?: boolean
+    description?: boolean
     order?: boolean
     type?: boolean
     icon?: boolean
     image?: boolean
-    description?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -18360,13 +18360,13 @@ export namespace Prisma {
   export const SiteScalarFieldEnum: {
     id: "id"
     userId: "userId"
-    title: "title"
     url: "url"
+    title: "title"
+    description: "description"
     order: "order"
     type: "type"
     icon: "icon"
     image: "image"
-    description: "description"
     status: "status"
     createdAt: "createdAt"
     updatedAt: "updatedAt"
@@ -18751,13 +18751,13 @@ export namespace Prisma {
     NOT?: Enumerable<SiteWhereInput>
     id?: StringFilter | string
     userId?: IntFilter | number
-    title?: StringNullableFilter | string | null
     url?: StringFilter | string
+    title?: StringNullableFilter | string | null
+    description?: StringNullableFilter | string | null
     order?: IntFilter | number
     type?: EnumSitetypeFilter | Sitetype
     icon?: StringNullableFilter | string | null
     image?: StringNullableFilter | string | null
-    description?: StringNullableFilter | string | null
     status?: EnumStatusFilter | Status
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
@@ -18769,13 +18769,13 @@ export namespace Prisma {
   export type SiteOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
-    title?: SortOrder
     url?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
     order?: SortOrder
     type?: SortOrder
     icon?: SortOrder
     image?: SortOrder
-    description?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -18791,13 +18791,13 @@ export namespace Prisma {
   export type SiteOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
-    title?: SortOrder
     url?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
     order?: SortOrder
     type?: SortOrder
     icon?: SortOrder
     image?: SortOrder
-    description?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -18815,13 +18815,13 @@ export namespace Prisma {
     NOT?: Enumerable<SiteScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
     userId?: IntWithAggregatesFilter | number
-    title?: StringNullableWithAggregatesFilter | string | null
     url?: StringWithAggregatesFilter | string
+    title?: StringNullableWithAggregatesFilter | string | null
+    description?: StringNullableWithAggregatesFilter | string | null
     order?: IntWithAggregatesFilter | number
     type?: EnumSitetypeWithAggregatesFilter | Sitetype
     icon?: StringNullableWithAggregatesFilter | string | null
     image?: StringNullableWithAggregatesFilter | string | null
-    description?: StringNullableWithAggregatesFilter | string | null
     status?: EnumStatusWithAggregatesFilter | Status
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
@@ -19996,13 +19996,13 @@ export namespace Prisma {
 
   export type SiteCreateInput = {
     id?: string
-    title?: string | null
     url: string
+    title?: string | null
+    description?: string | null
     order?: number
     type?: Sitetype
     icon?: string | null
     image?: string | null
-    description?: string | null
     status?: Status
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -20013,13 +20013,13 @@ export namespace Prisma {
   export type SiteUncheckedCreateInput = {
     id?: string
     userId: number
-    title?: string | null
     url: string
+    title?: string | null
+    description?: string | null
     order?: number
     type?: Sitetype
     icon?: string | null
     image?: string | null
-    description?: string | null
     status?: Status
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -20028,13 +20028,13 @@ export namespace Prisma {
 
   export type SiteUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20045,13 +20045,13 @@ export namespace Prisma {
   export type SiteUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20061,13 +20061,13 @@ export namespace Prisma {
   export type SiteCreateManyInput = {
     id?: string
     userId: number
-    title?: string | null
     url: string
+    title?: string | null
+    description?: string | null
     order?: number
     type?: Sitetype
     icon?: string | null
     image?: string | null
-    description?: string | null
     status?: Status
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -20076,13 +20076,13 @@ export namespace Prisma {
 
   export type SiteUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20091,13 +20091,13 @@ export namespace Prisma {
   export type SiteUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21598,13 +21598,13 @@ export namespace Prisma {
   export type SiteCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    title?: SortOrder
     url?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
     order?: SortOrder
     type?: SortOrder
     icon?: SortOrder
     image?: SortOrder
-    description?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -21619,13 +21619,13 @@ export namespace Prisma {
   export type SiteMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    title?: SortOrder
     url?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
     order?: SortOrder
     type?: SortOrder
     icon?: SortOrder
     image?: SortOrder
-    description?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -21635,13 +21635,13 @@ export namespace Prisma {
   export type SiteMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    title?: SortOrder
     url?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
     order?: SortOrder
     type?: SortOrder
     icon?: SortOrder
     image?: SortOrder
-    description?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -24040,13 +24040,13 @@ export namespace Prisma {
 
   export type SiteCreateWithoutUserInput = {
     id?: string
-    title?: string | null
     url: string
+    title?: string | null
+    description?: string | null
     order?: number
     type?: Sitetype
     icon?: string | null
     image?: string | null
-    description?: string | null
     status?: Status
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -24055,13 +24055,13 @@ export namespace Prisma {
 
   export type SiteUncheckedCreateWithoutUserInput = {
     id?: string
-    title?: string | null
     url: string
+    title?: string | null
+    description?: string | null
     order?: number
     type?: Sitetype
     icon?: string | null
     image?: string | null
-    description?: string | null
     status?: Status
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -24396,13 +24396,13 @@ export namespace Prisma {
     NOT?: Enumerable<SiteScalarWhereInput>
     id?: StringFilter | string
     userId?: IntFilter | number
-    title?: StringNullableFilter | string | null
     url?: StringFilter | string
+    title?: StringNullableFilter | string | null
+    description?: StringNullableFilter | string | null
     order?: IntFilter | number
     type?: EnumSitetypeFilter | Sitetype
     icon?: StringNullableFilter | string | null
     image?: StringNullableFilter | string | null
-    description?: StringNullableFilter | string | null
     status?: EnumStatusFilter | Status
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
@@ -26316,13 +26316,13 @@ export namespace Prisma {
 
   export type SiteCreateWithoutProfileInput = {
     id?: string
-    title?: string | null
     url: string
+    title?: string | null
+    description?: string | null
     order?: number
     type?: Sitetype
     icon?: string | null
     image?: string | null
-    description?: string | null
     status?: Status
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -26332,13 +26332,13 @@ export namespace Prisma {
   export type SiteUncheckedCreateWithoutProfileInput = {
     id?: string
     userId: number
-    title?: string | null
     url: string
+    title?: string | null
+    description?: string | null
     order?: number
     type?: Sitetype
     icon?: string | null
     image?: string | null
-    description?: string | null
     status?: Status
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -26512,13 +26512,13 @@ export namespace Prisma {
 
   export type SiteCreateManyUserInput = {
     id?: string
-    title?: string | null
     url: string
+    title?: string | null
+    description?: string | null
     order?: number
     type?: Sitetype
     icon?: string | null
     image?: string | null
-    description?: string | null
     status?: Status
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -26816,13 +26816,13 @@ export namespace Prisma {
 
   export type SiteUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26831,13 +26831,13 @@ export namespace Prisma {
 
   export type SiteUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26846,13 +26846,13 @@ export namespace Prisma {
 
   export type SiteUncheckedUpdateManyWithoutSiteInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -27049,13 +27049,13 @@ export namespace Prisma {
   export type SiteCreateManyProfileInput = {
     id?: string
     userId: number
-    title?: string | null
     url: string
+    title?: string | null
+    description?: string | null
     order?: number
     type?: Sitetype
     icon?: string | null
     image?: string | null
-    description?: string | null
     status?: Status
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -27063,13 +27063,13 @@ export namespace Prisma {
 
   export type SiteUpdateWithoutProfileInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -27079,13 +27079,13 @@ export namespace Prisma {
   export type SiteUncheckedUpdateWithoutProfileInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
