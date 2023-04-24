@@ -23,10 +23,22 @@ export const authenticateUser = async (rawEmail: string, rawPassword: string) =>
   return rest
 }
 
+/**
+ * Clear out any remaining sessions and renew
+ * @param userId
+ */
+export const clearSession = async (userId) => {
+  return await db.session.delete({ where: { userId } })
+}
+
 export default resolver.pipe(resolver.zod(Login), async ({ email, password }, ctx) => {
   // This throws an error if credentials are invalid
   const user = await authenticateUser(email, password)
-  console.log("user login", user)
+
+  // delete session entry for this user if exists even if login page will forward
+  const session = await clearSession(user.id)
+
+  console.log("user session", session)
   await ctx.session.$create({ username: user.username, userId: user.id, role: user.role as Role })
 
   return user

@@ -29,10 +29,10 @@ export const ProfileButton = (username) => {
       }}
       variant="outlined"
       aria-label="Profile"
-      //edge="start"
+      startIcon={
+        <FontAwesomeIcon icon={faUser} size="sm" style={{ color: "#0014ee", paddingRight: 7 }} />
+      }
     >
-      {/*<FontAwesomeIcon icon={faUser} style={{ color: "#0014ee", paddingRight: 7 }} />*/}
-      <FontAwesomeIcon icon={faUser} size="sm" style={{ color: "#0014ee", paddingRight: 7 }} />
       <span>Profile</span>
     </Button>
   )

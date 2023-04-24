@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSignOut, faUser } from "@fortawesome/pro-duotone-svg-icons"
 import { Button, Stack } from "@mui/material"
+import { misc } from "../../../configs/colors/default"
 
 export const ProfileDesignPanel = (props) => {
   const dispatch = useDispatch()
@@ -21,6 +22,7 @@ export const ProfileDesignPanel = (props) => {
     dispatch(setPanelExpand(true))
   }
 
+  // TODO: Fixme state here, issue with state and buttons
   const closePanel = () => {
     dispatch(setPanelExpand(false))
     const bodyClassList = document.body.classList
@@ -32,8 +34,12 @@ export const ProfileDesignPanel = (props) => {
   // TODO: unknown bug with buttons
   return (
     <>
-      <Button onClick={openPanel} variant="contained" aria-label="profile">
-        <FontAwesomeIcon size="sm" icon={faUser} color={"#a0a0ce"} />
+      <Button
+        onClick={openPanel}
+        variant="contained"
+        aria-label="profile"
+        startIcon={<FontAwesomeIcon icon={faUser} color={"#a0a0ce"} />}
+      >
         <span>Edit</span>
       </Button>
 

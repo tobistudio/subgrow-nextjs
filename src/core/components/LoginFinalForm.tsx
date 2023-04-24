@@ -118,17 +118,11 @@ export function LoginFinalForm<S extends z.ZodType<any, any>>({
         <form onSubmit={handleSubmit} className={`banner ${submitError ? "error" : ""}`} {...props}>
           {submitError && (
             <Alert severity="error" className="mt-4 mb-4">
-              There was a problem with your submission.
+              {submitError}
             </Alert>
           )}
-          {/* Form fields supplied as children are rendered here */}
-          {children}
 
-          {submitError && (
-            <div role="alert" style={{ color: "red" }}>
-              {submitError}
-            </div>
-          )}
+          {children}
 
           {/* TODO: material ui button not working */}
           {submitText && (

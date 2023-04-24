@@ -116,7 +116,7 @@ export const EditSite = () => {
                 <form onSubmit={handleSubmit} className={`banner ${submitError ? "error" : ""}`}>
                   {submitError && (
                     <Alert severity="error" className="mt-4 mb-4">
-                      There was a problem with your submission.
+                      {submitError}
                     </Alert>
                   )}
 
