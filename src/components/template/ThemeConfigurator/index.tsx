@@ -43,6 +43,7 @@ const ThemeConfigurator = ({ callBackClose }) => {
   }
 
   const handleBgColorChange = (color) => {
+    // @ts-ignore
     document.getElementById("profile-main").style.backgroundColor = color
     //setColorBg(color)
   }

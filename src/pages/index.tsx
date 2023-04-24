@@ -33,15 +33,8 @@ const Home: BlitzPage = () => {
     <HomeLayout title="Home" type="home">
       <main>
         <Hero />
-        {/*<Grid className="display">*/}
-        {/*  <Cell small={2} large={4}></Cell>*/}
-        {/*  <Cell small={4} large={4}></Cell>*/}
-        {/*  <Cell small={6} large={4}>*/}
-        {/*    4 columns*/}
-        {/*  </Cell>*/}
-        {/*</Grid>*/}
 
-        <PricingTables />
+        {/*<PricingTables />*/}
       </main>
     </HomeLayout>
   )
