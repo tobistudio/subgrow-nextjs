@@ -299,10 +299,10 @@ model Profile {
 model Services {
   id          Int      @id @default(autoincrement())
   name        String? // may be used later
+  description String?
   order       Int      @default(0)
   api_key     String?
   api_secret  String?
-  description String?
   site_name   String? // facebook
   show_feed   Yesno    @default(no)
   show_share  Yesno    @default(no)

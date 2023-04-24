@@ -11,6 +11,18 @@ https://github.com/ameshkin/subgrow/blob/324456f1cf466f438c1fda5142b295d08c57ff4
 
 
 
+### Fix error with state
+### udpate react redux to 8, and fix startup error
+redux-persist failed to create sync storage. falling back to noop storage.
+problem with action { type: '@@redux/INITr.o.o.s.s' }
+
+Also store state in local storage
+
+// TODO: endAdornment with if else condtional instead of state
+
+Keep in mind, the state variables are built. I just need the upgrade, and some modifications to the files.
+
+Also, cleanup to stop the state from running a bunch of times
 
 
 
@@ -91,20 +103,11 @@ needs to delete if user is deleted, or user logs out
 FIVER
 
 
-### Fix error with state
-redux-persist failed to create sync storage. falling back to noop storage.
-problem with action { type: '@@redux/INITr.o.o.s.s' }
-
-Also store state in local storage
-
-// TODO: endAdornment with if else condtional instead of state
 
 
 
 
 
-
-### udpate react redux to 8, and fix startup error
 
 
 ### Check Widget

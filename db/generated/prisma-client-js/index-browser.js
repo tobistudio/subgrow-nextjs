@@ -226,10 +226,10 @@ exports.Prisma.ProfileScalarFieldEnum = {
 exports.Prisma.ServicesScalarFieldEnum = {
   id: "id",
   name: "name",
+  description: "description",
   order: "order",
   api_key: "api_key",
   api_secret: "api_secret",
-  description: "description",
   site_name: "site_name",
   show_feed: "show_feed",
   show_share: "show_share",

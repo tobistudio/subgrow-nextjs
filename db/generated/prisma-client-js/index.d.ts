@@ -276,10 +276,10 @@ export type Profile = {
 export type Services = {
   id: number
   name: string | null
+  description: string | null
   order: number
   api_key: string | null
   api_secret: string | null
-  description: string | null
   site_name: string | null
   show_feed: Yesno
   show_share: Yesno
@@ -17182,10 +17182,10 @@ export namespace Prisma {
   export type ServicesMinAggregateOutputType = {
     id: number | null
     name: string | null
+    description: string | null
     order: number | null
     api_key: string | null
     api_secret: string | null
-    description: string | null
     site_name: string | null
     show_feed: Yesno | null
     show_share: Yesno | null
@@ -17197,10 +17197,10 @@ export namespace Prisma {
   export type ServicesMaxAggregateOutputType = {
     id: number | null
     name: string | null
+    description: string | null
     order: number | null
     api_key: string | null
     api_secret: string | null
-    description: string | null
     site_name: string | null
     show_feed: Yesno | null
     show_share: Yesno | null
@@ -17212,10 +17212,10 @@ export namespace Prisma {
   export type ServicesCountAggregateOutputType = {
     id: number
     name: number
+    description: number
     order: number
     api_key: number
     api_secret: number
-    description: number
     site_name: number
     show_feed: number
     show_share: number
@@ -17238,10 +17238,10 @@ export namespace Prisma {
   export type ServicesMinAggregateInputType = {
     id?: true
     name?: true
+    description?: true
     order?: true
     api_key?: true
     api_secret?: true
-    description?: true
     site_name?: true
     show_feed?: true
     show_share?: true
@@ -17253,10 +17253,10 @@ export namespace Prisma {
   export type ServicesMaxAggregateInputType = {
     id?: true
     name?: true
+    description?: true
     order?: true
     api_key?: true
     api_secret?: true
-    description?: true
     site_name?: true
     show_feed?: true
     show_share?: true
@@ -17268,10 +17268,10 @@ export namespace Prisma {
   export type ServicesCountAggregateInputType = {
     id?: true
     name?: true
+    description?: true
     order?: true
     api_key?: true
     api_secret?: true
-    description?: true
     site_name?: true
     show_feed?: true
     show_share?: true
@@ -17367,10 +17367,10 @@ export namespace Prisma {
   export type ServicesGroupByOutputType = {
     id: number
     name: string | null
+    description: string | null
     order: number
     api_key: string | null
     api_secret: string | null
-    description: string | null
     site_name: string | null
     show_feed: Yesno
     show_share: Yesno
@@ -17399,10 +17399,10 @@ export namespace Prisma {
   export type ServicesSelect = {
     id?: boolean
     name?: boolean
+    description?: boolean
     order?: boolean
     api_key?: boolean
     api_secret?: boolean
-    description?: boolean
     site_name?: boolean
     show_feed?: boolean
     show_share?: boolean
@@ -18326,10 +18326,10 @@ export namespace Prisma {
   export const ServicesScalarFieldEnum: {
     id: "id"
     name: "name"
+    description: "description"
     order: "order"
     api_key: "api_key"
     api_secret: "api_secret"
-    description: "description"
     site_name: "site_name"
     show_feed: "show_feed"
     show_share: "show_share"
@@ -19522,10 +19522,10 @@ export namespace Prisma {
     NOT?: Enumerable<ServicesWhereInput>
     id?: IntFilter | number
     name?: StringNullableFilter | string | null
+    description?: StringNullableFilter | string | null
     order?: IntFilter | number
     api_key?: StringNullableFilter | string | null
     api_secret?: StringNullableFilter | string | null
-    description?: StringNullableFilter | string | null
     site_name?: StringNullableFilter | string | null
     show_feed?: EnumYesnoFilter | Yesno
     show_share?: EnumYesnoFilter | Yesno
@@ -19537,10 +19537,10 @@ export namespace Prisma {
   export type ServicesOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
+    description?: SortOrder
     order?: SortOrder
     api_key?: SortOrder
     api_secret?: SortOrder
-    description?: SortOrder
     site_name?: SortOrder
     show_feed?: SortOrder
     show_share?: SortOrder
@@ -19556,10 +19556,10 @@ export namespace Prisma {
   export type ServicesOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
+    description?: SortOrder
     order?: SortOrder
     api_key?: SortOrder
     api_secret?: SortOrder
-    description?: SortOrder
     site_name?: SortOrder
     show_feed?: SortOrder
     show_share?: SortOrder
@@ -19579,10 +19579,10 @@ export namespace Prisma {
     NOT?: Enumerable<ServicesScalarWhereWithAggregatesInput>
     id?: IntWithAggregatesFilter | number
     name?: StringNullableWithAggregatesFilter | string | null
+    description?: StringNullableWithAggregatesFilter | string | null
     order?: IntWithAggregatesFilter | number
     api_key?: StringNullableWithAggregatesFilter | string | null
     api_secret?: StringNullableWithAggregatesFilter | string | null
-    description?: StringNullableWithAggregatesFilter | string | null
     site_name?: StringNullableWithAggregatesFilter | string | null
     show_feed?: EnumYesnoWithAggregatesFilter | Yesno
     show_share?: EnumYesnoWithAggregatesFilter | Yesno
@@ -20991,10 +20991,10 @@ export namespace Prisma {
 
   export type ServicesCreateInput = {
     name?: string | null
+    description?: string | null
     order?: number
     api_key?: string | null
     api_secret?: string | null
-    description?: string | null
     site_name?: string | null
     show_feed?: Yesno
     show_share?: Yesno
@@ -21006,10 +21006,10 @@ export namespace Prisma {
   export type ServicesUncheckedCreateInput = {
     id?: number
     name?: string | null
+    description?: string | null
     order?: number
     api_key?: string | null
     api_secret?: string | null
-    description?: string | null
     site_name?: string | null
     show_feed?: Yesno
     show_share?: Yesno
@@ -21020,10 +21020,10 @@ export namespace Prisma {
 
   export type ServicesUpdateInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
     site_name?: NullableStringFieldUpdateOperationsInput | string | null
     show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
     show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
@@ -21035,10 +21035,10 @@ export namespace Prisma {
   export type ServicesUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
     site_name?: NullableStringFieldUpdateOperationsInput | string | null
     show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
     show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
@@ -21050,10 +21050,10 @@ export namespace Prisma {
   export type ServicesCreateManyInput = {
     id?: number
     name?: string | null
+    description?: string | null
     order?: number
     api_key?: string | null
     api_secret?: string | null
-    description?: string | null
     site_name?: string | null
     show_feed?: Yesno
     show_share?: Yesno
@@ -21064,10 +21064,10 @@ export namespace Prisma {
 
   export type ServicesUpdateManyMutationInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
     site_name?: NullableStringFieldUpdateOperationsInput | string | null
     show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
     show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
@@ -21079,10 +21079,10 @@ export namespace Prisma {
   export type ServicesUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
     site_name?: NullableStringFieldUpdateOperationsInput | string | null
     show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
     show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
@@ -22279,10 +22279,10 @@ export namespace Prisma {
   export type ServicesCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    description?: SortOrder
     order?: SortOrder
     api_key?: SortOrder
     api_secret?: SortOrder
-    description?: SortOrder
     site_name?: SortOrder
     show_feed?: SortOrder
     show_share?: SortOrder
@@ -22299,10 +22299,10 @@ export namespace Prisma {
   export type ServicesMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    description?: SortOrder
     order?: SortOrder
     api_key?: SortOrder
     api_secret?: SortOrder
-    description?: SortOrder
     site_name?: SortOrder
     show_feed?: SortOrder
     show_share?: SortOrder
@@ -22314,10 +22314,10 @@ export namespace Prisma {
   export type ServicesMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    description?: SortOrder
     order?: SortOrder
     api_key?: SortOrder
     api_secret?: SortOrder
-    description?: SortOrder
     site_name?: SortOrder
     show_feed?: SortOrder
     show_share?: SortOrder
