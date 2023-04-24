@@ -1,4 +1,18 @@
 
+## TODO LIST
+
+
+### Drag Drop
+email me
+amir.meshkin@gmail.com
+
+DB mutation
+https://github.com/ameshkin/subgrow/blob/324456f1cf466f438c1fda5142b295d08c57ff4e/src/sites/mutations/updateLinkOrder.ts
+
+
+
+
+
 
 removed babel, may not be needed
 https://blog.bitsrc.io/why-you-should-replace-babel-with-swc-in-next-js-7d47510d0e0d
@@ -86,10 +100,9 @@ Also store state in local storage
 // TODO: endAdornment with if else condtional instead of state
 
 
-### Drag Drop
 
-DB mutation
-https://github.com/ameshkin/subgrow/blob/324456f1cf466f438c1fda5142b295d08c57ff4e/src/sites/mutations/updateLinkOrder.ts
+
+
 
 ### udpate react redux to 8, and fix startup error
 
@@ -127,3 +140,9 @@ https://github.com/ameshkin/subgrow/blob/324456f1cf466f438c1fda5142b295d08c57ff4
 ### Remember Me Check
 
 Store remember me in local storage
+
+
+
+
+
+
