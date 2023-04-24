@@ -3,4 +3,5 @@
 
 npx pretty-quick --staged
 
-blitz build
+npx tsc
+# blitz build

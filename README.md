@@ -25,19 +25,13 @@ Keep in mind, the state variables are built. I just need the upgrade, and some m
 Also, cleanup to stop the state from running a bunch of times
 
 
-Fix Sidepanel buttons
+
+Fix Sidepanel State
 https://github.com/ameshkin/subgrow/blob/b535280ad63dc7c530b80bb0cafc3935da903fb8/src/components/template/SidePanel/ProfileDesignPanel.js
 
 
 
 
-removed babel, may not be needed
-https://blog.bitsrc.io/why-you-should-replace-babel-with-swc-in-next-js-7d47510d0e0d
-```{
-"presets": ["next/babel"],
-"plugins": ["preval", "macros"]
-}
-```
 
 
 ### add loaders
@@ -155,7 +149,14 @@ https://github.com/ameshkin/subgrow/blob/324456f1cf466f438c1fda5142b295d08c57ff4
 Store remember me in local storage
 
 
+### MISC
 
-
+removed babel, may not be needed
+https://blog.bitsrc.io/why-you-should-replace-babel-with-swc-in-next-js-7d47510d0e0d
+```{
+"presets": ["next/babel"],
+"plugins": ["preval", "macros"]
+}
+```
 
 

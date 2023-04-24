@@ -88,14 +88,14 @@ export const SignupForm = (props: SignupFormProps) => {
     // TODO: set meta or figure out how to get this into InputProps
     if (~BadWords.indexOf(value && value.toLowerCase())) {
       console.log("BadWords")
-      return <FontAwesomeIcon icon={faFaceAnguished} style={{ color: "#c90000" }} />
+      return <FontAwesomeIcon icon={faFaceAnguished} style={{ color: fonts.alert }} />
     }
 
     if (~UserList.indexOf(value && value.toLowerCase())) {
       // TODO: disable button
       console.log("UserList", UserList)
       //return 'Username Not Available'
-      return <FontAwesomeIcon icon={faXmarkLarge} style={{ color: "#c62a2a" }} />
+      return <FontAwesomeIcon icon={faXmarkLarge} style={{ color: fonts.alert }} />
     }
     // return true doesnt work, return anything
     // if (!value) {
@@ -173,7 +173,7 @@ export const SignupForm = (props: SignupFormProps) => {
                 errors.email = "Email Required"
               }
               if (!values.username) {
-                errors.username = <FontAwesomeIcon icon={faXmarkLarge} color={"#a0a0ce"} />
+                errors.username = <FontAwesomeIcon icon={faXmarkLarge} color={misc.fa_primary} />
                 errors.textflag = true
               }
               if (!values.password) {
@@ -219,14 +219,14 @@ export const SignupForm = (props: SignupFormProps) => {
                             //placeholder: "Username",
                             startAdornment: (
                               <InputAdornment position="start">
-                                <FontAwesomeIcon icon={faUser} color={"#3f50b5"} />
+                                <FontAwesomeIcon icon={faUser} color={misc.fa_primary} />
                               </InputAdornment>
                             ),
                             // TODO: fixme get rid of grey ex and error under box
                             endAdornment: (
                               <InputAdornment position="end">
                                 {meta.validating ? (
-                                  <FontAwesomeIcon icon={faGear} spin color={misc.ff_primary} />
+                                  <FontAwesomeIcon icon={faGear} spin color={misc.fa_primary} />
                                 ) : (
                                   meta.error
                                 )}
@@ -245,7 +245,7 @@ export const SignupForm = (props: SignupFormProps) => {
                       //placeholder: "Email Address",
                       startAdornment: (
                         <InputAdornment position="start">
-                          <FontAwesomeIcon icon={faEnvelope} color={"#a0a0ce"} />
+                          <FontAwesomeIcon icon={faEnvelope} color={misc.fa_primary} />
                         </InputAdornment>
                       ),
                     }}
@@ -260,7 +260,7 @@ export const SignupForm = (props: SignupFormProps) => {
                       //placeholder: "Password",
                       startAdornment: (
                         <InputAdornment position="start">
-                          <FontAwesomeIcon icon={faUnlock} color={"#a0a0ce"} />
+                          <FontAwesomeIcon icon={faUnlock} color={misc.fa_primary} />
                         </InputAdornment>
                       ),
                     }}
@@ -274,7 +274,7 @@ export const SignupForm = (props: SignupFormProps) => {
                       placeholder: "Reenter Password",
                       startAdornment: (
                         <InputAdornment position="start">
-                          <FontAwesomeIcon icon={faUnlock} color={"#a0a0ce"} />
+                          <FontAwesomeIcon icon={faUnlock} color={misc.fa_primary} />
                         </InputAdornment>
                       ),
                     }}

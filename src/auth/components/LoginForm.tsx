@@ -20,15 +20,7 @@ import {
   Stack,
 } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2"
-// Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
-// import FacebookProvider, { EmbeddedPost, LoginButton, Login as FbLogin} from 'react-facebook-next'; // next works, not without
-
-// Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
-
-import LoginIcon from "@mui/icons-material/Login"
-// import LoginFormCom from "../../core/components/LoginFormCom"
-// import Form from "../../core/components/Form"
-import homedata from "../../../data/homedata.json"
+import { misc } from "configs/colors/default"
 import { TextField } from "mui-rff"
 import InputAdornment from "@mui/material/InputAdornment"
 
@@ -98,7 +90,7 @@ export const LoginForm = (props: LoginFormProps) => {
                   placeholder: "Email Address",
                   startAdornment: (
                     <InputAdornment position="start">
-                      <FontAwesomeIcon icon={faUser} color={"#a0a0ce"} />
+                      <FontAwesomeIcon icon={faUser} color={misc.fa_primary} />
                     </InputAdornment>
                   ),
                 }}
@@ -113,7 +105,7 @@ export const LoginForm = (props: LoginFormProps) => {
                   placeholder: "Enter Password",
                   startAdornment: (
                     <InputAdornment position="start">
-                      <FontAwesomeIcon icon={faUnlock} color={"#a0a0ce"} />
+                      <FontAwesomeIcon icon={faUnlock} color={misc.fa_primary} />
                     </InputAdornment>
                   ),
                 }}

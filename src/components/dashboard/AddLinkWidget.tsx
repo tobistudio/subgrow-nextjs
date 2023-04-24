@@ -158,8 +158,13 @@ export default function AddLinkWidget({ sites }) {
     <Stack minWidth={600} maxWidth={800} spacing={4}>
       <Box textAlign="center">
         {/*<DeleteDialog />*/}
-        <Button variant="addlink" onClick={addComponent}>
-          <FontAwesomeIcon icon={faPlus} style={{ color: "#e5e6f1", paddingRight: 7 }} />
+        <Button
+          variant="addlink"
+          onClick={addComponent}
+          startIcon={
+            <FontAwesomeIcon icon={faPlus} style={{ color: "#e5e6f1", paddingRight: 7 }} />
+          }
+        >
           <span>Add Link</span>
         </Button>
       </Box>

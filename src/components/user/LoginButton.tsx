@@ -18,7 +18,7 @@ const LoginButton = ({ title }) => {
       startIcon={
         <FontAwesomeIcon
           icon={faRightToBracket}
-          style={{ color: misc.ff_primary, paddingRight: 7 }}
+          style={{ color: misc.fa_primary, paddingRight: 7 }}
         />
       }
     >
