@@ -87,8 +87,8 @@ const NewProfilePage = () => {
             <textarea
               defaultValue={`{
                 "layout":"modern",
-                "titleStyle":"h6"
-                "titleColor":"#000000"
+                "titleStyle":"h6",
+                "titleColor":"#000000",
                 "descriptionStyle":"body1",
                 "descriptionColor":"#000000",
                 "linkType": "button",
@@ -97,8 +97,8 @@ const NewProfilePage = () => {
                 "linkAlign": "center",
                 "bgColor": "#000000",
                 "bgCardColor": "#021931",
-                "linkWidth": "200"
-                "fontFamily": "\\"Comic Sans MS\\", \\"Comic Sans\\", cursive",
+                "linkWidth": "200",
+                "fontFamily": ""
               }`}
             ></textarea>
 

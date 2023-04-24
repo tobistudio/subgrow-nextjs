@@ -35,20 +35,11 @@ import Alert from "@mui/material/Alert"
 import LinkListCard, { SimpleDialogProps } from "./LinkListCard"
 // import LinkBox from "components/dashboard/LinkBox"
 import AddLinkCard from "components/dashboard/AddLinkCard"
-
 import pick from "@cahil/utils/accessors/pick"
 import { getLinks, reorder } from "./drag"
 import { DropResult } from "react-beautiful-dnd"
 import updateLinkOrder from "../../sites/mutations/updateLinkOrder"
-import List from "@mui/material/List"
-import ListItem from "@mui/material/ListItem"
-import ListItemButton from "@mui/material/ListItemButton"
-import ListItemAvatar from "@mui/material/ListItemAvatar"
-import Avatar from "@mui/material/Avatar"
-import { blue } from "@mui/material/colors"
-import PersonIcon from "@mui/icons-material/Person"
-import ListItemText from "@mui/material/ListItemText"
-import AddIcon from "@mui/icons-material/Add"
+import { misc } from "configs/colors/default"
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean
@@ -162,7 +153,7 @@ export default function AddLinkWidget({ sites }) {
           variant="addlink"
           onClick={addComponent}
           startIcon={
-            <FontAwesomeIcon icon={faPlus} style={{ color: "#e5e6f1", paddingRight: 7 }} />
+            <FontAwesomeIcon icon={faPlus} style={{ color: misc.fa_primary, paddingRight: 7 }} />
           }
         >
           <span>Add Link</span>

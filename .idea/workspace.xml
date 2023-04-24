@@ -5,18 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.husky/pre-push" beforeDir="false" afterPath="$PROJECT_DIR$/.husky/pre-push" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/userthemes/light.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/userthemes/modern.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/userthemes/modern.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index-browser.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/runtime/library.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/runtime/library.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/components/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/components/LoginForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/auth/components/SignupForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/components/SignupForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/dashboard/AddLinkWidget.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dashboard/AddLinkWidget.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user/LoginButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/LoginButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/configs/colors/default.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/configs/colors/default.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profiles/new.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profiles/new.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +94,7 @@
       <workItem from="1681943767112" duration="4328000" />
       <workItem from="1682006031719" duration="45314000" />
       <workItem from="1682110781520" duration="1023000" />
-      <workItem from="1682113338059" duration="77258000" />
+      <workItem from="1682113338059" duration="77540000" />
     </task>
     <servers />
   </component>

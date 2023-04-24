@@ -8,8 +8,8 @@
   "linkStyle": "link-modern",
   "linkSpacing": 20,
   "linkAlign": "center",
-  "bgColor": "#000000",
-  "bgCardColor": "#021931",
+  "bgColor": "#ffffff",
+  "bgCardColor": "#cccccc",
   "linkWidth": "200",
   "fontFamily": ""
 }
