@@ -26,11 +26,8 @@ const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
 export const DashboardBox = () => {
   const session = useSession()
-
-  // const [sites] = useQuery(getSiteForProfile, { userId: user.id })
   const [sites] = useQuery(getSiteForProfile, { userId: session.userId })
 
-  // minHeight="100vh"
   return (
     <Container
       fixed

@@ -40,6 +40,11 @@ https://blog.bitsrc.io/why-you-should-replace-babel-with-swc-in-next-js-7d47510d
 ```
 
 
+### add loaders
+
+dash, login, sign up forms, middle of screen
+
+
 
 ## heroku
 ```bash

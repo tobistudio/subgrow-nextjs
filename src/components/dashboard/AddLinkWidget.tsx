@@ -179,18 +179,6 @@ export default function AddLinkWidget({ sites }) {
             {(provided, snapshot) => (
               <div {...provided.droppableProps} ref={provided.innerRef}>
                 {links.map((link, index) => (
-                  // <Draggable draggableId={link.id} index={index}>
-                  //   {(provided, snapshot) => (
-                  //     <ListItem
-                  //       ref={provided.innerRef}
-                  //       {...provided.draggableProps}
-                  //       {...provided.dragHandleProps}
-                  //       className={snapshot.isDragging ? "dragging" : "not-dragging"}
-                  //     >
-                  //
-                  //     </ListItem></Draggable>
-                  //
-
                   <Draggable key={link.id} draggableId={link.id} index={index}>
                     {(provided, snapshot) => (
                       <div
@@ -217,22 +205,6 @@ export default function AddLinkWidget({ sites }) {
           </Droppable>
         </DragDropContext>
       )}
-
-      {/*{links && (*/}
-      {/*  <DragDropContext onDragEnd={onDragEnd}>*/}
-      {/*    <Droppable droppableId="link-list">*/}
-      {/*      {(provided, snapshot) => (*/}
-      {/*        <div ref={provided.innerRef} {...provided.droppableProps}>*/}
-      {/*          {links.map((link, index) => (*/}
-      {/*            <LinkListCard snapshot={snapshot} index={index} key={link.id} link={link} mode={theme.mode} />*/}
-      {/*          ))}*/}
-      {/*          {provided.placeholder}*/}
-      {/*        </div>*/}
-      {/*      )}*/}
-      {/*    </Droppable>*/}
-      {/*  </DragDropContext>*/}
-      {/*)}*/}
-
       <pre>
         {JSON.stringify(
           links.map((item) => pick(item, "id", "title", "order")),
