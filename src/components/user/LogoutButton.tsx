@@ -16,7 +16,9 @@ export const LogoutButton = () => {
       }}
       variant="contained"
       aria-label="Log Out"
-      startIcon={<FontAwesomeIcon icon={faSignOut} style={{ color: "#e5e6f1", paddingRight: 7 }} />}
+      startIcon={
+        <FontAwesomeIcon icon={faSignOut} style={{ color: misc.fa_primary, paddingRight: 7 }} />
+      }
     >
       <span>Log Out</span>
     </Button>

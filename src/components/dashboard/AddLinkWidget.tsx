@@ -61,7 +61,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 //   const { onClose, selectedValue, open } = props
 //
 //
-//   // Opens a modal for edits  // TODO: add edit modal
+//   //
 //   const handleDeleteClick = (event: React.MouseEvent<HTMLElement>, id: string) => {
 //     // console.log(event.target)
 //

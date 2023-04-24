@@ -19,7 +19,7 @@ export const SignupButton = () => {
       }}
       variant="contained"
       aria-label="Sign Up"
-      startIcon={<FontAwesomeIcon icon={faUser} style={{ color: misc.ff_secondary }} />}
+      startIcon={<FontAwesomeIcon icon={faUser} style={{ color: misc.fa_primary }} />}
     >
       <span>Sign Up</span>
     </Button>

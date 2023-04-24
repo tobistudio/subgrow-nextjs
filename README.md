@@ -31,6 +31,11 @@ https://github.com/ameshkin/subgrow/blob/b535280ad63dc7c530b80bb0cafc3935da903fb
 
 
 
+### TODO: fiver finish delete dialog box
+
+When someone clicks delete, open dialog box. On OK delete
+https://github.com/ameshkin/subgrow/blob/52faba6ea95d2a30c7a927674fdb175522e5422d/src/components/dashboard/LinkListCard.tsx
+
 
 
 

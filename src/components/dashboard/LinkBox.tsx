@@ -1,33 +1,8 @@
 import * as React from "react"
-import Link from "next/link"
 import { useSelector, RootStateOrAny } from "react-redux"
-import { Routes } from "@blitzjs/next"
 import { styled } from "@mui/material/styles"
-// https://mui.com/material-ui/guides/minimizing-bundle-size/#option-two-use-a-babel-plugin
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  CardActions,
-  Switch,
-  // CardMedia,
-  // Typography,
-  // Box,
-  // Stack,
-  // Button,
-  // Grid,
-} from "@mui/material"
-
+import { Card, CardHeader, CardContent, CardActions, Switch } from "@mui/material"
 import IconButton, { IconButtonProps } from "@mui/material/IconButton"
-// import {
-//   Favorite as FavoriteIcon,
-//   Share as ShareIcon,
-//   ArrowForwardIosTwoTone,
-// } from "@mui/icons-material"
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-// import { faPlus } from "@fortawesome/pro-duotone-svg-icons"
-// import Alert from "@mui/material/Alert"
-// import LinkListCard from "../lists/LinkListCard"
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean

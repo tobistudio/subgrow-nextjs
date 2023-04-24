@@ -65,8 +65,8 @@ export const fonts = {
 
 export const misc = {
   white: "#ffffff",
-  fa_primary: "#254e90",
-  ff_secondary: "#b9ccf1",
+  fa_primary: "#b9ccf1",
+  ff_secondary: "#254e90",
   error: "#b9ccf1",
   300: "#6b81ae",
   400: "#4a679f",
