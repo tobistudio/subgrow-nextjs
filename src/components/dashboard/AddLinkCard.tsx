@@ -49,7 +49,7 @@ import UserList from "../../../data/users.json"
 import { faXmarkLarge } from "@fortawesome/pro-regular-svg-icons"
 import { FORM_ERROR } from "final-form"
 import { useMutation } from "@blitzjs/rpc"
-import createSite from "../../sites/mutations/createSite"
+import createSiteWidget from "../../sites/mutations/createSiteWidget"
 // import { red } from '@mui/material/colors';
 import { fonts, misc } from "../../configs/colors/default"
 
@@ -72,7 +72,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 export default function LinkListCard({ link }) {
   const router = useRouter()
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
-  const [createSiteMutation] = useMutation(createSite)
+  const [createSiteMutation] = useMutation(createSiteWidget)
 
   /**
    * Regex works best for domains without https or http
@@ -183,9 +183,6 @@ export default function LinkListCard({ link }) {
         <FinalForm
           onSubmit={onSubmit}
           validate={(values) => {
-            console.log("valuessa dfasdfsadfsadf", values)
-            // const errors = {}
-            // Fixes build error
             // https://stackoverflow.com/questions/48539216/error-ts2339-property-email-does-not-exist-on-type-object
             const errors: any = {}
 
@@ -196,9 +193,6 @@ export default function LinkListCard({ link }) {
             if (!values.url) {
               errors.url = "URL is required"
             }
-
-            // set state for button
-
             return errors
           }}
           render={({ handleSubmit, form, submitting, submitError, pristine, values }) => (

@@ -36,6 +36,9 @@ When someone clicks delete, open dialog box. On OK delete
 https://github.com/ameshkin/subgrow/blob/52faba6ea95d2a30c7a927674fdb175522e5422d/src/components/dashboard/LinkListCard.tsx
 
 
+### REFRESH list of links
+
+and put on the right hand side, where it says "Your Links"
 
 
 
