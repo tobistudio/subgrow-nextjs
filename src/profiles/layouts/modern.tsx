@@ -31,6 +31,8 @@ type LoginFormProps = {
 
 const Modern = ({ user, profile, sites }) => {
   const theme = profile.theme
+
+  // TODO: needs to also be linked to state, for updates
   console.log("theme", theme)
   const linkMargin = theme.linkSpacing ? theme.linkSpacing : 20
 
@@ -55,7 +57,7 @@ const Modern = ({ user, profile, sites }) => {
   }
 
   return (
-    <main style={{ backgroundColor: theme.bgColor ? theme.bgColor : "#202A37" }}>
+    <main id="profile-main" style={{ backgroundColor: theme.bgColor ? theme.bgColor : "#202A37" }}>
       <FacebookProvider appId="241448415049637">
         <Grid
           container
@@ -78,6 +80,7 @@ const Modern = ({ user, profile, sites }) => {
               <Typography
                 variant={theme.titleStyle}
                 alignItems={theme.linkAlign ? theme.linkAlign : "center"}
+                className="profile-text"
               >
                 {profile.title ? profile.title : profile.username}
               </Typography>
@@ -88,7 +91,9 @@ const Modern = ({ user, profile, sites }) => {
               {/*}*/}
 
               {profile.description ? (
-                <Typography variant={theme.descriptionStyle}>{profile.description}</Typography>
+                <Typography variant={theme.descriptionStyle} className="profile-text">
+                  {profile.description}
+                </Typography>
               ) : (
                 ""
               )}
@@ -132,12 +137,8 @@ const Modern = ({ user, profile, sites }) => {
                 onClick={() => {
                   shareFb()
                 }}
+                startIcon={<FontAwesomeIcon icon={faFacebook} style={{ width: 15, height: 15 }} />}
               >
-                <FontAwesomeIcon
-                  icon={faFacebook}
-                  className="pr-2"
-                  style={{ width: 20, height: 20 }}
-                />
                 <span>share</span>
               </Button>
 

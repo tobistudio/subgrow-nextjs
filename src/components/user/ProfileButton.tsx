@@ -15,7 +15,13 @@ export const ProfileButton = (username) => {
       }}
       variant="outlined"
       aria-label="Profile"
-      startIcon={<FontAwesomeIcon icon={faUser} size="sm" style={{ color: misc.fa_secondary }} />}
+      startIcon={
+        <FontAwesomeIcon
+          icon={faUser}
+          size="sm"
+          style={{ color: misc.fa_secondary, width: 15, height: 15 }}
+        />
+      }
     >
       <span>Profile</span>
     </Button>

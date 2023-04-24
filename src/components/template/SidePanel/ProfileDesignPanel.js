@@ -5,8 +5,8 @@ import withHeaderItem from "utils/hoc/withHeaderItem"
 import { setPanelExpand } from "store/theme/themeSlice"
 import { useSelector, useDispatch } from "react-redux"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSignOut, faUser } from "@fortawesome/pro-duotone-svg-icons"
-import { Button, Stack } from "@mui/material"
+import { faPalette, faPencil } from "@fortawesome/pro-light-svg-icons"
+import { Button } from "@mui/material"
 import { misc } from "../../../configs/colors/default"
 
 export const ProfileDesignPanel = (props) => {
@@ -36,15 +36,21 @@ export const ProfileDesignPanel = (props) => {
     <>
       <Button
         onClick={openPanel}
-        variant="contained"
+        variant="outlined"
         aria-label="profile"
-        startIcon={<FontAwesomeIcon icon={faUser} color={misc.fa_primary} />}
+        startIcon={
+          <FontAwesomeIcon
+            icon={faPencil}
+            color={misc.fa_secondary}
+            style={{ width: 15, height: 15 }}
+          />
+        }
       >
         <span>Edit</span>
       </Button>
 
       <Drawer
-        title="Profile Designaa CCC"
+        title="Customize Profile"
         isOpen={panelExpand}
         onClose={closePanel}
         onRequestClose={closePanel}

@@ -25,9 +25,6 @@ export const ProfileIndex = () => {
   const [profile]: any = useQuery(getProfile, { userId: user.id, current: "yes" })
   const [sites] = useQuery(getSiteForProfile, { userId: user.id })
 
-  console.log("profile", profile)
-  console.log("sites", sites)
-
   // TODO: the layout should be set on dashboard page.
   let userLayout
   // shouldn't be empty, for errors

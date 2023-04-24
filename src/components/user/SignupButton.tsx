@@ -1,11 +1,9 @@
-import { useCurrentUser } from "../../users/hooks/useCurrentUser"
 import { useRouter } from "next/router"
-import Link from "next/link"
-import { BlitzLayout, Routes } from "@blitzjs/next"
+import { Routes } from "@blitzjs/next"
 import React from "react"
 import { Button } from "@mui/material"
 
-import { faRightToBracket, faUser, faSignOut } from "@fortawesome/pro-duotone-svg-icons"
+import { faUser } from "@fortawesome/pro-duotone-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { misc } from "configs/colors/default"
 
@@ -19,7 +17,9 @@ export const SignupButton = () => {
       }}
       variant="contained"
       aria-label="Sign Up"
-      startIcon={<FontAwesomeIcon icon={faUser} style={{ color: misc.fa_primary }} />}
+      startIcon={
+        <FontAwesomeIcon icon={faUser} style={{ color: misc.fa_primary, width: 15, height: 15 }} />
+      }
     >
       <span>Sign Up</span>
     </Button>

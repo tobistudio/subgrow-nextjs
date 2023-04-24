@@ -15,7 +15,12 @@ const LoginButton = ({ title }) => {
       onClick={async () => {
         await router.push(Routes.LoginPage())
       }}
-      startIcon={<FontAwesomeIcon icon={faRightToBracket} style={{ color: misc.fa_primary }} />}
+      startIcon={
+        <FontAwesomeIcon
+          icon={faRightToBracket}
+          style={{ color: misc.fa_primary, width: 15, height: 15 }}
+        />
+      }
     >
       <span>{title}</span>
     </Button>

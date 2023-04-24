@@ -45,8 +45,9 @@
   opacity: 1;
 }
 .drawer-overlay {
-  --tw-bg-opacity: 0.8;
-  background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
+  // remove overlay, so user can see
+  //--tw-bg-opacity: 0.8;
+  //background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
   bottom: 0;
   left: 0;
   position: fixed;

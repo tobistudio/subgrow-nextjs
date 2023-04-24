@@ -19,6 +19,10 @@ import { faXmarkLarge } from "@fortawesome/pro-regular-svg-icons"
 import { fonts, misc } from "../../../configs/colors/default"
 import { faFaceAnguished, faFloppyDisk, faGear } from "@fortawesome/pro-duotone-svg-icons"
 import { FORM_ERROR } from "final-form"
+import InputLabel from "@mui/material/InputLabel"
+import MenuItem from "@mui/material/MenuItem"
+import FormControl from "@mui/material/FormControl"
+import Select, { SelectChangeEvent } from "@mui/material/Select"
 
 const ThemeConfigurator = ({ callBackClose }) => {
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -27,14 +31,28 @@ const ThemeConfigurator = ({ callBackClose }) => {
 
   const [colorTitle, setColorTitle] = React.useState("#ffffff")
 
-  const [colorDesc, setColorDesc] = React.useState("#ffffff")
+  // const [colorBg, setcolorBg] = React.useState("#ffffff")
+  const [colorBg, setColorBg] = React.useState("#ffffff")
 
   const handleTitleColorChange = (color) => {
-    setColorTitle(color)
+    document.querySelectorAll(".profile-text").forEach((userItem) => {
+      // @ts-ignore
+      userItem.style.color = color // works fine
+    })
+    //setColorTitle(color)
   }
 
-  const handleDescColorChange = (color) => {
-    setColorDesc(color)
+  const handleBgColorChange = (color) => {
+    document.getElementById("profile-main").style.backgroundColor = color
+    //setColorBg(color)
+  }
+
+  //   let age = 9
+
+  const [age, setAge] = React.useState("")
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setAge(event.target.value)
   }
 
   const onSubmit = async (values) => {
@@ -70,14 +88,22 @@ const ThemeConfigurator = ({ callBackClose }) => {
         {/*  <ModeSwitcher />*/}
         {/*</div>*/}
 
-        <Box>
-          {/*TODO: everything on edit page, should go here */}
+        <Box sx={{ m: 2 }}>
+          {/*
+          TODO: everything on edit page, should go here
+          // TODO: link to state, or update db, figure out how to get live updates to page
+
+
+
+           */}
           {/*http://localhost:3002/profiles/clgsj3mz400019ko0kqmdd2qn/edit*/}
+
+          {/*profile-main*/}
           <FinalForm
             onSubmit={onSubmit}
             validate={(values) => {
               console.log("valuessa dfasdfsadfsadf", values)
-              const errors = {}
+              const errors: any = {}
               // Fixes build error
               // https://stackoverflow.com/questions/48539216/error-ts2339-property-email-does-not-exist-on-type-object
               // const errors: any = {}
@@ -109,6 +135,7 @@ const ThemeConfigurator = ({ callBackClose }) => {
                     placeholder=""
                     className="input input-md"
                     required={true}
+                    size={"small"}
                   />
 
                   <TextField
@@ -117,43 +144,45 @@ const ThemeConfigurator = ({ callBackClose }) => {
                     //value="Test Description"
                     placeholder=""
                     className="input input-md"
-                    required={true}
+                    size={"small"}
                   />
 
                   <div>
-                    <label>Title Color</label>
                     <MuiColorInput
                       value={colorTitle}
                       onChange={handleTitleColorChange}
                       variant="outlined"
                       name="titleColorPicker"
+                      label="Text Color"
+                      size={"small"}
                     />
                   </div>
 
                   <div>
-                    <label>Description Color</label>
                     <MuiColorInput
-                      value={colorDesc}
-                      onChange={handleDescColorChange}
+                      value={colorBg}
+                      onChange={handleBgColorChange}
                       variant="outlined"
-                      name="descriptionColorPicker"
+                      name="bgColorPicker"
+                      label="Background Color"
+                      size={"small"}
                     />
                   </div>
 
-                  <TextField
-                    name="theme.0.titleColor"
-                    label="titleColor hidden"
-                    placeholder=""
-                    value={colorTitle}
-                  />
+                  {/*<TextField*/}
+                  {/*  name="theme.0.titleColor"*/}
+                  {/*  label="titleColor hidden"*/}
+                  {/*  placeholder=""*/}
+                  {/*  value={colorTitle}*/}
+                  {/*/>*/}
 
-                  <TextField
-                    name="theme.1.descriptionColor"
-                    label="descriptionColor"
-                    placeholder=""
-                    // type="text"
-                    value={colorDesc}
-                  />
+                  {/*<TextField*/}
+                  {/*  name="theme.1.descriptionColor"*/}
+                  {/*  label="descriptionColor"*/}
+                  {/*  placeholder=""*/}
+                  {/*  // type="text"*/}
+                  {/*  value={colorBg}*/}
+                  {/*/>*/}
 
                   {/*<Checkbox*/}
                   {/*  {...label}*/}
@@ -161,7 +190,7 @@ const ThemeConfigurator = ({ callBackClose }) => {
                   {/*  onChange={handleCheck}*/}
                   {/*/>*/}
                   <TextField name="theme.4.titleColor" label="Choice 1" />
-                  <TextField name="theme.3.descriptionColor" label="Choice 2" value={colorDesc} />
+                  <TextField name="theme.3.descriptionColor" label="Choice 2" value={colorBg} />
                   <TextField name="theme.2.text" label="Choice 3" />
 
                   <Box textAlign="center">
@@ -228,3 +257,22 @@ const ThemeConfigurator = ({ callBackClose }) => {
 }
 
 export default ThemeConfigurator
+
+/*
+
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={age}
+                      label="Age"
+                      onChange={handleChange}
+                    >
+                      <MenuItem value={10}>Ten</MenuItem>
+                      <MenuItem value={20}>Twenty</MenuItem>
+                      <MenuItem value={30}>Thirty</MenuItem>
+                    </Select>
+                  </FormControl>
+
+ */
