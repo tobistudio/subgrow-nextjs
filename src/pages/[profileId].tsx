@@ -20,15 +20,8 @@ export const ProfileIndex2 = () => {
 }
 
 export const ProfileIndex = () => {
-  // const router = useRouter()
   const profileId = useParam("profileId", "string")
-  console.log("profileId", profileId)
-  // @ts-ignore
   const [user] = useQuery(getUserForProfile, { username: profileId })
-
-  console.log("profileId", profileId)
-
-  // debugger
   const [profile]: any = useQuery(getProfile, { userId: user.id, current: "yes" })
   const [sites] = useQuery(getSiteForProfile, { userId: user.id })
 

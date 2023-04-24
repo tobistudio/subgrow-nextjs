@@ -15,30 +15,14 @@ import { z } from "zod"
 // )
 
 const GetUserForProfile = z.object({
-  // username: z.string().optional(),
   // username: z.string(),
-  username: z.string(),
+  username: z.any(), // fix type error
 })
 
-// export default resolver.pipe(resolver.zod(GetUser), async ({ username }) => {
-//   // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-//
-//   console.log("getUser username", username)
-//
-//   const user = await db.user.findFirst({ where: { username } })
-//
-//   if (!user) throw new NotFoundError()
-//
-//   return user
-// })
-
-// no authorize for this
 export default resolver.pipe(
   resolver.zod(GetUserForProfile),
-  // resolver.authorize(),
+  // resolver.authorize(),  // no authorize for this since this is user facing
   async ({ username }) => {
-    // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-    // @ts-ignore
     const user = await db.user.findFirst({ where: { username } })
     console.log("user", user)
     if (!user) throw new NotFoundError()
