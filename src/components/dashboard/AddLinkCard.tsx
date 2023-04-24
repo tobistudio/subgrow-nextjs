@@ -31,7 +31,7 @@ import {
 } from "@mui/icons-material"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
-  faEnvelope,
+  faFloppyDisk,
   faFaceAnguished,
   faGear,
   faUnlock,
@@ -51,7 +51,7 @@ import { FORM_ERROR } from "final-form"
 import { useMutation } from "@blitzjs/rpc"
 import createSite from "../../sites/mutations/createSite"
 // import { red } from '@mui/material/colors';
-import { fonts } from "../../configs/colors/default"
+import { fonts, misc } from "../../configs/colors/default"
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean
@@ -71,7 +71,6 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 // need {} or else it's a object in object
 export default function LinkListCard({ link }) {
   const router = useRouter()
-  const theme = useSelector((state: RootStateOrAny) => state.theme)
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
   const [createSiteMutation] = useMutation(createSite)
 
@@ -137,12 +136,8 @@ export default function LinkListCard({ link }) {
       //return "bad"
       return <FontAwesomeIcon icon={faFaceAnguished} size="xl" style={{ color: "#c90000" }} />
     }
-
     return ""
-
-    // return true;    // wont work
   })
-
   const onSubmit = async (values) => {
     await sleep(300)
     const result = isValidUrlReg(values.url)
@@ -164,18 +159,12 @@ export default function LinkListCard({ link }) {
       }
     }
   }
-
-  // onClick={async () => {
-  //   await router.push(Routes.LoginPage())
-  // }}
   const handleEditDetailsClick = async (event: React.MouseEvent<HTMLElement>, id: string) => {
     //console.log(event.target)
     console.log("handleEditDetailsClick", id)
     await router.push(Routes.ShowSitePage({ siteId: id }))
     // event.preventDefault()
   }
-
-  // TODO: link this to state???
 
   return (
     <Card className="card">
@@ -272,6 +261,9 @@ export default function LinkListCard({ link }) {
                     type="submit"
                     disabled={submitting}
                     sx={{ width: 200 }}
+                    startIcon={
+                      <FontAwesomeIcon icon={faFloppyDisk} style={{ color: misc.fa_primary }} />
+                    }
                   >
                     Save Link
                   </Button>
@@ -296,13 +288,5 @@ export default function LinkListCard({ link }) {
   )
 }
 
-// https://linktr.ee/admin
-
-// TODO: add details link
-// TODO: add tooltips
 // TODO: add draggable and ordering
 // TODO: refresh the list of links after an add or delete
-
-// <Typography variant="body2" color={theme.mode === "dark" ? "text.light" : "text.dark"}>
-//   name {link.name}
-// </Typography>
