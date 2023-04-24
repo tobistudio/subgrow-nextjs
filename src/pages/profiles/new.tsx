@@ -1,3 +1,6 @@
+// TODO: will never be used, unless we allow multiple profiles
+//  edit page used instead, since system makes a profile on signup
+// src/pages/profiles/[profileId]/edit.tsx
 import { Routes } from "@blitzjs/next"
 import Link from "next/link"
 import { useRouter } from "next/router"

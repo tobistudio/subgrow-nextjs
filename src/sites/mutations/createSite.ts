@@ -4,12 +4,10 @@ import { z } from "zod"
 
 const CreateSite = z.object({
   // userId: z.number().int().nullish(), // TODO: FIXME: string
-  //userId: z.number(),
+  userId: z.number(),
   title: z.string(),
   url: z.string(),
   description: z.string().optional(),
-  api_key: z.string().optional(),
-  api_secret: z.string().optional(),
 })
 
 export default resolver.pipe(

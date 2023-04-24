@@ -32,13 +32,6 @@ export function ProfileForm<S extends z.ZodType<any, any>>(props: FormProps<S>) 
 
   const checked = true
 
-  const Error = ({ name }) => {
-    const {
-      meta: { touched, error },
-    } = useField(name, { subscription: { touched: true, error: true } })
-    return touched && error ? <span className="error">{error}</span> : null
-  }
-
   /*
   Type error: This expression is not callable.
   Not all constituents of type 'boolean | ((mode: any) => { payload: any; type: "theme/setMode"; })' are callable.
@@ -73,7 +66,7 @@ export function ProfileForm<S extends z.ZodType<any, any>>(props: FormProps<S>) 
           wrapperClass="form-item vertical"
           required={true}
         />
-        <Error name="title" />
+
         <LabeledTextField
           name="description"
           label="Description"

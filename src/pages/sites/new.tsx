@@ -1,3 +1,4 @@
+// TODO: not using this, using dashboard widget
 import { Routes } from "@blitzjs/next"
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -26,9 +27,7 @@ const NewSitePage = () => {
     <AdminLayout title={"Create New Site"}>
       <div>
         <Card variant="outlined">
-          <CardHeader
-            title="Site"
-          />
+          <CardHeader title="Site" />
           <CardContent>
             <SiteForm
               submitText="Add Site"
@@ -52,9 +51,7 @@ const NewSitePage = () => {
           </CardContent>
 
           <CardActions>
-            <Link href={Routes.SitesPage()}>
-              View Sites
-            </Link>
+            <Link href={Routes.SitesPage()}>View Sites</Link>
           </CardActions>
         </Card>
       </div>

@@ -20,6 +20,7 @@ import {
   Box,
   Stack,
   CardHeader,
+  Switch,
 } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2"
 import { TextField } from "mui-rff"
@@ -83,7 +84,10 @@ export const EditSite = () => {
 
   return (
     <Box>
-      <Grid container spacing={{ xs: 2, md: 3, lg: 6 }}>
+      <Grid
+        container
+        // spacing={{ xs: 2, md: 3, lg: 6 }}
+      >
         <Card variant="outlined">
           <CardHeader title={site.title} />
           <CardContent>
@@ -162,6 +166,31 @@ export const EditSite = () => {
                         </Stack>
                       )}
                     </Field>
+
+                    <TextField
+                      label="Link Description"
+                      name="description"
+                      type="text"
+                      style={{ maxWidth: 380 }}
+                      helperText="An optional description for this link"
+                    />
+
+                    <Switch
+                      // checked={!!link.status}
+                      name="status"
+                      checked={site.status === "active"}
+                      //checked={checked}
+                      //onChange={handleActiveChange(link.id)}
+                      inputProps={{ "aria-label": "controlled" }}
+                    />
+
+                    <TextField
+                      label="Order"
+                      name="order"
+                      type="number"
+                      style={{ maxWidth: 380 }}
+                      helperText="An optional description for this link"
+                    />
 
                     <Box textAlign="center">
                       <Button

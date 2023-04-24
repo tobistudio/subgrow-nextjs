@@ -38,13 +38,13 @@ export const ProfileDesignPanel = (props) => {
         onClick={openPanel}
         variant="contained"
         aria-label="profile"
-        startIcon={<FontAwesomeIcon icon={faUser} color={"#a0a0ce"} />}
+        startIcon={<FontAwesomeIcon icon={faUser} color={misc.fa_primary} />}
       >
         <span>Edit</span>
       </Button>
 
       <Drawer
-        title="Profile Design"
+        title="Profile Designaa CCC"
         isOpen={panelExpand}
         onClose={closePanel}
         onRequestClose={closePanel}

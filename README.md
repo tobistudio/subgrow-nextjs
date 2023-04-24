@@ -1,3 +1,10 @@
+## setup
+
+tester@gmail.com
+welcome123
+
+
+
 
 ## TODO LIST
 
