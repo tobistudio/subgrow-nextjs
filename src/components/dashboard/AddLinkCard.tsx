@@ -80,16 +80,6 @@ export default function LinkListCard({ link }) {
    * @param str
    */
   function isValidUrlReg(str) {
-    // const pattern = new RegExp(
-    //   "^([a-zA-Z]+:\\/\\/)?" +
-    //     "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-    //     "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-    //     "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-    //     "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-    //     "(\\#[-a-z\\d_]*)?$", // fragment locator
-    //   "i"
-    // )
-
     const pattern = new RegExp(
       "^(https?:\\/\\/)?" + // protocol
         "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
@@ -100,8 +90,6 @@ export default function LinkListCard({ link }) {
       "i"
     ) // fragment locator
 
-    console.log("pattern.test(str)", pattern.test(str))
-
     if (!pattern.test(str)) {
       return false
     }
@@ -110,20 +98,17 @@ export default function LinkListCard({ link }) {
     if (str.slice(0, 8) === "https://") {
       return str
     } else if (str.slice(0, 7) === "http://") {
-      console.log("http://  -- ", str.replace("http://", "https://"))
       return str.replace("http://", "https://")
     }
 
-    // at this point, this is possible value that is flagged as VALID: htps://dib.com
+    // test.com may get here at this point
     let url
     try {
-      url = new URL(str)
+      url = new URL("https://" + str)
     } catch (e) {
-      console.log("url e", e)
       return false
     }
-    console.log("url catch", url)
-    return url
+    return url.origin
   }
 
   const simpleMemoize = (fn) => {
@@ -137,6 +122,7 @@ export default function LinkListCard({ link }) {
       return lastResult
     }
   }
+
   const validateUrl = simpleMemoize(async (value) => {
     const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
@@ -159,9 +145,6 @@ export default function LinkListCard({ link }) {
 
   const onSubmit = async (values) => {
     await sleep(300)
-
-    //let isValid = isValidUrlReg(values.url)
-    console.log("submit values", values)
     const result = isValidUrlReg(values.url)
     console.log("submit result", result)
     if (!result) {
