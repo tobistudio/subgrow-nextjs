@@ -9,6 +9,7 @@ import getUserForProfile from "../users/queries/getUserForProfile"
 import getSiteForProfile from "../sites/queries/getSiteForProfile"
 import Grid from "@mui/material/Unstable_Grid2"
 import UserInfo from "../components/user/UserInfo"
+import Logo from "../core/layouts/theme1/headers/Logo"
 
 // TODO: tik tok video feed
 // https://open-api.tiktok.com/oauth/access_token/
@@ -18,6 +19,14 @@ const Modern = React.lazy(() => import("profiles/layouts/modern"))
 export const ProfileIndex2 = () => {
   return <div>sdf</div>
 }
+
+const styles = (theme) => ({
+  addButtonContainer: {
+    [theme.breakpoints.down("xs")]: {
+      justifyContent: "center",
+    },
+  },
+})
 
 export const ProfileIndex = () => {
   const profileId = useParam("profileId", "string")
@@ -43,20 +52,18 @@ export const ProfileIndex = () => {
       layoutType = <Modern user={user} profile={profile} sites={sites} />
   }
 
+  // @ts-ignore
   return (
     <>
       <Head>
         <title>{profile.title ? profile.username : profile.username}</title>
       </Head>
-      <header>
-        <Grid container spacing={2} display="flex" justifyContent="flex-end" alignItems="flex-end">
-          <Grid xs={6}>logo</Grid>
-          <Grid xs={6}>
-            <div className={"user-info-wrapper"}>
-              <Suspense>
-                <UserInfo />
-              </Suspense>
-            </div>
+      <header className="header-wrapper">
+        <Grid container spacing={0} my={1}>
+          <Grid xs={12} display="flex" justifyContent="right" alignItems="center">
+            <Suspense>
+              <UserInfo />
+            </Suspense>
           </Grid>
         </Grid>
       </header>

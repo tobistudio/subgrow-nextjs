@@ -20,17 +20,14 @@ const UserInfo = () => {
     }
 
     return (
-      <Stack direction="row" spacing={2} my={2} mr={3}>
-        {/*{ TODO: show edit button if on your own profile page   }*/}
-
+      <Stack direction="row" spacing={2}>
         {myownpage ? <ProfileDesignPanel /> : <ProfileButton username={currentUser.username} />}
-
         <LogoutButton />
       </Stack>
     )
   } else {
     return (
-      <Stack direction="row" spacing={2} my={2} mr={3}>
+      <Stack direction="row" spacing={2}>
         <SignupButton />
         <LoginButton title="login" />
       </Stack>

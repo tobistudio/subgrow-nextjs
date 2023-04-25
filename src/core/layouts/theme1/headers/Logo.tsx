@@ -3,7 +3,8 @@ import { BlitzLayout } from "@blitzjs/next"
 import Image from "next/image"
 
 // const DashboardsPage = () => {
-const Logo: BlitzLayout<{ imageSource?: any }> = ({ imageSource, children }) => {
+// const Logo: BlitzLayout<{ imageSource?: any }> = ({ imageSource, children }) => {
+const Logo: BlitzLayout<{ imageSource?: any }> = (imageSource) => {
   const myLoader = ({ src, width, quality }) => {
     return `https://place-hold.it/1x1/666/fff/000.gif`
   }
@@ -21,7 +22,6 @@ const Logo: BlitzLayout<{ imageSource?: any }> = ({ imageSource, children }) => 
           height={25}
           className="logo-image"
         />
-        {children}
       </div>
     </div>
   )

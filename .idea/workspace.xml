@@ -6,13 +6,24 @@
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index-browser.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/runtime/library.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/runtime/library.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/template/ThemeConfigurator/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/ThemeConfigurator/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/_custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/_custom.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/template/Theme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/Theme.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user/UserInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/UserInfo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/layouts/AdminLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/AdminLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/layouts/ProfileLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/ProfileLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/layouts/theme1/headers/AdminHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/theme1/headers/AdminHeader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/layouts/theme1/headers/HomeHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/theme1/headers/HomeHeader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/layouts/theme1/headers/Logo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/theme1/headers/Logo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/[profileId].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/[profileId].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/api/auth/[...auth].ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/api/auth/[...auth].ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/page/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/page/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +104,7 @@
       <workItem from="1681943767112" duration="4328000" />
       <workItem from="1682006031719" duration="45314000" />
       <workItem from="1682110781520" duration="1023000" />
-      <workItem from="1682113338059" duration="95059000" />
+      <workItem from="1682113338059" duration="105024000" />
     </task>
     <servers />
   </component>
@@ -121,9 +132,15 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/core/layouts/ProfileLayout.tsx</url>
-          <line>13</line>
+          <line>9</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/pages/api/auth/[...auth].ts</url>
+          <line>41</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

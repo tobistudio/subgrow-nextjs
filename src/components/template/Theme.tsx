@@ -62,19 +62,6 @@ const Theme = (props) => {
         contrastText: "#000",
       },
     },
-    // root: {
-    //   //color: blue[500]
-    //   color: "#000000", // ???where
-    // },
-    // links: {
-    //   padding: '0 50px',
-    //   color: 'white',
-    //   "&:hover": {
-    //     textDecorationColor: "green",
-    //     cursor:'pointer'
-    //   }
-    // },
-
     typography: {
       fontSize: 14,
       // fontFamily: ["Roboto", '"Helvetica Neue"'].join(","),
@@ -243,6 +230,8 @@ const Theme = (props) => {
       },
     },
   })
+
+  // breakpoints
 
   const currentTheme = {
     ...themeConfig,

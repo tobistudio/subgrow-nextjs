@@ -43,7 +43,7 @@ export const __ModelNames__List = () => {
           alignItems="center"
         >
           {__modelNames__.map((__modelName__) => (
-            <Grid item xs={12} md={6} lg={4} xl={3} key={plan.id}>
+            <Grid item xs={12} sm={6} lg={4} xl={3} key={plan.id}>
               <Box key={__modelName__.id} plan={__modelName__.name} />
             </Grid>
           ))}

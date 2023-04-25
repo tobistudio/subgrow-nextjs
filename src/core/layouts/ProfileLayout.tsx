@@ -1,10 +1,6 @@
 import Head from "next/head"
-import React, { FC, Suspense } from "react"
+import React from "react"
 import { BlitzLayout } from "@blitzjs/next"
-import Grid from "@mui/material/Unstable_Grid2"
-import UserInfo from "../../components/user/UserInfo"
-import { Container } from "@mui/material"
-// const ProfileHeader = React.lazy(() => import("core/layouts/theme1/headers/ProfileHeader"))
 
 const ProfileLayout: BlitzLayout<{
   title?: string

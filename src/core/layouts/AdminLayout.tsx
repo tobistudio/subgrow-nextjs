@@ -79,7 +79,7 @@ const AdminLayout: BlitzLayout<{
       </Head>
 
       <main>
-        {header}
+        <Container fixed>{header}</Container>
         <Container fixed>{children}</Container>
       </main>
       {footer}

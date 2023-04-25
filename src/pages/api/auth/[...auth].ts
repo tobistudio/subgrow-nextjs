@@ -9,7 +9,7 @@ import { Strategy as InstagramStrategy } from "passport-instagram"
 import { Strategy as GoogleStrategy } from "passport-google-oauth20"
 
 // TODO: instagram TypeError: OAuth2Strategy requires a clientID option
-
+// TODO: tik tok https://developers.tiktok.com/doc/login-kit-web/
 // http://localhost:3000/api/auth/facebook
 // ./node_modules/@mui/material/node_modules/@mui/base/ClickAwayListener/index.js
 // Module build failed: Error: ENOENT: no such file or directory, open '/Users/amirmeshkin/_code/_business/links/node_modules/@mui/material/node_modules/@mui/base/ClickAwayListener/index.js'
@@ -26,9 +26,10 @@ export default api(
           {
             // clientID: process.env.GOOGLE_CLIENT_ID,
             // clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            scope: ["email"],
             clientID: "207654379049-lra412s7jvebh07ff063klk3vkoj22t2.apps.googleusercontent.com",
             clientSecret: "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",
-            callbackURL: "http://www.example.com/auth/google/callback",
+            callbackURL: "http://localhost:3000/auth/google/callback",
           },
           function (accessToken, refreshToken, profile, cb) {
             console.log("accessToken", accessToken)
@@ -92,8 +93,9 @@ export default api(
             // client_key: "7223001495028107269",
             clientSecret: process.env.TIKTOK_CLIENT_SECRET,
             scope: ["user.info.basic", "video.list"],
-            callbackURL: "https://localhost:3000/dashboard",
-            redirectURL: "https://localhost:3000/dashboard",
+            callbackURL: "http://localhost:3000/dashboard",
+            // redirectURL: "https://localhost:3000/dashboard",
+            redirectURL: "http://localhost:3000/dashboard",
           },
           function (accessToken, refreshToken, profile, done) {
             console.log("accessToken", accessToken)
@@ -151,8 +153,10 @@ export default api(
             clientSecret: process.env.FACEBOOK_APP_SECRET,
             // callbackURL: "http://localhost:3000/api/auth/facebook/callback",
             callbackURL: "http://localhost:3000/api/auth/facebook/callback",
+            scope: ["user_media,", "user_profile", "instagram_basic", "pages_show_list"],
           },
           function (accessToken, refreshToken, profile, cb) {
+            console.log("fb accessToken", accessToken)
             // User.findOrCreate({ facebookId: profile.id }, function (err, user) {
             //   return cb(err, user)
             // })
@@ -167,7 +171,9 @@ export default api(
             clientID: process.env.INSTAGRAM_APP_ID,
             clientSecret: process.env.INSTAGRAM_APP_SECRET,
             callbackURL: "http://127.0.0.1:3000/dashboard",
-            scope: ["user_media,", "user_profile"],
+            scope: ["user_media,", "user_profile", "instagram_basic", "pages_show_list"],
+            // instagram_basic
+            // pages_show_list
             // user_profile,user_media
           },
           function (accessToken, refreshToken, profile, done) {

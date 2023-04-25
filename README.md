@@ -189,3 +189,21 @@ https://blog.bitsrc.io/why-you-should-replace-babel-with-swc-in-next-js-7d47510d
 ```
 
 
+
+## PREMIUM FEATURES
+https://linktr.ee/s/pricing/
+
+1. Google Analytics
+2. Support
+3. Mailchimp Integration
+2. Customizable Templates
+3. Custom Backgrounds
+4. Custom Fonts/Buttons
+3. Twitter feed, fb, api services
+4. hide logo, buttons
+5. NFT Features = $10 Validation fee, user sends ETH from wallet to verify ownership
+6. Google Analytics, and some custom charts, etc
+7. Click Tracking, conversions
+8. 2FA
+9. Special Dashboard that lists all profiles, easy access, followers, basic info
+10.
