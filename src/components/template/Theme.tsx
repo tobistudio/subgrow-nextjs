@@ -198,13 +198,13 @@ const Theme = (props) => {
       },
       MuiInput: {
         variants: [
-          {
-            props: { variant: "signup", color: "primary" },
-            style: {
-              background: `linear-gradient(45deg, ${blue[700]} 35%, ${blue[300]} 90%)`,
-              color: "#fff",
-            },
-          },
+          // {
+          //   props: { variant: "signup", color: "primary" },
+          //   style: {
+          //     background: `linear-gradient(45deg, ${blue[700]} 35%, ${blue[300]} 90%)`,
+          //     color: "#fff",
+          //   },
+          // },
           // TODO: cannot get custom variants to work for text fields
           // {
           //   props: { variant: "outlined", color: "primary" },
