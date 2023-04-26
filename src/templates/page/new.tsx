@@ -1,25 +1,12 @@
-// @ts-nocheck
+// @ts-ignore
 import { Routes } from "@blitzjs/next"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useMutation } from "@blitzjs/rpc"
-// import { Card, Button, Grid } from 'components/ui'
-import {
-  Box,
-  Typography,
-  Container,
-  Card,
-  Button,
-  Grid,
-  CardHeader,
-  CardContent,
-  CardActions,
-} from "@mui/material"
+import { Card, CardHeader, CardContent, CardActions } from "@mui/material"
 import AdminLayout from "core/layouts/AdminLayout"
 import { useParam } from "@blitzjs/next"
-// @ts-ignore
 import create__ModelName__ from "__modelNamesPath__/mutations/create__ModelName__"
-// @ts-ignore
 import { __ModelName__Form, FORM_ERROR } from "__modelNamesPath__/components/__ModelName__Form"
 
 const New__ModelName__Page = () => {

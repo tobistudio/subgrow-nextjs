@@ -141,7 +141,7 @@ const NewServicePage = () => {
                         </Stack>
                       </form>
                     )}
-                  ></FinalForm>
+                  />
                 </CardContent>
               </Card>
 

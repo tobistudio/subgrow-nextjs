@@ -25,36 +25,34 @@ const NewSitePage = () => {
 
   return (
     <AdminLayout title={"Create New Site"}>
-      <div>
-        <Card variant="outlined">
-          <CardHeader title="Site" />
-          <CardContent>
-            <SiteForm
-              submitText="Add Site"
-              // TODO use a zod schema for form validation
-              //  - Tip: extract mutation's schema into a shared `validations.ts` file and
-              //         then import and use it here
-              // schema={CreateSite}
-              // initialValues={{}}
-              onSubmit={async (values) => {
-                try {
-                  const site = await createSiteMutation(values)
-                  await router.push(Routes.ShowSitePage({ siteId: site.id }))
-                } catch (error: any) {
-                  console.error(error)
-                  return {
-                    [FORM_ERROR]: error.toString(),
-                  }
+      <Card variant="outlined">
+        <CardHeader title="Site" />
+        <CardContent>
+          <SiteForm
+            submitText="Add Site"
+            // TODO use a zod schema for form validation
+            //  - Tip: extract mutation's schema into a shared `validations.ts` file and
+            //         then import and use it here
+            // schema={CreateSite}
+            // initialValues={{}}
+            onSubmit={async (values) => {
+              try {
+                const site = await createSiteMutation(values)
+                await router.push(Routes.ShowSitePage({ siteId: site.id }))
+              } catch (error: any) {
+                console.error(error)
+                return {
+                  [FORM_ERROR]: error.toString(),
                 }
-              }}
-            />
-          </CardContent>
+              }
+            }}
+          />
+        </CardContent>
 
-          <CardActions>
-            <Link href={Routes.SitesPage()}>View Sites</Link>
-          </CardActions>
-        </Card>
-      </div>
+        <CardActions>
+          <Link href={Routes.SitesPage()}>View Sites</Link>
+        </CardActions>
+      </Card>
     </AdminLayout>
   )
 }

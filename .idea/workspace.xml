@@ -5,24 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.examples/upgradeOG.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/account/CheckoutForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/account/UpgradeForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/account/schemas.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/account/upgrade.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/api/account/create-payment-intent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/api/account/webhooks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index-browser.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/runtime/library.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/runtime/library.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/styles/_custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/_custom.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/template/Theme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/Theme.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user/UserInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/UserInfo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/layouts/AdminLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/AdminLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/layouts/ProfileLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/ProfileLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/layouts/theme1/headers/AdminHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/theme1/headers/AdminHeader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/layouts/theme1/headers/HomeHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/theme1/headers/HomeHeader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/layouts/theme1/headers/Logo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/theme1/headers/Logo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/[profileId].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/[profileId].tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/api/auth/[...auth].ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/api/auth/[...auth].ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/page/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/page/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/services/new.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/services/new.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sites/new.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sites/new.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/page/new.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/page/new.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +58,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/amirmeshkin/_code/_business/blitz-app/src/sites",
+    "last_opened_file_path": "/Users/amirmeshkin/_code/_business/blitz-app/src/pages/api/account",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -80,13 +80,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pages/api/account" />
+      <recent name="$PROJECT_DIR$/src/account" />
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/sites" />
       <recent name="$PROJECT_DIR$/.husky/_" />
-      <recent name="$PROJECT_DIR$/.husky" />
-      <recent name="$PROJECT_DIR$/src/sites/components" />
-      <recent name="$PROJECT_DIR$/src/components/user" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.examples" />
       <recent name="$PROJECT_DIR$/src/sites/mutations" />
       <recent name="$PROJECT_DIR$/src/components/dashboard" />
       <recent name="$PROJECT_DIR$/src/pages" />
@@ -104,7 +105,7 @@
       <workItem from="1681943767112" duration="4328000" />
       <workItem from="1682006031719" duration="45314000" />
       <workItem from="1682110781520" duration="1023000" />
-      <workItem from="1682113338059" duration="105024000" />
+      <workItem from="1682113338059" duration="113688000" />
     </task>
     <servers />
   </component>
