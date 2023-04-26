@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import Link from "next/link"
 import { useSession } from "@blitzjs/auth"
 // import { useSelector, RootStateOrAny } from "react-redux"

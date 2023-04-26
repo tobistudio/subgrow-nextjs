@@ -1,20 +1,6 @@
-import * as React from "react"
-import Link from "next/link"
+import React from "react"
 import { RootStateOrAny, useSelector } from "react-redux"
-import { Routes } from "@blitzjs/next"
-import { styled } from "@mui/material/styles"
-// https://mui.com/material-ui/guides/minimizing-bundle-size/#option-two-use-a-babel-plugin
-import {
-  Card,
-  CardHeader,
-  CardMedia,
-  CardContent,
-  CardActions,
-  Typography,
-  Container,
-  Grid,
-  Stack,
-} from "@mui/material"
+import { Container, Grid, Stack } from "@mui/material"
 
 export default function PricingTables() {
   const theme = useSelector((state: RootStateOrAny) => state.theme)

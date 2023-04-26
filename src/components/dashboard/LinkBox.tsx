@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { useSelector, RootStateOrAny } from "react-redux"
 import { styled } from "@mui/material/styles"
 import { Card, CardHeader, CardContent, CardActions, Switch } from "@mui/material"
