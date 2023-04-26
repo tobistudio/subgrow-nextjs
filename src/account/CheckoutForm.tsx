@@ -6,6 +6,7 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js"
+import { Button } from "@mui/material"
 
 export default function CheckoutForm() {
   const stripe = useStripe()
@@ -105,11 +106,18 @@ export default function CheckoutForm() {
         // :1 Uncaught TypeError: Cannot read properties of undefined (reading 'value')
       />
       <PaymentElement id="payment-element" options={paymentElementOptions} />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
+      {/*<button disabled={isLoading || !stripe || !elements} id="submit">*/}
+      {/*  <span id="button-text">*/}
+      {/*    {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}*/}
+      {/*  </span>*/}
+      {/*</button>*/}
+
+      <Button disabled={isLoading || !stripe || !elements} id="submit" variant={"contained"}>
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
         </span>
-      </button>
+      </Button>
+
       {/* Show any error or success messages */}
       {message && <div id="payment-message">{message}</div>}
     </form>
