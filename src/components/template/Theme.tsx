@@ -40,10 +40,6 @@ const Theme = (props) => {
   const theme = useSelector((state: RootStateOrAny) => state.theme)
 
   const locale = useSelector((state: RootStateOrAny) => state.locale.currentLang)
-  //const [isDark] = useDarkMode()
-
-  console.log("theasd fasdf asdf asdf me", theme)
-  // console.log("theme.palette.primary.main",theme.palette.primary.main);
 
   // border: `2px dashed grey${blue[500]}`,
   let mytheme = createTheme({
@@ -202,6 +198,13 @@ const Theme = (props) => {
       },
       MuiInput: {
         variants: [
+          {
+            props: { variant: "signup", color: "primary" },
+            style: {
+              background: `linear-gradient(45deg, ${blue[700]} 35%, ${blue[300]} 90%)`,
+              color: "#fff",
+            },
+          },
           // TODO: cannot get custom variants to work for text fields
           // {
           //   props: { variant: "outlined", color: "primary" },

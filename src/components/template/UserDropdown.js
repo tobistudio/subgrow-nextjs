@@ -10,6 +10,10 @@ import { FiActivity } from "react-icons/fi"
 import { useCurrentUser } from "../../users/hooks/useCurrentUser"
 import { useMutation } from "@blitzjs/rpc"
 import logout from "../../auth/mutations/logout"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+// import { faFacebook } from "@fortawesome/pro-duotone-svg-icons";
+import { faFacebook } from "@fortawesome/free-brands-svg-icons"
+import { misc } from "../../configs/colors/default"
 
 export const UserDropdown = ({ className, user }) => {
   const { avatar, userName, authority, email } = useSelector((state) => state.auth.user)
@@ -39,7 +43,14 @@ export const UserDropdown = ({ className, user }) => {
 
   const UserAvatar = (
     <div className={classNames(className, "flex items-center gap-2")}>
-      <Avatar size={32} shape="circle" src={avatar} />
+      {/*<Avatar size={32} shape="circle" src={avatar} />*/}
+
+      <FontAwesomeIcon
+        icon={faFacebook}
+        color={misc.fa_primary}
+        style={{ width: 15, height: 15 }}
+      />
+
       <div className="hidden md:block">
         <div className="font-bold pl-3 pt-1">{currentUser.username}</div>
       </div>
@@ -51,7 +62,18 @@ export const UserDropdown = ({ className, user }) => {
       <Dropdown menuStyle={{ minWidth: 240 }} renderTitle={UserAvatar} placement="bottom-end">
         <Dropdown.Item variant="header">
           <div className="py-2 px-3 flex items-center gap-2">
-            <Avatar shape="circle" src={avatar} />
+            {/*<Avatar shape="circle" src={avatar} />*/}
+
+            <FontAwesomeIcon
+              icon={faFacebook}
+              color={misc.fa_primary}
+              style={{ width: 15, height: 15 }}
+            />
+
+            {
+              // TODO: perhaps show social media icon for what you're logged in with
+            }
+
             <div>
               <div className="font-bold text-gray-900 dark:text-gray-100">{currentUser.name}</div>
               <div className="text-xs">{currentUser.username}</div>

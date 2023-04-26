@@ -4,6 +4,14 @@ import Grid from "@mui/material/Unstable_Grid2"
 import UserInfo from "../../../../components/user/UserInfo"
 import Logo from "./Logo"
 
+import SidePanel from "components/template/SidePanel"
+import UserDropdown from "components/template/UserDropdown"
+import LanguageSelector from "components/template/LanguageSelector"
+import Notification from "components/template/Notification"
+import MobileNav from "components/template/MobileNav"
+import Search from "components/template/Search"
+import StackedSideNav from "components/template/StackedSideNav"
+
 const AdminHeader: BlitzLayout<{ title?: string; type?: string }> = ({ title, type, children }) => {
   const myLoader = ({ src, width, quality }) => {
     return `https://place-hold.it/1x1/666/fff/000.gif`
@@ -18,6 +26,7 @@ const AdminHeader: BlitzLayout<{ title?: string; type?: string }> = ({ title, ty
         <Grid xs={12} sm={6} display="flex" justifyContent="right" alignItems="center">
           <Suspense>
             <UserInfo />
+            <UserDropdown />
           </Suspense>
         </Grid>
       </Grid>

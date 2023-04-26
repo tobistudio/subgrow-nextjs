@@ -26,6 +26,7 @@ const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
 export const DashboardBox = () => {
   const session = useSession()
+  console.log("session", session)
   const [sites] = useQuery(getSiteForProfile, { userId: session.userId })
 
   return (

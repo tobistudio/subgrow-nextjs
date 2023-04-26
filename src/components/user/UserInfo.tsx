@@ -7,9 +7,14 @@ import SignupButton from "./SignupButton"
 import LogoutButton from "./LogoutButton"
 import ProfileButton from "./ProfileButton"
 import ProfileDesignPanel from "components/template/SidePanel/ProfileDesignPanel"
+import { useSession } from "@blitzjs/auth"
 
 const UserInfo = () => {
-  const currentUser = useCurrentUser()
+  const currentUser = useSession()
+  console.log("currentUser", currentUser)
+
+  // currentUser not linked to blitz session
+  // const currentUser = useCurrentUser()
   const router = useRouter()
 
   if (currentUser) {
