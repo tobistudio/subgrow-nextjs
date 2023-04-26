@@ -27,11 +27,13 @@ declare module "@mui/material/Button" {
 declare module "@mui/material/styles" {
   interface TypographyVariants {
     poster: React.CSSProperties
+    radiolabel: React.CSSProperties
   }
 
   // allow configuration using `createTheme`
   interface TypographyVariantsOptions {
     poster?: React.CSSProperties
+    radiolabel?: React.CSSProperties
   }
 }
 
@@ -39,6 +41,7 @@ declare module "@mui/material/styles" {
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
     poster: true
+    radiolabel: true
   }
 }
 // TypeError: Cannot read properties of undefined (reading 'muiName')
@@ -130,6 +133,9 @@ const Theme = (props) => {
       poster: {
         fontSize: "4rem",
         color: "red",
+      },
+      radiolabel: {
+        fontSize: 12,
       },
     },
     components: {

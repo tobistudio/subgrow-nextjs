@@ -5,12 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
+      <change afterPath="$PROJECT_DIR$/src/account/SubscriptionForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/styles/components/_payments.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/account/pay.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/api/account/create-subscription.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index-browser.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/runtime/library.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/runtime/library.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/account/CheckoutForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/CheckoutForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/_app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/_app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/components/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/components/index.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/template/Theme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/Theme.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/account/upgrade.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/account/upgrade.tsx" afterDir="false" />
     </list>
@@ -47,7 +53,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/amirmeshkin/_code/_business/blitz-app/test",
+    "last_opened_file_path": "/Users/amirmeshkin/_code/_business/blitz-app/src/pages/account",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -69,11 +75,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pages/account" />
+      <recent name="$PROJECT_DIR$/src/account" />
       <recent name="$PROJECT_DIR$/test" />
       <recent name="$PROJECT_DIR$/src/pages/api/account" />
-      <recent name="$PROJECT_DIR$/src/account" />
       <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/src/sites" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tests" />
@@ -125,7 +131,7 @@
       <workItem from="1681943767112" duration="4328000" />
       <workItem from="1682006031719" duration="45314000" />
       <workItem from="1682110781520" duration="1023000" />
-      <workItem from="1682113338059" duration="131291000" />
+      <workItem from="1682113338059" duration="135528000" />
     </task>
     <servers />
   </component>
