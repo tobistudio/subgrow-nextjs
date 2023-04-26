@@ -89,7 +89,7 @@
       <recent name="$PROJECT_DIR$/src/pages" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Vitest.renders blitz documentation link">
     <configuration name="renders blitz documentation link" type="JavaScriptTestRunnerVitest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <vitest-package value="$PROJECT_DIR$/node_modules/vitest" />
@@ -102,8 +102,19 @@
       </test-names>
       <method v="2" />
     </configuration>
+    <configuration name="start:heroku" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start:heroku" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.start:heroku" />
         <item itemvalue="Vitest.renders blitz documentation link" />
       </list>
     </recent_temporary>
