@@ -23,6 +23,24 @@ declare module "@mui/material/Button" {
     addlink: true
   }
 }
+
+declare module "@mui/material/styles" {
+  interface TypographyVariants {
+    poster: React.CSSProperties
+  }
+
+  // allow configuration using `createTheme`
+  interface TypographyVariantsOptions {
+    poster?: React.CSSProperties
+  }
+}
+
+// Update the Typography's variant prop options
+declare module "@mui/material/Typography" {
+  interface TypographyPropsVariantOverrides {
+    poster: true
+  }
+}
 // TypeError: Cannot read properties of undefined (reading 'muiName')
 declare module "@mui/material/Input" {
   interface InputPropsVariantOverrides {
@@ -66,24 +84,63 @@ const Theme = (props) => {
         fontSize: 10,
       },
       h1: {
-        fontSize: 20,
+        fontSize: 24,
         fontWeight: 700,
+        paddingBottom: 15,
+      },
+      h2: {
+        fontSize: 20,
+        fontWeight: 600,
+        paddingBottom: 15,
+      },
+      h3: {
+        fontSize: 25,
+        fontWeight: 600,
+        paddingBottom: 15,
+      },
+      h4: {
+        fontSize: 14,
+        fontWeight: 500,
+        paddingBottom: 15,
+      },
+      h5: {
+        fontSize: 18,
+        fontWeight: 600,
+        paddingBottom: 15,
+      },
+      h6: {
+        fontSize: 14,
+        fontWeight: 300,
         paddingBottom: 15,
       },
       body1: {
         fontWeight: 500,
+        fontSize: 12,
       },
       body2: {
         fontWeight: 500,
+        fontSize: 10,
         // color: "#ffffff" // being overridden
       },
       caption: {
         fontWeight: 500,
-        fontSize: 14,
+        fontSize: 10,
         // color: "#ffffff" // being overridden
+      },
+      poster: {
+        fontSize: "4rem",
+        color: "red",
       },
     },
     components: {
+      MuiTypography: {
+        defaultProps: {
+          variantMapping: {
+            // Map the new variant to render a <h1> by default
+            poster: "h3",
+          },
+        },
+      },
       MuiButton: {
         // styleOverrides: {
         //   root: ({ theme }) => ({

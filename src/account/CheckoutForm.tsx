@@ -6,7 +6,9 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js"
+import { Stack } from "@mui/material"
 import { Button } from "@mui/material"
+const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
 export default function CheckoutForm() {
   const stripe = useStripe()
@@ -99,26 +101,22 @@ export default function CheckoutForm() {
 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
-      <LinkAuthenticationElement
-        id="link-authentication-element"
-        onChange={handleChange}
-
-        // :1 Uncaught TypeError: Cannot read properties of undefined (reading 'value')
-      />
+      <LinkAuthenticationElement id="link-authentication-element" onChange={handleChange} />
       <PaymentElement id="payment-element" options={paymentElementOptions} />
-      {/*<button disabled={isLoading || !stripe || !elements} id="submit">*/}
-      {/*  <span id="button-text">*/}
-      {/*    {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}*/}
-      {/*  </span>*/}
-      {/*</button>*/}
 
-      <Button disabled={isLoading || !stripe || !elements} id="submit" variant={"contained"}>
-        <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
-        </span>
-      </Button>
+      <Stack direction="row" spacing={2} mt={5}>
+        <Button id="back" variant={"outlined"}>
+          GO BACK
+        </Button>
+        {isLoading ? (
+          <LoadingSvg />
+        ) : (
+          <Button disabled={isLoading || !stripe || !elements} id="submit" variant={"contained"}>
+            PAY NOW
+          </Button>
+        )}
+      </Stack>
 
-      {/* Show any error or success messages */}
       {message && <div id="payment-message">{message}</div>}
     </form>
   )
