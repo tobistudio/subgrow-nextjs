@@ -135,7 +135,7 @@ export function LoginFinalForm<S extends z.ZodType<any, any>>({
                 <Button
                   variant="outlined"
                   style={{ justifyContent: "flex-start" }}
-                  startIcon={<FontAwesomeIcon icon={faUser} size="lg" />}
+                  startIcon={<FontAwesomeIcon icon={faUser} style={{ width: 17, height: 17 }} />}
                   className={submitClass}
                   type="submit"
                   disabled={submitting}
@@ -146,7 +146,9 @@ export function LoginFinalForm<S extends z.ZodType<any, any>>({
                   <Button
                     variant="fbbutton"
                     style={{ justifyContent: "flex-start" }}
-                    startIcon={<FontAwesomeIcon icon={faFacebook} size="xl" />}
+                    startIcon={
+                      <FontAwesomeIcon icon={faFacebook} style={{ width: 17, height: 17 }} />
+                    }
                   >
                     <LoginButton
                       asChild="span"
@@ -163,7 +165,7 @@ export function LoginFinalForm<S extends z.ZodType<any, any>>({
                   variant="twbutton"
                   style={{ justifyContent: "flex-start" }}
                   onClick={handleTwitterLogin}
-                  startIcon={<FontAwesomeIcon icon={faTwitter} size="xl" />}
+                  startIcon={<FontAwesomeIcon icon={faTwitter} style={{ width: 17, height: 17 }} />}
                 >
                   <span>Login via Twitter</span>
                 </Button>
@@ -172,7 +174,9 @@ export function LoginFinalForm<S extends z.ZodType<any, any>>({
                   variant="igbutton"
                   style={{ justifyContent: "flex-start" }}
                   onClick={handleInstagramLogin}
-                  startIcon={<FontAwesomeIcon icon={faInstagram} size="xl" />}
+                  startIcon={
+                    <FontAwesomeIcon icon={faInstagram} style={{ width: 17, height: 17 }} />
+                  }
                 >
                   <span>Login via Instagram</span>
                 </Button>
@@ -181,7 +185,7 @@ export function LoginFinalForm<S extends z.ZodType<any, any>>({
                   variant="ttbutton"
                   style={{ justifyContent: "flex-start" }}
                   onClick={handleTiktokLogin}
-                  startIcon={<FontAwesomeIcon icon={faTiktok} size="xl" />}
+                  startIcon={<FontAwesomeIcon icon={faTiktok} style={{ width: 17, height: 17 }} />}
                 >
                   <span>Login via Tik Tok</span>
                 </Button>
@@ -190,7 +194,7 @@ export function LoginFinalForm<S extends z.ZodType<any, any>>({
                   variant="gbutton"
                   style={{ justifyContent: "flex-start" }}
                   onClick={handleGoogleLogin}
-                  startIcon={<FontAwesomeIcon icon={faGoogle} size="xl" />}
+                  startIcon={<FontAwesomeIcon icon={faGoogle} style={{ width: 17, height: 17 }} />}
                 >
                   <span>Login via Google</span>
                 </Button>

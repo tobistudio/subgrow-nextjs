@@ -90,7 +90,11 @@ export const LoginForm = (props: LoginFormProps) => {
                   placeholder: "Email Address",
                   startAdornment: (
                     <InputAdornment position="start">
-                      <FontAwesomeIcon icon={faUser} color={misc.fa_primary} />
+                      <FontAwesomeIcon
+                        icon={faUser}
+                        color={misc.fa_primary}
+                        style={{ width: 15, height: 15 }}
+                      />
                     </InputAdornment>
                   ),
                 }}
@@ -105,7 +109,11 @@ export const LoginForm = (props: LoginFormProps) => {
                   placeholder: "Enter Password",
                   startAdornment: (
                     <InputAdornment position="start">
-                      <FontAwesomeIcon icon={faUnlock} color={misc.fa_primary} />
+                      <FontAwesomeIcon
+                        icon={faUnlock}
+                        color={misc.fa_primary}
+                        style={{ width: 15, height: 15 }}
+                      />
                     </InputAdornment>
                   ),
                 }}

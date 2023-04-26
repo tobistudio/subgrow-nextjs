@@ -1,5 +1,15 @@
 ## setup
 
+Next.js, blitz, react and zod with final form.
+
+
+```bash
+npm i
+blitz dev
+
+```
+
+
 
 Login using this account with username tester
 http://localhost:3000/auth/login
@@ -187,6 +197,14 @@ https://blog.bitsrc.io/why-you-should-replace-babel-with-swc-in-next-js-7d47510d
 "plugins": ["preval", "macros"]
 }
 ```
+
+
+## ISSUES
+
+1. FB Login
+
+https://subgrow.herokuapp.com/auth/login
+You are overriding current access token, that means some other app is expecting different access token and you will probably break things. Please consider passing access_token directly to API parameters instead of overriding the global settings.
 
 
 
