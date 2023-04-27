@@ -17,7 +17,7 @@ const UserInfo = () => {
   // const currentUser = useCurrentUser()
   const router = useRouter()
 
-  if (currentUser) {
+  if (currentUser.userId) {
     let myownpage = false
 
     if ("/" + currentUser.username === router.asPath) {
