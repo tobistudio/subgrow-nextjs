@@ -107,7 +107,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 // }
 
 // need {} or else it's a object in object
-export default function AddLinkWidget({ sites }) {
+export default function AddLinkWidget({ sites, setLinkList }) {
   const [links, setLinks] = React.useState(sites)
   const [updateLinkMutation] = useMutation(updateLinkOrder)
 
@@ -135,6 +135,8 @@ export default function AddLinkWidget({ sites }) {
 
     setLinks(newLinks)
   }
+
+  React.useEffect(() => setLinkList(links), [links]);
   // TODO: handle checks outside of loop with arrays
   //   const [checked, setChecked] = React.useState(true);
   // const handleActiveChange = (e: React.ChangeEvent<HTMLInputElement>,id) => {
@@ -167,7 +169,7 @@ export default function AddLinkWidget({ sites }) {
         </Button>
       </Box>
       {components.map((link, i) => (
-        <AddLinkCard key={i} link={link} />
+        <AddLinkCard key={i} link={link} setLinks={setLinks} />
       ))}
 
       {!links && (

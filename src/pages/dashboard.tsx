@@ -24,10 +24,8 @@ import getSiteForProfile from "../sites/queries/getSiteForProfile"
 
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
-export const DashboardBox = () => {
-  const session = useSession()
-  console.log("session", session)
-  const [sites] = useQuery(getSiteForProfile, { userId: session.userId })
+
+export const DashboardBox = ({ sites, setLinkList }) => {
 
   return (
     <Container
@@ -44,7 +42,7 @@ export const DashboardBox = () => {
           justifyContent="center"
           alignItems="center"
         >
-          <AddLinkWidget sites={sites} />
+          <AddLinkWidget sites={sites} setLinkList={setLinkList} />
         </Grid>
       </Grid>
     </Container>
@@ -52,6 +50,12 @@ export const DashboardBox = () => {
 }
 
 const Dashboard = () => {
+
+  const session = useSession()
+  console.log("session", session)
+  const [sites] = useQuery(getSiteForProfile, { userId: session.userId })
+  const [linkList, setLinkList] = React.useState(sites);
+
   return (
     <AdminLayout>
       <Head>
@@ -66,7 +70,7 @@ const Dashboard = () => {
                 <CardHeader title="Links" />
 
                 <CardContent>
-                  <DashboardBox />
+                  <DashboardBox sites={sites} setLinkList={setLinkList} />
                 </CardContent>
               </Card>
             </Grid>
@@ -74,7 +78,9 @@ const Dashboard = () => {
             <Grid item xs={4} pl={5}>
               <Card variant="outlined">
                 <CardHeader title="Your Links" />
-
+                {
+                  linkList.map((ele, id) => <p key={id}>{ele.url}</p>)
+                }
                 <CardContent></CardContent>
               </Card>
 

@@ -50,6 +50,7 @@ import { faXmarkLarge } from "@fortawesome/pro-regular-svg-icons"
 import { FORM_ERROR } from "final-form"
 import { useMutation } from "@blitzjs/rpc"
 import createSiteWidget from "../../sites/mutations/createSiteWidget"
+import updateLinkOrder from "../../sites/mutations/updateLinkOrder"
 // import { red } from '@mui/material/colors';
 import { fonts, misc } from "../../configs/colors/default"
 
@@ -69,10 +70,11 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }))
 
 // need {} or else it's a object in object
-export default function LinkListCard({ link }) {
+export default function LinkListCard({ link, setLinks }) {
   const router = useRouter()
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
   const [createSiteMutation] = useMutation(createSiteWidget)
+  const [updateLinkMutation] = useMutation(updateLinkOrder)
 
   /**
    * Regex works best for domains without https or http
@@ -81,11 +83,11 @@ export default function LinkListCard({ link }) {
   function isValidUrlReg(str) {
     const pattern = new RegExp(
       "^(https?:\\/\\/)?" + // protocol
-        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-        "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-        "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-        "(\\#[-a-z\\d_]*)?$",
+      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+      "(\\#[-a-z\\d_]*)?$",
       "i"
     ) // fragment locator
 
@@ -151,6 +153,12 @@ export default function LinkListCard({ link }) {
     try {
       const site = await createSiteMutation(values)
       console.log("on submit site", site)
+      setLinks(prev => {
+        return [site, ...prev.map((ele, id) => {
+          updateLinkMutation({ id: ele.id, order: id + 1 });
+          return ({ ...ele, order: id + 1 })
+        })]
+      })
       // TODO: remove the edit box, and refresh list of sites!
     } catch (error: any) {
       console.error(error)
@@ -239,15 +247,15 @@ export default function LinkListCard({ link }) {
                   name="title"
                   style={{ maxWidth: 380 }}
                   size="small"
-                  // TODO: could add bad word check, leave off for now
-                  // InputProps={{
-                  //   //placeholder: "Email Address",
-                  //   startAdornment: (
-                  //     <InputAdornment position="start">
-                  //       <FontAwesomeIcon icon={faEnvelope} color={"#a0a0ce"} />
-                  //     </InputAdornment>
-                  //   ),
-                  // }}
+                // TODO: could add bad word check, leave off for now
+                // InputProps={{
+                //   //placeholder: "Email Address",
+                //   startAdornment: (
+                //     <InputAdornment position="start">
+                //       <FontAwesomeIcon icon={faEnvelope} color={"#a0a0ce"} />
+                //     </InputAdornment>
+                //   ),
+                // }}
                 />
                 <Box textAlign="center">
                   <Button
