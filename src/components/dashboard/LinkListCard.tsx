@@ -4,18 +4,13 @@ import { Routes } from "@blitzjs/next"
 import {
   Card,
   CardHeader,
-  CardMedia,
+  Stack,
   CardContent,
   CardActions,
   Typography,
   Box,
   Switch,
   Tooltip,
-  FormGroup,
-  FormControlLabel,
-  Paper,
-  Dialog,
-  DialogTitle,
   Modal,
   Button,
 } from "@mui/material"
@@ -31,7 +26,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 // import { faTrash } from "@fortawesome/pro-duotone-svg-icons"
 import { faTrashCan } from "@fortawesome/sharp-solid-svg-icons"
-import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 
 import { DropResult } from "react-beautiful-dnd"
@@ -179,24 +173,31 @@ const LinkListCard = ({ link, index, mode, snapshot, setLinks }) => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Are you really delete this data?
+            Are you sure you want to delete this link?
           </Typography>
-          <Button
-            variant="outlined"
-            aria-label="details"
-            style={{ marginLeft: "auto", marginRight: "10px" }}
-            onClick={(e) => handleDeleteClick(e, link.id)}
-          >
-            OK
-          </Button>
-          <Button
-            variant="contained"
-            aria-label="details"
-            style={{ marginLeft: "auto" }}
-            onClick={() => handleClose()}
-          >
-            Cancel
-          </Button>
+
+          {/*// direction="row"*/}
+          <Stack direction="row" mt={2}>
+            <Button
+              variant="outlined"
+              aria-label="cancel"
+              // style={{ marginLeft: "auto" }}
+              onClick={() => handleClose()}
+            >
+              Cancel
+            </Button>
+
+            <Button
+              variant="contained"
+              aria-label="yes"
+              style={{ marginLeft: "auto" }}
+              // style={{ marginLeft: "auto", marginRight: "10px" }}
+              onClick={(e) => handleDeleteClick(e, link.id)}
+            >
+              YES
+            </Button>
+
+          </Stack>
         </Box>
       </Modal>
     </Card>
