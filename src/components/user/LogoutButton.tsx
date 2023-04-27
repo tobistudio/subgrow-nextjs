@@ -14,6 +14,7 @@ export const LogoutButton = () => {
   return (
     <Button
       onClick={async () => {
+
         await logoutMutation()
         Routes.Home()
       }}

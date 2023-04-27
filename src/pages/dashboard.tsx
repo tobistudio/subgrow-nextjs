@@ -1,26 +1,19 @@
 import React, { Suspense } from "react"
 import { useSession } from "@blitzjs/auth"
 import Head from "next/head"
-import Link from "next/link"
-import { usePaginatedQuery, useQuery } from "@blitzjs/rpc"
-import { useRouter } from "next/router"
+import { useQuery } from "@blitzjs/rpc"
 import AdminLayout from "core/layouts/AdminLayout"
-import getProfile from "profiles/queries/getProfile"
-import getSites from "sites/queries/getSites"
 import AddLinkWidget from "components/dashboard/AddLinkWidget"
 import {
   Box,
-  Paper,
   Grid,
-  Button,
   Card,
   CardHeader,
   CardContent,
   Container,
-  Typography,
-  Stack,
 } from "@mui/material"
 import getSiteForProfile from "../sites/queries/getSiteForProfile"
+import {Routes} from "@blitzjs/next";
 
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
@@ -52,7 +45,16 @@ export const DashboardBox = ({ sites, setLinkList }) => {
 const Dashboard = () => {
 
   const session = useSession()
-  console.log("session", session)
+  console.log("session dashboard", session)
+
+  // auth not being checked yet, so no session id causes error
+  if(!session.userId) {
+
+    console.log("session.userId",session.userId);
+    Routes.Home()
+    return
+  }
+
   const [sites] = useQuery(getSiteForProfile, { userId: session.userId })
   const [linkList, setLinkList] = React.useState(sites);
 

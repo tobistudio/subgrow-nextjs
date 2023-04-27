@@ -28,7 +28,8 @@ export const authenticateUser = async (rawEmail: string, rawPassword: string) =>
  * @param userId
  */
 export const clearSession = async (userId) => {
-  return await db.session.delete({ where: { userId } })
+  // return await db.session.delete({ where: { userId } })
+  return await db.session.deleteMany({ where: { userId } })
 }
 
 export default resolver.pipe(resolver.zod(Login), async ({ email, password }, ctx) => {
@@ -38,7 +39,7 @@ export default resolver.pipe(resolver.zod(Login), async ({ email, password }, ct
   // delete session entry for this user if exists even if login page will forward
   const session = await clearSession(user.id)
 
-  console.log("user session", session)
+  //console.log("user session", session)
   await ctx.session.$create({ username: user.username, userId: user.id, role: user.role as Role })
 
   return user
