@@ -92,7 +92,7 @@ export default function AddLinkWidget({ sites, setLinkList }) {
             {(provided, snapshot) => (
               <div {...provided.droppableProps} ref={provided.innerRef}>
                 {links.map((link, index) => (
-                  <Draggable key={link.id} draggableId={link.id} index={index}>
+                  <Draggable key={link.id} draggableId={link.id} index={index} isDragDisabled={false}>
                     {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}
