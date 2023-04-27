@@ -108,12 +108,12 @@ const Theme = (props) => {
       },
       h5: {
         fontSize: 18,
-        fontWeight: 600,
+        fontWeight: 500,
         paddingBottom: 15,
       },
       h6: {
-        fontSize: 14,
-        fontWeight: 300,
+        fontSize: 16,
+        fontWeight: 500,
         paddingBottom: 15,
       },
       body1: {
