@@ -6,27 +6,32 @@ import { useSelector } from "react-redux"
 import Link from "next/link"
 import classNames from "classnames"
 import { HiOutlineUser, HiOutlineCog, HiOutlineLogout } from "react-icons/hi"
-import { FiActivity } from "react-icons/fi"
-import { useCurrentUser } from "../../users/hooks/useCurrentUser"
+// import { FiActivity } from "react-icons/fi"
+// import { useCurrentUser } from "../../users/hooks/useCurrentUser"
 import { useMutation } from "@blitzjs/rpc"
 import logout from "../../auth/mutations/logout"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 // import { faFacebook } from "@fortawesome/pro-duotone-svg-icons";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons"
 import { misc } from "../../configs/colors/default"
+import {useSession} from "@blitzjs/auth";
 
 export const UserDropdown = ({ className, user }) => {
   const { avatar, userName, authority, email } = useSelector((state) => state.auth.user)
   // const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
   //const { signOut } = useAuth()
-  const currentUser = useCurrentUser()
+  //const currentUser = useCurrentUser()
   // console.log("currentUser", currentUser)
+
+  const session = useSession()
+
+
 
   const dropdownItemList = [
     {
       label: "My Profile",
-      path: `/${currentUser.username}`,
+      path: `/${session.username}`,
       icon: <HiOutlineUser />,
     },
     {
@@ -41,9 +46,10 @@ export const UserDropdown = ({ className, user }) => {
     // },
   ]
 
+  // TODO: show icon for the social media that user is logged in
   const UserAvatar = (
     <div className={classNames(className, "flex items-center gap-2")}>
-      {/*<Avatar size={32} shape="circle" src={avatar} />*/}
+      <Avatar size={32} shape="circle" src={avatar} />
 
       <FontAwesomeIcon
         icon={faFacebook}
@@ -52,7 +58,7 @@ export const UserDropdown = ({ className, user }) => {
       />
 
       <div className="hidden md:block">
-        <div className="font-bold pl-3 pt-1">{currentUser.username}</div>
+        <div className="font-bold pl-3 pt-1">{session.username}</div>
       </div>
     </div>
   )
@@ -75,8 +81,8 @@ export const UserDropdown = ({ className, user }) => {
             }
 
             <div>
-              <div className="font-bold text-gray-900 dark:text-gray-100">{currentUser.name}</div>
-              <div className="text-xs">{currentUser.username}</div>
+              <div className="font-bold text-gray-900 dark:text-gray-100">{session.name}</div>
+              <div className="text-xs">{session.username}</div>
             </div>
           </div>
         </Dropdown.Item>
@@ -94,6 +100,8 @@ export const UserDropdown = ({ className, user }) => {
           //onClick={signOut} // TODO
           onClick={async () => {
             await logoutMutation()
+
+
           }}
           eventKey="Sign Out"
           className="gap-2"

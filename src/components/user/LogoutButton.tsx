@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSignOut } from "@fortawesome/pro-duotone-svg-icons"
 import { misc } from "../../configs/colors/default"
 import classNames from "classnames"
+import {Routes} from "@blitzjs/next";
 
 export const LogoutButton = () => {
   const [logoutMutation] = useMutation(logout)
@@ -14,6 +15,7 @@ export const LogoutButton = () => {
     <Button
       onClick={async () => {
         await logoutMutation()
+        Routes.Home()
       }}
       variant="contained"
       aria-label="Log Out"

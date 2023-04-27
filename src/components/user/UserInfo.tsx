@@ -11,7 +11,7 @@ import { useSession } from "@blitzjs/auth"
 
 const UserInfo = () => {
   const currentUser = useSession()
-  console.log("currentUser", currentUser)
+  console.log("currentUser userinfo", currentUser)
 
   // currentUser not linked to blitz session
   // const currentUser = useCurrentUser()
