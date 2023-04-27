@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/src/sites/queries/getSiteForProfileByStatus.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/dashboard/AddLinkWidgetBottom.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/[profileId].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/[profileId].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/dashboard/AddLinkWidget.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dashboard/AddLinkWidget.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +42,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/amirmeshkin/_code/_business/blitz-app/src/sites/queries",
+    "last_opened_file_path": "/Users/amirmeshkin/_code/_business/blitz-app/src/components/dashboard",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -57,18 +57,18 @@
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
-        <entry key="com.haulmont.rcb.reactComponents" value="false" />
+        <entry key="com.haulmont.rcb.reactComponents" value="true" />
         <entry key="com.haulmont.rcb.reactInspector" value="false" />
       </map>
     </option>
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/dashboard" />
       <recent name="$PROJECT_DIR$/src/sites/queries" />
       <recent name="$PROJECT_DIR$/db/generated/prisma-client-js" />
       <recent name="$PROJECT_DIR$/src/pages/account" />
       <recent name="$PROJECT_DIR$/src/account" />
-      <recent name="$PROJECT_DIR$/test" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/account/stripe" />
@@ -120,7 +120,7 @@
       <workItem from="1681943767112" duration="4328000" />
       <workItem from="1682006031719" duration="45314000" />
       <workItem from="1682110781520" duration="1023000" />
-      <workItem from="1682113338059" duration="151725000" />
+      <workItem from="1682113338059" duration="154078000" />
     </task>
     <servers />
   </component>
