@@ -6,12 +6,13 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js"
+import { Stack } from "@mui/material"
 import { Button } from "@mui/material"
+const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
 export default function CheckoutForm() {
   const stripe = useStripe()
   const elements = useElements()
-
   const [email, setEmail] = React.useState("")
   const [message, setMessage] = React.useState(null)
   const [isLoading, setIsLoading] = React.useState(false)
@@ -46,6 +47,35 @@ export default function CheckoutForm() {
       }
     })
   }, [stripe])
+
+  const createSubscription = async () => {
+    // create a payment method
+    const paymentMethod = await stripe?.createPaymentMethod({
+      type: "card",
+      card: elements?.getElement(CardElement)!,
+      billing_details: {
+        name,
+        email,
+      },
+    })
+
+    // call the backend to create subscription
+    const response = await fetch("http://localhost:3000/api/account/create-subscription", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        paymentMethod: paymentMethod?.paymentMethod?.id,
+        name,
+        email,
+        priceId,
+      }),
+    }).then((res) => res.json())
+
+    // confirm the payment by the user
+    const confirmPayment = await stripe?.confirmCardPayment(response.clientSecret)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -99,27 +129,26 @@ export default function CheckoutForm() {
 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
-      <LinkAuthenticationElement
-        id="link-authentication-element"
-        onChange={handleChange}
-
-        // :1 Uncaught TypeError: Cannot read properties of undefined (reading 'value')
-      />
+      <LinkAuthenticationElement id="link-authentication-element" onChange={handleChange} />
       <PaymentElement id="payment-element" options={paymentElementOptions} />
-      {/*<button disabled={isLoading || !stripe || !elements} id="submit">*/}
-      {/*  <span id="button-text">*/}
-      {/*    {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}*/}
-      {/*  </span>*/}
-      {/*</button>*/}
 
-      <Button disabled={isLoading || !stripe || !elements} id="submit" variant={"contained"}>
-        <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
-        </span>
-      </Button>
+      <Stack direction="row" spacing={2} mt={5}>
+        <Button id="back" variant={"outlined"}>
+          GO BACK
+        </Button>
+        {isLoading ? (
+          <LoadingSvg />
+        ) : (
+          <Button disabled={isLoading || !stripe || !elements} id="submit" variant={"contained"}>
+            PAY NOW
+          </Button>
+        )}
+      </Stack>
 
-      {/* Show any error or success messages */}
       {message && <div id="payment-message">{message}</div>}
     </form>
   )
 }
+
+// TODO: subscription
+// https://www.mohammadfaisal.dev/blog/how-to-create-a-stripe-subscription-with-reactjs-and-nodejs

@@ -11,7 +11,7 @@ loadEnvConfig(projectDir)
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   test: {
-    dir: "./",
+    dir: "./test",
     globals: true,
     setupFiles: "./test/setup.ts",
     coverage: {

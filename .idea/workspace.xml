@@ -4,13 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/node.js.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/node.js.yml" afterDir="false" />
+    <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
+      <change afterPath="$PROJECT_DIR$/src/account/stripe/SubscriptionForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/api/account/checkout-session.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index-browser.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/runtime/library.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/runtime/library.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/CheckoutForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/stripe/CheckoutForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/SubscriptionForm.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/UpgradeForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/stripe/UpgradeForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/schemas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/stripe/schemas.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/layouts/HomeLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/HomeLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/account/pay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/account/pay.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/account/upgrade.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/account/upgrade.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/api/account/create-payment-intent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/api/account/create-payment-intent.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +54,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/amirmeshkin/_code/_business/blitz-app/src/pages/api/account",
+    "last_opened_file_path": "/Users/amirmeshkin/_code/_business/blitz-app/src/pages/account",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -67,18 +76,49 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/pages/api/account" />
+      <recent name="$PROJECT_DIR$/src/pages/account" />
       <recent name="$PROJECT_DIR$/src/account" />
+      <recent name="$PROJECT_DIR$/test" />
+      <recent name="$PROJECT_DIR$/src/pages/api/account" />
       <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/src/sites" />
-      <recent name="$PROJECT_DIR$/.husky/_" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/account/stripe" />
+      <recent name="$PROJECT_DIR$/tests" />
       <recent name="$PROJECT_DIR$/.examples" />
       <recent name="$PROJECT_DIR$/src/sites/mutations" />
       <recent name="$PROJECT_DIR$/src/components/dashboard" />
-      <recent name="$PROJECT_DIR$/src/pages" />
     </key>
+  </component>
+  <component name="RunManager" selected="Vitest.renders blitz documentation link">
+    <configuration name="renders blitz documentation link" type="JavaScriptTestRunnerVitest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <vitest-package value="$PROJECT_DIR$/node_modules/vitest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/test/index.test.tsx" />
+      <test-names>
+        <test-name value="renders blitz documentation link" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="start:heroku" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start:heroku" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start:heroku" />
+        <item itemvalue="Vitest.renders blitz documentation link" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -92,7 +132,7 @@
       <workItem from="1681943767112" duration="4328000" />
       <workItem from="1682006031719" duration="45314000" />
       <workItem from="1682110781520" duration="1023000" />
-      <workItem from="1682113338059" duration="122943000" />
+      <workItem from="1682113338059" duration="145315000" />
     </task>
     <servers />
   </component>
@@ -109,6 +149,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

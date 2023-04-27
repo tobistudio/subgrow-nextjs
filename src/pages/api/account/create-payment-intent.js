@@ -5,6 +5,24 @@ const calculateOrderAmount = (items) => {
   // Replace this constant with a calculation of the order's amount
   // Calculate the order total on the server to prevent
   // people from directly manipulating the amount on the client
+
+  console.log("items", items.id)
+
+  // should only be one item
+  // switch(items[0].id) {
+  //   case 'silver':
+  //     return 5
+  //     break;
+  //   case 'gold':
+  //     return 15
+  //     break;
+  //   case 'platinum':
+  //     return 25
+  //     break;
+  //   default:
+  //   // code block
+  // }
+
   return 1400
 }
 
