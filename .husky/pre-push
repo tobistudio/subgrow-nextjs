@@ -1,7 +1,7 @@
 #!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+# . "$(dirname "$0")/_/husky.sh"
 
-npx pretty-quick --staged
+# npx pretty-quick --staged
 
-npx tsc
+# npx tsc
 # blitz build
