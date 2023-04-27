@@ -70,7 +70,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }))
 
 // need {} or else it's a object in object
-export default function LinkListCard({ link, setLinks }) {
+export default function LinkListCard({ link, setLinks }: any) {
   const router = useRouter()
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
   const [createSiteMutation] = useMutation(createSiteWidget)

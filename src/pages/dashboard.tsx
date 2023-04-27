@@ -13,7 +13,7 @@ import {
   Container,
 } from "@mui/material"
 import getSiteForProfile from "../sites/queries/getSiteForProfile"
-import {Routes} from "@blitzjs/next";
+import { Routes } from "@blitzjs/next";
 
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
@@ -44,19 +44,22 @@ export const DashboardBox = ({ sites, setLinkList }) => {
 
 const Dashboard = () => {
 
+
   const session = useSession()
   console.log("session dashboard", session)
 
-  // auth not being checked yet, so no session id causes error
-  if(!session.userId) {
+  const [sites] = useQuery(getSiteForProfile, { userId: session.userId })
+  const [linkList, setLinkList] = React.useState(sites);
 
-    console.log("session.userId",session.userId);
+  // auth not being checked yet, so no session id causes error
+  if (!session.userId) {
+
+    console.log("session.userId", session.userId);
     Routes.Home()
     return
   }
 
-  const [sites] = useQuery(getSiteForProfile, { userId: session.userId })
-  const [linkList, setLinkList] = React.useState(sites);
+
 
   return (
     <AdminLayout>

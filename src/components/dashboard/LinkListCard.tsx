@@ -82,7 +82,7 @@ const style = {
 // TODO: draggable https://codesandbox.io/s/draggable-material-ui-oj3wz?file=/src/components/DraggableList.tsx:764-773
 // need {} or else it's a object in object
 // const LinkListCard = ({ link, index, mode }: DraggableListItemProps) => {
-const LinkListCard = ({ link, index, mode, snapshot, setLinks }) => {
+const LinkListCard = ({ link, index, mode, snapshot, setLinks }: any) => {
   // const LinkListCard = React.memo(({ link, mode }: DraggableListProps) => {
   const router = useRouter()
   const emails = ["username@gmail.com", "user02@gmail.com"]

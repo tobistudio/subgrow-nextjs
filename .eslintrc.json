@@ -1,4 +1,8 @@
 {
   "extends": ["next", "next/core-web-vitals"],
-  "ignorePatterns": ["src/templates/**/*.**", "node_modules/**/*.**", "src/templates/*"]
+  "ignorePatterns": ["src/templates/**/*.**", "node_modules/**/*.**", "src/templates/*"],
+  "rules": {
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-page-custom-font": "off"
+  }
 }

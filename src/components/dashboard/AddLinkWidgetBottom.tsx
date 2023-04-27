@@ -167,7 +167,7 @@ export default function AddLinkWidgetBottom({ sites }) {
         </Button>
       </Box>
       {components.map((link, i) => (
-        <AddLinkCard key={i} link={link} />
+        <AddLinkCard key={i} link={link} setLinks={setLinks} />
       ))}
 
       {!links && (
