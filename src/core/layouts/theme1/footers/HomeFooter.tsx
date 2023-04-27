@@ -14,6 +14,7 @@ const HomeFooter: BlitzLayout<{ title?: string; type?: string; children?: React.
     <>
       <footer>
         <span>Copyright 2023</span>
+
       </footer>
       {children}
     </>
@@ -21,3 +22,15 @@ const HomeFooter: BlitzLayout<{ title?: string; type?: string; children?: React.
 }
 
 export default HomeFooter
+
+/*
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ELY2CJVVJ4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ELY2CJVVJ4');
+</script>
+ */

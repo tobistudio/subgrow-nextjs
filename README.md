@@ -5,9 +5,25 @@ Next.js, blitz, react and zod with final form.
 
 ```bash
 npm i
+
+# setup dev environment
 blitz dev
 
+# build app
+
+
+
 ```
+
+## WORKFLOW
+
+Production will be done on the `develop` branch, and merged into the `main` branch
+
+Husky will take care of database updates on commit
+
+
+`blitz build` will run on push to main and PR
+
 
 
 

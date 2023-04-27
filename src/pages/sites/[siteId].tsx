@@ -12,7 +12,6 @@ import { Button } from "@mui/material"
 
 export const Site = () => {
   const router = useRouter()
-  // const siteId = useParam("siteId", "number")
   const siteId = useParam("siteId", "string")
   const [deleteSiteMutation] = useMutation(deleteSite)
   const [site] = useQuery(getSite, { id: siteId })

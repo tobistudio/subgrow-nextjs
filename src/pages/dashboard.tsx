@@ -14,6 +14,7 @@ import {
 } from "@mui/material"
 import getSiteForProfile from "../sites/queries/getSiteForProfile"
 import { Routes } from "@blitzjs/next";
+import PreviewLinkButton from "../components/dashboard/PreviewLinkButton";
 
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
@@ -82,11 +83,17 @@ const Dashboard = () => {
 
             <Grid item xs={4} pl={5}>
               <Card variant="outlined">
-                <CardHeader title="Your Links" />
-                {
-                  linkList.map((ele, id) => <p key={id}>{ele.url}</p>)
-                }
-                <CardContent></CardContent>
+                <CardHeader
+                  title="Preview"
+                />
+
+                <CardContent>
+
+                  {
+                    linkList.map((ele, id) => <PreviewLinkButton key={id} ele={ele} />)
+                  }
+
+                </CardContent>
               </Card>
 
               {/*<FacebookProvider appId="123456789">*/}

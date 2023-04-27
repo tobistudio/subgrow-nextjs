@@ -5,6 +5,16 @@ import { ForgotPassword } from "auth/validations"
 import forgotPassword from "auth/mutations/forgotPassword"
 import { useMutation } from "@blitzjs/rpc"
 import { BlitzPage } from "@blitzjs/next"
+import {
+  Alert,
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  Stack,
+} from "@mui/material"
 
 const ForgotPasswordPage: BlitzPage = () => {
   const [forgotPasswordMutation, { isSuccess }] = useMutation(forgotPassword)
@@ -15,18 +25,16 @@ const ForgotPasswordPage: BlitzPage = () => {
 
       {isSuccess ? (
         <div>
-          <h2>Request Submitted</h2>
-          <p>
-            If your email is in our system, you will receive instructions to reset your password
-            shortly.
-          </p>
+          <Alert severity="info" className="mt-4 mb-4">
+            You will receive an email to reset your password shortly.
+          </Alert>
         </div>
       ) : (
         <Form
           submitText="Send Reset Password Instructions"
           schema={ForgotPassword}
           initialValues={{ email: "" }}
-          onSubmit={async (values) => {
+          onSubmit={async (values, submitError) => {
             try {
               await forgotPasswordMutation(values)
             } catch (error: any) {

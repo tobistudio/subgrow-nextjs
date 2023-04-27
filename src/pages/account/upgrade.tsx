@@ -4,8 +4,7 @@ import SubscriptionForm from "account/stripe/SubscriptionForm"
 import HomeLayout from "../../core/layouts/HomeLayout"
 import Head from "next/head"
 import { loadStripe } from "@stripe/stripe-js"
-import { Elements, CardElement } from "@stripe/react-stripe-js"
-import CheckoutForm from "../../account/stripe/CheckoutForm"
+import { Elements } from "@stripe/react-stripe-js"
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 const stripe = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
@@ -22,10 +21,11 @@ export default function UpgradePage() {
     ],
   }
 
+  // /api/account/create-payment-intent
   React.useEffect(() => {
     setIsLoading(true)
     // Create PaymentIntent as soon as the page loads
-    fetch("/api/account/create-payment-intent", {
+    fetch("/api/account/create-subscription", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(product),
@@ -33,7 +33,7 @@ export default function UpgradePage() {
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret))
       .then(() => setIsLoading(false))
-  }, [])
+  }, [product])
 
   // for subscriptions
   // React.useEffect(() => {
