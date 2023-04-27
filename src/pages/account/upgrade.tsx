@@ -1,53 +1,23 @@
 // @ts-nocheck
 import React, { Suspense } from "react"
-import { loadStripe } from "@stripe/stripe-js"
-import { Elements } from "@stripe/react-stripe-js"
-import CheckoutForm from "account/CheckoutForm"
-import AdminLayout from "../../core/layouts/AdminLayout"
+import SubscriptionForm from "account/stripe/SubscriptionForm"
+import HomeLayout from "../../core/layouts/HomeLayout"
 import Head from "next/head"
-import {
-  Box,
-  Card,
-  CardContent,
-  CardHeader,
-  Grid,
-  Typography,
-  Stack,
-  Radio,
-  Chip,
-  RadioGroup,
-  FormControl,
-  FormGroup,
-  FormLabel,
-  FormControlLabel,
-  Button,
-} from "@mui/material"
-
-import { DashboardBox } from "../dashboard"
-
-// TODO: add stripe subscriptions
-// https://stripe.com/docs/billing/subscriptions/coupons
-
-// Make sure to call loadStripe outside of a component’s render to avoid
-// recreating the Stripe object on every render.
-// This is your test publishable API key.
-
-// @ts-ignore
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
-
+import { loadStripe } from "@stripe/stripe-js"
+import { Elements, CardElement } from "@stripe/react-stripe-js"
+import CheckoutForm from "../../account/stripe/CheckoutForm"
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
+const stripe = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
-console.log(
-  "process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-)
-export default function App() {
+export default function UpgradePage() {
   const [clientSecret, setClientSecret] = React.useState("")
   const [isLoading, setIsLoading] = React.useState(false)
+
+  // TODO: hooked to state or price box
   const product = {
     items: [
       {
-        id: "xl-tshirt",
+        id: "gold",
       },
     ],
   }
@@ -65,102 +35,63 @@ export default function App() {
       .then(() => setIsLoading(false))
   }, [])
 
+  // for subscriptions
+  // React.useEffect(() => {
+  //   if (!stripe) {
+  //     return
+  //   }
+  //   setIsLoading(true)
+  //
+  //
+  //   // is this seccure, wtf
+  //   const clientSecret = new URLSearchParams(window.location.search).get(
+  //     "payment_intent_client_secret"
+  //   )
+  //
+  //   setClientSecret(clientSecret)
+  //
+  //   if (!clientSecret) {
+  //     return
+  //   }
+  //
+  //   stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
+  //     switch (paymentIntent.status) {
+  //       case "succeeded":
+  //         setMessage("Payment succeeded!")
+  //         break
+  //       case "processing":
+  //         setMessage("Your payment is processing.")
+  //         break
+  //       case "requires_payment_method":
+  //         setMessage("Your payment was not successful, please try again.")
+  //         break
+  //       default:
+  //         setMessage("Something went wrong.")
+  //         break
+  //     }
+  //   })
+  // }, [stripe])
+
   const appearance = {
-    theme: "stripe",
+    theme: "night",
   }
   const options = {
     clientSecret,
     appearance,
   }
 
-  const upgradePlanName = "Gold Subscription"
-
   return (
-    <AdminLayout>
+    <HomeLayout>
       <Head>
         <title>Dashboard</title>
       </Head>
-
       <Suspense fallback={<LoadingSvg />}>
-        <Box>
-          <Grid container spacing={{ xs: 2, md: 3, lg: 6 }}>
-            <Grid item xs={8}>
-              <Card variant="outlined">
-                <CardHeader title="Payment" />
-
-                <CardContent>
-                  {clientSecret && (
-                    <Elements options={options} stripe={stripePromise}>
-                      <CheckoutForm />
-                    </Elements>
-                  )}
-                </CardContent>
-              </Card>
-            </Grid>
-
-            <Grid item xs={4} pl={5}>
-              <Card variant="outlined">
-                <CardHeader title="Your Subscription" />
-
-                <CardContent>
-                  <FormControl>
-                    <FormLabel id="demo-radio-buttons-group-label">Billing Cycle</FormLabel>
-                    <RadioGroup
-                      aria-labelledby="demo-radio-buttons-group-label"
-                      defaultValue="female"
-                      name="radio-buttons-group"
-                    >
-                      <FormControlLabel
-                        value="female"
-                        control={
-                          <>
-                            <Radio />
-                            <Typography variant="radiolabel">Monthly</Typography>
-                          </>
-                        }
-                        label=""
-                      />
-                      <FormControlLabel
-                        value="male"
-                        control={
-                          <>
-                            <Radio />
-                            <Typography variant="radiolabel" pr={1}>
-                              Annual
-                            </Typography>
-                            <Chip label="Save 20%" />
-                          </>
-                        }
-                        label=""
-                      />
-                    </RadioGroup>
-                  </FormControl>
-
-                  {/*<Typography variant="h6">asd</Typography>*/}
-
-                  <Stack direction="row" spacing={2}>
-                    <Typography variant="body1">{upgradePlanName}</Typography>
-
-                    <Typography variant="body1">$10</Typography>
-                  </Stack>
-
-                  {isLoading ? (
-                    <LoadingSvg />
-                  ) : (
-                    <Button
-                      disabled={isLoading || !stripePromise}
-                      id="submit"
-                      variant={"contained"}
-                    >
-                      PAY NOW
-                    </Button>
-                  )}
-                </CardContent>
-              </Card>
-            </Grid>
-          </Grid>
-        </Box>
+        {clientSecret && (
+          <Elements options={options} stripe={stripe}>
+            <SubscriptionForm />
+          </Elements>
+        )}
       </Suspense>
-    </AdminLayout>
+    </HomeLayout>
   )
 }

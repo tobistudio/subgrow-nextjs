@@ -1,6 +1,7 @@
 import Head from "next/head"
 import React, { FC } from "react"
 import { BlitzLayout } from "@blitzjs/next"
+import { Container } from "@mui/material"
 
 // TODO: need to get var here for theme
 // const HomeHeader = lazy(() => import('core/layouts/theme1/headers/HomeHeader'));
@@ -72,9 +73,9 @@ const HomeLayout: BlitzLayout<{
         <title>{title || "links"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {header}
-      {children}
-      {footer}
+      <Container fixed>{header}</Container>
+      <Container fixed>{children}</Container>
+      <Container fixed>{footer}</Container>
     </div>
   )
 }

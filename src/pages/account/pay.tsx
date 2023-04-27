@@ -2,7 +2,7 @@
 import React, { Suspense } from "react"
 import { loadStripe } from "@stripe/stripe-js"
 import { Elements } from "@stripe/react-stripe-js"
-import CheckoutForm from "account/CheckoutForm"
+import CheckoutForm from "account/stripe/CheckoutForm"
 import AdminLayout from "../../core/layouts/AdminLayout"
 import Head from "next/head"
 import {
@@ -23,16 +23,9 @@ import {
   Button,
 } from "@mui/material"
 
-import { DashboardBox } from "../dashboard"
-
 // TODO: add stripe subscriptions
 // https://stripe.com/docs/billing/subscriptions/coupons
 
-// Make sure to call loadStripe outside of a component’s render to avoid
-// recreating the Stripe object on every render.
-// This is your test publishable API key.
-
-// @ts-ignore
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
@@ -41,7 +34,7 @@ console.log(
   "process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 )
-export default function App() {
+export default function PaymentPage() {
   const [clientSecret, setClientSecret] = React.useState("")
   const [isLoading, setIsLoading] = React.useState(false)
   const product = {
