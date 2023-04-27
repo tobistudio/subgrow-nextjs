@@ -5,21 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/src/account/stripe/SubscriptionForm.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/api/account/checkout-session.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/migrations/20230423033737_dev/migration.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index-browser.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/runtime/library.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/runtime/library.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/CheckoutForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/stripe/CheckoutForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/SubscriptionForm.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/UpgradeForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/stripe/UpgradeForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/schemas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/stripe/schemas.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/layouts/HomeLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/HomeLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/account/pay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/account/pay.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/account/upgrade.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/account/upgrade.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/api/account/create-payment-intent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/api/account/create-payment-intent.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +123,7 @@
       <workItem from="1681943767112" duration="4328000" />
       <workItem from="1682006031719" duration="45314000" />
       <workItem from="1682110781520" duration="1023000" />
-      <workItem from="1682113338059" duration="145315000" />
+      <workItem from="1682113338059" duration="147678000" />
     </task>
     <servers />
   </component>
