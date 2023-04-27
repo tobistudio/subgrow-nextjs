@@ -6,7 +6,8 @@ import { useParam } from "@blitzjs/next"
 import ProfileLayout from "core/layouts/ProfileLayout"
 import getProfile from "profiles/queries/getProfile"
 import getUserForProfile from "../users/queries/getUserForProfile"
-import getSiteForProfile from "../sites/queries/getSiteForProfile"
+// import getSiteForProfile from "../sites/queries/getSiteForProfile"
+import getSiteForProfileByStatus from "../sites/queries/getSiteForProfileByStatus"
 import Grid from "@mui/material/Unstable_Grid2"
 import UserInfo from "../components/user/UserInfo"
 import Logo from "../core/layouts/theme1/headers/Logo"
@@ -32,7 +33,7 @@ export const ProfileIndex = () => {
   const profileId = useParam("profileId", "string")
   const [user] = useQuery(getUserForProfile, { username: profileId })
   const [profile]: any = useQuery(getProfile, { userId: user.id, current: "yes" })
-  const [sites] = useQuery(getSiteForProfile, { userId: user.id })
+  const [sites] = useQuery(getSiteForProfileByStatus, { userId: user.id, status: "active" })
 
   // TODO: the layout should be set on dashboard page.
   let userLayout
