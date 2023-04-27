@@ -43,6 +43,7 @@ import ListItemText from "@mui/material/ListItemText"
 import AddIcon from "@mui/icons-material/Add"
 import { faFacebook } from "@fortawesome/free-brands-svg-icons"
 import deleteSite from "../../sites/mutations/deleteSite"
+import updateStatus from "../../sites/mutations/updateStatus"
 import { OnDragEndResponder } from "react-beautiful-dnd"
 const emails = ["username@gmail.com", "user02@gmail.com"]
 
@@ -87,17 +88,26 @@ const LinkListCard = ({ link, index, mode, snapshot, setLinks }) => {
   const emails = ["username@gmail.com", "user02@gmail.com"]
   const [open, setOpen] = React.useState(false)
   const [deleteLinkMutation] = useMutation(deleteSite)
+  const [updateStatusMutation] = useMutation(updateStatus)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
   const [selectedValue, setSelectedValue] = React.useState(emails[1])
+  const [checked, setChecked] = React.useState(true);
+
+  const handleChange = (event, id) => {
+    setChecked(event.target.checked);
+    console.log(checked);
+    updateStatusMutation({ id: id, status: event.target.checked ? "active" : "inactive" })
+    setLinks((prev) => prev.map((ele) => ele.id === id ? { ...ele, status: event.target.checked ? "active" : "inactive" } : ele));
+  };
 
   // TODO: handle switch update, turn on status switch in db
-  let checked
-  if (link.status === "active") {
-    checked = true
-  } else {
-    checked = false
-  }
+  // let checked
+  // if (link.status === "active") {
+  //   checked = true
+  // } else {
+  //   checked = false
+  // }
 
   const handleEditDetailsClick = async (event: React.MouseEvent<HTMLElement>, id) => {
     await router.push(Routes.EditSitePage({ siteId: id }))
@@ -122,11 +132,9 @@ const LinkListCard = ({ link, index, mode, snapshot, setLinks }) => {
         // action={<FontAwesomeIcon icon={faFacebook} color={"#3f50b5"} />}
         action={
           <Switch
-            // checked={!!link.status}
-            // checked={link.status === 'active'}
-            checked={checked}
-            //onChange={handleActiveChange(link.id)} // TODO: handle properly outside of loop
-            inputProps={{ "aria-label": "controlled" }}
+            checked={link.status === "active" ? true : false}
+            onChange={(e) => handleChange(e, link.id)}
+            inputProps={{ 'aria-label': 'controlled' }}
           />
         }
       />
