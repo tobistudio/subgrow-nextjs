@@ -16,10 +16,13 @@ import {
   Paper,
   Dialog,
   DialogTitle,
+  Modal,
+  Button,
 } from "@mui/material"
 import { Draggable } from "react-beautiful-dnd"
 import { LinkType } from "./typings"
 import IconButton, { IconButtonProps } from "@mui/material/IconButton"
+import { useQuery, useMutation } from "@blitzjs/rpc"
 import {
   Favorite as FavoriteIcon,
   Share as ShareIcon,
@@ -45,6 +48,7 @@ import PersonIcon from "@mui/icons-material/Person"
 import ListItemText from "@mui/material/ListItemText"
 import AddIcon from "@mui/icons-material/Add"
 import { faFacebook } from "@fortawesome/free-brands-svg-icons"
+import deleteSite from "../../sites/mutations/deleteSite"
 import { OnDragEndResponder } from "react-beautiful-dnd"
 const emails = ["username@gmail.com", "user02@gmail.com"]
 
@@ -69,14 +73,28 @@ export type DraggableListItemProps = {
   url: string
 }
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  p: 4,
+}
+
 // TODO: draggable https://codesandbox.io/s/draggable-material-ui-oj3wz?file=/src/components/DraggableList.tsx:764-773
 // need {} or else it's a object in object
 // const LinkListCard = ({ link, index, mode }: DraggableListItemProps) => {
-const LinkListCard = ({ link, index, mode, snapshot }) => {
+const LinkListCard = ({ link, index, mode, snapshot, setLinks }) => {
   // const LinkListCard = React.memo(({ link, mode }: DraggableListProps) => {
   const router = useRouter()
   const emails = ["username@gmail.com", "user02@gmail.com"]
   const [open, setOpen] = React.useState(false)
+  const [deleteLinkMutation] = useMutation(deleteSite)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
   const [selectedValue, setSelectedValue] = React.useState(emails[1])
 
   // TODO: handle switch update, turn on status switch in db
@@ -89,6 +107,11 @@ const LinkListCard = ({ link, index, mode, snapshot }) => {
 
   const handleEditDetailsClick = async (event: React.MouseEvent<HTMLElement>, id) => {
     await router.push(Routes.EditSitePage({ siteId: id }))
+  }
+
+  const handleDeleteClick = (event: React.MouseEvent<HTMLElement>, id: string) => {
+    deleteLinkMutation({ id: id })
+    setLinks((prev) => prev.filter((ele) => ele.id !== id))
   }
 
   // TODO: need to get status switch working
@@ -132,7 +155,7 @@ const LinkListCard = ({ link, index, mode, snapshot }) => {
           <IconButton
             size="medium"
             aria-label="delete"
-            //onClick={(e) => handleDeleteClick(e, link.id)} // TODO: fiver delete button
+            onClick={() => handleOpen()} // TODO: fiver delete button
           >
             <FontAwesomeIcon icon={faTrashCan} size="sm" />
           </IconButton>
@@ -148,6 +171,34 @@ const LinkListCard = ({ link, index, mode, snapshot }) => {
           </IconButton>
         </Tooltip>
       </CardActions>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Are you really delete this data?
+          </Typography>
+          <Button
+            variant="outlined"
+            aria-label="details"
+            style={{ marginLeft: "auto", marginRight: "10px" }}
+            onClick={(e) => handleDeleteClick(e, link.id)}
+          >
+            OK
+          </Button>
+          <Button
+            variant="contained"
+            aria-label="details"
+            style={{ marginLeft: "auto" }}
+            onClick={() => handleClose()}
+          >
+            Cancel
+          </Button>
+        </Box>
+      </Modal>
     </Card>
   )
 }

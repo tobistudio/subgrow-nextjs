@@ -125,8 +125,7 @@ export default function AddLinkWidget({ sites }) {
     console.log("source", source)
     console.log("links", links)
 
-
-    const newLinks: Array<any> = reorder(links, source.index, destination.index);
+    const newLinks: Array<any> = reorder(links, source.index, destination.index)
 
     for (var i = 0; i < newLinks.length; i++) {
       updateLinkMutation({ id: newLinks[i].id, order: i + 1 })
@@ -196,6 +195,7 @@ export default function AddLinkWidget({ sites }) {
                           key={link.id}
                           link={link}
                           mode={theme.mode}
+                          setLinks={setLinks}
                         />
                       </div>
                     )}

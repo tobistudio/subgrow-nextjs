@@ -80,7 +80,7 @@ const foundDirname =
   !regularDirname &&
   findSync(
     process.cwd(),
-    ["db/generated/prisma-client-js", "generated/prisma-client-js"],
+    ["db\\generated\\prisma-client-js", "generated\\prisma-client-js"],
     ["d"],
     ["d"],
     1
@@ -377,7 +377,7 @@ const config = {
       value: "prisma-client-js",
     },
     output: {
-      value: "/Users/amirmeshkin/_code/_business/blitz-app/db/generated/prisma-client-js",
+      value: "D:\\subgrow\\db\\generated\\prisma-client-js",
       fromEnvVar: null,
     },
     config: {
@@ -388,16 +388,16 @@ const config = {
     isCustomOutput: true,
   },
   relativeEnvPaths: {
-    rootEnvPath: "../../../.env",
-    schemaEnvPath: "../../../.env",
+    rootEnvPath: "..\\..\\..\\.env",
+    schemaEnvPath: "..\\..\\..\\.env",
   },
-  relativePath: "../..",
+  relativePath: "..\\..",
   clientVersion: "4.13.0",
   engineVersion: "1e7af066ee9cb95cf3a403c78d9aab3e6b04f37a",
   datasourceNames: ["db"],
   activeProvider: "mysql",
   dataProxy: false,
-  postinstall: false,
+  postinstall: true,
 }
 config.dirname = dirname
 config.document = dmmf
@@ -417,7 +417,7 @@ const PrismaClient = getPrismaClient(config)
 exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
-path.join(__dirname, "libquery_engine-darwin-arm64.dylib.node")
-path.join(process.cwd(), "db/generated/prisma-client-js/libquery_engine-darwin-arm64.dylib.node")
+path.join(__dirname, "query_engine-windows.dll.node")
+path.join(process.cwd(), "db\\generated\\prisma-client-js\\query_engine-windows.dll.node")
 path.join(__dirname, "schema.prisma")
-path.join(process.cwd(), "db/generated/prisma-client-js/schema.prisma")
+path.join(process.cwd(), "db\\generated\\prisma-client-js\\schema.prisma")
