@@ -14,7 +14,7 @@ export default resolver.pipe(
   resolver.zod(CreateSite),
   resolver.authorize(),
   async (input: any, ctx) => {
-    // TODO: in multi-tenant app, you must add validation to ensure correct tenant
+
 
     // FIXME: string
     //input["userId"] = ctx.session.userId as string
@@ -23,9 +23,9 @@ export default resolver.pipe(
     console.log("create site inputs", input)
 
     // const data: Array<any> = [];
-    const site = await db.site.create({ data: input })
-    // const site = await db.site.create({ ...input })
-    // const site = await db.site.create({ ...input })
+    const site = await db.link.create({ data: input })
+    // const site = await db.link.create({ ...input })
+    // const site = await db.link.create({ ...input })
 
     console.log("site", site)
     return site
@@ -40,7 +40,7 @@ sites/mutations/createSite.ts:22:39 - error TS2322: Type '{ userId?: string; nam
       Types of property 'userId' are incompatible.
         Type 'string' is not assignable to type 'never'.
 
-22   const site = await db.site.create({ data: input })
+22   const site = await db.link.create({ data: input })
 
  */
 
@@ -49,7 +49,7 @@ export default resolver.pipe(
   resolver.zod(CreateDetail),
   resolver.authorize(),
   async (input, ctx) => {
-    // TODO: in multi-tenant app, you must add validation to ensure correct tenant
+
 
     input["userId"] = ctx.session.userId
 

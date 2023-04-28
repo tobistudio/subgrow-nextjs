@@ -110,6 +110,21 @@ exports.Prisma.ActivityScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.AppsScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  order: 'order',
+  api_key: 'api_key',
+  api_secret: 'api_secret',
+  site_name: 'site_name',
+  show_feed: 'show_feed',
+  show_share: 'show_share',
+  show_sub: 'show_sub',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.BankAccountScalarFieldEnum = {
   id: 'id',
   customerId: 'customerId',
@@ -193,6 +208,22 @@ exports.Prisma.JsonNullValueFilter = {
   AnyNull: Prisma.AnyNull
 };
 
+exports.Prisma.LinkScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  url: 'url',
+  title: 'title',
+  description: 'description',
+  order: 'order',
+  type: 'type',
+  icon: 'icon',
+  image: 'image',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  profileId: 'profileId'
+};
+
 exports.Prisma.MessageScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -230,21 +261,6 @@ exports.Prisma.ProfileScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.ServicesScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  description: 'description',
-  order: 'order',
-  api_key: 'api_key',
-  api_secret: 'api_secret',
-  site_name: 'site_name',
-  show_feed: 'show_feed',
-  show_share: 'show_share',
-  show_sub: 'show_sub',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.SessionScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
@@ -256,22 +272,6 @@ exports.Prisma.SessionScalarFieldEnum = {
   publicData: 'publicData',
   privateData: 'privateData',
   userId: 'userId'
-};
-
-exports.Prisma.SiteScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  url: 'url',
-  title: 'title',
-  description: 'description',
-  order: 'order',
-  type: 'type',
-  icon: 'icon',
-  image: 'image',
-  status: 'status',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  profileId: 'profileId'
 };
 
 exports.Prisma.SortOrder = {
@@ -318,7 +318,7 @@ exports.Prisma.UserScalarFieldEnum = {
   role: 'role',
   level: 'level'
 };
-exports.Sitetype = {
+exports.Linktype = {
   custom: 'custom',
   site: 'site',
   email: 'email',
@@ -341,7 +341,7 @@ exports.Prisma.ModelName = {
   Session: 'Session',
   Token: 'Token',
   Account: 'Account',
-  Site: 'Site',
+  Link: 'Link',
   Message: 'Message',
   Customer: 'Customer',
   BankAccount: 'BankAccount',
@@ -352,7 +352,7 @@ exports.Prisma.ModelName = {
   InvoiceItems: 'InvoiceItems',
   TermsOfPayment: 'TermsOfPayment',
   Profile: 'Profile',
-  Services: 'Services'
+  Apps: 'Apps'
 };
 
 /**

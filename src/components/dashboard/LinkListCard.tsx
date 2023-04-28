@@ -14,13 +14,9 @@ import {
   Modal,
   Button,
 } from "@mui/material"
-import { Draggable } from "react-beautiful-dnd"
-import { LinkType } from "./typings"
 import IconButton, { IconButtonProps } from "@mui/material/IconButton"
 import { useQuery, useMutation } from "@blitzjs/rpc"
 import {
-  Favorite as FavoriteIcon,
-  Share as ShareIcon,
   ArrowForwardIosTwoTone,
 } from "@mui/icons-material"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -32,16 +28,16 @@ import { DropResult } from "react-beautiful-dnd"
 
 import pick from "@cahil/utils/accessors/pick"
 // import { getItems, reorder } from './drag';
-import List from "@mui/material/List"
-import ListItem from "@mui/material/ListItem"
-import ListItemButton from "@mui/material/ListItemButton"
-import ListItemAvatar from "@mui/material/ListItemAvatar"
-import Avatar from "@mui/material/Avatar"
-import { blue } from "@mui/material/colors"
-import PersonIcon from "@mui/icons-material/Person"
-import ListItemText from "@mui/material/ListItemText"
-import AddIcon from "@mui/icons-material/Add"
-import { faFacebook } from "@fortawesome/free-brands-svg-icons"
+// import List from "@mui/material/List"
+// import ListItem from "@mui/material/ListItem"
+// import ListItemButton from "@mui/material/ListItemButton"
+// import ListItemAvatar from "@mui/material/ListItemAvatar"
+// import Avatar from "@mui/material/Avatar"
+// import { blue } from "@mui/material/colors"
+// import PersonIcon from "@mui/icons-material/Person"
+// import ListItemText from "@mui/material/ListItemText"
+// import AddIcon from "@mui/icons-material/Add"
+// import { faFacebook } from "@fortawesome/free-brands-svg-icons"
 import deleteSite from "../../sites/mutations/deleteSite"
 import updateStatus from "../../sites/mutations/updateStatus"
 import { OnDragEndResponder } from "react-beautiful-dnd"
@@ -185,8 +181,6 @@ const LinkListCard = ({ link, index, mode, snapshot, setLinks }: any) => {
 }
 
 // https://linktr.ee/admin
-// TODO: replace with fontawesome
-// TODO: delete button
 // TODO: add details
 // TODO: add tooltips
 // TODO: add draggable and ordering

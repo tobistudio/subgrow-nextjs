@@ -35,7 +35,7 @@ model User {
   Messages       Message[]
   Notifications  Notification[]
   Customers      Customer[]
-  Site           Site[]
+  Link           Link[]
   Profile        Profile[]
   Token          Token[]
 }
@@ -89,14 +89,14 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
-model Site {
+model Link {
   id          String   @id @default(cuid())
   userId      Int
   url         String
   title       String?
   description String?
   order       Int      @default(0)
-  type        Sitetype @default(custom)
+  type        Linktype @default(custom)
   icon        String?
   image       String?
   status      Status   @default(active)
@@ -278,7 +278,7 @@ enum Status {
   inactive
 }
 
-enum Sitetype {
+enum Linktype {
   custom
   site
   email
@@ -297,11 +297,10 @@ model Profile {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   user        User     @relation(fields: [userId], references: [id])
-  //username              User?   @relation(fields: [username], references: [username])
-  Site        Site[]
+  Link        Link[]
 }
 
-model Services {
+model Apps {
   id          Int      @id @default(autoincrement())
   name        String? // may be used later
   description String?

@@ -31,7 +31,7 @@ export default resolver.pipe(
   resolver.zod(CreateProfile),
   resolver.authorize(),
   async (input: any, ctx) => {
-    // TODO: in multi-tenant app, you must add validation to ensure correct tenant
+
 
     //input["userId"] = ctx.session.userId
     // input.userId = ctx.session.userId

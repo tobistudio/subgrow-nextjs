@@ -12,7 +12,7 @@ const CheckUser = z.object({
 // export default resolver.pipe(resolver.zod(CheckUser), async (username) => {
 export default resolver.pipe(resolver.zod(CheckUser), async ({ username: string }) => {
   // export default resolver.pipe(resolver.zod(CheckUser), async ({ username: string }) => {
-  // TODO: in multi-tenant app, you must add validation to ensure correct tenant
+
 
   // const blah: string = username;
   // <html>TS2322: Type '{ username: any; }' is not assignable to type 'UserWhereUniqueInput'.<br/>

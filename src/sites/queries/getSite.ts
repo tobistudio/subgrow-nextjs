@@ -10,11 +10,11 @@ const GetSite = z.object({
 })
 
 export default resolver.pipe(resolver.zod(GetSite), resolver.authorize(), async ({ id }) => {
-  // TODO: in multi-tenant app, you must add validation to ensure correct tenant
+
 
 
   console.log("id",id);
-  const site = await db.site.findFirst({ where: { id } })
+  const site = await db.link.findFirst({ where: { id } })
 
 
   if (!site) throw new NotFoundError()

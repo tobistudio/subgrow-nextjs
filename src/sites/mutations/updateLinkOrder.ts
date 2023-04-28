@@ -12,7 +12,7 @@ export default resolver.pipe(
   resolver.authorize(),
   async ({ id, ...data }) => {
     console.log("data", data)
-    const site = await db.site.update({ where: { id }, data })
+    const site = await db.link.update({ where: { id }, data })
     console.log("site", site)
     return site
   }

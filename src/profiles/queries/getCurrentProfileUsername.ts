@@ -12,7 +12,7 @@ const GetCurrentProfileUsername = z.object({
 
 // TODO: should not have to be logged in to get to a profile
 export default resolver.pipe(resolver.zod(GetCurrentProfileUsername), async ({ username, current }) => {
-  // TODO: in multi-tenant app, you must add validation to ensure correct tenant
+
   const profile = await db.profile.findFirst({ where: { username, current } })
   if (!profile) throw new NotFoundError()
   return profile
@@ -25,7 +25,7 @@ export default resolver.pipe(resolver.zod(GetCurrentProfileUsername), async ({ u
 //   resolver.zod(GetProfileUsername),
 //   resolver.authorize(),
 //   async ({ userId, current }) => {
-//     // TODO: in multi-tenant app, you must add validation to ensure correct tenant
+//
 //     const profile = await db.profile.findFirst({ where: { username, current } })
 //     if (!profile) throw new NotFoundError()
 //     return profile

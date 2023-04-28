@@ -55,11 +55,11 @@ http://localhost:3000/auth/signup
 
 ## TODO LIST
 
+####
 
 
-### REFRESH list of links
 
-and put on the right hand side, where it says "Your Links"
+
 
 
 
@@ -233,3 +233,7 @@ https://linktr.ee/s/pricing/
 8. 2FA
 9. Special Dashboard that lists all profiles, easy access, followers, basic info
 10.
+
+
+
+

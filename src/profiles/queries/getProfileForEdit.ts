@@ -12,7 +12,7 @@ export default resolver.pipe(
   resolver.zod(GetProfileForEdit),
   // resolver.authorize(),
   async ({ id }) => {
-    // TODO: in multi-tenant app, you must add validation to ensure correct tenant
+
     const profile = await db.profile.findFirst({ where: { id } })
     if (!profile) throw new NotFoundError()
     return profile

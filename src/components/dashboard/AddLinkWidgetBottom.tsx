@@ -68,19 +68,7 @@ export default function AddLinkWidgetBottom({ sites }) {
   const [links, setLinks] = React.useState(sites)
   const [updateLinkMutation] = useMutation(updateLinkOrder)
 
-  // TODO: fiver finish and fix drag and dro, change order
   const onDragEnd = async ({ destination, source, id }: DropResult) => {
-    // dropped outside the list
-    //if (!destination) return
-    // let result = helper.reorder(val.source,val.destination,taskList);
-    // setTasks(result)
-    // let result = drag.reorder(source,destination,taskList);
-
-    // TODO: change order and also reload list
-    console.log("destination", destination)
-    console.log("id", id)
-    console.log("source", source)
-    console.log("links", links)
 
     const newLinks: Array<any> = reorder(links, source.index, destination.index)
 
@@ -88,20 +76,9 @@ export default function AddLinkWidgetBottom({ sites }) {
       updateLinkMutation({ id: newLinks[i].id, order: i + 1 })
     }
 
-    // TODO: change order in the database
-
     setLinks(newLinks)
   }
-  // TODO: handle checks outside of loop with arrays
-  //   const [checked, setChecked] = React.useState(true);
-  // const handleActiveChange = (e: React.ChangeEvent<HTMLInputElement>,id) => {
-  //   setSwitcherChecked(e.target.checked);
-  //
-  //   console.log("handleActiveChange id",id);
-  //   console.log("handleActiveChange id",e);
-  //
-  //   // TODO: update db
-  // };
+
 
   const theme = useSelector((state: RootStateOrAny) => state.theme)
 

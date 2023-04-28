@@ -10,8 +10,8 @@ const GetSiteForProfile = z.object({
 })
 
 export default resolver.pipe(resolver.zod(GetSiteForProfile), async ({ userId }) => {
-  // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-  const site = await db.site.findMany({
+
+  const site = await db.link.findMany({
     // fields
     where: { userId },
     orderBy: [

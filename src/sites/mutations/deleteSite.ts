@@ -7,9 +7,9 @@ const DeleteSite = z.object({
 })
 
 export default resolver.pipe(resolver.zod(DeleteSite), resolver.authorize(), async ({ id }) => {
-  // TODO: in multi-tenant app, you must add validation to ensure correct tenant
 
-  const site = await db.site.delete({ where: { id } })
+
+  const site = await db.link.delete({ where: { id } })
 
   return site
 })

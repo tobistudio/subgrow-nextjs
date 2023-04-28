@@ -11,7 +11,7 @@ export default resolver.pipe(
   resolver.zod(UpdateLinkOrder),
   resolver.authorize(),
   async ({ id, ...data }: any) => {
-    const site = await db.site.update({ where: { id }, data })
+    const site = await db.link.update({ where: { id }, data })
     return site
   }
 )

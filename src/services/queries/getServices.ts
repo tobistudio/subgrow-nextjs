@@ -11,7 +11,7 @@ const GetServices = z.object({
 
 export default resolver.pipe(resolver.zod(GetServices), resolver.authorize(), async ({}, ctx) => {
   const userId = ctx.session.userId
-  const service = await db.site.findMany({
+  const service = await db.link.findMany({
     // fields
     where: { userId },
   })

@@ -20,9 +20,9 @@ export default resolver.pipe(
     console.log("addLinkWidget.ts input", input)
 
     // const data: Array<any> = [];
-    const site = await db.site.create({ data: input })
-    // const site = await db.site.create({ ...input })
-    // const site = await db.site.create({ ...input })
+    const site = await db.link.create({ data: input })
+    // const site = await db.link.create({ ...input })
+    // const site = await db.link.create({ ...input })
 
     console.log("site", site)
     return site

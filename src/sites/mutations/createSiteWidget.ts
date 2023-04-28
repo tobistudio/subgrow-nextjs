@@ -14,7 +14,7 @@ export default resolver.pipe(
     //input["userId"] = ctx.session.userId as string
     input["userId"] = ctx.session.userId
     console.log("create site input", input)
-    const site = await db.site.create({ data: input })
+    const site = await db.link.create({ data: input })
 
     console.log("site", site)
     return site

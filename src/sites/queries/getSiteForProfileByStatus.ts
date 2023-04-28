@@ -10,8 +10,8 @@ const GetSiteForProfileByStatus = z.object({
 })
 
 export default resolver.pipe(resolver.zod(GetSiteForProfileByStatus), async ({ userId, status }) => {
-  // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-  const site = await db.site.findMany({
+
+  const site = await db.link.findMany({
     where: {
       userId,
       status

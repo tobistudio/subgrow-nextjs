@@ -7,7 +7,7 @@ import { z } from "zod"
 //   resolver.zod(UpdateProfile),
 //   resolver.authorize(),
 //   async ({ id, ...data }) => {
-//     // TODO: in multi-tenant app, you must add validation to ensure correct tenant
+//
 //     const profile = await db.profile.update({ where: { id }, data })
 //
 //     return profile

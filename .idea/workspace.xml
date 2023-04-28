@@ -5,15 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
-      <change beforePath="$PROJECT_DIR$/.husky/pre-commit" beforeDir="false" afterPath="$PROJECT_DIR$/.husky/pre-commit" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index-browser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/schema.prisma" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dashboard/AddLinkWidget.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dashboard/AddLinkWidget.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/dashboard/AddLinkWidgetBottom.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dashboard/AddLinkWidgetBottom.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/dashboard/LinkListCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dashboard/LinkListCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/template/Theme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/Theme.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/profiles/mutations/createProfile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/profiles/mutations/createProfile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/profiles/mutations/deleteProfile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/profiles/mutations/deleteProfile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/profiles/mutations/updateProfile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/profiles/mutations/updateProfile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/profiles/queries/getCurrentProfileUsername.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/profiles/queries/getCurrentProfileUsername.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/profiles/queries/getProfile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/profiles/queries/getProfile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/profiles/queries/getProfileForEdit.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/profiles/queries/getProfileForEdit.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/mutations/createService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/mutations/createService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/mutations/deleteService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/mutations/deleteService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/mutations/updateService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/mutations/updateService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/queries/getService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/queries/getService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/queries/getServices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/queries/getServices.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sites/mutations/addLinkWidget.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/sites/mutations/addLinkWidget.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sites/mutations/createSite.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/sites/mutations/createSite.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sites/mutations/createSiteWidget.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/sites/mutations/createSiteWidget.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sites/mutations/deleteSite.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/sites/mutations/deleteSite.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sites/mutations/updateLinkOrder.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/sites/mutations/updateLinkOrder.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sites/mutations/updateSite.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/sites/mutations/updateSite.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sites/mutations/updateStatus.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/sites/mutations/updateStatus.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sites/queries/getSite.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/sites/queries/getSite.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sites/queries/getSiteForProfile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/sites/queries/getSiteForProfile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sites/queries/getSiteForProfileByStatus.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/sites/queries/getSiteForProfileByStatus.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sites/queries/getSites.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/sites/queries/getSites.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/mutations/create__ModelName__.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/mutations/create__ModelName__.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/mutations/delete__ModelName__.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/mutations/delete__ModelName__.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/mutations/update__ModelName__.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/mutations/update__ModelName__.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/queries/get__ModelName__.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/queries/get__ModelName__.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/queries/get__ModelNames__.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/queries/get__ModelNames__.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/users/queries/checkUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/users/queries/checkUser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/users/queries/getUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/users/queries/getUser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/users/queries/getUserForProfile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/users/queries/getUserForProfile.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +162,7 @@
       <workItem from="1681943767112" duration="4328000" />
       <workItem from="1682006031719" duration="45314000" />
       <workItem from="1682110781520" duration="1023000" />
-      <workItem from="1682113338059" duration="174789000" />
+      <workItem from="1682113338059" duration="176600000" />
     </task>
     <servers />
   </component>

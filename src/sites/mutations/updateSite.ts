@@ -13,7 +13,7 @@ export default resolver.pipe(
   resolver.zod(UpdateSite),
   resolver.authorize(),
   async ({ id, ...data }) => {
-    const site = await db.site.update({ where: { id }, data })
+    const site = await db.link.update({ where: { id }, data })
     return site
   }
 )

@@ -12,15 +12,15 @@ const getSites = z.object({
 
 
 // export default async function main() {
-//   const allUsers = await db.site.findMany()
+//   const allUsers = await db.link.findMany()
 //   console.log(allUsers)
 //
 //   return allUsers;
 // }
 
 export default resolver.pipe(resolver.zod(getSites), async ({ userId }) => {
-  // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-  const site = await db.site.findMany({
+
+  const site = await db.link.findMany({
     // fields
     where: { userId },
   })
@@ -57,7 +57,7 @@ export default resolver.pipe(resolver.zod(getSites), async ({ userId }) => {
 // export default resolver.pipe(
 //   resolver.authorize(),
 //   async ({ where, orderBy, skip = 0, take = 100 }: GetSitesInput) => {
-//     // TODO: in multi-tenant app, you must add validation to ensure correct tenant
+//
 //     const {
 //       items: sites,
 //       hasMore,
@@ -66,8 +66,8 @@ export default resolver.pipe(resolver.zod(getSites), async ({ userId }) => {
 //     } = await paginate({
 //       skip,
 //       take,
-//       count: () => db.site.count({ where }),
-//       query: (paginateArgs) => db.site.findMany({ ...paginateArgs, where, orderBy }),
+//       count: () => db.link.count({ where }),
+//       query: (paginateArgs) => db.link.findMany({ ...paginateArgs, where, orderBy }),
 //     })
 //
 //     return {
