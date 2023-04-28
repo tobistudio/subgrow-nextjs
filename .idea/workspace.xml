@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/src/assets/styles/components/_user-dropdown.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/template/UserDropdownNew.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/styles/_app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/_app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/styles/_custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/_custom.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/template/UserDropdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/UserDropdown.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/layouts/theme1/headers/AdminHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/theme1/headers/AdminHeader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/apps/queries/getThisUsersApps.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/queries/getThisUsersApps.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/configs/colors/default.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/configs/colors/default.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/configs/plans.config.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/configs/plans.config.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/apps.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/apps.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/apps/facebook.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/apps/facebook.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +46,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/amirmeshkin/_code/_business/blitz-app/src/pages",
+    "last_opened_file_path": "/Users/amirmeshkin/_code/_business/blitz-app/src/apps/queries",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -74,16 +74,16 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/apps/queries" />
+      <recent name="$PROJECT_DIR$/src/apps/components" />
+      <recent name="$PROJECT_DIR$/src/configs" />
+      <recent name="$PROJECT_DIR$/src/pages/apps" />
       <recent name="$PROJECT_DIR$/src/pages" />
-      <recent name="$PROJECT_DIR$/src/components/dashboard" />
-      <recent name="$PROJECT_DIR$/src/sites/queries" />
-      <recent name="$PROJECT_DIR$/db/generated/prisma-client-js" />
-      <recent name="$PROJECT_DIR$/src/pages/account" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.examples" />
       <recent name="$PROJECT_DIR$/src/account/stripe" />
       <recent name="$PROJECT_DIR$/tests" />
-      <recent name="$PROJECT_DIR$/.examples" />
       <recent name="$PROJECT_DIR$/src/sites/mutations" />
       <recent name="$PROJECT_DIR$/src/components/dashboard" />
     </key>
@@ -130,7 +130,7 @@
       <workItem from="1681943767112" duration="4328000" />
       <workItem from="1682006031719" duration="45314000" />
       <workItem from="1682110781520" duration="1023000" />
-      <workItem from="1682113338059" duration="193507000" />
+      <workItem from="1682113338059" duration="209062000" />
     </task>
     <servers />
   </component>

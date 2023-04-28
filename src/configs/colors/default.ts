@@ -97,3 +97,33 @@ export const brands = {
   900: "#002459",
 }
 
+
+export const card = {
+  bg: "#faf7f7",
+  color: "#111111",
+  border: "#254e90",
+  error: "#b9ccf1",
+  300: "#6b81ae",
+  400: "#4a679f",
+  500: "#254e90",
+  600: "#1e4688",
+  700: "#143d7c",
+  800: "#0b3470",
+  900: "#002459",
+}
+
+// card elevated
+export const card_el = {
+  bg: "#d1dcf5",
+  bg_hover: "#b9ccf1",
+  color: "#111111",
+  border: "#254e90",
+  error: "#b9ccf1",
+  300: "#6b81ae",
+  400: "#4a679f",
+  500: "#254e90",
+  600: "#1e4688",
+  700: "#143d7c",
+  800: "#0b3470",
+  900: "#002459",
+}

@@ -43,6 +43,7 @@ import {
 import { brands } from "../configs/colors/default";
 import IconButton from "@mui/material/IconButton";
 import {ArrowForwardIosTwoTone} from "@mui/icons-material";
+import {useRouter} from "next/router";
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
 
@@ -51,7 +52,7 @@ const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 // TODO: isotope filter search box
 
 export const AppsList = () => {
-  // const router = useRouter();
+  const router = useRouter()
   const session = useSession()
   // const [apps] = useQuery(getServices,{ userId: session.userId });
 
@@ -106,6 +107,9 @@ export const AppsList = () => {
 
   //  if owned, action should be checkmark
 
+  // getThisUsersApps
+
+
   const handleAddAppClick = async (event: React.MouseEvent<HTMLElement>, id) => {
     await router.push(Routes.EditSitePage({ siteId: id }))
   }
@@ -123,34 +127,17 @@ export const AppsList = () => {
         {apps.map((app) => (
           <Grid xs={12} sm={6} md={4} lg={3} key={app.id} spacing={5}>
 
+            <Tooltip title={app.added ? "Edit App" : "Add " + app.name}>
             <Card
               // sx={{ display: 'flex' }}
-              variant={app.added ? "owned" : "outlined"}
+              // variant={app.added ? "owned" : "outlined"}
+              // raised
+              variant={app.added ?  "outlined" : "elevation" }
+              // variant={"outlined"}
               sx={{ display: 'flex' }}
               onClick={(e) => handleAddAppClick(e, app.id)}
             >
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-
-                {/*<CardMedia*/}
-                {/*  component="img"*/}
-                {/*  // sx={{ width: 151 }}*/}
-                {/*  image=""*/}
-                {/*  alt={app.name}*/}
-                {/*>*/}
-                {/*  {app.icon}*/}
-                {/*</CardMedia>*/}
-
-
-                {/*display: 'flex',*/}
-
-                {/*<Box sx={{  alignItems: 'center', justifyContent: 'center' }}>*/}
-                {/*  {app.icon}*/}
-                {/*</Box>*/}
-                {/*<CardHeader*/}
-                {/*  action={*/}
-                {/*    <FontAwesomeIcon icon={faFacebook} style={{ width: 17, height: 17 }} />*/}
-                {/*  }*/}
-                {/*/>*/}
                 <CardContent sx={{ flexDirection: 'end' }}>
                   <Stack direction="row" spacing={2}>
                     <Avatar
@@ -189,7 +176,7 @@ export const AppsList = () => {
 
             </Card>
 
-
+            </Tooltip>
 
           </Grid>
         ))}

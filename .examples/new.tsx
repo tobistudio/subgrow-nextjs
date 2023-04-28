@@ -74,7 +74,7 @@ const NewServicePage = () => {
                     // initialValues={{}}
                     onSubmit={async (values) => {
                       try {
-                        const service = await createServiceMutation(values)
+                        const service = await createServiceMutation(values: any)
                         await router.push(Routes.ShowServicePage({ appId: service.id }))
                       } catch (error: any) {
                         console.error(error)

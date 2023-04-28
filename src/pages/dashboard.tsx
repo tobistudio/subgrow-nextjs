@@ -71,9 +71,9 @@ const Dashboard = () => {
       </Head>
 
       <Suspense fallback={<LoadingSvg />}>
-        <Box>
+        <Box style={{backgroundColor: "transparent"}}>
           <Grid container spacing={{ xs: 2, md: 3, lg: 6 }}>
-            <Grid item xs={8}>
+            <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
               <Card variant="outlined">
                 <CardHeader title="Links" />
                 <CardContent>
@@ -82,7 +82,7 @@ const Dashboard = () => {
               </Card>
             </Grid>
 
-            <Grid item xs={4} pl={5}>
+            <Grid xs={12} sm={12} md={4} lg={4} xl={4}>
               <Card variant="outlined">
                 <CardHeader
                   title="Preview"

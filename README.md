@@ -79,7 +79,9 @@ http://localhost:3000/auth/signup
 // https://www.mohammadfaisal.dev/blog/how-to-create-a-stripe-subscription-with-reactjs-and-nodejs
 
 
-
+// TODO: after upgrade, need to also change the role in
+// Session
+LEVEL3
 
 #### pricing tables
 Linked to sub page

@@ -37,9 +37,9 @@ const ServicesPage = () => {
       </Head>
 
       <div>
-        <p>
-          <Link href={Routes.NewServicePage()}>Create Service</Link>
-        </p>
+        {/*<p>*/}
+        {/*  <Link href={Routes.NewServicePage()}>Create Service</Link>*/}
+        {/*</p>*/}
 
         <Suspense fallback={<div>Loading...</div>}>
           <ServicesList />

@@ -38,6 +38,7 @@ model User {
   Link           Link[]
   Profile        Profile[]
   Token          Token[]
+  Apps           Apps[]
 }
 
 model Session {
@@ -302,6 +303,7 @@ model Profile {
 
 model Apps {
   id          Int      @id @default(autoincrement())
+  userId      Int
   name        String? // may be used later
   description String?
   order       Int      @default(0)
@@ -313,4 +315,5 @@ model Apps {
   show_sub    Yesno    @default(no)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id])
 }
