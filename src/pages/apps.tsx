@@ -14,7 +14,10 @@ import {
   Stack,
   Typography,
   CardMedia,
-  Avatar
+  Avatar,
+  CardActionArea,
+  CardActions,
+  Button, Tooltip, Switch
 } from "@mui/material";
 // import List from '@mui/material/List';
 // import ListItem from '@mui/material/ListItem';
@@ -38,10 +41,12 @@ import {
   faGoogle,
 } from "@fortawesome/free-brands-svg-icons"
 import { brands } from "../configs/colors/default";
+import IconButton from "@mui/material/IconButton";
+import {ArrowForwardIosTwoTone} from "@mui/icons-material";
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
 
-// TODO: manually add apps
+// TODO: show checkbox or different style if user has already added app
 
 // TODO: isotope filter search box
 
@@ -53,6 +58,7 @@ export const AppsList = () => {
   const apps = [
     {
       "id": 1,
+      "added": 1,
       "name":"Facebook",
       "description": "Connect to facebook",
       "site_name": "facebook",
@@ -60,6 +66,7 @@ export const AppsList = () => {
     },
     {
       "id": 2,
+      "added": 1,
       "name":"Twitter",
       "description": "Connect to facebook to display feeds",
       "site_name": "facebook",
@@ -67,6 +74,7 @@ export const AppsList = () => {
     },
     {
       "id": 3,
+      "added": 0,
       "name":"Instagram",
       "description": "Connect to Instagram to display a widget",
       "site_name": "instagram",
@@ -74,6 +82,7 @@ export const AppsList = () => {
     },
     {
       "id": 4,
+      "added": 1,
       "name":"Tik Tok",
       "description": "Connect to Tik Tok to display a widget",
       "site_name": "tiktok",
@@ -81,6 +90,7 @@ export const AppsList = () => {
     },
     {
       "id": 5,
+      "added": 0,
       "name":"Tik Tok",
       "description": "Connect to Tik Tok to display a widget",
       "site_name": "tiktok",
@@ -93,6 +103,12 @@ export const AppsList = () => {
   //   money: green[500],
   //   todos: pink[500],
   // }[category] || blue[500]);
+
+  //  if owned, action should be checkmark
+
+  const handleAddAppClick = async (event: React.MouseEvent<HTMLElement>, id) => {
+    await router.push(Routes.EditSitePage({ siteId: id }))
+  }
 
   return (
     <div>
@@ -107,7 +123,12 @@ export const AppsList = () => {
         {apps.map((app) => (
           <Grid xs={12} sm={6} md={4} lg={3} key={app.id} spacing={5}>
 
-            <Card sx={{ display: 'flex' }}>
+            <Card
+              // sx={{ display: 'flex' }}
+              variant={app.added ? "owned" : "outlined"}
+              sx={{ display: 'flex' }}
+              onClick={(e) => handleAddAppClick(e, app.id)}
+            >
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
 
                 {/*<CardMedia*/}
@@ -125,10 +146,13 @@ export const AppsList = () => {
                 {/*<Box sx={{  alignItems: 'center', justifyContent: 'center' }}>*/}
                 {/*  {app.icon}*/}
                 {/*</Box>*/}
-
-                {/*<CardContent sx={{ flex: '1 0 auto' }}>*/}
+                {/*<CardHeader*/}
+                {/*  action={*/}
+                {/*    <FontAwesomeIcon icon={faFacebook} style={{ width: 17, height: 17 }} />*/}
+                {/*  }*/}
+                {/*/>*/}
                 <CardContent sx={{ flexDirection: 'end' }}>
-                  <Stack direction="row" spacing={2} mt={2}>
+                  <Stack direction="row" spacing={2}>
                     <Avatar
                       sx={{ bgcolor: "transparent" }}
                       style={{ flexDirection: "column", alignItems: 'center', justifyContent: "center", display: "flex" }}
@@ -139,13 +163,28 @@ export const AppsList = () => {
                       <Typography component="div" variant="h5">
                         {app.name}
                       </Typography>
-                      <Typography variant="subtitle1" color="text.secondary" component="div">
+                      <Typography variant="body1" color="text.secondary" component="div">
                         {app.description}
                       </Typography>
                     </div>
                   </Stack>
                 </CardContent>
+                {/*<CardActionArea>*/}
+                {/*  <Link href={Routes.SitesPage()}>View Sites</Link>*/}
+                {/*</CardActionArea>*/  }
 
+                {/*<CardActions>*/}
+                {/*  <Tooltip title={"Add " +  app.name}>*/}
+                {/*    <IconButton*/}
+                {/*      aria-label={"Add " +  app.name}*/}
+                {/*      style={{ marginLeft: "auto", float: "right" }}*/}
+                {/*      onClick={(e) => handleAddAppClick(e, app.id)}*/}
+                {/*    >*/}
+                {/*      /!*<ArrowForwardIosTwoTone color="icon" />*!/*/}
+                {/*      <ArrowForwardIosTwoTone />*/}
+                {/*    </IconButton>*/}
+                {/*  </Tooltip>*/}
+                {/*</CardActions>*/}
               </Box>
 
             </Card>

@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/template/Theme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/Theme.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/layouts/HomeLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/HomeLayout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/apps.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/apps.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -128,7 +125,7 @@
       <workItem from="1681943767112" duration="4328000" />
       <workItem from="1682006031719" duration="45314000" />
       <workItem from="1682110781520" duration="1023000" />
-      <workItem from="1682113338059" duration="190244000" />
+      <workItem from="1682113338059" duration="192281000" />
     </task>
     <servers />
   </component>
