@@ -5,7 +5,7 @@ import useDarkMode from "utils/hooks/useDarkMode"
 import { themeConfig } from "configs/theme.config"
 import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles"
 // import { blue, green, purple } from "@mui/material/colors"
-import { blue, green, purple, red, brands } from "configs/colors/default"
+import {blue, green, purple, red, brands, card, card_el} from "configs/colors/default"
 
 // <ThemeProvider theme={theme}>
 
@@ -58,6 +58,22 @@ declare module "@mui/material/Button" {
   }
 }
 
+declare module "@mui/material/Card" {
+  interface CardPropsVariantOverrides {
+    owned: true
+  }
+}
+
+
+// declare module "@mui/material/Card" {
+//   interface CardVariants {
+//     owned: true
+//   }
+//   interface CardPropsVariantOverrides {
+//     owned: true
+//   }
+// }
+
 declare module "@mui/material/styles" {
   interface TypographyVariants {
     poster: React.CSSProperties
@@ -68,6 +84,10 @@ declare module "@mui/material/styles" {
   interface TypographyVariantsOptions {
     poster?: React.CSSProperties
     radiolabel?: React.CSSProperties
+  }
+
+  interface CardVariantsOptions {
+    owned?: React.CSSProperties
   }
 }
 
@@ -97,6 +117,7 @@ const Theme = (props) => {
   const locale = useSelector((state: RootStateOrAny) => state.locale.currentLang)
 
   // border: `2px dashed grey${blue[500]}`,
+  // @ts-ignore
   let mytheme = createTheme({
     // mode If connected to state, then mode may not work well here
     // mode: "dark",
@@ -354,6 +375,48 @@ const Theme = (props) => {
         //   }
         // }
       },
+      // this does not work https://stackoverflow.com/questions/69455056/override-box-component-in-createtheme
+      MuiContainer: {
+        styleOverrides: {
+          root: ({theme}) => ({
+            // color: theme.palette.mode === "dark" ? card.color : card.color,
+            // backgroundColor: "transparent",
+            backgroundColor: "transparent",
+            // backgroundColor: theme.palette.mode === "dark" ? card.bg : card.bg,
+          }),
+        },
+      },
+      MuiPaper: {
+        styleOverrides: {
+          root: ({theme}) => ({
+            color: theme.palette.mode === "dark" ? card.color : card.color,
+            backgroundColor: theme.palette.mode === "dark" ? card.bg : card.bg,
+          }),
+        },
+      },
+      MuiCard: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            color: theme.palette.mode === "dark" ? card.color : card.color,
+            backgroundColor: theme.palette.mode === "dark" ? card.bg : card.bg,
+          }),
+        },
+        variants: [
+          {
+            props: { variant: "elevation" },
+            style: {
+              // backgroundColor: "#2374F2",
+              backgroundColor: card_el.bg,
+              color: card_el.color,
+              "&:hover": {
+                backgroundColor: card_el.bg_hover,
+                color: card_el.color,
+                borderShadow: "none"
+              },
+            },
+          },
+        ],
+      },
     },
   })
 
@@ -364,6 +427,8 @@ const Theme = (props) => {
     ...theme,
     ...{ locale },
   }
+
+
 
   return (
     <ConfigProvider value={currentTheme}>

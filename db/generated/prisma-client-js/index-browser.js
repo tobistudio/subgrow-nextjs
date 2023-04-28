@@ -112,6 +112,7 @@ exports.Prisma.ActivityScalarFieldEnum = {
 
 exports.Prisma.AppsScalarFieldEnum = {
   id: 'id',
+  userId: 'userId',
   name: 'name',
   description: 'description',
   order: 'order',

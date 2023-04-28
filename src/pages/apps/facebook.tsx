@@ -1,9 +1,10 @@
 import { Routes } from "@blitzjs/next"
 import Link from "next/link"
+import { useSession } from "@blitzjs/auth"
 import { useRouter } from "next/router"
-import { useMutation } from "@blitzjs/rpc"
+import {useMutation, useQuery} from "@blitzjs/rpc"
 import AdminLayout from "core/layouts/AdminLayout"
-import { CreateServiceSchema } from "apps/schemas"
+import { CreateFacebookSchema } from "apps/schemas"
 import createService from "apps/mutations/createService"
 import { ServiceForm, FORM_ERROR } from "apps/components/ServiceForm"
 import React, { Suspense, useState } from "react"
@@ -32,25 +33,36 @@ import {
   faGoogle,
 } from "@fortawesome/free-brands-svg-icons"
 import AddLinkCard from "../../components/dashboard/AddLinkCard"
+// import {useSession} from "@blitzjs/auth";
+import {useAuthorizeIf} from "@blitzjs/auth";
+import {plansConfig} from "../../configs/plans.config";
+import {faRightToBracket} from "@fortawesome/pro-duotone-svg-icons";
+import {misc} from "../../configs/colors/default";
+import PreviewLinkButton from "../../components/dashboard/PreviewLinkButton";
+import getSiteForProfile from "../../sites/queries/getSiteForProfile";
 
-const NewServicePage = () => {
+const NewFacebookPage = () => {
   const router = useRouter()
+  const session = useSession()
+  // const session = useAuthorizeIf("ROLE","USer")
   const [createServiceMutation] = useMutation(createService)
   const [components, setComponents] = useState(["Sample Component"])
+
+  console.log("session",session.role);
+
+
+
+  const [sites] = useQuery(getSiteForProfile, { userId: session.userId })
+  // const [profile] = useQuery(getCurrentProfileUsername, { username: session.username, current: 'yes' })
+  const [linkList, setLinkList] = React.useState(sites);
+
+  // TODO: need to figure out if this user has already added. new/edit takes place on this page
+
+
 
   const handleAddService = (service_site) => {
     setComponents([...components, "Sample Component " + service_site])
   }
-
-  const top100Films = [
-    { label: "The Shawshank Redemption", year: 1994 },
-    { label: "The Godfather", year: 1972 },
-    { label: "The Godfather: Part II", year: 1974 },
-    { label: "The Dark Knight", year: 2008 },
-    { label: "12 Angry Men", year: 1957 },
-    { label: "Schindler's List", year: 1993 },
-    { label: "Pulp Fiction", year: 1994 },
-  ]
 
   return (
     <AdminLayout>
@@ -61,18 +73,18 @@ const NewServicePage = () => {
       <Suspense fallback={"loading..."}>
         <Box>
           <Grid container spacing={{ xs: 2, md: 3, lg: 6 }}>
-            <Grid xs={8}>
+            <Grid xs={12} sm={12} md={8} lg={8} xl={8}>
               <Card variant="outlined">
                 <CardHeader
-                  title="Add Social Media Site"
-                  subheader="Add a social media site like Facebook to unlock advanced features."
+                  title="Add Facebook"
+                  subheader="Add api details to use premium facebook features"
                 />
                 <CardContent>
                   <FinalForm
                     submitText="Update Site"
-                    schema={CreateServiceSchema}
-                    // initialValues={{}}
-                    onSubmit={async (values) => {
+                    schema={CreateFacebookSchema}
+                    initialValues={{}}
+                    onSubmit={async (values: any) => {
                       try {
                         const service = await createServiceMutation(values)
                         await router.push(Routes.ShowServicePage({ appId: service.id }))
@@ -146,20 +158,24 @@ const NewServicePage = () => {
               </Card>
 
               {components.map((link, i) => (
-                <AddLinkCard key={i} link={link} />
+                <Box textAlign="center" key={i}>
+                  <Button
+                    variant="contained"
+                    type="submit"
+
+                    sx={{ width: 200 }}
+                  >
+                    ddd
+                  </Button>
+                </Box>
               ))}
             </Grid>
 
-            <Grid xs={4} pl={5}>
+            <Grid xs={12} sm={12} md={4} lg={4} xl={4}>
               <Card variant="outlined">
                 <CardHeader title="Available Services" />
 
                 <CardContent>
-                  <p>
-                    {" "}
-                    icons of social media services. clicking on them will make an add box appear on
-                    the right
-                  </p>
 
                   <Box textAlign="center">
                     <Button
@@ -173,17 +189,16 @@ const NewServicePage = () => {
                     >
                       <span>Add Facebook</span>
                     </Button>
+
+                    {
+                      linkList.map((ele, id) => <PreviewLinkButton key={id} ele={ele} />)
+                    }
+
+
+
                   </Box>
                 </CardContent>
               </Card>
-
-              {/*<FacebookProvider appId="123456789">*/}
-              {/*  <Comments href="https://www.facebook.com/amir.meshkin" />*/}
-              {/*</FacebookProvider>*/}
-              {/*Page is creating errors*/}
-              {/*<FacebookProvider appId="123456789">*/}
-              {/*  <Page href="https://www.facebook.com" tabs="timeline" />*/}
-              {/*</FacebookProvider>*/}
             </Grid>
           </Grid>
         </Box>
@@ -191,6 +206,30 @@ const NewServicePage = () => {
     </AdminLayout>
   )
 }
-NewServicePage.authenticate = true
 
-export default NewServicePage
+// TODO: figure out how to check user role, and make sure level 3 only here
+
+// level 3 package ONLY
+// /Users/amirmeshkin/_code/_business/blitz-app/src/configs/plans.config.tsx
+
+// if logged in, send to pricing tables page for upgrade /pricing page
+// if not logged in, login "/auth/login"
+
+console.log(" plansConfig.level3", plansConfig.level3.role);
+NewFacebookPage.authenticate = { role: plansConfig.level3.role, redirectTo: "/account/upgrade" }
+// http://localhost:3000/apps/facebook
+
+
+
+// NewFacebookPage.authenticate = true
+//
+// // user must be logged in
+// Page.authenticate = true
+// // user must be logged in and redirects otherwise
+// Page.authenticate = { redirectTo: "/login" }
+
+// user must be logged in with role "ADMIN" and redirects otherwise
+// Page.authenticate = { role: "ADMIN", redirectTo: "/login" }
+
+
+export default NewFacebookPage
