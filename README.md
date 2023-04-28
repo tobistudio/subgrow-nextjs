@@ -86,6 +86,9 @@ Linked to sub page
 
 https://linktr.ee/s/pricing/
 
+#### apps page
+https://linktr.ee/marketplace
+
 
 
 #### User Box, icons, drop down user

@@ -3,7 +3,7 @@ import {
   apiGetProjectList,
   apiGetScrumBoardtMembers,
   apiPutProjectList,
-} from "services/ProjectService"
+} from "apps/ProjectService"
 
 export const getList = createAsyncThunk("projectList/getList", async (data) => {
   const response = await apiGetProjectList(data)

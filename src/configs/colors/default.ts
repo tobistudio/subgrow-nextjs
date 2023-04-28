@@ -76,3 +76,24 @@ export const misc = {
   800: "#0b3470",
   900: "#002459",
 }
+
+export const brands = {
+  facebook: "#4267B2",
+  twitter: "#1D9BF0",
+  instagram: "#E1306C",
+  tiktok: "#00F2EA",
+  google: "#CF4232",
+  facebook_h_bg: "#4267B2",
+  twitter_h_bg: "#1D9BF0",
+  instagram_h_bg: "#C13584",
+  tiktok_h_bg: "#00F2EA",
+  google_h_bg: "#c9210e",
+  300: "#6b81ae",
+  400: "#4a679f",
+  500: "#254e90",
+  600: "#1e4688",
+  700: "#143d7c",
+  800: "#0b3470",
+  900: "#002459",
+}
+

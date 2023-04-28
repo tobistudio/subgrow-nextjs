@@ -5,7 +5,7 @@ import useDarkMode from "utils/hooks/useDarkMode"
 import { themeConfig } from "configs/theme.config"
 import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles"
 // import { blue, green, purple } from "@mui/material/colors"
-import { blue, green, purple, red } from "configs/colors/default"
+import { blue, green, purple, red, brands } from "configs/colors/default"
 
 // <ThemeProvider theme={theme}>
 
@@ -219,12 +219,13 @@ const Theme = (props) => {
             style: {
               // backgroundColor: "#2374F2",
               backgroundColor: "#e9efef",
-              color: "#4267B2",
+              color: brands.facebook,
+              // color: "#4267B2",
               // border: `2px dashed grey${blue[500]}`,
               // border: `2px dashed grey${blue[500]}`,
               "&:hover": {
                 // backgroundColor: "#3c52b2",
-                backgroundColor: "#4267B2",
+                backgroundColor: brands.facebook_h_bg,
                 color: "#dee3f8",
               },
             },
@@ -233,10 +234,10 @@ const Theme = (props) => {
             props: { variant: "twbutton" },
             style: {
               backgroundColor: "#e9efef",
-              color: "#1D9BF0",
+              color: brands.twitter,
               // border: `2px dashed grey${blue[500]}`,
               "&:hover": {
-                backgroundColor: "#1D9BF0",
+                backgroundColor: brands.twitter_h_bg,
                 color: "#dee3f8",
               },
             },
@@ -246,10 +247,10 @@ const Theme = (props) => {
             style: {
               // backgroundColor: "#E1306C",
               backgroundColor: "#e9efef",
-              color: "#E1306C",
+              color: brands.instagram,
               // border: `2px dashed grey${blue[500]}`,
               "&:hover": {
-                backgroundColor: "#C13584",
+                backgroundColor: brands.instagram_h_bg,
                 color: "#dee3f8",
               },
             },
@@ -259,10 +260,10 @@ const Theme = (props) => {
             style: {
               // backgroundColor: "#2374F2",
               backgroundColor: "#e9efef",
-              color: "#00F2EA",
+              color: brands.tiktok,
               // border: `2px dashed grey${blue[500]}`,
               "&:hover": {
-                backgroundColor: "#00F2EA",
+                backgroundColor: brands.tiktok_h_bg,
                 color: "#dee3f8",
               },
             },
@@ -273,10 +274,10 @@ const Theme = (props) => {
               // backgroundColor: "#2374F2",
               // backgroundColor: "#CF4232",
               backgroundColor: "#e9efef",
-              color: "#CF4232",
+              color: brands.google,
               // border: `2px dashed grey${blue[500]}`,
               "&:hover": {
-                backgroundColor: "#CF4232",
+                backgroundColor: brands.google_h_bg,
                 color: "#f8dede",
               },
             },

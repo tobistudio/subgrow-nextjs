@@ -55,7 +55,7 @@ const CheckoutForm = () => {
 
             // try {
             //   const service = await createServiceMutation(values)
-            //   await router.push(Routes.ShowServicePage({ serviceId: service.id }))
+            //   await router.push(Routes.ShowServicePage({ appId: service.id }))
             // } catch (error: any) {
             //   console.error(error)
             //   return {

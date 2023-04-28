@@ -10,7 +10,7 @@ import {
   HiOutlineBan,
   HiOutlineMailOpen,
 } from "react-icons/hi"
-import { apiGetNotificationList, apiGetNotificationCount } from "services/CommonService"
+import { apiGetNotificationList, apiGetNotificationCount } from "src/apps/CommonService"
 import Link from "next/link"
 import isLastChild from "utils/isLastChild"
 import useTwColorByName from "utils/hooks/useTwColorByName"

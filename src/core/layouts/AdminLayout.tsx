@@ -80,7 +80,16 @@ const AdminLayout: BlitzLayout<{
 
       <main>
         <Container fixed>{header}</Container>
-        <Container fixed>{children}</Container>
+        <Container
+          fixed
+          sx={{
+            bgcolor: 'background.paper',
+            boxShadow: 1,
+            borderRadius: 2,
+            p: 2,
+            minWidth: 300,
+          }}
+        >{children}</Container>
       </main>
       {footer}
     </>

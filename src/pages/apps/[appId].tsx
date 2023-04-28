@@ -5,16 +5,15 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { useQuery, useMutation } from "@blitzjs/rpc"
 import { useParam } from "@blitzjs/next"
-
 import Layout from "core/layouts/Layout"
-import getService from "services/queries/getService"
-import deleteService from "services/mutations/deleteService"
+import getService from "apps/queries/getService"
+import deleteService from "apps/mutations/deleteService"
 
 export const Service = () => {
   const router = useRouter()
-  const serviceId = useParam("serviceId", "number")
+  const appId = useParam("appId", "number")
   const [deleteServiceMutation] = useMutation(deleteService)
-  const [service] = useQuery(getService, { id: serviceId })
+  const [service] = useQuery(getService, { id: appId })
 
   return (
     <>
@@ -26,7 +25,7 @@ export const Service = () => {
         <h1>Service {service.id}</h1>
         <pre>{JSON.stringify(service, null, 2)}</pre>
 
-        <Link href={Routes.EditServicePage({ serviceId: service.id })}>Edit</Link>
+        <Link href={Routes.EditServicePage({ appId: service.id })}>Edit</Link>
 
         <button
           type="button"

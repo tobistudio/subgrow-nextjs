@@ -3,9 +3,9 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { useMutation } from "@blitzjs/rpc"
 import AdminLayout from "core/layouts/AdminLayout"
-import { CreateServiceSchema } from "services/schemas"
-import createService from "services/mutations/createService"
-import { ServiceForm, FORM_ERROR } from "services/components/ServiceForm"
+import { CreateServiceSchema } from "apps/schemas"
+import createService from "apps/mutations/createService"
+import { ServiceForm, FORM_ERROR } from "apps/components/ServiceForm"
 import React, { Suspense, useState } from "react"
 import {
   Container,
@@ -75,7 +75,7 @@ const NewServicePage = () => {
                     onSubmit={async (values) => {
                       try {
                         const service = await createServiceMutation(values)
-                        await router.push(Routes.ShowServicePage({ serviceId: service.id }))
+                        await router.push(Routes.ShowServicePage({ appId: service.id }))
                       } catch (error: any) {
                         console.error(error)
                         return {

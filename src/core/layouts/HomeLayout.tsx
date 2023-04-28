@@ -74,7 +74,19 @@ const HomeLayout: BlitzLayout<{
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container fixed>{header}</Container>
-      <Container fixed>{children}</Container>
+
+      <Container
+        fixed
+        sx={{
+          // bgcolor: 'background.paper',
+          // boxShadow: 1,
+          // borderRadius: 2,
+          my: 7,
+          // minWidth: 300,
+        }}
+      >
+        {children}
+      </Container>
       <Container fixed>{footer}</Container>
     </div>
   )

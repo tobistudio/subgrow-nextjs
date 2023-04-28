@@ -4,15 +4,12 @@ import db from "../../../db"
 import { z } from "zod"
 
 const GetSiteForProfile = z.object({
-  // id: z.string().optional().refine(Boolean, "Required"),
-  // userId: z.number().int(),
   userId: z.number(),
 })
 
 export default resolver.pipe(resolver.zod(GetSiteForProfile), async ({ userId }) => {
 
-  const site = await db.link.findMany({
-    // fields
+  const link = await db.link.findMany({
     where: { userId },
     orderBy: [
       {
@@ -20,6 +17,6 @@ export default resolver.pipe(resolver.zod(GetSiteForProfile), async ({ userId })
       },
     ],
   })
-  if (!site) throw new NotFoundError()
-  return site
+  if (!link) throw new NotFoundError()
+  return link
 })

@@ -8,17 +8,17 @@ import { useQuery, useMutation } from "@blitzjs/rpc"
 import { useParam } from "@blitzjs/next"
 
 import Layout from "core/layouts/Layout"
-import { UpdateServiceSchema } from "services/schemas"
-import getService from "services/queries/getService"
-import updateService from "services/mutations/updateService"
-import { ServiceForm, FORM_ERROR } from "services/components/ServiceForm"
+import { UpdateServiceSchema } from "apps/schemas"
+import getService from "apps/queries/getService"
+import updateService from "apps/mutations/updateService"
+import { ServiceForm, FORM_ERROR } from "apps/components/ServiceForm"
 
 export const EditService = () => {
   const router = useRouter()
-  const serviceId = useParam("serviceId", "number")
+  const appId = useParam("appId", "number")
   const [service, { setQueryData }] = useQuery(
     getService,
-    { id: serviceId },
+    { id: appId },
     {
       // This ensures the query never refreshes and overwrites the form data while the user is editing.
       staleTime: Infinity,
@@ -47,7 +47,7 @@ export const EditService = () => {
                   ...values,
                 })
                 await setQueryData(updated)
-                await router.push(Routes.ShowServicePage({ serviceId: updated.id }))
+                await router.push(Routes.ShowServicePage({ appId: updated.id }))
               } catch (error: any) {
                 console.error(error)
                 return {
