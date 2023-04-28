@@ -21,11 +21,14 @@ import {
   RadioGroup,
   Stack,
   Typography,
+  Button,
+  InputAdornment
 } from "@mui/material"
-import { Button } from "@mui/material"
+import { TextField } from "mui-rff"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser } from "@fortawesome/pro-duotone-svg-icons"
 import { misc } from "../../configs/colors/default"
+
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
 export default function SubscriptionForm() {
@@ -243,6 +246,30 @@ export default function SubscriptionForm() {
                 </Stack>
               </Box>
 
+
+              <Box spacing={4} mt={5}>
+                <Stack direction="row" spacing={2}>
+                  <TextField
+                    label="Coupon Code"
+                    name="email"
+                    style={{ maxWidth: 380 }}
+                    // required={true}
+                    InputProps={{
+                      placeholder: "Coupon Code",
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <FontAwesomeIcon
+                            icon={faUser}
+                            color={misc.fa_primary}
+                            style={{ width: 15, height: 15 }}
+                          />
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </Stack>
+              </Box>
+
               <Box spacing={4} mt={5}>
                 {isLoading ? (
                   <LoadingSvg />
@@ -273,20 +300,6 @@ export default function SubscriptionForm() {
   )
 }
 
-// TODO: add stripe subscriptions
-// https://stripe.com/docs/billing/subscriptions/coupons
-
-// https://www.mohammadfaisal.dev/blog/how-to-create-a-stripe-subscription-with-reactjs-and-nodejs
-// https://stripe.com/docs/billing/subscriptions/build-subscriptions?ui=checkout
-
-// PHASE I
-// 1. Subscription Page
-// https://github.com/stripe-samples/checkout-single-subscription
-
-// PHASE II
-// 1. // TODO: coupon code
-// 2. easy to change subscription, with a modal showing pricing tables component
-//
 
 // raw js for subscription
 // <script async src="https://js.stripe.com/v3/pricing-table.js"></script>

@@ -87,7 +87,7 @@ const Dashboard = () => {
                 <CardHeader
                   title="Preview"
                   //action={<Link href={Routes.EditProfilePage({profileId: profile.id})}><Tooltip title="Edit Profile"><FontAwesomeIcon icon={faGear} color="primary.light" style={{ color: fonts.gear }} /></Tooltip></Link>} // gear
-                  action={<Link href="" onClick={handleProfileEdit}><Tooltip title="Edit Profile"><FontAwesomeIcon icon={faGear} color="primary.light" style={{ color: fonts.gear }} /></Tooltip></Link>} // gear
+                  //action={<Link href="" onClick={handleProfileEdit}><Tooltip title="Edit Profile"><FontAwesomeIcon icon={faGear} color="primary.light" style={{ color: fonts.gear }} /></Tooltip></Link>} // gear
                 />
                 <CardContent>
 
@@ -103,14 +103,14 @@ const Dashboard = () => {
                         linkList.map((ele, id) => <PreviewLinkButton key={id} ele={ele} />)
                       }
 
-                      <Button
-                        // onClick={Routes.EditProfilePage(session.username)}
-                        // style={{ width: 200 }}
-                        variant="outlined"
-                        // sx={{ mt: 2 }}
-                      >
-                        Edit Design
-                      </Button>
+                      {/*<Button*/}
+                      {/*  // onClick={Routes.EditProfilePage(session.username)}*/}
+                      {/*  // style={{ width: 200 }}*/}
+                      {/*  variant="outlined"*/}
+                      {/*  // sx={{ mt: 2 }}*/}
+                      {/*>*/}
+                      {/*  Edit Design*/}
+                      {/*</Button>*/}
 
                     </Stack>
                   </Box>

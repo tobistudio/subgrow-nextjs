@@ -55,12 +55,49 @@ http://localhost:3000/auth/signup
 
 ## TODO LIST
 
-####
-
-Subscription Page
-
+#### Subscription Page
+// TODO: subscription
 
 
+// TODO: add stripe subscriptions
+// https://stripe.com/docs/billing/subscriptions/coupons
+
+// https://www.mohammadfaisal.dev/blog/how-to-create-a-stripe-subscription-with-reactjs-and-nodejs
+// https://stripe.com/docs/billing/subscriptions/build-subscriptions?ui=checkout
+
+// PHASE I
+// 1. Subscription Page
+// https://github.com/stripe-samples/checkout-single-subscription
+
+// PHASE II
+// 1. // TODO: coupon code
+// 2. easy to change subscription, with a modal showing pricing tables component
+//
+
+
+// Followed at first
+// https://www.mohammadfaisal.dev/blog/how-to-create-a-stripe-subscription-with-reactjs-and-nodejs
+
+
+
+
+#### pricing tables
+Linked to sub page
+
+https://linktr.ee/s/pricing/
+
+
+
+#### User Box, icons, drop down user
+
+
+
+#### Apps Page
+
+
+
+
+#### individual GA analytics
 
 
 

@@ -150,5 +150,4 @@ export default function CheckoutForm() {
   )
 }
 
-// TODO: subscription
-// https://www.mohammadfaisal.dev/blog/how-to-create-a-stripe-subscription-with-reactjs-and-nodejs
+
