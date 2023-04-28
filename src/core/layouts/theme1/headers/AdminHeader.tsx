@@ -3,14 +3,15 @@ import { BlitzLayout } from "@blitzjs/next"
 import Grid from "@mui/material/Unstable_Grid2"
 import UserInfo from "../../../../components/user/UserInfo"
 import Logo from "./Logo"
-
-import SidePanel from "components/template/SidePanel"
+// import UserDropdownNew from "components/template/UserDropdownNew"
 import UserDropdown from "components/template/UserDropdown"
-import LanguageSelector from "components/template/LanguageSelector"
-import Notification from "components/template/Notification"
-import MobileNav from "components/template/MobileNav"
-import Search from "components/template/Search"
-import StackedSideNav from "components/template/StackedSideNav"
+// import SidePanel from "components/template/SidePanel"
+//
+// import LanguageSelector from "components/template/LanguageSelector"
+// import Notification from "components/template/Notification"
+// import MobileNav from "components/template/MobileNav"
+// import Search from "components/template/Search"
+// import StackedSideNav from "components/template/StackedSideNav"
 
 const AdminHeader: BlitzLayout<{ title?: string; type?: string }> = ({ title, type, children }) => {
   const myLoader = ({ src, width, quality }) => {

@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
+      <change afterPath="$PROJECT_DIR$/src/assets/styles/components/_user-dropdown.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/template/UserDropdownNew.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/apps.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/apps.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/_app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/_app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/_custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/_custom.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/template/UserDropdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/UserDropdown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/layouts/theme1/headers/AdminHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/theme1/headers/AdminHeader.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +130,7 @@
       <workItem from="1681943767112" duration="4328000" />
       <workItem from="1682006031719" duration="45314000" />
       <workItem from="1682110781520" duration="1023000" />
-      <workItem from="1682113338059" duration="192281000" />
+      <workItem from="1682113338059" duration="193507000" />
     </task>
     <servers />
   </component>

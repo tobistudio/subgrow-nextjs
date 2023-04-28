@@ -15,6 +15,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFacebook } from "@fortawesome/free-brands-svg-icons"
 import { misc } from "../../configs/colors/default"
 import {useSession} from "@blitzjs/auth";
+import {
+  Card,
+  Badge
+} from "@mui/material"
+
 
 export const UserDropdown = ({ className, user }) => {
   const { avatar, userName, authority, email } = useSelector((state) => state.auth.user)
@@ -51,11 +56,15 @@ export const UserDropdown = ({ className, user }) => {
     <div className={classNames(className, "flex items-center gap-2")}>
       <Avatar size={32} shape="circle" src={avatar} />
 
-      <FontAwesomeIcon
-        icon={faFacebook}
-        color={misc.fa_primary}
-        style={{ width: 15, height: 15 }}
-      />
+
+
+      <Badge color="secondary" badgeContent={0}>
+        <FontAwesomeIcon
+          icon={faFacebook}
+          color={misc.fa_primary}
+          style={{ width: 15, height: 15 }}
+        />
+      </Badge>
 
       <div className="hidden md:block">
         <div className="font-bold pl-3 pt-1">{session.username}</div>
