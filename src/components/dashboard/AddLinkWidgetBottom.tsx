@@ -63,49 +63,6 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }))
 
-// TODO: fiver finish dialog box
-// const DeleteDialog = async (props: SimpleDialogProps) => {
-//   const { onClose, selectedValue, open } = props
-//
-//
-//   //
-//   const handleDeleteClick = (event: React.MouseEvent<HTMLElement>, id: string) => {
-//     // console.log(event.target)
-//
-//     console.log("handleDeleteClick", id)
-//     // DeleteDialog.tsx
-//     setOpen(true);
-//     //event.preventDefault()
-//   }
-//
-//   // delete dialog
-//   // const handleClickOpen = () => {
-//   //   setOpen(true)
-//   // }
-//   //
-//   // const handleClose = (value: string) => {
-//   //   setOpen(false)
-//   //   setSelectedValue(value)
-//   // }
-//
-//   const handleClose = () => {
-//     onClose(selectedValue)
-//   }
-//
-//   const handleListItemClick = (value: string) => {
-//     onClose(value)
-//   }
-//
-//
-//   return (
-//     <Dialog onClose={handleClose} open={open}>
-//       <DialogTitle>Set backup account</DialogTitle>
-//
-//       <p>Are you sure you want to delete?</p>
-//     </Dialog>
-//   )
-// }
-
 // need {} or else it's a object in object
 export default function AddLinkWidgetBottom({ sites }) {
   const [links, setLinks] = React.useState(sites)

@@ -22,10 +22,18 @@ Production will be done on the `develop` branch, and merged into the `main` bran
 Husky will take care of database updates on commit
 
 
-`blitz build` will run on push to main and PR
+`blitz build` will run on push to `main` branch
+
+
+Branches are created from `develop`
+
+And PR's are merged back into `develop`
+
+A full build is done once it's merged into `main`
 
 
 
+## Test Accounts
 
 Login using this account with username tester
 http://localhost:3000/auth/login
@@ -47,19 +55,6 @@ http://localhost:3000/auth/signup
 
 ## TODO LIST
 
-
-### Drag Drop
-email me
-amir.meshkin@gmail.com
-
-DB mutation
-https://github.com/ameshkin/subgrow/blob/324456f1cf466f438c1fda5142b295d08c57ff4e/src/sites/mutations/updateLinkOrder.ts
-
-
-### TODO: fiver finish delete dialog box
-
-When someone clicks delete, open dialog box. On OK delete
-https://github.com/ameshkin/subgrow/blob/52faba6ea95d2a30c7a927674fdb175522e5422d/src/components/dashboard/LinkListCard.tsx
 
 
 ### REFRESH list of links
@@ -157,9 +152,6 @@ needs to delete if user is deleted, or user logs out
 
 
 
-
-
-FIVER
 
 
 

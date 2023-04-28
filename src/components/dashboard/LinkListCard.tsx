@@ -157,7 +157,7 @@ const LinkListCard = ({ link, index, mode, snapshot, setLinks }: any) => {
           <IconButton
             size="medium"
             aria-label="delete"
-            onClick={() => handleOpen()} // TODO: fiver delete button
+            onClick={() => handleOpen()}
           >
             <FontAwesomeIcon icon={faTrashCan} size="sm" />
           </IconButton>

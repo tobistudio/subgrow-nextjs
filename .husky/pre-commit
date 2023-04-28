@@ -3,9 +3,10 @@
 
 # npx pretty-quick --staged
 
+npm run lint
 
-# prisma format
+npx prisma format
 
-# prisma validate
+npx prisma validate
 
-# prisma generate;
+npx prisma generate;

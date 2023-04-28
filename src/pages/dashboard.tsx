@@ -13,11 +13,15 @@ import {
   CardContent,
   Container,
   Button,
-  Stack, Typography
+  Stack,
+  Typography
 } from "@mui/material"
 import getSiteForProfile from "../sites/queries/getSiteForProfile"
 import getCurrentProfileUsername from "../profiles/queries/getCurrentProfileUsername"
 import PreviewLinkButton from "../components/dashboard/PreviewLinkButton";
+import { faGear } from "@fortawesome/pro-duotone-svg-icons";
+import {fonts} from "../configs/colors/default";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
 export const DashboardBox = ({ sites, setLinkList }) => {
@@ -82,20 +86,12 @@ const Dashboard = () => {
               <Card variant="outlined">
                 <CardHeader
                   title="Preview"
+                  action={<FontAwesomeIcon icon={faGear} color="primary.light" style={{ color: fonts.gear }}  />} // gear
                 />
-
                 <CardContent>
 
-                  <Button variant="contained">
-                    neutral
-                  </Button>
+                  {/*<Typography variant="body1" color="primary.light">*/}
 
-                  {/*<Typography variant="body1" color={pallete.primary.light}>*/}
-                  <Typography variant="body1" color="primary.light">
-
-                    sdfg
-
-                  </Typography>
                   <Box
                     display="flex"
                     alignItems={"center"}
