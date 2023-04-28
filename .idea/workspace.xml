@@ -5,44 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/.examples/AdminPageTemplate.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/apps/components/ConnectedAppsAside.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/apps.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/stripe/UpgradeForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/stripe/UpgradeForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/search/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/search/Search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/search/store/dataSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/search/store/dataSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/template/Notification.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/Notification.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/template/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/Search.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/template/Theme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/Theme.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/configs/colors/default.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/configs/colors/default.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/layouts/AdminLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/AdminLayout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/layouts/HomeLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/HomeLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/services/[serviceId].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/apps/[appId].tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/services/[serviceId]/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/apps/[appId]/edit.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/services/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/services/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/services/new.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/apps/new.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/AccountServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/AccountServices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/ApiService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/ApiService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/AuthService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/AuthService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/BaseService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/BaseService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/CommonService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/CommonService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/CrmService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/CrmService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/CryptoService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/CryptoService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/KnowledgeBaseService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/KnowledgeBaseService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/ProjectService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/ProjectService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/SalesService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/SalesService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/components/ServiceForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/components/ServiceForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/mutations/createService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/mutations/createService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/mutations/deleteService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/mutations/deleteService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/mutations/updateService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/mutations/updateService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/queries/getService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/queries/getService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/queries/getServices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/queries/getServices.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/schemas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/schemas.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sites/queries/getSiteForProfile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/sites/queries/getSiteForProfile.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/hooks/useAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/hooks/useAuth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/apps.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/apps.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +128,7 @@
       <workItem from="1681943767112" duration="4328000" />
       <workItem from="1682006031719" duration="45314000" />
       <workItem from="1682110781520" duration="1023000" />
-      <workItem from="1682113338059" duration="187283000" />
+      <workItem from="1682113338059" duration="190244000" />
     </task>
     <servers />
   </component>

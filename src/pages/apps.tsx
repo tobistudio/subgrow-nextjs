@@ -61,59 +61,93 @@ export const AppsList = () => {
     {
       "id": 2,
       "name":"Twitter",
-      "description": "Connect to facebook",
+      "description": "Connect to facebook to display feeds",
       "site_name": "facebook",
-      "icon": <FontAwesomeIcon icon={faTwitter} color={brands.twitter} style={{ width: 17, height: 17 }} />
+      "icon": <FontAwesomeIcon icon={faTwitter} color={brands.twitter} size="2xl"  />
     },
     {
       "id": 3,
       "name":"Instagram",
-      "description": "Connect to Instagram",
+      "description": "Connect to Instagram to display a widget",
       "site_name": "instagram",
-      "icon": <FontAwesomeIcon icon={faInstagram} color={brands.instagram} size="xl" />
+      "icon": <FontAwesomeIcon icon={faInstagram} color={brands.instagram} size="2xl" />
+    },
+    {
+      "id": 4,
+      "name":"Tik Tok",
+      "description": "Connect to Tik Tok to display a widget",
+      "site_name": "tiktok",
+      "icon": <FontAwesomeIcon icon={faTiktok} color={brands.tiktok} size="2xl" />
+    },
+    {
+      "id": 5,
+      "name":"Tik Tok",
+      "description": "Connect to Tik Tok to display a widget",
+      "site_name": "tiktok",
+      "icon": <FontAwesomeIcon icon={faTiktok} color={brands.tiktok} size="2xl" />
     }
   ]
+
+  // const getAvatarBgColor = ({ category }) => ({
+  //   work: yellow[700],
+  //   money: green[500],
+  //   todos: pink[500],
+  // }[category] || blue[500]);
 
   return (
     <div>
 
       {/*<Typography variant="h1">*/}
       {/* */}
-      {/*</Typography>*/}
+      {/*</Typography> sm={4} md={4}*/}
 
       {/*columns={{ xs: 4, sm: 8, md: 12 }}*/}
       <Grid container spacing={{ xs: 2, md: 3 }}>
 
         {apps.map((app) => (
-          <Grid xs={2} sm={4} md={4} key={app.id} spacing={5}>
+          <Grid xs={12} sm={6} md={4} lg={3} key={app.id} spacing={5}>
 
             <Card sx={{ display: 'flex' }}>
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
 
-                  {/*<Avatar>*/}
-                  {/*  {app.icon}*/}
-                  {/*</Avatar>*/}
+                {/*<CardMedia*/}
+                {/*  component="img"*/}
+                {/*  // sx={{ width: 151 }}*/}
+                {/*  image=""*/}
+                {/*  alt={app.name}*/}
+                {/*>*/}
+                {/*  {app.icon}*/}
+                {/*</CardMedia>*/}
 
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  {app.icon}
-                </Box>
 
-                <CardContent sx={{ flex: '1 0 auto' }}>
-                  <Typography component="div" variant="h5">
-                    {app.name}
-                  </Typography>
-                  <Typography variant="subtitle1" color="text.secondary" component="div">
-                    {app.description}
-                  </Typography>
+                {/*display: 'flex',*/}
+
+                {/*<Box sx={{  alignItems: 'center', justifyContent: 'center' }}>*/}
+                {/*  {app.icon}*/}
+                {/*</Box>*/}
+
+                {/*<CardContent sx={{ flex: '1 0 auto' }}>*/}
+                <CardContent sx={{ flexDirection: 'end' }}>
+                  <Stack direction="row" spacing={2} mt={2}>
+                    <Avatar
+                      sx={{ bgcolor: "transparent" }}
+                      style={{ flexDirection: "column", alignItems: 'center', justifyContent: "center", display: "flex" }}
+                    >
+                      {app.icon}
+                    </Avatar>
+                    <div>
+                      <Typography component="div" variant="h5">
+                        {app.name}
+                      </Typography>
+                      <Typography variant="subtitle1" color="text.secondary" component="div">
+                        {app.description}
+                      </Typography>
+                    </div>
+                  </Stack>
                 </CardContent>
 
               </Box>
-              {/*<CardMedia*/}
-              {/*  component="img"*/}
-              {/*  sx={{ width: 151 }}*/}
-              {/*  image="/static/images/cards/live-from-space.jpg"*/}
-              {/*  alt="Live from space album cover"*/}
-              {/*/>*/}
+
             </Card>
 
 
@@ -152,45 +186,11 @@ const AppsPage = () => {
 
       <Suspense fallback={<LoadingSvg />}>
         <Box>
-          <Grid container spacing={{ xs: 2, md: 3, lg: 6 }}>
-            <Grid xs={8}>
-              <Card variant="outlined">
-                <CardHeader title="Available Apps" />
-                <CardContent>
-                  <AppsList />
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid xs={4} pl={5}>
-              <Card variant="outlined">
-                <CardHeader
-                  title="Connected Apps"
-                />
-                <CardContent>
+          <Typography variant="h1">Available Apps</Typography>
 
-                  {/*<Typography variant="body1" color="primary.light">*/}
-
-                  <Box
-                    display="flex"
-                    alignItems={"center"}
-                    justifyContent={"center"}
-                  >
-                    <Stack spacing={4}>
-                      {
-                        //   TODO: checkbox icon if connected
-                      }
-
-                      {
-                        linkList.map((ele, id) => <ConnectedAppsAside key={id} ele={ele} />)
-                      }
+          <AppsList />
 
 
-                    </Stack>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Grid>
-          </Grid>
         </Box>
       </Suspense>
 
@@ -199,3 +199,4 @@ const AppsPage = () => {
 }
 
 export default AppsPage
+
