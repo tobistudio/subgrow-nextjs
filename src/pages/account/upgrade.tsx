@@ -17,6 +17,7 @@ export default function UpgradePage() {
     items: [
       {
         id: "gold",
+        term: "annual",
       },
     ],
   }

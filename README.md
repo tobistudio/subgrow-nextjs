@@ -57,6 +57,8 @@ http://localhost:3000/auth/signup
 
 ####
 
+Subscription Page
+
 
 
 
