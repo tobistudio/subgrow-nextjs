@@ -6,6 +6,7 @@ import {useMutation, useQuery} from "@blitzjs/rpc"
 import AdminLayout from "core/layouts/AdminLayout"
 import { CreateFacebookSchema } from "apps/schemas"
 import createService from "apps/mutations/createService"
+import getThisUsersApps from "apps/queries/getThisUsersApps"
 import { ServiceForm, FORM_ERROR } from "apps/components/ServiceForm"
 import React, { Suspense, useState } from "react"
 import {
@@ -48,13 +49,15 @@ const NewFacebookPage = () => {
   const [createServiceMutation] = useMutation(createService)
   const [components, setComponents] = useState(["Sample Component"])
 
+
   console.log("session",session.role);
 
-
-
-  const [sites] = useQuery(getSiteForProfile, { userId: session.userId })
+  // @ts-ignore
+  const [apps] = useQuery(getThisUsersApps, { userId: session.userId, site_name: "facebook" })
   // const [profile] = useQuery(getCurrentProfileUsername, { username: session.username, current: 'yes' })
-  const [linkList, setLinkList] = React.useState(sites);
+  const [appList, setAppList] = React.useState(apps);
+
+  console.log("apps",apps);
 
   // TODO: need to figure out if this user has already added. new/edit takes place on this page
 
@@ -157,18 +160,18 @@ const NewFacebookPage = () => {
                 </CardContent>
               </Card>
 
-              {components.map((link, i) => (
-                <Box textAlign="center" key={i}>
-                  <Button
-                    variant="contained"
-                    type="submit"
+              {/*{components.map((link, i) => (*/}
+              {/*  <Box textAlign="center" key={i}>*/}
+              {/*    <Button*/}
+              {/*      variant="contained"*/}
+              {/*      type="submit"*/}
 
-                    sx={{ width: 200 }}
-                  >
-                    ddd
-                  </Button>
-                </Box>
-              ))}
+              {/*      sx={{ width: 200 }}*/}
+              {/*    >*/}
+              {/*      ddd*/}
+              {/*    </Button>*/}
+              {/*  </Box>*/}
+              {/*))}*/}
             </Grid>
 
             <Grid xs={12} sm={12} md={4} lg={4} xl={4}>
@@ -190,9 +193,9 @@ const NewFacebookPage = () => {
                       <span>Add Facebook</span>
                     </Button>
 
-                    {
-                      linkList.map((ele, id) => <PreviewLinkButton key={id} ele={ele} />)
-                    }
+                    {/*{*/}
+                    {/*  appList.map((ele, id) => <PreviewLinkButton key={id} ele={ele} />)*/}
+                    {/*}*/}
 
 
 
@@ -215,7 +218,6 @@ const NewFacebookPage = () => {
 // if logged in, send to pricing tables page for upgrade /pricing page
 // if not logged in, login "/auth/login"
 
-console.log(" plansConfig.level3", plansConfig.level3.role);
 NewFacebookPage.authenticate = { role: plansConfig.level3.role, redirectTo: "/account/upgrade" }
 // http://localhost:3000/apps/facebook
 

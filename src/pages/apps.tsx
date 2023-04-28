@@ -107,6 +107,9 @@ export const AppsList = () => {
 
   //  if owned, action should be checkmark
 
+  // getThisUsersApps
+
+
   const handleAddAppClick = async (event: React.MouseEvent<HTMLElement>, id) => {
     await router.push(Routes.EditSitePage({ siteId: id }))
   }
@@ -135,27 +138,6 @@ export const AppsList = () => {
               onClick={(e) => handleAddAppClick(e, app.id)}
             >
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-
-                {/*<CardMedia*/}
-                {/*  component="img"*/}
-                {/*  // sx={{ width: 151 }}*/}
-                {/*  image=""*/}
-                {/*  alt={app.name}*/}
-                {/*>*/}
-                {/*  {app.icon}*/}
-                {/*</CardMedia>*/}
-
-
-                {/*display: 'flex',*/}
-
-                {/*<Box sx={{  alignItems: 'center', justifyContent: 'center' }}>*/}
-                {/*  {app.icon}*/}
-                {/*</Box>*/}
-                {/*<CardHeader*/}
-                {/*  action={*/}
-                {/*    <FontAwesomeIcon icon={faFacebook} style={{ width: 17, height: 17 }} />*/}
-                {/*  }*/}
-                {/*/>*/}
                 <CardContent sx={{ flexDirection: 'end' }}>
                   <Stack direction="row" spacing={2}>
                     <Avatar

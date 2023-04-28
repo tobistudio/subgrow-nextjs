@@ -114,8 +114,8 @@ export const card = {
 
 // card elevated
 export const card_el = {
-  bg: "#faf7f7",
-  bg_hover: "#d1dcf5",
+  bg: "#d1dcf5",
+  bg_hover: "#b9ccf1",
   color: "#111111",
   border: "#254e90",
   error: "#b9ccf1",
