@@ -17,25 +17,16 @@ import updateLinkOrder from "../../sites/mutations/updateLinkOrder"
 export default function AddLinkWidget({ sites, setLinkList }) {
   const [links, setLinks] = React.useState(sites)
   const [updateLinkMutation] = useMutation(updateLinkOrder)
-
-  // TODO: fiver finish and fix drag and dro, change order
   const onDragEnd = async ({ destination, source, id }: DropResult) => {
-
     const newLinks: Array<any> = reorder(links, source.index, destination.index)
-
     for (var i = 0; i < newLinks.length; i++) {
       updateLinkMutation({ id: newLinks[i].id, order: i + 1 })
     }
-
-    // TODO: change order in the database
-
     setLinks(newLinks)
   }
 
   React.useEffect(() => setLinkList(links), [links]);
-
   const theme = useSelector((state: RootStateOrAny) => state.theme)
-
   const [components, setComponents] = useState(["Sample Component"])
 
   function addComponent() {

@@ -8,7 +8,41 @@ import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/s
 import { blue, green, purple, red } from "configs/colors/default"
 
 // <ThemeProvider theme={theme}>
-// needed for typescript
+
+declare module '@mui/material/styles' {
+  interface Theme {
+    status: {
+      danger: React.CSSProperties['color'];
+      info: React.CSSProperties['color'];
+    };
+  }
+
+  interface Palette {
+    neutral: Palette['primary'];
+  }
+
+  interface PaletteOptions {
+    neutral: PaletteOptions['primary'];
+  }
+
+  interface PaletteColor {
+    darker?: string;
+  }
+
+  interface SimplePaletteColorOptions {
+    darker?: string;
+  }
+
+  interface ThemeOptions {
+    status: {
+      info: React.CSSProperties['color'];
+      danger: React.CSSProperties['color'];
+    };
+  }
+}
+
+
+
 declare module "@mui/material/Button" {
   interface ButtonPropsVariantOverrides {
     fbbutton: true
@@ -64,8 +98,24 @@ const Theme = (props) => {
 
   // border: `2px dashed grey${blue[500]}`,
   let mytheme = createTheme({
+    // mode If connected to state, then mode may not work well here
+    // mode: "dark",
+    status: {
+      danger: '#e53e3e',
+      info: '#3f50b5',
+    },
     palette: {
-      //mode: isDark,
+      background: {
+        default: '#000000',
+        paper: 'rgba(231,228,228,0.5)',
+      },
+      action: {
+        active: 'rgba(0, 0, 0, 0.54)',
+        hover: '#000000',
+        selected: '#000000',
+        disabled: '#c2c1c1',
+        disabledBackground: 'rgba(213,210,210,0.5)',
+      },
       primary: {
         light: "#ffffff",
         main: "#3f50b5",
@@ -77,6 +127,10 @@ const Theme = (props) => {
         main: "#f44336",
         dark: "#ba000d",
         contrastText: "#000",
+      },
+      neutral: {
+        main: '#64748B',
+        contrastText: '#fff',
       },
     },
     typography: {

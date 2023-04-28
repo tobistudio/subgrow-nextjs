@@ -2,6 +2,7 @@ import React, { Suspense } from "react"
 import { useSession } from "@blitzjs/auth"
 import Head from "next/head"
 import { useQuery } from "@blitzjs/rpc"
+import { Routes } from "@blitzjs/next";
 import AdminLayout from "core/layouts/AdminLayout"
 import AddLinkWidget from "components/dashboard/AddLinkWidget"
 import {
@@ -11,13 +12,13 @@ import {
   CardHeader,
   CardContent,
   Container,
+  Button,
+  Stack, Typography
 } from "@mui/material"
 import getSiteForProfile from "../sites/queries/getSiteForProfile"
-import { Routes } from "@blitzjs/next";
+import getCurrentProfileUsername from "../profiles/queries/getCurrentProfileUsername"
 import PreviewLinkButton from "../components/dashboard/PreviewLinkButton";
-
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
-
 
 export const DashboardBox = ({ sites, setLinkList }) => {
 
@@ -44,23 +45,19 @@ export const DashboardBox = ({ sites, setLinkList }) => {
 }
 
 const Dashboard = () => {
-
-
   const session = useSession()
   console.log("session dashboard", session)
 
   const [sites] = useQuery(getSiteForProfile, { userId: session.userId })
+  // @ts-ignore
+  const [profile] = useQuery(getCurrentProfileUsername, { username: session.username, current: 'yes' })
   const [linkList, setLinkList] = React.useState(sites);
 
   // auth not being checked yet, so no session id causes error
   if (!session.userId) {
-
-    console.log("session.userId", session.userId);
     Routes.Home()
     return
   }
-
-
 
   return (
     <AdminLayout>
@@ -89,20 +86,39 @@ const Dashboard = () => {
 
                 <CardContent>
 
-                  {
-                    linkList.map((ele, id) => <PreviewLinkButton key={id} ele={ele} />)
-                  }
+                  <Button variant="contained">
+                    neutral
+                  </Button>
 
+                  {/*<Typography variant="body1" color={pallete.primary.light}>*/}
+                  <Typography variant="body1" color="primary.light">
+
+                    sdfg
+
+                  </Typography>
+                  <Box
+                    display="flex"
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                  >
+                    <Stack spacing={4}>
+                      {
+                        linkList.map((ele, id) => <PreviewLinkButton key={id} ele={ele} />)
+                      }
+
+                      <Button
+                        // onClick={Routes.EditProfilePage(session.username)}
+                        // style={{ width: 200 }}
+                        variant="outlined"
+                        // sx={{ mt: 2 }}
+                      >
+                        Edit Design
+                      </Button>
+
+                    </Stack>
+                  </Box>
                 </CardContent>
               </Card>
-
-              {/*<FacebookProvider appId="123456789">*/}
-              {/*  <Comments href="https://www.facebook.com/amir.meshkin" />*/}
-              {/*</FacebookProvider>*/}
-              {/*Page is creating errors*/}
-              {/*<FacebookProvider appId="123456789">*/}
-              {/*  <Page href="https://www.facebook.com" tabs="timeline" />*/}
-              {/*</FacebookProvider>*/}
             </Grid>
           </Grid>
         </Box>

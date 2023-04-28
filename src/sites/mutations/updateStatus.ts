@@ -4,9 +4,7 @@ import { z } from "zod"
 
 const UpdateLinkOrder = z.object({
   id: z.string(),
-  // source: z.string(),
-  // destination: z.string(),
-  status: z.string(), // TODO: fiver this needs to be the index from drag drop
+  status: z.string(),
 })
 
 export default resolver.pipe(

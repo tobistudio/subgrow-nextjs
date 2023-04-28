@@ -21,7 +21,8 @@ export type User = {
   level: string | null
 }
 
-export type Role = "ADMIN" | "USER"
+// export type Role = "ADMIN" | "USER"
+export type Role = "LEVEL1" | "LEVEL2" | "LEVEL3" | "ADMIN" | "USER" | "MANAGER"
 
 declare module "@blitzjs/auth" {
   export interface Session {
