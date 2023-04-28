@@ -252,7 +252,6 @@ enum Role {
   MANAGER
 }
 
-
 enum Currencies {
   usd
   euro

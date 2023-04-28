@@ -1,8 +1,8 @@
 import React, { Suspense } from "react"
 import { useSession } from "@blitzjs/auth"
 import Head from "next/head"
+import Link from "next/link"
 import { useQuery } from "@blitzjs/rpc"
-import { Routes } from "@blitzjs/next";
 import AdminLayout from "core/layouts/AdminLayout"
 import AddLinkWidget from "components/dashboard/AddLinkWidget"
 import {
@@ -14,7 +14,7 @@ import {
   Container,
   Button,
   Stack,
-  Typography
+  Tooltip
 } from "@mui/material"
 import getSiteForProfile from "../sites/queries/getSiteForProfile"
 import getCurrentProfileUsername from "../profiles/queries/getCurrentProfileUsername"
@@ -22,6 +22,7 @@ import PreviewLinkButton from "../components/dashboard/PreviewLinkButton";
 import { faGear } from "@fortawesome/pro-duotone-svg-icons";
 import {fonts} from "../configs/colors/default";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {useRouter} from "next/router";
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
 export const DashboardBox = ({ sites, setLinkList }) => {
@@ -50,19 +51,19 @@ export const DashboardBox = ({ sites, setLinkList }) => {
 
 const Dashboard = () => {
   const session = useSession()
-  console.log("session dashboard", session)
-
+  const router = useRouter()
   const [sites] = useQuery(getSiteForProfile, { userId: session.userId })
-  // @ts-ignore
-  const [profile] = useQuery(getCurrentProfileUsername, { username: session.username, current: 'yes' })
+  // const [profile] = useQuery(getCurrentProfileUsername, { username: session.username, current: 'yes' })
   const [linkList, setLinkList] = React.useState(sites);
+  // // TODO: test, should not be needed. auth not being checked yet, so no session id causes error
+  // if (!session.userId) {
+  //   Routes.Home()
+  //   return
+  // }
 
-  // auth not being checked yet, so no session id causes error
-  if (!session.userId) {
-    Routes.Home()
-    return
+  const handleProfileEdit = async (e) => {
+    await router.push("/" + session.username)
   }
-
   return (
     <AdminLayout>
       <Head>
@@ -75,7 +76,6 @@ const Dashboard = () => {
             <Grid item xs={8}>
               <Card variant="outlined">
                 <CardHeader title="Links" />
-
                 <CardContent>
                   <DashboardBox sites={sites} setLinkList={setLinkList} />
                 </CardContent>
@@ -86,7 +86,8 @@ const Dashboard = () => {
               <Card variant="outlined">
                 <CardHeader
                   title="Preview"
-                  action={<FontAwesomeIcon icon={faGear} color="primary.light" style={{ color: fonts.gear }}  />} // gear
+                  //action={<Link href={Routes.EditProfilePage({profileId: profile.id})}><Tooltip title="Edit Profile"><FontAwesomeIcon icon={faGear} color="primary.light" style={{ color: fonts.gear }} /></Tooltip></Link>} // gear
+                  action={<Link href="" onClick={handleProfileEdit}><Tooltip title="Edit Profile"><FontAwesomeIcon icon={faGear} color="primary.light" style={{ color: fonts.gear }} /></Tooltip></Link>} // gear
                 />
                 <CardContent>
 

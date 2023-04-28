@@ -201,6 +201,11 @@ const Theme = (props) => {
           },
         },
       },
+      MuiButtonBase: {
+        defaultProps: {
+          disableRipple: false, // 💣
+        },
+      },
       MuiButton: {
         // styleOverrides: {
         //   root: ({ theme }) => ({

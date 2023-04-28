@@ -53,20 +53,6 @@ export interface SimpleDialogProps {
   onClose: (value: string) => void
   onDragEnd: OnDragEndResponder
 }
-//
-// export type DraggableListProps = {
-//   links: links[];
-//   onDragEnd: OnDragEndResponder;
-// };
-
-export type DraggableListItemProps = {
-  link: LinkType
-  index: number
-  mode: string
-  name: string
-  description: string
-  url: string
-}
 
 const style = {
   position: "absolute",
@@ -79,11 +65,7 @@ const style = {
   p: 4,
 }
 
-// TODO: draggable https://codesandbox.io/s/draggable-material-ui-oj3wz?file=/src/components/DraggableList.tsx:764-773
-// need {} or else it's a object in object
-// const LinkListCard = ({ link, index, mode }: DraggableListItemProps) => {
 const LinkListCard = ({ link, index, mode, snapshot, setLinks }: any) => {
-  // const LinkListCard = React.memo(({ link, mode }: DraggableListProps) => {
   const router = useRouter()
   const emails = ["username@gmail.com", "user02@gmail.com"]
   const [open, setOpen] = React.useState(false)
@@ -91,7 +73,6 @@ const LinkListCard = ({ link, index, mode, snapshot, setLinks }: any) => {
   const [updateStatusMutation] = useMutation(updateStatus)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
-  const [selectedValue, setSelectedValue] = React.useState(emails[1])
   const [checked, setChecked] = React.useState(true);
 
   const handleChange = (event, id) => {
@@ -100,14 +81,6 @@ const LinkListCard = ({ link, index, mode, snapshot, setLinks }: any) => {
     updateStatusMutation({ id: id, status: event.target.checked ? "active" : "inactive" })
     setLinks((prev) => prev.map((ele) => ele.id === id ? { ...ele, status: event.target.checked ? "active" : "inactive" } : ele));
   };
-
-  // TODO: handle switch update, turn on status switch in db
-  // let checked
-  // if (link.status === "active") {
-  //   checked = true
-  // } else {
-  //   checked = false
-  // }
 
   const handleEditDetailsClick = async (event: React.MouseEvent<HTMLElement>, id) => {
     await router.push(Routes.EditSitePage({ siteId: id }))
@@ -118,7 +91,6 @@ const LinkListCard = ({ link, index, mode, snapshot, setLinks }: any) => {
     setLinks((prev) => prev.filter((ele) => ele.id !== id))
   }
 
-  // TODO: need to get status switch working
   return (
     <Card key={link.id} className="card" style={{ margin: 30 }}>
       <CardHeader

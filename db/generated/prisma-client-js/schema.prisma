@@ -245,6 +245,11 @@ model TermsOfPayment {
 enum Role {
   USER
   ADMIN
+  LEVEL1
+  LEVEL2
+  LEVEL3
+  LEVEL4
+  MANAGER
 }
 
 enum Currencies {

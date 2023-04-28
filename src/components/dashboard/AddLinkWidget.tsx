@@ -18,6 +18,9 @@ export default function AddLinkWidget({ sites, setLinkList }) {
   const [links, setLinks] = React.useState(sites)
   const [updateLinkMutation] = useMutation(updateLinkOrder)
   const onDragEnd = async ({ destination, source, id }: DropResult) => {
+    if(!destination) {
+      return
+    }
     const newLinks: Array<any> = reorder(links, source.index, destination.index)
     for (var i = 0; i < newLinks.length; i++) {
       updateLinkMutation({ id: newLinks[i].id, order: i + 1 })
