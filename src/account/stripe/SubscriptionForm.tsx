@@ -1,12 +1,10 @@
-// @ts-nocheck
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from 'react';
 import {
   PaymentElement,
   LinkAuthenticationElement,
   useStripe,
   useElements,
-  CardElement,
-} from "@stripe/react-stripe-js"
+} from '@stripe/react-stripe-js';
 import {
   Box,
   Card,
@@ -32,13 +30,13 @@ import { misc } from "../../configs/colors/default"
 
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
-export default function SubscriptionForm() {
-  const stripe = useStripe()
-  const elements = useElements()
-  const [email, setEmail] = React.useState("")
-  const [name, setName] = React.useState("gold")
-  const [message, setMessage] = React.useState(null)
-  const [isLoading, setIsLoading] = React.useState(false)
+export default function Form(paymentIntent) {
+  const [email, setEmail] = useState('');
+  const [locAmount, setLocAmount] = useState(0);
+  const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const stripe = useStripe();
+  const elements = useElements();
   const upgradePlanName = "Gold Subscription"
   const [payNowAmount, setPayNowAmount] = React.useState(10);
   const upgradePlanId = "gold"
@@ -47,58 +45,90 @@ export default function SubscriptionForm() {
     setPayNowAmount(plansConfig.level1.price);
   })
 
-  const createSubscription = async () => {
-    try {
-      if (email.length <= 5) {
-        alert("Email length must be more than 5");
-        return;
-      }
-      if (!email) {
-        alert("Email required");
-        return;
-      }
-
-      console.log(elements?.getElement(CardElement)!);
-
-      // create a payment method
-      const paymentMethod = await stripe?.createPaymentMethod({
-        type: "card",
-        card: elements?.getElement(CardElement)!,
-        billing_details: {
-          name,
-          email,
-        },
-      });
-
-      setIsLoading(true)
-
-      // call the backend to create subscription
-      const response = await fetch("http://localhost:3000/api/account/create-subscription", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          paymentMethod: paymentMethod?.paymentMethod?.id,
-          name, email
-        }),
-      }).then((res) => res.json());
-
-      const confirmPayment = await stripe?.confirmCardPayment(
-        response.clientSecret
-      );
-
-
-      if (confirmPayment?.error) {
-        alert(confirmPayment.error.message);
-      } else {
-        alert("Success! Check your email for the invoice.\n" + JSON.stringify(confirmPayment!.paymentIntent)
-        );
-        // setMessage(JSON.stringify(confirmPayment!.paymentIntent));
-      }
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    if (!stripe) {
+      return;
     }
+
+    //Grab the client secret from url params
+    const clientSecret = new URLSearchParams(window.location.search).get(
+      'payment_intent_client_secret'
+    );
+
+    if (!clientSecret) {
+      return;
+    }
+
+    stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }: any) => {
+      switch (paymentIntent.status) {
+        case 'succeeded':
+          setMessage('Payment succeeded!');
+          break;
+        case 'processing':
+          setMessage('Your payment is processing.');
+          break;
+        case 'requires_payment_method':
+          setMessage('Your payment was not successful, please try again.');
+          break;
+        default:
+          setMessage('Something went wrong.');
+          break;
+      }
+    });
+  }, [stripe]);
+
+  const createSubscription = async (e) => {
+
+    if (email.length <= 5) {
+      alert("Email length must be more than 5");
+      return;
+    }
+    if (!email) {
+      alert("Email required");
+      return;
+    }
+    e.preventDefault();
+
+    let result = await fetch('/api/account/create-subscription', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        amount: payNowAmount * 100,
+        payment_intent_id: paymentIntent.paymentIntent,
+      }),
+    });
+
+    if (!stripe || !elements) {
+      console.log('not loaded');
+      // Stripe.js has not yet loaded.
+      return;
+    }
+
+    setIsLoading(true);
+
+    const { error } = await stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        return_url: 'http://localhost:3000/',
+        receipt_email: email,
+        // shipping: {
+        //   address: { city: 'NY' },
+        //   name: 'blah',
+        // },
+        payment_method_data: {
+          billing_details: {
+            name: 'blah',
+          },
+        },
+      },
+    });
+
+    if (error.type === 'card_error' || error.type === 'validation_error') {
+      error!.message && setMessage(error.message);
+    } else {
+      setMessage('An unexpected error occured.');
+    }
+
     setIsLoading(false);
   };
 
@@ -110,12 +140,6 @@ export default function SubscriptionForm() {
     }
     setEmail(e.value.email)
   }
-
-  const paymentElementOptions = {
-    layout: "tabs",
-  }
-
-  // connect to state, pricing tables
 
   return (
     <Box>
@@ -129,8 +153,8 @@ export default function SubscriptionForm() {
                   id="link-authentication-element"
                   onChange={handleChange}
                 />
-                {/* <PaymentElement id="payment-element" options={paymentElementOptions} /> */}
-                <CardElement id="payment-elements" options={paymentElementOptions} />
+                <PaymentElement id="payment-element" />
+                {/* <CardElement id="payment-elements" options={paymentElementOptions} /> */}
 
                 <Stack direction="row" spacing={2} mt={5}>
                   <Button id="back" variant={"outlined"}>
@@ -160,7 +184,7 @@ export default function SubscriptionForm() {
             <CardHeader title={upgradePlanName} />
 
             <CardContent>
-              <Box spacing={4}>
+              <Box >
                 <FormControl>
                   <FormLabel id="demo-radio-buttons-group-label">Billing Cycle</FormLabel>
                   <RadioGroup
@@ -187,7 +211,7 @@ export default function SubscriptionForm() {
                 </FormControl>
               </Box>
               {/*<Typography variant="h6">asd</Typography>*/}
-              <Box spacing={4} mt={5}>
+              <Box mt={5}>
                 <Stack direction="row" spacing={2}>
                   <Typography variant="body1">{upgradePlanName}</Typography>
 
@@ -219,7 +243,7 @@ export default function SubscriptionForm() {
                 </Stack>
               </Box> */}
 
-              <Box spacing={4} mt={5}>
+              <Box mt={5}>
                 {isLoading ? (
                   <LoadingSvg />
                 ) : (
@@ -248,10 +272,3 @@ export default function SubscriptionForm() {
     </Box>
   )
 }
-
-
-// raw js for subscription
-// <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
-// <stripe-pricing-table pricing-table-id="prctbl_0N1HmByzdM33ylfr5m1mUILu"
-// publishable-key="pk_test_lz5iYPwFOnNgCrx6llCU2oq0">
-// </stripe-pricing-table>

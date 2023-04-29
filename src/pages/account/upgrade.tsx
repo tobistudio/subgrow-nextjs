@@ -8,35 +8,39 @@ import { Elements, CardElement } from "@stripe/react-stripe-js"
 import CheckoutForm from "../../account/stripe/CheckoutForm"
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 const stripe = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
+import { plansConfig } from '../../configs/plans.config';
+
 
 export default function UpgradePage() {
   const [clientSecret, setClientSecret] = React.useState("")
+  const [paymentIntent, setPaymentIntent] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false)
 
   // TODO: hooked to state or price box
-  const product = {
-    items: [
-      {
-        id: "gold",
-      },
-    ],
-  }
 
   React.useEffect(() => {
     setIsLoading(true)
     // Create PaymentIntent as soon as the page loads
-    fetch("/api/account/create-payment-intent", {
+    fetch("/api/account/create-subscription", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(product),
+      body: JSON.stringify({
+        amount: plansConfig.level1.price * 100,
+        payment_intent_id: ''
+      }),
     })
       .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret))
+      .then((data) => {
+        console.log(data.client_secret);
+        setClientSecret(data.client_secret)
+        setPaymentIntent(data.id)
+      })
       .then(() => setIsLoading(false))
   }, [])
 
   const appearance = {
-    theme: "night",
+    theme: 'night',
+    labels: 'floating'
   }
   const options = {
     clientSecret,
@@ -51,7 +55,7 @@ export default function UpgradePage() {
       <Suspense fallback={<LoadingSvg />}>
         {clientSecret && (
           <Elements options={options} stripe={stripe}>
-            <SubscriptionForm />
+            <SubscriptionForm paymentIntent={paymentIntent} />
           </Elements>
         )}
       </Suspense>
