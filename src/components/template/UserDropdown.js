@@ -40,7 +40,7 @@ export const UserDropdown = ({ className, user }) => {
       icon: <HiOutlineUser />,
     },
     {
-      label: "Account Settings",
+      label: "Settings",
       path: "/account/settings",
       icon: <HiOutlineCog />,
     },
@@ -51,24 +51,23 @@ export const UserDropdown = ({ className, user }) => {
     // },
   ]
 
+  //  className={classNames(className, "flex items-center gap-2")}
   // TODO: show icon for the social media that user is logged in
   const UserAvatar = (
-    <div className={classNames(className, "flex items-center gap-2")}>
-      <Avatar size={32} shape="circle" src={avatar} />
+    <div>
+      {/*<Avatar size={32} shape="circle" src={avatar} />*/}
 
-
-
-      <Badge color="secondary" badgeContent={0}>
+      <Badge color="secondary" badgeContent={0} sx={{ flexGrow: 1 }} my={1}>
         <FontAwesomeIcon
           icon={faFacebook}
           color={misc.fa_primary}
-          style={{ width: 15, height: 15 }}
+          style={{ width: 20, height: 20 }}
         />
       </Badge>
 
-      <div className="hidden md:block">
-        <div className="font-bold pl-3 pt-1">{session.username}</div>
-      </div>
+      {/*<div className="hidden md:block">*/}
+      {/*  <div className="font-bold pl-3 pt-1">{session.username}</div>*/}
+      {/*</div>*/}
     </div>
   )
 

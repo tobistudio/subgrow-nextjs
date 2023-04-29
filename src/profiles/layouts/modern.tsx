@@ -22,6 +22,10 @@ import Grid from "@mui/material/Unstable_Grid2"
 import { PromiseReturnType } from "blitz"
 import login from "../../auth/mutations/login"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {faUser} from "@fortawesome/pro-duotone-svg-icons";
+import {misc} from "../../configs/colors/default";
+import ProfileLinkButton from "../components/ProfileLinkButton";
+
 
 type LoginFormProps = {
   onSuccess?: (user: PromiseReturnType<typeof login>) => void
@@ -55,6 +59,9 @@ const Modern = ({ user, profile, sites }) => {
       }
     )
   }
+
+
+
 
   return (
     <main id="profile-main" style={{ backgroundColor: theme.bgColor ? theme.bgColor : "#202A37" }}>
@@ -117,6 +124,8 @@ const Modern = ({ user, profile, sites }) => {
                           target="_blank"
                           variant={theme.buttonStyle ? theme.buttonStyle : "outlined"}
                           className={theme.linkStyle ? theme.linkStyle : "outlined"}
+                          // startIcon={site.icon ? <FontAwesomeIcon icon={site.icon} size="lg" style={{ width: 17, height: 17 }} /> : ''}
+                          startIcon={<ProfileLinkButton size={"xl"} icon={site.icon} />}
                         >
                           {site.title}
                         </Button>
