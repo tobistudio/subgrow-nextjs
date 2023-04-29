@@ -52,6 +52,18 @@ Signup
 http://localhost:3000/auth/signup
 
 
+## STRIPE CUSTOMER FLOW
+
+Three Level Subcription system
+
+Checkout Forms
+src/account
+
+Upgrade Page
+src/pages/account/upgrade.tsx
+
+
+
 
 ## TODO LIST
 
@@ -183,7 +195,7 @@ heroku config:set SESSION_SECRET_KEY=
 SET FOREIGN_KEY_CHECKS=0;  -- turn off foreign key checks
 TRUNCATE TABLE User;  -- truncate tables
 TRUNCATE TABLE Session;
-TRUNCATE TABLE Site;
+TRUNCATE TABLE Link;
 TRUNCATE TABLE Profile;
 SET FOREIGN_KEY_CHECKS=1;  -- turn on foreign key checks
 ```

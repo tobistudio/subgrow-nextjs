@@ -27,23 +27,30 @@ import { TextField } from "mui-rff"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser } from "@fortawesome/pro-duotone-svg-icons"
 import { misc } from "../../configs/colors/default"
+import {useSession} from "@blitzjs/auth";
+import getCurrentUser from "../../users/queries/getCurrentUser";
 
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
 export default function Form(paymentIntent) {
+  const session = useSession()
+  //const user = getCurrentUser(NULL,session)
   const [email, setEmail] = useState('');
   const [locAmount, setLocAmount] = useState(0);
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
-  const upgradePlanName = "Gold Subscription"
   const [payNowAmount, setPayNowAmount] = React.useState(10);
   const upgradePlanId = "gold"
+  const upgradePlanName = "Gold Subscription"
 
+  console.log("session",session);
+
+  // TODO: connect this to pricing tables, allow user to change on this page
   useEffect(() => {
     setPayNowAmount(plansConfig.level1.price);
-  })
+  },[])
 
   useEffect(() => {
     if (!stripe) {
@@ -111,13 +118,11 @@ export default function Form(paymentIntent) {
       confirmParams: {
         return_url: 'http://localhost:3000/',
         receipt_email: email,
-        // shipping: {
-        //   address: { city: 'NY' },
-        //   name: 'blah',
-        // },
         payment_method_data: {
           billing_details: {
-            name: 'blah',
+            // name: session.email,
+            // email: session.email, // TODO: from
+            phone: 'level3', // TODO
           },
         },
       },
