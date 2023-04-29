@@ -7,7 +7,6 @@ import AdminLayout from "core/layouts/AdminLayout"
 import AddLinkWidget from "components/dashboard/AddLinkWidget"
 import {
   Box,
-  Grid,
   Card,
   CardHeader,
   CardContent,
@@ -16,6 +15,7 @@ import {
   Stack,
   Tooltip
 } from "@mui/material"
+import Grid from '@mui/material/Unstable_Grid2';
 import getSiteForProfile from "../sites/queries/getSiteForProfile"
 import getCurrentProfileUsername from "../profiles/queries/getCurrentProfileUsername"
 import PreviewLinkButton from "../components/dashboard/PreviewLinkButton";
@@ -73,7 +73,7 @@ const Dashboard = () => {
       <Suspense fallback={<LoadingSvg />}>
         <Box style={{backgroundColor: "transparent"}}>
           <Grid container spacing={{ xs: 2, md: 3, lg: 6 }}>
-            <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
+            <Grid xs={12} sm={12} md={8} lg={8} xl={8}>
               <Card variant="outlined">
                 <CardHeader title="Links" />
                 <CardContent>

@@ -41,6 +41,24 @@ http://localhost:3000/auth/login
 tester@gmail.com
 welcome123
 
+
+## List of Pages and Flow
+
+```
+├── home
+│   ├── login/signup
+│   │   ├── /dashboard
+│   │   ├── /apps
+│   │   ├── /apps/facebook
+│   │   ├── /pricing
+│   │   ├── /upgrade
+│   │   ├── /upgrade
+├── landing
+├── /[profile-username]
+
+```
+
+
 Profile Page
 http://localhost:3000/tester
 
@@ -51,6 +69,13 @@ http://localhost:3000/dashboard
 Signup
 http://localhost:3000/auth/signup
 
+
+Apps
+http://localhost:3000/sites/1/edit
+
+
+Create FB App
+http://localhost:3000/apps/facebook
 
 ## STRIPE CUSTOMER FLOW
 

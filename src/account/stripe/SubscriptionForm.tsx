@@ -212,15 +212,17 @@ export default function Form(paymentIntent) {
                     <FormControlLabel
                       value="Annual"
                       control={
-                        <Radio />
+                        <><Radio /><Chip label="Save 20%" style={{ color: "white" }} /></>
                       }
                       label="Annual"
                     />
-                    <Chip label="Save 20%" style={{ color: "white" }} />
+
+                    {/*TODO: perhaps a modal that allows comparison and selection of plan*/}
+                    <Typography variant="body1">Compare Plans</Typography>
+
                   </RadioGroup>
                 </FormControl>
               </Box>
-              {/*<Typography variant="h6">asd</Typography>*/}
               <Box mt={5}>
                 <Stack direction="row" spacing={2}>
                   <Typography variant="body1">{upgradePlanName}</Typography>

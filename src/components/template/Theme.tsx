@@ -214,6 +214,15 @@ const Theme = (props) => {
       },
     },
     components: {
+      MuiChip: {
+        styleOverrides: {
+          root: ({theme}) => ({
+            // color: theme.palette.mode === "dark" ? card.color : card.color,
+            backgroundColor: "transparent",
+            // backgroundColor: theme.palette.mode === "dark" ? card.bg : card.bg,
+          }),
+        },
+      },
       MuiTypography: {
         defaultProps: {
           variantMapping: {
