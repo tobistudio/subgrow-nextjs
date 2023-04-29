@@ -23,3 +23,7 @@ i {
 * {
   box-sizing: border-box;
 }
+
+#payment-form {
+  background-color: rgb(36, 34, 31) !important;
+}

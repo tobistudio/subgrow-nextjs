@@ -339,3 +339,8 @@ img {
 .menu-item.menu-item-light.menu-item-hoverable:hover {
   width: 89%;
 }
+
+#payment-elements iframe  {
+  // background-color: rgb(36, 34, 31) !important;
+  height: 30px !important;
+}

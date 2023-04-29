@@ -302,3 +302,8 @@
     flex-wrap: wrap;
   }
 }
+
+
+#payment-form {
+  background-color: rgb(36, 34, 31) !important;
+}
