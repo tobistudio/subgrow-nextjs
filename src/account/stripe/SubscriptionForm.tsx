@@ -49,7 +49,7 @@ export default function Form(paymentIntent) {
 
   // TODO: connect this to pricing tables, allow user to change on this page
   useEffect(() => {
-    setPayNowAmount(plansConfig.level1.price);
+    setPayNowAmount(plansConfig.level1.price.usd);
   },[])
 
   useEffect(() => {
@@ -100,10 +100,15 @@ export default function Form(paymentIntent) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        amount: payNowAmount * 100,
+        // amount: 5,
+        currency: 'eur', // TODO: usd breaks
+        plan: 'level1', // TODO: comes from url, and can be changed on this page
         payment_intent_id: paymentIntent.paymentIntent,
+        automatic_payment_methods: {enabled: true},
       }),
     });
+
+    console.log('create-subscription result ',result);
 
     if (!stripe || !elements) {
       console.log('not loaded');
@@ -277,3 +282,22 @@ export default function Form(paymentIntent) {
     </Box>
   )
 }
+
+
+// TODO: make sure name of plan, level1, 2, and 3 are passed in via URL
+
+// TODO: use stripe's built in subscription management page
+//  https://stripe.com/docs/customer-management
+// TODO: make sure you show current subscribers CURRENT plan
+// TODO: do not allow same subscriber to make duplicate subscription
+// TODO: level 1 sub, can only upgrade to level 2 sub
+// TODO: upgrading gets one week free perhaps, no prorating, no complex financial calculations
+// TODO: add cash app, remove some options
+
+// TODO: link subscription info pricing table, enable ability to change on this page
+
+
+// TODO: is it creating subscription plans???
+
+// TODO: coupon code
+

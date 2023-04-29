@@ -117,6 +117,11 @@ https://linktr.ee/marketplace
 #### individual GA analytics
 
 
+#### Social Media features, like icons
+// TODO: dashboard page, when facebook link, icon appears
+
+
+
 
 
 ### Fix error with state
@@ -201,48 +206,6 @@ SET FOREIGN_KEY_CHECKS=1;  -- turn on foreign key checks
 ```
 
 
-// TOdo: bug with session and Session table.
-needs to delete if user is deleted, or user logs out
-
-// TODO: dashboard page, when facebook link, icon appears
-
-
-
-
-
-
-
-
-
-
-
-
-### Check Widget
-
-
-
-
-Finish the widget
-
-Update lists
-
-Delete button
-https://github.com/ameshkin/subgrow/blob/324456f1cf466f438c1fda5142b295d08c57ff4e/src/components/dashboard/LinkListCard.tsx
-
-
-
-
-
-Hello there. I need some help with a blitz/next js website.   Mostly minor UI things that have to do with material UI and connecting it to the database.
-
-Such as drag drop.
-
-Most of the work is done.  I just need someone to finish the mutations.
-
-I will point you directly to the code, and it should be very easy.
-
-https://github.com/ameshkin/subgrow/blob/324456f1cf466f438c1fda5142b295d08c57ff4e/src/components/dashboard/AddLinkWidget.tsx
-
 
 
 
@@ -288,8 +251,8 @@ https://linktr.ee/s/pricing/
 7. Click Tracking, conversions
 8. 2FA
 9. Special Dashboard that lists all profiles, easy access, followers, basic info
-10.
+10. Subscribe feature, mailchimp integration
+11. upload/or preferebly show pics from other services
 
 
-
-
+![exampl1.png](.examples%2Fexampl1.png)

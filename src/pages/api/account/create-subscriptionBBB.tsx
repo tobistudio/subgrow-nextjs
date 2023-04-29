@@ -9,26 +9,26 @@ import { plansConfig } from 'configs/plans.config';
 
 const handler = async (req, res) => {
   const { plan, payment_intent_id, currency, automatic_payment_methods } = req.body;
-  let amount
+  // let amount
   //
   // // TODO: phase ii, add euro
   //
   // // TODO: for security, plan has to be passed in, and amount comes from config
-  switch(plan) {
-    case 'LEVEL1':
-      amount = plansConfig.level1.price.usd
-      break;
-    case 'LEVEL2':
-      amount = plansConfig.level2.price.usd
-      break;
-    case 'LEVEL3':
-      amount = plansConfig.level2.price.usd
-      break;
-    default:
-      amount = plansConfig.level1.price.usd
-    // should error out here for security
-    //res.status(500).json({ statusCode: 500, message: "Please select a plan" });
-  }
+  // switch(plan) {
+  //   case 'LEVEL1':
+  //     amount = plansConfig.level1.price.usd
+  //     break;
+  //   case 'LEVEL2':
+  //     amount = plansConfig.level2.price.usd
+  //     break;
+  //   case 'LEVEL3':
+  //     amount = plansConfig.level2.price.usd
+  //     break;
+  //   default:
+  //     amount = plansConfig.level1.price.usd
+  //   // should error out here for security
+  //   //res.status(500).json({ statusCode: 500, message: "Please select a plan" });
+  // }
 
   console.log("amount",5)
 

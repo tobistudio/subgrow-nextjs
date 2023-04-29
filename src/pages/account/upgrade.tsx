@@ -25,6 +25,7 @@ export default function UpgradePage() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        // amount: plansConfig.level1.price * 100,
         amount: plansConfig.level1.price * 100,
         payment_intent_id: ''
       }),
