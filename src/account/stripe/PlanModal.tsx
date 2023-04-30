@@ -44,7 +44,7 @@ const PlanModal = ({ setPlan, open, setOpen }: planProps) => {
             <Box sx={style}>
                 {
                     Object.keys(plansConfig).map((ele, id) =>
-                        <Card sx={{ minWidth: 275, margin: 2 }}>
+                        <Card key={id} sx={{ minWidth: 275, margin: 2 }}>
                             <CardContent>
                                 <Typography sx={{ fontSize: 14, color: 'blueviolet' }} color="text.primary" gutterBottom>
                                     Plan

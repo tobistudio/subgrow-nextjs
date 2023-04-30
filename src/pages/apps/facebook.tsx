@@ -222,7 +222,7 @@ NewFacebookPage.authenticate = { role: plansConfig.level3.role, redirectTo: "/ac
 
 
 
-// http://localhost:3000/apps/facebook
+// /apps/facebook
 
 
 

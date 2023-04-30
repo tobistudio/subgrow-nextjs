@@ -1,7 +1,7 @@
 /**
  * Pricing plans config here
  */
-// http://localhost:3000/apps/facebook
+// /apps/facebook
 export const plansConfig = {
   level1:
     {

@@ -3,7 +3,7 @@ import passport from "passport"
 // import db from "../../db"
 // import { Ctx } from "blitz"
 
-// http://localhost:3000/api/auth/callback/twitter
+// /api/auth/callback/twitter
 export default api(async (_req, res, ctx) => {
   passport.authenticate("twitter", { failureRedirect: "/auth/login", failureMessage: true }),
     res.status(200).json({

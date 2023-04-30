@@ -60,7 +60,7 @@ export default function CheckoutForm() {
     })
 
     // call the backend to create subscription
-    const response = await fetch("http://localhost:3000/api/account/create-subscription", {
+    const response = await fetch("/api/account/create-subscription", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -75,6 +75,9 @@ export default function CheckoutForm() {
 
     // confirm the payment by the user
     const confirmPayment = await stripe?.confirmCardPayment(response.clientSecret)
+
+    // TODO: error handling
+    console.log("confirmPayment",confirmPayment);
   }
 
   const handleSubmit = async (e) => {
@@ -92,7 +95,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000",
+        return_url: "/dashboard",
       },
     })
 
