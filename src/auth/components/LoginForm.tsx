@@ -7,29 +7,23 @@ import { Login } from "auth/validations"
 import { useMutation } from "@blitzjs/rpc"
 import { Routes } from "@blitzjs/next"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faGear, faCircleExclamation, faUnlock, faUser } from "@fortawesome/pro-duotone-svg-icons"
+import { faUnlock, faUser } from "@fortawesome/pro-duotone-svg-icons"
 import { useSession } from "@blitzjs/auth"
 import {
-  Button,
   Typography,
   Card,
   CardActions,
   CardContent,
-  Container,
-  Box,
   Stack,
 } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2"
 import { misc } from "configs/colors/default"
 import { TextField } from "mui-rff"
 import InputAdornment from "@mui/material/InputAdornment"
-import { Theme } from '@mui/material/styles';
 
 type LoginFormProps = {
   onSuccess?: (user: PromiseReturnType<typeof login>) => void
 }
-
-
 
 export const LoginForm = (props: LoginFormProps) => {
   const [loginMutation] = useMutation(login)
@@ -98,7 +92,6 @@ export const LoginForm = (props: LoginFormProps) => {
                 label="Email Address"
                 name="email"
                 style={{ maxWidth: 380 }}
-                // required={true}
                 InputProps={{
                   placeholder: "Email Address",
                   startAdornment: (
