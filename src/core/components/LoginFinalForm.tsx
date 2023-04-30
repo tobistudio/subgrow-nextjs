@@ -127,24 +127,10 @@ export function LoginFinalForm<S extends z.ZodType<any, any>>({
           {/* TODO: material ui button not working */}
           {submitText && (
             <Box
+              className="LoginFinalForm"
               display="flex"
               justifyContent="center"
-              p={5}
-              sx={{
-                p: {
-                  xs: 2
-                },
-                // m: {
-                //   xs: 3
-                // },
-                // width: {
-                //   xs: 200, // theme.breakpoints.up('xs')
-                //   sm: 200, // theme.breakpoints.up('sm')
-                //   md: 300, // theme.breakpoints.up('md')
-                //   lg: 400, // theme.breakpoints.up('lg')
-                //   xl: 500, // theme.breakpoints.up('xl')
-                // },
-              }}
+              pt={5}
             >
               <Stack
                 spacing={2}

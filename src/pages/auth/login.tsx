@@ -23,7 +23,13 @@ const LoginPage: BlitzPage = () => {
           //   },
           // }}
         >
-          <Grid xs={12} alignContent="center" justifyContent="center" px={4}>
+          <Grid
+            className={"firstgrid"}
+            xs={12}
+            alignContent="center"
+            justifyContent="center"
+            px={1}
+          >
             <LoginForm
               onSuccess={(_user) => {
                 console.log("onSuccess")

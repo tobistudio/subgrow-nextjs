@@ -35,6 +35,7 @@ export const LoginForm = (props: LoginFormProps) => {
   // TODO: after testing, if logged in, take to dashboard
   return (
     <Grid
+      className={"LoginForm"}
       container
       spacing={0}
       textAlign="center"
@@ -43,7 +44,16 @@ export const LoginForm = (props: LoginFormProps) => {
       justifyContent="center"
       style={{ minHeight: "100vh" }}
     >
-      <Card>
+      <Card
+        sx={{
+          width: {
+            xs: 200,
+            sm: 300,
+            md: 400
+          }
+        }}
+
+      >
       {/*<Card sx={{ minWidth: 380, maxWidth: 420 }}>*/}
         <CardContent>
           <Typography variant="h6" mb={3}>
