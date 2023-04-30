@@ -268,7 +268,7 @@ export default function Form(paymentIntent) {
                     label="Coupon Code"
                     name="email"
                     style={{ maxWidth: 380 }}
-                    defaultValue={"amir.meshkin@gmail.com"}
+                    value={"amir.meshkin@gmail.com"}
                     required={true}
                     InputProps={{
                       placeholder: "Coupon Code",

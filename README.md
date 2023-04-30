@@ -112,6 +112,40 @@ src/account
 Upgrade Page
 src/pages/account/upgrade.tsx
 
+#### Webhooks
+
+[Webhook Docs](https://stripe.com/docs/webhooks)
+
+[Webhook Testing](https://stripe.com/docs/webhooks/test)
+
+
+
+
+#### Subscription and Customer Management
+https://stripe.com/docs/customer-management
+
+[Integrate Portal](https://stripe.com/docs/customer-management/integrate-customer-portal)
+
+
+Linking to Stripe's Subscription Management Page is the easiest
+way to manage a user's subscription.
+https://billing.stripe.com/p/login/3csaFqbet2r7duo5kk
+
+
+
+#### Testing
+http://localhost:3000/account/upgrade
+
+anyemail@gmail.com
+
+Credit Card
+4242424242424242
+
+
+Debit
+4000056655665556
+
+
 
 
 
