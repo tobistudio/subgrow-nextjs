@@ -126,3 +126,34 @@ export const card_el = {
   800: "#0b3470",
   900: "#002459",
 }
+
+export const chip = {
+  bg: "#4a679f",
+  bg_trans: "rgba(74,103,159,0.70)",
+  bg_hover: "#143d7c",
+  color: "#b9ccf1",
+  border: "#254e90",
+  error: "#b9ccf1",
+  300: "#6b81ae",
+  400: "#4a679f",
+  500: "#254e90",
+  600: "#1e4688",
+  700: "#143d7c",
+  800: "#0b3470",
+  900: "#002459",
+}
+
+export const chip_dark = {
+  bg: "#b9ccf1",
+  bg_hover: "#143d7c",
+  color: "#b9ccf1",
+  border: "#254e90",
+  error: "#b9ccf1",
+  300: "#6b81ae",
+  400: "#4a679f",
+  500: "#254e90",
+  600: "#1e4688",
+  700: "#143d7c",
+  800: "#0b3470",
+  900: "#002459",
+}

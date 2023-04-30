@@ -5,7 +5,7 @@ import useDarkMode from "utils/hooks/useDarkMode"
 import { themeConfig } from "configs/theme.config"
 import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles"
 // import { blue, green, purple } from "@mui/material/colors"
-import {blue, green, purple, red, brands, card, card_el} from "configs/colors/default"
+import {blue, green, purple, red, brands, card, card_el, chip, chip_dark} from "configs/colors/default"
 
 // <ThemeProvider theme={theme}>
 
@@ -215,8 +215,9 @@ const Theme = (props) => {
         styleOverrides: {
           root: ({theme}) => ({
             // color: theme.palette.mode === "dark" ? card.color : card.color,
-            backgroundColor: "transparent",
-            // backgroundColor: theme.palette.mode === "dark" ? card.bg : card.bg,
+            //backgroundColor: "transparent",
+            backgroundColor: theme.palette.mode === "dark" ? chip_dark.bg : chip.bg,
+            color: theme.palette.mode === "dark" ? chip_dark.color : chip.color,
           }),
         },
       },
