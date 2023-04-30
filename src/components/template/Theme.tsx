@@ -423,11 +423,10 @@ const Theme = (props) => {
           },
         ],
       },
-
-      status: {
-        danger: '#e53e3e',
-        info: '#3f50b5',
-      },
+    },
+    status: {
+      danger: '#e53e3e',
+      info: '#3f50b5',
     },
   })
 
