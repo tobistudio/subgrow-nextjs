@@ -54,7 +54,7 @@ export default function UpgradePage() {
   return (
     <HomeLayout>
       <Head>
-        <title>Dashboard</title>
+        <title>Upgrade</title>
       </Head>
       <Suspense fallback={<LoadingSvg />}>
         {clientSecret && (

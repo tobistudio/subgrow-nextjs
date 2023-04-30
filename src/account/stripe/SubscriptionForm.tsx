@@ -14,7 +14,6 @@ import {
   FormControl,
   FormControlLabel,
   FormLabel,
-  Grid,
   Radio,
   RadioGroup,
   Stack,
@@ -23,6 +22,7 @@ import {
   TextField,
   InputAdornment
 } from "@mui/material"
+import Grid from '@mui/material/Unstable_Grid2';
 import { plansConfig } from '../../configs/plans.config';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser } from "@fortawesome/pro-duotone-svg-icons"
@@ -176,8 +176,11 @@ export default function Form(paymentIntent) {
 
   return (
     <Box>
-      <Grid container spacing={{ xs: 2, md: 3, lg: 6 }}>
-        <Grid item xs={8}>
+      <Grid
+        container
+        spacing={{ xs: 2, md: 3, lg: 6 }}
+      >
+        <Grid xs={12} sm={12} md={8} lg={8} xl={8}>
           <Card variant="outlined">
             <CardHeader title="Payment" />
             <CardContent>
@@ -216,7 +219,7 @@ export default function Form(paymentIntent) {
           </Card>
         </Grid>
 
-        <Grid item xs={4} pl={5}>
+        <Grid xs={12} sm={12} md={4} lg={4} xl={4}>
           <Card variant="outlined">
             <CardHeader title={upgradePlanName} />
 
