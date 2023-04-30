@@ -14,7 +14,7 @@ const handler = async (req, res) => {
   // // TODO: phase ii, add euro
   //
   // // TODO: for security, plan has to be passed in, and amount comes from config
-  switch(plan) {
+  switch (plan) {
     case 'LEVEL1':
       amount = plansConfig.level1.price.usd
       break;
@@ -30,7 +30,7 @@ const handler = async (req, res) => {
     //res.status(500).json({ statusCode: 500, message: "Please select a plan" });
   }
 
-  console.log("amount",5)
+  console.log("amount", 5)
 
 
   if (payment_intent_id) {
@@ -62,9 +62,9 @@ const handler = async (req, res) => {
   }
   try {
     // Create PaymentIntent
-    // TODO: usd breaks {"statusCode":500,"message":"No valid payment method types for this Payment Intent. Please ensure that you have activated payment methods compatible with your chosen currency in your dashboard (https://dashboard.stripe.com/settings/payment_methods) or specify payment_method_types"}x
+    // TODO: usd breaks {"statusCode":500,"message":"No valid payment method types for this Payment Intent. Please ensure that you have activated payment methods compatible with your chosen currency in your dashboard (https://dashboard.stripe.com/settings/payment_methods) or specify payment_method_types"}x - done
     const params = {
-      amount: amount,
+      amount: amount * 100,
       currency: currency, // change to usd breaks
       description: 'Payment description',
       automatic_payment_methods: {

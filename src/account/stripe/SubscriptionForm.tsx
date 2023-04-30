@@ -27,7 +27,7 @@ import { TextField } from "mui-rff"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser } from "@fortawesome/pro-duotone-svg-icons"
 import { misc } from "../../configs/colors/default"
-import {useSession} from "@blitzjs/auth";
+import { useSession } from "@blitzjs/auth";
 import getCurrentUser from "../../users/queries/getCurrentUser";
 
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
@@ -45,12 +45,12 @@ export default function Form(paymentIntent) {
   const upgradePlanId = "gold"
   const upgradePlanName = "Gold Subscription"
 
-  console.log("session",session);
+  console.log("session", session);
 
   // TODO: connect this to pricing tables, allow user to change on this page
   useEffect(() => {
     setPayNowAmount(plansConfig.level1.price.usd);
-  },[])
+  }, [])
 
   useEffect(() => {
     if (!stripe) {
@@ -86,12 +86,16 @@ export default function Form(paymentIntent) {
 
   const createSubscription = async (e) => {
 
+    if (!payNowAmount) {
+      alert("Amount is required");
+      return;
+    }
     if (email.length <= 5) {
       alert("Email length must be more than 5");
       return;
     }
     if (!email) {
-      alert("Email required");
+      alert("Email is required");
       return;
     }
     e.preventDefault();
@@ -104,11 +108,11 @@ export default function Form(paymentIntent) {
         currency: 'eur', // TODO: usd breaks
         plan: 'level1', // TODO: comes from url, and can be changed on this page
         payment_intent_id: paymentIntent.paymentIntent,
-        automatic_payment_methods: {enabled: true},
+        automatic_payment_methods: { enabled: true },
       }),
     });
 
-    console.log('create-subscription result ',result);
+    console.log('create-subscription result ', result);
 
     if (!stripe || !elements) {
       console.log('not loaded');
@@ -151,6 +155,10 @@ export default function Form(paymentIntent) {
     setEmail(e.value.email)
   }
 
+  const handleAmount = async (e) => {
+    setPayNowAmount(e.target.value);
+  }
+
   return (
     <Box>
       <Grid container spacing={{ xs: 2, md: 3, lg: 6 }}>
@@ -159,11 +167,15 @@ export default function Form(paymentIntent) {
             <CardHeader title="Payment" />
             <CardContent>
               <form id="payment-form" onSubmit={createSubscription}>
+                <Typography variant="body1">Amount</Typography>
+                <input type="number" value={payNowAmount} onChange={handleAmount} className='AmountInput' />
                 <LinkAuthenticationElement
                   id="link-authentication-element"
                   onChange={handleChange}
                 />
-                <PaymentElement id="payment-element" />
+                <PaymentElement id="payment-element" options={{
+                  layout: "tabs",
+                }} />
                 {/* <CardElement id="payment-elements" options={paymentElementOptions} /> */}
 
                 <Stack direction="row" spacing={2} mt={5}>
@@ -212,11 +224,11 @@ export default function Form(paymentIntent) {
                     <FormControlLabel
                       value="Annual"
                       control={
-                        <><Radio /><Chip label="Save 20%" style={{ color: "white" }} /></>
+                        <Radio />
                       }
                       label="Annual"
                     />
-
+                    <Chip label="Save 20%" style={{ color: "white" }} />
                     {/*TODO: perhaps a modal that allows comparison and selection of plan*/}
                     <Typography variant="body1">Compare Plans</Typography>
 

@@ -15,6 +15,7 @@ export default function UpgradePage() {
   const [clientSecret, setClientSecret] = React.useState("")
   const [paymentIntent, setPaymentIntent] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false)
+  const [currency, setCurrency] = React.useState('eur');
 
   // TODO: hooked to state or price box
 
@@ -25,8 +26,9 @@ export default function UpgradePage() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        currency: currency,
         // amount: plansConfig.level1.price * 100,
-        amount: plansConfig.level1.price * 100,
+        amount: plansConfig.level1.price[currency] * 100,
         payment_intent_id: ''
       }),
     })
