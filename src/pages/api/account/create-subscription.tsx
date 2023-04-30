@@ -29,8 +29,7 @@ const handler = async (req, res) => {
     // should error out here for security
     //res.status(500).json({ statusCode: 500, message: "Please select a plan" });
   }
-
-  console.log("amount", 5)
+  console.log(currency);
 
 
   if (payment_intent_id) {
@@ -44,7 +43,7 @@ const handler = async (req, res) => {
         const updated_intent = await stripe.paymentIntents.update(
           payment_intent_id,
           {
-            amount: 5,
+            amount: amount * 100,
           }
         );
         res.status(200).json(updated_intent);

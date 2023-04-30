@@ -104,7 +104,6 @@ export default function Form(paymentIntent) {
     //   alert("Amount is required");
     //   return;
     // }
-    // TODO: errors in modal, or form
     if (email.length <= 5) {
       alert("Email length must be more than 5");
       return;
@@ -120,7 +119,7 @@ export default function Form(paymentIntent) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         amount: payNowAmount,
-        currency: 'eur', // TODO: usd breaks
+        currency: 'usd', // TODO: usd breaks
         plan: paymentIntent.plan, // TODO: comes from url, and can be changed on this page
         payment_intent_id: paymentIntent.paymentIntent,
         automatic_payment_methods: { enabled: true },
@@ -140,7 +139,7 @@ export default function Form(paymentIntent) {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: '/',
+        return_url: 'http://localhost:3000/',
         receipt_email: email,
         payment_method_data: {
           billing_details: {
@@ -259,14 +258,14 @@ export default function Form(paymentIntent) {
                 </Stack>
               </Box>
 
-              {/*4242 4242 4242 4242*/}
+
               <Box mt={5}>
                 <Stack direction="row" spacing={2}>
                   <TextField
                     label="Coupon Code"
                     name="email"
-                    defaultValue={"amir.meshkin@gmail.com"}
                     style={{ maxWidth: 380 }}
+                    defaultValue={"amir.meshkin@gmail.com"}
                     required={true}
                     InputProps={{
                       placeholder: "Coupon Code",

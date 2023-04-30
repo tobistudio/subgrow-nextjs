@@ -15,7 +15,7 @@ export default function UpgradePage() {
   const [clientSecret, setClientSecret] = React.useState("")
   const [paymentIntent, setPaymentIntent] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false)
-  const [currency, setCurrency] = React.useState('eur');
+  const [currency, setCurrency] = React.useState('usd');
   const [plan, setPlan] = React.useState("level1")
 
   // TODO: hooked to state or price box
