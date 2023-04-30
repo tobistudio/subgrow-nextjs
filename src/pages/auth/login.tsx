@@ -1,37 +1,29 @@
-import { BlitzPage, Routes } from "@blitzjs/next"
-import AdminLayout from "core/layouts/AdminLayout"
+import { BlitzPage } from "@blitzjs/next"
 import HomeLayout from "core/layouts/HomeLayout"
 import { LoginForm } from "auth/components/LoginForm"
 import { useRouter } from "next/router"
-import {
-  Box,
-  Typography,
-  Container,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Stack,
-} from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2"
-import Link from "next/link"
 import React from "react" // Grid version 2
-
+//  rootClass="bg-login"
 const LoginPage: BlitzPage = () => {
   const router = useRouter()
 
   return (
-    <HomeLayout title="Log In" type="login" rootClass="bg-login">
-      <main>
+    <HomeLayout title="Log In" type="login">
         <Grid
           container
-          spacing={2}
+          //spacing={2}
           // direction="column" // does opposite
           alignItems="center"
           justifyContent="center"
-          style={{ minHeight: "100vh" }}
+          // sx={{
+          //   p: {
+          //     xs: 3,
+          //     md: 3
+          //   },
+          // }}
         >
-          <Grid xs={8} alignContent="center" justifyContent="center" px={10}>
+          <Grid xs={12} alignContent="center" justifyContent="center" px={4}>
             <LoginForm
               onSuccess={(_user) => {
                 console.log("onSuccess")
@@ -41,18 +33,9 @@ const LoginPage: BlitzPage = () => {
                 return router.push(next)
               }}
             />
-            {/*<Stack direction="row" spacing={2} mt={2}>*/}
-            {/*  <Typography variant="body1">*/}
-            {/*    <Link href={Routes.ForgotPasswordPage()}>Forgot your password?</Link>*/}
-            {/*  </Typography>*/}
-            {/*  <Typography variant="body1">*/}
-            {/*    Don&rsquo;t have an account yet? <Link href={Routes.SignupPage()}>Sign Up</Link>*/}
-            {/*  </Typography>*/}
-
-            {/*</Stack>*/}
           </Grid>
         </Grid>
-      </main>
+
     </HomeLayout>
   )
 }

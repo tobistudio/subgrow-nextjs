@@ -86,12 +86,13 @@ const AdminLayout: BlitzLayout<{
             // bgcolor: 'background.paper',
             // boxShadow: 1,
             // borderRadius: 2,
-            p: 5,
-            minWidth: 300,
+            py: 5,
+            // minWidth: 300,
           }}
         >{children}</Container>
+
+      <Container fixed maxWidth="xl">{footer}</Container>
       </main>
-      {footer}
     </>
   )
 }

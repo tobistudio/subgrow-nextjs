@@ -12,13 +12,8 @@ datasource db {
   // godaddy issues?
 }
 
-// id String @db.Uuid @default(uuid()) @id
-//   id             Int   @id @default(autoincrement())
-
 model User {
   id             Int            @id @default(autoincrement())
-  createdAt      DateTime       @default(now())
-  updatedAt      DateTime       @updatedAt
   username       String         @unique
   name           String?
   email          String         @unique
@@ -27,7 +22,9 @@ model User {
   balance        Int?
   hashedPassword String?
   role           String         @default("USER")
-  level          String?
+  status         String         @default("active")
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
   Accounts       Account[]
   Sessions       Session[]
   Files          File[]

@@ -52,7 +52,8 @@ welcome123
 │   │   ├── /apps/facebook
 │   │   ├── /pricing
 │   │   ├── /upgrade
-│   │   ├── /upgrade
+│   │   ├── /account/settings
+│   │          -> link to stripe subscription manager
 ├── landing
 ├── /[profile-username]
 
@@ -76,6 +77,30 @@ http://localhost:3000/sites/1/edit
 
 Create FB App
 http://localhost:3000/apps/facebook
+
+Profile page
+http://localhost:3000/ameshkin3
+
+Settings Page
+http://localhost:3000/account/settings
+
+
+## THEMES
+
+
+#### Breakpoints
+https://mui.com/material-ui/customization/breakpoints/
+
+
+Default breakpoints
+Each breakpoint (a key) matches with a fixed screen width (a value):
+
+xs, extra-small: 0px
+sm, small: 600px
+md, medium: 900px
+lg, large: 1200px
+xl, extra-large: 1536px
+These values can be customized.
 
 ## STRIPE CUSTOMER FLOW
 

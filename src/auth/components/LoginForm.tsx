@@ -30,10 +30,9 @@ type LoginFormProps = {
 
 export const LoginForm = (props: LoginFormProps) => {
   const [loginMutation] = useMutation(login)
-  const session = useSession()
+  // const session = useSession()
 
-  console.log("session ffrom use", session)
-
+  // TODO: after testing, if logged in, take to dashboard
   return (
     <Grid
       container
@@ -44,7 +43,8 @@ export const LoginForm = (props: LoginFormProps) => {
       justifyContent="center"
       style={{ minHeight: "100vh" }}
     >
-      <Card sx={{ minWidth: 380, maxWidth: 420 }}>
+      <Card>
+      {/*<Card sx={{ minWidth: 380, maxWidth: 420 }}>*/}
         <CardContent>
           <Typography variant="h6" mb={3}>
             Log In

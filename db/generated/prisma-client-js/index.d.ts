@@ -18,8 +18,6 @@ export type PrismaPromise<T> = runtime.Types.Public.PrismaPromise<T>
  */
 export type User = {
   id: number
-  createdAt: Date
-  updatedAt: Date
   username: string
   name: string | null
   email: string
@@ -28,7 +26,9 @@ export type User = {
   balance: number | null
   hashedPassword: string | null
   role: string
-  level: string | null
+  status: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 /**
@@ -1466,8 +1466,6 @@ export namespace Prisma {
 
   export type UserMinAggregateOutputType = {
     id: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
     username: string | null
     name: string | null
     email: string | null
@@ -1476,13 +1474,13 @@ export namespace Prisma {
     balance: number | null
     hashedPassword: string | null
     role: string | null
-    level: string | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
     id: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
     username: string | null
     name: string | null
     email: string | null
@@ -1491,13 +1489,13 @@ export namespace Prisma {
     balance: number | null
     hashedPassword: string | null
     role: string | null
-    level: string | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type UserCountAggregateOutputType = {
     id: number
-    createdAt: number
-    updatedAt: number
     username: number
     name: number
     email: number
@@ -1506,7 +1504,9 @@ export namespace Prisma {
     balance: number
     hashedPassword: number
     role: number
-    level: number
+    status: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -1523,8 +1523,6 @@ export namespace Prisma {
 
   export type UserMinAggregateInputType = {
     id?: true
-    createdAt?: true
-    updatedAt?: true
     username?: true
     name?: true
     email?: true
@@ -1533,13 +1531,13 @@ export namespace Prisma {
     balance?: true
     hashedPassword?: true
     role?: true
-    level?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type UserMaxAggregateInputType = {
     id?: true
-    createdAt?: true
-    updatedAt?: true
     username?: true
     name?: true
     email?: true
@@ -1548,13 +1546,13 @@ export namespace Prisma {
     balance?: true
     hashedPassword?: true
     role?: true
-    level?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type UserCountAggregateInputType = {
     id?: true
-    createdAt?: true
-    updatedAt?: true
     username?: true
     name?: true
     email?: true
@@ -1563,7 +1561,9 @@ export namespace Prisma {
     balance?: true
     hashedPassword?: true
     role?: true
-    level?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -1656,8 +1656,6 @@ export namespace Prisma {
 
   export type UserGroupByOutputType = {
     id: number
-    createdAt: Date
-    updatedAt: Date
     username: string
     name: string | null
     email: string
@@ -1666,7 +1664,9 @@ export namespace Prisma {
     balance: number | null
     hashedPassword: string | null
     role: string
-    level: string | null
+    status: string
+    createdAt: Date
+    updatedAt: Date
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -1690,8 +1690,6 @@ export namespace Prisma {
 
   export type UserSelect = {
     id?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
     username?: boolean
     name?: boolean
     email?: boolean
@@ -1700,7 +1698,9 @@ export namespace Prisma {
     balance?: boolean
     hashedPassword?: boolean
     role?: boolean
-    level?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     Accounts?: boolean | User$AccountsArgs
     Sessions?: boolean | User$SessionsArgs
     Files?: boolean | User$FilesArgs
@@ -18210,8 +18210,6 @@ export namespace Prisma {
 
   export const UserScalarFieldEnum: {
     id: 'id',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
     username: 'username',
     name: 'name',
     email: 'email',
@@ -18220,7 +18218,9 @@ export namespace Prisma {
     balance: 'balance',
     hashedPassword: 'hashedPassword',
     role: 'role',
-    level: 'level'
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -18236,8 +18236,6 @@ export namespace Prisma {
     OR?: Enumerable<UserWhereInput>
     NOT?: Enumerable<UserWhereInput>
     id?: IntFilter | number
-    createdAt?: DateTimeFilter | Date | string
-    updatedAt?: DateTimeFilter | Date | string
     username?: StringFilter | string
     name?: StringNullableFilter | string | null
     email?: StringFilter | string
@@ -18246,7 +18244,9 @@ export namespace Prisma {
     balance?: IntNullableFilter | number | null
     hashedPassword?: StringNullableFilter | string | null
     role?: StringFilter | string
-    level?: StringNullableFilter | string | null
+    status?: StringFilter | string
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
     Accounts?: AccountListRelationFilter
     Sessions?: SessionListRelationFilter
     Files?: FileListRelationFilter
@@ -18262,8 +18262,6 @@ export namespace Prisma {
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     username?: SortOrder
     name?: SortOrder
     email?: SortOrder
@@ -18272,7 +18270,9 @@ export namespace Prisma {
     balance?: SortOrder
     hashedPassword?: SortOrder
     role?: SortOrder
-    level?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     Accounts?: AccountOrderByRelationAggregateInput
     Sessions?: SessionOrderByRelationAggregateInput
     Files?: FileOrderByRelationAggregateInput
@@ -18294,8 +18294,6 @@ export namespace Prisma {
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     username?: SortOrder
     name?: SortOrder
     email?: SortOrder
@@ -18304,7 +18302,9 @@ export namespace Prisma {
     balance?: SortOrder
     hashedPassword?: SortOrder
     role?: SortOrder
-    level?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -18317,8 +18317,6 @@ export namespace Prisma {
     OR?: Enumerable<UserScalarWhereWithAggregatesInput>
     NOT?: Enumerable<UserScalarWhereWithAggregatesInput>
     id?: IntWithAggregatesFilter | number
-    createdAt?: DateTimeWithAggregatesFilter | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter | Date | string
     username?: StringWithAggregatesFilter | string
     name?: StringNullableWithAggregatesFilter | string | null
     email?: StringWithAggregatesFilter | string
@@ -18327,7 +18325,9 @@ export namespace Prisma {
     balance?: IntNullableWithAggregatesFilter | number | null
     hashedPassword?: StringNullableWithAggregatesFilter | string | null
     role?: StringWithAggregatesFilter | string
-    level?: StringNullableWithAggregatesFilter | string | null
+    status?: StringWithAggregatesFilter | string
+    createdAt?: DateTimeWithAggregatesFilter | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter | Date | string
   }
 
   export type SessionWhereInput = {
@@ -19394,8 +19394,6 @@ export namespace Prisma {
   }
 
   export type UserCreateInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -19404,7 +19402,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountCreateNestedManyWithoutUserInput
     Sessions?: SessionCreateNestedManyWithoutUserInput
     Files?: FileCreateNestedManyWithoutUserInput
@@ -19420,8 +19420,6 @@ export namespace Prisma {
 
   export type UserUncheckedCreateInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -19430,7 +19428,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Files?: FileUncheckedCreateNestedManyWithoutUserInput
@@ -19445,8 +19445,6 @@ export namespace Prisma {
   }
 
   export type UserUpdateInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -19455,7 +19453,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUpdateManyWithoutUserNestedInput
     Sessions?: SessionUpdateManyWithoutUserNestedInput
     Files?: FileUpdateManyWithoutUserNestedInput
@@ -19471,8 +19471,6 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -19481,7 +19479,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Files?: FileUncheckedUpdateManyWithoutUserNestedInput
@@ -19497,8 +19497,6 @@ export namespace Prisma {
 
   export type UserCreateManyInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -19507,12 +19505,12 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type UserUpdateManyMutationInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -19521,13 +19519,13 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -19536,7 +19534,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionCreateInput = {
@@ -20914,17 +20914,6 @@ export namespace Prisma {
     not?: NestedIntFilter | number
   }
 
-  export type DateTimeFilter = {
-    equals?: Date | string
-    in?: Enumerable<Date> | Enumerable<string>
-    notIn?: Enumerable<Date> | Enumerable<string>
-    lt?: Date | string
-    lte?: Date | string
-    gt?: Date | string
-    gte?: Date | string
-    not?: NestedDateTimeFilter | Date | string
-  }
-
   export type StringFilter = {
     equals?: string
     in?: Enumerable<string>
@@ -20973,6 +20962,17 @@ export namespace Prisma {
     gt?: number
     gte?: number
     not?: NestedIntNullableFilter | number | null
+  }
+
+  export type DateTimeFilter = {
+    equals?: Date | string
+    in?: Enumerable<Date> | Enumerable<string>
+    notIn?: Enumerable<Date> | Enumerable<string>
+    lt?: Date | string
+    lte?: Date | string
+    gt?: Date | string
+    gte?: Date | string
+    not?: NestedDateTimeFilter | Date | string
   }
 
   export type AccountListRelationFilter = {
@@ -21087,8 +21087,6 @@ export namespace Prisma {
 
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     username?: SortOrder
     name?: SortOrder
     email?: SortOrder
@@ -21097,7 +21095,9 @@ export namespace Prisma {
     balance?: SortOrder
     hashedPassword?: SortOrder
     role?: SortOrder
-    level?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -21107,8 +21107,6 @@ export namespace Prisma {
 
   export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     username?: SortOrder
     name?: SortOrder
     email?: SortOrder
@@ -21117,13 +21115,13 @@ export namespace Prisma {
     balance?: SortOrder
     hashedPassword?: SortOrder
     role?: SortOrder
-    level?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     username?: SortOrder
     name?: SortOrder
     email?: SortOrder
@@ -21132,7 +21130,9 @@ export namespace Prisma {
     balance?: SortOrder
     hashedPassword?: SortOrder
     role?: SortOrder
-    level?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -21154,20 +21154,6 @@ export namespace Prisma {
     _sum?: NestedIntFilter
     _min?: NestedIntFilter
     _max?: NestedIntFilter
-  }
-
-  export type DateTimeWithAggregatesFilter = {
-    equals?: Date | string
-    in?: Enumerable<Date> | Enumerable<string>
-    notIn?: Enumerable<Date> | Enumerable<string>
-    lt?: Date | string
-    lte?: Date | string
-    gt?: Date | string
-    gte?: Date | string
-    not?: NestedDateTimeWithAggregatesFilter | Date | string
-    _count?: NestedIntFilter
-    _min?: NestedDateTimeFilter
-    _max?: NestedDateTimeFilter
   }
 
   export type StringWithAggregatesFilter = {
@@ -21232,6 +21218,20 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter
     _min?: NestedIntNullableFilter
     _max?: NestedIntNullableFilter
+  }
+
+  export type DateTimeWithAggregatesFilter = {
+    equals?: Date | string
+    in?: Enumerable<Date> | Enumerable<string>
+    notIn?: Enumerable<Date> | Enumerable<string>
+    lt?: Date | string
+    lte?: Date | string
+    gt?: Date | string
+    gte?: Date | string
+    not?: NestedDateTimeWithAggregatesFilter | Date | string
+    _count?: NestedIntFilter
+    _min?: NestedDateTimeFilter
+    _max?: NestedDateTimeFilter
   }
 
   export type UserRelationFilter = {
@@ -22306,10 +22306,6 @@ export namespace Prisma {
     connect?: Enumerable<AppsWhereUniqueInput>
   }
 
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -22328,6 +22324,10 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
   export type AccountUpdateManyWithoutUserNestedInput = {
@@ -23159,17 +23159,6 @@ export namespace Prisma {
     not?: NestedIntFilter | number
   }
 
-  export type NestedDateTimeFilter = {
-    equals?: Date | string
-    in?: Enumerable<Date> | Enumerable<string>
-    notIn?: Enumerable<Date> | Enumerable<string>
-    lt?: Date | string
-    lte?: Date | string
-    gt?: Date | string
-    gte?: Date | string
-    not?: NestedDateTimeFilter | Date | string
-  }
-
   export type NestedStringFilter = {
     equals?: string
     in?: Enumerable<string>
@@ -23220,6 +23209,17 @@ export namespace Prisma {
     not?: NestedIntNullableFilter | number | null
   }
 
+  export type NestedDateTimeFilter = {
+    equals?: Date | string
+    in?: Enumerable<Date> | Enumerable<string>
+    notIn?: Enumerable<Date> | Enumerable<string>
+    lt?: Date | string
+    lte?: Date | string
+    gt?: Date | string
+    gte?: Date | string
+    not?: NestedDateTimeFilter | Date | string
+  }
+
   export type NestedIntWithAggregatesFilter = {
     equals?: number
     in?: Enumerable<number>
@@ -23245,20 +23245,6 @@ export namespace Prisma {
     gt?: number
     gte?: number
     not?: NestedFloatFilter | number
-  }
-
-  export type NestedDateTimeWithAggregatesFilter = {
-    equals?: Date | string
-    in?: Enumerable<Date> | Enumerable<string>
-    notIn?: Enumerable<Date> | Enumerable<string>
-    lt?: Date | string
-    lte?: Date | string
-    gt?: Date | string
-    gte?: Date | string
-    not?: NestedDateTimeWithAggregatesFilter | Date | string
-    _count?: NestedIntFilter
-    _min?: NestedDateTimeFilter
-    _max?: NestedDateTimeFilter
   }
 
   export type NestedStringWithAggregatesFilter = {
@@ -23334,6 +23320,20 @@ export namespace Prisma {
     gt?: number
     gte?: number
     not?: NestedFloatNullableFilter | number | null
+  }
+
+  export type NestedDateTimeWithAggregatesFilter = {
+    equals?: Date | string
+    in?: Enumerable<Date> | Enumerable<string>
+    notIn?: Enumerable<Date> | Enumerable<string>
+    lt?: Date | string
+    lte?: Date | string
+    gt?: Date | string
+    gte?: Date | string
+    not?: NestedDateTimeWithAggregatesFilter | Date | string
+    _count?: NestedIntFilter
+    _min?: NestedDateTimeFilter
+    _max?: NestedDateTimeFilter
   }
 
   export type NestedEnumLinktypeFilter = {
@@ -24195,8 +24195,6 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutSessionsInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24205,7 +24203,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountCreateNestedManyWithoutUserInput
     Files?: FileCreateNestedManyWithoutUserInput
     Activities?: ActivityCreateNestedManyWithoutUserInput
@@ -24220,8 +24220,6 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutSessionsInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24230,7 +24228,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Files?: FileUncheckedCreateNestedManyWithoutUserInput
     Activities?: ActivityUncheckedCreateNestedManyWithoutUserInput
@@ -24254,8 +24254,6 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutSessionsInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -24264,7 +24262,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUpdateManyWithoutUserNestedInput
     Files?: FileUpdateManyWithoutUserNestedInput
     Activities?: ActivityUpdateManyWithoutUserNestedInput
@@ -24279,8 +24279,6 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -24289,7 +24287,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Files?: FileUncheckedUpdateManyWithoutUserNestedInput
     Activities?: ActivityUncheckedUpdateManyWithoutUserNestedInput
@@ -24303,8 +24303,6 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutTokenInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24313,7 +24311,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountCreateNestedManyWithoutUserInput
     Sessions?: SessionCreateNestedManyWithoutUserInput
     Files?: FileCreateNestedManyWithoutUserInput
@@ -24328,8 +24328,6 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutTokenInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24338,7 +24336,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Files?: FileUncheckedCreateNestedManyWithoutUserInput
@@ -24362,8 +24362,6 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutTokenInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -24372,7 +24370,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUpdateManyWithoutUserNestedInput
     Sessions?: SessionUpdateManyWithoutUserNestedInput
     Files?: FileUpdateManyWithoutUserNestedInput
@@ -24387,8 +24387,6 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutTokenInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -24397,7 +24395,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Files?: FileUncheckedUpdateManyWithoutUserNestedInput
@@ -24411,8 +24411,6 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutAccountsInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24421,7 +24419,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Sessions?: SessionCreateNestedManyWithoutUserInput
     Files?: FileCreateNestedManyWithoutUserInput
     Activities?: ActivityCreateNestedManyWithoutUserInput
@@ -24436,8 +24436,6 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutAccountsInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24446,7 +24444,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Files?: FileUncheckedCreateNestedManyWithoutUserInput
     Activities?: ActivityUncheckedCreateNestedManyWithoutUserInput
@@ -24470,8 +24470,6 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutAccountsInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -24480,7 +24478,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Sessions?: SessionUpdateManyWithoutUserNestedInput
     Files?: FileUpdateManyWithoutUserNestedInput
     Activities?: ActivityUpdateManyWithoutUserNestedInput
@@ -24495,8 +24495,6 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -24505,7 +24503,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Files?: FileUncheckedUpdateManyWithoutUserNestedInput
     Activities?: ActivityUncheckedUpdateManyWithoutUserNestedInput
@@ -24519,8 +24519,6 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutLinkInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24529,7 +24527,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountCreateNestedManyWithoutUserInput
     Sessions?: SessionCreateNestedManyWithoutUserInput
     Files?: FileCreateNestedManyWithoutUserInput
@@ -24544,8 +24544,6 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutLinkInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24554,7 +24552,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Files?: FileUncheckedCreateNestedManyWithoutUserInput
@@ -24609,8 +24609,6 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutLinkInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -24619,7 +24617,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUpdateManyWithoutUserNestedInput
     Sessions?: SessionUpdateManyWithoutUserNestedInput
     Files?: FileUpdateManyWithoutUserNestedInput
@@ -24634,8 +24634,6 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutLinkInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -24644,7 +24642,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Files?: FileUncheckedUpdateManyWithoutUserNestedInput
@@ -24689,8 +24689,6 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutMessagesInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24699,7 +24697,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountCreateNestedManyWithoutUserInput
     Sessions?: SessionCreateNestedManyWithoutUserInput
     Files?: FileCreateNestedManyWithoutUserInput
@@ -24714,8 +24714,6 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutMessagesInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24724,7 +24722,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Files?: FileUncheckedCreateNestedManyWithoutUserInput
@@ -24748,8 +24748,6 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutMessagesInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -24758,7 +24756,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUpdateManyWithoutUserNestedInput
     Sessions?: SessionUpdateManyWithoutUserNestedInput
     Files?: FileUpdateManyWithoutUserNestedInput
@@ -24773,8 +24773,6 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutMessagesInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -24783,7 +24781,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Files?: FileUncheckedUpdateManyWithoutUserNestedInput
@@ -24867,8 +24867,6 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutCustomersInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24877,7 +24875,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountCreateNestedManyWithoutUserInput
     Sessions?: SessionCreateNestedManyWithoutUserInput
     Files?: FileCreateNestedManyWithoutUserInput
@@ -24892,8 +24892,6 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutCustomersInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24902,7 +24900,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Files?: FileUncheckedCreateNestedManyWithoutUserInput
@@ -24996,8 +24996,6 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutCustomersInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -25006,7 +25004,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUpdateManyWithoutUserNestedInput
     Sessions?: SessionUpdateManyWithoutUserNestedInput
     Files?: FileUpdateManyWithoutUserNestedInput
@@ -25021,8 +25021,6 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutCustomersInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -25031,7 +25029,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Files?: FileUncheckedUpdateManyWithoutUserNestedInput
@@ -25192,8 +25192,6 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutFilesInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -25202,7 +25200,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountCreateNestedManyWithoutUserInput
     Sessions?: SessionCreateNestedManyWithoutUserInput
     Activities?: ActivityCreateNestedManyWithoutUserInput
@@ -25217,8 +25217,6 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutFilesInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -25227,7 +25225,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Activities?: ActivityUncheckedCreateNestedManyWithoutUserInput
@@ -25347,8 +25347,6 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutFilesInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -25357,7 +25355,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUpdateManyWithoutUserNestedInput
     Sessions?: SessionUpdateManyWithoutUserNestedInput
     Activities?: ActivityUpdateManyWithoutUserNestedInput
@@ -25372,8 +25372,6 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutFilesInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -25382,7 +25380,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Activities?: ActivityUncheckedUpdateManyWithoutUserNestedInput
@@ -25492,8 +25492,6 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutActivitiesInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -25502,7 +25500,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountCreateNestedManyWithoutUserInput
     Sessions?: SessionCreateNestedManyWithoutUserInput
     Files?: FileCreateNestedManyWithoutUserInput
@@ -25517,8 +25517,6 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutActivitiesInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -25527,7 +25525,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Files?: FileUncheckedCreateNestedManyWithoutUserInput
@@ -25551,8 +25551,6 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutActivitiesInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -25561,7 +25559,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUpdateManyWithoutUserNestedInput
     Sessions?: SessionUpdateManyWithoutUserNestedInput
     Files?: FileUpdateManyWithoutUserNestedInput
@@ -25576,8 +25576,6 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutActivitiesInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -25586,7 +25584,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Files?: FileUncheckedUpdateManyWithoutUserNestedInput
@@ -25600,8 +25600,6 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutNotificationsInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -25610,7 +25608,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountCreateNestedManyWithoutUserInput
     Sessions?: SessionCreateNestedManyWithoutUserInput
     Files?: FileCreateNestedManyWithoutUserInput
@@ -25625,8 +25625,6 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -25635,7 +25633,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Files?: FileUncheckedCreateNestedManyWithoutUserInput
@@ -25659,8 +25659,6 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutNotificationsInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -25669,7 +25667,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUpdateManyWithoutUserNestedInput
     Sessions?: SessionUpdateManyWithoutUserNestedInput
     Files?: FileUpdateManyWithoutUserNestedInput
@@ -25684,8 +25684,6 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -25694,7 +25692,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Files?: FileUncheckedUpdateManyWithoutUserNestedInput
@@ -25986,8 +25986,6 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutProfileInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -25996,7 +25994,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountCreateNestedManyWithoutUserInput
     Sessions?: SessionCreateNestedManyWithoutUserInput
     Files?: FileCreateNestedManyWithoutUserInput
@@ -26011,8 +26011,6 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutProfileInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -26021,7 +26019,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Files?: FileUncheckedCreateNestedManyWithoutUserInput
@@ -26085,8 +26085,6 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutProfileInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -26095,7 +26093,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUpdateManyWithoutUserNestedInput
     Sessions?: SessionUpdateManyWithoutUserNestedInput
     Files?: FileUpdateManyWithoutUserNestedInput
@@ -26110,8 +26110,6 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutProfileInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -26120,7 +26118,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Files?: FileUncheckedUpdateManyWithoutUserNestedInput
@@ -26150,8 +26150,6 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutAppsInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -26160,7 +26158,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountCreateNestedManyWithoutUserInput
     Sessions?: SessionCreateNestedManyWithoutUserInput
     Files?: FileCreateNestedManyWithoutUserInput
@@ -26175,8 +26175,6 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutAppsInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -26185,7 +26183,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Files?: FileUncheckedCreateNestedManyWithoutUserInput
@@ -26209,8 +26209,6 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutAppsInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -26219,7 +26217,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUpdateManyWithoutUserNestedInput
     Sessions?: SessionUpdateManyWithoutUserNestedInput
     Files?: FileUpdateManyWithoutUserNestedInput
@@ -26234,8 +26234,6 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutAppsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -26244,7 +26242,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Files?: FileUncheckedUpdateManyWithoutUserNestedInput

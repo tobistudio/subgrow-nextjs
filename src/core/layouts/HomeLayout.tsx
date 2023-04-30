@@ -67,29 +67,33 @@ const HomeLayout: BlitzLayout<{
       )
   }
 
+  // maxWidth="xl"
   return (
-    <div className={rootClass}>
+    // <div className={rootClass}>
+    <>
       <Head>
         <title>{title || "links"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container fixed maxWidth="xl">{header}</Container>
+      <main>
+      <Container fixed>{header}</Container>
 
       <Container
         fixed
         maxWidth="xl"
         sx={{
-          // bgcolor: 'background.paper',
-          // boxShadow: 1,
-          // borderRadius: 2,
-          my: 7,
-          // minWidth: 300,
+          p: {
+            xs: 0,
+            sm: 1,
+            md: 2
+          }
         }}
       >
         {children}
       </Container>
       <Container fixed maxWidth="xl">{footer}</Container>
-    </div>
+      </main>
+    </>
   )
 }
 
