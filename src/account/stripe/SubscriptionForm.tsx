@@ -20,6 +20,8 @@ import {
   Stack,
   Typography,
   Button,
+  TextField,
+  InputAdornment
 } from "@mui/material"
 import { plansConfig } from '../../configs/plans.config';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -257,7 +259,7 @@ export default function Form(paymentIntent) {
               </Box>
 
 
-              {/* <Box spacing={4} mt={5}>
+              <Box mt={5}>
                 <Stack direction="row" spacing={2}>
                   <TextField
                     label="Coupon Code"
@@ -278,7 +280,7 @@ export default function Form(paymentIntent) {
                     }}
                   />
                 </Stack>
-              </Box> */}
+              </Box>
 
               <Box mt={5}>
                 {isLoading ? (
