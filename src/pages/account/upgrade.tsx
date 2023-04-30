@@ -16,6 +16,7 @@ export default function UpgradePage() {
   const [paymentIntent, setPaymentIntent] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false)
   const [currency, setCurrency] = React.useState('eur');
+  const [plan, setPlan] = React.useState("level1")
 
   // TODO: hooked to state or price box
 
@@ -58,7 +59,7 @@ export default function UpgradePage() {
       <Suspense fallback={<LoadingSvg />}>
         {clientSecret && (
           <Elements options={options} stripe={stripe}>
-            <SubscriptionForm paymentIntent={paymentIntent} />
+            <SubscriptionForm paymentIntent={paymentIntent} plan={plan} setPlan={setPlan} />
           </Elements>
         )}
       </Suspense>

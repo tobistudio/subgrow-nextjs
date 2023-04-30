@@ -20,14 +20,13 @@ import {
   Stack,
   Typography,
   Button,
-  InputAdornment
 } from "@mui/material"
 import { plansConfig } from '../../configs/plans.config';
-import { TextField } from "mui-rff"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser } from "@fortawesome/pro-duotone-svg-icons"
 import { misc } from "../../configs/colors/default"
 import { useSession } from "@blitzjs/auth";
+import PlanModal from './PlanModal';
 import getCurrentUser from "../../users/queries/getCurrentUser";
 
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
@@ -44,13 +43,26 @@ export default function Form(paymentIntent) {
   const [payNowAmount, setPayNowAmount] = React.useState(10);
   const upgradePlanId = "gold"
   const upgradePlanName = "Gold Subscription"
+  const [open, setOpen] = React.useState(false)
+  const handleOpen = () => setOpen(true)
 
   console.log("session", session);
 
   // TODO: connect this to pricing tables, allow user to change on this page
   useEffect(() => {
-    setPayNowAmount(plansConfig.level1.price.usd);
-  }, [])
+    setPayNowAmount(plansConfig[paymentIntent.plan].price.usd);
+  }, [paymentIntent.plan])
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    boxShadow: 24,
+    p: 4,
+  }
 
   useEffect(() => {
     if (!stripe) {
@@ -86,10 +98,10 @@ export default function Form(paymentIntent) {
 
   const createSubscription = async (e) => {
 
-    if (!payNowAmount) {
-      alert("Amount is required");
-      return;
-    }
+    // if (!payNowAmount) {
+    //   alert("Amount is required");
+    //   return;
+    // }
     if (email.length <= 5) {
       alert("Email length must be more than 5");
       return;
@@ -104,9 +116,9 @@ export default function Form(paymentIntent) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        // amount: 5,
+        amount: payNowAmount,
         currency: 'eur', // TODO: usd breaks
-        plan: 'level1', // TODO: comes from url, and can be changed on this page
+        plan: paymentIntent.plan, // TODO: comes from url, and can be changed on this page
         payment_intent_id: paymentIntent.paymentIntent,
         automatic_payment_methods: { enabled: true },
       }),
@@ -131,7 +143,7 @@ export default function Form(paymentIntent) {
           billing_details: {
             // name: session.email,
             // email: session.email, // TODO: from
-            phone: 'level3', // TODO
+            phone: paymentIntent.plan, // TODO
           },
         },
       },
@@ -167,8 +179,8 @@ export default function Form(paymentIntent) {
             <CardHeader title="Payment" />
             <CardContent>
               <form id="payment-form" onSubmit={createSubscription}>
-                <Typography variant="body1">Amount</Typography>
-                <input type="number" value={payNowAmount} onChange={handleAmount} className='AmountInput' />
+                {/* <Typography variant="body1">Amount</Typography>
+                <input type="number" value={payNowAmount} onChange={handleAmount} className='AmountInput' /> */}
                 <LinkAuthenticationElement
                   id="link-authentication-element"
                   onChange={handleChange}
@@ -231,7 +243,8 @@ export default function Form(paymentIntent) {
                     <Chip label="Save 20%" style={{ color: "white" }} />
                     {/*TODO: perhaps a modal that allows comparison and selection of plan*/}
                     <Typography variant="body1">Compare Plans</Typography>
-
+                    <Button onClick={handleOpen}>Select Plan</Button>
+                    <PlanModal setPlan={paymentIntent.setPlan} open={open} setOpen={setOpen} />
                   </RadioGroup>
                 </FormControl>
               </Box>
