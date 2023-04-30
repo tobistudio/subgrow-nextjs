@@ -46,10 +46,10 @@ export const LoginForm = (props: LoginFormProps) => {
     >
       <Card
         sx={{
-          width: {
-            xs: 200,
-            sm: 300,
-            md: 400
+          minWidth: {
+            xs: 300,
+            sm: 420,
+            // md: 400
           }
         }}
 
