@@ -13,7 +13,7 @@ const rootReducer = (asyncReducers) => (state, action: any) => {
     ...asyncReducers,
   })
 
-  console.log("problem with action", action)
+  // TODO: TS2345: Argument of type 'any' is not assignable to parameter of type 'never'.
 
   // @ts-ignore
   return combinedReducer(state, action)

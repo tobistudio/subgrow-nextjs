@@ -23,10 +23,13 @@ import Grid from "@mui/material/Unstable_Grid2"
 import { misc } from "configs/colors/default"
 import { TextField } from "mui-rff"
 import InputAdornment from "@mui/material/InputAdornment"
+import { Theme } from '@mui/material/styles';
 
 type LoginFormProps = {
   onSuccess?: (user: PromiseReturnType<typeof login>) => void
 }
+
+
 
 export const LoginForm = (props: LoginFormProps) => {
   const [loginMutation] = useMutation(login)
@@ -49,10 +52,10 @@ export const LoginForm = (props: LoginFormProps) => {
           minWidth: {
             xs: 300,
             sm: 420,
-            // md: 400
+            // borderColor: (theme: Theme) => theme.palette.secondary.dark,
+            // backgroundColor: (mytheme: Theme) => mytheme.palette.secondary.dark,
           }
         }}
-
       >
       {/*<Card sx={{ minWidth: 380, maxWidth: 420 }}>*/}
         <CardContent>

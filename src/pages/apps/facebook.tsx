@@ -210,15 +210,18 @@ const NewFacebookPage = () => {
   )
 }
 
-// TODO: figure out how to check user role, and make sure level 3 only here
+// if logged in, send to pricing tables page for upgrade /pricing page
+// if not logged in, login "/auth/login"
+NewFacebookPage.authenticate = { role: plansConfig.level3.role, redirectTo: "/account/upgrade" }
+
+
 
 // level 3 package ONLY
 // /Users/amirmeshkin/_code/_business/blitz-app/src/configs/plans.config.tsx
 
-// if logged in, send to pricing tables page for upgrade /pricing page
-// if not logged in, login "/auth/login"
 
-NewFacebookPage.authenticate = { role: plansConfig.level3.role, redirectTo: "/account/upgrade" }
+
+
 // http://localhost:3000/apps/facebook
 
 

@@ -121,10 +121,7 @@ const Theme = (props) => {
   let mytheme = createTheme({
     // mode If connected to state, then mode may not work well here
     // mode: "dark",
-    status: {
-      danger: '#e53e3e',
-      info: '#3f50b5',
-    },
+
     palette: {
       background: {
         default: '#000000',
@@ -425,6 +422,11 @@ const Theme = (props) => {
             },
           },
         ],
+      },
+
+      status: {
+        danger: '#e53e3e',
+        info: '#3f50b5',
       },
     },
   })

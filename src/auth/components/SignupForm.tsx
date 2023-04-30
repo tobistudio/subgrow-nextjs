@@ -85,14 +85,16 @@ export const SignupForm = (props: SignupFormProps) => {
     // TODO: set meta or figure out how to get this into InputProps
     if (~BadWords.indexOf(value && value.toLowerCase())) {
       console.log("BadWords")
-      return <FontAwesomeIcon icon={faFaceAnguished} style={{ color: fonts.alert }} />
+      return 'Be Nice'
+      //return <FontAwesomeIcon icon={faFaceAnguished} style={{ color: fonts.alert }} size="lg" />
     }
 
     if (~UserList.indexOf(value && value.toLowerCase())) {
       // TODO: disable button
       console.log("UserList", UserList)
       //return 'Username Not Available'
-      return <FontAwesomeIcon icon={faXmarkLarge} style={{ color: fonts.alert }} />
+      return 'Username Taken'
+      //return <FontAwesomeIcon icon={faXmarkLarge} color={fonts.alert} size="lg" />
     }
     // return true doesnt work, return anything
     // if (!value) {
@@ -149,10 +151,40 @@ export const SignupForm = (props: SignupFormProps) => {
       direction="column"
       alignItems="center"
       justifyContent="center"
-      style={{ minHeight: "100vh" }}
-      pt={5}
+      sx={{
+        minWidth: {
+          xs: 300,
+          sm: 480,
+          // borderColor: (theme: Theme) => theme.palette.secondary.dark,
+          // backgroundColor: (mytheme: Theme) => mytheme.palette.secondary.dark,
+        },
+        pt: {
+          xs: 3,
+          sm: 4,
+          md: 4,
+          // borderColor: (theme: Theme) => theme.palette.secondary.dark,
+          // backgroundColor: (mytheme: Theme) => mytheme.palette.secondary.dark,
+        }
+      }}
+      // style={{ minHeight: "100vh" }}
+      // pt={5}
     >
-      <Card sx={{ minWidth: 600, maxWidth: 800 }}>
+      <Card
+        sx={{
+          minWidth: {
+            xs: 300,
+            sm: 480,
+            // borderColor: (theme: Theme) => theme.palette.secondary.dark,
+            // backgroundColor: (mytheme: Theme) => mytheme.palette.secondary.dark,
+          },
+          my: {
+            xs: 3,
+            sm: 4,
+            md: 5,
+          }
+        }}
+
+      >
         <CardContent>
           <Typography variant="h1" color={theme.mode === "dark" ? "text.light" : "text.dark"}>
             Create an Account
@@ -166,12 +198,14 @@ export const SignupForm = (props: SignupFormProps) => {
               // https://stackoverflow.com/questions/48539216/error-ts2339-property-email-does-not-exist-on-type-object
               const errors: any = {}
 
+              console.log("values",values);
               if (!values.email) {
                 errors.email = "Email Required"
               }
-              if (!values.username) {
-                errors.username = <FontAwesomeIcon icon={faXmarkLarge} color={misc.fa_primary} />
-                errors.textflag = true
+              // Username has custom validation, this runs on first load
+              if (!values.email && !values.username) {
+                //errors.username = <FontAwesomeIcon icon={faXmarkLarge} color={fonts.alert} size="lg" />
+                errors.username = ""
               }
               if (!values.password) {
                 errors.password = "Required"
@@ -202,8 +236,10 @@ export const SignupForm = (props: SignupFormProps) => {
                           {...input}
                           label="Username"
                           style={{ maxWidth: 380 }}
-                          className="input input-md"
+                          className="input input-md no-helper"
                           type="text"
+                          // required={true}
+                          // helperText={""}
                           // InputProps={{
                           //   placeholder: "Reenter Password",
                           //   startAdornment: (
@@ -216,19 +252,36 @@ export const SignupForm = (props: SignupFormProps) => {
                             //placeholder: "Username",
                             startAdornment: (
                               <InputAdornment position="start">
-                                <FontAwesomeIcon icon={faUser} color={misc.fa_primary} />
+                                <FontAwesomeIcon icon={faUser} color={misc.fa_primary} size="lg" />
                               </InputAdornment>
                             ),
                             // TODO: fixme get rid of grey ex and error under box
+                            // endAdornment: (
+                            //   <InputAdornment position="end">
+                            //     {meta.validating ? (
+                            //       <FontAwesomeIcon icon={faGear} spin color={misc.fa_primary} size="lg" />
+                            //     ) : (
+                            //       meta.error
+                            //     )}
+                            //   </InputAdornment>
+                            // ),
                             endAdornment: (
                               <InputAdornment position="end">
-                                {meta.validating ? (
-                                  <FontAwesomeIcon icon={faGear} spin color={misc.fa_primary} />
-                                ) : (
-                                  meta.error
+                                {meta.error === "Username Taken" && meta.error && meta.touched && (
+                                  <FontAwesomeIcon icon={faXmarkLarge} color={fonts["alert"]} />
+                                )}
+                                {meta.error === "Be Nice" && meta.error && meta.touched && (
+                                  <FontAwesomeIcon icon={faFaceAnguished} color={fonts["alert"]} />
+                                  // <FontAwesomeIcon icon={faXmarkLarge} color={"#e10000"} />
+                                )}
+                                {submitting && (
+                                  <FontAwesomeIcon icon={faGear} spin color={fonts["gear"]} />
                                 )}
                               </InputAdornment>
                             ),
+
+
+
                           }}
                         />
                       </Stack>
@@ -242,7 +295,7 @@ export const SignupForm = (props: SignupFormProps) => {
                       //placeholder: "Email Address",
                       startAdornment: (
                         <InputAdornment position="start">
-                          <FontAwesomeIcon icon={faEnvelope} color={misc.fa_primary} />
+                          <FontAwesomeIcon icon={faEnvelope} color={misc.fa_primary} size="lg" />
                         </InputAdornment>
                       ),
                     }}
@@ -257,7 +310,7 @@ export const SignupForm = (props: SignupFormProps) => {
                       //placeholder: "Password",
                       startAdornment: (
                         <InputAdornment position="start">
-                          <FontAwesomeIcon icon={faUnlock} color={misc.fa_primary} />
+                          <FontAwesomeIcon icon={faUnlock} color={misc.fa_primary} size="lg" />
                         </InputAdornment>
                       ),
                     }}
@@ -271,7 +324,7 @@ export const SignupForm = (props: SignupFormProps) => {
                       placeholder: "Reenter Password",
                       startAdornment: (
                         <InputAdornment position="start">
-                          <FontAwesomeIcon icon={faUnlock} color={misc.fa_primary} />
+                          <FontAwesomeIcon icon={faUnlock} color={misc.fa_primary} size="lg" />
                         </InputAdornment>
                       ),
                     }}
