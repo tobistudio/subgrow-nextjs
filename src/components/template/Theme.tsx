@@ -55,6 +55,8 @@ declare module "@mui/material/Button" {
     outlined: true
     gbutton: true
     addlink: true
+    modern1: true
+    classic1: true
   }
 }
 
@@ -324,6 +326,28 @@ const Theme = (props) => {
               },
             },
           },
+          {
+            props: { variant: "modern1" },
+            style: {
+              backgroundColor: theme.mode === "dark" ? red[500] : red[700],
+              color: theme.mode === "dark" ? blue[100] : purple[100],
+              "&:hover": {
+                backgroundColor: theme.mode === "dark" ? blue[700] : purple[700],
+                color: theme.mode === "dark" ? blue[100] : purple[100],
+              },
+            },
+          },
+          {
+            props: { variant: "classic1" },
+            style: {
+              backgroundColor: theme.mode === "dark" ? red[500] : red[700],
+              color: theme.mode === "dark" ? blue[100] : purple[100],
+              "&:hover": {
+                backgroundColor: theme.mode === "dark" ? blue[700] : purple[700],
+                color: theme.mode === "dark" ? blue[100] : purple[100],
+              },
+            },
+          },
         ],
       },
       MuiTextField: {
@@ -423,7 +447,7 @@ const Theme = (props) => {
             },
           },
           {
-            props: { variant: "elevation" },
+            props: { variant: "owned" },
             style: {
               // backgroundColor: "#2374F2",
               backgroundColor: card_el.bg,

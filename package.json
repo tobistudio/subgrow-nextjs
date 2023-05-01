@@ -1,6 +1,6 @@
 {
-  "name": "blitz-app",
-  "version": "1.0.0",
+  "name": "subgrow",
+  "version": "0.0.1",
   "scripts": {
     "db": "prisma format && prisma validate && prisma generate && prisma db push",
     "clean": "rm -Rf node_modules && rm -Rf .next && yarn",
@@ -15,7 +15,8 @@
     "prepare": "husky install"
   },
   "prisma": {
-    "schema": "db/schema.prisma"
+    "schema": "db/schema.prisma",
+    "seed": "ts-node db/seed.ts"
   },
   "prettier": {
     "semi": false,
@@ -130,6 +131,7 @@
     "vite-tsconfig-paths": "3.6.0",
     "vitest": "0.25.3"
   },
+  "type": "module",
   "private": true,
   "engines": {
     "node": "18.x"

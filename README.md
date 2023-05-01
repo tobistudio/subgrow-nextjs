@@ -11,6 +11,11 @@ blitz dev
 
 # build app
 
+# seed db
+
+npx node --loader ts-node/esm "db/seed.ts"
+
+
 
 
 ```
@@ -39,6 +44,7 @@ Login using this account with username tester
 http://localhost:3000/auth/login
 
 tester@gmail.com
+tester
 welcome123
 
 
@@ -147,7 +153,31 @@ Debit
 
 
 
+#### ACCOUNT
 
+1. settings
+
+
+2. deactivation
+
+Changes status of user table to `inactive` but keeps all data
+
+
+#### CRON
+
+1. Subscription cancel
+
+We MAY need a cron to go through Customer table and check `sub_end` field
+
+If past this date, then change `level` in custsomer, user, and session tables
+
+
+
+
+
+1. username system
+
+After a user signs up
 
 ## TODO LIST
 
@@ -280,13 +310,6 @@ heroku config:set SESSION_SECRET_KEY=
 
 ```mysql
 
-
-SET FOREIGN_KEY_CHECKS=0;  -- turn off foreign key checks
-TRUNCATE TABLE User;  -- truncate tables
-TRUNCATE TABLE Session;
-TRUNCATE TABLE Link;
-TRUNCATE TABLE Profile;
-SET FOREIGN_KEY_CHECKS=1;  -- turn on foreign key checks
 ```
 
 
