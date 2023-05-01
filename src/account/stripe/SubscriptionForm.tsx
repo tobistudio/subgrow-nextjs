@@ -136,8 +136,6 @@ export default function Form(paymentIntent) {
     });
 
     console.log('create-subscription result ', result);
-    alert("stripe" + result);
-    // setPriceId(result?.id);
 
     if (!stripe || !elements) {
       console.log('not loaded');
@@ -198,6 +196,7 @@ export default function Form(paymentIntent) {
     //     userId: session.userId
     //   })
     // });
+    if (!coupon) { alert("Coupon is required"); return };
     let data = await fetch('/api/account/couponManage', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

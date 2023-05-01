@@ -5,7 +5,7 @@ import useDarkMode from "utils/hooks/useDarkMode"
 import { themeConfig } from "configs/theme.config"
 import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles"
 // import { blue, green, purple } from "@mui/material/colors"
-import {blue, green, purple, red, brands, card, card_el, chip, chip_dark} from "configs/colors/default"
+import { blue, green, purple, red, brands, card, card_el, chip, chip_dark } from "configs/colors/default"
 
 // <ThemeProvider theme={theme}>
 
@@ -213,7 +213,7 @@ const Theme = (props) => {
     components: {
       MuiChip: {
         styleOverrides: {
-          root: ({theme}) => ({
+          root: ({ theme }) => ({
             // color: theme.palette.mode === "dark" ? card.color : card.color,
             //backgroundColor: "transparent",
             backgroundColor: theme.palette.mode === "dark" ? chip_dark.bg : chip.bg,
@@ -385,7 +385,7 @@ const Theme = (props) => {
       // this does not work https://stackoverflow.com/questions/69455056/override-box-component-in-createtheme
       MuiContainer: {
         styleOverrides: {
-          root: ({theme}) => ({
+          root: ({ theme }) => ({
             // color: theme.palette.mode === "dark" ? card.color : card.color,
             // backgroundColor: "transparent",
             backgroundColor: "transparent",
@@ -395,7 +395,7 @@ const Theme = (props) => {
       },
       MuiPaper: {
         styleOverrides: {
-          root: ({theme}) => ({
+          root: ({ theme }) => ({
             color: theme.palette.mode === "dark" ? card.color : card.color,
             backgroundColor: theme.palette.mode === "dark" ? card.bg : card.bg,
           }),
@@ -423,7 +423,7 @@ const Theme = (props) => {
             },
           },
           {
-            props: { variant: "linkcard" },
+            props: { variant: "elevation" },
             style: {
               // backgroundColor: "#2374F2",
               backgroundColor: card_el.bg,
