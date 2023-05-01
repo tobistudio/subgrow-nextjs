@@ -2,7 +2,7 @@ import Stripe from "stripe"
 import { buffer } from "micro"
 import Cors from "micro-cors"
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+const stripe = new Stripe(process.env.NEXT_STRIPE_SECRET_KEY)
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
 
