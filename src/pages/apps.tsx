@@ -42,8 +42,8 @@ import {
 } from "@fortawesome/free-brands-svg-icons"
 import { brands } from "../configs/colors/default";
 import IconButton from "@mui/material/IconButton";
-import {ArrowForwardIosTwoTone} from "@mui/icons-material";
-import {useRouter} from "next/router";
+import { ArrowForwardIosTwoTone } from "@mui/icons-material";
+import { useRouter } from "next/router";
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
 
@@ -60,7 +60,7 @@ export const AppsList = () => {
     {
       "id": 1,
       "added": 1,
-      "name":"Facebook",
+      "name": "Facebook",
       "description": "Connect to facebook",
       "site_name": "facebook",
       "icon": <FontAwesomeIcon icon={faFacebook} color={brands.facebook} size="2xl" />
@@ -68,15 +68,15 @@ export const AppsList = () => {
     {
       "id": 2,
       "added": 1,
-      "name":"Twitter",
+      "name": "Twitter",
       "description": "Connect to facebook to display feeds",
       "site_name": "facebook",
-      "icon": <FontAwesomeIcon icon={faTwitter} color={brands.twitter} size="2xl"  />
+      "icon": <FontAwesomeIcon icon={faTwitter} color={brands.twitter} size="2xl" />
     },
     {
       "id": 3,
       "added": 0,
-      "name":"Instagram",
+      "name": "Instagram",
       "description": "Connect to Instagram to display a widget",
       "site_name": "instagram",
       "icon": <FontAwesomeIcon icon={faInstagram} color={brands.instagram} size="2xl" />
@@ -84,7 +84,7 @@ export const AppsList = () => {
     {
       "id": 4,
       "added": 1,
-      "name":"Tik Tok",
+      "name": "Tik Tok",
       "description": "Connect to Tik Tok to display a widget",
       "site_name": "tiktok",
       "icon": <FontAwesomeIcon icon={faTiktok} color={brands.tiktok} size="2xl" />
@@ -92,7 +92,7 @@ export const AppsList = () => {
     {
       "id": 5,
       "added": 0,
-      "name":"Tik Tok",
+      "name": "Tik Tok",
       "description": "Connect to Tik Tok to display a widget",
       "site_name": "tiktok",
       "icon": <FontAwesomeIcon icon={faTiktok} color={brands.tiktok} size="2xl" />
@@ -128,53 +128,53 @@ export const AppsList = () => {
           <Grid xs={12} sm={6} md={4} lg={3} key={app.id} spacing={5}>
 
             <Tooltip title={app.added ? "Edit App" : "Add " + app.name}>
-            <Card
-              // sx={{ display: 'flex' }}
-              // variant={app.added ? "owned" : "outlined"}
-              // raised
-              variant={app.added ?  "outlined" : "elevation" }
-              // variant={"outlined"}
-              sx={{ display: 'flex' }}
-              onClick={(e) => handleAddAppClick(e, app.id)}
-            >
-              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                <CardContent sx={{ flexDirection: 'end' }}>
-                  <Stack direction="row" spacing={2}>
-                    <Avatar
-                      sx={{ bgcolor: "transparent" }}
-                      style={{ flexDirection: "column", alignItems: 'center', justifyContent: "center", display: "flex" }}
-                    >
-                      {app.icon}
-                    </Avatar>
-                    <div>
-                      <Typography component="div" variant="h5">
-                        {app.name}
-                      </Typography>
-                      <Typography variant="body1" color="text.secondary" component="div">
-                        {app.description}
-                      </Typography>
-                    </div>
-                  </Stack>
-                </CardContent>
-                {/*<CardActionArea>*/}
-                {/*  <Link href={Routes.SitesPage()}>View Sites</Link>*/}
-                {/*</CardActionArea>*/  }
+              <Card
+                // sx={{ display: 'flex' }}
+                // variant={app.added ? "owned" : "outlined"}
+                // raised
+                variant={app.added ? "outlined" : "elevation"}
+                // variant={"outlined"}
+                sx={{ display: 'flex' }}
+                onClick={(e) => handleAddAppClick(e, app.id)}
+              >
+                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                  <CardContent sx={{ flexDirection: 'end' }}>
+                    <Stack direction="row" spacing={2}>
+                      <Avatar
+                        sx={{ bgcolor: "transparent" }}
+                        style={{ flexDirection: "column", alignItems: 'center', justifyContent: "center", display: "flex" }}
+                      >
+                        {app.icon}
+                      </Avatar>
+                      <div>
+                        <Typography component="div" variant="h5">
+                          {app.name}
+                        </Typography>
+                        <Typography variant="body1" color="text.secondary" component="div">
+                          {app.description}
+                        </Typography>
+                      </div>
+                    </Stack>
+                  </CardContent>
+                  {/*<CardActionArea>*/}
+                  {/*  <Link href={Routes.SitesPage()}>View Sites</Link>*/}
+                  {/*</CardActionArea>*/}
 
-                {/*<CardActions>*/}
-                {/*  <Tooltip title={"Add " +  app.name}>*/}
-                {/*    <IconButton*/}
-                {/*      aria-label={"Add " +  app.name}*/}
-                {/*      style={{ marginLeft: "auto", float: "right" }}*/}
-                {/*      onClick={(e) => handleAddAppClick(e, app.id)}*/}
-                {/*    >*/}
-                {/*      /!*<ArrowForwardIosTwoTone color="icon" />*!/*/}
-                {/*      <ArrowForwardIosTwoTone />*/}
-                {/*    </IconButton>*/}
-                {/*  </Tooltip>*/}
-                {/*</CardActions>*/}
-              </Box>
+                  {/*<CardActions>*/}
+                  {/*  <Tooltip title={"Add " +  app.name}>*/}
+                  {/*    <IconButton*/}
+                  {/*      aria-label={"Add " +  app.name}*/}
+                  {/*      style={{ marginLeft: "auto", float: "right" }}*/}
+                  {/*      onClick={(e) => handleAddAppClick(e, app.id)}*/}
+                  {/*    >*/}
+                  {/*      /!*<ArrowForwardIosTwoTone color="icon" />*!/*/}
+                  {/*      <ArrowForwardIosTwoTone />*/}
+                  {/*    </IconButton>*/}
+                  {/*  </Tooltip>*/}
+                  {/*</CardActions>*/}
+                </Box>
 
-            </Card>
+              </Card>
 
             </Tooltip>
 
@@ -192,11 +192,11 @@ export const AppsList = () => {
 //       {app.icon}
 //     </Avatar>
 //   </ListItemAvatar>
-{/*  <ListItemText primary={app.name} secondary={app.description} />*/}
+{/*  <ListItemText primary={app.name} secondary={app.description} />*/ }
 
-{/*  /!*<Typography variant="h6">{app.name}</Typography>*!/*/}
+{/*  /!*<Typography variant="h6">{app.name}</Typography>*!/*/ }
 
-{/*</ListItem>*/}
+{/*</ListItem>*/ }
 const AppsPage = () => {
   const session = useSession()
   const [sites] = useQuery(getSiteForProfile, { userId: session.userId })

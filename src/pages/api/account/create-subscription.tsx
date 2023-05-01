@@ -46,6 +46,7 @@ const handler = async (req, res) => {
           }
         );
         res.status(200).json(current_intent);
+
         return;
       }
     } catch (e) {

@@ -10,37 +10,37 @@ const LoginPage: BlitzPage = () => {
 
   return (
     <HomeLayout title="Log In" type="login">
+      <Grid
+        container
+        //spacing={2}
+        // direction="column" // does opposite
+        alignItems="center"
+        justifyContent="center"
+      // sx={{
+      //   p: {
+      //     xs: 3,
+      //     md: 3
+      //   },
+      // }}
+      >
         <Grid
-          container
-          //spacing={2}
-          // direction="column" // does opposite
-          alignItems="center"
+          className={"firstgrid"}
+          spacing={{ xs: 12 }}
+          alignContent="center"
           justifyContent="center"
-          // sx={{
-          //   p: {
-          //     xs: 3,
-          //     md: 3
-          //   },
-          // }}
+          px={1}
         >
-          <Grid
-            className={"firstgrid"}
-            xs={12}
-            alignContent="center"
-            justifyContent="center"
-            px={1}
-          >
-            <LoginForm
-              onSuccess={(_user) => {
-                console.log("onSuccess")
-                const next = router.query.next
-                  ? decodeURIComponent(router.query.next as string)
-                  : "/dashboard"
-                return router.push(next)
-              }}
-            />
-          </Grid>
+          <LoginForm
+            onSuccess={(_user) => {
+              console.log("onSuccess")
+              const next = router.query.next
+                ? decodeURIComponent(router.query.next as string)
+                : "/dashboard"
+              return router.push(next)
+            }}
+          />
         </Grid>
+      </Grid>
 
     </HomeLayout>
   )

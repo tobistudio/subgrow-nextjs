@@ -61,7 +61,7 @@ export const ProfileIndex = () => {
       </Head>
       <header className="header-wrapper">
         <Grid container spacing={0} my={1}>
-          <Grid xs={12} display="flex" justifyContent="right" alignItems="center">
+          <Grid spacing={{ xs: 12 }} display="flex" justifyContent="right" alignItems="center">
             <Suspense>
               <UserInfo />
             </Suspense>

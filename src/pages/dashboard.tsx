@@ -20,9 +20,9 @@ import getSiteForProfile from "../sites/queries/getSiteForProfile"
 import getCurrentProfileUsername from "../profiles/queries/getCurrentProfileUsername"
 import PreviewLinkButton from "../components/dashboard/PreviewLinkButton";
 import { faGear } from "@fortawesome/pro-duotone-svg-icons";
-import {fonts} from "../configs/colors/default";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {useRouter} from "next/router";
+import { fonts } from "../configs/colors/default";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useRouter } from "next/router";
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
 export const DashboardBox = ({ sites, setLinkList }) => {
@@ -54,6 +54,7 @@ const Dashboard = () => {
   const router = useRouter()
   const [sites] = useQuery(getSiteForProfile, { userId: session.userId })
   // const [profile] = useQuery(getCurrentProfileUsername, { username: session.username, current: 'yes' })
+
   const [linkList, setLinkList] = React.useState(sites);
   // // TODO: test, should not be needed. auth not being checked yet, so no session id causes error
   // if (!session.userId) {
@@ -71,9 +72,9 @@ const Dashboard = () => {
       </Head>
 
       <Suspense fallback={<LoadingSvg />}>
-        <Box style={{backgroundColor: "transparent"}}>
+        <Box style={{ backgroundColor: "transparent" }}>
           <Grid container spacing={{ xs: 2, md: 3, lg: 6 }}>
-            <Grid xs={12} sm={12} md={8} lg={8} xl={8}>
+            <Grid spacing={{ xs: 12, sm: 12, md: 8, lg: 8, xl: 8 }}>
               <Card variant="outlined">
                 <CardHeader title="Links" />
                 <CardContent>
@@ -82,12 +83,12 @@ const Dashboard = () => {
               </Card>
             </Grid>
 
-            <Grid xs={12} sm={12} md={4} lg={4} xl={4}>
+            <Grid spacing={{ xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }}>
               <Card variant="outlined">
                 <CardHeader
                   title="Preview"
-                  //action={<Link href={Routes.EditProfilePage({profileId: profile.id})}><Tooltip title="Edit Profile"><FontAwesomeIcon icon={faGear} color="primary.light" style={{ color: fonts.gear }} /></Tooltip></Link>} // gear
-                  //action={<Link href="" onClick={handleProfileEdit}><Tooltip title="Edit Profile"><FontAwesomeIcon icon={faGear} color="primary.light" style={{ color: fonts.gear }} /></Tooltip></Link>} // gear
+                //action={<Link href={Routes.EditProfilePage({profileId: profile.id})}><Tooltip title="Edit Profile"><FontAwesomeIcon icon={faGear} color="primary.light" style={{ color: fonts.gear }} /></Tooltip></Link>} // gear
+                //action={<Link href="" onClick={handleProfileEdit}><Tooltip title="Edit Profile"><FontAwesomeIcon icon={faGear} color="primary.light" style={{ color: fonts.gear }} /></Tooltip></Link>} // gear
                 />
                 <CardContent>
 

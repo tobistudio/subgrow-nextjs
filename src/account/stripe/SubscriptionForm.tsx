@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useMutation, useQuery } from "@blitzjs/rpc"
+import db from "../../../db";
+
 import {
   PaymentElement,
   LinkAuthenticationElement,
@@ -28,20 +31,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser } from "@fortawesome/pro-duotone-svg-icons"
 import { misc } from "../../configs/colors/default"
 import { useSession } from "@blitzjs/auth";
-import { useMutation } from "@blitzjs/rpc"
 import PlanModal from './PlanModal';
 import getCurrentUser from "../../users/queries/getCurrentUser";
 import { ErrorMessage } from 'mui-rff';
-import updateUser from '../../users/queries/updateUser';
+import updateUser from 'users/mutations/updateUser';
+import updateSession from 'users/mutations/updateSession';
+import createCustomers from 'users/mutations/createCustomers';
 import { log } from 'console';
 
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
-export default function Form(paymentIntent) {
+export default function Form(paymentIntent: { paymentIntent: string, plan: string, setPlan: Function }) {
   const session = useSession()
   const stripe = useStripe();
   const elements = useElements();
   const [updateUserMutation] = useMutation(updateUser);
+  const [updateSessionMutation] = useMutation(updateSession);
+  const [createCustomerMutation] = useMutation(createCustomers);
+  const [paymentResult, setPaymentResult] = React.useState({});
   //const user = getCurrentUser(NULL,session)
 
   const [email, setEmail] = useState('');
@@ -52,6 +59,7 @@ export default function Form(paymentIntent) {
   const [payNowAmount, setPayNowAmount] = React.useState(10);
   const [open, setOpen] = React.useState(false)
   const [price_id, setPriceId] = React.useState("");
+  const [term, setTerm] = React.useState("Monthly")
   const [coupon, setCoupon] = React.useState("");
 
   const upgradePlanId = "gold"
@@ -137,14 +145,19 @@ export default function Form(paymentIntent) {
       }),
     });
 
-    console.log('create-subscription result ', result);
-    updateUserMutation({ id: session.userId, role: paymentIntent.plan });
+    result.json().then(res => setPaymentResult(res));
+    console.log(paymentResult);
 
     if (!stripe || !elements) {
       console.log('not loaded');
       // Stripe.js has not yet loaded.
       return;
     }
+
+    await updateUserMutation({ id: session.userId, role: paymentIntent.plan });
+
+    await updateSessionMutation({ id: session.userId, publicData: paymentIntent.plan });
+    await createCustomerMutation({ userId: session.userId, email: email, term: term, stripe_results: paymentResult, salutation: '', firstname: '', lastname: '', level: paymentIntent.plan, user: session.userId });
 
     setIsLoading(true);
 
@@ -220,10 +233,10 @@ export default function Form(paymentIntent) {
         container
         spacing={{ xs: 2, md: 3, lg: 6 }}
       >
-        <Grid xs={12} sm={12} md={8} lg={8} xl={8}>
+        <Grid spacing={{ xs: 12, sm: 12, md: 12, lg: 12, xl: 12 }} style={{ width: '60%' }}>
           <Card variant="outlined">
             <CardHeader title="Payment" />
-            <CardContent>
+            <CardContent >
               <form id="payment-form" onSubmit={createSubscription}>
                 {/* <Typography variant="body1">Amount</Typography>
                 <input type="number" value={payNowAmount} onChange={handleAmount} className='AmountInput' /> */}
@@ -259,7 +272,7 @@ export default function Form(paymentIntent) {
           </Card>
         </Grid>
 
-        <Grid xs={12} sm={12} md={4} lg={4} xl={4}>
+        <Grid spacing={{ xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }}>
           <Card variant="outlined">
             <CardHeader title={upgradePlanName} />
 
@@ -269,7 +282,7 @@ export default function Form(paymentIntent) {
                   <FormLabel id="demo-radio-buttons-group-label">Billing Cycle</FormLabel>
                   <RadioGroup
                     aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="Monthly"
+                    defaultValue={term}
                     name="radio-buttons-group"
                   >
                     <FormControlLabel

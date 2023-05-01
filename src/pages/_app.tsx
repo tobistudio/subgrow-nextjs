@@ -95,7 +95,6 @@ function RootErrorFallback({ error }: ErrorFallbackProps) {
 
 const onBeforeLift = () => {
   // take some action before the gate lifts
-  console.log("onBeforeLift")
 
   // const theme = useSelector((state: RootStateOrAny) => state.theme)
   //
