@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/.scripts/nuke.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.scripts/seed.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/seed.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.scripts/seed.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/seeds.ts" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/template/Theme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/Theme.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +136,7 @@
       <workItem from="1682006031719" duration="45314000" />
       <workItem from="1682110781520" duration="1023000" />
       <workItem from="1682113338059" duration="258507000" />
-      <workItem from="1682957551758" duration="6736000" />
+      <workItem from="1682957551758" duration="10447000" />
     </task>
     <servers />
   </component>

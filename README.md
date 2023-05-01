@@ -110,7 +110,7 @@ These values can be customized.
 
 ## STRIPE CUSTOMER FLOW
 
-Three Level Subcription system
+Three Level Subscription system
 
 Checkout Forms
 src/account
@@ -139,7 +139,7 @@ https://billing.stripe.com/p/login/3csaFqbet2r7duo5kk
 
 
 
-#### Testing
+#### Stripe Testing
 http://localhost:3000/account/upgrade
 
 anyemail@gmail.com
@@ -169,7 +169,7 @@ Changes status of user table to `inactive` but keeps all data
 
 We MAY need a cron to go through Customer table and check `sub_end` field
 
-If past this date, then change `level` in custsomer, user, and session tables
+If past this date, then change `level` in customer, user, and session tables
 
 
 
@@ -213,6 +213,7 @@ LEVEL3
 Linked to sub page
 
 https://linktr.ee/s/pricing/
+
 
 #### apps page
 https://linktr.ee/marketplace
@@ -307,8 +308,29 @@ heroku config:set SESSION_SECRET_KEY=
 
 
 ### database
+A simple mysql database is used with prisma and is currently temporarily hosted
+on godaddy.
+https://www.prisma.io/docs/guides/migrate/seed-database
+
+
+
+```bash
+
+# format, validate and generate prisma
+npm run db
+
+npx prisma db seed
+
+```
 
 ```mysql
+
+# nuke delete all tables
+# https://github.com/ameshkin/subgrow/blob/d420b33c5f257113dc0a0d7d01974fe6983eed35/.scripts/nuke.sql
+
+# Seed
+# https://github.com/ameshkin/subgrow/blob/d420b33c5f257113dc0a0d7d01974fe6983eed35/.scripts/seed.sql
+
 
 ```
 
@@ -317,9 +339,9 @@ heroku config:set SESSION_SECRET_KEY=
 
 
 
-### Remember Me Check
+###
 
-Store remember me in local storage
+
 
 
 ### MISC
