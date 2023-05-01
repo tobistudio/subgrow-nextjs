@@ -337,6 +337,6 @@ https://linktr.ee/s/pricing/
 9. Special Dashboard that lists all profiles, easy access, followers, basic info
 10. Subscribe feature, mailchimp integration
 11. upload/or preferebly show pics from other services
-
+12. Custom Header/Footer
 
 ![exampl1.png](.examples%2Fexampl1.png)

@@ -20,8 +20,8 @@ import {
   ArrowForwardIosTwoTone,
 } from "@mui/icons-material"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-// import { faTrash } from "@fortawesome/pro-duotone-svg-icons"
-import { faTrashCan } from "@fortawesome/sharp-solid-svg-icons"
+import { faEdit } from "@fortawesome/pro-duotone-svg-icons"
+import { faTrashCan, faGripVertical } from "@fortawesome/sharp-solid-svg-icons"
 import { useRouter } from "next/router"
 
 import { DropResult } from "react-beautiful-dnd"
@@ -108,6 +108,7 @@ const LinkListCard = ({ link, index, mode, snapshot, setLinks }: any) => {
       />
 
       <CardContent sx={{ py: 0 }}>
+
         <Typography variant="body1" color={mode === "dark" ? "text.light" : "text.dark"}>
           <Link href={link.url} target="_blank">
             {link.url}
@@ -119,8 +120,19 @@ const LinkListCard = ({ link, index, mode, snapshot, setLinks }: any) => {
             {link.description}
           </Typography>
         )}
+
       </CardContent>
-      <CardActions disableSpacing>
+      <CardActions>
+
+        <Tooltip title="Move">
+          <IconButton
+            size="medium"
+            aria-label="move"
+          >
+            <FontAwesomeIcon icon={faGripVertical} size="sm" />
+          </IconButton>
+        </Tooltip>
+
         <Tooltip title="Delete">
           <IconButton
             size="medium"
@@ -136,8 +148,7 @@ const LinkListCard = ({ link, index, mode, snapshot, setLinks }: any) => {
             style={{ marginLeft: "auto" }}
             onClick={(e) => handleEditDetailsClick(e, link.id)}
           >
-            {/*<ArrowForwardIosTwoTone color="icon" />*/}
-            <ArrowForwardIosTwoTone />
+            <FontAwesomeIcon icon={faEdit} size="sm" />
           </IconButton>
         </Tooltip>
       </CardActions>
