@@ -446,19 +446,19 @@ const Theme = (props) => {
               },
             },
           },
-          {
-            props: { variant: "owned" },
-            style: {
-              // backgroundColor: "#2374F2",
-              backgroundColor: card_el.bg,
-              color: card_el.color,
-              "&:hover": {
-                backgroundColor: card_el.bg_hover,
-                color: card_el.color,
-                borderShadow: "none"
-              },
-            },
-          },
+          // {
+          //   props: { variant: "owned" },
+          //   style: {
+          //     // backgroundColor: "#2374F2",
+          //     backgroundColor: card_el.bg,
+          //     color: card_el.color,
+          //     "&:hover": {
+          //       backgroundColor: card_el.bg_hover,
+          //       color: card_el.color,
+          //       borderShadow: "none"
+          //     },
+          //   },
+          // },
         ],
       },
     },

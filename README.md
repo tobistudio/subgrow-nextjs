@@ -152,6 +152,12 @@ Debit
 4000056655665556
 
 
+```json
+  {
+    "schema": "db/schema.prisma"
+  }
+
+```
 
 #### ACCOUNT
 

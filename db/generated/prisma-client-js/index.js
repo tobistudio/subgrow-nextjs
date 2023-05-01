@@ -68,7 +68,7 @@ Prisma.NullTypes = {
 }
 
 
-const path = require('path')
+  const path = require('path')
 
 const fs = require('fs')
 
@@ -80,8 +80,8 @@ const regularDirname = hasDirname && fs.existsSync(path.join(__dirname, 'schema.
 
 // if the client has been bundled, we need to look for the folders
 const foundDirname = !regularDirname && findSync(process.cwd(), [
-  "db/generated/prisma-client-js",
-  "generated/prisma-client-js",
+    "db/generated/prisma-client-js",
+    "generated/prisma-client-js",
 ], ['d'], ['d'], 1)[0]
 
 const dirname = regularDirname || foundDirname || __dirname
@@ -411,8 +411,8 @@ config.document = dmmf
 const { warnEnvConflicts } = require('./runtime/library')
 
 warnEnvConflicts({
-  rootEnvPath: config.relativeEnvPaths.rootEnvPath && path.resolve(dirname, config.relativeEnvPaths.rootEnvPath),
-  schemaEnvPath: config.relativeEnvPaths.schemaEnvPath && path.resolve(dirname, config.relativeEnvPaths.schemaEnvPath)
+    rootEnvPath: config.relativeEnvPaths.rootEnvPath && path.resolve(dirname, config.relativeEnvPaths.rootEnvPath),
+    schemaEnvPath: config.relativeEnvPaths.schemaEnvPath && path.resolve(dirname, config.relativeEnvPaths.schemaEnvPath)
 })
 
 
