@@ -10,7 +10,6 @@ const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 const stripe = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 import { plansConfig } from '../../configs/plans.config';
 
-
 export default function UpgradePage() {
   const [clientSecret, setClientSecret] = React.useState("")
   const [paymentIntent, setPaymentIntent] = React.useState('');

@@ -28,9 +28,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser } from "@fortawesome/pro-duotone-svg-icons"
 import { misc } from "../../configs/colors/default"
 import { useSession } from "@blitzjs/auth";
+import { useMutation } from "@blitzjs/rpc"
 import PlanModal from './PlanModal';
 import getCurrentUser from "../../users/queries/getCurrentUser";
 import { ErrorMessage } from 'mui-rff';
+import updateUser from '../../users/queries/updateUser';
 import { log } from 'console';
 
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
@@ -39,6 +41,7 @@ export default function Form(paymentIntent) {
   const session = useSession()
   const stripe = useStripe();
   const elements = useElements();
+  const [updateUserMutation] = useMutation(updateUser);
   //const user = getCurrentUser(NULL,session)
 
   const [email, setEmail] = useState('');
@@ -53,7 +56,6 @@ export default function Form(paymentIntent) {
 
   const upgradePlanId = "gold"
   const upgradePlanName = "Gold Subscription"
-
 
   const handleOpen = () => setOpen(true)
 
@@ -136,6 +138,7 @@ export default function Form(paymentIntent) {
     });
 
     console.log('create-subscription result ', result);
+    updateUserMutation({ id: session.userId, role: paymentIntent.plan });
 
     if (!stripe || !elements) {
       console.log('not loaded');
@@ -165,7 +168,6 @@ export default function Form(paymentIntent) {
     } else {
       setMessage('An unexpected error occured.');
     }
-
     setIsLoading(false);
   };
 
