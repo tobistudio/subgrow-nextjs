@@ -35,7 +35,7 @@ export default function UpgradePage() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.client_secret);
+        console.log(data);
         setClientSecret(data.client_secret)
         setPaymentIntent(data.id)
       })

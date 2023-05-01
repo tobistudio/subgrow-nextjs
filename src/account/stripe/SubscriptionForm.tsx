@@ -30,22 +30,31 @@ import { misc } from "../../configs/colors/default"
 import { useSession } from "@blitzjs/auth";
 import PlanModal from './PlanModal';
 import getCurrentUser from "../../users/queries/getCurrentUser";
+import { ErrorMessage } from 'mui-rff';
+import { log } from 'console';
 
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
 export default function Form(paymentIntent) {
   const session = useSession()
+  const stripe = useStripe();
+  const elements = useElements();
   //const user = getCurrentUser(NULL,session)
+
   const [email, setEmail] = useState('');
   const [locAmount, setLocAmount] = useState(0);
   const [message, setMessage] = useState('');
+  const [errorMessage, seterrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const stripe = useStripe();
-  const elements = useElements();
   const [payNowAmount, setPayNowAmount] = React.useState(10);
+  const [open, setOpen] = React.useState(false)
+  const [price_id, setPriceId] = React.useState("");
+  const [coupon, setCoupon] = React.useState("");
+
   const upgradePlanId = "gold"
   const upgradePlanName = "Gold Subscription"
-  const [open, setOpen] = React.useState(false)
+
+
   const handleOpen = () => setOpen(true)
 
   console.log("session", session);
@@ -127,6 +136,8 @@ export default function Form(paymentIntent) {
     });
 
     console.log('create-subscription result ', result);
+    alert("stripe" + result);
+    // setPriceId(result?.id);
 
     if (!stripe || !elements) {
       console.log('not loaded');
@@ -177,6 +188,30 @@ export default function Form(paymentIntent) {
     return (<Chip label="Save 20%" />)
   }
 
+  const sendCoupon = async () => {
+
+    // await fetch('/api/account/create-customer', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({
+    //     email: "admir.hard@gmail.com",
+    //     userId: session.userId
+    //   })
+    // });
+    let data = await fetch('/api/account/couponManage', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        couponCode: coupon
+      })
+    });
+    data.json().then(res => res.err ? seterrorMessage(res.err) : seterrorMessage("success"))
+    // console.log(err.response);
+  }
+
+  const handleCoupon = (e) => {
+    setCoupon(e.target.value);
+  }
 
   return (
     <Box>
@@ -252,7 +287,8 @@ export default function Form(paymentIntent) {
                     />
                     <CustomChip />
                     {/*TODO: perhaps a modal that allows comparison and selection of plan*/}
-                    <Typography variant="body1">Compare Plans</Typography>
+                    <Typography variant="body1" margin={2}></Typography>
+                    <Typography variant="h4">Compare Plans</Typography>
                     <Button onClick={handleOpen}>Select Plan</Button>
                     <PlanModal setPlan={paymentIntent.setPlan} open={open} setOpen={setOpen} />
                   </RadioGroup>
@@ -266,7 +302,6 @@ export default function Form(paymentIntent) {
                 </Stack>
               </Box>
 
-
               <Box mt={5}>
                 <Stack direction="row" spacing={2}>
                   <TextField
@@ -274,6 +309,7 @@ export default function Form(paymentIntent) {
                     name="coupon"
                     style={{ maxWidth: 380 }}
                     required={true}
+                    onChange={handleCoupon}
                     InputProps={{
                       placeholder: "Coupon Code",
                       startAdornment: (
@@ -287,8 +323,10 @@ export default function Form(paymentIntent) {
                       ),
                     }}
                   />
+                  <Button onClick={sendCoupon} variant="contained">Add Coupon</Button>
                 </Stack>
               </Box>
+              {errorMessage && errorMessage}
 
               <Box mt={5}>
                 {isLoading ? (

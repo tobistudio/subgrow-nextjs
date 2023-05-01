@@ -31,7 +31,6 @@ const handler = async (req, res) => {
   }
   console.log(currency);
 
-
   if (payment_intent_id) {
     try {
       // If a payment_intent_id is passed, retrieve the paymentIntent
@@ -46,7 +45,7 @@ const handler = async (req, res) => {
             amount: amount * 100,
           }
         );
-        res.status(200).json(updated_intent);
+        res.status(200).json(current_intent);
         return;
       }
     } catch (e) {

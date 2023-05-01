@@ -21,8 +21,6 @@ export default async function getSubscriptions(req, res, { createSubscriptionReq
     expand: ['data.default_payment_method'],
   });
 
-  res.json({subscriptions});
-
-
+  res.json({ subscriptions });
 
 }

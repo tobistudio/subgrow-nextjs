@@ -120,7 +120,8 @@ model Message {
 model Customer {
   id                 String       @id @default(cuid())
   userId             Int
-  companyId          String?      @unique
+  companyId          String?      
+  customer_id        String?
   salutation         String
   firstname          String
   lastname           String
