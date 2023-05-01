@@ -198,6 +198,7 @@ export default function Form(paymentIntent) {
     //     userId: session.userId
     //   })
     // });
+    if(!coupon) { alert("Coupon is required"); return};
     let data = await fetch('/api/account/couponManage', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
