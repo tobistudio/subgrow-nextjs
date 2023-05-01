@@ -4,7 +4,6 @@ import { MenuContextConsumer } from "./context/menuContext"
 import { GroupContextConsumer } from "./context/groupContext"
 import { CollapseContextConsumer } from "./context/collapseContext"
 import Item from "../MenuItem"
-import CloseButton from "../ui/CloseButton"
 
 const MenuItem = (props) => {
   const { eventKey, ...rest } = props
