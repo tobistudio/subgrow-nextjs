@@ -120,13 +120,16 @@ model Message {
 model Customer {
   id                 String       @id @default(cuid())
   userId             Int
-  companyId          String?      
-  customer_id        String?
   salutation         String
   firstname          String
   lastname           String
   email              String?      @unique
   email_type         String?
+  level              String
+  sub_create         DateTime     @default(now())
+  sub_end            DateTime     @default(now())
+  term               String?
+  stripe_results     Json?
   phone_number       String?
   phone_number_type  String?
   street_address     String?
@@ -139,7 +142,6 @@ model Customer {
   image              String?
   total_discount     Float?
   terms_of_payment   String?
-  delivery_terms     String?
   note               String?
   createdAt          DateTime     @default(now())
   updatedAt          DateTime     @updatedAt

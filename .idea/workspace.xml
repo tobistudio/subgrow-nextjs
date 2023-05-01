@@ -6,50 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/styles/components/_card.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/components/_card.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Menu/MenuItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Menu/MenuItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dashboard/LinkListCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dashboard/LinkListCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/template/Theme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/Theme.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/Buttons/Button.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/Buttons/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/Card/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Card/CardTitle.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/Card/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/Checkbox/Checkbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Checkbox/Checkbox.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/BasePicker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/Calendar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/CalendarBase.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/DatePicker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/DatePickerRange.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/DateTimepicker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/RangeCalendar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/constants.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/tables/DateTable.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/tables/Header.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/tables/MonthTable.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/tables/YearTable.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/tables/components/Day.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/tables/components/Month.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/tables/components/props/getDayProps.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/tables/components/props/getRangeProps.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/tables/components/props/isDisabled.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/tables/components/props/isOutside.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/tables/components/props/isWeekend.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/utils/formatYear.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/utils/getDecadeRange.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/utils/getEndOfWeek.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/utils/getMonthDays.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/utils/getMonthsNames.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/utils/getStartOfWeek.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/utils/getWeekdaysNames.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/utils/getYearsRange.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/utils/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/utils/isMonthInRange.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/utils/isSameDate.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/DatePicker/utils/isSameMonth.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/Dropdown/Dropdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Dropdown/Dropdown.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/Upload/Upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Upload/Upload.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index-browser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/schema.prisma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.prisma" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,30 +39,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/amirmeshkin/_code/_business/blitz-app/src/pages/api/account",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "/Users/amirmeshkin/_code/_business/blitz-app/node_modules/prettier",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.SQL",
-    "ts.external.directory.path": "/Users/amirmeshkin/_code/_business/blitz-app/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/amirmeshkin/_code/_business/blitz-app/src/pages/api/account&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/amirmeshkin/_code/_business/blitz-app/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.SQL&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/amirmeshkin/_code/_business/blitz-app/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "java.sql.Driver",
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;java.sql.Driver&quot;,
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -168,7 +129,8 @@
       <workItem from="1681943767112" duration="4328000" />
       <workItem from="1682006031719" duration="45314000" />
       <workItem from="1682110781520" duration="1023000" />
-      <workItem from="1682113338059" duration="256600000" />
+      <workItem from="1682113338059" duration="258507000" />
+      <workItem from="1682957551758" duration="964000" />
     </task>
     <servers />
   </component>
@@ -201,13 +163,11 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/core/layouts/ProfileLayout.tsx</url>
           <line>9</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/pages/api/auth/[...auth].ts</url>
           <line>41</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>

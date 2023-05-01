@@ -120,12 +120,16 @@ export type Message = {
 export type Customer = {
   id: string
   userId: number
-  companyId: string | null
   salutation: string
   firstname: string
   lastname: string
   email: string | null
   email_type: string | null
+  level: string
+  sub_create: Date
+  sub_end: Date
+  term: string | null
+  stripe_results: Prisma.JsonValue | null
   phone_number: string | null
   phone_number_type: string | null
   street_address: string | null
@@ -138,7 +142,6 @@ export type Customer = {
   image: string | null
   total_discount: number | null
   terms_of_payment: string | null
-  delivery_terms: string | null
   note: string | null
   createdAt: Date
   updatedAt: Date
@@ -7814,12 +7817,15 @@ export namespace Prisma {
   export type CustomerMinAggregateOutputType = {
     id: string | null
     userId: number | null
-    companyId: string | null
     salutation: string | null
     firstname: string | null
     lastname: string | null
     email: string | null
     email_type: string | null
+    level: string | null
+    sub_create: Date | null
+    sub_end: Date | null
+    term: string | null
     phone_number: string | null
     phone_number_type: string | null
     street_address: string | null
@@ -7832,7 +7838,6 @@ export namespace Prisma {
     image: string | null
     total_discount: number | null
     terms_of_payment: string | null
-    delivery_terms: string | null
     note: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -7841,12 +7846,15 @@ export namespace Prisma {
   export type CustomerMaxAggregateOutputType = {
     id: string | null
     userId: number | null
-    companyId: string | null
     salutation: string | null
     firstname: string | null
     lastname: string | null
     email: string | null
     email_type: string | null
+    level: string | null
+    sub_create: Date | null
+    sub_end: Date | null
+    term: string | null
     phone_number: string | null
     phone_number_type: string | null
     street_address: string | null
@@ -7859,7 +7867,6 @@ export namespace Prisma {
     image: string | null
     total_discount: number | null
     terms_of_payment: string | null
-    delivery_terms: string | null
     note: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -7868,12 +7875,16 @@ export namespace Prisma {
   export type CustomerCountAggregateOutputType = {
     id: number
     userId: number
-    companyId: number
     salutation: number
     firstname: number
     lastname: number
     email: number
     email_type: number
+    level: number
+    sub_create: number
+    sub_end: number
+    term: number
+    stripe_results: number
     phone_number: number
     phone_number_type: number
     street_address: number
@@ -7886,7 +7897,6 @@ export namespace Prisma {
     image: number
     total_discount: number
     terms_of_payment: number
-    delivery_terms: number
     note: number
     createdAt: number
     updatedAt: number
@@ -7907,12 +7917,15 @@ export namespace Prisma {
   export type CustomerMinAggregateInputType = {
     id?: true
     userId?: true
-    companyId?: true
     salutation?: true
     firstname?: true
     lastname?: true
     email?: true
     email_type?: true
+    level?: true
+    sub_create?: true
+    sub_end?: true
+    term?: true
     phone_number?: true
     phone_number_type?: true
     street_address?: true
@@ -7925,7 +7938,6 @@ export namespace Prisma {
     image?: true
     total_discount?: true
     terms_of_payment?: true
-    delivery_terms?: true
     note?: true
     createdAt?: true
     updatedAt?: true
@@ -7934,12 +7946,15 @@ export namespace Prisma {
   export type CustomerMaxAggregateInputType = {
     id?: true
     userId?: true
-    companyId?: true
     salutation?: true
     firstname?: true
     lastname?: true
     email?: true
     email_type?: true
+    level?: true
+    sub_create?: true
+    sub_end?: true
+    term?: true
     phone_number?: true
     phone_number_type?: true
     street_address?: true
@@ -7952,7 +7967,6 @@ export namespace Prisma {
     image?: true
     total_discount?: true
     terms_of_payment?: true
-    delivery_terms?: true
     note?: true
     createdAt?: true
     updatedAt?: true
@@ -7961,12 +7975,16 @@ export namespace Prisma {
   export type CustomerCountAggregateInputType = {
     id?: true
     userId?: true
-    companyId?: true
     salutation?: true
     firstname?: true
     lastname?: true
     email?: true
     email_type?: true
+    level?: true
+    sub_create?: true
+    sub_end?: true
+    term?: true
+    stripe_results?: true
     phone_number?: true
     phone_number_type?: true
     street_address?: true
@@ -7979,7 +7997,6 @@ export namespace Prisma {
     image?: true
     total_discount?: true
     terms_of_payment?: true
-    delivery_terms?: true
     note?: true
     createdAt?: true
     updatedAt?: true
@@ -8076,12 +8093,16 @@ export namespace Prisma {
   export type CustomerGroupByOutputType = {
     id: string
     userId: number
-    companyId: string | null
     salutation: string
     firstname: string
     lastname: string
     email: string | null
     email_type: string | null
+    level: string
+    sub_create: Date
+    sub_end: Date
+    term: string | null
+    stripe_results: JsonValue | null
     phone_number: string | null
     phone_number_type: string | null
     street_address: string | null
@@ -8094,7 +8115,6 @@ export namespace Prisma {
     image: string | null
     total_discount: number | null
     terms_of_payment: string | null
-    delivery_terms: string | null
     note: string | null
     createdAt: Date
     updatedAt: Date
@@ -8122,12 +8142,16 @@ export namespace Prisma {
   export type CustomerSelect = {
     id?: boolean
     userId?: boolean
-    companyId?: boolean
     salutation?: boolean
     firstname?: boolean
     lastname?: boolean
     email?: boolean
     email_type?: boolean
+    level?: boolean
+    sub_create?: boolean
+    sub_end?: boolean
+    term?: boolean
+    stripe_results?: boolean
     phone_number?: boolean
     phone_number_type?: boolean
     street_address?: boolean
@@ -8140,7 +8164,6 @@ export namespace Prisma {
     image?: boolean
     total_discount?: boolean
     terms_of_payment?: boolean
-    delivery_terms?: boolean
     note?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -17996,12 +18019,16 @@ export namespace Prisma {
   export const CustomerScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
-    companyId: 'companyId',
     salutation: 'salutation',
     firstname: 'firstname',
     lastname: 'lastname',
     email: 'email',
     email_type: 'email_type',
+    level: 'level',
+    sub_create: 'sub_create',
+    sub_end: 'sub_end',
+    term: 'term',
+    stripe_results: 'stripe_results',
     phone_number: 'phone_number',
     phone_number_type: 'phone_number_type',
     street_address: 'street_address',
@@ -18014,7 +18041,6 @@ export namespace Prisma {
     image: 'image',
     total_discount: 'total_discount',
     terms_of_payment: 'terms_of_payment',
-    delivery_terms: 'delivery_terms',
     note: 'note',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -18676,12 +18702,16 @@ export namespace Prisma {
     NOT?: Enumerable<CustomerWhereInput>
     id?: StringFilter | string
     userId?: IntFilter | number
-    companyId?: StringNullableFilter | string | null
     salutation?: StringFilter | string
     firstname?: StringFilter | string
     lastname?: StringFilter | string
     email?: StringNullableFilter | string | null
     email_type?: StringNullableFilter | string | null
+    level?: StringFilter | string
+    sub_create?: DateTimeFilter | Date | string
+    sub_end?: DateTimeFilter | Date | string
+    term?: StringNullableFilter | string | null
+    stripe_results?: JsonNullableFilter
     phone_number?: StringNullableFilter | string | null
     phone_number_type?: StringNullableFilter | string | null
     street_address?: StringNullableFilter | string | null
@@ -18694,7 +18724,6 @@ export namespace Prisma {
     image?: StringNullableFilter | string | null
     total_discount?: FloatNullableFilter | number | null
     terms_of_payment?: StringNullableFilter | string | null
-    delivery_terms?: StringNullableFilter | string | null
     note?: StringNullableFilter | string | null
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
@@ -18707,12 +18736,16 @@ export namespace Prisma {
   export type CustomerOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
-    companyId?: SortOrder
     salutation?: SortOrder
     firstname?: SortOrder
     lastname?: SortOrder
     email?: SortOrder
     email_type?: SortOrder
+    level?: SortOrder
+    sub_create?: SortOrder
+    sub_end?: SortOrder
+    term?: SortOrder
+    stripe_results?: SortOrder
     phone_number?: SortOrder
     phone_number_type?: SortOrder
     street_address?: SortOrder
@@ -18725,7 +18758,6 @@ export namespace Prisma {
     image?: SortOrder
     total_discount?: SortOrder
     terms_of_payment?: SortOrder
-    delivery_terms?: SortOrder
     note?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -18737,19 +18769,22 @@ export namespace Prisma {
 
   export type CustomerWhereUniqueInput = {
     id?: string
-    companyId?: string
     email?: string
   }
 
   export type CustomerOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
-    companyId?: SortOrder
     salutation?: SortOrder
     firstname?: SortOrder
     lastname?: SortOrder
     email?: SortOrder
     email_type?: SortOrder
+    level?: SortOrder
+    sub_create?: SortOrder
+    sub_end?: SortOrder
+    term?: SortOrder
+    stripe_results?: SortOrder
     phone_number?: SortOrder
     phone_number_type?: SortOrder
     street_address?: SortOrder
@@ -18762,7 +18797,6 @@ export namespace Prisma {
     image?: SortOrder
     total_discount?: SortOrder
     terms_of_payment?: SortOrder
-    delivery_terms?: SortOrder
     note?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -18779,12 +18813,16 @@ export namespace Prisma {
     NOT?: Enumerable<CustomerScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
     userId?: IntWithAggregatesFilter | number
-    companyId?: StringNullableWithAggregatesFilter | string | null
     salutation?: StringWithAggregatesFilter | string
     firstname?: StringWithAggregatesFilter | string
     lastname?: StringWithAggregatesFilter | string
     email?: StringNullableWithAggregatesFilter | string | null
     email_type?: StringNullableWithAggregatesFilter | string | null
+    level?: StringWithAggregatesFilter | string
+    sub_create?: DateTimeWithAggregatesFilter | Date | string
+    sub_end?: DateTimeWithAggregatesFilter | Date | string
+    term?: StringNullableWithAggregatesFilter | string | null
+    stripe_results?: JsonNullableWithAggregatesFilter
     phone_number?: StringNullableWithAggregatesFilter | string | null
     phone_number_type?: StringNullableWithAggregatesFilter | string | null
     street_address?: StringNullableWithAggregatesFilter | string | null
@@ -18797,7 +18835,6 @@ export namespace Prisma {
     image?: StringNullableWithAggregatesFilter | string | null
     total_discount?: FloatNullableWithAggregatesFilter | number | null
     terms_of_payment?: StringNullableWithAggregatesFilter | string | null
-    delivery_terms?: StringNullableWithAggregatesFilter | string | null
     note?: StringNullableWithAggregatesFilter | string | null
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
@@ -19960,12 +19997,16 @@ export namespace Prisma {
 
   export type CustomerCreateInput = {
     id?: string
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -19978,7 +20019,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -19991,12 +20031,16 @@ export namespace Prisma {
   export type CustomerUncheckedCreateInput = {
     id?: string
     userId: number
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -20009,7 +20053,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -20020,12 +20063,16 @@ export namespace Prisma {
 
   export type CustomerUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20038,7 +20085,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20051,12 +20097,16 @@ export namespace Prisma {
   export type CustomerUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20069,7 +20119,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20081,12 +20130,16 @@ export namespace Prisma {
   export type CustomerCreateManyInput = {
     id?: string
     userId: number
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -20099,7 +20152,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -20107,12 +20159,16 @@ export namespace Prisma {
 
   export type CustomerUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20125,7 +20181,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20134,12 +20189,16 @@ export namespace Prisma {
   export type CustomerUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20152,7 +20211,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21523,6 +21581,28 @@ export namespace Prisma {
   export type MessageSumOrderByAggregateInput = {
     userId?: SortOrder
   }
+  export type JsonNullableFilter = 
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase>, Exclude<keyof Required<JsonNullableFilterBase>, 'path'>>,
+        Required<JsonNullableFilterBase>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase>, 'path'>>
+
+  export type JsonNullableFilterBase = {
+    equals?: InputJsonValue | JsonNullValueFilter
+    path?: string
+    string_contains?: string
+    string_starts_with?: string
+    string_ends_with?: string
+    array_contains?: InputJsonValue | null
+    array_starts_with?: InputJsonValue | null
+    array_ends_with?: InputJsonValue | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonNullValueFilter
+  }
 
   export type FloatNullableFilter = {
     equals?: number | null
@@ -21553,12 +21633,16 @@ export namespace Prisma {
   export type CustomerCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    companyId?: SortOrder
     salutation?: SortOrder
     firstname?: SortOrder
     lastname?: SortOrder
     email?: SortOrder
     email_type?: SortOrder
+    level?: SortOrder
+    sub_create?: SortOrder
+    sub_end?: SortOrder
+    term?: SortOrder
+    stripe_results?: SortOrder
     phone_number?: SortOrder
     phone_number_type?: SortOrder
     street_address?: SortOrder
@@ -21571,7 +21655,6 @@ export namespace Prisma {
     image?: SortOrder
     total_discount?: SortOrder
     terms_of_payment?: SortOrder
-    delivery_terms?: SortOrder
     note?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -21585,12 +21668,15 @@ export namespace Prisma {
   export type CustomerMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    companyId?: SortOrder
     salutation?: SortOrder
     firstname?: SortOrder
     lastname?: SortOrder
     email?: SortOrder
     email_type?: SortOrder
+    level?: SortOrder
+    sub_create?: SortOrder
+    sub_end?: SortOrder
+    term?: SortOrder
     phone_number?: SortOrder
     phone_number_type?: SortOrder
     street_address?: SortOrder
@@ -21603,7 +21689,6 @@ export namespace Prisma {
     image?: SortOrder
     total_discount?: SortOrder
     terms_of_payment?: SortOrder
-    delivery_terms?: SortOrder
     note?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -21612,12 +21697,15 @@ export namespace Prisma {
   export type CustomerMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    companyId?: SortOrder
     salutation?: SortOrder
     firstname?: SortOrder
     lastname?: SortOrder
     email?: SortOrder
     email_type?: SortOrder
+    level?: SortOrder
+    sub_create?: SortOrder
+    sub_end?: SortOrder
+    term?: SortOrder
     phone_number?: SortOrder
     phone_number_type?: SortOrder
     street_address?: SortOrder
@@ -21630,7 +21718,6 @@ export namespace Prisma {
     image?: SortOrder
     total_discount?: SortOrder
     terms_of_payment?: SortOrder
-    delivery_terms?: SortOrder
     note?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -21639,6 +21726,31 @@ export namespace Prisma {
   export type CustomerSumOrderByAggregateInput = {
     userId?: SortOrder
     total_discount?: SortOrder
+  }
+  export type JsonNullableWithAggregatesFilter = 
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase = {
+    equals?: InputJsonValue | JsonNullValueFilter
+    path?: string
+    string_contains?: string
+    string_starts_with?: string
+    string_ends_with?: string
+    array_contains?: InputJsonValue | null
+    array_starts_with?: InputJsonValue | null
+    array_ends_with?: InputJsonValue | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonNullValueFilter
+    _count?: NestedIntNullableFilter
+    _min?: NestedJsonNullableFilter
+    _max?: NestedJsonNullableFilter
   }
 
   export type FloatNullableWithAggregatesFilter = {
@@ -21984,28 +22096,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
-  export type JsonNullableFilter = 
-    | PatchUndefined<
-        Either<Required<JsonNullableFilterBase>, Exclude<keyof Required<JsonNullableFilterBase>, 'path'>>,
-        Required<JsonNullableFilterBase>
-      >
-    | OptionalFlat<Omit<Required<JsonNullableFilterBase>, 'path'>>
-
-  export type JsonNullableFilterBase = {
-    equals?: InputJsonValue | JsonNullValueFilter
-    path?: string
-    string_contains?: string
-    string_starts_with?: string
-    string_ends_with?: string
-    array_contains?: InputJsonValue | null
-    array_starts_with?: InputJsonValue | null
-    array_ends_with?: InputJsonValue | null
-    lt?: InputJsonValue
-    lte?: InputJsonValue
-    gt?: InputJsonValue
-    gte?: InputJsonValue
-    not?: InputJsonValue | JsonNullValueFilter
-  }
 
   export type EnumYesnoFilter = {
     equals?: Yesno
@@ -22055,31 +22145,6 @@ export namespace Prisma {
 
   export type ProfileSumOrderByAggregateInput = {
     userId?: SortOrder
-  }
-  export type JsonNullableWithAggregatesFilter = 
-    | PatchUndefined<
-        Either<Required<JsonNullableWithAggregatesFilterBase>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase>, 'path'>>,
-        Required<JsonNullableWithAggregatesFilterBase>
-      >
-    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase>, 'path'>>
-
-  export type JsonNullableWithAggregatesFilterBase = {
-    equals?: InputJsonValue | JsonNullValueFilter
-    path?: string
-    string_contains?: string
-    string_starts_with?: string
-    string_ends_with?: string
-    array_contains?: InputJsonValue | null
-    array_starts_with?: InputJsonValue | null
-    array_ends_with?: InputJsonValue | null
-    lt?: InputJsonValue
-    lte?: InputJsonValue
-    gt?: InputJsonValue
-    gte?: InputJsonValue
-    not?: InputJsonValue | JsonNullValueFilter
-    _count?: NestedIntNullableFilter
-    _min?: NestedJsonNullableFilter
-    _max?: NestedJsonNullableFilter
   }
 
   export type EnumYesnoWithAggregatesFilter = {
@@ -23369,6 +23434,28 @@ export namespace Prisma {
     _min?: NestedEnumStatusFilter
     _max?: NestedEnumStatusFilter
   }
+  export type NestedJsonNullableFilter = 
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase>, Exclude<keyof Required<NestedJsonNullableFilterBase>, 'path'>>,
+        Required<NestedJsonNullableFilterBase>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase>, 'path'>>
+
+  export type NestedJsonNullableFilterBase = {
+    equals?: InputJsonValue | JsonNullValueFilter
+    path?: string
+    string_contains?: string
+    string_starts_with?: string
+    string_ends_with?: string
+    array_contains?: InputJsonValue | null
+    array_starts_with?: InputJsonValue | null
+    array_ends_with?: InputJsonValue | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonNullValueFilter
+  }
 
   export type NestedFloatNullableWithAggregatesFilter = {
     equals?: number | null
@@ -23407,28 +23494,6 @@ export namespace Prisma {
     in?: Enumerable<Yesno>
     notIn?: Enumerable<Yesno>
     not?: NestedEnumYesnoFilter | Yesno
-  }
-  export type NestedJsonNullableFilter = 
-    | PatchUndefined<
-        Either<Required<NestedJsonNullableFilterBase>, Exclude<keyof Required<NestedJsonNullableFilterBase>, 'path'>>,
-        Required<NestedJsonNullableFilterBase>
-      >
-    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase>, 'path'>>
-
-  export type NestedJsonNullableFilterBase = {
-    equals?: InputJsonValue | JsonNullValueFilter
-    path?: string
-    string_contains?: string
-    string_starts_with?: string
-    string_ends_with?: string
-    array_contains?: InputJsonValue | null
-    array_starts_with?: InputJsonValue | null
-    array_ends_with?: InputJsonValue | null
-    lt?: InputJsonValue
-    lte?: InputJsonValue
-    gt?: InputJsonValue
-    gte?: InputJsonValue
-    not?: InputJsonValue | JsonNullValueFilter
   }
 
   export type NestedEnumYesnoWithAggregatesFilter = {
@@ -23624,12 +23689,16 @@ export namespace Prisma {
 
   export type CustomerCreateWithoutUserInput = {
     id?: string
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -23642,7 +23711,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -23653,12 +23721,16 @@ export namespace Prisma {
 
   export type CustomerUncheckedCreateWithoutUserInput = {
     id?: string
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -23671,7 +23743,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -24038,12 +24109,16 @@ export namespace Prisma {
     NOT?: Enumerable<CustomerScalarWhereInput>
     id?: StringFilter | string
     userId?: IntFilter | number
-    companyId?: StringNullableFilter | string | null
     salutation?: StringFilter | string
     firstname?: StringFilter | string
     lastname?: StringFilter | string
     email?: StringNullableFilter | string | null
     email_type?: StringNullableFilter | string | null
+    level?: StringFilter | string
+    sub_create?: DateTimeFilter | Date | string
+    sub_end?: DateTimeFilter | Date | string
+    term?: StringNullableFilter | string | null
+    stripe_results?: JsonNullableFilter
     phone_number?: StringNullableFilter | string | null
     phone_number_type?: StringNullableFilter | string | null
     street_address?: StringNullableFilter | string | null
@@ -24056,7 +24131,6 @@ export namespace Prisma {
     image?: StringNullableFilter | string | null
     total_discount?: FloatNullableFilter | number | null
     terms_of_payment?: StringNullableFilter | string | null
-    delivery_terms?: StringNullableFilter | string | null
     note?: StringNullableFilter | string | null
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
@@ -25067,12 +25141,16 @@ export namespace Prisma {
 
   export type CustomerCreateWithoutBankAccountInput = {
     id?: string
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -25085,7 +25163,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -25097,12 +25174,16 @@ export namespace Prisma {
   export type CustomerUncheckedCreateWithoutBankAccountInput = {
     id?: string
     userId: number
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -25115,7 +25196,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -25135,12 +25215,16 @@ export namespace Prisma {
 
   export type CustomerUpdateWithoutBankAccountInput = {
     id?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -25153,7 +25237,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25165,12 +25248,16 @@ export namespace Prisma {
   export type CustomerUncheckedUpdateWithoutBankAccountInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -25183,7 +25270,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25247,12 +25333,16 @@ export namespace Prisma {
 
   export type CustomerCreateWithoutFilesInput = {
     id?: string
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -25265,7 +25355,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -25277,12 +25366,16 @@ export namespace Prisma {
   export type CustomerUncheckedCreateWithoutFilesInput = {
     id?: string
     userId: number
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -25295,7 +25388,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -25402,12 +25494,16 @@ export namespace Prisma {
 
   export type CustomerUpdateWithoutFilesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -25420,7 +25516,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25432,12 +25527,16 @@ export namespace Prisma {
   export type CustomerUncheckedUpdateWithoutFilesInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -25450,7 +25549,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25709,12 +25807,16 @@ export namespace Prisma {
 
   export type CustomerCreateWithoutInvoicesInput = {
     id?: string
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -25727,7 +25829,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -25739,12 +25840,16 @@ export namespace Prisma {
   export type CustomerUncheckedCreateWithoutInvoicesInput = {
     id?: string
     userId: number
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -25757,7 +25862,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -25828,12 +25932,16 @@ export namespace Prisma {
 
   export type CustomerUpdateWithoutInvoicesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -25846,7 +25954,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25858,12 +25965,16 @@ export namespace Prisma {
   export type CustomerUncheckedUpdateWithoutInvoicesInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -25876,7 +25987,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26321,12 +26431,16 @@ export namespace Prisma {
 
   export type CustomerCreateManyUserInput = {
     id?: string
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -26339,7 +26453,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -26582,12 +26695,16 @@ export namespace Prisma {
 
   export type CustomerUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -26600,7 +26717,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26611,12 +26727,16 @@ export namespace Prisma {
 
   export type CustomerUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -26629,7 +26749,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26640,12 +26759,16 @@ export namespace Prisma {
 
   export type CustomerUncheckedUpdateManyWithoutCustomersInput = {
     id?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -26658,7 +26781,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
