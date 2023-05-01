@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import classNames from "classnames"
 import CheckboxGroupContext from "./context"
 import { useConfig } from "../ConfigProvider"
-import Button from "../Buttons"
+
 
 const Checkbox = React.forwardRef((props, ref) => {
   const {

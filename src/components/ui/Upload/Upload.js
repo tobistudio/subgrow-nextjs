@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 import { useConfig } from '../ConfigProvider'
 import cloneDeep from 'lodash/cloneDeep'
 import FileItem from './FileItem'
-import Button from '../Buttons'
 import CloseButton from '../CloseButton'
 import Notification from '../Notification'
 import toast from '../toast'
 import ToastWrapper from "../toast/ToastWrapper";
+import { Button } from "@mui/material"
 
 const filesToArray = (files) => Object.keys(files).map((key) => files[key])
 

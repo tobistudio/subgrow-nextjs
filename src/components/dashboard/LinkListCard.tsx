@@ -20,9 +20,10 @@ import {
   ArrowForwardIosTwoTone,
 } from "@mui/icons-material"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-// import { faTrash } from "@fortawesome/pro-duotone-svg-icons"
-import { faTrashCan } from "@fortawesome/sharp-solid-svg-icons"
+import { faEdit } from "@fortawesome/pro-duotone-svg-icons"
+import { faTrashCan, faGripVertical } from "@fortawesome/sharp-solid-svg-icons"
 import { useRouter } from "next/router"
+import CardTitle from "components/ui/Card/CardTitle"
 
 import { DropResult } from "react-beautiful-dnd"
 
@@ -37,10 +38,10 @@ import pick from "@cahil/utils/accessors/pick"
 // import PersonIcon from "@mui/icons-material/Person"
 // import ListItemText from "@mui/material/ListItemText"
 // import AddIcon from "@mui/icons-material/Add"
-// import { faFacebook } from "@fortawesome/free-brands-svg-icons"
 import deleteSite from "../../sites/mutations/deleteSite"
 import updateStatus from "../../sites/mutations/updateStatus"
 import { OnDragEndResponder } from "react-beautiful-dnd"
+
 const emails = ["username@gmail.com", "user02@gmail.com"]
 
 export interface SimpleDialogProps {
@@ -87,17 +88,13 @@ const LinkListCard = ({ link, index, mode, snapshot, setLinks }: any) => {
     setLinks((prev) => prev.filter((ele) => ele.id !== id))
   }
 
+  // /title={link.title}
   return (
-    <Card key={link.id} className="card" style={{ margin: 30 }}>
+    <Card key={link.id} className="card-link" style={{ margin: 30 }}>
       <CardHeader
-        title={link.title}
+        // title={handleTitle(link.title, "sm", faFacebook, "h6", mode)}
+        title={<CardTitle link={link} size="sm" variant="h6" mode={mode} />}
         // TODO: show icon for this link/site
-        // avatar={
-        //   <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-        //     R
-        //   </Avatar>
-        // }
-        // action={<FontAwesomeIcon icon={faFacebook} color={"#3f50b5"} />}
         action={
           <Switch
             checked={link.status === "active" ? true : false}
@@ -108,6 +105,7 @@ const LinkListCard = ({ link, index, mode, snapshot, setLinks }: any) => {
       />
 
       <CardContent sx={{ py: 0 }}>
+
         <Typography variant="body1" color={mode === "dark" ? "text.light" : "text.dark"}>
           <Link href={link.url} target="_blank">
             {link.url}
@@ -119,8 +117,19 @@ const LinkListCard = ({ link, index, mode, snapshot, setLinks }: any) => {
             {link.description}
           </Typography>
         )}
+
       </CardContent>
-      <CardActions disableSpacing>
+      <CardActions>
+
+        <Tooltip title="Move">
+          <IconButton
+            size="medium"
+            aria-label="move"
+          >
+            <FontAwesomeIcon icon={faGripVertical} size="sm" />
+          </IconButton>
+        </Tooltip>
+
         <Tooltip title="Delete">
           <IconButton
             size="medium"
@@ -136,8 +145,7 @@ const LinkListCard = ({ link, index, mode, snapshot, setLinks }: any) => {
             style={{ marginLeft: "auto" }}
             onClick={(e) => handleEditDetailsClick(e, link.id)}
           >
-            {/*<ArrowForwardIosTwoTone color="icon" />*/}
-            <ArrowForwardIosTwoTone />
+            <FontAwesomeIcon icon={faEdit} size="sm" />
           </IconButton>
         </Tooltip>
       </CardActions>
@@ -181,7 +189,7 @@ const LinkListCard = ({ link, index, mode, snapshot, setLinks }: any) => {
 }
 
 // https://linktr.ee/admin
-// TODO: add details
+// TODO: add image or IMAGE
 // TODO: add tooltips
 // TODO: add draggable and ordering
 

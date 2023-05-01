@@ -173,6 +173,11 @@ export default function Form(paymentIntent) {
     setPayNowAmount(e.target.value);
   }
 
+  const CustomChip = () => {
+    return (<Chip label="Save 20%" />)
+  }
+
+
   return (
     <Box>
       <Grid
@@ -245,7 +250,7 @@ export default function Form(paymentIntent) {
                       }
                       label="Annual"
                     />
-                    <Chip label="Save 20%" style={{ color: "white" }} />
+                    <CustomChip />
                     {/*TODO: perhaps a modal that allows comparison and selection of plan*/}
                     <Typography variant="body1">Compare Plans</Typography>
                     <Button onClick={handleOpen}>Select Plan</Button>
@@ -266,9 +271,8 @@ export default function Form(paymentIntent) {
                 <Stack direction="row" spacing={2}>
                   <TextField
                     label="Coupon Code"
-                    name="email"
+                    name="coupon"
                     style={{ maxWidth: 380 }}
-                    defaultValue={"amir.meshkin@gmail.com"}
                     required={true}
                     InputProps={{
                       placeholder: "Coupon Code",
