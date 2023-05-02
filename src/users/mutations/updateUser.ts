@@ -15,11 +15,8 @@ export default resolver.pipe(
   resolver.authorize(),
   async ({ id, ...data }, ctx) => {
     const site = await db.user.update({ where: { id }, data })
-    let Role: any
-    Role = Object.keys(plansConfig).filter(ele => ele === data.role);
-    console.log(Role);
 
-    await ctx.session.$setPublicData({ role: Role });
+    await ctx.session.$setPublicData({ role: data.role as Role });
     return site;
   }
 )

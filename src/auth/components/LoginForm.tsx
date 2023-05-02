@@ -51,7 +51,7 @@ export const LoginForm = (props: LoginFormProps) => {
           }
         }}
       >
-      {/*<Card sx={{ minWidth: 380, maxWidth: 420 }}>*/}
+        {/*<Card sx={{ minWidth: 380, maxWidth: 420 }}>*/}
         <CardContent>
           <Typography variant="h6" mb={3}>
             Log In
@@ -71,6 +71,9 @@ export const LoginForm = (props: LoginFormProps) => {
 
               try {
                 const user = await loginMutation(values)
+                window.localStorage.setItem("username", user.username);
+                window.localStorage.setItem("id", user.id.toString());
+                window.localStorage.setItem("role", user.role);
                 props.onSuccess?.(user)
               } catch (error: any) {
                 if (error instanceof AuthenticationError) {
