@@ -125,8 +125,6 @@ src/pages/account/upgrade.tsx
 [Webhook Testing](https://stripe.com/docs/webhooks/test)
 
 
-
-
 #### Subscription and Customer Management
 https://stripe.com/docs/customer-management
 

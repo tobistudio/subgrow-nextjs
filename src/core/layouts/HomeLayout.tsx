@@ -76,22 +76,22 @@ const HomeLayout: BlitzLayout<{
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-      <Container fixed>{header}</Container>
-
-      <Container
-        fixed
-        maxWidth="xl"
-        sx={{
-          p: {
-            xs: 0,
-            sm: 1,
-            md: 2
-          }
-        }}
-      >
-        {children}
-      </Container>
-      <Container fixed maxWidth="xl">{footer}</Container>
+        <Container fixed>{header}</Container>
+        <Container
+          fixed
+          maxWidth="xl"
+          sx={{
+            p: {
+              xs: 0,
+              sm: 1,
+              md: 2,
+              lg: 5
+            }
+          }}
+        >
+          {children}
+        </Container>
+        <Container fixed maxWidth="xl">{footer}</Container>
       </main>
     </>
   )

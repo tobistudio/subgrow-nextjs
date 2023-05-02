@@ -83,11 +83,12 @@ const AdminLayout: BlitzLayout<{
         <Container
           fixed
           sx={{
-            // bgcolor: 'background.paper',
-            // boxShadow: 1,
-            // borderRadius: 2,
-            py: 5,
-            // minWidth: 300,
+            py: {
+              xs: 0,
+              sm: 1,
+              md: 2,
+              lg: 5
+            }
           }}
         >{children}</Container>
 

@@ -72,54 +72,43 @@ const Dashboard = () => {
       </Head>
 
       <Suspense fallback={<LoadingSvg />}>
-        <Box style={{ backgroundColor: "transparent" }}>
-          <Grid container spacing={{ xs: 2, md: 3, lg: 6 }}>
-            <Grid spacing={{ xs: 12, sm: 12, md: 8, lg: 8, xl: 8 }}>
-              <Card variant="outlined">
-                <CardHeader title="Links" />
-                <CardContent>
-                  <DashboardBox sites={sites} setLinkList={setLinkList} />
-                </CardContent>
-              </Card>
-            </Grid>
 
-            <Grid spacing={{ xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }}>
-              <Card variant="outlined">
-                <CardHeader
-                  title="Preview"
+        <Grid container spacing={{ xs: 2, md: 3, lg: 4 }} className={"dash-wrapper"} sx={{ flexGrow: 1 }}>
+
+
+          <Grid spacing={{ xs: 12, sm: 12, md: 8, lg: 8, xl: 8 }}>
+            <Card variant="outlined">
+              <CardHeader title="Links" />
+              <CardContent>
+                <DashboardBox sites={sites} setLinkList={setLinkList} />
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid spacing={{ xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }}>
+            <Card variant="outlined">
+              <CardHeader
+                title="Preview"
                 //action={<Link href={Routes.EditProfilePage({profileId: profile.id})}><Tooltip title="Edit Profile"><FontAwesomeIcon icon={faGear} color="primary.light" style={{ color: fonts.gear }} /></Tooltip></Link>} // gear
                 //action={<Link href="" onClick={handleProfileEdit}><Tooltip title="Edit Profile"><FontAwesomeIcon icon={faGear} color="primary.light" style={{ color: fonts.gear }} /></Tooltip></Link>} // gear
-                />
-                <CardContent>
-
-                  {/*<Typography variant="body1" color="primary.light">*/}
-
-                  <Box
-                    display="flex"
-                    alignItems={"center"}
-                    justifyContent={"center"}
-                  >
-                    <Stack spacing={4}>
-                      {
-                        linkList.map((ele, id) => <PreviewLinkButton key={id} ele={ele} />)
-                      }
-
-                      {/*<Button*/}
-                      {/*  // onClick={Routes.EditProfilePage(session.username)}*/}
-                      {/*  // style={{ width: 200 }}*/}
-                      {/*  variant="outlined"*/}
-                      {/*  // sx={{ mt: 2 }}*/}
-                      {/*>*/}
-                      {/*  Edit Design*/}
-                      {/*</Button>*/}
-
-                    </Stack>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Grid>
+              />
+              <CardContent>
+                <Box
+                  display="flex"
+                  alignItems={"center"}
+                  justifyContent={"center"}
+                >
+                  <Stack spacing={4}>
+                    {
+                      linkList.map((ele, id) => <PreviewLinkButton key={id} ele={ele} />)
+                    }
+                  </Stack>
+                </Box>
+              </CardContent>
+            </Card>
           </Grid>
-        </Box>
+
+        </Grid>
+
       </Suspense>
     </AdminLayout>
   )
