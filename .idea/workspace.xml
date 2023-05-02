@@ -5,23 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/.examples/ThemeConfigurator/DirectionSwitcher.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.examples/ThemeConfigurator/LayoutSwitcher.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.examples/ThemeConfigurator/ModeSwitcher.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.examples/ThemeConfigurator/NavModeSwitcher.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.examples/ThemeConfigurator/ThemeSwitcher.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.examples/ThemeConfigurator/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.examples/ThemeConfigurator/indexOg.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.scripts/seed.sql" beforeDir="false" afterPath="$PROJECT_DIR$/.scripts/seed.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/layouts/AdminLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/AdminLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/layouts/HomeLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/HomeLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/auth/forgot-password.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/forgot-password.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/auth/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/auth/reset-password.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/reset-password.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/auth/signup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/signup.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -150,7 +135,7 @@
       <workItem from="1682006031719" duration="45314000" />
       <workItem from="1682110781520" duration="1023000" />
       <workItem from="1682113338059" duration="258507000" />
-      <workItem from="1682957551758" duration="14709000" />
+      <workItem from="1682957551758" duration="15910000" />
     </task>
     <servers />
   </component>

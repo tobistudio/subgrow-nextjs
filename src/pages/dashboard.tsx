@@ -72,11 +72,10 @@ const Dashboard = () => {
       </Head>
 
       <Suspense fallback={<LoadingSvg />}>
+        {/* sx={{ flexGrow: 1 }}*/}
+        <Grid sx={{ flexGrow: 1 }} xs={12} container spacing={{ xs: 2, md: 3, lg: 4 }} className={"dash-wrapper"}>
 
-        <Grid container spacing={{ xs: 2, md: 3, lg: 4 }} className={"dash-wrapper"} sx={{ flexGrow: 1 }}>
-
-
-          <Grid spacing={{ xs: 12, sm: 12, md: 8, lg: 8, xl: 8 }}>
+          <Grid direction="column" xs={12} sm={12} md={8} lg={8} xl={8} spacing={{ xs: 12, sm: 12, md: 8, lg: 8, xl: 8 }}>
             <Card variant="outlined">
               <CardHeader title="Links" />
               <CardContent>
@@ -84,7 +83,7 @@ const Dashboard = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid spacing={{ xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }}>
+          <Grid direction="column" xs={12} sm={12} md={4} lg={4} xl={4} spacing={{ xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }}>
             <Card variant="outlined">
               <CardHeader
                 title="Preview"

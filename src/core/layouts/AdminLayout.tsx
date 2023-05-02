@@ -82,6 +82,7 @@ const AdminLayout: BlitzLayout<{
         <Container fixed>{header}</Container>
         <Container
           fixed
+          // maxWidth="xl"
           sx={{
             py: {
               xs: 0,
