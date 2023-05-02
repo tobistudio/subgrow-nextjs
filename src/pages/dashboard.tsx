@@ -1,5 +1,6 @@
 import React, { Suspense } from "react"
 import { useSession } from "@blitzjs/auth"
+import { Routes } from "@blitzjs/next"
 import Head from "next/head"
 import Link from "next/link"
 import { useQuery } from "@blitzjs/rpc"
@@ -65,6 +66,7 @@ const Dashboard = () => {
   const handleProfileEdit = async (e) => {
     await router.push("/" + session.username)
   }
+
   return (
     <AdminLayout>
       <Head>
@@ -72,10 +74,9 @@ const Dashboard = () => {
       </Head>
 
       <Suspense fallback={<LoadingSvg />}>
-        {/* sx={{ flexGrow: 1 }}*/}
-        <Grid sx={{ flexGrow: 1 }} xs={12} container spacing={{ xs: 2, md: 3, lg: 4 }} className={"dash-wrapper"}>
-
-          <Grid direction="column" xs={12} sm={12} md={8} lg={8} xl={8} spacing={{ xs: 12, sm: 12, md: 8, lg: 8, xl: 8 }}>
+        {/* sx={{ flexGrow: 1 }}spacing={{ xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }}*/}
+        <Grid sx={{ flexGrow: 1 }} xs={12} container spacing={{ xs: 1, sm : 2, md: 3, lg: 4, xl: 5 }} className={"dash-wrapper"}>
+          <Grid direction="column" xs={12} sm={12} md={8} lg={8} xl={8}>
             <Card variant="outlined">
               <CardHeader title="Links" />
               <CardContent>
@@ -83,12 +84,12 @@ const Dashboard = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid direction="column" xs={12} sm={12} md={4} lg={4} xl={4} spacing={{ xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }}>
+          <Grid direction="column" xs={12} sm={12} md={4} lg={4} xl={4}>
             <Card variant="outlined">
               <CardHeader
                 title="Preview"
                 //action={<Link href={Routes.EditProfilePage({profileId: profile.id})}><Tooltip title="Edit Profile"><FontAwesomeIcon icon={faGear} color="primary.light" style={{ color: fonts.gear }} /></Tooltip></Link>} // gear
-                //action={<Link href="" onClick={handleProfileEdit}><Tooltip title="Edit Profile"><FontAwesomeIcon icon={faGear} color="primary.light" style={{ color: fonts.gear }} /></Tooltip></Link>} // gear
+                action={<Link href="" onClick={handleProfileEdit}><Tooltip title="Update Profile Design"><FontAwesomeIcon icon={faGear} color="primary.light" style={{ color: fonts.gear }} /></Tooltip></Link>} // gear
               />
               <CardContent>
                 <Box
@@ -105,9 +106,7 @@ const Dashboard = () => {
               </CardContent>
             </Card>
           </Grid>
-
         </Grid>
-
       </Suspense>
     </AdminLayout>
   )

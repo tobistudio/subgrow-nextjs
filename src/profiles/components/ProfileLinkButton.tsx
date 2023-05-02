@@ -6,12 +6,6 @@ import {
   faInstagram
 } from "@fortawesome/free-brands-svg-icons"
 
-
-
-//  style={{width: 17, height: 17}}
-// const ProfileLinkButton = ({ icon, size }) => {
-
-// export default function LinkListCard({ link, setLinks }: any) {
 export default function ProfileLinkButton({ icon, size  }: any) {
 
   let fontIcon
@@ -26,16 +20,11 @@ export default function ProfileLinkButton({ icon, size  }: any) {
       fontIcon = <FontAwesomeIcon icon={faInstagram} size={size} />
       break;
     default:
-    // code block
-      fontIcon = <FontAwesomeIcon icon={faInstagram} size={size} />
-
+      fontIcon = ''
   }
 
   return (
     <>{fontIcon}</>
   )
 
-
 }
-
-// export default ProfileLinkButton
