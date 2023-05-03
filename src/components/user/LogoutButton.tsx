@@ -1,11 +1,10 @@
 import React from "react"
 import { useMutation } from "@blitzjs/rpc"
 import logout from "../../auth/mutations/logout"
-import { Button, Icon } from "@mui/material"
+import { Button } from "@mui/material"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSignOut } from "@fortawesome/pro-duotone-svg-icons"
 import { misc } from "../../configs/colors/default"
-import classNames from "classnames"
 import {Routes} from "@blitzjs/next";
 
 export const LogoutButton = () => {

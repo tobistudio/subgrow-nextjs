@@ -80,12 +80,14 @@ declare module "@mui/material/styles" {
   interface TypographyVariants {
     poster: React.CSSProperties
     radiolabel: React.CSSProperties
+    modern1: React.CSSProperties
   }
 
   // allow configuration using `createTheme`
   interface TypographyVariantsOptions {
     poster?: React.CSSProperties
     radiolabel?: React.CSSProperties
+    modern1?: React.CSSProperties
   }
 
   interface CardVariantsOptions {
@@ -98,6 +100,7 @@ declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
     poster: true
     radiolabel: true
+    modern1: true
   }
 }
 // TypeError: Cannot read properties of undefined (reading 'muiName')
@@ -211,6 +214,11 @@ const Theme = (props) => {
       radiolabel: {
         fontSize: 12,
       },
+      modern1: {
+        fontSize: "1rem",
+        color: "#111111",
+      },
+
     },
     components: {
       MuiChip: {

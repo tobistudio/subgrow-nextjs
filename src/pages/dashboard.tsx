@@ -28,26 +28,34 @@ const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
 export const DashboardBox = ({ sites, setLinkList }) => {
 
-  return (
-    <Container
-      fixed
-      // maxWidthXs={1200} // gives error, api wrong
-      maxWidth="xl"
-    >
-      <Grid display="flex" justifyContent="center" alignItems="center">
-        <Grid
-          container
-          // spacing={{ xs: 2, md: 3, lg: 6 }}
-          minWidth={600}
-          maxWidth={1200}
-          justifyContent="center"
-          alignItems="center"
-        >
-          <AddLinkWidget sites={sites} setLinkList={setLinkList} />
-        </Grid>
-      </Grid>
-    </Container>
-  )
+  return (<AddLinkWidget sites={sites} setLinkList={setLinkList} />)
+  // return (
+  //   <Container
+  //     className="dash-cont"
+  //     fixed
+  //     // maxWidthXs={1200} // gives error, api wrong
+  //     maxWidth="xl"
+  //
+  //   >
+  //     <Grid
+  //       display="flex"
+  //       justifyContent="center"
+  //       alignItems="center"
+  //       spacing={{ xs: 0, md: 0, lg: 0 }}
+  //     >
+  //       <Grid
+  //         container
+  //         // spacing={{ xs: 2, md: 3, lg: 6 }}
+  //         // minWidth={600}
+  //         // maxWidth={1200}
+  //         justifyContent="center"
+  //         alignItems="center"
+  //       >
+  //         <AddLinkWidget sites={sites} setLinkList={setLinkList} />
+  //       </Grid>
+  //     </Grid>
+  //   </Container>
+  // )
 }
 
 const Dashboard = () => {
@@ -77,12 +85,7 @@ const Dashboard = () => {
         {/* sx={{ flexGrow: 1 }}spacing={{ xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }}*/}
         <Grid sx={{ flexGrow: 1 }} xs={12} container spacing={{ xs: 1, sm : 2, md: 3, lg: 4, xl: 5 }} className={"dash-wrapper"}>
           <Grid direction="column" xs={12} sm={12} md={8} lg={8} xl={8}>
-            <Card variant="outlined">
-              <CardHeader title="Links" />
-              <CardContent>
-                <DashboardBox sites={sites} setLinkList={setLinkList} />
-              </CardContent>
-            </Card>
+            <DashboardBox sites={sites} setLinkList={setLinkList} />
           </Grid>
           <Grid direction="column" xs={12} sm={12} md={4} lg={4} xl={4}>
             <Card variant="outlined">
