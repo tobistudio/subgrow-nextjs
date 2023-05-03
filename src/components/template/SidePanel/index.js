@@ -45,7 +45,7 @@ export const SidePanel = (props) => {
   return (
     <>
       <Drawer
-        title="Profile Design index"
+        title="Profile Design index DO NOT USE"
         isOpen={panelExpand}
         onClose={closePanel}
         onRequestClose={closePanel}

@@ -28,6 +28,8 @@ import UserInfo from "../../components/user/UserInfo";
 import classNames from "classnames";
 import {faPalette} from "@fortawesome/pro-light-svg-icons";
 import SidePanelHeaderToggle from "../../components/template/SidePanel/SidePanelHeaderToggle";
+import {useMutation} from "@blitzjs/rpc";
+import updateLinkOrder from "../../sites/mutations/updateLinkOrder";
 
 
 type LoginFormProps = {
@@ -39,8 +41,12 @@ type LoginFormProps = {
 const Modern = ({ user, profile, sites }) => {
   const theme = profile.theme
 
+  //const [userprofile, setUserprofile] = React.useState(profile)
+
+  //setUserprofile(profile)
+
   // TODO: needs to also be linked to state, for updates
-  console.log("theme", theme)
+  console.log("profile set in state", profile)
   const linkMargin = theme.linkSpacing ? theme.linkSpacing : 20
 
   const shareFb = () => {
@@ -94,10 +100,6 @@ const Modern = ({ user, profile, sites }) => {
               // style={{backgroundColor: theme.bgCardColor ? theme.bgCardColor : "rgba(206,199,199,0.8)"}}
               style={{ backgroundColor: theme.bgCardColor ? theme.bgCardColor : "rgb(189,196,215)" }}
             >
-              {/*<CardHeader*/}
-              {/*  title={profile.title ? profile.username : profile.username}*/}
-              {/*  variant={theme.titleStyle}*/}
-              {/*/>*/}
               <CardContent>
                 <Typography
                   variant={theme.titleStyle}

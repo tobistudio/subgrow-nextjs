@@ -48,6 +48,13 @@ tester
 welcome123
 
 
+LEVEL 2
+
+tester2
+tester2@gmail.com
+
+
+
 ## List of Pages and Flow
 
 ```
@@ -343,8 +350,16 @@ npx prisma db seed
 
 
 
-###
+### CONFIG
 
+Not using other ones
+
+`src/configs`
+
+[theme.config.tsx](src%2Fconfigs%2Ftheme.config.tsx)
+
+
+[plans.config.tsx](src%2Fconfigs%2Fplans.config.tsx)
 
 
 

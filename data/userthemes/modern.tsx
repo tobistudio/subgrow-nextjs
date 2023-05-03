@@ -1,5 +1,7 @@
 
-{
+// Default theme for a user profile
+export const modernTheme = {
+
   "layout": "modern",
   "titleStyle": "h6",
   "titleColor": "#000000",
@@ -14,3 +16,5 @@
   "linkWidth": "200",
   "fontFamily": ""
 }
+
+

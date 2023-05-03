@@ -12,15 +12,11 @@ import { misc } from "../../../configs/colors/default"
 export const ProfileDesignPanel = (props) => {
   const dispatch = useDispatch()
 
-  const { className, ...rest } = props
+  const { profile, className, ...rest } = props
 
   const panelExpand = useSelector((state) => state.theme.panelExpand)
 
   const direction = useSelector((state) => state.theme.direction)
-
-  const openPanel = () => {
-    dispatch(setPanelExpand(true))
-  }
 
   // TODO: Fixme state here, issue with state and buttons
   const closePanel = () => {
@@ -31,11 +27,13 @@ export const ProfileDesignPanel = (props) => {
     }
   }
 
+  console.log("ProfileDesignPanel.js",props)
   // TODO: unknown bug with buttons
   return (
     <>
       <Drawer
-        title="Customize Profile"
+        bodyClass={"body-class"}
+        title="Customize Profile AAA"
         isOpen={panelExpand}
         onClose={closePanel}
         onRequestClose={closePanel}
@@ -43,7 +41,7 @@ export const ProfileDesignPanel = (props) => {
         // width={"30%"} // TODO: percent does crazy things, this needs to depend on current device size
         width={400}
       >
-        <SidePanelContent callBackClose={closePanel} />
+        <SidePanelContent profile={profile} callBackClose={closePanel} />
       </Drawer>
     </>
   )

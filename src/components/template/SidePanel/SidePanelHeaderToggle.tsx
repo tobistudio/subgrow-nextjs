@@ -16,7 +16,7 @@ const SidePanelHeaderToggle = (props) => {
   const dispatch = useDispatch()
   const theme = useTheme();
 
-  const { type, className, ...rest } = props
+  const { profile, type, className, ...rest } = props
 
   // @ts-ignore
   const panelExpand = useSelector((state) => state.theme.panelExpand)
@@ -25,6 +25,7 @@ const SidePanelHeaderToggle = (props) => {
   const direction = useSelector((state) => state.theme.direction)
 
   const openPanel = () => {
+    console.log("openPanel");
     dispatch(setPanelExpand(true))
   }
 
@@ -36,6 +37,7 @@ const SidePanelHeaderToggle = (props) => {
     }
   }
 
+  console.log("profile in side", profile)
 
   let output
   if(type === 'button')  {
@@ -51,7 +53,7 @@ const SidePanelHeaderToggle = (props) => {
         />
       }
     >
-      <span>Edit  aaaaasdavsdfasdfasdf</span>
+      <span>Edit</span>
     </Button>
 
   } else {

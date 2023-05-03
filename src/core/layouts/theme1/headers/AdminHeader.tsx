@@ -28,7 +28,7 @@ const AdminHeader: BlitzLayout<{ title?: string; type?: string }> = ({ title, ty
           <Suspense>
             <UserInfo />
             <UserDropdown />
-            <SidePanel />
+            {/*<SidePanel />*/}
           </Suspense>
         </Grid>
       </Grid>

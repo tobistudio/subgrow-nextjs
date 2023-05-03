@@ -190,7 +190,7 @@ const ThemeConfigurator = ({ callBackClose }) => {
                     <Typography>General Settings</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <Typography>
+
 
                       <Stack spacing={4}>
                         <TextField
@@ -272,7 +272,7 @@ const ThemeConfigurator = ({ callBackClose }) => {
                         </Box>
                       </Stack>
 
-                    </Typography>
+
                   </AccordionDetails>
                 </Accordion>
                 <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
@@ -337,18 +337,6 @@ const ThemeConfigurator = ({ callBackClose }) => {
           />
         </Box>
 
-        <div>
-          <h6 className="mb-3">Nav Mode</h6>
-          <NavModeSwitcher />
-        </div>
-        <div>
-          <h6 className="mb-3">Your Account</h6>
-          <p>Subscription INfo</p>
-
-          <Button variant="outlined" startIcon={<ManageAccountsIcon />}>
-            Account Settings
-          </Button>
-        </div>
       </div>
       {/*<CopyButton />*/}
     </div>
@@ -379,5 +367,17 @@ export default ThemeConfigurator
                       <MenuItem value={30}>Thirty</MenuItem>
                     </Select>
                   </FormControl>
+
+
+
+
+        <div>
+          <h6 className="mb-3">Your Account</h6>
+          <p>Subscription INfo</p>
+
+          <Button variant="outlined" startIcon={<ManageAccountsIcon />}>
+            Account Settings
+          </Button>
+        </div>
 
  */
