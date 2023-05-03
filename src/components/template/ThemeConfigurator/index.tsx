@@ -71,7 +71,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 const ThemeConfigurator = ({ callBackClose }) => {
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
-  const [selected, setSelected] = React.useState(false)
+  const [profile, setProfile] = React.useState()
 
   const [colorTitle, setColorTitle] = React.useState("#ffffff")
 
@@ -211,27 +211,7 @@ const ThemeConfigurator = ({ callBackClose }) => {
                           size={"small"}
                         />
 
-                        <div>
-                          <MuiColorInput
-                            value={colorTitle}
-                            onChange={handleTitleColorChange}
-                            variant="outlined"
-                            name="titleColorPicker"
-                            label="Text Color"
-                            size={"small"}
-                          />
-                        </div>
 
-                        <div>
-                          <MuiColorInput
-                            value={colorBg}
-                            onChange={handleBgColorChange}
-                            variant="outlined"
-                            name="bgColorPicker"
-                            label="Background Color"
-                            size={"small"}
-                          />
-                        </div>
 
                         {/*<TextField*/}
                         {/*  name="theme.0.titleColor"*/}
@@ -257,19 +237,6 @@ const ThemeConfigurator = ({ callBackClose }) => {
                         <TextField name="theme.3.descriptionColor" label="Choice 2" value={colorBg} />
                         <TextField name="theme.2.text" label="Choice 3" />
 
-                        <Box textAlign="center">
-                          <Button
-                            variant="contained"
-                            type="submit"
-                            disabled={submitting}
-                            sx={{ width: 200 }}
-                            startIcon={
-                              <FontAwesomeIcon icon={faFloppyDisk} style={{ color: misc.fa_primary }} />
-                            }
-                          >
-                            Save Profile
-                          </Button>
-                        </Box>
                       </Stack>
 
 
@@ -280,12 +247,25 @@ const ThemeConfigurator = ({ callBackClose }) => {
                     <Typography>Collapsible Group Item #2</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <Typography>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                      malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
-                      sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                      sit amet blandit leo lobortis eget.
-                    </Typography>
+                    <Stack spacing={4}>
+                    <MuiColorInput
+                      value={colorTitle}
+                      onChange={handleTitleColorChange}
+                      variant="outlined"
+                      name="titleColorPicker"
+                      label="Text Color"
+                      size={"small"}
+                    />
+
+                    <MuiColorInput
+                      value={colorBg}
+                      onChange={handleBgColorChange}
+                      variant="outlined"
+                      name="bgColorPicker"
+                      label="Background Color"
+                      size={"small"}
+                    />
+                    </Stack>
                   </AccordionDetails>
                 </Accordion>
                 <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
@@ -304,6 +284,19 @@ const ThemeConfigurator = ({ callBackClose }) => {
 
 
 
+                <Box textAlign="center" mt={4}>
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    disabled={submitting}
+                    sx={{ width: 200 }}
+                    startIcon={
+                      <FontAwesomeIcon icon={faFloppyDisk} style={{ color: misc.fa_primary }} />
+                    }
+                  >
+                    Save
+                  </Button>
+                </Box>
 
 
               </form>

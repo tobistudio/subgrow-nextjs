@@ -5,21 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/.examples/fields.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/userthemes/modern.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/userthemes/modern.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/userthemes/modern.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/mutations/signup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/mutations/signup.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/template/SidePanel/ProfileDesignPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/SidePanel/ProfileDesignPanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/template/SidePanel/SidePanelContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/SidePanel/SidePanelContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/template/SidePanel/SidePanelHeaderToggle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/SidePanel/SidePanelHeaderToggle.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/template/SidePanel/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/SidePanel/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/template/ThemeConfigurator/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/ThemeConfigurator/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/layouts/theme1/headers/AdminHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/theme1/headers/AdminHeader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/profiles/components/ProfileForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/profiles/components/ProfileForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/profiles/layouts/modern.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/profiles/layouts/modern.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
