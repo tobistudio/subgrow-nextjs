@@ -40,7 +40,8 @@ export const ProfileDesignPanel = (props) => {
         onClose={closePanel}
         onRequestClose={closePanel}
         placement={direction === "rtl" ? "left" : "right"}
-        width={375}
+        // width={"30%"} // TODO: percent does crazy things, this needs to depend on current device size
+        width={400}
       >
         <SidePanelContent callBackClose={closePanel} />
       </Drawer>

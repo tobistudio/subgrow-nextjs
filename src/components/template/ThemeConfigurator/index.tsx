@@ -23,6 +23,50 @@ import InputLabel from "@mui/material/InputLabel"
 import MenuItem from "@mui/material/MenuItem"
 import FormControl from "@mui/material/FormControl"
 import Select, { SelectChangeEvent } from "@mui/material/Select"
+import { styled } from '@mui/material/styles';
+import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
+import MuiAccordion, { AccordionProps } from '@mui/material/Accordion';
+import MuiAccordionSummary, {
+  AccordionSummaryProps,
+} from '@mui/material/AccordionSummary';
+import MuiAccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+
+const Accordion = styled((props: AccordionProps) => (
+  <MuiAccordion disableGutters elevation={0} square {...props} />
+))(({ theme }) => ({
+  border: `1px solid ${theme.palette.divider}`,
+  '&:not(:last-child)': {
+    borderBottom: 0,
+  },
+  '&:before': {
+    display: 'none',
+  },
+}));
+
+const AccordionSummary = styled((props: AccordionSummaryProps) => (
+  <MuiAccordionSummary
+    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem' }} />}
+    {...props}
+  />
+))(({ theme }) => ({
+  backgroundColor:
+    theme.palette.mode === 'dark'
+      ? 'rgba(255, 255, 255, .05)'
+      : 'rgba(0, 0, 0, .03)',
+  flexDirection: 'row-reverse',
+  '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+    transform: 'rotate(90deg)',
+  },
+  '& .MuiAccordionSummary-content': {
+    marginLeft: theme.spacing(1),
+  },
+}));
+
+const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
+  padding: theme.spacing(2),
+  borderTop: '1px solid rgba(0, 0, 0, .125)',
+}));
 
 const ThemeConfigurator = ({ callBackClose }) => {
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -34,6 +78,13 @@ const ThemeConfigurator = ({ callBackClose }) => {
   // const [colorBg, setcolorBg] = React.useState("#ffffff")
   const [colorBg, setColorBg] = React.useState("#ffffff")
 
+
+  const [expanded, setExpanded] = React.useState<string | false>('panel1');
+
+  const handleChange =
+    (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
+      setExpanded(newExpanded ? panel : false);
+    };
   const handleTitleColorChange = (color) => {
     document.querySelectorAll(".profile-text").forEach((userItem) => {
       // @ts-ignore
@@ -48,13 +99,7 @@ const ThemeConfigurator = ({ callBackClose }) => {
     //setColorBg(color)
   }
 
-  //   let age = 9
 
-  const [age, setAge] = React.useState("")
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value)
-  }
 
   const onSubmit = async (values) => {
     await sleep(300)
@@ -90,8 +135,11 @@ const ThemeConfigurator = ({ callBackClose }) => {
         {/*</div>*/}
 
         <Box sx={{ m: 2 }}>
+
+
+
           {/*
-          TODO: everything on edit page, should go here
+
           // TODO: link to state, or update db, figure out how to get live updates to page
 
 
@@ -101,9 +149,12 @@ const ThemeConfigurator = ({ callBackClose }) => {
 
           {/*profile-main*/}
           <FinalForm
+            // data/userthemes/modern.json // TODO: load form values based on state and this default json
+
+
+
             onSubmit={onSubmit}
             validate={(values) => {
-              console.log("valuessa dfasdfsadfsadf", values)
               const errors: any = {}
               // Fixes build error
               // https://stackoverflow.com/questions/48539216/error-ts2339-property-email-does-not-exist-on-type-object
@@ -129,85 +180,132 @@ const ThemeConfigurator = ({ callBackClose }) => {
                   </Alert>
                 )}
 
-                <Stack spacing={4}>
-                  <TextField
-                    name="title"
-                    label="Profile Title"
-                    placeholder=""
-                    className="input input-md"
-                    required={true}
-                    size={"small"}
-                  />
 
-                  <TextField
-                    name="description"
-                    label="Description"
-                    //value="Test Description"
-                    placeholder=""
-                    className="input input-md"
-                    size={"small"}
-                  />
+                <Accordion
+                  TransitionProps={{ unmountOnExit: true }}
+                  expanded={expanded === 'panel1'}
+                  onChange={handleChange('panel1')}
+                >
+                  <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+                    <Typography>General Settings</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>
 
-                  <div>
-                    <MuiColorInput
-                      value={colorTitle}
-                      onChange={handleTitleColorChange}
-                      variant="outlined"
-                      name="titleColorPicker"
-                      label="Text Color"
-                      size={"small"}
-                    />
-                  </div>
+                      <Stack spacing={4}>
+                        <TextField
+                          name="title"
+                          label="Profile Title"
+                          placeholder=""
+                          className="input input-md"
+                          required={true}
+                          size={"small"}
+                        />
 
-                  <div>
-                    <MuiColorInput
-                      value={colorBg}
-                      onChange={handleBgColorChange}
-                      variant="outlined"
-                      name="bgColorPicker"
-                      label="Background Color"
-                      size={"small"}
-                    />
-                  </div>
+                        <TextField
+                          name="description"
+                          label="Description"
+                          //value="Test Description"
+                          placeholder=""
+                          className="input input-md"
+                          size={"small"}
+                        />
 
-                  {/*<TextField*/}
-                  {/*  name="theme.0.titleColor"*/}
-                  {/*  label="titleColor hidden"*/}
-                  {/*  placeholder=""*/}
-                  {/*  value={colorTitle}*/}
-                  {/*/>*/}
+                        <div>
+                          <MuiColorInput
+                            value={colorTitle}
+                            onChange={handleTitleColorChange}
+                            variant="outlined"
+                            name="titleColorPicker"
+                            label="Text Color"
+                            size={"small"}
+                          />
+                        </div>
 
-                  {/*<TextField*/}
-                  {/*  name="theme.1.descriptionColor"*/}
-                  {/*  label="descriptionColor"*/}
-                  {/*  placeholder=""*/}
-                  {/*  // type="text"*/}
-                  {/*  value={colorBg}*/}
-                  {/*/>*/}
+                        <div>
+                          <MuiColorInput
+                            value={colorBg}
+                            onChange={handleBgColorChange}
+                            variant="outlined"
+                            name="bgColorPicker"
+                            label="Background Color"
+                            size={"small"}
+                          />
+                        </div>
 
-                  {/*<Checkbox*/}
-                  {/*  {...label}*/}
-                  {/*  checked={checked}*/}
-                  {/*  onChange={handleCheck}*/}
-                  {/*/>*/}
-                  <TextField name="theme.4.titleColor" label="Choice 1" />
-                  <TextField name="theme.3.descriptionColor" label="Choice 2" value={colorBg} />
-                  <TextField name="theme.2.text" label="Choice 3" />
+                        {/*<TextField*/}
+                        {/*  name="theme.0.titleColor"*/}
+                        {/*  label="titleColor hidden"*/}
+                        {/*  placeholder=""*/}
+                        {/*  value={colorTitle}*/}
+                        {/*/>*/}
 
-                  <Box textAlign="center">
-                    <Button
-                      variant="contained"
-                      type="submit"
-                      disabled={submitting}
-                      sx={{ width: 200 }}
-                      startIcon={
-                        <FontAwesomeIcon icon={faFloppyDisk} style={{ color: misc.fa_primary }} />
-                      }
-                    >
-                      Save Profile
-                    </Button>
-                  </Box>
-                </Stack>
+                        {/*<TextField*/}
+                        {/*  name="theme.1.descriptionColor"*/}
+                        {/*  label="descriptionColor"*/}
+                        {/*  placeholder=""*/}
+                        {/*  // type="text"*/}
+                        {/*  value={colorBg}*/}
+                        {/*/>*/}
+
+                        {/*<Checkbox*/}
+                        {/*  {...label}*/}
+                        {/*  checked={checked}*/}
+                        {/*  onChange={handleCheck}*/}
+                        {/*/>*/}
+                        <TextField name="theme.4.titleColor" label="Choice 1" />
+                        <TextField name="theme.3.descriptionColor" label="Choice 2" value={colorBg} />
+                        <TextField name="theme.2.text" label="Choice 3" />
+
+                        <Box textAlign="center">
+                          <Button
+                            variant="contained"
+                            type="submit"
+                            disabled={submitting}
+                            sx={{ width: 200 }}
+                            startIcon={
+                              <FontAwesomeIcon icon={faFloppyDisk} style={{ color: misc.fa_primary }} />
+                            }
+                          >
+                            Save Profile
+                          </Button>
+                        </Box>
+                      </Stack>
+
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+                <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+                  <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
+                    <Typography>Collapsible Group Item #2</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                      malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
+                      sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+                      sit amet blandit leo lobortis eget.
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+                <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+                  <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
+                    <Typography>Collapsible Group Item #3</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                      malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
+                      sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+                      sit amet blandit leo lobortis eget.
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+
+
+
+
+
               </form>
             )}
           />
@@ -258,6 +356,12 @@ const ThemeConfigurator = ({ callBackClose }) => {
 }
 
 export default ThemeConfigurator
+
+// TODO: theme json box, and saved in state on every save
+// data/userthemes/modern.json
+
+
+
 
 /*
 

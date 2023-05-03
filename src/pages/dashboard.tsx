@@ -92,7 +92,7 @@ const Dashboard = () => {
               <CardHeader
                 title="Preview"
                 //action={<Link href={Routes.EditProfilePage({profileId: profile.id})}><Tooltip title="Edit Profile"><FontAwesomeIcon icon={faGear} color="primary.light" style={{ color: fonts.gear }} /></Tooltip></Link>} // gear
-                action={<Link href="" onClick={handleProfileEdit}><Tooltip title="Update Profile Design"><FontAwesomeIcon icon={faGear} color="primary.light" style={{ color: fonts.gear }} /></Tooltip></Link>} // gear
+                action={<Link href="" onClick={handleProfileEdit}><Tooltip title="Edit Profile Design"><FontAwesomeIcon icon={faGear} color="primary.light" style={{ color: fonts.gear }} /></Tooltip></Link>} // gear
               />
               <CardContent>
                 <Box
