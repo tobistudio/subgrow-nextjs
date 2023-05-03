@@ -284,7 +284,7 @@ const ThemeConfigurator = (props) => {
                   </AccordionSummary>
                   <AccordionDetails>
 
-                    <Stack spacing={4}>
+                    <Stack direction="row" spacing={4}>
 
                       <label>Share Buttons</label>
                       <ToggleButton
@@ -292,9 +292,11 @@ const ThemeConfigurator = (props) => {
                         value="check"
                         size="small"
                         // selected={selected}
-                        // onChange={() => {
-                        //   setSelected(!selected)
-                        // }}
+                        onChange={() => {
+                          // setSelected(!selected)
+
+                          // username.profile.showShare
+                        }}
                       >
                         <CheckIcon />
                       </ToggleButton>
