@@ -41,13 +41,20 @@ type LoginFormProps = {
 const Modern = ({ user, profile, sites }) => {
   const theme = profile.theme
 
-  //const [userprofile, setUserprofile] = React.useState(profile)
+  /*
 
+ 1 of 2 unhandled errors
+
+Unhandled Runtime Error
+Error: Too many re-renders. React limits the number of renders to prevent an infinite loop.
+   */
+  // set profile data in state
+  const [userprofile, setUserprofile] = React.useState(profile)
   //setUserprofile(profile)
 
   // TODO: needs to also be linked to state, for updates
   console.log("profile set in state", profile)
-  const linkMargin = theme.linkSpacing ? theme.linkSpacing : 20
+  const linkMargin = userprofile.theme.linkSpacing ? userprofile.theme.linkSpacing : 20
 
   const shareFb = () => {
     // provider does init
@@ -106,7 +113,7 @@ const Modern = ({ user, profile, sites }) => {
                   alignItems={theme.linkAlign ? theme.linkAlign : "center"}
                   className="profile-text"
                 >
-                  {profile.title ? profile.title : profile.username}
+                  {userprofile.title ? userprofile.title : userprofile.username}
                 </Typography>
 
                 {/*{profile.description*/}
@@ -114,9 +121,9 @@ const Modern = ({ user, profile, sites }) => {
                 {/*  : ''*/}
                 {/*}*/}
 
-                {profile.description ? (
+                {userprofile.description ? (
                   <Typography variant={theme.descriptionStyle} className="profile-text">
-                    {profile.description}
+                    {userprofile.description}
                   </Typography>
                 ) : (
                   ""
