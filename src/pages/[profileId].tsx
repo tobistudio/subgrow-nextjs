@@ -1,16 +1,15 @@
 import React, { Suspense } from "react"
 import Head from "next/head"
-import { useRouter } from "next/router"
-import { useQuery, useMutation, usePaginatedQuery } from "@blitzjs/rpc"
+import { useQuery } from "@blitzjs/rpc"
 import { useParam } from "@blitzjs/next"
 import ProfileLayout from "core/layouts/ProfileLayout"
 import getProfile from "profiles/queries/getProfile"
 import getUserForProfile from "../users/queries/getUserForProfile"
 // import getSiteForProfile from "../sites/queries/getSiteForProfile"
 import getSiteForProfileByStatus from "../sites/queries/getSiteForProfileByStatus"
-import Grid from "@mui/material/Unstable_Grid2"
-import UserInfo from "../components/user/UserInfo"
-import Logo from "../core/layouts/theme1/headers/Logo"
+// import Grid from "@mui/material/Unstable_Grid2"
+// import UserInfo from "../components/user/UserInfo"
+// import SidePanel from 'components/template/SidePanel'
 
 // TODO: tik tok video feed
 // https://open-api.tiktok.com/oauth/access_token/
@@ -59,16 +58,9 @@ export const ProfileIndex = () => {
       <Head>
         <title>{profile.title ? profile.username : profile.username}</title>
       </Head>
-      <header className="header-wrapper">
-        <Grid container spacing={0} my={1}>
-          <Grid spacing={{ xs: 12 }} display="flex" justifyContent="right" alignItems="center">
-            <Suspense>
-              <UserInfo />
-            </Suspense>
-          </Grid>
-        </Grid>
-      </header>
+
       {layoutType}
+
     </>
   )
 }

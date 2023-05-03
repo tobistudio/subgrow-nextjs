@@ -132,13 +132,6 @@ const Theme = (props) => {
         default: '#000000',
         paper: 'rgba(231,228,228,0.5)',
       },
-      action: {
-        active: 'rgba(0, 0, 0, 0.54)',
-        hover: '#000000',
-        selected: '#000000',
-        disabled: '#c2c1c1',
-        disabledBackground: 'rgba(213,210,210,0.5)',
-      },
       primary: {
         light: "#ffffff",
         main: "#3f50b5",
@@ -150,6 +143,13 @@ const Theme = (props) => {
         main: "#f44336",
         dark: "#ba000d",
         contrastText: "#000",
+      },
+      action: {
+        active: 'rgba(0, 0, 0, 0.54)',
+        hover: '#000000',
+        selected: '#000000',
+        disabled: '#c2c1c1',
+        disabledBackground: 'rgba(213,210,210,0.5)',
       },
       neutral: {
         main: '#64748B',

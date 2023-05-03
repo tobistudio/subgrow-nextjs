@@ -81,6 +81,7 @@ const AdminLayout: BlitzLayout<{
       <main>
         <Container fixed>{header}</Container>
         <Container
+          className={"admin-wrapper"}
           fixed
           // maxWidth="xl"
           sx={{

@@ -78,6 +78,7 @@ const HomeLayout: BlitzLayout<{
       <main>
         <Container fixed>{header}</Container>
         <Container
+          className={"home-wrapper"}
           fixed
           maxWidth="xl"
           sx={{

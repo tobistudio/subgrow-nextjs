@@ -5,7 +5,7 @@ import UserInfo from "../../../../components/user/UserInfo"
 import Logo from "./Logo"
 // import UserDropdownNew from "components/template/UserDropdownNew"
 import UserDropdown from "components/template/UserDropdown"
-// import SidePanel from "components/template/SidePanel"
+import SidePanel from 'components/template/SidePanel'
 //
 // import LanguageSelector from "components/template/LanguageSelector"
 // import Notification from "components/template/Notification"
@@ -28,6 +28,7 @@ const AdminHeader: BlitzLayout<{ title?: string; type?: string }> = ({ title, ty
           <Suspense>
             <UserInfo />
             <UserDropdown />
+            <SidePanel />
           </Suspense>
         </Grid>
       </Grid>

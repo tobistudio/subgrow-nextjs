@@ -34,21 +34,6 @@ export const ProfileDesignPanel = (props) => {
   // TODO: unknown bug with buttons
   return (
     <>
-      <Button
-        onClick={openPanel}
-        variant="outlined"
-        aria-label="profile"
-        startIcon={
-          <FontAwesomeIcon
-            icon={faPencil}
-            color={misc.fa_secondary}
-            style={{ width: 15, height: 15 }}
-          />
-        }
-      >
-        <span>Edit</span>
-      </Button>
-
       <Drawer
         title="Customize Profile"
         isOpen={panelExpand}
