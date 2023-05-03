@@ -26,7 +26,6 @@ export const ProfileDesignPanel = (props) => {
     }
   }
 
-  console.log("ProfileDesignPanel.js",props)
   // TODO: unknown bug with buttons
   return (
     <>

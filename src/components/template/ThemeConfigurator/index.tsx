@@ -202,52 +202,52 @@ const ThemeConfigurator = (props) => {
                   <AccordionDetails>
 
 
-                      <Stack spacing={4}>
-                        <TextField
-                          name="title"
-                          label="Profile Title"
-                          placeholder=""
-                          className="input input-md"
-                          required={true}
-                          size={"small"}
-                        />
+                    <Stack spacing={4}>
+                      <TextField
+                        name="title"
+                        label="Profile Title"
+                        placeholder=""
+                        className="input input-md"
+                        required={true}
+                        size={"small"}
+                      />
 
-                        <TextField
-                          name="description"
-                          label="Description"
-                          //value="Test Description"
-                          placeholder=""
-                          className="input input-md"
-                          size={"small"}
-                        />
+                      <TextField
+                        name="description"
+                        label="Description"
+                        //value="Test Description"
+                        placeholder=""
+                        className="input input-md"
+                        size={"small"}
+                      />
 
 
 
-                        {/*<TextField*/}
-                        {/*  name="theme.0.titleColor"*/}
-                        {/*  label="titleColor hidden"*/}
-                        {/*  placeholder=""*/}
-                        {/*  value={colorTitle}*/}
-                        {/*/>*/}
+                      {/*<TextField*/}
+                      {/*  name="theme.0.titleColor"*/}
+                      {/*  label="titleColor hidden"*/}
+                      {/*  placeholder=""*/}
+                      {/*  value={colorTitle}*/}
+                      {/*/>*/}
 
-                        {/*<TextField*/}
-                        {/*  name="theme.1.descriptionColor"*/}
-                        {/*  label="descriptionColor"*/}
-                        {/*  placeholder=""*/}
-                        {/*  // type="text"*/}
-                        {/*  value={colorBg}*/}
-                        {/*/>*/}
+                      {/*<TextField*/}
+                      {/*  name="theme.1.descriptionColor"*/}
+                      {/*  label="descriptionColor"*/}
+                      {/*  placeholder=""*/}
+                      {/*  // type="text"*/}
+                      {/*  value={colorBg}*/}
+                      {/*/>*/}
 
-                        {/*<Checkbox*/}
-                        {/*  {...label}*/}
-                        {/*  checked={checked}*/}
-                        {/*  onChange={handleCheck}*/}
-                        {/*/>*/}
-                        <TextField name="theme.4.titleColor" label="Choice 1" />
-                        <TextField name="theme.3.descriptionColor" label="Choice 2" value={colorBg} />
-                        <TextField name="theme.2.text" label="Choice 3" />
+                      {/*<Checkbox*/}
+                      {/*  {...label}*/}
+                      {/*  checked={checked}*/}
+                      {/*  onChange={handleCheck}*/}
+                      {/*/>*/}
+                      <TextField name="theme.4.titleColor" label="Choice 1" />
+                      <TextField name="theme.3.descriptionColor" label="Choice 2" value={colorBg} />
+                      <TextField name="theme.2.text" label="Choice 3" />
 
-                      </Stack>
+                    </Stack>
 
 
                   </AccordionDetails>
@@ -258,37 +258,52 @@ const ThemeConfigurator = (props) => {
                   </AccordionSummary>
                   <AccordionDetails>
                     <Stack spacing={4}>
-                    <MuiColorInput
-                      value={colorTitle}
-                      onChange={handleTitleColorChange}
-                      variant="outlined"
-                      name="titleColorPicker"
-                      label="Text Color"
-                      size={"small"}
-                    />
+                      <MuiColorInput
+                        value={colorTitle}
+                        onChange={handleTitleColorChange}
+                        variant="outlined"
+                        name="titleColorPicker"
+                        label="Text Color"
+                        size={"small"}
+                      />
 
-                    <MuiColorInput
-                      value={colorBg}
-                      onChange={handleBgColorChange}
-                      variant="outlined"
-                      name="bgColorPicker"
-                      label="Background Color"
-                      size={"small"}
-                    />
+                      <MuiColorInput
+                        value={colorBg}
+                        onChange={handleBgColorChange}
+                        variant="outlined"
+                        name="bgColorPicker"
+                        label="Background Color"
+                        size={"small"}
+                      />
                     </Stack>
                   </AccordionDetails>
                 </Accordion>
                 <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
                   <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-                    <Typography>Collapsible Group Item #3</Typography>
+                    <Typography>Social Network Options</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <Typography>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                      malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
-                      sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                      sit amet blandit leo lobortis eget.
-                    </Typography>
+
+                    <Stack spacing={4}>
+
+                      <label>Share Buttons</label>
+                      <ToggleButton
+                        aria-label="Default Profile"
+                        value="check"
+                        size="small"
+                        // selected={selected}
+                        // onChange={() => {
+                        //   setSelected(!selected)
+                        // }}
+                      >
+                        <CheckIcon />
+                      </ToggleButton>
+
+                    </Stack>
+
+
+
+
                   </AccordionDetails>
                 </Accordion>
 
@@ -347,6 +362,8 @@ const ThemeConfigurator = (props) => {
 }
 
 export default ThemeConfigurator
+
+// TODO: check level, and hide some premium features
 
 // TODO: theme json box, and saved in state on every save
 // data/userthemes/modern.json
