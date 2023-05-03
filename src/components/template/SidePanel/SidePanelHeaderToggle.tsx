@@ -16,7 +16,7 @@ const SidePanelHeaderToggle = (props) => {
   const dispatch = useDispatch()
   const theme = useTheme();
 
-  const { profile, type, className, ...rest } = props
+  const { type, className, ...rest } = props
 
   // @ts-ignore
   const panelExpand = useSelector((state) => state.theme.panelExpand)
@@ -36,8 +36,6 @@ const SidePanelHeaderToggle = (props) => {
       bodyClassList.remove("drawer-lock-scroll", "drawer-open")
     }
   }
-
-  console.log("profile in side", profile)
 
   let output
   if(type === 'button')  {

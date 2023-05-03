@@ -2,7 +2,7 @@ import AdminLayout from "../../core/layouts/AdminLayout"
 import Head from "next/head"
 import Link from "next/link"
 import { Routes } from "@blitzjs/next"
-import React, { Suspense, useLayoutEffect } from "react"
+import React, { Suspense, useLayoutEffect, useState } from "react"
 //import { ProfilesList } from "../../pages/profiles"
 import { FacebookProvider } from "react-facebook"
 import { faFacebook } from "@fortawesome/free-brands-svg-icons"
@@ -50,10 +50,13 @@ Error: Too many re-renders. React limits the number of renders to prevent an inf
    */
   // set profile data in state
   const [userprofile, setUserprofile] = React.useState(profile)
-  //setUserprofile(profile)
+
+  console.log("setting state modern userprofile", userprofile)
+  // profile = React.getProfile()
+
 
   // TODO: needs to also be linked to state, for updates
-  console.log("profile set in state", profile)
+
   const linkMargin = userprofile.theme.linkSpacing ? userprofile.theme.linkSpacing : 20
 
   const shareFb = () => {

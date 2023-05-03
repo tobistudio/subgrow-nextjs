@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useReducer, useState } from 'react';
 import ModeSwitcher from "./ModeSwitcher"
 import LayoutSwitcher from "./LayoutSwitcher"
 import ThemeSwitcher from "./ThemeSwitcher"
@@ -68,10 +68,20 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: '1px solid rgba(0, 0, 0, .125)',
 }));
 
-const ThemeConfigurator = ({ callBackClose }) => {
+const ThemeConfigurator = (props) => {
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
-  const [profile, setProfile] = React.useState()
+  //setUserprofile(profile)
+
+  //const [userprofile, dispatch] = useReducer(tasksReducer, initialTasks);
+  // const userprofile = useSelector((state) => state.userprofile)
+
+  const [userprofile, setUserprofile] = React.useState()
+
+  console.log("ThemeConfigurator. index.tsxjs", userprofile)
+
+
+
 
   const [colorTitle, setColorTitle] = React.useState("#ffffff")
 
@@ -244,7 +254,7 @@ const ThemeConfigurator = ({ callBackClose }) => {
                 </Accordion>
                 <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
                   <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-                    <Typography>Collapsible Group Item #2</Typography>
+                    <Typography>Pallete</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <Stack spacing={4}>
