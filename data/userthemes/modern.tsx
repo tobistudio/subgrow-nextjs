@@ -1,7 +1,6 @@
 
 // Default theme for a user profile
 export const modernTheme = {
-
   "layout": "modern",
   "titleStyle": "h6",
   "titleColor": "#000000",
@@ -14,7 +13,8 @@ export const modernTheme = {
   "bgColor": "#000000",
   "bgCardColor": "#021931",
   "linkWidth": "200",
-  "fontFamily": ""
+  "fontFamily": "", //
+  "showShare": true
 }
 
 

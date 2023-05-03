@@ -166,17 +166,22 @@ Error: Too many re-renders. React limits the number of renders to prevent an inf
                 {/*  Share*/}
                 {/*</ShareButton>*/}
 
-                <br />
-                <br />
-                <Button
-                  variant="contained"
-                  onClick={() => {
-                    shareFb()
-                  }}
-                  startIcon={<FontAwesomeIcon icon={faFacebook} style={{ width: 15, height: 15 }} />}
-                >
-                  <span>share</span>
-                </Button>
+
+
+                <Stack spacing={4}>
+                  {userprofile.theme.showShare &&
+                    <Button
+                      variant="contained"
+                      onClick={() => {
+                        shareFb()
+                      }}
+                      startIcon={<FontAwesomeIcon icon={faFacebook} style={{ width: 15, height: 15 }} />}
+                    >
+                      <span>share</span>
+                    </Button>
+                  }
+                </Stack>
+
 
                 {/*<FacebookProvider appId="241448415049637">*/}
                 {/*  /!*<EmbeddedPost href="https://www.facebook.com/amir.meshkin" width="500" />*!/*/}
