@@ -150,6 +150,10 @@ export default function LinkListCard({ link, setLinks }: any) {
 
     values.url = result
 
+    if (values.url === values.title) {
+      return { url: "Do not allow duplicate links with same title and url" }
+    }
+
     try {
       const site = await createSiteMutation(values)
       console.log("on submit site", site)
