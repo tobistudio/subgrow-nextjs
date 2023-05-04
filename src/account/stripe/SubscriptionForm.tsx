@@ -324,7 +324,7 @@ export default function Form(paymentIntent: { paymentIntent: string, plan: strin
                 <TextField
                   label="Coupon Code"
                   name="coupon"
-                  style={{ maxWidth: 380 }}
+                  style={{ maxWidth: 300 }}
                   required={true}
                   onChange={handleCoupon}
                   InputProps={{
