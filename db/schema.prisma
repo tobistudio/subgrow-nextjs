@@ -12,8 +12,13 @@ datasource db {
   // godaddy issues?
 }
 
+// id String @db.Uuid @default(uuid()) @id
+//   id             Int   @id @default(autoincrement())
+
 model User {
   id             Int            @id @default(autoincrement())
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
   username       String         @unique
   name           String?
   email          String         @unique
@@ -22,9 +27,7 @@ model User {
   balance        Int?
   hashedPassword String?
   role           String         @default("USER")
-  status         String         @default("active")
-  createdAt      DateTime       @default(now())
-  updatedAt      DateTime       @updatedAt
+  level          String?
   Accounts       Account[]
   Sessions       Session[]
   Files          File[]
@@ -32,10 +35,9 @@ model User {
   Messages       Message[]
   Notifications  Notification[]
   Customers      Customer[]
-  Link           Link[]
+  Site           Site[]
   Profile        Profile[]
   Token          Token[]
-  Apps           Apps[]
 }
 
 model Session {
@@ -87,14 +89,14 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
-model Link {
+model Site {
   id          String   @id @default(cuid())
   userId      Int
   url         String
   title       String?
   description String?
   order       Int      @default(0)
-  type        Linktype @default(custom)
+  type        Sitetype @default(custom)
   icon        String?
   image       String?
   status      Status   @default(active)
@@ -120,16 +122,12 @@ model Message {
 model Customer {
   id                 String       @id @default(cuid())
   userId             Int
+  companyId          String?      @unique
   salutation         String
   firstname          String
   lastname           String
   email              String?      @unique
   email_type         String?
-  level              String
-  sub_create         DateTime     @default(now())
-  sub_end            DateTime     @default(now())
-  term               String?
-  stripe_results     Json?
   phone_number       String?
   phone_number_type  String?
   street_address     String?
@@ -142,6 +140,7 @@ model Customer {
   image              String?
   total_discount     Float?
   terms_of_payment   String?
+  delivery_terms     String?
   note               String?
   createdAt          DateTime     @default(now())
   updatedAt          DateTime     @updatedAt
@@ -246,11 +245,6 @@ model TermsOfPayment {
 enum Role {
   USER
   ADMIN
-  LEVEL1
-  LEVEL2
-  LEVEL3
-  LEVEL4
-  MANAGER
 }
 
 enum Currencies {
@@ -279,7 +273,7 @@ enum Status {
   inactive
 }
 
-enum Linktype {
+enum Sitetype {
   custom
   site
   email
@@ -298,22 +292,21 @@ model Profile {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   user        User     @relation(fields: [userId], references: [id])
-  Link        Link[]
+  //username              User?   @relation(fields: [username], references: [username])
+  Site        Site[]
 }
 
-model Apps {
+model Services {
   id          Int      @id @default(autoincrement())
-  userId      Int
   name        String? // may be used later
   description String?
   order       Int      @default(0)
   api_key     String?
   api_secret  String?
   site_name   String? // facebook
-  show_feed   Boolean  @default(false)
-  show_share  Boolean  @default(false)
-  show_sub    Boolean  @default(false)
+  show_feed   Yesno    @default(no)
+  show_share  Yesno    @default(no)
+  show_sub    Yesno    @default(no)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  user        User     @relation(fields: [userId], references: [id])
 }
