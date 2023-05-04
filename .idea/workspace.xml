@@ -6,12 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/linkelstar.sql" beforeDir="false" afterPath="$PROJECT_DIR$/data/linkelstar.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/account/stripe/SubscriptionForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/stripe/SubscriptionForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/layouts/HomeLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/HomeLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/apps/facebook.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/apps/facebook.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,31 +36,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
-    &quot;database.data.extractors.current.export.id&quot;: &quot;SQL Inserts&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/amirmeshkin/_code/_business/blitz-app/.examples&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/amirmeshkin/_code/_business/blitz-app/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.SQL&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/amirmeshkin/_code/_business/blitz-app/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "true",
+    "database.data.extractors.current.export.id": "SQL Inserts",
+    "git-widget-placeholder": "develop",
+    "last_opened_file_path": "/Users/amirmeshkin/_code/_business/blitz-app/.examples",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/amirmeshkin/_code/_business/blitz-app/node_modules/prettier",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.SQL",
+    "ts.external.directory.path": "/Users/amirmeshkin/_code/_business/blitz-app/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;java.sql.Driver&quot;,
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "java.sql.Driver",
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -140,7 +136,7 @@
       <workItem from="1682110781520" duration="1023000" />
       <workItem from="1682113338059" duration="258507000" />
       <workItem from="1682957551758" duration="30153000" />
-      <workItem from="1683167141896" duration="8001000" />
+      <workItem from="1683167141896" duration="8777000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1683169784249</created>
