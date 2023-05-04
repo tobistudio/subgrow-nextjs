@@ -209,7 +209,7 @@ const ThemeConfigurator = (props) => {
 
               return errors
             }}
-            render={({ handleSubmit, form, submitting, submitError, pristine, values }) => {
+            render={({ handleSubmit, form, submitting, submitError, pristine }) => {
 
               return (
                 <form onSubmit={onSubmit} className={`banner ${submitError ? "error" : ""}`}>
