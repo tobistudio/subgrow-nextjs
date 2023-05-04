@@ -57,6 +57,8 @@ export default resolver.pipe(
 
     console.log("update", update)
     const profile = await db.profile.create({ data: input })
+    console.log("profile", profile);
+
     return profile
   }
 )
