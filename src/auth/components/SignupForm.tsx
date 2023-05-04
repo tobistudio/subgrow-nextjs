@@ -129,6 +129,9 @@ export const SignupForm = (props: SignupFormProps) => {
       const signResult = await signupMutation(values)
       // const user = await loginMutation(values)
       // props.onSuccess?.(signResult)
+      window.localStorage.setItem("username", signResult.username);
+      window.localStorage.setItem("id", signResult.id.toString());
+      window.localStorage.setItem("role", signResult.role);
       console.log("submit signResult", signResult)
       // TODO: very slow to forward to next page, needs loading
     } catch (error: any) {
@@ -166,8 +169,8 @@ export const SignupForm = (props: SignupFormProps) => {
           // backgroundColor: (mytheme: Theme) => mytheme.palette.secondary.dark,
         }
       }}
-      // style={{ minHeight: "100vh" }}
-      // pt={5}
+    // style={{ minHeight: "100vh" }}
+    // pt={5}
     >
       <Card
         sx={{
@@ -198,7 +201,7 @@ export const SignupForm = (props: SignupFormProps) => {
               // https://stackoverflow.com/questions/48539216/error-ts2339-property-email-does-not-exist-on-type-object
               const errors: any = {}
 
-              console.log("values",values);
+              console.log("values", values);
               if (!values.email) {
                 errors.email = "Email Required"
               }

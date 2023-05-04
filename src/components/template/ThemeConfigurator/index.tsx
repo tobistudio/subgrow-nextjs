@@ -79,7 +79,7 @@ const ThemeConfigurator = (props) => {
 
   const [selected, setSelected] = React.useState(true);
 
-  //setUserprofile(profile)
+  // setUserprofile(profile)
 
   //const [userprofile, dispatch] = useReducer(tasksReducer, initialTasks);
   // const userprofile = useSelector((state) => state.userprofile)
@@ -101,9 +101,14 @@ const ThemeConfigurator = (props) => {
     setColorTitle(profile.theme.titleColor);
     setColorBg(profile.theme.bgColor);
     setValues({ ...values, title: profile.title, description: profile.description })
-    console.log("---", profile.title);
-
   }, [profile]);
+
+  React.useEffect(() => {
+    setValues({ ...values, title: profile.title, description: profile.description });
+    setColorTitle(profile.theme.titleColor);
+    setColorBg(profile.theme.bgColor);
+  }
+    , [values])
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
@@ -239,7 +244,7 @@ const ThemeConfigurator = (props) => {
                           className="input input-md"
                           // required={true}
                           size={"small"}
-                          value={values.title}
+                          value={values.t}
                           onChangeCapture={handleChangeValue}
                         />
 
