@@ -101,6 +101,8 @@ const ThemeConfigurator = (props) => {
     setColorTitle(profile.theme.titleColor);
     setColorBg(profile.theme.bgColor);
     setValues({ ...values, title: profile.title, description: profile.description })
+    console.log("---", profile.title);
+
   }, [profile]);
 
   const handleChange =

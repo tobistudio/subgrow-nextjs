@@ -17,7 +17,6 @@ export default resolver.pipe(
   async ({ userId, current }) => {
 
     const profile = await db.profile.findFirst({ where: { userId } })
-    console.log("profile**********", profile);
     // if (!profile) throw new NotFoundError()
     return profile
   }
