@@ -216,6 +216,8 @@ export default function Form(paymentIntent: { paymentIntent: string, plan: strin
     //     userId: session.userId
     //   })
     // });
+
+    // TODO: dialogue boxes
     if (!coupon) { alert("Coupon is required"); return };
     let data = await fetch('/api/account/couponManage', {
       method: 'POST',
@@ -322,7 +324,7 @@ export default function Form(paymentIntent: { paymentIntent: string, plan: strin
                 <TextField
                   label="Coupon Code"
                   name="coupon"
-                  style={{ maxWidth: 380 }}
+                  style={{ maxWidth: 300 }}
                   required={true}
                   onChange={handleCoupon}
                   InputProps={{
