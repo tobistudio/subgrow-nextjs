@@ -286,25 +286,84 @@ const ThemeConfigurator = (props) => {
 
                     <Stack direction="row" spacing={4}>
 
-                      <label>Share Buttons</label>
-                      <ToggleButton
-                        aria-label="Default Profile"
-                        value="check"
-                        size="small"
-                        // selected={selected}
-                        onChange={() => {
-                          // setSelected(!selected)
+                      <div className="toggle-wrapper">
+                        <label>Share Buttons</label>
+                        <ToggleButton
+                          aria-label="Default Profile"
+                          value="check"
+                          size="small"
+                          // selected={selected}
+                          onChange={() => {
+                            // setSelected(!selected)
 
-                          // username.profile.showShare
-                        }}
-                      >
-                        <CheckIcon />
-                      </ToggleButton>
+                            // username.profile.showShare
+                          }}
+                        >
+                          <CheckIcon />
+                        </ToggleButton>
+                      </div>
+
+                      <div className="toggle-wrapper">
+                        <label>Facebook Feed</label>
+                        <ToggleButton
+                          aria-label="Default Profile"
+                          value="check"
+                          size="small"
+                          // selected={selected}
+                          onChange={() => {
+                            // setSelected(!selected)
+
+                            // username.profile.showShare
+                          }}
+                        >
+                          <CheckIcon />
+                        </ToggleButton>
+                      </div>
+
+
+                      <div className="toggle-wrapper">
+                        <label>Twitter Feed</label>
+                        <ToggleButton
+                          aria-label="Default Profile"
+                          value="check"
+                          size="small"
+                          // selected={selected}
+                          onChange={() => {
+                            // setSelected(!selected)
+
+                            // username.profile.showShare
+                          }}
+                        >
+                          <CheckIcon />
+                        </ToggleButton>
+                      </div>
+
+
+                      <div className="toggle-wrapper">
+                        <label>Instagram Feed</label>
+                        <ToggleButton
+                          aria-label="Instagram Feed"
+                          value="check"
+                          size="small"
+                          // selected={selected}
+                          onChange={() => {
+                            // setSelected(!selected)
+
+                            // username.profile.showShare
+                          }}
+                        >
+                          <CheckIcon />
+                        </ToggleButton>
+                      </div>
+
+
+
+                      {/*//TODO: depending on what services user has, show or disable buttons*/}
+
+
+
 
                     </Stack>
-
-
-
 
                   </AccordionDetails>
                 </Accordion>

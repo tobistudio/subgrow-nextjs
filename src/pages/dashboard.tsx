@@ -83,7 +83,7 @@ const Dashboard = () => {
 
       <Suspense fallback={<LoadingSvg />}>
         {/* sx={{ flexGrow: 1 }}spacing={{ xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }}*/}
-        <Grid sx={{ flexGrow: 1 }} xs={12} container spacing={{ xs: 1, sm : 2, md: 3, lg: 4, xl: 5 }} className={"dash-wrapper"}>
+        <Grid  xs={12} container spacing={{ xs: 1, sm : 2, md: 3, lg: 4, xl: 5 }} className={"dash-wrapper"}>
           <Grid direction="column" xs={12} sm={12} md={8} lg={8} xl={8}>
             <DashboardBox sites={sites} setLinkList={setLinkList} />
           </Grid>
