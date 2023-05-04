@@ -103,13 +103,6 @@ const ThemeConfigurator = (props) => {
     setValues({ ...values, title: profile.title, description: profile.description })
   }, [profile]);
 
-  React.useEffect(() => {
-    setValues({ ...values, title: profile.title, description: profile.description });
-    setColorTitle(profile.theme.titleColor);
-    setColorBg(profile.theme.bgColor);
-  }
-    , [values])
-
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
       setExpanded(newExpanded ? panel : false);
@@ -131,7 +124,9 @@ const ThemeConfigurator = (props) => {
   const onSubmit = async (e) => {
     // await sleep(300)
     e.preventDefault();
-
+    if (!values.title || !values.description) {
+      alert("Input values correctly");
+    }
     //  TODO: update profile, and this design, on the fly
     try {
       const site = await createProfileMutation({
@@ -244,7 +239,7 @@ const ThemeConfigurator = (props) => {
                           className="input input-md"
                           // required={true}
                           size={"small"}
-                          value={values.t}
+                          value={values.title}
                           onChangeCapture={handleChangeValue}
                         />
 

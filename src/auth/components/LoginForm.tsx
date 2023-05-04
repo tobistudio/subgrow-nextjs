@@ -71,6 +71,7 @@ export const LoginForm = (props: LoginFormProps) => {
 
               try {
                 const user = await loginMutation(values)
+                alert(1);
                 window.localStorage.setItem("username", user.username);
                 window.localStorage.setItem("id", user.id.toString());
                 window.localStorage.setItem("role", user.role);
