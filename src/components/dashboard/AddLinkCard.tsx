@@ -179,7 +179,7 @@ export default function LinkListCard({ link, setLinks }: any) {
   }
 
   return (
-    <Card className="card">
+    <Card variant="outlined" className="card">
       <CardHeader
         // action={
         //   <Switch
