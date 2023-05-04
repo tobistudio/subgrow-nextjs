@@ -21,14 +21,14 @@ import Grid from "@mui/material/Unstable_Grid2"
 import { PromiseReturnType } from "blitz"
 import login from "../../auth/mutations/login"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {faUser} from "@fortawesome/pro-duotone-svg-icons";
-import {misc} from "../../configs/colors/default";
+import { faUser } from "@fortawesome/pro-duotone-svg-icons";
+import { misc } from "../../configs/colors/default";
 import ProfileLinkButton from "../components/ProfileLinkButton";
 import UserInfo from "../../components/user/UserInfo";
 import classNames from "classnames";
-import {faPalette} from "@fortawesome/pro-light-svg-icons";
+import { faPalette } from "@fortawesome/pro-light-svg-icons";
 import SidePanelHeaderToggle from "../../components/template/SidePanel/SidePanelHeaderToggle";
-import {useMutation} from "@blitzjs/rpc";
+import { useMutation } from "@blitzjs/rpc";
 import updateLinkOrder from "../../sites/mutations/updateLinkOrder";
 
 

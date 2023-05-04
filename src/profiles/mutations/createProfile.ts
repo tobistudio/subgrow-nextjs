@@ -10,8 +10,8 @@ const yesno = ["yes", "no"] as const
 
 type Literal = boolean | number | string
 type Json = Literal | { [key: string]: Json } | Json[]
-const literalSchema = z.union([z.string(), z.number(), z.boolean()])
-const jsonSchema: z.ZodSchema<Json> = z.lazy(() => z.union([literalSchema, z.record(jsonSchema)]))
+// const literalSchema = z.union([z.string(), z.number(), z.boolean()])
+// const jsonSchema: z.ZodSchema<Json> = z.lazy(() => z.union([literalSchema, z.record(jsonSchema)]))
 
 const CreateProfile = z.object({
   // userId: z.number().int(),
@@ -20,11 +20,9 @@ const CreateProfile = z.object({
   username: z.string(),
   title: z.string(),
   description: z.string().optional(),
-  theme: jsonSchema,
-  widgets: z.string().optional(),
+  theme: z.any(),
+  widgets: z.any(),
   current: z.enum(yesno).default("yes"),
-  titleColor: z.string().optional(),
-  descColor: z.string().optional(),
 })
 
 export default resolver.pipe(
@@ -50,13 +48,15 @@ export default resolver.pipe(
         userId: userId,
         username: input.username,
       },
-      data: {
-        current: "no",
-      },
+      data: input
     })
 
     console.log("update", update)
-    const profile = await db.profile.create({ data: input })
-    return profile
+    if (!update) {
+      const profile = await db.profile.create({ data: input })
+      console.log("profile", profile);
+      return profile
+    }
+    return update;
   }
 )
