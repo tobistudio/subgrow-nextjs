@@ -283,9 +283,9 @@ export type Apps = {
   api_key: string | null
   api_secret: string | null
   site_name: string | null
-  show_feed: boolean
-  show_share: boolean
-  show_sub: boolean
+  show_feed: Yesno
+  show_share: Yesno
+  show_sub: Yesno
   createdAt: Date
   updatedAt: Date
 }
@@ -16945,9 +16945,9 @@ export namespace Prisma {
     api_key: string | null
     api_secret: string | null
     site_name: string | null
-    show_feed: boolean | null
-    show_share: boolean | null
-    show_sub: boolean | null
+    show_feed: Yesno | null
+    show_share: Yesno | null
+    show_sub: Yesno | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -16961,9 +16961,9 @@ export namespace Prisma {
     api_key: string | null
     api_secret: string | null
     site_name: string | null
-    show_feed: boolean | null
-    show_share: boolean | null
-    show_sub: boolean | null
+    show_feed: Yesno | null
+    show_share: Yesno | null
+    show_sub: Yesno | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -17143,9 +17143,9 @@ export namespace Prisma {
     api_key: string | null
     api_secret: string | null
     site_name: string | null
-    show_feed: boolean
-    show_share: boolean
-    show_sub: boolean
+    show_feed: Yesno
+    show_share: Yesno
+    show_sub: Yesno
     createdAt: Date
     updatedAt: Date
     _count: AppsCountAggregateOutputType | null
@@ -19361,9 +19361,9 @@ export namespace Prisma {
     api_key?: StringNullableFilter | string | null
     api_secret?: StringNullableFilter | string | null
     site_name?: StringNullableFilter | string | null
-    show_feed?: BoolFilter | boolean
-    show_share?: BoolFilter | boolean
-    show_sub?: BoolFilter | boolean
+    show_feed?: EnumYesnoFilter | Yesno
+    show_share?: EnumYesnoFilter | Yesno
+    show_sub?: EnumYesnoFilter | Yesno
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     user?: XOR<UserRelationFilter, UserWhereInput>
@@ -19423,9 +19423,9 @@ export namespace Prisma {
     api_key?: StringNullableWithAggregatesFilter | string | null
     api_secret?: StringNullableWithAggregatesFilter | string | null
     site_name?: StringNullableWithAggregatesFilter | string | null
-    show_feed?: BoolWithAggregatesFilter | boolean
-    show_share?: BoolWithAggregatesFilter | boolean
-    show_sub?: BoolWithAggregatesFilter | boolean
+    show_feed?: EnumYesnoWithAggregatesFilter | Yesno
+    show_share?: EnumYesnoWithAggregatesFilter | Yesno
+    show_sub?: EnumYesnoWithAggregatesFilter | Yesno
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
   }
@@ -20860,9 +20860,9 @@ export namespace Prisma {
     api_key?: string | null
     api_secret?: string | null
     site_name?: string | null
-    show_feed?: boolean
-    show_share?: boolean
-    show_sub?: boolean
+    show_feed?: Yesno
+    show_share?: Yesno
+    show_sub?: Yesno
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutAppsInput
@@ -20877,9 +20877,9 @@ export namespace Prisma {
     api_key?: string | null
     api_secret?: string | null
     site_name?: string | null
-    show_feed?: boolean
-    show_share?: boolean
-    show_sub?: boolean
+    show_feed?: Yesno
+    show_share?: Yesno
+    show_sub?: Yesno
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20891,9 +20891,9 @@ export namespace Prisma {
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
     site_name?: NullableStringFieldUpdateOperationsInput | string | null
-    show_feed?: BoolFieldUpdateOperationsInput | boolean
-    show_share?: BoolFieldUpdateOperationsInput | boolean
-    show_sub?: BoolFieldUpdateOperationsInput | boolean
+    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutAppsNestedInput
@@ -20908,9 +20908,9 @@ export namespace Prisma {
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
     site_name?: NullableStringFieldUpdateOperationsInput | string | null
-    show_feed?: BoolFieldUpdateOperationsInput | boolean
-    show_share?: BoolFieldUpdateOperationsInput | boolean
-    show_sub?: BoolFieldUpdateOperationsInput | boolean
+    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20924,9 +20924,9 @@ export namespace Prisma {
     api_key?: string | null
     api_secret?: string | null
     site_name?: string | null
-    show_feed?: boolean
-    show_share?: boolean
-    show_sub?: boolean
+    show_feed?: Yesno
+    show_share?: Yesno
+    show_sub?: Yesno
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20938,9 +20938,9 @@ export namespace Prisma {
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
     site_name?: NullableStringFieldUpdateOperationsInput | string | null
-    show_feed?: BoolFieldUpdateOperationsInput | boolean
-    show_share?: BoolFieldUpdateOperationsInput | boolean
-    show_sub?: BoolFieldUpdateOperationsInput | boolean
+    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20954,9 +20954,9 @@ export namespace Prisma {
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
     site_name?: NullableStringFieldUpdateOperationsInput | string | null
-    show_feed?: BoolFieldUpdateOperationsInput | boolean
-    show_share?: BoolFieldUpdateOperationsInput | boolean
-    show_sub?: BoolFieldUpdateOperationsInput | boolean
+    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -22157,11 +22157,6 @@ export namespace Prisma {
     _max?: NestedEnumYesnoFilter
   }
 
-  export type BoolFilter = {
-    equals?: boolean
-    not?: NestedBoolFilter | boolean
-  }
-
   export type AppsCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -22220,14 +22215,6 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     order?: SortOrder
-  }
-
-  export type BoolWithAggregatesFilter = {
-    equals?: boolean
-    not?: NestedBoolWithAggregatesFilter | boolean
-    _count?: NestedIntFilter
-    _min?: NestedBoolFilter
-    _max?: NestedBoolFilter
   }
 
   export type AccountCreateNestedManyWithoutUserInput = {
@@ -23218,10 +23205,6 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
-  }
-
   export type UserUpdateOneRequiredWithoutAppsNestedInput = {
     create?: XOR<UserCreateWithoutAppsInput, UserUncheckedCreateWithoutAppsInput>
     connectOrCreate?: UserCreateOrConnectWithoutAppsInput
@@ -23521,19 +23504,6 @@ export namespace Prisma {
     _count?: NestedIntFilter
     _min?: NestedEnumYesnoFilter
     _max?: NestedEnumYesnoFilter
-  }
-
-  export type NestedBoolFilter = {
-    equals?: boolean
-    not?: NestedBoolFilter | boolean
-  }
-
-  export type NestedBoolWithAggregatesFilter = {
-    equals?: boolean
-    not?: NestedBoolWithAggregatesFilter | boolean
-    _count?: NestedIntFilter
-    _min?: NestedBoolFilter
-    _max?: NestedBoolFilter
   }
 
   export type AccountCreateWithoutUserInput = {
@@ -23903,9 +23873,9 @@ export namespace Prisma {
     api_key?: string | null
     api_secret?: string | null
     site_name?: string | null
-    show_feed?: boolean
-    show_share?: boolean
-    show_sub?: boolean
+    show_feed?: Yesno
+    show_share?: Yesno
+    show_sub?: Yesno
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -23918,9 +23888,9 @@ export namespace Prisma {
     api_key?: string | null
     api_secret?: string | null
     site_name?: string | null
-    show_feed?: boolean
-    show_share?: boolean
-    show_sub?: boolean
+    show_feed?: Yesno
+    show_share?: Yesno
+    show_sub?: Yesno
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -24291,9 +24261,9 @@ export namespace Prisma {
     api_key?: StringNullableFilter | string | null
     api_secret?: StringNullableFilter | string | null
     site_name?: StringNullableFilter | string | null
-    show_feed?: BoolFilter | boolean
-    show_share?: BoolFilter | boolean
-    show_sub?: BoolFilter | boolean
+    show_feed?: EnumYesnoFilter | Yesno
+    show_share?: EnumYesnoFilter | Yesno
+    show_sub?: EnumYesnoFilter | Yesno
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
   }
@@ -26533,9 +26503,9 @@ export namespace Prisma {
     api_key?: string | null
     api_secret?: string | null
     site_name?: string | null
-    show_feed?: boolean
-    show_share?: boolean
-    show_sub?: boolean
+    show_feed?: Yesno
+    show_share?: Yesno
+    show_sub?: Yesno
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -26935,9 +26905,9 @@ export namespace Prisma {
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
     site_name?: NullableStringFieldUpdateOperationsInput | string | null
-    show_feed?: BoolFieldUpdateOperationsInput | boolean
-    show_share?: BoolFieldUpdateOperationsInput | boolean
-    show_sub?: BoolFieldUpdateOperationsInput | boolean
+    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -26950,9 +26920,9 @@ export namespace Prisma {
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
     site_name?: NullableStringFieldUpdateOperationsInput | string | null
-    show_feed?: BoolFieldUpdateOperationsInput | boolean
-    show_share?: BoolFieldUpdateOperationsInput | boolean
-    show_sub?: BoolFieldUpdateOperationsInput | boolean
+    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -26965,9 +26935,9 @@ export namespace Prisma {
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
     site_name?: NullableStringFieldUpdateOperationsInput | string | null
-    show_feed?: BoolFieldUpdateOperationsInput | boolean
-    show_share?: BoolFieldUpdateOperationsInput | boolean
-    show_sub?: BoolFieldUpdateOperationsInput | boolean
+    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

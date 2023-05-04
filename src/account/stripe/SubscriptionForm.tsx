@@ -38,7 +38,7 @@ import updateUser from 'users/mutations/updateUser';
 import updateSession from 'users/mutations/updateSession';
 import createCustomers from 'users/mutations/createCustomers';
 import { log } from 'console';
-import {DashboardBox} from "../../pages/dashboard";
+import { DashboardBox } from "../../pages/dashboard";
 
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
@@ -203,7 +203,7 @@ export default function Form(paymentIntent: { paymentIntent: string, plan: strin
     //
 
 
-    return (<Chip label={`Save ${plansConfig[paymentIntent.plan].annual_discount} %` } />)
+    return (<Chip label={`Save ${plansConfig[paymentIntent.plan].annual_discount} %`} />)
   }
 
   const sendCoupon = async () => {
@@ -236,7 +236,7 @@ export default function Form(paymentIntent: { paymentIntent: string, plan: strin
 
   return (
 
-    <Grid xs={12} container spacing={{ xs: 1, sm : 2, md: 3, lg: 4, xl: 5 }}>
+    <Grid xs={12} container spacing={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}>
       <Grid direction="column" xs={12} sm={12} md={8} lg={8} xl={8}>
         <Card variant="outlined">
           <CardHeader title="Payment" />
@@ -277,7 +277,7 @@ export default function Form(paymentIntent: { paymentIntent: string, plan: strin
       </Grid>
       <Grid direction="column" xs={12} sm={12} md={4} lg={4} xl={4}>
         <Card variant="outlined">
-          <CardHeader title={upgradePlanName} />
+          <CardHeader title={upgradePlanName + " - " + paymentIntent.plan} />
 
           <CardContent>
             <Box >
@@ -361,7 +361,7 @@ export default function Form(paymentIntent: { paymentIntent: string, plan: strin
                       style={{ width: 15, height: 15 }}
                     />
                   }
-                  // onClick={createSubscription(stripe)}
+                // onClick={createSubscription(stripe)}
                 >
                   PAY ${payNowAmount} USD now
                 </Button>
