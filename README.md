@@ -15,9 +15,6 @@ blitz dev
 
 npx node --loader ts-node/esm "db/seed.ts"
 
-
-
-
 ```
 
 ## WORKFLOW
@@ -64,7 +61,7 @@ tester2@gmail.com
 │   │   ├── /apps
 │   │   ├── /apps/facebook
 │   │   ├── /pricing
-│   │   ├── /upgrade
+│   │   ├── /account/upgrade
 │   │   ├── /account/settings
 │   │          -> link to stripe subscription manager
 ├── landing
@@ -404,3 +401,16 @@ https://linktr.ee/s/pricing/
 12. Custom Header/Footer
 
 ![exampl1.png](.examples%2Fexampl1.png)
+
+
+
+
+
+1. getSession() gives you session
+2. On subscription creation, update User table.  ROLE = LEVELx
+3. Recreate the session, update publicData with new role
+4. Automatically fill out email field, if possible
+5.
+
+
+

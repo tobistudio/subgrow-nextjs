@@ -38,6 +38,7 @@ import updateUser from 'users/mutations/updateUser';
 import updateSession from 'users/mutations/updateSession';
 import createCustomers from 'users/mutations/createCustomers';
 import { log } from 'console';
+import {DashboardBox} from "../../pages/dashboard";
 
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
@@ -49,8 +50,6 @@ export default function Form(paymentIntent: { paymentIntent: string, plan: strin
   const [updateSessionMutation] = useMutation(updateSession);
   const [createCustomerMutation] = useMutation(createCustomers);
   const [paymentResult, setPaymentResult] = React.useState({});
-  //const user = getCurrentUser(NULL,session)
-
   const [email, setEmail] = useState('');
   const [locAmount, setLocAmount] = useState(0);
   const [message, setMessage] = useState('');
@@ -155,7 +154,6 @@ export default function Form(paymentIntent: { paymentIntent: string, plan: strin
     }
 
     await updateUserMutation({ id: session.userId, role: paymentIntent.plan });
-
     await updateSessionMutation({ id: session.userId, publicData: paymentIntent.plan });
     await createCustomerMutation({ userId: session.userId, email: email, term: term, stripe_results: paymentResult, salutation: '', firstname: '', lastname: '', level: paymentIntent.plan, user: session.userId });
 
@@ -197,8 +195,15 @@ export default function Form(paymentIntent: { paymentIntent: string, plan: strin
     setPayNowAmount(e.target.value);
   }
 
+  // TODO: comes from planConfig
   const CustomChip = () => {
-    return (<Chip label="Save 20%" />)
+
+
+    // annual_discount
+    //
+
+
+    return (<Chip label={`Save ${plansConfig[paymentIntent.plan].annual_discount} %` } />)
   }
 
   const sendCoupon = async () => {
@@ -228,150 +233,162 @@ export default function Form(paymentIntent: { paymentIntent: string, plan: strin
   }
 
   return (
+
+    <Grid xs={12} container spacing={{ xs: 1, sm : 2, md: 3, lg: 4, xl: 5 }}>
+      <Grid direction="column" xs={12} sm={12} md={8} lg={8} xl={8}>
+        <Card variant="outlined">
+          <CardHeader title="Payment" />
+          <CardContent >
+            <form id="payment-form" onSubmit={createSubscription}>
+              {/* <Typography variant="body1">Amount</Typography>
+                <input type="number" value={payNowAmount} onChange={handleAmount} className='AmountInput' /> */}
+              <LinkAuthenticationElement
+                id="link-authentication-element"
+                onChange={handleChange}
+              />
+              <PaymentElement id="payment-element" options={{
+                layout: "tabs",
+              }} />
+              {/* <CardElement id="payment-elements" options={paymentElementOptions} /> */}
+
+              <Stack direction="row" spacing={2} mt={5}>
+                <Button id="back" variant={"outlined"}>
+                  GO BACK
+                </Button>
+                {isLoading ? (
+                  <LoadingSvg />
+                ) : (
+                  <Button
+                    disabled={isLoading || !stripe || !elements}
+                    id="submit"
+                    variant={"contained"}
+                    onClick={createSubscription}
+                  >
+                    PAY NOW
+                  </Button>
+                )}
+              </Stack>
+              {message && <div id="payment-message">{message}</div>}
+            </form>
+          </CardContent>
+        </Card>
+      </Grid>
+      <Grid direction="column" xs={12} sm={12} md={4} lg={4} xl={4}>
+        <Card variant="outlined">
+          <CardHeader title={upgradePlanName} />
+
+          <CardContent>
+            <Box >
+              <FormControl>
+                <FormLabel id="demo-radio-buttons-group-label">Billing Cycle</FormLabel>
+                <RadioGroup
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  defaultValue={term}
+                  name="radio-buttons-group"
+                >
+                  <FormControlLabel
+                    value="Monthly"
+                    control={
+                      <Radio />
+                    }
+                    label="Monthly"
+                  />
+                  <FormControlLabel
+                    value="Annual"
+                    control={
+                      <Radio />
+                    }
+                    label="Annual"
+                  />
+                  <CustomChip />
+                  {/*TODO: perhaps a modal that allows comparison and selection of plan*/}
+                  <Typography variant="body1" margin={2}></Typography>
+                  <Typography variant="h4">Compare Plans</Typography>
+                  <Button onClick={handleOpen}>Select Plan</Button>
+                  <PlanModal setPlan={paymentIntent.setPlan} open={open} setOpen={setOpen} />
+                </RadioGroup>
+              </FormControl>
+            </Box>
+            <Box mt={5}>
+              <Stack direction="row" spacing={2}>
+                <Typography variant="body1">{upgradePlanName}</Typography>
+
+                <Typography variant="body1">${payNowAmount}</Typography>
+              </Stack>
+            </Box>
+
+            <Box mt={5}>
+              <Stack direction="row" spacing={2}>
+                <TextField
+                  label="Coupon Code"
+                  name="coupon"
+                  style={{ maxWidth: 380 }}
+                  required={true}
+                  onChange={handleCoupon}
+                  InputProps={{
+                    placeholder: "Coupon Code",
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <FontAwesomeIcon
+                          icon={faUser}
+                          color={misc.fa_primary}
+                          style={{ width: 15, height: 15 }}
+                        />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <Button onClick={sendCoupon} variant="contained">Add Coupon</Button>
+              </Stack>
+            </Box>
+            {errorMessage && errorMessage}
+
+            <Box mt={5}>
+              {isLoading ? (
+                <LoadingSvg />
+              ) : (
+                <Button
+                  disabled={isLoading || !stripe}
+                  id="submit"
+                  variant={"contained"}
+                  onClick={createSubscription}
+                  startIcon={
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      color={misc.fa_primary}
+                      style={{ width: 15, height: 15 }}
+                    />
+                  }
+                  // onClick={createSubscription(stripe)}
+                >
+                  PAY ${payNowAmount} USD now
+                </Button>
+              )}
+            </Box>
+          </CardContent>
+        </Card>
+      </Grid>
+    </Grid>
+
+  )
+}
+
+/*
     <Box>
       <Grid
         container
         spacing={{ xs: 2, md: 3, lg: 6 }}
       >
         <Grid spacing={{ xs: 12, sm: 12, md: 12, lg: 12, xl: 12 }} style={{ width: '60%' }}>
-          <Card variant="outlined">
-            <CardHeader title="Payment" />
-            <CardContent >
-              <form id="payment-form" onSubmit={createSubscription}>
-                {/* <Typography variant="body1">Amount</Typography>
-                <input type="number" value={payNowAmount} onChange={handleAmount} className='AmountInput' /> */}
-                <LinkAuthenticationElement
-                  id="link-authentication-element"
-                  onChange={handleChange}
-                />
-                <PaymentElement id="payment-element" options={{
-                  layout: "tabs",
-                }} />
-                {/* <CardElement id="payment-elements" options={paymentElementOptions} /> */}
 
-                <Stack direction="row" spacing={2} mt={5}>
-                  <Button id="back" variant={"outlined"}>
-                    GO BACK
-                  </Button>
-                  {isLoading ? (
-                    <LoadingSvg />
-                  ) : (
-                    <Button
-                      disabled={isLoading || !stripe || !elements}
-                      id="submit"
-                      variant={"contained"}
-                      onClick={createSubscription}
-                    >
-                      PAY NOW
-                    </Button>
-                  )}
-                </Stack>
-                {message && <div id="payment-message">{message}</div>}
-              </form>
-            </CardContent>
-          </Card>
         </Grid>
 
         <Grid spacing={{ xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }}>
-          <Card variant="outlined">
-            <CardHeader title={upgradePlanName} />
 
-            <CardContent>
-              <Box >
-                <FormControl>
-                  <FormLabel id="demo-radio-buttons-group-label">Billing Cycle</FormLabel>
-                  <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue={term}
-                    name="radio-buttons-group"
-                  >
-                    <FormControlLabel
-                      value="Monthly"
-                      control={
-                        <Radio />
-                      }
-                      label="Monthly"
-                    />
-                    <FormControlLabel
-                      value="Annual"
-                      control={
-                        <Radio />
-                      }
-                      label="Annual"
-                    />
-                    <CustomChip />
-                    {/*TODO: perhaps a modal that allows comparison and selection of plan*/}
-                    <Typography variant="body1" margin={2}></Typography>
-                    <Typography variant="h4">Compare Plans</Typography>
-                    <Button onClick={handleOpen}>Select Plan</Button>
-                    <PlanModal setPlan={paymentIntent.setPlan} open={open} setOpen={setOpen} />
-                  </RadioGroup>
-                </FormControl>
-              </Box>
-              <Box mt={5}>
-                <Stack direction="row" spacing={2}>
-                  <Typography variant="body1">{upgradePlanName}</Typography>
-
-                  <Typography variant="body1">${payNowAmount}</Typography>
-                </Stack>
-              </Box>
-
-              <Box mt={5}>
-                <Stack direction="row" spacing={2}>
-                  <TextField
-                    label="Coupon Code"
-                    name="coupon"
-                    style={{ maxWidth: 380 }}
-                    required={true}
-                    onChange={handleCoupon}
-                    InputProps={{
-                      placeholder: "Coupon Code",
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <FontAwesomeIcon
-                            icon={faUser}
-                            color={misc.fa_primary}
-                            style={{ width: 15, height: 15 }}
-                          />
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                  <Button onClick={sendCoupon} variant="contained">Add Coupon</Button>
-                </Stack>
-              </Box>
-              {errorMessage && errorMessage}
-
-              <Box mt={5}>
-                {isLoading ? (
-                  <LoadingSvg />
-                ) : (
-                  <Button
-                    disabled={isLoading || !stripe}
-                    id="submit"
-                    variant={"contained"}
-                    onClick={createSubscription}
-                    startIcon={
-                      <FontAwesomeIcon
-                        icon={faUser}
-                        color={misc.fa_primary}
-                        style={{ width: 15, height: 15 }}
-                      />
-                    }
-                  // onClick={createSubscription(stripe)}
-                  >
-                    PAY ${payNowAmount} USD now
-                  </Button>
-                )}
-              </Box>
-            </CardContent>
-          </Card>
         </Grid>
       </Grid>
     </Box>
-  )
-}
-
+ */
 
 // TODO: make sure name of plan, level1, 2, and 3 are passed in via URL
 
