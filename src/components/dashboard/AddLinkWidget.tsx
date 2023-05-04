@@ -37,7 +37,8 @@ export default function AddLinkWidget({ sites, setLinkList }) {
   }
 
   return (
-    <Stack minWidth={600} maxWidth={800} spacing={4}>
+    // <Stack minWidth={600} maxWidth={800} spacing={4}>
+    <Stack spacing={4}>
       {components.map((link, i) => (
         <AddLinkCard key={i} link={link} setLinks={setLinks} />
       ))}

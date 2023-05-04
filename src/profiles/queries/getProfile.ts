@@ -1,4 +1,4 @@
-import { NotFoundError } from "blitz"
+import { NotFoundError, log } from "blitz"
 import { resolver } from "@blitzjs/rpc"
 import db from "../../../db"
 import { z } from "zod"
@@ -16,8 +16,9 @@ export default resolver.pipe(
   // resolver.authorize(),
   async ({ userId, current }) => {
 
-    const profile = await db.profile.findFirst({ where: { userId, current } })
-    if (!profile) throw new NotFoundError()
+    const profile = await db.profile.findFirst({ where: { userId } })
+    console.log("profile**********", profile);
+    // if (!profile) throw new NotFoundError()
     return profile
   }
 )

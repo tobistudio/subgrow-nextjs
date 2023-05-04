@@ -83,10 +83,11 @@ const HomeLayout: BlitzLayout<{
           maxWidth="xl"
           sx={{
             p: {
-              xs: 0,
-              sm: 1,
-              md: 2,
-              lg: 5
+              xs: 1,
+              sm: 2,
+              md: 3,
+              lg: 4,
+              xl: 5
             }
           }}
         >

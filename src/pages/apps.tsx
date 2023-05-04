@@ -116,13 +116,15 @@ export const AppsList = () => {
 
   return (
     <div>
-
-      {/*<Typography variant="h1">*/}
+      <Grid xs={12}>
+        <Typography sx={{width: "100%", flexGrow: 1 }} variant="h1center" align="center">Available Apps</Typography>
+      </Grid>
+       {/*<Typography variant="h1">*/}
       {/* */}
       {/*</Typography> sm={4} md={4}*/}
 
       {/*columns={{ xs: 4, sm: 8, md: 12 }}*/}
-      <Grid container spacing={{ xs: 2, md: 3 }}>
+      <Grid xs={12} container spacing={{ xs: 1, sm : 2, md: 3, lg: 4, xl: 5 }}>
 
         {apps.map((app) => (
           <Grid xs={12} sm={6} md={4} lg={3} key={app.id} spacing={5}>
@@ -132,6 +134,7 @@ export const AppsList = () => {
                 // sx={{ display: 'flex' }}
                 // variant={app.added ? "owned" : "outlined"}
                 // raised
+                className={app.added ? "owned" : ""}
                 variant={app.added ? "outlined" : "elevation"}
                 // variant={"outlined"}
                 sx={{ display: 'flex' }}
@@ -211,13 +214,9 @@ const AppsPage = () => {
       </Head>
 
       <Suspense fallback={<LoadingSvg />}>
-        <Box>
-          <Typography variant="h1">Available Apps</Typography>
 
           <AppsList />
 
-
-        </Box>
       </Suspense>
 
     </HomeLayout>

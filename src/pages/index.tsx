@@ -32,8 +32,24 @@ const Home: BlitzPage = () => {
   return (
     <HomeLayout title="Home" type="home">
       <main>
-        <Hero />
+        {/*<Hero />*/}
 
+        <ul>
+
+
+          <li>
+            <Link href="http://localhost:3000/dashboard">dashboard</Link>
+          </li>
+
+
+          <li>
+            <Link href="http://localhost:3000/apps">apps</Link>
+          </li>
+
+          <li>
+            <Link href="http://localhost:3000/tester">profile</Link>
+          </li>
+        </ul>
         {/*<PricingTables />*/}
       </main>
     </HomeLayout>

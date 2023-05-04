@@ -80,6 +80,7 @@ declare module "@mui/material/styles" {
   interface TypographyVariants {
     poster: React.CSSProperties
     radiolabel: React.CSSProperties
+    h1center: React.CSSProperties
     modern1: React.CSSProperties
   }
 
@@ -87,6 +88,7 @@ declare module "@mui/material/styles" {
   interface TypographyVariantsOptions {
     poster?: React.CSSProperties
     radiolabel?: React.CSSProperties
+    h1center?: React.CSSProperties
     modern1?: React.CSSProperties
   }
 
@@ -100,6 +102,7 @@ declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
     poster: true
     radiolabel: true
+    h1center: true
     modern1: true
   }
 }
@@ -213,6 +216,12 @@ const Theme = (props) => {
       },
       radiolabel: {
         fontSize: 12,
+      },
+      h1center: {
+        fontSize: 24,
+        fontWeight: 700,
+        marginBottom: 15,
+        textAlign: "center"
       },
       modern1: {
         fontSize: "1rem",

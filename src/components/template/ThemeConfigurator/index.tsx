@@ -32,6 +32,7 @@ import MuiAccordionSummary, {
   AccordionSummaryProps,
 } from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
+import getProfile from "profiles/queries/getProfile"
 import Typography from '@mui/material/Typography';
 
 const Accordion = styled((props: AccordionProps) => (
@@ -71,6 +72,9 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }));
 
 const ThemeConfigurator = (props) => {
+
+  const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id), current: "yes" })
+
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
   const [selected, setSelected] = React.useState(true);
@@ -94,8 +98,10 @@ const ThemeConfigurator = (props) => {
   const [expanded, setExpanded] = React.useState<string | false>('panel1');
 
   React.useEffect(() => {
-
-  })
+    setColorTitle(profile.theme.titleColor);
+    setColorBg(profile.theme.bgColor);
+    setValues({ ...values, title: profile.title, description: profile.description })
+  }, [profile]);
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
@@ -115,17 +121,30 @@ const ThemeConfigurator = (props) => {
     setColorBg(color)
   }
 
-
-
   const onSubmit = async (e) => {
     // await sleep(300)
-    // alert("save");
-
     e.preventDefault();
 
     //  TODO: update profile, and this design, on the fly
     try {
-      const site = await createProfileMutation({ userId: Number(localStorage.id), username: localStorage.username, title: values!.title, description: values!.description, theme: [], widgets: "", titleColor: colorTitle, descColor: colorBg })
+      const site = await createProfileMutation({
+        userId: Number(localStorage.id), username: localStorage.username, title: values!.title, description: values!.description, theme: {
+          titleColor: colorTitle,
+          bgColor: colorBg,
+          showShare: selected,
+          layout: 'modern',
+          linkType: 'button',
+          linkAlign: 'center',
+          linkStyle: 'link-modern',
+          linkWidth: '200',
+          fontFamily: '',
+          titleStyle: 'h6',
+          bgCardColor: '#3c6794',
+          linkSpacing: 20,
+          descriptionColor: '#1a1313',
+          descriptionStyle: 'body1'
+        }, widgets: {}, current: 'yes'
+      })
       console.log("on submit site", site)
       //
     } catch (error) {
@@ -142,8 +161,6 @@ const ThemeConfigurator = (props) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   }
 
-  const checked = true
-
   let code = `<div>test</div>`
 
   return (
@@ -159,12 +176,9 @@ const ThemeConfigurator = (props) => {
 
         <Box sx={{ m: 2 }}>
 
-
-
           {/*
 
           // TODO: link to state, or update db, figure out how to get live updates to page
-
 
 
            */}
@@ -173,8 +187,6 @@ const ThemeConfigurator = (props) => {
           {/*profile-main*/}
           <FinalForm
             // data/userthemes/modern.json // TODO: load form values based on state and this default json
-
-
 
             onSubmit={onSubmit}
             validate={(values) => {

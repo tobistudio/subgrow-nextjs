@@ -1,5 +1,4 @@
 import { Routes } from "@blitzjs/next"
-import Link from "next/link"
 import { useSession } from "@blitzjs/auth"
 import { useRouter } from "next/router"
 import {useMutation, useQuery} from "@blitzjs/rpc"
@@ -7,10 +6,9 @@ import AdminLayout from "core/layouts/AdminLayout"
 import { CreateFacebookSchema } from "apps/schemas"
 import createService from "apps/mutations/createService"
 import getThisUsersApps from "apps/queries/getThisUsersApps"
-import { ServiceForm, FORM_ERROR } from "apps/components/ServiceForm"
+import { FORM_ERROR } from "apps/components/ServiceForm"
 import React, { Suspense, useState } from "react"
 import {
-  Container,
   Box,
   Button,
   Card,
@@ -19,12 +17,15 @@ import {
   Stack,
   Autocomplete,
   Alert,
+  ToggleButton,
+  FormControlLabel,
+  FormGroup,
+  Checkbox
 } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2"
 import { Form as FinalForm, Field } from "react-final-form"
 import { TextField } from "mui-rff"
 import Head from "next/head"
-import { DashboardBox } from "../dashboard"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faFacebook,
@@ -33,14 +34,9 @@ import {
   faTwitter,
   faGoogle,
 } from "@fortawesome/free-brands-svg-icons"
-import AddLinkCard from "../../components/dashboard/AddLinkCard"
-// import {useSession} from "@blitzjs/auth";
-import {useAuthorizeIf} from "@blitzjs/auth";
+
 import {plansConfig} from "../../configs/plans.config";
-import {faRightToBracket} from "@fortawesome/pro-duotone-svg-icons";
-import {misc} from "../../configs/colors/default";
-import PreviewLinkButton from "../../components/dashboard/PreviewLinkButton";
-import getSiteForProfile from "../../sites/queries/getSiteForProfile";
+import CheckIcon from "@mui/icons-material/Check";
 
 const NewFacebookPage = () => {
   const router = useRouter()
@@ -48,6 +44,7 @@ const NewFacebookPage = () => {
   // const session = useAuthorizeIf("ROLE","USer")
   const [createServiceMutation] = useMutation(createService)
   const [components, setComponents] = useState(["Sample Component"])
+
 
 
   console.log("session",session.role);
@@ -61,6 +58,7 @@ const NewFacebookPage = () => {
 
   // TODO: need to figure out if this user has already added. new/edit takes place on this page
 
+  // const [show_sub, setShowFeedSelected] = React.useState()
 
 
   const handleAddService = (service_site) => {
@@ -121,11 +119,10 @@ const NewFacebookPage = () => {
                           {/*  renderInput={(params) => <TextField {...params} label="Movie" />}*/}
                           {/*/>*/}
 
-                          {/*<TextField*/}
+                          {/*<HiddenTextField*/}
                           {/*  label="Site Name"*/}
-                          {/*  name="name"*/}
-                          {/*  style={{maxWidth: 380}}*/}
-                          {/*  size="small"*/}
+                          {/*  name="site_name"*/}
+                          {/*  value="facebook"*/}
                           {/*/>*/}
 
                           <TextField
@@ -141,6 +138,94 @@ const NewFacebookPage = () => {
                             style={{ maxWidth: 380 }}
                             size="small"
                           />
+
+                          <TextField
+                            label="API Secret"
+                            name="api_secret"
+                            style={{ maxWidth: 380 }}
+                            size="small"
+                          />
+
+                          <FormGroup row>
+                            <FormControlLabel
+                              control={
+                                <Checkbox
+                                  checked={apps.show_sub === 'yes'}
+                                  // onChange={this.handleChange('checkedA')}
+                                  value="show_sub"
+                                />
+                              }
+                              label="Show Subscribers"
+                            />
+                            <FormControlLabel
+                              control={
+                                <Checkbox
+                                  checked={apps.show_feed === 'yes'}
+                                  // onChange={this.handleChange('checkedB')}
+                                  value="Show Facebook Feed"
+                                  color="primary"
+                                />
+                              }
+                              label="Show Facebook Feed"
+                            />
+
+                            <FormControlLabel
+                              control={
+                                <Checkbox
+                                  checked={apps.show_share === 'yes'}
+                                  // onChange={this.handleChange('checkedB')}
+                                  value="show_share"
+                                  color="primary"
+                                />
+                              }
+                              label="Show Share Buttons"
+                            />
+
+                          </FormGroup>
+
+
+                          {/*<label>Show Facebook Feed</label>*/}
+                          {/*<ToggleButton*/}
+                          {/*  aria-label="Show Facebook Feed"*/}
+                          {/*  value="check"*/}
+                          {/*  size="small"*/}
+                          {/*  name="show_sub"*/}
+                          {/*  selected={apps.show_sub === 'yes'}*/}
+                          {/*  // onClick*/}
+                          {/*  // selected={showFeedSelected}*/}
+
+                          {/*  // onChange={() => {*/}
+                          {/*  //   setShowFeedSelected(!showFeedSelected)*/}
+                          {/*  // }}*/}
+                          {/*>*/}
+                          {/*  <CheckIcon />*/}
+                          {/*</ToggleButton>*/}
+
+
+                          {/*<ToggleButton*/}
+                          {/*  aria-label="Show Share Buttons"*/}
+                          {/*  value="check"*/}
+                          {/*  size="small"*/}
+                          {/*  // selected={selected}*/}
+                          {/*  // onChange={() => {*/}
+                          {/*  //   setSelected(!selected)*/}
+                          {/*  // }}*/}
+                          {/*>*/}
+                          {/*  <CheckIcon />*/}
+                          {/*</ToggleButton>*/}
+
+                          {/*<ToggleButton*/}
+                          {/*  aria-label="Show Subscriber Count"*/}
+                          {/*  value="check"*/}
+                          {/*  size="small"*/}
+                          {/*  // selected={selected}*/}
+                          {/*  // onChange={() => {*/}
+                          {/*  //   setSelected(!selected)*/}
+                          {/*  // }}*/}
+                          {/*>*/}
+                          {/*  <CheckIcon />*/}
+                          {/*</ToggleButton>*/}
+
 
                           <Box textAlign="center">
                             <Button

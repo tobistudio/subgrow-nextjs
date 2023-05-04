@@ -31,13 +31,13 @@ const styles = (theme) => ({
 export const ProfileIndex = () => {
   const profileId = useParam("profileId", "string")
   const [user] = useQuery(getUserForProfile, { username: profileId })
-  const [profile]: any = useQuery(getProfile, { userId: user.id, current: "yes" })
+  const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id), current: "yes" })
   const [sites] = useQuery(getSiteForProfileByStatus, { userId: user.id, status: "active" })
 
   // TODO: the layout should be set on dashboard page.
   let userLayout
   // shouldn't be empty, for errors
-  if (profile.theme.layout) {
+  if (profile?.theme?.layout) {
     userLayout = profile.theme.layout
   } else {
     userLayout = "modern"
