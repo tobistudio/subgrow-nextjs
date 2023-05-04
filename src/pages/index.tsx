@@ -47,6 +47,12 @@ const Home: BlitzPage = () => {
           </li>
 
           <li>
+            <Link href="http://localhost:3000/apps/facebook">Add Facebook App</Link>
+          </li>
+
+
+
+          <li>
             <Link href="http://localhost:3000/tester">profile</Link>
           </li>
         </ul>

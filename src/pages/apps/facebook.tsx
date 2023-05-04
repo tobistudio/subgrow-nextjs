@@ -43,9 +43,7 @@ const NewFacebookPage = () => {
   const session = useSession()
   // const session = useAuthorizeIf("ROLE","USer")
   const [createServiceMutation] = useMutation(createService)
-  const [components, setComponents] = useState(["Sample Component"])
-
-
+  // const [components, setComponents] = useState(["Sample Component"])
 
   console.log("session",session.role);
 
@@ -59,10 +57,41 @@ const NewFacebookPage = () => {
   // TODO: need to figure out if this user has already added. new/edit takes place on this page
 
   // const [show_sub, setShowFeedSelected] = React.useState()
+  // const [show_sub, setShowFeedSelected] = React.useState()
+  const [showFeed, setShowFeed] = React.useState(apps.show_feed)
+  const [showSub, setShowSub] = React.useState(apps.show_sub)
 
 
-  const handleAddService = (service_site) => {
-    setComponents([...components, "Sample Component " + service_site])
+  // const handleCheckChange = (e, {field}) => {
+  const handleCheckChange = (e) => {
+
+    console.log("field",e.target.checked);
+    console.log("value",e.target.value);
+
+
+    switch(e.target.value) {
+      case "show_sub":
+        console.log("field",e.target.checked);
+        setShowSub(e.target.checked)
+
+        break;
+      case "show_feed":
+
+        setShowFeed(e.target.checked)
+        break;
+      default:
+      // code block
+    }
+
+
+    // [name]: event.target.checked
+    // set state
+  }
+  const handleAddService = (app) => {
+
+    console.log("app",app);
+
+    // setComponents([...components, "Sample Component " + service_site])
   }
 
   return (
@@ -150,8 +179,10 @@ const NewFacebookPage = () => {
                             <FormControlLabel
                               control={
                                 <Checkbox
-                                  checked={apps.show_sub === 'yes'}
-                                  // onChange={this.handleChange('checkedA')}
+                                  // checked={apps.show_sub === 'yes'}
+                                  checked={showSub === 'yes'}
+                                  onChange={handleCheckChange}
+                                  name="show_sub"
                                   value="show_sub"
                                 />
                               }
@@ -161,7 +192,7 @@ const NewFacebookPage = () => {
                               control={
                                 <Checkbox
                                   checked={apps.show_feed === 'yes'}
-                                  // onChange={this.handleChange('checkedB')}
+                                  onChange={handleCheckChange}
                                   value="Show Facebook Feed"
                                   color="primary"
                                 />
@@ -173,7 +204,7 @@ const NewFacebookPage = () => {
                               control={
                                 <Checkbox
                                   checked={apps.show_share === 'yes'}
-                                  // onChange={this.handleChange('checkedB')}
+                                  onChange={handleCheckChange}
                                   value="show_share"
                                   color="primary"
                                 />
@@ -298,28 +329,5 @@ const NewFacebookPage = () => {
 // if logged in, send to pricing tables page for upgrade /pricing page
 // if not logged in, login "/auth/login"
 NewFacebookPage.authenticate = { role: plansConfig.level3.role, redirectTo: "/account/upgrade" }
-
-
-
-// level 3 package ONLY
-// /Users/amirmeshkin/_code/_business/blitz-app/src/configs/plans.config.tsx
-
-
-
-
-// /apps/facebook
-
-
-
-// NewFacebookPage.authenticate = true
-//
-// // user must be logged in
-// Page.authenticate = true
-// // user must be logged in and redirects otherwise
-// Page.authenticate = { redirectTo: "/login" }
-
-// user must be logged in with role "ADMIN" and redirects otherwise
-// Page.authenticate = { role: "ADMIN", redirectTo: "/login" }
-
 
 export default NewFacebookPage

@@ -1,15 +1,28 @@
 import { z } from "zod"
 
+// Different schemas for different apps keeps things flexible
 export const CreateFacebookSchema = z.object({
   id: z.number(),
-  name: z.string(),
-  site_name: z.string(),
-  description: z.string(),
+  name: z.string(), // label
+  site_name: z.string().default("facebook"), // lowercase slug defaults to facebook
+  // description: z.string(), // no need
   api_key: z.string(),
   api_secret: z.string(),
-  show_feed: z.string(),
-  show_share: z.string(),
-  show_sub: z.string(),
+  show_feed: z.boolean(), // show feed
+  show_share: z.boolean(), // show share buttons
+  show_sub: z.boolean(), // forget???
+})
+
+export const CreateInstagramSchema = z.object({
+  id: z.number(),
+  name: z.string(), // label
+  site_name: z.string().default("instagram"), // lowercase slug defaults to facebook
+  // description: z.string(), // no need
+  api_key: z.string(),
+  api_secret: z.string(),
+  show_feed: z.boolean(), // show feed
+  show_share: z.boolean(), // show share buttons
+  show_sub: z.boolean(), // forget???
 })
 
 export const CreateServiceSchema = z.object({
@@ -19,9 +32,9 @@ export const CreateServiceSchema = z.object({
   description: z.string(),
   api_key: z.string(),
   api_secret: z.string(),
-  show_feed: z.string(),
-  show_share: z.string(),
-  show_sub: z.string(),
+  show_feed: z.boolean(),
+  show_share: z.boolean(),
+  show_sub: z.boolean(),
 })
 
 

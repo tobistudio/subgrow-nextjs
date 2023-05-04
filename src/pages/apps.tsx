@@ -70,7 +70,7 @@ export const AppsList = () => {
       "added": 1,
       "name": "Twitter",
       "description": "Connect to facebook to display feeds",
-      "site_name": "facebook",
+      "site_name": "twitter",
       "icon": <FontAwesomeIcon icon={faTwitter} color={brands.twitter} size="2xl" />
     },
     {
@@ -110,8 +110,9 @@ export const AppsList = () => {
   // getThisUsersApps
 
 
-  const handleAddAppClick = async (event: React.MouseEvent<HTMLElement>, id) => {
-    await router.push(Routes.EditSitePage({ siteId: id }))
+  const handleAddAppClick = async (event: React.MouseEvent<HTMLElement>, site_name) => {
+    // await router.push(Routes.EditSitePage({ siteId: id }))
+    await router.push("/apps/" + site_name)
   }
 
   return (
@@ -138,7 +139,7 @@ export const AppsList = () => {
                 variant={app.added ? "outlined" : "elevation"}
                 // variant={"outlined"}
                 sx={{ display: 'flex' }}
-                onClick={(e) => handleAddAppClick(e, app.id)}
+                onClick={(e) => handleAddAppClick(e, app.site_name)}
               >
                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                   <CardContent sx={{ flexDirection: 'end' }}>

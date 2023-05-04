@@ -310,9 +310,9 @@ model Apps {
   api_key     String?
   api_secret  String?
   site_name   String? // facebook
-  show_feed   Yesno    @default(no)
-  show_share  Yesno    @default(no)
-  show_sub    Yesno    @default(no)
+  show_feed   Boolean  @default(false)
+  show_share  Boolean  @default(false)
+  show_sub    Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   user        User     @relation(fields: [userId], references: [id])
