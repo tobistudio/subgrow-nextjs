@@ -18,8 +18,6 @@ export type PrismaPromise<T> = runtime.Types.Public.PrismaPromise<T>
  */
 export type User = {
   id: number
-  createdAt: Date
-  updatedAt: Date
   username: string
   name: string | null
   email: string
@@ -28,7 +26,9 @@ export type User = {
   balance: number | null
   hashedPassword: string | null
   role: string
-  level: string | null
+  status: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 /**
@@ -83,17 +83,17 @@ export type Account = {
 }
 
 /**
- * Model Site
+ * Model Link
  * 
  */
-export type Site = {
+export type Link = {
   id: string
   userId: number
   url: string
   title: string | null
   description: string | null
   order: number
-  type: Sitetype
+  type: Linktype
   icon: string | null
   image: string | null
   status: Status
@@ -120,12 +120,16 @@ export type Message = {
 export type Customer = {
   id: string
   userId: number
-  companyId: string | null
   salutation: string
   firstname: string
   lastname: string
   email: string | null
   email_type: string | null
+  level: string
+  sub_create: Date
+  sub_end: Date
+  term: string | null
+  stripe_results: Prisma.JsonValue | null
   phone_number: string | null
   phone_number_type: string | null
   street_address: string | null
@@ -138,7 +142,6 @@ export type Customer = {
   image: string | null
   total_discount: number | null
   terms_of_payment: string | null
-  delivery_terms: string | null
   note: string | null
   createdAt: Date
   updatedAt: Date
@@ -268,11 +271,12 @@ export type Profile = {
 }
 
 /**
- * Model Services
+ * Model Apps
  * 
  */
-export type Services = {
+export type Apps = {
   id: number
+  userId: number
   name: string | null
   description: string | null
   order: number
@@ -294,14 +298,14 @@ export type Services = {
 // Based on
 // https://github.com/microsoft/TypeScript/issues/3192#issuecomment-261720275
 
-export const Sitetype: {
+export const Linktype: {
   custom: 'custom',
   site: 'site',
   email: 'email',
   phone: 'phone'
 };
 
-export type Sitetype = (typeof Sitetype)[keyof typeof Sitetype]
+export type Linktype = (typeof Linktype)[keyof typeof Linktype]
 
 
 export const Status: {
@@ -479,14 +483,14 @@ export class PrismaClient<
   get account(): Prisma.AccountDelegate<GlobalReject>;
 
   /**
-   * `prisma.site`: Exposes CRUD operations for the **Site** model.
+   * `prisma.link`: Exposes CRUD operations for the **Link** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Sites
-    * const sites = await prisma.site.findMany()
+    * // Fetch zero or more Links
+    * const links = await prisma.link.findMany()
     * ```
     */
-  get site(): Prisma.SiteDelegate<GlobalReject>;
+  get link(): Prisma.LinkDelegate<GlobalReject>;
 
   /**
    * `prisma.message`: Exposes CRUD operations for the **Message** model.
@@ -589,14 +593,14 @@ export class PrismaClient<
   get profile(): Prisma.ProfileDelegate<GlobalReject>;
 
   /**
-   * `prisma.services`: Exposes CRUD operations for the **Services** model.
+   * `prisma.apps`: Exposes CRUD operations for the **Apps** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Services
-    * const services = await prisma.services.findMany()
+    * // Fetch zero or more Apps
+    * const apps = await prisma.apps.findMany()
     * ```
     */
-  get services(): Prisma.ServicesDelegate<GlobalReject>;
+  get apps(): Prisma.AppsDelegate<GlobalReject>;
 }
 
 export namespace Prisma {
@@ -1070,7 +1074,7 @@ export namespace Prisma {
     Session: 'Session',
     Token: 'Token',
     Account: 'Account',
-    Site: 'Site',
+    Link: 'Link',
     Message: 'Message',
     Customer: 'Customer',
     BankAccount: 'BankAccount',
@@ -1081,7 +1085,7 @@ export namespace Prisma {
     InvoiceItems: 'InvoiceItems',
     TermsOfPayment: 'TermsOfPayment',
     Profile: 'Profile',
-    Services: 'Services'
+    Apps: 'Apps'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1255,9 +1259,10 @@ export namespace Prisma {
     Messages: number
     Notifications: number
     Customers: number
-    Site: number
+    Link: number
     Profile: number
     Token: number
+    Apps: number
   }
 
   export type UserCountOutputTypeSelect = {
@@ -1268,9 +1273,10 @@ export namespace Prisma {
     Messages?: boolean
     Notifications?: boolean
     Customers?: boolean
-    Site?: boolean
+    Link?: boolean
     Profile?: boolean
     Token?: boolean
+    Apps?: boolean
   }
 
   export type UserCountOutputTypeGetPayload<S extends boolean | null | undefined | UserCountOutputTypeArgs> =
@@ -1397,11 +1403,11 @@ export namespace Prisma {
 
 
   export type ProfileCountOutputType = {
-    Site: number
+    Link: number
   }
 
   export type ProfileCountOutputTypeSelect = {
-    Site?: boolean
+    Link?: boolean
   }
 
   export type ProfileCountOutputTypeGetPayload<S extends boolean | null | undefined | ProfileCountOutputTypeArgs> =
@@ -1463,8 +1469,6 @@ export namespace Prisma {
 
   export type UserMinAggregateOutputType = {
     id: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
     username: string | null
     name: string | null
     email: string | null
@@ -1473,13 +1477,13 @@ export namespace Prisma {
     balance: number | null
     hashedPassword: string | null
     role: string | null
-    level: string | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
     id: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
     username: string | null
     name: string | null
     email: string | null
@@ -1488,13 +1492,13 @@ export namespace Prisma {
     balance: number | null
     hashedPassword: string | null
     role: string | null
-    level: string | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type UserCountAggregateOutputType = {
     id: number
-    createdAt: number
-    updatedAt: number
     username: number
     name: number
     email: number
@@ -1503,7 +1507,9 @@ export namespace Prisma {
     balance: number
     hashedPassword: number
     role: number
-    level: number
+    status: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -1520,8 +1526,6 @@ export namespace Prisma {
 
   export type UserMinAggregateInputType = {
     id?: true
-    createdAt?: true
-    updatedAt?: true
     username?: true
     name?: true
     email?: true
@@ -1530,13 +1534,13 @@ export namespace Prisma {
     balance?: true
     hashedPassword?: true
     role?: true
-    level?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type UserMaxAggregateInputType = {
     id?: true
-    createdAt?: true
-    updatedAt?: true
     username?: true
     name?: true
     email?: true
@@ -1545,13 +1549,13 @@ export namespace Prisma {
     balance?: true
     hashedPassword?: true
     role?: true
-    level?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type UserCountAggregateInputType = {
     id?: true
-    createdAt?: true
-    updatedAt?: true
     username?: true
     name?: true
     email?: true
@@ -1560,7 +1564,9 @@ export namespace Prisma {
     balance?: true
     hashedPassword?: true
     role?: true
-    level?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -1653,8 +1659,6 @@ export namespace Prisma {
 
   export type UserGroupByOutputType = {
     id: number
-    createdAt: Date
-    updatedAt: Date
     username: string
     name: string | null
     email: string
@@ -1663,7 +1667,9 @@ export namespace Prisma {
     balance: number | null
     hashedPassword: string | null
     role: string
-    level: string | null
+    status: string
+    createdAt: Date
+    updatedAt: Date
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -1687,8 +1693,6 @@ export namespace Prisma {
 
   export type UserSelect = {
     id?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
     username?: boolean
     name?: boolean
     email?: boolean
@@ -1697,7 +1701,9 @@ export namespace Prisma {
     balance?: boolean
     hashedPassword?: boolean
     role?: boolean
-    level?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     Accounts?: boolean | User$AccountsArgs
     Sessions?: boolean | User$SessionsArgs
     Files?: boolean | User$FilesArgs
@@ -1705,9 +1711,10 @@ export namespace Prisma {
     Messages?: boolean | User$MessagesArgs
     Notifications?: boolean | User$NotificationsArgs
     Customers?: boolean | User$CustomersArgs
-    Site?: boolean | User$SiteArgs
+    Link?: boolean | User$LinkArgs
     Profile?: boolean | User$ProfileArgs
     Token?: boolean | User$TokenArgs
+    Apps?: boolean | User$AppsArgs
     _count?: boolean | UserCountOutputTypeArgs
   }
 
@@ -1720,9 +1727,10 @@ export namespace Prisma {
     Messages?: boolean | User$MessagesArgs
     Notifications?: boolean | User$NotificationsArgs
     Customers?: boolean | User$CustomersArgs
-    Site?: boolean | User$SiteArgs
+    Link?: boolean | User$LinkArgs
     Profile?: boolean | User$ProfileArgs
     Token?: boolean | User$TokenArgs
+    Apps?: boolean | User$AppsArgs
     _count?: boolean | UserCountOutputTypeArgs
   }
 
@@ -1740,9 +1748,10 @@ export namespace Prisma {
         P extends 'Messages' ? Array < MessageGetPayload<S['include'][P]>>  :
         P extends 'Notifications' ? Array < NotificationGetPayload<S['include'][P]>>  :
         P extends 'Customers' ? Array < CustomerGetPayload<S['include'][P]>>  :
-        P extends 'Site' ? Array < SiteGetPayload<S['include'][P]>>  :
+        P extends 'Link' ? Array < LinkGetPayload<S['include'][P]>>  :
         P extends 'Profile' ? Array < ProfileGetPayload<S['include'][P]>>  :
         P extends 'Token' ? Array < TokenGetPayload<S['include'][P]>>  :
+        P extends 'Apps' ? Array < AppsGetPayload<S['include'][P]>>  :
         P extends '_count' ? UserCountOutputTypeGetPayload<S['include'][P]> :  never
   } 
     : S extends { select: any } & (UserArgs | UserFindManyArgs)
@@ -1755,9 +1764,10 @@ export namespace Prisma {
         P extends 'Messages' ? Array < MessageGetPayload<S['select'][P]>>  :
         P extends 'Notifications' ? Array < NotificationGetPayload<S['select'][P]>>  :
         P extends 'Customers' ? Array < CustomerGetPayload<S['select'][P]>>  :
-        P extends 'Site' ? Array < SiteGetPayload<S['select'][P]>>  :
+        P extends 'Link' ? Array < LinkGetPayload<S['select'][P]>>  :
         P extends 'Profile' ? Array < ProfileGetPayload<S['select'][P]>>  :
         P extends 'Token' ? Array < TokenGetPayload<S['select'][P]>>  :
+        P extends 'Apps' ? Array < AppsGetPayload<S['select'][P]>>  :
         P extends '_count' ? UserCountOutputTypeGetPayload<S['select'][P]> :  P extends keyof User ? User[P] : never
   } 
       : User
@@ -2144,11 +2154,13 @@ export namespace Prisma {
 
     Customers<T extends User$CustomersArgs= {}>(args?: Subset<T, User$CustomersArgs>): Prisma.PrismaPromise<Array<CustomerGetPayload<T>>| Null>;
 
-    Site<T extends User$SiteArgs= {}>(args?: Subset<T, User$SiteArgs>): Prisma.PrismaPromise<Array<SiteGetPayload<T>>| Null>;
+    Link<T extends User$LinkArgs= {}>(args?: Subset<T, User$LinkArgs>): Prisma.PrismaPromise<Array<LinkGetPayload<T>>| Null>;
 
     Profile<T extends User$ProfileArgs= {}>(args?: Subset<T, User$ProfileArgs>): Prisma.PrismaPromise<Array<ProfileGetPayload<T>>| Null>;
 
     Token<T extends User$TokenArgs= {}>(args?: Subset<T, User$TokenArgs>): Prisma.PrismaPromise<Array<TokenGetPayload<T>>| Null>;
+
+    Apps<T extends User$AppsArgs= {}>(args?: Subset<T, User$AppsArgs>): Prisma.PrismaPromise<Array<AppsGetPayload<T>>| Null>;
 
     private get _document();
     /**
@@ -2653,23 +2665,23 @@ export namespace Prisma {
 
 
   /**
-   * User.Site
+   * User.Link
    */
-  export type User$SiteArgs = {
+  export type User$LinkArgs = {
     /**
-     * Select specific fields to fetch from the Site
+     * Select specific fields to fetch from the Link
      */
-    select?: SiteSelect | null
+    select?: LinkSelect | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SiteInclude | null
-    where?: SiteWhereInput
-    orderBy?: Enumerable<SiteOrderByWithRelationInput>
-    cursor?: SiteWhereUniqueInput
+    include?: LinkInclude | null
+    where?: LinkWhereInput
+    orderBy?: Enumerable<LinkOrderByWithRelationInput>
+    cursor?: LinkWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: Enumerable<SiteScalarFieldEnum>
+    distinct?: Enumerable<LinkScalarFieldEnum>
   }
 
 
@@ -2712,6 +2724,27 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Enumerable<TokenScalarFieldEnum>
+  }
+
+
+  /**
+   * User.Apps
+   */
+  export type User$AppsArgs = {
+    /**
+     * Select specific fields to fetch from the Apps
+     */
+    select?: AppsSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AppsInclude | null
+    where?: AppsWhereInput
+    orderBy?: Enumerable<AppsOrderByWithRelationInput>
+    cursor?: AppsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Enumerable<AppsScalarFieldEnum>
   }
 
 
@@ -5763,36 +5796,36 @@ export namespace Prisma {
 
 
   /**
-   * Model Site
+   * Model Link
    */
 
 
-  export type AggregateSite = {
-    _count: SiteCountAggregateOutputType | null
-    _avg: SiteAvgAggregateOutputType | null
-    _sum: SiteSumAggregateOutputType | null
-    _min: SiteMinAggregateOutputType | null
-    _max: SiteMaxAggregateOutputType | null
+  export type AggregateLink = {
+    _count: LinkCountAggregateOutputType | null
+    _avg: LinkAvgAggregateOutputType | null
+    _sum: LinkSumAggregateOutputType | null
+    _min: LinkMinAggregateOutputType | null
+    _max: LinkMaxAggregateOutputType | null
   }
 
-  export type SiteAvgAggregateOutputType = {
+  export type LinkAvgAggregateOutputType = {
     userId: number | null
     order: number | null
   }
 
-  export type SiteSumAggregateOutputType = {
+  export type LinkSumAggregateOutputType = {
     userId: number | null
     order: number | null
   }
 
-  export type SiteMinAggregateOutputType = {
+  export type LinkMinAggregateOutputType = {
     id: string | null
     userId: number | null
     url: string | null
     title: string | null
     description: string | null
     order: number | null
-    type: Sitetype | null
+    type: Linktype | null
     icon: string | null
     image: string | null
     status: Status | null
@@ -5801,14 +5834,14 @@ export namespace Prisma {
     profileId: string | null
   }
 
-  export type SiteMaxAggregateOutputType = {
+  export type LinkMaxAggregateOutputType = {
     id: string | null
     userId: number | null
     url: string | null
     title: string | null
     description: string | null
     order: number | null
-    type: Sitetype | null
+    type: Linktype | null
     icon: string | null
     image: string | null
     status: Status | null
@@ -5817,7 +5850,7 @@ export namespace Prisma {
     profileId: string | null
   }
 
-  export type SiteCountAggregateOutputType = {
+  export type LinkCountAggregateOutputType = {
     id: number
     userId: number
     url: number
@@ -5835,17 +5868,17 @@ export namespace Prisma {
   }
 
 
-  export type SiteAvgAggregateInputType = {
+  export type LinkAvgAggregateInputType = {
     userId?: true
     order?: true
   }
 
-  export type SiteSumAggregateInputType = {
+  export type LinkSumAggregateInputType = {
     userId?: true
     order?: true
   }
 
-  export type SiteMinAggregateInputType = {
+  export type LinkMinAggregateInputType = {
     id?: true
     userId?: true
     url?: true
@@ -5861,7 +5894,7 @@ export namespace Prisma {
     profileId?: true
   }
 
-  export type SiteMaxAggregateInputType = {
+  export type LinkMaxAggregateInputType = {
     id?: true
     userId?: true
     url?: true
@@ -5877,7 +5910,7 @@ export namespace Prisma {
     profileId?: true
   }
 
-  export type SiteCountAggregateInputType = {
+  export type LinkCountAggregateInputType = {
     id?: true
     userId?: true
     url?: true
@@ -5894,129 +5927,129 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type SiteAggregateArgs = {
+  export type LinkAggregateArgs = {
     /**
-     * Filter which Site to aggregate.
+     * Filter which Link to aggregate.
      */
-    where?: SiteWhereInput
+    where?: LinkWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Sites to fetch.
+     * Determine the order of Links to fetch.
      */
-    orderBy?: Enumerable<SiteOrderByWithRelationInput>
+    orderBy?: Enumerable<LinkOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: SiteWhereUniqueInput
+    cursor?: LinkWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Sites from the position of the cursor.
+     * Take `±n` Links from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Sites.
+     * Skip the first `n` Links.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Sites
+     * Count returned Links
     **/
-    _count?: true | SiteCountAggregateInputType
+    _count?: true | LinkCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: SiteAvgAggregateInputType
+    _avg?: LinkAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: SiteSumAggregateInputType
+    _sum?: LinkSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: SiteMinAggregateInputType
+    _min?: LinkMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: SiteMaxAggregateInputType
+    _max?: LinkMaxAggregateInputType
   }
 
-  export type GetSiteAggregateType<T extends SiteAggregateArgs> = {
-        [P in keyof T & keyof AggregateSite]: P extends '_count' | 'count'
+  export type GetLinkAggregateType<T extends LinkAggregateArgs> = {
+        [P in keyof T & keyof AggregateLink]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateSite[P]>
-      : GetScalarType<T[P], AggregateSite[P]>
+        : GetScalarType<T[P], AggregateLink[P]>
+      : GetScalarType<T[P], AggregateLink[P]>
   }
 
 
 
 
-  export type SiteGroupByArgs = {
-    where?: SiteWhereInput
-    orderBy?: Enumerable<SiteOrderByWithAggregationInput>
-    by: SiteScalarFieldEnum[]
-    having?: SiteScalarWhereWithAggregatesInput
+  export type LinkGroupByArgs = {
+    where?: LinkWhereInput
+    orderBy?: Enumerable<LinkOrderByWithAggregationInput>
+    by: LinkScalarFieldEnum[]
+    having?: LinkScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: SiteCountAggregateInputType | true
-    _avg?: SiteAvgAggregateInputType
-    _sum?: SiteSumAggregateInputType
-    _min?: SiteMinAggregateInputType
-    _max?: SiteMaxAggregateInputType
+    _count?: LinkCountAggregateInputType | true
+    _avg?: LinkAvgAggregateInputType
+    _sum?: LinkSumAggregateInputType
+    _min?: LinkMinAggregateInputType
+    _max?: LinkMaxAggregateInputType
   }
 
 
-  export type SiteGroupByOutputType = {
+  export type LinkGroupByOutputType = {
     id: string
     userId: number
     url: string
     title: string | null
     description: string | null
     order: number
-    type: Sitetype
+    type: Linktype
     icon: string | null
     image: string | null
     status: Status
     createdAt: Date
     updatedAt: Date
     profileId: string | null
-    _count: SiteCountAggregateOutputType | null
-    _avg: SiteAvgAggregateOutputType | null
-    _sum: SiteSumAggregateOutputType | null
-    _min: SiteMinAggregateOutputType | null
-    _max: SiteMaxAggregateOutputType | null
+    _count: LinkCountAggregateOutputType | null
+    _avg: LinkAvgAggregateOutputType | null
+    _sum: LinkSumAggregateOutputType | null
+    _min: LinkMinAggregateOutputType | null
+    _max: LinkMaxAggregateOutputType | null
   }
 
-  type GetSiteGroupByPayload<T extends SiteGroupByArgs> = Prisma.PrismaPromise<
+  type GetLinkGroupByPayload<T extends LinkGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickArray<SiteGroupByOutputType, T['by']> &
+      PickArray<LinkGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof SiteGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof LinkGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], SiteGroupByOutputType[P]>
-            : GetScalarType<T[P], SiteGroupByOutputType[P]>
+              : GetScalarType<T[P], LinkGroupByOutputType[P]>
+            : GetScalarType<T[P], LinkGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type SiteSelect = {
+  export type LinkSelect = {
     id?: boolean
     userId?: boolean
     url?: boolean
@@ -6035,177 +6068,177 @@ export namespace Prisma {
   }
 
 
-  export type SiteInclude = {
+  export type LinkInclude = {
     user?: boolean | UserArgs
     Profile?: boolean | ProfileArgs
   }
 
-  export type SiteGetPayload<S extends boolean | null | undefined | SiteArgs> =
+  export type LinkGetPayload<S extends boolean | null | undefined | LinkArgs> =
     S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
-    S extends true ? Site :
+    S extends true ? Link :
     S extends undefined ? never :
-    S extends { include: any } & (SiteArgs | SiteFindManyArgs)
-    ? Site  & {
+    S extends { include: any } & (LinkArgs | LinkFindManyArgs)
+    ? Link  & {
     [P in TruthyKeys<S['include']>]:
         P extends 'user' ? UserGetPayload<S['include'][P]> :
         P extends 'Profile' ? ProfileGetPayload<S['include'][P]> | null :  never
   } 
-    : S extends { select: any } & (SiteArgs | SiteFindManyArgs)
+    : S extends { select: any } & (LinkArgs | LinkFindManyArgs)
       ? {
     [P in TruthyKeys<S['select']>]:
         P extends 'user' ? UserGetPayload<S['select'][P]> :
-        P extends 'Profile' ? ProfileGetPayload<S['select'][P]> | null :  P extends keyof Site ? Site[P] : never
+        P extends 'Profile' ? ProfileGetPayload<S['select'][P]> | null :  P extends keyof Link ? Link[P] : never
   } 
-      : Site
+      : Link
 
 
-  type SiteCountArgs = 
-    Omit<SiteFindManyArgs, 'select' | 'include'> & {
-      select?: SiteCountAggregateInputType | true
+  type LinkCountArgs = 
+    Omit<LinkFindManyArgs, 'select' | 'include'> & {
+      select?: LinkCountAggregateInputType | true
     }
 
-  export interface SiteDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
+  export interface LinkDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
 
     /**
-     * Find zero or one Site that matches the filter.
-     * @param {SiteFindUniqueArgs} args - Arguments to find a Site
+     * Find zero or one Link that matches the filter.
+     * @param {LinkFindUniqueArgs} args - Arguments to find a Link
      * @example
-     * // Get one Site
-     * const site = await prisma.site.findUnique({
+     * // Get one Link
+     * const link = await prisma.link.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUnique<T extends SiteFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args: SelectSubset<T, SiteFindUniqueArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'Site'> extends True ? Prisma__SiteClient<SiteGetPayload<T>> : Prisma__SiteClient<SiteGetPayload<T> | null, null>
+    findUnique<T extends LinkFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, LinkFindUniqueArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'Link'> extends True ? Prisma__LinkClient<LinkGetPayload<T>> : Prisma__LinkClient<LinkGetPayload<T> | null, null>
 
     /**
-     * Find one Site that matches the filter or throw an error  with `error.code='P2025'` 
+     * Find one Link that matches the filter or throw an error  with `error.code='P2025'` 
      *     if no matches were found.
-     * @param {SiteFindUniqueOrThrowArgs} args - Arguments to find a Site
+     * @param {LinkFindUniqueOrThrowArgs} args - Arguments to find a Link
      * @example
-     * // Get one Site
-     * const site = await prisma.site.findUniqueOrThrow({
+     * // Get one Link
+     * const link = await prisma.link.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUniqueOrThrow<T extends SiteFindUniqueOrThrowArgs>(
-      args?: SelectSubset<T, SiteFindUniqueOrThrowArgs>
-    ): Prisma__SiteClient<SiteGetPayload<T>>
+    findUniqueOrThrow<T extends LinkFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, LinkFindUniqueOrThrowArgs>
+    ): Prisma__LinkClient<LinkGetPayload<T>>
 
     /**
-     * Find the first Site that matches the filter.
+     * Find the first Link that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SiteFindFirstArgs} args - Arguments to find a Site
+     * @param {LinkFindFirstArgs} args - Arguments to find a Link
      * @example
-     * // Get one Site
-     * const site = await prisma.site.findFirst({
+     * // Get one Link
+     * const link = await prisma.link.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirst<T extends SiteFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args?: SelectSubset<T, SiteFindFirstArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'Site'> extends True ? Prisma__SiteClient<SiteGetPayload<T>> : Prisma__SiteClient<SiteGetPayload<T> | null, null>
+    findFirst<T extends LinkFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, LinkFindFirstArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'Link'> extends True ? Prisma__LinkClient<LinkGetPayload<T>> : Prisma__LinkClient<LinkGetPayload<T> | null, null>
 
     /**
-     * Find the first Site that matches the filter or
+     * Find the first Link that matches the filter or
      * throw `NotFoundError` if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SiteFindFirstOrThrowArgs} args - Arguments to find a Site
+     * @param {LinkFindFirstOrThrowArgs} args - Arguments to find a Link
      * @example
-     * // Get one Site
-     * const site = await prisma.site.findFirstOrThrow({
+     * // Get one Link
+     * const link = await prisma.link.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirstOrThrow<T extends SiteFindFirstOrThrowArgs>(
-      args?: SelectSubset<T, SiteFindFirstOrThrowArgs>
-    ): Prisma__SiteClient<SiteGetPayload<T>>
+    findFirstOrThrow<T extends LinkFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, LinkFindFirstOrThrowArgs>
+    ): Prisma__LinkClient<LinkGetPayload<T>>
 
     /**
-     * Find zero or more Sites that matches the filter.
+     * Find zero or more Links that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SiteFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {LinkFindManyArgs=} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Sites
-     * const sites = await prisma.site.findMany()
+     * // Get all Links
+     * const links = await prisma.link.findMany()
      * 
-     * // Get first 10 Sites
-     * const sites = await prisma.site.findMany({ take: 10 })
+     * // Get first 10 Links
+     * const links = await prisma.link.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const siteWithIdOnly = await prisma.site.findMany({ select: { id: true } })
+     * const linkWithIdOnly = await prisma.link.findMany({ select: { id: true } })
      * 
     **/
-    findMany<T extends SiteFindManyArgs>(
-      args?: SelectSubset<T, SiteFindManyArgs>
-    ): Prisma.PrismaPromise<Array<SiteGetPayload<T>>>
+    findMany<T extends LinkFindManyArgs>(
+      args?: SelectSubset<T, LinkFindManyArgs>
+    ): Prisma.PrismaPromise<Array<LinkGetPayload<T>>>
 
     /**
-     * Create a Site.
-     * @param {SiteCreateArgs} args - Arguments to create a Site.
+     * Create a Link.
+     * @param {LinkCreateArgs} args - Arguments to create a Link.
      * @example
-     * // Create one Site
-     * const Site = await prisma.site.create({
+     * // Create one Link
+     * const Link = await prisma.link.create({
      *   data: {
-     *     // ... data to create a Site
+     *     // ... data to create a Link
      *   }
      * })
      * 
     **/
-    create<T extends SiteCreateArgs>(
-      args: SelectSubset<T, SiteCreateArgs>
-    ): Prisma__SiteClient<SiteGetPayload<T>>
+    create<T extends LinkCreateArgs>(
+      args: SelectSubset<T, LinkCreateArgs>
+    ): Prisma__LinkClient<LinkGetPayload<T>>
 
     /**
-     * Create many Sites.
-     *     @param {SiteCreateManyArgs} args - Arguments to create many Sites.
+     * Create many Links.
+     *     @param {LinkCreateManyArgs} args - Arguments to create many Links.
      *     @example
-     *     // Create many Sites
-     *     const site = await prisma.site.createMany({
+     *     // Create many Links
+     *     const link = await prisma.link.createMany({
      *       data: {
      *         // ... provide data here
      *       }
      *     })
      *     
     **/
-    createMany<T extends SiteCreateManyArgs>(
-      args?: SelectSubset<T, SiteCreateManyArgs>
+    createMany<T extends LinkCreateManyArgs>(
+      args?: SelectSubset<T, LinkCreateManyArgs>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Site.
-     * @param {SiteDeleteArgs} args - Arguments to delete one Site.
+     * Delete a Link.
+     * @param {LinkDeleteArgs} args - Arguments to delete one Link.
      * @example
-     * // Delete one Site
-     * const Site = await prisma.site.delete({
+     * // Delete one Link
+     * const Link = await prisma.link.delete({
      *   where: {
-     *     // ... filter to delete one Site
+     *     // ... filter to delete one Link
      *   }
      * })
      * 
     **/
-    delete<T extends SiteDeleteArgs>(
-      args: SelectSubset<T, SiteDeleteArgs>
-    ): Prisma__SiteClient<SiteGetPayload<T>>
+    delete<T extends LinkDeleteArgs>(
+      args: SelectSubset<T, LinkDeleteArgs>
+    ): Prisma__LinkClient<LinkGetPayload<T>>
 
     /**
-     * Update one Site.
-     * @param {SiteUpdateArgs} args - Arguments to update one Site.
+     * Update one Link.
+     * @param {LinkUpdateArgs} args - Arguments to update one Link.
      * @example
-     * // Update one Site
-     * const site = await prisma.site.update({
+     * // Update one Link
+     * const link = await prisma.link.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -6215,34 +6248,34 @@ export namespace Prisma {
      * })
      * 
     **/
-    update<T extends SiteUpdateArgs>(
-      args: SelectSubset<T, SiteUpdateArgs>
-    ): Prisma__SiteClient<SiteGetPayload<T>>
+    update<T extends LinkUpdateArgs>(
+      args: SelectSubset<T, LinkUpdateArgs>
+    ): Prisma__LinkClient<LinkGetPayload<T>>
 
     /**
-     * Delete zero or more Sites.
-     * @param {SiteDeleteManyArgs} args - Arguments to filter Sites to delete.
+     * Delete zero or more Links.
+     * @param {LinkDeleteManyArgs} args - Arguments to filter Links to delete.
      * @example
-     * // Delete a few Sites
-     * const { count } = await prisma.site.deleteMany({
+     * // Delete a few Links
+     * const { count } = await prisma.link.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
     **/
-    deleteMany<T extends SiteDeleteManyArgs>(
-      args?: SelectSubset<T, SiteDeleteManyArgs>
+    deleteMany<T extends LinkDeleteManyArgs>(
+      args?: SelectSubset<T, LinkDeleteManyArgs>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Sites.
+     * Update zero or more Links.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SiteUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {LinkUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Sites
-     * const site = await prisma.site.updateMany({
+     * // Update many Links
+     * const link = await prisma.link.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -6252,59 +6285,59 @@ export namespace Prisma {
      * })
      * 
     **/
-    updateMany<T extends SiteUpdateManyArgs>(
-      args: SelectSubset<T, SiteUpdateManyArgs>
+    updateMany<T extends LinkUpdateManyArgs>(
+      args: SelectSubset<T, LinkUpdateManyArgs>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Site.
-     * @param {SiteUpsertArgs} args - Arguments to update or create a Site.
+     * Create or update one Link.
+     * @param {LinkUpsertArgs} args - Arguments to update or create a Link.
      * @example
-     * // Update or create a Site
-     * const site = await prisma.site.upsert({
+     * // Update or create a Link
+     * const link = await prisma.link.upsert({
      *   create: {
-     *     // ... data to create a Site
+     *     // ... data to create a Link
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Site we want to update
+     *     // ... the filter for the Link we want to update
      *   }
      * })
     **/
-    upsert<T extends SiteUpsertArgs>(
-      args: SelectSubset<T, SiteUpsertArgs>
-    ): Prisma__SiteClient<SiteGetPayload<T>>
+    upsert<T extends LinkUpsertArgs>(
+      args: SelectSubset<T, LinkUpsertArgs>
+    ): Prisma__LinkClient<LinkGetPayload<T>>
 
     /**
-     * Count the number of Sites.
+     * Count the number of Links.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SiteCountArgs} args - Arguments to filter Sites to count.
+     * @param {LinkCountArgs} args - Arguments to filter Links to count.
      * @example
-     * // Count the number of Sites
-     * const count = await prisma.site.count({
+     * // Count the number of Links
+     * const count = await prisma.link.count({
      *   where: {
-     *     // ... the filter for the Sites we want to count
+     *     // ... the filter for the Links we want to count
      *   }
      * })
     **/
-    count<T extends SiteCountArgs>(
-      args?: Subset<T, SiteCountArgs>,
+    count<T extends LinkCountArgs>(
+      args?: Subset<T, LinkCountArgs>,
     ): Prisma.PrismaPromise<
       T extends _Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], SiteCountAggregateOutputType>
+          : GetScalarType<T['select'], LinkCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Site.
+     * Allows you to perform aggregations operations on a Link.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SiteAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {LinkAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -6324,13 +6357,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends SiteAggregateArgs>(args: Subset<T, SiteAggregateArgs>): Prisma.PrismaPromise<GetSiteAggregateType<T>>
+    aggregate<T extends LinkAggregateArgs>(args: Subset<T, LinkAggregateArgs>): Prisma.PrismaPromise<GetLinkAggregateType<T>>
 
     /**
-     * Group by Site.
+     * Group by Link.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SiteGroupByArgs} args - Group by arguments.
+     * @param {LinkGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -6345,14 +6378,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends SiteGroupByArgs,
+      T extends LinkGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: SiteGroupByArgs['orderBy'] }
-        : { orderBy?: SiteGroupByArgs['orderBy'] },
+        ? { orderBy: LinkGroupByArgs['orderBy'] }
+        : { orderBy?: LinkGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends TupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -6401,17 +6434,17 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, SiteGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSiteGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, LinkGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLinkGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
 
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Site.
+   * The delegate class that acts as a "Promise-like" for Link.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export class Prisma__SiteClient<T, Null = never> implements Prisma.PrismaPromise<T> {
+  export class Prisma__LinkClient<T, Null = never> implements Prisma.PrismaPromise<T> {
     private readonly _dmmf;
     private readonly _queryType;
     private readonly _rootField;
@@ -6458,27 +6491,27 @@ export namespace Prisma {
   // Custom InputTypes
 
   /**
-   * Site base type for findUnique actions
+   * Link base type for findUnique actions
    */
-  export type SiteFindUniqueArgsBase = {
+  export type LinkFindUniqueArgsBase = {
     /**
-     * Select specific fields to fetch from the Site
+     * Select specific fields to fetch from the Link
      */
-    select?: SiteSelect | null
+    select?: LinkSelect | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SiteInclude | null
+    include?: LinkInclude | null
     /**
-     * Filter, which Site to fetch.
+     * Filter, which Link to fetch.
      */
-    where: SiteWhereUniqueInput
+    where: LinkWhereUniqueInput
   }
 
   /**
-   * Site findUnique
+   * Link findUnique
    */
-  export interface SiteFindUniqueArgs extends SiteFindUniqueArgsBase {
+  export interface LinkFindUniqueArgs extends LinkFindUniqueArgsBase {
    /**
     * Throw an Error if query returns no results
     * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
@@ -6488,76 +6521,76 @@ export namespace Prisma {
       
 
   /**
-   * Site findUniqueOrThrow
+   * Link findUniqueOrThrow
    */
-  export type SiteFindUniqueOrThrowArgs = {
+  export type LinkFindUniqueOrThrowArgs = {
     /**
-     * Select specific fields to fetch from the Site
+     * Select specific fields to fetch from the Link
      */
-    select?: SiteSelect | null
+    select?: LinkSelect | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SiteInclude | null
+    include?: LinkInclude | null
     /**
-     * Filter, which Site to fetch.
+     * Filter, which Link to fetch.
      */
-    where: SiteWhereUniqueInput
+    where: LinkWhereUniqueInput
   }
 
 
   /**
-   * Site base type for findFirst actions
+   * Link base type for findFirst actions
    */
-  export type SiteFindFirstArgsBase = {
+  export type LinkFindFirstArgsBase = {
     /**
-     * Select specific fields to fetch from the Site
+     * Select specific fields to fetch from the Link
      */
-    select?: SiteSelect | null
+    select?: LinkSelect | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SiteInclude | null
+    include?: LinkInclude | null
     /**
-     * Filter, which Site to fetch.
+     * Filter, which Link to fetch.
      */
-    where?: SiteWhereInput
+    where?: LinkWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Sites to fetch.
+     * Determine the order of Links to fetch.
      */
-    orderBy?: Enumerable<SiteOrderByWithRelationInput>
+    orderBy?: Enumerable<LinkOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Sites.
+     * Sets the position for searching for Links.
      */
-    cursor?: SiteWhereUniqueInput
+    cursor?: LinkWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Sites from the position of the cursor.
+     * Take `±n` Links from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Sites.
+     * Skip the first `n` Links.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Sites.
+     * Filter by unique combinations of Links.
      */
-    distinct?: Enumerable<SiteScalarFieldEnum>
+    distinct?: Enumerable<LinkScalarFieldEnum>
   }
 
   /**
-   * Site findFirst
+   * Link findFirst
    */
-  export interface SiteFindFirstArgs extends SiteFindFirstArgsBase {
+  export interface LinkFindFirstArgs extends LinkFindFirstArgsBase {
    /**
     * Throw an Error if query returns no results
     * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
@@ -6567,236 +6600,236 @@ export namespace Prisma {
       
 
   /**
-   * Site findFirstOrThrow
+   * Link findFirstOrThrow
    */
-  export type SiteFindFirstOrThrowArgs = {
+  export type LinkFindFirstOrThrowArgs = {
     /**
-     * Select specific fields to fetch from the Site
+     * Select specific fields to fetch from the Link
      */
-    select?: SiteSelect | null
+    select?: LinkSelect | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SiteInclude | null
+    include?: LinkInclude | null
     /**
-     * Filter, which Site to fetch.
+     * Filter, which Link to fetch.
      */
-    where?: SiteWhereInput
+    where?: LinkWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Sites to fetch.
+     * Determine the order of Links to fetch.
      */
-    orderBy?: Enumerable<SiteOrderByWithRelationInput>
+    orderBy?: Enumerable<LinkOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Sites.
+     * Sets the position for searching for Links.
      */
-    cursor?: SiteWhereUniqueInput
+    cursor?: LinkWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Sites from the position of the cursor.
+     * Take `±n` Links from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Sites.
+     * Skip the first `n` Links.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Sites.
+     * Filter by unique combinations of Links.
      */
-    distinct?: Enumerable<SiteScalarFieldEnum>
+    distinct?: Enumerable<LinkScalarFieldEnum>
   }
 
 
   /**
-   * Site findMany
+   * Link findMany
    */
-  export type SiteFindManyArgs = {
+  export type LinkFindManyArgs = {
     /**
-     * Select specific fields to fetch from the Site
+     * Select specific fields to fetch from the Link
      */
-    select?: SiteSelect | null
+    select?: LinkSelect | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SiteInclude | null
+    include?: LinkInclude | null
     /**
-     * Filter, which Sites to fetch.
+     * Filter, which Links to fetch.
      */
-    where?: SiteWhereInput
+    where?: LinkWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Sites to fetch.
+     * Determine the order of Links to fetch.
      */
-    orderBy?: Enumerable<SiteOrderByWithRelationInput>
+    orderBy?: Enumerable<LinkOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Sites.
+     * Sets the position for listing Links.
      */
-    cursor?: SiteWhereUniqueInput
+    cursor?: LinkWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Sites from the position of the cursor.
+     * Take `±n` Links from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Sites.
+     * Skip the first `n` Links.
      */
     skip?: number
-    distinct?: Enumerable<SiteScalarFieldEnum>
+    distinct?: Enumerable<LinkScalarFieldEnum>
   }
 
 
   /**
-   * Site create
+   * Link create
    */
-  export type SiteCreateArgs = {
+  export type LinkCreateArgs = {
     /**
-     * Select specific fields to fetch from the Site
+     * Select specific fields to fetch from the Link
      */
-    select?: SiteSelect | null
+    select?: LinkSelect | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SiteInclude | null
+    include?: LinkInclude | null
     /**
-     * The data needed to create a Site.
+     * The data needed to create a Link.
      */
-    data: XOR<SiteCreateInput, SiteUncheckedCreateInput>
+    data: XOR<LinkCreateInput, LinkUncheckedCreateInput>
   }
 
 
   /**
-   * Site createMany
+   * Link createMany
    */
-  export type SiteCreateManyArgs = {
+  export type LinkCreateManyArgs = {
     /**
-     * The data used to create many Sites.
+     * The data used to create many Links.
      */
-    data: Enumerable<SiteCreateManyInput>
+    data: Enumerable<LinkCreateManyInput>
     skipDuplicates?: boolean
   }
 
 
   /**
-   * Site update
+   * Link update
    */
-  export type SiteUpdateArgs = {
+  export type LinkUpdateArgs = {
     /**
-     * Select specific fields to fetch from the Site
+     * Select specific fields to fetch from the Link
      */
-    select?: SiteSelect | null
+    select?: LinkSelect | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SiteInclude | null
+    include?: LinkInclude | null
     /**
-     * The data needed to update a Site.
+     * The data needed to update a Link.
      */
-    data: XOR<SiteUpdateInput, SiteUncheckedUpdateInput>
+    data: XOR<LinkUpdateInput, LinkUncheckedUpdateInput>
     /**
-     * Choose, which Site to update.
+     * Choose, which Link to update.
      */
-    where: SiteWhereUniqueInput
+    where: LinkWhereUniqueInput
   }
 
 
   /**
-   * Site updateMany
+   * Link updateMany
    */
-  export type SiteUpdateManyArgs = {
+  export type LinkUpdateManyArgs = {
     /**
-     * The data used to update Sites.
+     * The data used to update Links.
      */
-    data: XOR<SiteUpdateManyMutationInput, SiteUncheckedUpdateManyInput>
+    data: XOR<LinkUpdateManyMutationInput, LinkUncheckedUpdateManyInput>
     /**
-     * Filter which Sites to update
+     * Filter which Links to update
      */
-    where?: SiteWhereInput
+    where?: LinkWhereInput
   }
 
 
   /**
-   * Site upsert
+   * Link upsert
    */
-  export type SiteUpsertArgs = {
+  export type LinkUpsertArgs = {
     /**
-     * Select specific fields to fetch from the Site
+     * Select specific fields to fetch from the Link
      */
-    select?: SiteSelect | null
+    select?: LinkSelect | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SiteInclude | null
+    include?: LinkInclude | null
     /**
-     * The filter to search for the Site to update in case it exists.
+     * The filter to search for the Link to update in case it exists.
      */
-    where: SiteWhereUniqueInput
+    where: LinkWhereUniqueInput
     /**
-     * In case the Site found by the `where` argument doesn't exist, create a new Site with this data.
+     * In case the Link found by the `where` argument doesn't exist, create a new Link with this data.
      */
-    create: XOR<SiteCreateInput, SiteUncheckedCreateInput>
+    create: XOR<LinkCreateInput, LinkUncheckedCreateInput>
     /**
-     * In case the Site was found with the provided `where` argument, update it with this data.
+     * In case the Link was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<SiteUpdateInput, SiteUncheckedUpdateInput>
+    update: XOR<LinkUpdateInput, LinkUncheckedUpdateInput>
   }
 
 
   /**
-   * Site delete
+   * Link delete
    */
-  export type SiteDeleteArgs = {
+  export type LinkDeleteArgs = {
     /**
-     * Select specific fields to fetch from the Site
+     * Select specific fields to fetch from the Link
      */
-    select?: SiteSelect | null
+    select?: LinkSelect | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SiteInclude | null
+    include?: LinkInclude | null
     /**
-     * Filter which Site to delete.
+     * Filter which Link to delete.
      */
-    where: SiteWhereUniqueInput
+    where: LinkWhereUniqueInput
   }
 
 
   /**
-   * Site deleteMany
+   * Link deleteMany
    */
-  export type SiteDeleteManyArgs = {
+  export type LinkDeleteManyArgs = {
     /**
-     * Filter which Sites to delete
+     * Filter which Links to delete
      */
-    where?: SiteWhereInput
+    where?: LinkWhereInput
   }
 
 
   /**
-   * Site without action
+   * Link without action
    */
-  export type SiteArgs = {
+  export type LinkArgs = {
     /**
-     * Select specific fields to fetch from the Site
+     * Select specific fields to fetch from the Link
      */
-    select?: SiteSelect | null
+    select?: LinkSelect | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SiteInclude | null
+    include?: LinkInclude | null
   }
 
 
@@ -7784,12 +7817,15 @@ export namespace Prisma {
   export type CustomerMinAggregateOutputType = {
     id: string | null
     userId: number | null
-    companyId: string | null
     salutation: string | null
     firstname: string | null
     lastname: string | null
     email: string | null
     email_type: string | null
+    level: string | null
+    sub_create: Date | null
+    sub_end: Date | null
+    term: string | null
     phone_number: string | null
     phone_number_type: string | null
     street_address: string | null
@@ -7802,7 +7838,6 @@ export namespace Prisma {
     image: string | null
     total_discount: number | null
     terms_of_payment: string | null
-    delivery_terms: string | null
     note: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -7811,12 +7846,15 @@ export namespace Prisma {
   export type CustomerMaxAggregateOutputType = {
     id: string | null
     userId: number | null
-    companyId: string | null
     salutation: string | null
     firstname: string | null
     lastname: string | null
     email: string | null
     email_type: string | null
+    level: string | null
+    sub_create: Date | null
+    sub_end: Date | null
+    term: string | null
     phone_number: string | null
     phone_number_type: string | null
     street_address: string | null
@@ -7829,7 +7867,6 @@ export namespace Prisma {
     image: string | null
     total_discount: number | null
     terms_of_payment: string | null
-    delivery_terms: string | null
     note: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -7838,12 +7875,16 @@ export namespace Prisma {
   export type CustomerCountAggregateOutputType = {
     id: number
     userId: number
-    companyId: number
     salutation: number
     firstname: number
     lastname: number
     email: number
     email_type: number
+    level: number
+    sub_create: number
+    sub_end: number
+    term: number
+    stripe_results: number
     phone_number: number
     phone_number_type: number
     street_address: number
@@ -7856,7 +7897,6 @@ export namespace Prisma {
     image: number
     total_discount: number
     terms_of_payment: number
-    delivery_terms: number
     note: number
     createdAt: number
     updatedAt: number
@@ -7877,12 +7917,15 @@ export namespace Prisma {
   export type CustomerMinAggregateInputType = {
     id?: true
     userId?: true
-    companyId?: true
     salutation?: true
     firstname?: true
     lastname?: true
     email?: true
     email_type?: true
+    level?: true
+    sub_create?: true
+    sub_end?: true
+    term?: true
     phone_number?: true
     phone_number_type?: true
     street_address?: true
@@ -7895,7 +7938,6 @@ export namespace Prisma {
     image?: true
     total_discount?: true
     terms_of_payment?: true
-    delivery_terms?: true
     note?: true
     createdAt?: true
     updatedAt?: true
@@ -7904,12 +7946,15 @@ export namespace Prisma {
   export type CustomerMaxAggregateInputType = {
     id?: true
     userId?: true
-    companyId?: true
     salutation?: true
     firstname?: true
     lastname?: true
     email?: true
     email_type?: true
+    level?: true
+    sub_create?: true
+    sub_end?: true
+    term?: true
     phone_number?: true
     phone_number_type?: true
     street_address?: true
@@ -7922,7 +7967,6 @@ export namespace Prisma {
     image?: true
     total_discount?: true
     terms_of_payment?: true
-    delivery_terms?: true
     note?: true
     createdAt?: true
     updatedAt?: true
@@ -7931,12 +7975,16 @@ export namespace Prisma {
   export type CustomerCountAggregateInputType = {
     id?: true
     userId?: true
-    companyId?: true
     salutation?: true
     firstname?: true
     lastname?: true
     email?: true
     email_type?: true
+    level?: true
+    sub_create?: true
+    sub_end?: true
+    term?: true
+    stripe_results?: true
     phone_number?: true
     phone_number_type?: true
     street_address?: true
@@ -7949,7 +7997,6 @@ export namespace Prisma {
     image?: true
     total_discount?: true
     terms_of_payment?: true
-    delivery_terms?: true
     note?: true
     createdAt?: true
     updatedAt?: true
@@ -8046,12 +8093,16 @@ export namespace Prisma {
   export type CustomerGroupByOutputType = {
     id: string
     userId: number
-    companyId: string | null
     salutation: string
     firstname: string
     lastname: string
     email: string | null
     email_type: string | null
+    level: string
+    sub_create: Date
+    sub_end: Date
+    term: string | null
+    stripe_results: JsonValue | null
     phone_number: string | null
     phone_number_type: string | null
     street_address: string | null
@@ -8064,7 +8115,6 @@ export namespace Prisma {
     image: string | null
     total_discount: number | null
     terms_of_payment: string | null
-    delivery_terms: string | null
     note: string | null
     createdAt: Date
     updatedAt: Date
@@ -8092,12 +8142,16 @@ export namespace Prisma {
   export type CustomerSelect = {
     id?: boolean
     userId?: boolean
-    companyId?: boolean
     salutation?: boolean
     firstname?: boolean
     lastname?: boolean
     email?: boolean
     email_type?: boolean
+    level?: boolean
+    sub_create?: boolean
+    sub_end?: boolean
+    term?: boolean
+    stripe_results?: boolean
     phone_number?: boolean
     phone_number_type?: boolean
     street_address?: boolean
@@ -8110,7 +8164,6 @@ export namespace Prisma {
     image?: boolean
     total_discount?: boolean
     terms_of_payment?: boolean
-    delivery_terms?: boolean
     note?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -16063,14 +16116,14 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserArgs
-    Site?: boolean | Profile$SiteArgs
+    Link?: boolean | Profile$LinkArgs
     _count?: boolean | ProfileCountOutputTypeArgs
   }
 
 
   export type ProfileInclude = {
     user?: boolean | UserArgs
-    Site?: boolean | Profile$SiteArgs
+    Link?: boolean | Profile$LinkArgs
     _count?: boolean | ProfileCountOutputTypeArgs
   }
 
@@ -16082,14 +16135,14 @@ export namespace Prisma {
     ? Profile  & {
     [P in TruthyKeys<S['include']>]:
         P extends 'user' ? UserGetPayload<S['include'][P]> :
-        P extends 'Site' ? Array < SiteGetPayload<S['include'][P]>>  :
+        P extends 'Link' ? Array < LinkGetPayload<S['include'][P]>>  :
         P extends '_count' ? ProfileCountOutputTypeGetPayload<S['include'][P]> :  never
   } 
     : S extends { select: any } & (ProfileArgs | ProfileFindManyArgs)
       ? {
     [P in TruthyKeys<S['select']>]:
         P extends 'user' ? UserGetPayload<S['select'][P]> :
-        P extends 'Site' ? Array < SiteGetPayload<S['select'][P]>>  :
+        P extends 'Link' ? Array < LinkGetPayload<S['select'][P]>>  :
         P extends '_count' ? ProfileCountOutputTypeGetPayload<S['select'][P]> :  P extends keyof Profile ? Profile[P] : never
   } 
       : Profile
@@ -16464,7 +16517,7 @@ export namespace Prisma {
 
     user<T extends UserArgs= {}>(args?: Subset<T, UserArgs>): Prisma__UserClient<UserGetPayload<T> | Null>;
 
-    Site<T extends Profile$SiteArgs= {}>(args?: Subset<T, Profile$SiteArgs>): Prisma.PrismaPromise<Array<SiteGetPayload<T>>| Null>;
+    Link<T extends Profile$LinkArgs= {}>(args?: Subset<T, Profile$LinkArgs>): Prisma.PrismaPromise<Array<LinkGetPayload<T>>| Null>;
 
     private get _document();
     /**
@@ -16822,23 +16875,23 @@ export namespace Prisma {
 
 
   /**
-   * Profile.Site
+   * Profile.Link
    */
-  export type Profile$SiteArgs = {
+  export type Profile$LinkArgs = {
     /**
-     * Select specific fields to fetch from the Site
+     * Select specific fields to fetch from the Link
      */
-    select?: SiteSelect | null
+    select?: LinkSelect | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SiteInclude | null
-    where?: SiteWhereInput
-    orderBy?: Enumerable<SiteOrderByWithRelationInput>
-    cursor?: SiteWhereUniqueInput
+    include?: LinkInclude | null
+    where?: LinkWhereInput
+    orderBy?: Enumerable<LinkOrderByWithRelationInput>
+    cursor?: LinkWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: Enumerable<SiteScalarFieldEnum>
+    distinct?: Enumerable<LinkScalarFieldEnum>
   }
 
 
@@ -16859,30 +16912,33 @@ export namespace Prisma {
 
 
   /**
-   * Model Services
+   * Model Apps
    */
 
 
-  export type AggregateServices = {
-    _count: ServicesCountAggregateOutputType | null
-    _avg: ServicesAvgAggregateOutputType | null
-    _sum: ServicesSumAggregateOutputType | null
-    _min: ServicesMinAggregateOutputType | null
-    _max: ServicesMaxAggregateOutputType | null
+  export type AggregateApps = {
+    _count: AppsCountAggregateOutputType | null
+    _avg: AppsAvgAggregateOutputType | null
+    _sum: AppsSumAggregateOutputType | null
+    _min: AppsMinAggregateOutputType | null
+    _max: AppsMaxAggregateOutputType | null
   }
 
-  export type ServicesAvgAggregateOutputType = {
+  export type AppsAvgAggregateOutputType = {
     id: number | null
+    userId: number | null
     order: number | null
   }
 
-  export type ServicesSumAggregateOutputType = {
+  export type AppsSumAggregateOutputType = {
     id: number | null
+    userId: number | null
     order: number | null
   }
 
-  export type ServicesMinAggregateOutputType = {
+  export type AppsMinAggregateOutputType = {
     id: number | null
+    userId: number | null
     name: string | null
     description: string | null
     order: number | null
@@ -16896,8 +16952,9 @@ export namespace Prisma {
     updatedAt: Date | null
   }
 
-  export type ServicesMaxAggregateOutputType = {
+  export type AppsMaxAggregateOutputType = {
     id: number | null
+    userId: number | null
     name: string | null
     description: string | null
     order: number | null
@@ -16911,8 +16968,9 @@ export namespace Prisma {
     updatedAt: Date | null
   }
 
-  export type ServicesCountAggregateOutputType = {
+  export type AppsCountAggregateOutputType = {
     id: number
+    userId: number
     name: number
     description: number
     order: number
@@ -16928,18 +16986,21 @@ export namespace Prisma {
   }
 
 
-  export type ServicesAvgAggregateInputType = {
+  export type AppsAvgAggregateInputType = {
     id?: true
+    userId?: true
     order?: true
   }
 
-  export type ServicesSumAggregateInputType = {
+  export type AppsSumAggregateInputType = {
     id?: true
+    userId?: true
     order?: true
   }
 
-  export type ServicesMinAggregateInputType = {
+  export type AppsMinAggregateInputType = {
     id?: true
+    userId?: true
     name?: true
     description?: true
     order?: true
@@ -16953,8 +17014,9 @@ export namespace Prisma {
     updatedAt?: true
   }
 
-  export type ServicesMaxAggregateInputType = {
+  export type AppsMaxAggregateInputType = {
     id?: true
+    userId?: true
     name?: true
     description?: true
     order?: true
@@ -16968,8 +17030,9 @@ export namespace Prisma {
     updatedAt?: true
   }
 
-  export type ServicesCountAggregateInputType = {
+  export type AppsCountAggregateInputType = {
     id?: true
+    userId?: true
     name?: true
     description?: true
     order?: true
@@ -16984,95 +17047,96 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type ServicesAggregateArgs = {
+  export type AppsAggregateArgs = {
     /**
-     * Filter which Services to aggregate.
+     * Filter which Apps to aggregate.
      */
-    where?: ServicesWhereInput
+    where?: AppsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Services to fetch.
+     * Determine the order of Apps to fetch.
      */
-    orderBy?: Enumerable<ServicesOrderByWithRelationInput>
+    orderBy?: Enumerable<AppsOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: ServicesWhereUniqueInput
+    cursor?: AppsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Services from the position of the cursor.
+     * Take `±n` Apps from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Services.
+     * Skip the first `n` Apps.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Services
+     * Count returned Apps
     **/
-    _count?: true | ServicesCountAggregateInputType
+    _count?: true | AppsCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: ServicesAvgAggregateInputType
+    _avg?: AppsAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: ServicesSumAggregateInputType
+    _sum?: AppsSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: ServicesMinAggregateInputType
+    _min?: AppsMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: ServicesMaxAggregateInputType
+    _max?: AppsMaxAggregateInputType
   }
 
-  export type GetServicesAggregateType<T extends ServicesAggregateArgs> = {
-        [P in keyof T & keyof AggregateServices]: P extends '_count' | 'count'
+  export type GetAppsAggregateType<T extends AppsAggregateArgs> = {
+        [P in keyof T & keyof AggregateApps]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateServices[P]>
-      : GetScalarType<T[P], AggregateServices[P]>
+        : GetScalarType<T[P], AggregateApps[P]>
+      : GetScalarType<T[P], AggregateApps[P]>
   }
 
 
 
 
-  export type ServicesGroupByArgs = {
-    where?: ServicesWhereInput
-    orderBy?: Enumerable<ServicesOrderByWithAggregationInput>
-    by: ServicesScalarFieldEnum[]
-    having?: ServicesScalarWhereWithAggregatesInput
+  export type AppsGroupByArgs = {
+    where?: AppsWhereInput
+    orderBy?: Enumerable<AppsOrderByWithAggregationInput>
+    by: AppsScalarFieldEnum[]
+    having?: AppsScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: ServicesCountAggregateInputType | true
-    _avg?: ServicesAvgAggregateInputType
-    _sum?: ServicesSumAggregateInputType
-    _min?: ServicesMinAggregateInputType
-    _max?: ServicesMaxAggregateInputType
+    _count?: AppsCountAggregateInputType | true
+    _avg?: AppsAvgAggregateInputType
+    _sum?: AppsSumAggregateInputType
+    _min?: AppsMinAggregateInputType
+    _max?: AppsMaxAggregateInputType
   }
 
 
-  export type ServicesGroupByOutputType = {
+  export type AppsGroupByOutputType = {
     id: number
+    userId: number
     name: string | null
     description: string | null
     order: number
@@ -17084,29 +17148,30 @@ export namespace Prisma {
     show_sub: Yesno
     createdAt: Date
     updatedAt: Date
-    _count: ServicesCountAggregateOutputType | null
-    _avg: ServicesAvgAggregateOutputType | null
-    _sum: ServicesSumAggregateOutputType | null
-    _min: ServicesMinAggregateOutputType | null
-    _max: ServicesMaxAggregateOutputType | null
+    _count: AppsCountAggregateOutputType | null
+    _avg: AppsAvgAggregateOutputType | null
+    _sum: AppsSumAggregateOutputType | null
+    _min: AppsMinAggregateOutputType | null
+    _max: AppsMaxAggregateOutputType | null
   }
 
-  type GetServicesGroupByPayload<T extends ServicesGroupByArgs> = Prisma.PrismaPromise<
+  type GetAppsGroupByPayload<T extends AppsGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickArray<ServicesGroupByOutputType, T['by']> &
+      PickArray<AppsGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof ServicesGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof AppsGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], ServicesGroupByOutputType[P]>
-            : GetScalarType<T[P], ServicesGroupByOutputType[P]>
+              : GetScalarType<T[P], AppsGroupByOutputType[P]>
+            : GetScalarType<T[P], AppsGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type ServicesSelect = {
+  export type AppsSelect = {
     id?: boolean
+    userId?: boolean
     name?: boolean
     description?: boolean
     order?: boolean
@@ -17118,170 +17183,178 @@ export namespace Prisma {
     show_sub?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    user?: boolean | UserArgs
   }
 
 
-  export type ServicesGetPayload<S extends boolean | null | undefined | ServicesArgs> =
+  export type AppsInclude = {
+    user?: boolean | UserArgs
+  }
+
+  export type AppsGetPayload<S extends boolean | null | undefined | AppsArgs> =
     S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
-    S extends true ? Services :
+    S extends true ? Apps :
     S extends undefined ? never :
-    S extends { include: any } & (ServicesArgs | ServicesFindManyArgs)
-    ? Services 
-    : S extends { select: any } & (ServicesArgs | ServicesFindManyArgs)
+    S extends { include: any } & (AppsArgs | AppsFindManyArgs)
+    ? Apps  & {
+    [P in TruthyKeys<S['include']>]:
+        P extends 'user' ? UserGetPayload<S['include'][P]> :  never
+  } 
+    : S extends { select: any } & (AppsArgs | AppsFindManyArgs)
       ? {
     [P in TruthyKeys<S['select']>]:
-    P extends keyof Services ? Services[P] : never
+        P extends 'user' ? UserGetPayload<S['select'][P]> :  P extends keyof Apps ? Apps[P] : never
   } 
-      : Services
+      : Apps
 
 
-  type ServicesCountArgs = 
-    Omit<ServicesFindManyArgs, 'select' | 'include'> & {
-      select?: ServicesCountAggregateInputType | true
+  type AppsCountArgs = 
+    Omit<AppsFindManyArgs, 'select' | 'include'> & {
+      select?: AppsCountAggregateInputType | true
     }
 
-  export interface ServicesDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
+  export interface AppsDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
 
     /**
-     * Find zero or one Services that matches the filter.
-     * @param {ServicesFindUniqueArgs} args - Arguments to find a Services
+     * Find zero or one Apps that matches the filter.
+     * @param {AppsFindUniqueArgs} args - Arguments to find a Apps
      * @example
-     * // Get one Services
-     * const services = await prisma.services.findUnique({
+     * // Get one Apps
+     * const apps = await prisma.apps.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUnique<T extends ServicesFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args: SelectSubset<T, ServicesFindUniqueArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'Services'> extends True ? Prisma__ServicesClient<ServicesGetPayload<T>> : Prisma__ServicesClient<ServicesGetPayload<T> | null, null>
+    findUnique<T extends AppsFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, AppsFindUniqueArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'Apps'> extends True ? Prisma__AppsClient<AppsGetPayload<T>> : Prisma__AppsClient<AppsGetPayload<T> | null, null>
 
     /**
-     * Find one Services that matches the filter or throw an error  with `error.code='P2025'` 
+     * Find one Apps that matches the filter or throw an error  with `error.code='P2025'` 
      *     if no matches were found.
-     * @param {ServicesFindUniqueOrThrowArgs} args - Arguments to find a Services
+     * @param {AppsFindUniqueOrThrowArgs} args - Arguments to find a Apps
      * @example
-     * // Get one Services
-     * const services = await prisma.services.findUniqueOrThrow({
+     * // Get one Apps
+     * const apps = await prisma.apps.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUniqueOrThrow<T extends ServicesFindUniqueOrThrowArgs>(
-      args?: SelectSubset<T, ServicesFindUniqueOrThrowArgs>
-    ): Prisma__ServicesClient<ServicesGetPayload<T>>
+    findUniqueOrThrow<T extends AppsFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, AppsFindUniqueOrThrowArgs>
+    ): Prisma__AppsClient<AppsGetPayload<T>>
 
     /**
-     * Find the first Services that matches the filter.
+     * Find the first Apps that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServicesFindFirstArgs} args - Arguments to find a Services
+     * @param {AppsFindFirstArgs} args - Arguments to find a Apps
      * @example
-     * // Get one Services
-     * const services = await prisma.services.findFirst({
+     * // Get one Apps
+     * const apps = await prisma.apps.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirst<T extends ServicesFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args?: SelectSubset<T, ServicesFindFirstArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'Services'> extends True ? Prisma__ServicesClient<ServicesGetPayload<T>> : Prisma__ServicesClient<ServicesGetPayload<T> | null, null>
+    findFirst<T extends AppsFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, AppsFindFirstArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'Apps'> extends True ? Prisma__AppsClient<AppsGetPayload<T>> : Prisma__AppsClient<AppsGetPayload<T> | null, null>
 
     /**
-     * Find the first Services that matches the filter or
+     * Find the first Apps that matches the filter or
      * throw `NotFoundError` if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServicesFindFirstOrThrowArgs} args - Arguments to find a Services
+     * @param {AppsFindFirstOrThrowArgs} args - Arguments to find a Apps
      * @example
-     * // Get one Services
-     * const services = await prisma.services.findFirstOrThrow({
+     * // Get one Apps
+     * const apps = await prisma.apps.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirstOrThrow<T extends ServicesFindFirstOrThrowArgs>(
-      args?: SelectSubset<T, ServicesFindFirstOrThrowArgs>
-    ): Prisma__ServicesClient<ServicesGetPayload<T>>
+    findFirstOrThrow<T extends AppsFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, AppsFindFirstOrThrowArgs>
+    ): Prisma__AppsClient<AppsGetPayload<T>>
 
     /**
-     * Find zero or more Services that matches the filter.
+     * Find zero or more Apps that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServicesFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {AppsFindManyArgs=} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Services
-     * const services = await prisma.services.findMany()
+     * // Get all Apps
+     * const apps = await prisma.apps.findMany()
      * 
-     * // Get first 10 Services
-     * const services = await prisma.services.findMany({ take: 10 })
+     * // Get first 10 Apps
+     * const apps = await prisma.apps.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const servicesWithIdOnly = await prisma.services.findMany({ select: { id: true } })
+     * const appsWithIdOnly = await prisma.apps.findMany({ select: { id: true } })
      * 
     **/
-    findMany<T extends ServicesFindManyArgs>(
-      args?: SelectSubset<T, ServicesFindManyArgs>
-    ): Prisma.PrismaPromise<Array<ServicesGetPayload<T>>>
+    findMany<T extends AppsFindManyArgs>(
+      args?: SelectSubset<T, AppsFindManyArgs>
+    ): Prisma.PrismaPromise<Array<AppsGetPayload<T>>>
 
     /**
-     * Create a Services.
-     * @param {ServicesCreateArgs} args - Arguments to create a Services.
+     * Create a Apps.
+     * @param {AppsCreateArgs} args - Arguments to create a Apps.
      * @example
-     * // Create one Services
-     * const Services = await prisma.services.create({
+     * // Create one Apps
+     * const Apps = await prisma.apps.create({
      *   data: {
-     *     // ... data to create a Services
+     *     // ... data to create a Apps
      *   }
      * })
      * 
     **/
-    create<T extends ServicesCreateArgs>(
-      args: SelectSubset<T, ServicesCreateArgs>
-    ): Prisma__ServicesClient<ServicesGetPayload<T>>
+    create<T extends AppsCreateArgs>(
+      args: SelectSubset<T, AppsCreateArgs>
+    ): Prisma__AppsClient<AppsGetPayload<T>>
 
     /**
-     * Create many Services.
-     *     @param {ServicesCreateManyArgs} args - Arguments to create many Services.
+     * Create many Apps.
+     *     @param {AppsCreateManyArgs} args - Arguments to create many Apps.
      *     @example
-     *     // Create many Services
-     *     const services = await prisma.services.createMany({
+     *     // Create many Apps
+     *     const apps = await prisma.apps.createMany({
      *       data: {
      *         // ... provide data here
      *       }
      *     })
      *     
     **/
-    createMany<T extends ServicesCreateManyArgs>(
-      args?: SelectSubset<T, ServicesCreateManyArgs>
+    createMany<T extends AppsCreateManyArgs>(
+      args?: SelectSubset<T, AppsCreateManyArgs>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Services.
-     * @param {ServicesDeleteArgs} args - Arguments to delete one Services.
+     * Delete a Apps.
+     * @param {AppsDeleteArgs} args - Arguments to delete one Apps.
      * @example
-     * // Delete one Services
-     * const Services = await prisma.services.delete({
+     * // Delete one Apps
+     * const Apps = await prisma.apps.delete({
      *   where: {
-     *     // ... filter to delete one Services
+     *     // ... filter to delete one Apps
      *   }
      * })
      * 
     **/
-    delete<T extends ServicesDeleteArgs>(
-      args: SelectSubset<T, ServicesDeleteArgs>
-    ): Prisma__ServicesClient<ServicesGetPayload<T>>
+    delete<T extends AppsDeleteArgs>(
+      args: SelectSubset<T, AppsDeleteArgs>
+    ): Prisma__AppsClient<AppsGetPayload<T>>
 
     /**
-     * Update one Services.
-     * @param {ServicesUpdateArgs} args - Arguments to update one Services.
+     * Update one Apps.
+     * @param {AppsUpdateArgs} args - Arguments to update one Apps.
      * @example
-     * // Update one Services
-     * const services = await prisma.services.update({
+     * // Update one Apps
+     * const apps = await prisma.apps.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -17291,34 +17364,34 @@ export namespace Prisma {
      * })
      * 
     **/
-    update<T extends ServicesUpdateArgs>(
-      args: SelectSubset<T, ServicesUpdateArgs>
-    ): Prisma__ServicesClient<ServicesGetPayload<T>>
+    update<T extends AppsUpdateArgs>(
+      args: SelectSubset<T, AppsUpdateArgs>
+    ): Prisma__AppsClient<AppsGetPayload<T>>
 
     /**
-     * Delete zero or more Services.
-     * @param {ServicesDeleteManyArgs} args - Arguments to filter Services to delete.
+     * Delete zero or more Apps.
+     * @param {AppsDeleteManyArgs} args - Arguments to filter Apps to delete.
      * @example
-     * // Delete a few Services
-     * const { count } = await prisma.services.deleteMany({
+     * // Delete a few Apps
+     * const { count } = await prisma.apps.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
     **/
-    deleteMany<T extends ServicesDeleteManyArgs>(
-      args?: SelectSubset<T, ServicesDeleteManyArgs>
+    deleteMany<T extends AppsDeleteManyArgs>(
+      args?: SelectSubset<T, AppsDeleteManyArgs>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Services.
+     * Update zero or more Apps.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServicesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {AppsUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Services
-     * const services = await prisma.services.updateMany({
+     * // Update many Apps
+     * const apps = await prisma.apps.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -17328,59 +17401,59 @@ export namespace Prisma {
      * })
      * 
     **/
-    updateMany<T extends ServicesUpdateManyArgs>(
-      args: SelectSubset<T, ServicesUpdateManyArgs>
+    updateMany<T extends AppsUpdateManyArgs>(
+      args: SelectSubset<T, AppsUpdateManyArgs>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Services.
-     * @param {ServicesUpsertArgs} args - Arguments to update or create a Services.
+     * Create or update one Apps.
+     * @param {AppsUpsertArgs} args - Arguments to update or create a Apps.
      * @example
-     * // Update or create a Services
-     * const services = await prisma.services.upsert({
+     * // Update or create a Apps
+     * const apps = await prisma.apps.upsert({
      *   create: {
-     *     // ... data to create a Services
+     *     // ... data to create a Apps
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Services we want to update
+     *     // ... the filter for the Apps we want to update
      *   }
      * })
     **/
-    upsert<T extends ServicesUpsertArgs>(
-      args: SelectSubset<T, ServicesUpsertArgs>
-    ): Prisma__ServicesClient<ServicesGetPayload<T>>
+    upsert<T extends AppsUpsertArgs>(
+      args: SelectSubset<T, AppsUpsertArgs>
+    ): Prisma__AppsClient<AppsGetPayload<T>>
 
     /**
-     * Count the number of Services.
+     * Count the number of Apps.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServicesCountArgs} args - Arguments to filter Services to count.
+     * @param {AppsCountArgs} args - Arguments to filter Apps to count.
      * @example
-     * // Count the number of Services
-     * const count = await prisma.services.count({
+     * // Count the number of Apps
+     * const count = await prisma.apps.count({
      *   where: {
-     *     // ... the filter for the Services we want to count
+     *     // ... the filter for the Apps we want to count
      *   }
      * })
     **/
-    count<T extends ServicesCountArgs>(
-      args?: Subset<T, ServicesCountArgs>,
+    count<T extends AppsCountArgs>(
+      args?: Subset<T, AppsCountArgs>,
     ): Prisma.PrismaPromise<
       T extends _Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], ServicesCountAggregateOutputType>
+          : GetScalarType<T['select'], AppsCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Services.
+     * Allows you to perform aggregations operations on a Apps.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServicesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {AppsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -17400,13 +17473,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends ServicesAggregateArgs>(args: Subset<T, ServicesAggregateArgs>): Prisma.PrismaPromise<GetServicesAggregateType<T>>
+    aggregate<T extends AppsAggregateArgs>(args: Subset<T, AppsAggregateArgs>): Prisma.PrismaPromise<GetAppsAggregateType<T>>
 
     /**
-     * Group by Services.
+     * Group by Apps.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServicesGroupByArgs} args - Group by arguments.
+     * @param {AppsGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -17421,14 +17494,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends ServicesGroupByArgs,
+      T extends AppsGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ServicesGroupByArgs['orderBy'] }
-        : { orderBy?: ServicesGroupByArgs['orderBy'] },
+        ? { orderBy: AppsGroupByArgs['orderBy'] }
+        : { orderBy?: AppsGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends TupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -17477,17 +17550,17 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, ServicesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServicesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, AppsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAppsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
 
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Services.
+   * The delegate class that acts as a "Promise-like" for Apps.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export class Prisma__ServicesClient<T, Null = never> implements Prisma.PrismaPromise<T> {
+  export class Prisma__AppsClient<T, Null = never> implements Prisma.PrismaPromise<T> {
     private readonly _dmmf;
     private readonly _queryType;
     private readonly _rootField;
@@ -17502,6 +17575,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
     constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
 
+    user<T extends UserArgs= {}>(args?: Subset<T, UserArgs>): Prisma__UserClient<UserGetPayload<T> | Null>;
 
     private get _document();
     /**
@@ -17531,23 +17605,27 @@ export namespace Prisma {
   // Custom InputTypes
 
   /**
-   * Services base type for findUnique actions
+   * Apps base type for findUnique actions
    */
-  export type ServicesFindUniqueArgsBase = {
+  export type AppsFindUniqueArgsBase = {
     /**
-     * Select specific fields to fetch from the Services
+     * Select specific fields to fetch from the Apps
      */
-    select?: ServicesSelect | null
+    select?: AppsSelect | null
     /**
-     * Filter, which Services to fetch.
+     * Choose, which related nodes to fetch as well.
      */
-    where: ServicesWhereUniqueInput
+    include?: AppsInclude | null
+    /**
+     * Filter, which Apps to fetch.
+     */
+    where: AppsWhereUniqueInput
   }
 
   /**
-   * Services findUnique
+   * Apps findUnique
    */
-  export interface ServicesFindUniqueArgs extends ServicesFindUniqueArgsBase {
+  export interface AppsFindUniqueArgs extends AppsFindUniqueArgsBase {
    /**
     * Throw an Error if query returns no results
     * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
@@ -17557,68 +17635,76 @@ export namespace Prisma {
       
 
   /**
-   * Services findUniqueOrThrow
+   * Apps findUniqueOrThrow
    */
-  export type ServicesFindUniqueOrThrowArgs = {
+  export type AppsFindUniqueOrThrowArgs = {
     /**
-     * Select specific fields to fetch from the Services
+     * Select specific fields to fetch from the Apps
      */
-    select?: ServicesSelect | null
+    select?: AppsSelect | null
     /**
-     * Filter, which Services to fetch.
+     * Choose, which related nodes to fetch as well.
      */
-    where: ServicesWhereUniqueInput
+    include?: AppsInclude | null
+    /**
+     * Filter, which Apps to fetch.
+     */
+    where: AppsWhereUniqueInput
   }
 
 
   /**
-   * Services base type for findFirst actions
+   * Apps base type for findFirst actions
    */
-  export type ServicesFindFirstArgsBase = {
+  export type AppsFindFirstArgsBase = {
     /**
-     * Select specific fields to fetch from the Services
+     * Select specific fields to fetch from the Apps
      */
-    select?: ServicesSelect | null
+    select?: AppsSelect | null
     /**
-     * Filter, which Services to fetch.
+     * Choose, which related nodes to fetch as well.
      */
-    where?: ServicesWhereInput
+    include?: AppsInclude | null
+    /**
+     * Filter, which Apps to fetch.
+     */
+    where?: AppsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Services to fetch.
+     * Determine the order of Apps to fetch.
      */
-    orderBy?: Enumerable<ServicesOrderByWithRelationInput>
+    orderBy?: Enumerable<AppsOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Services.
+     * Sets the position for searching for Apps.
      */
-    cursor?: ServicesWhereUniqueInput
+    cursor?: AppsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Services from the position of the cursor.
+     * Take `±n` Apps from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Services.
+     * Skip the first `n` Apps.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Services.
+     * Filter by unique combinations of Apps.
      */
-    distinct?: Enumerable<ServicesScalarFieldEnum>
+    distinct?: Enumerable<AppsScalarFieldEnum>
   }
 
   /**
-   * Services findFirst
+   * Apps findFirst
    */
-  export interface ServicesFindFirstArgs extends ServicesFindFirstArgsBase {
+  export interface AppsFindFirstArgs extends AppsFindFirstArgsBase {
    /**
     * Throw an Error if query returns no results
     * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
@@ -17628,208 +17714,236 @@ export namespace Prisma {
       
 
   /**
-   * Services findFirstOrThrow
+   * Apps findFirstOrThrow
    */
-  export type ServicesFindFirstOrThrowArgs = {
+  export type AppsFindFirstOrThrowArgs = {
     /**
-     * Select specific fields to fetch from the Services
+     * Select specific fields to fetch from the Apps
      */
-    select?: ServicesSelect | null
+    select?: AppsSelect | null
     /**
-     * Filter, which Services to fetch.
+     * Choose, which related nodes to fetch as well.
      */
-    where?: ServicesWhereInput
+    include?: AppsInclude | null
+    /**
+     * Filter, which Apps to fetch.
+     */
+    where?: AppsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Services to fetch.
+     * Determine the order of Apps to fetch.
      */
-    orderBy?: Enumerable<ServicesOrderByWithRelationInput>
+    orderBy?: Enumerable<AppsOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Services.
+     * Sets the position for searching for Apps.
      */
-    cursor?: ServicesWhereUniqueInput
+    cursor?: AppsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Services from the position of the cursor.
+     * Take `±n` Apps from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Services.
+     * Skip the first `n` Apps.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Services.
+     * Filter by unique combinations of Apps.
      */
-    distinct?: Enumerable<ServicesScalarFieldEnum>
+    distinct?: Enumerable<AppsScalarFieldEnum>
   }
 
 
   /**
-   * Services findMany
+   * Apps findMany
    */
-  export type ServicesFindManyArgs = {
+  export type AppsFindManyArgs = {
     /**
-     * Select specific fields to fetch from the Services
+     * Select specific fields to fetch from the Apps
      */
-    select?: ServicesSelect | null
+    select?: AppsSelect | null
     /**
-     * Filter, which Services to fetch.
+     * Choose, which related nodes to fetch as well.
      */
-    where?: ServicesWhereInput
+    include?: AppsInclude | null
+    /**
+     * Filter, which Apps to fetch.
+     */
+    where?: AppsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Services to fetch.
+     * Determine the order of Apps to fetch.
      */
-    orderBy?: Enumerable<ServicesOrderByWithRelationInput>
+    orderBy?: Enumerable<AppsOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Services.
+     * Sets the position for listing Apps.
      */
-    cursor?: ServicesWhereUniqueInput
+    cursor?: AppsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Services from the position of the cursor.
+     * Take `±n` Apps from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Services.
+     * Skip the first `n` Apps.
      */
     skip?: number
-    distinct?: Enumerable<ServicesScalarFieldEnum>
+    distinct?: Enumerable<AppsScalarFieldEnum>
   }
 
 
   /**
-   * Services create
+   * Apps create
    */
-  export type ServicesCreateArgs = {
+  export type AppsCreateArgs = {
     /**
-     * Select specific fields to fetch from the Services
+     * Select specific fields to fetch from the Apps
      */
-    select?: ServicesSelect | null
+    select?: AppsSelect | null
     /**
-     * The data needed to create a Services.
+     * Choose, which related nodes to fetch as well.
      */
-    data: XOR<ServicesCreateInput, ServicesUncheckedCreateInput>
+    include?: AppsInclude | null
+    /**
+     * The data needed to create a Apps.
+     */
+    data: XOR<AppsCreateInput, AppsUncheckedCreateInput>
   }
 
 
   /**
-   * Services createMany
+   * Apps createMany
    */
-  export type ServicesCreateManyArgs = {
+  export type AppsCreateManyArgs = {
     /**
-     * The data used to create many Services.
+     * The data used to create many Apps.
      */
-    data: Enumerable<ServicesCreateManyInput>
+    data: Enumerable<AppsCreateManyInput>
     skipDuplicates?: boolean
   }
 
 
   /**
-   * Services update
+   * Apps update
    */
-  export type ServicesUpdateArgs = {
+  export type AppsUpdateArgs = {
     /**
-     * Select specific fields to fetch from the Services
+     * Select specific fields to fetch from the Apps
      */
-    select?: ServicesSelect | null
+    select?: AppsSelect | null
     /**
-     * The data needed to update a Services.
+     * Choose, which related nodes to fetch as well.
      */
-    data: XOR<ServicesUpdateInput, ServicesUncheckedUpdateInput>
+    include?: AppsInclude | null
     /**
-     * Choose, which Services to update.
+     * The data needed to update a Apps.
      */
-    where: ServicesWhereUniqueInput
+    data: XOR<AppsUpdateInput, AppsUncheckedUpdateInput>
+    /**
+     * Choose, which Apps to update.
+     */
+    where: AppsWhereUniqueInput
   }
 
 
   /**
-   * Services updateMany
+   * Apps updateMany
    */
-  export type ServicesUpdateManyArgs = {
+  export type AppsUpdateManyArgs = {
     /**
-     * The data used to update Services.
+     * The data used to update Apps.
      */
-    data: XOR<ServicesUpdateManyMutationInput, ServicesUncheckedUpdateManyInput>
+    data: XOR<AppsUpdateManyMutationInput, AppsUncheckedUpdateManyInput>
     /**
-     * Filter which Services to update
+     * Filter which Apps to update
      */
-    where?: ServicesWhereInput
+    where?: AppsWhereInput
   }
 
 
   /**
-   * Services upsert
+   * Apps upsert
    */
-  export type ServicesUpsertArgs = {
+  export type AppsUpsertArgs = {
     /**
-     * Select specific fields to fetch from the Services
+     * Select specific fields to fetch from the Apps
      */
-    select?: ServicesSelect | null
+    select?: AppsSelect | null
     /**
-     * The filter to search for the Services to update in case it exists.
+     * Choose, which related nodes to fetch as well.
      */
-    where: ServicesWhereUniqueInput
+    include?: AppsInclude | null
     /**
-     * In case the Services found by the `where` argument doesn't exist, create a new Services with this data.
+     * The filter to search for the Apps to update in case it exists.
      */
-    create: XOR<ServicesCreateInput, ServicesUncheckedCreateInput>
+    where: AppsWhereUniqueInput
     /**
-     * In case the Services was found with the provided `where` argument, update it with this data.
+     * In case the Apps found by the `where` argument doesn't exist, create a new Apps with this data.
      */
-    update: XOR<ServicesUpdateInput, ServicesUncheckedUpdateInput>
+    create: XOR<AppsCreateInput, AppsUncheckedCreateInput>
+    /**
+     * In case the Apps was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AppsUpdateInput, AppsUncheckedUpdateInput>
   }
 
 
   /**
-   * Services delete
+   * Apps delete
    */
-  export type ServicesDeleteArgs = {
+  export type AppsDeleteArgs = {
     /**
-     * Select specific fields to fetch from the Services
+     * Select specific fields to fetch from the Apps
      */
-    select?: ServicesSelect | null
+    select?: AppsSelect | null
     /**
-     * Filter which Services to delete.
+     * Choose, which related nodes to fetch as well.
      */
-    where: ServicesWhereUniqueInput
+    include?: AppsInclude | null
+    /**
+     * Filter which Apps to delete.
+     */
+    where: AppsWhereUniqueInput
   }
 
 
   /**
-   * Services deleteMany
+   * Apps deleteMany
    */
-  export type ServicesDeleteManyArgs = {
+  export type AppsDeleteManyArgs = {
     /**
-     * Filter which Services to delete
+     * Filter which Apps to delete
      */
-    where?: ServicesWhereInput
+    where?: AppsWhereInput
   }
 
 
   /**
-   * Services without action
+   * Apps without action
    */
-  export type ServicesArgs = {
+  export type AppsArgs = {
     /**
-     * Select specific fields to fetch from the Services
+     * Select specific fields to fetch from the Apps
      */
-    select?: ServicesSelect | null
+    select?: AppsSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AppsInclude | null
   }
 
 
@@ -17871,6 +17985,25 @@ export namespace Prisma {
   export type ActivityScalarFieldEnum = (typeof ActivityScalarFieldEnum)[keyof typeof ActivityScalarFieldEnum]
 
 
+  export const AppsScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    name: 'name',
+    description: 'description',
+    order: 'order',
+    api_key: 'api_key',
+    api_secret: 'api_secret',
+    site_name: 'site_name',
+    show_feed: 'show_feed',
+    show_share: 'show_share',
+    show_sub: 'show_sub',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AppsScalarFieldEnum = (typeof AppsScalarFieldEnum)[keyof typeof AppsScalarFieldEnum]
+
+
   export const BankAccountScalarFieldEnum: {
     id: 'id',
     customerId: 'customerId',
@@ -17886,12 +18019,16 @@ export namespace Prisma {
   export const CustomerScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
-    companyId: 'companyId',
     salutation: 'salutation',
     firstname: 'firstname',
     lastname: 'lastname',
     email: 'email',
     email_type: 'email_type',
+    level: 'level',
+    sub_create: 'sub_create',
+    sub_end: 'sub_end',
+    term: 'term',
+    stripe_results: 'stripe_results',
     phone_number: 'phone_number',
     phone_number_type: 'phone_number_type',
     street_address: 'street_address',
@@ -17904,7 +18041,6 @@ export namespace Prisma {
     image: 'image',
     total_discount: 'total_discount',
     terms_of_payment: 'terms_of_payment',
-    delivery_terms: 'delivery_terms',
     note: 'note',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -17972,6 +18108,25 @@ export namespace Prisma {
   export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
+  export const LinkScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    url: 'url',
+    title: 'title',
+    description: 'description',
+    order: 'order',
+    type: 'type',
+    icon: 'icon',
+    image: 'image',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    profileId: 'profileId'
+  };
+
+  export type LinkScalarFieldEnum = (typeof LinkScalarFieldEnum)[keyof typeof LinkScalarFieldEnum]
+
+
   export const MessageScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
@@ -18021,24 +18176,6 @@ export namespace Prisma {
   export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]
 
 
-  export const ServicesScalarFieldEnum: {
-    id: 'id',
-    name: 'name',
-    description: 'description',
-    order: 'order',
-    api_key: 'api_key',
-    api_secret: 'api_secret',
-    site_name: 'site_name',
-    show_feed: 'show_feed',
-    show_share: 'show_share',
-    show_sub: 'show_sub',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type ServicesScalarFieldEnum = (typeof ServicesScalarFieldEnum)[keyof typeof ServicesScalarFieldEnum]
-
-
   export const SessionScalarFieldEnum: {
     id: 'id',
     createdAt: 'createdAt',
@@ -18053,25 +18190,6 @@ export namespace Prisma {
   };
 
   export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
-
-
-  export const SiteScalarFieldEnum: {
-    id: 'id',
-    userId: 'userId',
-    url: 'url',
-    title: 'title',
-    description: 'description',
-    order: 'order',
-    type: 'type',
-    icon: 'icon',
-    image: 'image',
-    status: 'status',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    profileId: 'profileId'
-  };
-
-  export type SiteScalarFieldEnum = (typeof SiteScalarFieldEnum)[keyof typeof SiteScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -18118,8 +18236,6 @@ export namespace Prisma {
 
   export const UserScalarFieldEnum: {
     id: 'id',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
     username: 'username',
     name: 'name',
     email: 'email',
@@ -18128,7 +18244,9 @@ export namespace Prisma {
     balance: 'balance',
     hashedPassword: 'hashedPassword',
     role: 'role',
-    level: 'level'
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -18144,8 +18262,6 @@ export namespace Prisma {
     OR?: Enumerable<UserWhereInput>
     NOT?: Enumerable<UserWhereInput>
     id?: IntFilter | number
-    createdAt?: DateTimeFilter | Date | string
-    updatedAt?: DateTimeFilter | Date | string
     username?: StringFilter | string
     name?: StringNullableFilter | string | null
     email?: StringFilter | string
@@ -18154,7 +18270,9 @@ export namespace Prisma {
     balance?: IntNullableFilter | number | null
     hashedPassword?: StringNullableFilter | string | null
     role?: StringFilter | string
-    level?: StringNullableFilter | string | null
+    status?: StringFilter | string
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
     Accounts?: AccountListRelationFilter
     Sessions?: SessionListRelationFilter
     Files?: FileListRelationFilter
@@ -18162,15 +18280,14 @@ export namespace Prisma {
     Messages?: MessageListRelationFilter
     Notifications?: NotificationListRelationFilter
     Customers?: CustomerListRelationFilter
-    Site?: SiteListRelationFilter
+    Link?: LinkListRelationFilter
     Profile?: ProfileListRelationFilter
     Token?: TokenListRelationFilter
+    Apps?: AppsListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     username?: SortOrder
     name?: SortOrder
     email?: SortOrder
@@ -18179,7 +18296,9 @@ export namespace Prisma {
     balance?: SortOrder
     hashedPassword?: SortOrder
     role?: SortOrder
-    level?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     Accounts?: AccountOrderByRelationAggregateInput
     Sessions?: SessionOrderByRelationAggregateInput
     Files?: FileOrderByRelationAggregateInput
@@ -18187,9 +18306,10 @@ export namespace Prisma {
     Messages?: MessageOrderByRelationAggregateInput
     Notifications?: NotificationOrderByRelationAggregateInput
     Customers?: CustomerOrderByRelationAggregateInput
-    Site?: SiteOrderByRelationAggregateInput
+    Link?: LinkOrderByRelationAggregateInput
     Profile?: ProfileOrderByRelationAggregateInput
     Token?: TokenOrderByRelationAggregateInput
+    Apps?: AppsOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = {
@@ -18200,8 +18320,6 @@ export namespace Prisma {
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     username?: SortOrder
     name?: SortOrder
     email?: SortOrder
@@ -18210,7 +18328,9 @@ export namespace Prisma {
     balance?: SortOrder
     hashedPassword?: SortOrder
     role?: SortOrder
-    level?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -18223,8 +18343,6 @@ export namespace Prisma {
     OR?: Enumerable<UserScalarWhereWithAggregatesInput>
     NOT?: Enumerable<UserScalarWhereWithAggregatesInput>
     id?: IntWithAggregatesFilter | number
-    createdAt?: DateTimeWithAggregatesFilter | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter | Date | string
     username?: StringWithAggregatesFilter | string
     name?: StringNullableWithAggregatesFilter | string | null
     email?: StringWithAggregatesFilter | string
@@ -18233,7 +18351,9 @@ export namespace Prisma {
     balance?: IntNullableWithAggregatesFilter | number | null
     hashedPassword?: StringNullableWithAggregatesFilter | string | null
     role?: StringWithAggregatesFilter | string
-    level?: StringNullableWithAggregatesFilter | string | null
+    status?: StringWithAggregatesFilter | string
+    createdAt?: DateTimeWithAggregatesFilter | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter | Date | string
   }
 
   export type SessionWhereInput = {
@@ -18447,17 +18567,17 @@ export namespace Prisma {
     session_state?: StringNullableWithAggregatesFilter | string | null
   }
 
-  export type SiteWhereInput = {
-    AND?: Enumerable<SiteWhereInput>
-    OR?: Enumerable<SiteWhereInput>
-    NOT?: Enumerable<SiteWhereInput>
+  export type LinkWhereInput = {
+    AND?: Enumerable<LinkWhereInput>
+    OR?: Enumerable<LinkWhereInput>
+    NOT?: Enumerable<LinkWhereInput>
     id?: StringFilter | string
     userId?: IntFilter | number
     url?: StringFilter | string
     title?: StringNullableFilter | string | null
     description?: StringNullableFilter | string | null
     order?: IntFilter | number
-    type?: EnumSitetypeFilter | Sitetype
+    type?: EnumLinktypeFilter | Linktype
     icon?: StringNullableFilter | string | null
     image?: StringNullableFilter | string | null
     status?: EnumStatusFilter | Status
@@ -18468,7 +18588,7 @@ export namespace Prisma {
     Profile?: XOR<ProfileRelationFilter, ProfileWhereInput> | null
   }
 
-  export type SiteOrderByWithRelationInput = {
+  export type LinkOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
     url?: SortOrder
@@ -18486,11 +18606,11 @@ export namespace Prisma {
     Profile?: ProfileOrderByWithRelationInput
   }
 
-  export type SiteWhereUniqueInput = {
+  export type LinkWhereUniqueInput = {
     id?: string
   }
 
-  export type SiteOrderByWithAggregationInput = {
+  export type LinkOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
     url?: SortOrder
@@ -18504,24 +18624,24 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     profileId?: SortOrder
-    _count?: SiteCountOrderByAggregateInput
-    _avg?: SiteAvgOrderByAggregateInput
-    _max?: SiteMaxOrderByAggregateInput
-    _min?: SiteMinOrderByAggregateInput
-    _sum?: SiteSumOrderByAggregateInput
+    _count?: LinkCountOrderByAggregateInput
+    _avg?: LinkAvgOrderByAggregateInput
+    _max?: LinkMaxOrderByAggregateInput
+    _min?: LinkMinOrderByAggregateInput
+    _sum?: LinkSumOrderByAggregateInput
   }
 
-  export type SiteScalarWhereWithAggregatesInput = {
-    AND?: Enumerable<SiteScalarWhereWithAggregatesInput>
-    OR?: Enumerable<SiteScalarWhereWithAggregatesInput>
-    NOT?: Enumerable<SiteScalarWhereWithAggregatesInput>
+  export type LinkScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<LinkScalarWhereWithAggregatesInput>
+    OR?: Enumerable<LinkScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<LinkScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
     userId?: IntWithAggregatesFilter | number
     url?: StringWithAggregatesFilter | string
     title?: StringNullableWithAggregatesFilter | string | null
     description?: StringNullableWithAggregatesFilter | string | null
     order?: IntWithAggregatesFilter | number
-    type?: EnumSitetypeWithAggregatesFilter | Sitetype
+    type?: EnumLinktypeWithAggregatesFilter | Linktype
     icon?: StringNullableWithAggregatesFilter | string | null
     image?: StringNullableWithAggregatesFilter | string | null
     status?: EnumStatusWithAggregatesFilter | Status
@@ -18582,12 +18702,16 @@ export namespace Prisma {
     NOT?: Enumerable<CustomerWhereInput>
     id?: StringFilter | string
     userId?: IntFilter | number
-    companyId?: StringNullableFilter | string | null
     salutation?: StringFilter | string
     firstname?: StringFilter | string
     lastname?: StringFilter | string
     email?: StringNullableFilter | string | null
     email_type?: StringNullableFilter | string | null
+    level?: StringFilter | string
+    sub_create?: DateTimeFilter | Date | string
+    sub_end?: DateTimeFilter | Date | string
+    term?: StringNullableFilter | string | null
+    stripe_results?: JsonNullableFilter
     phone_number?: StringNullableFilter | string | null
     phone_number_type?: StringNullableFilter | string | null
     street_address?: StringNullableFilter | string | null
@@ -18600,7 +18724,6 @@ export namespace Prisma {
     image?: StringNullableFilter | string | null
     total_discount?: FloatNullableFilter | number | null
     terms_of_payment?: StringNullableFilter | string | null
-    delivery_terms?: StringNullableFilter | string | null
     note?: StringNullableFilter | string | null
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
@@ -18613,12 +18736,16 @@ export namespace Prisma {
   export type CustomerOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
-    companyId?: SortOrder
     salutation?: SortOrder
     firstname?: SortOrder
     lastname?: SortOrder
     email?: SortOrder
     email_type?: SortOrder
+    level?: SortOrder
+    sub_create?: SortOrder
+    sub_end?: SortOrder
+    term?: SortOrder
+    stripe_results?: SortOrder
     phone_number?: SortOrder
     phone_number_type?: SortOrder
     street_address?: SortOrder
@@ -18631,7 +18758,6 @@ export namespace Prisma {
     image?: SortOrder
     total_discount?: SortOrder
     terms_of_payment?: SortOrder
-    delivery_terms?: SortOrder
     note?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -18643,19 +18769,22 @@ export namespace Prisma {
 
   export type CustomerWhereUniqueInput = {
     id?: string
-    companyId?: string
     email?: string
   }
 
   export type CustomerOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
-    companyId?: SortOrder
     salutation?: SortOrder
     firstname?: SortOrder
     lastname?: SortOrder
     email?: SortOrder
     email_type?: SortOrder
+    level?: SortOrder
+    sub_create?: SortOrder
+    sub_end?: SortOrder
+    term?: SortOrder
+    stripe_results?: SortOrder
     phone_number?: SortOrder
     phone_number_type?: SortOrder
     street_address?: SortOrder
@@ -18668,7 +18797,6 @@ export namespace Prisma {
     image?: SortOrder
     total_discount?: SortOrder
     terms_of_payment?: SortOrder
-    delivery_terms?: SortOrder
     note?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -18685,12 +18813,16 @@ export namespace Prisma {
     NOT?: Enumerable<CustomerScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
     userId?: IntWithAggregatesFilter | number
-    companyId?: StringNullableWithAggregatesFilter | string | null
     salutation?: StringWithAggregatesFilter | string
     firstname?: StringWithAggregatesFilter | string
     lastname?: StringWithAggregatesFilter | string
     email?: StringNullableWithAggregatesFilter | string | null
     email_type?: StringNullableWithAggregatesFilter | string | null
+    level?: StringWithAggregatesFilter | string
+    sub_create?: DateTimeWithAggregatesFilter | Date | string
+    sub_end?: DateTimeWithAggregatesFilter | Date | string
+    term?: StringNullableWithAggregatesFilter | string | null
+    stripe_results?: JsonNullableWithAggregatesFilter
     phone_number?: StringNullableWithAggregatesFilter | string | null
     phone_number_type?: StringNullableWithAggregatesFilter | string | null
     street_address?: StringNullableWithAggregatesFilter | string | null
@@ -18703,7 +18835,6 @@ export namespace Prisma {
     image?: StringNullableWithAggregatesFilter | string | null
     total_discount?: FloatNullableWithAggregatesFilter | number | null
     terms_of_payment?: StringNullableWithAggregatesFilter | string | null
-    delivery_terms?: StringNullableWithAggregatesFilter | string | null
     note?: StringNullableWithAggregatesFilter | string | null
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
@@ -19161,7 +19292,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     user?: XOR<UserRelationFilter, UserWhereInput>
-    Site?: SiteListRelationFilter
+    Link?: LinkListRelationFilter
   }
 
   export type ProfileOrderByWithRelationInput = {
@@ -19176,7 +19307,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
-    Site?: SiteOrderByRelationAggregateInput
+    Link?: LinkOrderByRelationAggregateInput
   }
 
   export type ProfileWhereUniqueInput = {
@@ -19218,11 +19349,12 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
   }
 
-  export type ServicesWhereInput = {
-    AND?: Enumerable<ServicesWhereInput>
-    OR?: Enumerable<ServicesWhereInput>
-    NOT?: Enumerable<ServicesWhereInput>
+  export type AppsWhereInput = {
+    AND?: Enumerable<AppsWhereInput>
+    OR?: Enumerable<AppsWhereInput>
+    NOT?: Enumerable<AppsWhereInput>
     id?: IntFilter | number
+    userId?: IntFilter | number
     name?: StringNullableFilter | string | null
     description?: StringNullableFilter | string | null
     order?: IntFilter | number
@@ -19234,10 +19366,12 @@ export namespace Prisma {
     show_sub?: EnumYesnoFilter | Yesno
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
   }
 
-  export type ServicesOrderByWithRelationInput = {
+  export type AppsOrderByWithRelationInput = {
     id?: SortOrder
+    userId?: SortOrder
     name?: SortOrder
     description?: SortOrder
     order?: SortOrder
@@ -19249,14 +19383,16 @@ export namespace Prisma {
     show_sub?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
   }
 
-  export type ServicesWhereUniqueInput = {
+  export type AppsWhereUniqueInput = {
     id?: number
   }
 
-  export type ServicesOrderByWithAggregationInput = {
+  export type AppsOrderByWithAggregationInput = {
     id?: SortOrder
+    userId?: SortOrder
     name?: SortOrder
     description?: SortOrder
     order?: SortOrder
@@ -19268,18 +19404,19 @@ export namespace Prisma {
     show_sub?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    _count?: ServicesCountOrderByAggregateInput
-    _avg?: ServicesAvgOrderByAggregateInput
-    _max?: ServicesMaxOrderByAggregateInput
-    _min?: ServicesMinOrderByAggregateInput
-    _sum?: ServicesSumOrderByAggregateInput
+    _count?: AppsCountOrderByAggregateInput
+    _avg?: AppsAvgOrderByAggregateInput
+    _max?: AppsMaxOrderByAggregateInput
+    _min?: AppsMinOrderByAggregateInput
+    _sum?: AppsSumOrderByAggregateInput
   }
 
-  export type ServicesScalarWhereWithAggregatesInput = {
-    AND?: Enumerable<ServicesScalarWhereWithAggregatesInput>
-    OR?: Enumerable<ServicesScalarWhereWithAggregatesInput>
-    NOT?: Enumerable<ServicesScalarWhereWithAggregatesInput>
+  export type AppsScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<AppsScalarWhereWithAggregatesInput>
+    OR?: Enumerable<AppsScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<AppsScalarWhereWithAggregatesInput>
     id?: IntWithAggregatesFilter | number
+    userId?: IntWithAggregatesFilter | number
     name?: StringNullableWithAggregatesFilter | string | null
     description?: StringNullableWithAggregatesFilter | string | null
     order?: IntWithAggregatesFilter | number
@@ -19294,8 +19431,6 @@ export namespace Prisma {
   }
 
   export type UserCreateInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -19304,7 +19439,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountCreateNestedManyWithoutUserInput
     Sessions?: SessionCreateNestedManyWithoutUserInput
     Files?: FileCreateNestedManyWithoutUserInput
@@ -19312,15 +19449,14 @@ export namespace Prisma {
     Messages?: MessageCreateNestedManyWithoutUserInput
     Notifications?: NotificationCreateNestedManyWithoutUserInput
     Customers?: CustomerCreateNestedManyWithoutUserInput
-    Site?: SiteCreateNestedManyWithoutUserInput
+    Link?: LinkCreateNestedManyWithoutUserInput
     Profile?: ProfileCreateNestedManyWithoutUserInput
     Token?: TokenCreateNestedManyWithoutUserInput
+    Apps?: AppsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -19329,7 +19465,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Files?: FileUncheckedCreateNestedManyWithoutUserInput
@@ -19337,14 +19475,13 @@ export namespace Prisma {
     Messages?: MessageUncheckedCreateNestedManyWithoutUserInput
     Notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     Customers?: CustomerUncheckedCreateNestedManyWithoutUserInput
-    Site?: SiteUncheckedCreateNestedManyWithoutUserInput
+    Link?: LinkUncheckedCreateNestedManyWithoutUserInput
     Profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
     Token?: TokenUncheckedCreateNestedManyWithoutUserInput
+    Apps?: AppsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -19353,7 +19490,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUpdateManyWithoutUserNestedInput
     Sessions?: SessionUpdateManyWithoutUserNestedInput
     Files?: FileUpdateManyWithoutUserNestedInput
@@ -19361,15 +19500,14 @@ export namespace Prisma {
     Messages?: MessageUpdateManyWithoutUserNestedInput
     Notifications?: NotificationUpdateManyWithoutUserNestedInput
     Customers?: CustomerUpdateManyWithoutUserNestedInput
-    Site?: SiteUpdateManyWithoutUserNestedInput
+    Link?: LinkUpdateManyWithoutUserNestedInput
     Profile?: ProfileUpdateManyWithoutUserNestedInput
     Token?: TokenUpdateManyWithoutUserNestedInput
+    Apps?: AppsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -19378,7 +19516,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Files?: FileUncheckedUpdateManyWithoutUserNestedInput
@@ -19386,15 +19526,14 @@ export namespace Prisma {
     Messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
     Notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     Customers?: CustomerUncheckedUpdateManyWithoutUserNestedInput
-    Site?: SiteUncheckedUpdateManyWithoutUserNestedInput
+    Link?: LinkUncheckedUpdateManyWithoutUserNestedInput
     Profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
     Token?: TokenUncheckedUpdateManyWithoutUserNestedInput
+    Apps?: AppsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -19403,12 +19542,12 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type UserUpdateManyMutationInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -19417,13 +19556,13 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -19432,7 +19571,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionCreateInput = {
@@ -19696,30 +19837,30 @@ export namespace Prisma {
     session_state?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type SiteCreateInput = {
+  export type LinkCreateInput = {
     id?: string
     url: string
     title?: string | null
     description?: string | null
     order?: number
-    type?: Sitetype
+    type?: Linktype
     icon?: string | null
     image?: string | null
     status?: Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutSiteInput
-    Profile?: ProfileCreateNestedOneWithoutSiteInput
+    user: UserCreateNestedOneWithoutLinkInput
+    Profile?: ProfileCreateNestedOneWithoutLinkInput
   }
 
-  export type SiteUncheckedCreateInput = {
+  export type LinkUncheckedCreateInput = {
     id?: string
     userId: number
     url: string
     title?: string | null
     description?: string | null
     order?: number
-    type?: Sitetype
+    type?: Linktype
     icon?: string | null
     image?: string | null
     status?: Status
@@ -19728,30 +19869,30 @@ export namespace Prisma {
     profileId?: string | null
   }
 
-  export type SiteUpdateInput = {
+  export type LinkUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
-    type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
+    type?: EnumLinktypeFieldUpdateOperationsInput | Linktype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutSiteNestedInput
-    Profile?: ProfileUpdateOneWithoutSiteNestedInput
+    user?: UserUpdateOneRequiredWithoutLinkNestedInput
+    Profile?: ProfileUpdateOneWithoutLinkNestedInput
   }
 
-  export type SiteUncheckedUpdateInput = {
+  export type LinkUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     url?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
-    type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
+    type?: EnumLinktypeFieldUpdateOperationsInput | Linktype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
@@ -19760,14 +19901,14 @@ export namespace Prisma {
     profileId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type SiteCreateManyInput = {
+  export type LinkCreateManyInput = {
     id?: string
     userId: number
     url: string
     title?: string | null
     description?: string | null
     order?: number
-    type?: Sitetype
+    type?: Linktype
     icon?: string | null
     image?: string | null
     status?: Status
@@ -19776,13 +19917,13 @@ export namespace Prisma {
     profileId?: string | null
   }
 
-  export type SiteUpdateManyMutationInput = {
+  export type LinkUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
-    type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
+    type?: EnumLinktypeFieldUpdateOperationsInput | Linktype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
@@ -19790,14 +19931,14 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SiteUncheckedUpdateManyInput = {
+  export type LinkUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     url?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
-    type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
+    type?: EnumLinktypeFieldUpdateOperationsInput | Linktype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
@@ -19856,12 +19997,16 @@ export namespace Prisma {
 
   export type CustomerCreateInput = {
     id?: string
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -19874,7 +20019,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -19887,12 +20031,16 @@ export namespace Prisma {
   export type CustomerUncheckedCreateInput = {
     id?: string
     userId: number
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -19905,7 +20053,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -19916,12 +20063,16 @@ export namespace Prisma {
 
   export type CustomerUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19934,7 +20085,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19947,12 +20097,16 @@ export namespace Prisma {
   export type CustomerUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19965,7 +20119,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19977,12 +20130,16 @@ export namespace Prisma {
   export type CustomerCreateManyInput = {
     id?: string
     userId: number
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -19995,7 +20152,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -20003,12 +20159,16 @@ export namespace Prisma {
 
   export type CustomerUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20021,7 +20181,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20030,12 +20189,16 @@ export namespace Prisma {
   export type CustomerUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20048,7 +20211,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20608,7 +20770,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutProfileInput
-    Site?: SiteCreateNestedManyWithoutProfileInput
+    Link?: LinkCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateInput = {
@@ -20622,7 +20784,7 @@ export namespace Prisma {
     current?: Yesno
     createdAt?: Date | string
     updatedAt?: Date | string
-    Site?: SiteUncheckedCreateNestedManyWithoutProfileInput
+    Link?: LinkUncheckedCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileUpdateInput = {
@@ -20636,7 +20798,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutProfileNestedInput
-    Site?: SiteUpdateManyWithoutProfileNestedInput
+    Link?: LinkUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateInput = {
@@ -20650,7 +20812,7 @@ export namespace Prisma {
     current?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Site?: SiteUncheckedUpdateManyWithoutProfileNestedInput
+    Link?: LinkUncheckedUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileCreateManyInput = {
@@ -20691,7 +20853,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ServicesCreateInput = {
+  export type AppsCreateInput = {
     name?: string | null
     description?: string | null
     order?: number
@@ -20703,10 +20865,12 @@ export namespace Prisma {
     show_sub?: Yesno
     createdAt?: Date | string
     updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutAppsInput
   }
 
-  export type ServicesUncheckedCreateInput = {
+  export type AppsUncheckedCreateInput = {
     id?: number
+    userId: number
     name?: string | null
     description?: string | null
     order?: number
@@ -20720,7 +20884,7 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type ServicesUpdateInput = {
+  export type AppsUpdateInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
@@ -20732,10 +20896,12 @@ export namespace Prisma {
     show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutAppsNestedInput
   }
 
-  export type ServicesUncheckedUpdateInput = {
+  export type AppsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
@@ -20749,8 +20915,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ServicesCreateManyInput = {
+  export type AppsCreateManyInput = {
     id?: number
+    userId: number
     name?: string | null
     description?: string | null
     order?: number
@@ -20764,7 +20931,7 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type ServicesUpdateManyMutationInput = {
+  export type AppsUpdateManyMutationInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
@@ -20778,8 +20945,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ServicesUncheckedUpdateManyInput = {
+  export type AppsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
@@ -20802,17 +20970,6 @@ export namespace Prisma {
     gt?: number
     gte?: number
     not?: NestedIntFilter | number
-  }
-
-  export type DateTimeFilter = {
-    equals?: Date | string
-    in?: Enumerable<Date> | Enumerable<string>
-    notIn?: Enumerable<Date> | Enumerable<string>
-    lt?: Date | string
-    lte?: Date | string
-    gt?: Date | string
-    gte?: Date | string
-    not?: NestedDateTimeFilter | Date | string
   }
 
   export type StringFilter = {
@@ -20865,6 +21022,17 @@ export namespace Prisma {
     not?: NestedIntNullableFilter | number | null
   }
 
+  export type DateTimeFilter = {
+    equals?: Date | string
+    in?: Enumerable<Date> | Enumerable<string>
+    notIn?: Enumerable<Date> | Enumerable<string>
+    lt?: Date | string
+    lte?: Date | string
+    gt?: Date | string
+    gte?: Date | string
+    not?: NestedDateTimeFilter | Date | string
+  }
+
   export type AccountListRelationFilter = {
     every?: AccountWhereInput
     some?: AccountWhereInput
@@ -20907,10 +21075,10 @@ export namespace Prisma {
     none?: CustomerWhereInput
   }
 
-  export type SiteListRelationFilter = {
-    every?: SiteWhereInput
-    some?: SiteWhereInput
-    none?: SiteWhereInput
+  export type LinkListRelationFilter = {
+    every?: LinkWhereInput
+    some?: LinkWhereInput
+    none?: LinkWhereInput
   }
 
   export type ProfileListRelationFilter = {
@@ -20923,6 +21091,12 @@ export namespace Prisma {
     every?: TokenWhereInput
     some?: TokenWhereInput
     none?: TokenWhereInput
+  }
+
+  export type AppsListRelationFilter = {
+    every?: AppsWhereInput
+    some?: AppsWhereInput
+    none?: AppsWhereInput
   }
 
   export type AccountOrderByRelationAggregateInput = {
@@ -20953,7 +21127,7 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type SiteOrderByRelationAggregateInput = {
+  export type LinkOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -20965,10 +21139,12 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type AppsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     username?: SortOrder
     name?: SortOrder
     email?: SortOrder
@@ -20977,7 +21153,9 @@ export namespace Prisma {
     balance?: SortOrder
     hashedPassword?: SortOrder
     role?: SortOrder
-    level?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -20987,8 +21165,6 @@ export namespace Prisma {
 
   export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     username?: SortOrder
     name?: SortOrder
     email?: SortOrder
@@ -20997,13 +21173,13 @@ export namespace Prisma {
     balance?: SortOrder
     hashedPassword?: SortOrder
     role?: SortOrder
-    level?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     username?: SortOrder
     name?: SortOrder
     email?: SortOrder
@@ -21012,7 +21188,9 @@ export namespace Prisma {
     balance?: SortOrder
     hashedPassword?: SortOrder
     role?: SortOrder
-    level?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -21034,20 +21212,6 @@ export namespace Prisma {
     _sum?: NestedIntFilter
     _min?: NestedIntFilter
     _max?: NestedIntFilter
-  }
-
-  export type DateTimeWithAggregatesFilter = {
-    equals?: Date | string
-    in?: Enumerable<Date> | Enumerable<string>
-    notIn?: Enumerable<Date> | Enumerable<string>
-    lt?: Date | string
-    lte?: Date | string
-    gt?: Date | string
-    gte?: Date | string
-    not?: NestedDateTimeWithAggregatesFilter | Date | string
-    _count?: NestedIntFilter
-    _min?: NestedDateTimeFilter
-    _max?: NestedDateTimeFilter
   }
 
   export type StringWithAggregatesFilter = {
@@ -21112,6 +21276,20 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter
     _min?: NestedIntNullableFilter
     _max?: NestedIntNullableFilter
+  }
+
+  export type DateTimeWithAggregatesFilter = {
+    equals?: Date | string
+    in?: Enumerable<Date> | Enumerable<string>
+    notIn?: Enumerable<Date> | Enumerable<string>
+    lt?: Date | string
+    lte?: Date | string
+    gt?: Date | string
+    gte?: Date | string
+    not?: NestedDateTimeWithAggregatesFilter | Date | string
+    _count?: NestedIntFilter
+    _min?: NestedDateTimeFilter
+    _max?: NestedDateTimeFilter
   }
 
   export type UserRelationFilter = {
@@ -21278,11 +21456,11 @@ export namespace Prisma {
     expires_at?: SortOrder
   }
 
-  export type EnumSitetypeFilter = {
-    equals?: Sitetype
-    in?: Enumerable<Sitetype>
-    notIn?: Enumerable<Sitetype>
-    not?: NestedEnumSitetypeFilter | Sitetype
+  export type EnumLinktypeFilter = {
+    equals?: Linktype
+    in?: Enumerable<Linktype>
+    notIn?: Enumerable<Linktype>
+    not?: NestedEnumLinktypeFilter | Linktype
   }
 
   export type EnumStatusFilter = {
@@ -21297,7 +21475,7 @@ export namespace Prisma {
     isNot?: ProfileWhereInput | null
   }
 
-  export type SiteCountOrderByAggregateInput = {
+  export type LinkCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     url?: SortOrder
@@ -21313,12 +21491,12 @@ export namespace Prisma {
     profileId?: SortOrder
   }
 
-  export type SiteAvgOrderByAggregateInput = {
+  export type LinkAvgOrderByAggregateInput = {
     userId?: SortOrder
     order?: SortOrder
   }
 
-  export type SiteMaxOrderByAggregateInput = {
+  export type LinkMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     url?: SortOrder
@@ -21334,7 +21512,7 @@ export namespace Prisma {
     profileId?: SortOrder
   }
 
-  export type SiteMinOrderByAggregateInput = {
+  export type LinkMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     url?: SortOrder
@@ -21350,19 +21528,19 @@ export namespace Prisma {
     profileId?: SortOrder
   }
 
-  export type SiteSumOrderByAggregateInput = {
+  export type LinkSumOrderByAggregateInput = {
     userId?: SortOrder
     order?: SortOrder
   }
 
-  export type EnumSitetypeWithAggregatesFilter = {
-    equals?: Sitetype
-    in?: Enumerable<Sitetype>
-    notIn?: Enumerable<Sitetype>
-    not?: NestedEnumSitetypeWithAggregatesFilter | Sitetype
+  export type EnumLinktypeWithAggregatesFilter = {
+    equals?: Linktype
+    in?: Enumerable<Linktype>
+    notIn?: Enumerable<Linktype>
+    not?: NestedEnumLinktypeWithAggregatesFilter | Linktype
     _count?: NestedIntFilter
-    _min?: NestedEnumSitetypeFilter
-    _max?: NestedEnumSitetypeFilter
+    _min?: NestedEnumLinktypeFilter
+    _max?: NestedEnumLinktypeFilter
   }
 
   export type EnumStatusWithAggregatesFilter = {
@@ -21403,6 +21581,28 @@ export namespace Prisma {
   export type MessageSumOrderByAggregateInput = {
     userId?: SortOrder
   }
+  export type JsonNullableFilter = 
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase>, Exclude<keyof Required<JsonNullableFilterBase>, 'path'>>,
+        Required<JsonNullableFilterBase>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase>, 'path'>>
+
+  export type JsonNullableFilterBase = {
+    equals?: InputJsonValue | JsonNullValueFilter
+    path?: string
+    string_contains?: string
+    string_starts_with?: string
+    string_ends_with?: string
+    array_contains?: InputJsonValue | null
+    array_starts_with?: InputJsonValue | null
+    array_ends_with?: InputJsonValue | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonNullValueFilter
+  }
 
   export type FloatNullableFilter = {
     equals?: number | null
@@ -21433,12 +21633,16 @@ export namespace Prisma {
   export type CustomerCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    companyId?: SortOrder
     salutation?: SortOrder
     firstname?: SortOrder
     lastname?: SortOrder
     email?: SortOrder
     email_type?: SortOrder
+    level?: SortOrder
+    sub_create?: SortOrder
+    sub_end?: SortOrder
+    term?: SortOrder
+    stripe_results?: SortOrder
     phone_number?: SortOrder
     phone_number_type?: SortOrder
     street_address?: SortOrder
@@ -21451,7 +21655,6 @@ export namespace Prisma {
     image?: SortOrder
     total_discount?: SortOrder
     terms_of_payment?: SortOrder
-    delivery_terms?: SortOrder
     note?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -21465,12 +21668,15 @@ export namespace Prisma {
   export type CustomerMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    companyId?: SortOrder
     salutation?: SortOrder
     firstname?: SortOrder
     lastname?: SortOrder
     email?: SortOrder
     email_type?: SortOrder
+    level?: SortOrder
+    sub_create?: SortOrder
+    sub_end?: SortOrder
+    term?: SortOrder
     phone_number?: SortOrder
     phone_number_type?: SortOrder
     street_address?: SortOrder
@@ -21483,7 +21689,6 @@ export namespace Prisma {
     image?: SortOrder
     total_discount?: SortOrder
     terms_of_payment?: SortOrder
-    delivery_terms?: SortOrder
     note?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -21492,12 +21697,15 @@ export namespace Prisma {
   export type CustomerMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    companyId?: SortOrder
     salutation?: SortOrder
     firstname?: SortOrder
     lastname?: SortOrder
     email?: SortOrder
     email_type?: SortOrder
+    level?: SortOrder
+    sub_create?: SortOrder
+    sub_end?: SortOrder
+    term?: SortOrder
     phone_number?: SortOrder
     phone_number_type?: SortOrder
     street_address?: SortOrder
@@ -21510,7 +21718,6 @@ export namespace Prisma {
     image?: SortOrder
     total_discount?: SortOrder
     terms_of_payment?: SortOrder
-    delivery_terms?: SortOrder
     note?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -21519,6 +21726,31 @@ export namespace Prisma {
   export type CustomerSumOrderByAggregateInput = {
     userId?: SortOrder
     total_discount?: SortOrder
+  }
+  export type JsonNullableWithAggregatesFilter = 
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase = {
+    equals?: InputJsonValue | JsonNullValueFilter
+    path?: string
+    string_contains?: string
+    string_starts_with?: string
+    string_ends_with?: string
+    array_contains?: InputJsonValue | null
+    array_starts_with?: InputJsonValue | null
+    array_ends_with?: InputJsonValue | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonNullValueFilter
+    _count?: NestedIntNullableFilter
+    _min?: NestedJsonNullableFilter
+    _max?: NestedJsonNullableFilter
   }
 
   export type FloatNullableWithAggregatesFilter = {
@@ -21864,28 +22096,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
-  export type JsonNullableFilter = 
-    | PatchUndefined<
-        Either<Required<JsonNullableFilterBase>, Exclude<keyof Required<JsonNullableFilterBase>, 'path'>>,
-        Required<JsonNullableFilterBase>
-      >
-    | OptionalFlat<Omit<Required<JsonNullableFilterBase>, 'path'>>
-
-  export type JsonNullableFilterBase = {
-    equals?: InputJsonValue | JsonNullValueFilter
-    path?: string
-    string_contains?: string
-    string_starts_with?: string
-    string_ends_with?: string
-    array_contains?: InputJsonValue | null
-    array_starts_with?: InputJsonValue | null
-    array_ends_with?: InputJsonValue | null
-    lt?: InputJsonValue
-    lte?: InputJsonValue
-    gt?: InputJsonValue
-    gte?: InputJsonValue
-    not?: InputJsonValue | JsonNullValueFilter
-  }
 
   export type EnumYesnoFilter = {
     equals?: Yesno
@@ -21936,31 +22146,6 @@ export namespace Prisma {
   export type ProfileSumOrderByAggregateInput = {
     userId?: SortOrder
   }
-  export type JsonNullableWithAggregatesFilter = 
-    | PatchUndefined<
-        Either<Required<JsonNullableWithAggregatesFilterBase>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase>, 'path'>>,
-        Required<JsonNullableWithAggregatesFilterBase>
-      >
-    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase>, 'path'>>
-
-  export type JsonNullableWithAggregatesFilterBase = {
-    equals?: InputJsonValue | JsonNullValueFilter
-    path?: string
-    string_contains?: string
-    string_starts_with?: string
-    string_ends_with?: string
-    array_contains?: InputJsonValue | null
-    array_starts_with?: InputJsonValue | null
-    array_ends_with?: InputJsonValue | null
-    lt?: InputJsonValue
-    lte?: InputJsonValue
-    gt?: InputJsonValue
-    gte?: InputJsonValue
-    not?: InputJsonValue | JsonNullValueFilter
-    _count?: NestedIntNullableFilter
-    _min?: NestedJsonNullableFilter
-    _max?: NestedJsonNullableFilter
-  }
 
   export type EnumYesnoWithAggregatesFilter = {
     equals?: Yesno
@@ -21972,8 +22157,9 @@ export namespace Prisma {
     _max?: NestedEnumYesnoFilter
   }
 
-  export type ServicesCountOrderByAggregateInput = {
+  export type AppsCountOrderByAggregateInput = {
     id?: SortOrder
+    userId?: SortOrder
     name?: SortOrder
     description?: SortOrder
     order?: SortOrder
@@ -21987,13 +22173,15 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type ServicesAvgOrderByAggregateInput = {
+  export type AppsAvgOrderByAggregateInput = {
     id?: SortOrder
+    userId?: SortOrder
     order?: SortOrder
   }
 
-  export type ServicesMaxOrderByAggregateInput = {
+  export type AppsMaxOrderByAggregateInput = {
     id?: SortOrder
+    userId?: SortOrder
     name?: SortOrder
     description?: SortOrder
     order?: SortOrder
@@ -22007,8 +22195,9 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type ServicesMinOrderByAggregateInput = {
+  export type AppsMinOrderByAggregateInput = {
     id?: SortOrder
+    userId?: SortOrder
     name?: SortOrder
     description?: SortOrder
     order?: SortOrder
@@ -22022,8 +22211,9 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type ServicesSumOrderByAggregateInput = {
+  export type AppsSumOrderByAggregateInput = {
     id?: SortOrder
+    userId?: SortOrder
     order?: SortOrder
   }
 
@@ -22076,11 +22266,11 @@ export namespace Prisma {
     connect?: Enumerable<CustomerWhereUniqueInput>
   }
 
-  export type SiteCreateNestedManyWithoutUserInput = {
-    create?: XOR<Enumerable<SiteCreateWithoutUserInput>, Enumerable<SiteUncheckedCreateWithoutUserInput>>
-    connectOrCreate?: Enumerable<SiteCreateOrConnectWithoutUserInput>
-    createMany?: SiteCreateManyUserInputEnvelope
-    connect?: Enumerable<SiteWhereUniqueInput>
+  export type LinkCreateNestedManyWithoutUserInput = {
+    create?: XOR<Enumerable<LinkCreateWithoutUserInput>, Enumerable<LinkUncheckedCreateWithoutUserInput>>
+    connectOrCreate?: Enumerable<LinkCreateOrConnectWithoutUserInput>
+    createMany?: LinkCreateManyUserInputEnvelope
+    connect?: Enumerable<LinkWhereUniqueInput>
   }
 
   export type ProfileCreateNestedManyWithoutUserInput = {
@@ -22095,6 +22285,13 @@ export namespace Prisma {
     connectOrCreate?: Enumerable<TokenCreateOrConnectWithoutUserInput>
     createMany?: TokenCreateManyUserInputEnvelope
     connect?: Enumerable<TokenWhereUniqueInput>
+  }
+
+  export type AppsCreateNestedManyWithoutUserInput = {
+    create?: XOR<Enumerable<AppsCreateWithoutUserInput>, Enumerable<AppsUncheckedCreateWithoutUserInput>>
+    connectOrCreate?: Enumerable<AppsCreateOrConnectWithoutUserInput>
+    createMany?: AppsCreateManyUserInputEnvelope
+    connect?: Enumerable<AppsWhereUniqueInput>
   }
 
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
@@ -22146,11 +22343,11 @@ export namespace Prisma {
     connect?: Enumerable<CustomerWhereUniqueInput>
   }
 
-  export type SiteUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<Enumerable<SiteCreateWithoutUserInput>, Enumerable<SiteUncheckedCreateWithoutUserInput>>
-    connectOrCreate?: Enumerable<SiteCreateOrConnectWithoutUserInput>
-    createMany?: SiteCreateManyUserInputEnvelope
-    connect?: Enumerable<SiteWhereUniqueInput>
+  export type LinkUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<Enumerable<LinkCreateWithoutUserInput>, Enumerable<LinkUncheckedCreateWithoutUserInput>>
+    connectOrCreate?: Enumerable<LinkCreateOrConnectWithoutUserInput>
+    createMany?: LinkCreateManyUserInputEnvelope
+    connect?: Enumerable<LinkWhereUniqueInput>
   }
 
   export type ProfileUncheckedCreateNestedManyWithoutUserInput = {
@@ -22167,8 +22364,11 @@ export namespace Prisma {
     connect?: Enumerable<TokenWhereUniqueInput>
   }
 
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
+  export type AppsUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<Enumerable<AppsCreateWithoutUserInput>, Enumerable<AppsUncheckedCreateWithoutUserInput>>
+    connectOrCreate?: Enumerable<AppsCreateOrConnectWithoutUserInput>
+    createMany?: AppsCreateManyUserInputEnvelope
+    connect?: Enumerable<AppsWhereUniqueInput>
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -22189,6 +22389,10 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
   export type AccountUpdateManyWithoutUserNestedInput = {
@@ -22289,18 +22493,18 @@ export namespace Prisma {
     deleteMany?: Enumerable<CustomerScalarWhereInput>
   }
 
-  export type SiteUpdateManyWithoutUserNestedInput = {
-    create?: XOR<Enumerable<SiteCreateWithoutUserInput>, Enumerable<SiteUncheckedCreateWithoutUserInput>>
-    connectOrCreate?: Enumerable<SiteCreateOrConnectWithoutUserInput>
-    upsert?: Enumerable<SiteUpsertWithWhereUniqueWithoutUserInput>
-    createMany?: SiteCreateManyUserInputEnvelope
-    set?: Enumerable<SiteWhereUniqueInput>
-    disconnect?: Enumerable<SiteWhereUniqueInput>
-    delete?: Enumerable<SiteWhereUniqueInput>
-    connect?: Enumerable<SiteWhereUniqueInput>
-    update?: Enumerable<SiteUpdateWithWhereUniqueWithoutUserInput>
-    updateMany?: Enumerable<SiteUpdateManyWithWhereWithoutUserInput>
-    deleteMany?: Enumerable<SiteScalarWhereInput>
+  export type LinkUpdateManyWithoutUserNestedInput = {
+    create?: XOR<Enumerable<LinkCreateWithoutUserInput>, Enumerable<LinkUncheckedCreateWithoutUserInput>>
+    connectOrCreate?: Enumerable<LinkCreateOrConnectWithoutUserInput>
+    upsert?: Enumerable<LinkUpsertWithWhereUniqueWithoutUserInput>
+    createMany?: LinkCreateManyUserInputEnvelope
+    set?: Enumerable<LinkWhereUniqueInput>
+    disconnect?: Enumerable<LinkWhereUniqueInput>
+    delete?: Enumerable<LinkWhereUniqueInput>
+    connect?: Enumerable<LinkWhereUniqueInput>
+    update?: Enumerable<LinkUpdateWithWhereUniqueWithoutUserInput>
+    updateMany?: Enumerable<LinkUpdateManyWithWhereWithoutUserInput>
+    deleteMany?: Enumerable<LinkScalarWhereInput>
   }
 
   export type ProfileUpdateManyWithoutUserNestedInput = {
@@ -22329,6 +22533,20 @@ export namespace Prisma {
     update?: Enumerable<TokenUpdateWithWhereUniqueWithoutUserInput>
     updateMany?: Enumerable<TokenUpdateManyWithWhereWithoutUserInput>
     deleteMany?: Enumerable<TokenScalarWhereInput>
+  }
+
+  export type AppsUpdateManyWithoutUserNestedInput = {
+    create?: XOR<Enumerable<AppsCreateWithoutUserInput>, Enumerable<AppsUncheckedCreateWithoutUserInput>>
+    connectOrCreate?: Enumerable<AppsCreateOrConnectWithoutUserInput>
+    upsert?: Enumerable<AppsUpsertWithWhereUniqueWithoutUserInput>
+    createMany?: AppsCreateManyUserInputEnvelope
+    set?: Enumerable<AppsWhereUniqueInput>
+    disconnect?: Enumerable<AppsWhereUniqueInput>
+    delete?: Enumerable<AppsWhereUniqueInput>
+    connect?: Enumerable<AppsWhereUniqueInput>
+    update?: Enumerable<AppsUpdateWithWhereUniqueWithoutUserInput>
+    updateMany?: Enumerable<AppsUpdateManyWithWhereWithoutUserInput>
+    deleteMany?: Enumerable<AppsScalarWhereInput>
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -22437,18 +22655,18 @@ export namespace Prisma {
     deleteMany?: Enumerable<CustomerScalarWhereInput>
   }
 
-  export type SiteUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<Enumerable<SiteCreateWithoutUserInput>, Enumerable<SiteUncheckedCreateWithoutUserInput>>
-    connectOrCreate?: Enumerable<SiteCreateOrConnectWithoutUserInput>
-    upsert?: Enumerable<SiteUpsertWithWhereUniqueWithoutUserInput>
-    createMany?: SiteCreateManyUserInputEnvelope
-    set?: Enumerable<SiteWhereUniqueInput>
-    disconnect?: Enumerable<SiteWhereUniqueInput>
-    delete?: Enumerable<SiteWhereUniqueInput>
-    connect?: Enumerable<SiteWhereUniqueInput>
-    update?: Enumerable<SiteUpdateWithWhereUniqueWithoutUserInput>
-    updateMany?: Enumerable<SiteUpdateManyWithWhereWithoutUserInput>
-    deleteMany?: Enumerable<SiteScalarWhereInput>
+  export type LinkUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<Enumerable<LinkCreateWithoutUserInput>, Enumerable<LinkUncheckedCreateWithoutUserInput>>
+    connectOrCreate?: Enumerable<LinkCreateOrConnectWithoutUserInput>
+    upsert?: Enumerable<LinkUpsertWithWhereUniqueWithoutUserInput>
+    createMany?: LinkCreateManyUserInputEnvelope
+    set?: Enumerable<LinkWhereUniqueInput>
+    disconnect?: Enumerable<LinkWhereUniqueInput>
+    delete?: Enumerable<LinkWhereUniqueInput>
+    connect?: Enumerable<LinkWhereUniqueInput>
+    update?: Enumerable<LinkUpdateWithWhereUniqueWithoutUserInput>
+    updateMany?: Enumerable<LinkUpdateManyWithWhereWithoutUserInput>
+    deleteMany?: Enumerable<LinkScalarWhereInput>
   }
 
   export type ProfileUncheckedUpdateManyWithoutUserNestedInput = {
@@ -22477,6 +22695,20 @@ export namespace Prisma {
     update?: Enumerable<TokenUpdateWithWhereUniqueWithoutUserInput>
     updateMany?: Enumerable<TokenUpdateManyWithWhereWithoutUserInput>
     deleteMany?: Enumerable<TokenScalarWhereInput>
+  }
+
+  export type AppsUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<Enumerable<AppsCreateWithoutUserInput>, Enumerable<AppsUncheckedCreateWithoutUserInput>>
+    connectOrCreate?: Enumerable<AppsCreateOrConnectWithoutUserInput>
+    upsert?: Enumerable<AppsUpsertWithWhereUniqueWithoutUserInput>
+    createMany?: AppsCreateManyUserInputEnvelope
+    set?: Enumerable<AppsWhereUniqueInput>
+    disconnect?: Enumerable<AppsWhereUniqueInput>
+    delete?: Enumerable<AppsWhereUniqueInput>
+    connect?: Enumerable<AppsWhereUniqueInput>
+    update?: Enumerable<AppsUpdateWithWhereUniqueWithoutUserInput>
+    updateMany?: Enumerable<AppsUpdateManyWithWhereWithoutUserInput>
+    deleteMany?: Enumerable<AppsScalarWhereInput>
   }
 
   export type UserCreateNestedOneWithoutSessionsInput = {
@@ -22521,42 +22753,42 @@ export namespace Prisma {
     update?: XOR<UserUpdateWithoutAccountsInput, UserUncheckedUpdateWithoutAccountsInput>
   }
 
-  export type UserCreateNestedOneWithoutSiteInput = {
-    create?: XOR<UserCreateWithoutSiteInput, UserUncheckedCreateWithoutSiteInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSiteInput
+  export type UserCreateNestedOneWithoutLinkInput = {
+    create?: XOR<UserCreateWithoutLinkInput, UserUncheckedCreateWithoutLinkInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLinkInput
     connect?: UserWhereUniqueInput
   }
 
-  export type ProfileCreateNestedOneWithoutSiteInput = {
-    create?: XOR<ProfileCreateWithoutSiteInput, ProfileUncheckedCreateWithoutSiteInput>
-    connectOrCreate?: ProfileCreateOrConnectWithoutSiteInput
+  export type ProfileCreateNestedOneWithoutLinkInput = {
+    create?: XOR<ProfileCreateWithoutLinkInput, ProfileUncheckedCreateWithoutLinkInput>
+    connectOrCreate?: ProfileCreateOrConnectWithoutLinkInput
     connect?: ProfileWhereUniqueInput
   }
 
-  export type EnumSitetypeFieldUpdateOperationsInput = {
-    set?: Sitetype
+  export type EnumLinktypeFieldUpdateOperationsInput = {
+    set?: Linktype
   }
 
   export type EnumStatusFieldUpdateOperationsInput = {
     set?: Status
   }
 
-  export type UserUpdateOneRequiredWithoutSiteNestedInput = {
-    create?: XOR<UserCreateWithoutSiteInput, UserUncheckedCreateWithoutSiteInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSiteInput
-    upsert?: UserUpsertWithoutSiteInput
+  export type UserUpdateOneRequiredWithoutLinkNestedInput = {
+    create?: XOR<UserCreateWithoutLinkInput, UserUncheckedCreateWithoutLinkInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLinkInput
+    upsert?: UserUpsertWithoutLinkInput
     connect?: UserWhereUniqueInput
-    update?: XOR<UserUpdateWithoutSiteInput, UserUncheckedUpdateWithoutSiteInput>
+    update?: XOR<UserUpdateWithoutLinkInput, UserUncheckedUpdateWithoutLinkInput>
   }
 
-  export type ProfileUpdateOneWithoutSiteNestedInput = {
-    create?: XOR<ProfileCreateWithoutSiteInput, ProfileUncheckedCreateWithoutSiteInput>
-    connectOrCreate?: ProfileCreateOrConnectWithoutSiteInput
-    upsert?: ProfileUpsertWithoutSiteInput
+  export type ProfileUpdateOneWithoutLinkNestedInput = {
+    create?: XOR<ProfileCreateWithoutLinkInput, ProfileUncheckedCreateWithoutLinkInput>
+    connectOrCreate?: ProfileCreateOrConnectWithoutLinkInput
+    upsert?: ProfileUpsertWithoutLinkInput
     disconnect?: boolean
     delete?: boolean
     connect?: ProfileWhereUniqueInput
-    update?: XOR<ProfileUpdateWithoutSiteInput, ProfileUncheckedUpdateWithoutSiteInput>
+    update?: XOR<ProfileUpdateWithoutLinkInput, ProfileUncheckedUpdateWithoutLinkInput>
   }
 
   export type UserCreateNestedOneWithoutMessagesInput = {
@@ -22913,18 +23145,18 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type SiteCreateNestedManyWithoutProfileInput = {
-    create?: XOR<Enumerable<SiteCreateWithoutProfileInput>, Enumerable<SiteUncheckedCreateWithoutProfileInput>>
-    connectOrCreate?: Enumerable<SiteCreateOrConnectWithoutProfileInput>
-    createMany?: SiteCreateManyProfileInputEnvelope
-    connect?: Enumerable<SiteWhereUniqueInput>
+  export type LinkCreateNestedManyWithoutProfileInput = {
+    create?: XOR<Enumerable<LinkCreateWithoutProfileInput>, Enumerable<LinkUncheckedCreateWithoutProfileInput>>
+    connectOrCreate?: Enumerable<LinkCreateOrConnectWithoutProfileInput>
+    createMany?: LinkCreateManyProfileInputEnvelope
+    connect?: Enumerable<LinkWhereUniqueInput>
   }
 
-  export type SiteUncheckedCreateNestedManyWithoutProfileInput = {
-    create?: XOR<Enumerable<SiteCreateWithoutProfileInput>, Enumerable<SiteUncheckedCreateWithoutProfileInput>>
-    connectOrCreate?: Enumerable<SiteCreateOrConnectWithoutProfileInput>
-    createMany?: SiteCreateManyProfileInputEnvelope
-    connect?: Enumerable<SiteWhereUniqueInput>
+  export type LinkUncheckedCreateNestedManyWithoutProfileInput = {
+    create?: XOR<Enumerable<LinkCreateWithoutProfileInput>, Enumerable<LinkUncheckedCreateWithoutProfileInput>>
+    connectOrCreate?: Enumerable<LinkCreateOrConnectWithoutProfileInput>
+    createMany?: LinkCreateManyProfileInputEnvelope
+    connect?: Enumerable<LinkWhereUniqueInput>
   }
 
   export type EnumYesnoFieldUpdateOperationsInput = {
@@ -22939,32 +23171,46 @@ export namespace Prisma {
     update?: XOR<UserUpdateWithoutProfileInput, UserUncheckedUpdateWithoutProfileInput>
   }
 
-  export type SiteUpdateManyWithoutProfileNestedInput = {
-    create?: XOR<Enumerable<SiteCreateWithoutProfileInput>, Enumerable<SiteUncheckedCreateWithoutProfileInput>>
-    connectOrCreate?: Enumerable<SiteCreateOrConnectWithoutProfileInput>
-    upsert?: Enumerable<SiteUpsertWithWhereUniqueWithoutProfileInput>
-    createMany?: SiteCreateManyProfileInputEnvelope
-    set?: Enumerable<SiteWhereUniqueInput>
-    disconnect?: Enumerable<SiteWhereUniqueInput>
-    delete?: Enumerable<SiteWhereUniqueInput>
-    connect?: Enumerable<SiteWhereUniqueInput>
-    update?: Enumerable<SiteUpdateWithWhereUniqueWithoutProfileInput>
-    updateMany?: Enumerable<SiteUpdateManyWithWhereWithoutProfileInput>
-    deleteMany?: Enumerable<SiteScalarWhereInput>
+  export type LinkUpdateManyWithoutProfileNestedInput = {
+    create?: XOR<Enumerable<LinkCreateWithoutProfileInput>, Enumerable<LinkUncheckedCreateWithoutProfileInput>>
+    connectOrCreate?: Enumerable<LinkCreateOrConnectWithoutProfileInput>
+    upsert?: Enumerable<LinkUpsertWithWhereUniqueWithoutProfileInput>
+    createMany?: LinkCreateManyProfileInputEnvelope
+    set?: Enumerable<LinkWhereUniqueInput>
+    disconnect?: Enumerable<LinkWhereUniqueInput>
+    delete?: Enumerable<LinkWhereUniqueInput>
+    connect?: Enumerable<LinkWhereUniqueInput>
+    update?: Enumerable<LinkUpdateWithWhereUniqueWithoutProfileInput>
+    updateMany?: Enumerable<LinkUpdateManyWithWhereWithoutProfileInput>
+    deleteMany?: Enumerable<LinkScalarWhereInput>
   }
 
-  export type SiteUncheckedUpdateManyWithoutProfileNestedInput = {
-    create?: XOR<Enumerable<SiteCreateWithoutProfileInput>, Enumerable<SiteUncheckedCreateWithoutProfileInput>>
-    connectOrCreate?: Enumerable<SiteCreateOrConnectWithoutProfileInput>
-    upsert?: Enumerable<SiteUpsertWithWhereUniqueWithoutProfileInput>
-    createMany?: SiteCreateManyProfileInputEnvelope
-    set?: Enumerable<SiteWhereUniqueInput>
-    disconnect?: Enumerable<SiteWhereUniqueInput>
-    delete?: Enumerable<SiteWhereUniqueInput>
-    connect?: Enumerable<SiteWhereUniqueInput>
-    update?: Enumerable<SiteUpdateWithWhereUniqueWithoutProfileInput>
-    updateMany?: Enumerable<SiteUpdateManyWithWhereWithoutProfileInput>
-    deleteMany?: Enumerable<SiteScalarWhereInput>
+  export type LinkUncheckedUpdateManyWithoutProfileNestedInput = {
+    create?: XOR<Enumerable<LinkCreateWithoutProfileInput>, Enumerable<LinkUncheckedCreateWithoutProfileInput>>
+    connectOrCreate?: Enumerable<LinkCreateOrConnectWithoutProfileInput>
+    upsert?: Enumerable<LinkUpsertWithWhereUniqueWithoutProfileInput>
+    createMany?: LinkCreateManyProfileInputEnvelope
+    set?: Enumerable<LinkWhereUniqueInput>
+    disconnect?: Enumerable<LinkWhereUniqueInput>
+    delete?: Enumerable<LinkWhereUniqueInput>
+    connect?: Enumerable<LinkWhereUniqueInput>
+    update?: Enumerable<LinkUpdateWithWhereUniqueWithoutProfileInput>
+    updateMany?: Enumerable<LinkUpdateManyWithWhereWithoutProfileInput>
+    deleteMany?: Enumerable<LinkScalarWhereInput>
+  }
+
+  export type UserCreateNestedOneWithoutAppsInput = {
+    create?: XOR<UserCreateWithoutAppsInput, UserUncheckedCreateWithoutAppsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAppsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutAppsNestedInput = {
+    create?: XOR<UserCreateWithoutAppsInput, UserUncheckedCreateWithoutAppsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAppsInput
+    upsert?: UserUpsertWithoutAppsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<UserUpdateWithoutAppsInput, UserUncheckedUpdateWithoutAppsInput>
   }
 
   export type NestedIntFilter = {
@@ -22976,17 +23222,6 @@ export namespace Prisma {
     gt?: number
     gte?: number
     not?: NestedIntFilter | number
-  }
-
-  export type NestedDateTimeFilter = {
-    equals?: Date | string
-    in?: Enumerable<Date> | Enumerable<string>
-    notIn?: Enumerable<Date> | Enumerable<string>
-    lt?: Date | string
-    lte?: Date | string
-    gt?: Date | string
-    gte?: Date | string
-    not?: NestedDateTimeFilter | Date | string
   }
 
   export type NestedStringFilter = {
@@ -23039,6 +23274,17 @@ export namespace Prisma {
     not?: NestedIntNullableFilter | number | null
   }
 
+  export type NestedDateTimeFilter = {
+    equals?: Date | string
+    in?: Enumerable<Date> | Enumerable<string>
+    notIn?: Enumerable<Date> | Enumerable<string>
+    lt?: Date | string
+    lte?: Date | string
+    gt?: Date | string
+    gte?: Date | string
+    not?: NestedDateTimeFilter | Date | string
+  }
+
   export type NestedIntWithAggregatesFilter = {
     equals?: number
     in?: Enumerable<number>
@@ -23064,20 +23310,6 @@ export namespace Prisma {
     gt?: number
     gte?: number
     not?: NestedFloatFilter | number
-  }
-
-  export type NestedDateTimeWithAggregatesFilter = {
-    equals?: Date | string
-    in?: Enumerable<Date> | Enumerable<string>
-    notIn?: Enumerable<Date> | Enumerable<string>
-    lt?: Date | string
-    lte?: Date | string
-    gt?: Date | string
-    gte?: Date | string
-    not?: NestedDateTimeWithAggregatesFilter | Date | string
-    _count?: NestedIntFilter
-    _min?: NestedDateTimeFilter
-    _max?: NestedDateTimeFilter
   }
 
   export type NestedStringWithAggregatesFilter = {
@@ -23155,11 +23387,25 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter | number | null
   }
 
-  export type NestedEnumSitetypeFilter = {
-    equals?: Sitetype
-    in?: Enumerable<Sitetype>
-    notIn?: Enumerable<Sitetype>
-    not?: NestedEnumSitetypeFilter | Sitetype
+  export type NestedDateTimeWithAggregatesFilter = {
+    equals?: Date | string
+    in?: Enumerable<Date> | Enumerable<string>
+    notIn?: Enumerable<Date> | Enumerable<string>
+    lt?: Date | string
+    lte?: Date | string
+    gt?: Date | string
+    gte?: Date | string
+    not?: NestedDateTimeWithAggregatesFilter | Date | string
+    _count?: NestedIntFilter
+    _min?: NestedDateTimeFilter
+    _max?: NestedDateTimeFilter
+  }
+
+  export type NestedEnumLinktypeFilter = {
+    equals?: Linktype
+    in?: Enumerable<Linktype>
+    notIn?: Enumerable<Linktype>
+    not?: NestedEnumLinktypeFilter | Linktype
   }
 
   export type NestedEnumStatusFilter = {
@@ -23169,14 +23415,14 @@ export namespace Prisma {
     not?: NestedEnumStatusFilter | Status
   }
 
-  export type NestedEnumSitetypeWithAggregatesFilter = {
-    equals?: Sitetype
-    in?: Enumerable<Sitetype>
-    notIn?: Enumerable<Sitetype>
-    not?: NestedEnumSitetypeWithAggregatesFilter | Sitetype
+  export type NestedEnumLinktypeWithAggregatesFilter = {
+    equals?: Linktype
+    in?: Enumerable<Linktype>
+    notIn?: Enumerable<Linktype>
+    not?: NestedEnumLinktypeWithAggregatesFilter | Linktype
     _count?: NestedIntFilter
-    _min?: NestedEnumSitetypeFilter
-    _max?: NestedEnumSitetypeFilter
+    _min?: NestedEnumLinktypeFilter
+    _max?: NestedEnumLinktypeFilter
   }
 
   export type NestedEnumStatusWithAggregatesFilter = {
@@ -23187,6 +23433,28 @@ export namespace Prisma {
     _count?: NestedIntFilter
     _min?: NestedEnumStatusFilter
     _max?: NestedEnumStatusFilter
+  }
+  export type NestedJsonNullableFilter = 
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase>, Exclude<keyof Required<NestedJsonNullableFilterBase>, 'path'>>,
+        Required<NestedJsonNullableFilterBase>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase>, 'path'>>
+
+  export type NestedJsonNullableFilterBase = {
+    equals?: InputJsonValue | JsonNullValueFilter
+    path?: string
+    string_contains?: string
+    string_starts_with?: string
+    string_ends_with?: string
+    array_contains?: InputJsonValue | null
+    array_starts_with?: InputJsonValue | null
+    array_ends_with?: InputJsonValue | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonNullValueFilter
   }
 
   export type NestedFloatNullableWithAggregatesFilter = {
@@ -23226,28 +23494,6 @@ export namespace Prisma {
     in?: Enumerable<Yesno>
     notIn?: Enumerable<Yesno>
     not?: NestedEnumYesnoFilter | Yesno
-  }
-  export type NestedJsonNullableFilter = 
-    | PatchUndefined<
-        Either<Required<NestedJsonNullableFilterBase>, Exclude<keyof Required<NestedJsonNullableFilterBase>, 'path'>>,
-        Required<NestedJsonNullableFilterBase>
-      >
-    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase>, 'path'>>
-
-  export type NestedJsonNullableFilterBase = {
-    equals?: InputJsonValue | JsonNullValueFilter
-    path?: string
-    string_contains?: string
-    string_starts_with?: string
-    string_ends_with?: string
-    array_contains?: InputJsonValue | null
-    array_starts_with?: InputJsonValue | null
-    array_ends_with?: InputJsonValue | null
-    lt?: InputJsonValue
-    lte?: InputJsonValue
-    gt?: InputJsonValue
-    gte?: InputJsonValue
-    not?: InputJsonValue | JsonNullValueFilter
   }
 
   export type NestedEnumYesnoWithAggregatesFilter = {
@@ -23443,12 +23689,16 @@ export namespace Prisma {
 
   export type CustomerCreateWithoutUserInput = {
     id?: string
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -23461,7 +23711,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -23472,12 +23721,16 @@ export namespace Prisma {
 
   export type CustomerUncheckedCreateWithoutUserInput = {
     id?: string
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -23490,7 +23743,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -23509,28 +23761,28 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type SiteCreateWithoutUserInput = {
+  export type LinkCreateWithoutUserInput = {
     id?: string
     url: string
     title?: string | null
     description?: string | null
     order?: number
-    type?: Sitetype
+    type?: Linktype
     icon?: string | null
     image?: string | null
     status?: Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    Profile?: ProfileCreateNestedOneWithoutSiteInput
+    Profile?: ProfileCreateNestedOneWithoutLinkInput
   }
 
-  export type SiteUncheckedCreateWithoutUserInput = {
+  export type LinkUncheckedCreateWithoutUserInput = {
     id?: string
     url: string
     title?: string | null
     description?: string | null
     order?: number
-    type?: Sitetype
+    type?: Linktype
     icon?: string | null
     image?: string | null
     status?: Status
@@ -23539,13 +23791,13 @@ export namespace Prisma {
     profileId?: string | null
   }
 
-  export type SiteCreateOrConnectWithoutUserInput = {
-    where: SiteWhereUniqueInput
-    create: XOR<SiteCreateWithoutUserInput, SiteUncheckedCreateWithoutUserInput>
+  export type LinkCreateOrConnectWithoutUserInput = {
+    where: LinkWhereUniqueInput
+    create: XOR<LinkCreateWithoutUserInput, LinkUncheckedCreateWithoutUserInput>
   }
 
-  export type SiteCreateManyUserInputEnvelope = {
-    data: Enumerable<SiteCreateManyUserInput>
+  export type LinkCreateManyUserInputEnvelope = {
+    data: Enumerable<LinkCreateManyUserInput>
     skipDuplicates?: boolean
   }
 
@@ -23559,7 +23811,7 @@ export namespace Prisma {
     current?: Yesno
     createdAt?: Date | string
     updatedAt?: Date | string
-    Site?: SiteCreateNestedManyWithoutProfileInput
+    Link?: LinkCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateWithoutUserInput = {
@@ -23572,7 +23824,7 @@ export namespace Prisma {
     current?: Yesno
     createdAt?: Date | string
     updatedAt?: Date | string
-    Site?: SiteUncheckedCreateNestedManyWithoutProfileInput
+    Link?: LinkUncheckedCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileCreateOrConnectWithoutUserInput = {
@@ -23611,6 +23863,45 @@ export namespace Prisma {
 
   export type TokenCreateManyUserInputEnvelope = {
     data: Enumerable<TokenCreateManyUserInput>
+    skipDuplicates?: boolean
+  }
+
+  export type AppsCreateWithoutUserInput = {
+    name?: string | null
+    description?: string | null
+    order?: number
+    api_key?: string | null
+    api_secret?: string | null
+    site_name?: string | null
+    show_feed?: Yesno
+    show_share?: Yesno
+    show_sub?: Yesno
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AppsUncheckedCreateWithoutUserInput = {
+    id?: number
+    name?: string | null
+    description?: string | null
+    order?: number
+    api_key?: string | null
+    api_secret?: string | null
+    site_name?: string | null
+    show_feed?: Yesno
+    show_share?: Yesno
+    show_sub?: Yesno
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AppsCreateOrConnectWithoutUserInput = {
+    where: AppsWhereUniqueInput
+    create: XOR<AppsCreateWithoutUserInput, AppsUncheckedCreateWithoutUserInput>
+  }
+
+  export type AppsCreateManyUserInputEnvelope = {
+    data: Enumerable<AppsCreateManyUserInput>
     skipDuplicates?: boolean
   }
 
@@ -23818,12 +24109,16 @@ export namespace Prisma {
     NOT?: Enumerable<CustomerScalarWhereInput>
     id?: StringFilter | string
     userId?: IntFilter | number
-    companyId?: StringNullableFilter | string | null
     salutation?: StringFilter | string
     firstname?: StringFilter | string
     lastname?: StringFilter | string
     email?: StringNullableFilter | string | null
     email_type?: StringNullableFilter | string | null
+    level?: StringFilter | string
+    sub_create?: DateTimeFilter | Date | string
+    sub_end?: DateTimeFilter | Date | string
+    term?: StringNullableFilter | string | null
+    stripe_results?: JsonNullableFilter
     phone_number?: StringNullableFilter | string | null
     phone_number_type?: StringNullableFilter | string | null
     street_address?: StringNullableFilter | string | null
@@ -23836,39 +24131,38 @@ export namespace Prisma {
     image?: StringNullableFilter | string | null
     total_discount?: FloatNullableFilter | number | null
     terms_of_payment?: StringNullableFilter | string | null
-    delivery_terms?: StringNullableFilter | string | null
     note?: StringNullableFilter | string | null
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
   }
 
-  export type SiteUpsertWithWhereUniqueWithoutUserInput = {
-    where: SiteWhereUniqueInput
-    update: XOR<SiteUpdateWithoutUserInput, SiteUncheckedUpdateWithoutUserInput>
-    create: XOR<SiteCreateWithoutUserInput, SiteUncheckedCreateWithoutUserInput>
+  export type LinkUpsertWithWhereUniqueWithoutUserInput = {
+    where: LinkWhereUniqueInput
+    update: XOR<LinkUpdateWithoutUserInput, LinkUncheckedUpdateWithoutUserInput>
+    create: XOR<LinkCreateWithoutUserInput, LinkUncheckedCreateWithoutUserInput>
   }
 
-  export type SiteUpdateWithWhereUniqueWithoutUserInput = {
-    where: SiteWhereUniqueInput
-    data: XOR<SiteUpdateWithoutUserInput, SiteUncheckedUpdateWithoutUserInput>
+  export type LinkUpdateWithWhereUniqueWithoutUserInput = {
+    where: LinkWhereUniqueInput
+    data: XOR<LinkUpdateWithoutUserInput, LinkUncheckedUpdateWithoutUserInput>
   }
 
-  export type SiteUpdateManyWithWhereWithoutUserInput = {
-    where: SiteScalarWhereInput
-    data: XOR<SiteUpdateManyMutationInput, SiteUncheckedUpdateManyWithoutSiteInput>
+  export type LinkUpdateManyWithWhereWithoutUserInput = {
+    where: LinkScalarWhereInput
+    data: XOR<LinkUpdateManyMutationInput, LinkUncheckedUpdateManyWithoutLinkInput>
   }
 
-  export type SiteScalarWhereInput = {
-    AND?: Enumerable<SiteScalarWhereInput>
-    OR?: Enumerable<SiteScalarWhereInput>
-    NOT?: Enumerable<SiteScalarWhereInput>
+  export type LinkScalarWhereInput = {
+    AND?: Enumerable<LinkScalarWhereInput>
+    OR?: Enumerable<LinkScalarWhereInput>
+    NOT?: Enumerable<LinkScalarWhereInput>
     id?: StringFilter | string
     userId?: IntFilter | number
     url?: StringFilter | string
     title?: StringNullableFilter | string | null
     description?: StringNullableFilter | string | null
     order?: IntFilter | number
-    type?: EnumSitetypeFilter | Sitetype
+    type?: EnumLinktypeFilter | Linktype
     icon?: StringNullableFilter | string | null
     image?: StringNullableFilter | string | null
     status?: EnumStatusFilter | Status
@@ -23939,9 +24233,42 @@ export namespace Prisma {
     userId?: IntFilter | number
   }
 
+  export type AppsUpsertWithWhereUniqueWithoutUserInput = {
+    where: AppsWhereUniqueInput
+    update: XOR<AppsUpdateWithoutUserInput, AppsUncheckedUpdateWithoutUserInput>
+    create: XOR<AppsCreateWithoutUserInput, AppsUncheckedCreateWithoutUserInput>
+  }
+
+  export type AppsUpdateWithWhereUniqueWithoutUserInput = {
+    where: AppsWhereUniqueInput
+    data: XOR<AppsUpdateWithoutUserInput, AppsUncheckedUpdateWithoutUserInput>
+  }
+
+  export type AppsUpdateManyWithWhereWithoutUserInput = {
+    where: AppsScalarWhereInput
+    data: XOR<AppsUpdateManyMutationInput, AppsUncheckedUpdateManyWithoutAppsInput>
+  }
+
+  export type AppsScalarWhereInput = {
+    AND?: Enumerable<AppsScalarWhereInput>
+    OR?: Enumerable<AppsScalarWhereInput>
+    NOT?: Enumerable<AppsScalarWhereInput>
+    id?: IntFilter | number
+    userId?: IntFilter | number
+    name?: StringNullableFilter | string | null
+    description?: StringNullableFilter | string | null
+    order?: IntFilter | number
+    api_key?: StringNullableFilter | string | null
+    api_secret?: StringNullableFilter | string | null
+    site_name?: StringNullableFilter | string | null
+    show_feed?: EnumYesnoFilter | Yesno
+    show_share?: EnumYesnoFilter | Yesno
+    show_sub?: EnumYesnoFilter | Yesno
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
+  }
+
   export type UserCreateWithoutSessionsInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -23950,22 +24277,23 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountCreateNestedManyWithoutUserInput
     Files?: FileCreateNestedManyWithoutUserInput
     Activities?: ActivityCreateNestedManyWithoutUserInput
     Messages?: MessageCreateNestedManyWithoutUserInput
     Notifications?: NotificationCreateNestedManyWithoutUserInput
     Customers?: CustomerCreateNestedManyWithoutUserInput
-    Site?: SiteCreateNestedManyWithoutUserInput
+    Link?: LinkCreateNestedManyWithoutUserInput
     Profile?: ProfileCreateNestedManyWithoutUserInput
     Token?: TokenCreateNestedManyWithoutUserInput
+    Apps?: AppsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -23974,16 +24302,19 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Files?: FileUncheckedCreateNestedManyWithoutUserInput
     Activities?: ActivityUncheckedCreateNestedManyWithoutUserInput
     Messages?: MessageUncheckedCreateNestedManyWithoutUserInput
     Notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     Customers?: CustomerUncheckedCreateNestedManyWithoutUserInput
-    Site?: SiteUncheckedCreateNestedManyWithoutUserInput
+    Link?: LinkUncheckedCreateNestedManyWithoutUserInput
     Profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
     Token?: TokenUncheckedCreateNestedManyWithoutUserInput
+    Apps?: AppsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -23997,8 +24328,6 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutSessionsInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -24007,22 +24336,23 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUpdateManyWithoutUserNestedInput
     Files?: FileUpdateManyWithoutUserNestedInput
     Activities?: ActivityUpdateManyWithoutUserNestedInput
     Messages?: MessageUpdateManyWithoutUserNestedInput
     Notifications?: NotificationUpdateManyWithoutUserNestedInput
     Customers?: CustomerUpdateManyWithoutUserNestedInput
-    Site?: SiteUpdateManyWithoutUserNestedInput
+    Link?: LinkUpdateManyWithoutUserNestedInput
     Profile?: ProfileUpdateManyWithoutUserNestedInput
     Token?: TokenUpdateManyWithoutUserNestedInput
+    Apps?: AppsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -24031,21 +24361,22 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Files?: FileUncheckedUpdateManyWithoutUserNestedInput
     Activities?: ActivityUncheckedUpdateManyWithoutUserNestedInput
     Messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
     Notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     Customers?: CustomerUncheckedUpdateManyWithoutUserNestedInput
-    Site?: SiteUncheckedUpdateManyWithoutUserNestedInput
+    Link?: LinkUncheckedUpdateManyWithoutUserNestedInput
     Profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
     Token?: TokenUncheckedUpdateManyWithoutUserNestedInput
+    Apps?: AppsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutTokenInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24054,7 +24385,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountCreateNestedManyWithoutUserInput
     Sessions?: SessionCreateNestedManyWithoutUserInput
     Files?: FileCreateNestedManyWithoutUserInput
@@ -24062,14 +24395,13 @@ export namespace Prisma {
     Messages?: MessageCreateNestedManyWithoutUserInput
     Notifications?: NotificationCreateNestedManyWithoutUserInput
     Customers?: CustomerCreateNestedManyWithoutUserInput
-    Site?: SiteCreateNestedManyWithoutUserInput
+    Link?: LinkCreateNestedManyWithoutUserInput
     Profile?: ProfileCreateNestedManyWithoutUserInput
+    Apps?: AppsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTokenInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24078,7 +24410,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Files?: FileUncheckedCreateNestedManyWithoutUserInput
@@ -24086,8 +24420,9 @@ export namespace Prisma {
     Messages?: MessageUncheckedCreateNestedManyWithoutUserInput
     Notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     Customers?: CustomerUncheckedCreateNestedManyWithoutUserInput
-    Site?: SiteUncheckedCreateNestedManyWithoutUserInput
+    Link?: LinkUncheckedCreateNestedManyWithoutUserInput
     Profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
+    Apps?: AppsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTokenInput = {
@@ -24101,8 +24436,6 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutTokenInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -24111,7 +24444,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUpdateManyWithoutUserNestedInput
     Sessions?: SessionUpdateManyWithoutUserNestedInput
     Files?: FileUpdateManyWithoutUserNestedInput
@@ -24119,14 +24454,13 @@ export namespace Prisma {
     Messages?: MessageUpdateManyWithoutUserNestedInput
     Notifications?: NotificationUpdateManyWithoutUserNestedInput
     Customers?: CustomerUpdateManyWithoutUserNestedInput
-    Site?: SiteUpdateManyWithoutUserNestedInput
+    Link?: LinkUpdateManyWithoutUserNestedInput
     Profile?: ProfileUpdateManyWithoutUserNestedInput
+    Apps?: AppsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTokenInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -24135,7 +24469,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Files?: FileUncheckedUpdateManyWithoutUserNestedInput
@@ -24143,13 +24479,12 @@ export namespace Prisma {
     Messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
     Notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     Customers?: CustomerUncheckedUpdateManyWithoutUserNestedInput
-    Site?: SiteUncheckedUpdateManyWithoutUserNestedInput
+    Link?: LinkUncheckedUpdateManyWithoutUserNestedInput
     Profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
+    Apps?: AppsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAccountsInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24158,22 +24493,23 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Sessions?: SessionCreateNestedManyWithoutUserInput
     Files?: FileCreateNestedManyWithoutUserInput
     Activities?: ActivityCreateNestedManyWithoutUserInput
     Messages?: MessageCreateNestedManyWithoutUserInput
     Notifications?: NotificationCreateNestedManyWithoutUserInput
     Customers?: CustomerCreateNestedManyWithoutUserInput
-    Site?: SiteCreateNestedManyWithoutUserInput
+    Link?: LinkCreateNestedManyWithoutUserInput
     Profile?: ProfileCreateNestedManyWithoutUserInput
     Token?: TokenCreateNestedManyWithoutUserInput
+    Apps?: AppsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24182,16 +24518,19 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Files?: FileUncheckedCreateNestedManyWithoutUserInput
     Activities?: ActivityUncheckedCreateNestedManyWithoutUserInput
     Messages?: MessageUncheckedCreateNestedManyWithoutUserInput
     Notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     Customers?: CustomerUncheckedCreateNestedManyWithoutUserInput
-    Site?: SiteUncheckedCreateNestedManyWithoutUserInput
+    Link?: LinkUncheckedCreateNestedManyWithoutUserInput
     Profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
     Token?: TokenUncheckedCreateNestedManyWithoutUserInput
+    Apps?: AppsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -24205,8 +24544,6 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutAccountsInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -24215,22 +24552,23 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Sessions?: SessionUpdateManyWithoutUserNestedInput
     Files?: FileUpdateManyWithoutUserNestedInput
     Activities?: ActivityUpdateManyWithoutUserNestedInput
     Messages?: MessageUpdateManyWithoutUserNestedInput
     Notifications?: NotificationUpdateManyWithoutUserNestedInput
     Customers?: CustomerUpdateManyWithoutUserNestedInput
-    Site?: SiteUpdateManyWithoutUserNestedInput
+    Link?: LinkUpdateManyWithoutUserNestedInput
     Profile?: ProfileUpdateManyWithoutUserNestedInput
     Token?: TokenUpdateManyWithoutUserNestedInput
+    Apps?: AppsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -24239,21 +24577,22 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Files?: FileUncheckedUpdateManyWithoutUserNestedInput
     Activities?: ActivityUncheckedUpdateManyWithoutUserNestedInput
     Messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
     Notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     Customers?: CustomerUncheckedUpdateManyWithoutUserNestedInput
-    Site?: SiteUncheckedUpdateManyWithoutUserNestedInput
+    Link?: LinkUncheckedUpdateManyWithoutUserNestedInput
     Profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
     Token?: TokenUncheckedUpdateManyWithoutUserNestedInput
+    Apps?: AppsUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type UserCreateWithoutSiteInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
+  export type UserCreateWithoutLinkInput = {
     username: string
     name?: string | null
     email: string
@@ -24262,7 +24601,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountCreateNestedManyWithoutUserInput
     Sessions?: SessionCreateNestedManyWithoutUserInput
     Files?: FileCreateNestedManyWithoutUserInput
@@ -24272,12 +24613,11 @@ export namespace Prisma {
     Customers?: CustomerCreateNestedManyWithoutUserInput
     Profile?: ProfileCreateNestedManyWithoutUserInput
     Token?: TokenCreateNestedManyWithoutUserInput
+    Apps?: AppsCreateNestedManyWithoutUserInput
   }
 
-  export type UserUncheckedCreateWithoutSiteInput = {
+  export type UserUncheckedCreateWithoutLinkInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24286,7 +24626,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Files?: FileUncheckedCreateNestedManyWithoutUserInput
@@ -24296,14 +24638,15 @@ export namespace Prisma {
     Customers?: CustomerUncheckedCreateNestedManyWithoutUserInput
     Profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
     Token?: TokenUncheckedCreateNestedManyWithoutUserInput
+    Apps?: AppsUncheckedCreateNestedManyWithoutUserInput
   }
 
-  export type UserCreateOrConnectWithoutSiteInput = {
+  export type UserCreateOrConnectWithoutLinkInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutSiteInput, UserUncheckedCreateWithoutSiteInput>
+    create: XOR<UserCreateWithoutLinkInput, UserUncheckedCreateWithoutLinkInput>
   }
 
-  export type ProfileCreateWithoutSiteInput = {
+  export type ProfileCreateWithoutLinkInput = {
     id?: string
     title: string
     username: string
@@ -24316,7 +24659,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutProfileInput
   }
 
-  export type ProfileUncheckedCreateWithoutSiteInput = {
+  export type ProfileUncheckedCreateWithoutLinkInput = {
     id?: string
     userId: number
     title: string
@@ -24329,19 +24672,17 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type ProfileCreateOrConnectWithoutSiteInput = {
+  export type ProfileCreateOrConnectWithoutLinkInput = {
     where: ProfileWhereUniqueInput
-    create: XOR<ProfileCreateWithoutSiteInput, ProfileUncheckedCreateWithoutSiteInput>
+    create: XOR<ProfileCreateWithoutLinkInput, ProfileUncheckedCreateWithoutLinkInput>
   }
 
-  export type UserUpsertWithoutSiteInput = {
-    update: XOR<UserUpdateWithoutSiteInput, UserUncheckedUpdateWithoutSiteInput>
-    create: XOR<UserCreateWithoutSiteInput, UserUncheckedCreateWithoutSiteInput>
+  export type UserUpsertWithoutLinkInput = {
+    update: XOR<UserUpdateWithoutLinkInput, UserUncheckedUpdateWithoutLinkInput>
+    create: XOR<UserCreateWithoutLinkInput, UserUncheckedCreateWithoutLinkInput>
   }
 
-  export type UserUpdateWithoutSiteInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type UserUpdateWithoutLinkInput = {
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -24350,7 +24691,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUpdateManyWithoutUserNestedInput
     Sessions?: SessionUpdateManyWithoutUserNestedInput
     Files?: FileUpdateManyWithoutUserNestedInput
@@ -24360,12 +24703,11 @@ export namespace Prisma {
     Customers?: CustomerUpdateManyWithoutUserNestedInput
     Profile?: ProfileUpdateManyWithoutUserNestedInput
     Token?: TokenUpdateManyWithoutUserNestedInput
+    Apps?: AppsUpdateManyWithoutUserNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutSiteInput = {
+  export type UserUncheckedUpdateWithoutLinkInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -24374,7 +24716,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Files?: FileUncheckedUpdateManyWithoutUserNestedInput
@@ -24384,14 +24728,15 @@ export namespace Prisma {
     Customers?: CustomerUncheckedUpdateManyWithoutUserNestedInput
     Profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
     Token?: TokenUncheckedUpdateManyWithoutUserNestedInput
+    Apps?: AppsUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type ProfileUpsertWithoutSiteInput = {
-    update: XOR<ProfileUpdateWithoutSiteInput, ProfileUncheckedUpdateWithoutSiteInput>
-    create: XOR<ProfileCreateWithoutSiteInput, ProfileUncheckedCreateWithoutSiteInput>
+  export type ProfileUpsertWithoutLinkInput = {
+    update: XOR<ProfileUpdateWithoutLinkInput, ProfileUncheckedUpdateWithoutLinkInput>
+    create: XOR<ProfileCreateWithoutLinkInput, ProfileUncheckedCreateWithoutLinkInput>
   }
 
-  export type ProfileUpdateWithoutSiteInput = {
+  export type ProfileUpdateWithoutLinkInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
@@ -24404,7 +24749,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutProfileNestedInput
   }
 
-  export type ProfileUncheckedUpdateWithoutSiteInput = {
+  export type ProfileUncheckedUpdateWithoutLinkInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
@@ -24418,8 +24763,6 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutMessagesInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24428,22 +24771,23 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountCreateNestedManyWithoutUserInput
     Sessions?: SessionCreateNestedManyWithoutUserInput
     Files?: FileCreateNestedManyWithoutUserInput
     Activities?: ActivityCreateNestedManyWithoutUserInput
     Notifications?: NotificationCreateNestedManyWithoutUserInput
     Customers?: CustomerCreateNestedManyWithoutUserInput
-    Site?: SiteCreateNestedManyWithoutUserInput
+    Link?: LinkCreateNestedManyWithoutUserInput
     Profile?: ProfileCreateNestedManyWithoutUserInput
     Token?: TokenCreateNestedManyWithoutUserInput
+    Apps?: AppsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMessagesInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24452,16 +24796,19 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Files?: FileUncheckedCreateNestedManyWithoutUserInput
     Activities?: ActivityUncheckedCreateNestedManyWithoutUserInput
     Notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     Customers?: CustomerUncheckedCreateNestedManyWithoutUserInput
-    Site?: SiteUncheckedCreateNestedManyWithoutUserInput
+    Link?: LinkUncheckedCreateNestedManyWithoutUserInput
     Profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
     Token?: TokenUncheckedCreateNestedManyWithoutUserInput
+    Apps?: AppsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMessagesInput = {
@@ -24475,8 +24822,6 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutMessagesInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -24485,22 +24830,23 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUpdateManyWithoutUserNestedInput
     Sessions?: SessionUpdateManyWithoutUserNestedInput
     Files?: FileUpdateManyWithoutUserNestedInput
     Activities?: ActivityUpdateManyWithoutUserNestedInput
     Notifications?: NotificationUpdateManyWithoutUserNestedInput
     Customers?: CustomerUpdateManyWithoutUserNestedInput
-    Site?: SiteUpdateManyWithoutUserNestedInput
+    Link?: LinkUpdateManyWithoutUserNestedInput
     Profile?: ProfileUpdateManyWithoutUserNestedInput
     Token?: TokenUpdateManyWithoutUserNestedInput
+    Apps?: AppsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMessagesInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -24509,16 +24855,19 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Files?: FileUncheckedUpdateManyWithoutUserNestedInput
     Activities?: ActivityUncheckedUpdateManyWithoutUserNestedInput
     Notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     Customers?: CustomerUncheckedUpdateManyWithoutUserNestedInput
-    Site?: SiteUncheckedUpdateManyWithoutUserNestedInput
+    Link?: LinkUncheckedUpdateManyWithoutUserNestedInput
     Profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
     Token?: TokenUncheckedUpdateManyWithoutUserNestedInput
+    Apps?: AppsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type InvoiceCreateWithoutCustomerInput = {
@@ -24592,8 +24941,6 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutCustomersInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24602,22 +24949,23 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountCreateNestedManyWithoutUserInput
     Sessions?: SessionCreateNestedManyWithoutUserInput
     Files?: FileCreateNestedManyWithoutUserInput
     Activities?: ActivityCreateNestedManyWithoutUserInput
     Messages?: MessageCreateNestedManyWithoutUserInput
     Notifications?: NotificationCreateNestedManyWithoutUserInput
-    Site?: SiteCreateNestedManyWithoutUserInput
+    Link?: LinkCreateNestedManyWithoutUserInput
     Profile?: ProfileCreateNestedManyWithoutUserInput
     Token?: TokenCreateNestedManyWithoutUserInput
+    Apps?: AppsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCustomersInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24626,16 +24974,19 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Files?: FileUncheckedCreateNestedManyWithoutUserInput
     Activities?: ActivityUncheckedCreateNestedManyWithoutUserInput
     Messages?: MessageUncheckedCreateNestedManyWithoutUserInput
     Notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
-    Site?: SiteUncheckedCreateNestedManyWithoutUserInput
+    Link?: LinkUncheckedCreateNestedManyWithoutUserInput
     Profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
     Token?: TokenUncheckedCreateNestedManyWithoutUserInput
+    Apps?: AppsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCustomersInput = {
@@ -24719,8 +25070,6 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutCustomersInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -24729,22 +25078,23 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUpdateManyWithoutUserNestedInput
     Sessions?: SessionUpdateManyWithoutUserNestedInput
     Files?: FileUpdateManyWithoutUserNestedInput
     Activities?: ActivityUpdateManyWithoutUserNestedInput
     Messages?: MessageUpdateManyWithoutUserNestedInput
     Notifications?: NotificationUpdateManyWithoutUserNestedInput
-    Site?: SiteUpdateManyWithoutUserNestedInput
+    Link?: LinkUpdateManyWithoutUserNestedInput
     Profile?: ProfileUpdateManyWithoutUserNestedInput
     Token?: TokenUpdateManyWithoutUserNestedInput
+    Apps?: AppsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCustomersInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -24753,16 +25103,19 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Files?: FileUncheckedUpdateManyWithoutUserNestedInput
     Activities?: ActivityUncheckedUpdateManyWithoutUserNestedInput
     Messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
     Notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
-    Site?: SiteUncheckedUpdateManyWithoutUserNestedInput
+    Link?: LinkUncheckedUpdateManyWithoutUserNestedInput
     Profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
     Token?: TokenUncheckedUpdateManyWithoutUserNestedInput
+    Apps?: AppsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BankAccountUpsertWithoutCustomerInput = {
@@ -24788,12 +25141,16 @@ export namespace Prisma {
 
   export type CustomerCreateWithoutBankAccountInput = {
     id?: string
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -24806,7 +25163,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -24818,12 +25174,16 @@ export namespace Prisma {
   export type CustomerUncheckedCreateWithoutBankAccountInput = {
     id?: string
     userId: number
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -24836,7 +25196,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -24856,12 +25215,16 @@ export namespace Prisma {
 
   export type CustomerUpdateWithoutBankAccountInput = {
     id?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24874,7 +25237,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24886,12 +25248,16 @@ export namespace Prisma {
   export type CustomerUncheckedUpdateWithoutBankAccountInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24904,7 +25270,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24913,8 +25278,6 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutFilesInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24923,22 +25286,23 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountCreateNestedManyWithoutUserInput
     Sessions?: SessionCreateNestedManyWithoutUserInput
     Activities?: ActivityCreateNestedManyWithoutUserInput
     Messages?: MessageCreateNestedManyWithoutUserInput
     Notifications?: NotificationCreateNestedManyWithoutUserInput
     Customers?: CustomerCreateNestedManyWithoutUserInput
-    Site?: SiteCreateNestedManyWithoutUserInput
+    Link?: LinkCreateNestedManyWithoutUserInput
     Profile?: ProfileCreateNestedManyWithoutUserInput
     Token?: TokenCreateNestedManyWithoutUserInput
+    Apps?: AppsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFilesInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -24947,16 +25311,19 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Activities?: ActivityUncheckedCreateNestedManyWithoutUserInput
     Messages?: MessageUncheckedCreateNestedManyWithoutUserInput
     Notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     Customers?: CustomerUncheckedCreateNestedManyWithoutUserInput
-    Site?: SiteUncheckedCreateNestedManyWithoutUserInput
+    Link?: LinkUncheckedCreateNestedManyWithoutUserInput
     Profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
     Token?: TokenUncheckedCreateNestedManyWithoutUserInput
+    Apps?: AppsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFilesInput = {
@@ -24966,12 +25333,16 @@ export namespace Prisma {
 
   export type CustomerCreateWithoutFilesInput = {
     id?: string
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -24984,7 +25355,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -24996,12 +25366,16 @@ export namespace Prisma {
   export type CustomerUncheckedCreateWithoutFilesInput = {
     id?: string
     userId: number
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -25014,7 +25388,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -25066,8 +25439,6 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutFilesInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -25076,22 +25447,23 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUpdateManyWithoutUserNestedInput
     Sessions?: SessionUpdateManyWithoutUserNestedInput
     Activities?: ActivityUpdateManyWithoutUserNestedInput
     Messages?: MessageUpdateManyWithoutUserNestedInput
     Notifications?: NotificationUpdateManyWithoutUserNestedInput
     Customers?: CustomerUpdateManyWithoutUserNestedInput
-    Site?: SiteUpdateManyWithoutUserNestedInput
+    Link?: LinkUpdateManyWithoutUserNestedInput
     Profile?: ProfileUpdateManyWithoutUserNestedInput
     Token?: TokenUpdateManyWithoutUserNestedInput
+    Apps?: AppsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFilesInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -25100,16 +25472,19 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Activities?: ActivityUncheckedUpdateManyWithoutUserNestedInput
     Messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
     Notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     Customers?: CustomerUncheckedUpdateManyWithoutUserNestedInput
-    Site?: SiteUncheckedUpdateManyWithoutUserNestedInput
+    Link?: LinkUncheckedUpdateManyWithoutUserNestedInput
     Profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
     Token?: TokenUncheckedUpdateManyWithoutUserNestedInput
+    Apps?: AppsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type CustomerUpsertWithoutFilesInput = {
@@ -25119,12 +25494,16 @@ export namespace Prisma {
 
   export type CustomerUpdateWithoutFilesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -25137,7 +25516,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25149,12 +25527,16 @@ export namespace Prisma {
   export type CustomerUncheckedUpdateWithoutFilesInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -25167,7 +25549,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25209,8 +25590,6 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutActivitiesInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -25219,22 +25598,23 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountCreateNestedManyWithoutUserInput
     Sessions?: SessionCreateNestedManyWithoutUserInput
     Files?: FileCreateNestedManyWithoutUserInput
     Messages?: MessageCreateNestedManyWithoutUserInput
     Notifications?: NotificationCreateNestedManyWithoutUserInput
     Customers?: CustomerCreateNestedManyWithoutUserInput
-    Site?: SiteCreateNestedManyWithoutUserInput
+    Link?: LinkCreateNestedManyWithoutUserInput
     Profile?: ProfileCreateNestedManyWithoutUserInput
     Token?: TokenCreateNestedManyWithoutUserInput
+    Apps?: AppsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutActivitiesInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -25243,16 +25623,19 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Files?: FileUncheckedCreateNestedManyWithoutUserInput
     Messages?: MessageUncheckedCreateNestedManyWithoutUserInput
     Notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     Customers?: CustomerUncheckedCreateNestedManyWithoutUserInput
-    Site?: SiteUncheckedCreateNestedManyWithoutUserInput
+    Link?: LinkUncheckedCreateNestedManyWithoutUserInput
     Profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
     Token?: TokenUncheckedCreateNestedManyWithoutUserInput
+    Apps?: AppsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutActivitiesInput = {
@@ -25266,8 +25649,6 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutActivitiesInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -25276,22 +25657,23 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUpdateManyWithoutUserNestedInput
     Sessions?: SessionUpdateManyWithoutUserNestedInput
     Files?: FileUpdateManyWithoutUserNestedInput
     Messages?: MessageUpdateManyWithoutUserNestedInput
     Notifications?: NotificationUpdateManyWithoutUserNestedInput
     Customers?: CustomerUpdateManyWithoutUserNestedInput
-    Site?: SiteUpdateManyWithoutUserNestedInput
+    Link?: LinkUpdateManyWithoutUserNestedInput
     Profile?: ProfileUpdateManyWithoutUserNestedInput
     Token?: TokenUpdateManyWithoutUserNestedInput
+    Apps?: AppsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutActivitiesInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -25300,21 +25682,22 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Files?: FileUncheckedUpdateManyWithoutUserNestedInput
     Messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
     Notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     Customers?: CustomerUncheckedUpdateManyWithoutUserNestedInput
-    Site?: SiteUncheckedUpdateManyWithoutUserNestedInput
+    Link?: LinkUncheckedUpdateManyWithoutUserNestedInput
     Profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
     Token?: TokenUncheckedUpdateManyWithoutUserNestedInput
+    Apps?: AppsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutNotificationsInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -25323,22 +25706,23 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountCreateNestedManyWithoutUserInput
     Sessions?: SessionCreateNestedManyWithoutUserInput
     Files?: FileCreateNestedManyWithoutUserInput
     Activities?: ActivityCreateNestedManyWithoutUserInput
     Messages?: MessageCreateNestedManyWithoutUserInput
     Customers?: CustomerCreateNestedManyWithoutUserInput
-    Site?: SiteCreateNestedManyWithoutUserInput
+    Link?: LinkCreateNestedManyWithoutUserInput
     Profile?: ProfileCreateNestedManyWithoutUserInput
     Token?: TokenCreateNestedManyWithoutUserInput
+    Apps?: AppsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -25347,16 +25731,19 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Files?: FileUncheckedCreateNestedManyWithoutUserInput
     Activities?: ActivityUncheckedCreateNestedManyWithoutUserInput
     Messages?: MessageUncheckedCreateNestedManyWithoutUserInput
     Customers?: CustomerUncheckedCreateNestedManyWithoutUserInput
-    Site?: SiteUncheckedCreateNestedManyWithoutUserInput
+    Link?: LinkUncheckedCreateNestedManyWithoutUserInput
     Profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
     Token?: TokenUncheckedCreateNestedManyWithoutUserInput
+    Apps?: AppsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -25370,8 +25757,6 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutNotificationsInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -25380,22 +25765,23 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUpdateManyWithoutUserNestedInput
     Sessions?: SessionUpdateManyWithoutUserNestedInput
     Files?: FileUpdateManyWithoutUserNestedInput
     Activities?: ActivityUpdateManyWithoutUserNestedInput
     Messages?: MessageUpdateManyWithoutUserNestedInput
     Customers?: CustomerUpdateManyWithoutUserNestedInput
-    Site?: SiteUpdateManyWithoutUserNestedInput
+    Link?: LinkUpdateManyWithoutUserNestedInput
     Profile?: ProfileUpdateManyWithoutUserNestedInput
     Token?: TokenUpdateManyWithoutUserNestedInput
+    Apps?: AppsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -25404,26 +25790,33 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Files?: FileUncheckedUpdateManyWithoutUserNestedInput
     Activities?: ActivityUncheckedUpdateManyWithoutUserNestedInput
     Messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
     Customers?: CustomerUncheckedUpdateManyWithoutUserNestedInput
-    Site?: SiteUncheckedUpdateManyWithoutUserNestedInput
+    Link?: LinkUncheckedUpdateManyWithoutUserNestedInput
     Profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
     Token?: TokenUncheckedUpdateManyWithoutUserNestedInput
+    Apps?: AppsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type CustomerCreateWithoutInvoicesInput = {
     id?: string
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -25436,7 +25829,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -25448,12 +25840,16 @@ export namespace Prisma {
   export type CustomerUncheckedCreateWithoutInvoicesInput = {
     id?: string
     userId: number
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -25466,7 +25862,6 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -25537,12 +25932,16 @@ export namespace Prisma {
 
   export type CustomerUpdateWithoutInvoicesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -25555,7 +25954,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25567,12 +25965,16 @@ export namespace Prisma {
   export type CustomerUncheckedUpdateWithoutInvoicesInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -25585,7 +25987,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25695,8 +26096,6 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutProfileInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -25705,7 +26104,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountCreateNestedManyWithoutUserInput
     Sessions?: SessionCreateNestedManyWithoutUserInput
     Files?: FileCreateNestedManyWithoutUserInput
@@ -25713,14 +26114,13 @@ export namespace Prisma {
     Messages?: MessageCreateNestedManyWithoutUserInput
     Notifications?: NotificationCreateNestedManyWithoutUserInput
     Customers?: CustomerCreateNestedManyWithoutUserInput
-    Site?: SiteCreateNestedManyWithoutUserInput
+    Link?: LinkCreateNestedManyWithoutUserInput
     Token?: TokenCreateNestedManyWithoutUserInput
+    Apps?: AppsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProfileInput = {
     id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
     username: string
     name?: string | null
     email: string
@@ -25729,7 +26129,9 @@ export namespace Prisma {
     balance?: number | null
     hashedPassword?: string | null
     role?: string
-    level?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Files?: FileUncheckedCreateNestedManyWithoutUserInput
@@ -25737,8 +26139,9 @@ export namespace Prisma {
     Messages?: MessageUncheckedCreateNestedManyWithoutUserInput
     Notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     Customers?: CustomerUncheckedCreateNestedManyWithoutUserInput
-    Site?: SiteUncheckedCreateNestedManyWithoutUserInput
+    Link?: LinkUncheckedCreateNestedManyWithoutUserInput
     Token?: TokenUncheckedCreateNestedManyWithoutUserInput
+    Apps?: AppsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProfileInput = {
@@ -25746,29 +26149,29 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput>
   }
 
-  export type SiteCreateWithoutProfileInput = {
+  export type LinkCreateWithoutProfileInput = {
     id?: string
     url: string
     title?: string | null
     description?: string | null
     order?: number
-    type?: Sitetype
+    type?: Linktype
     icon?: string | null
     image?: string | null
     status?: Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutSiteInput
+    user: UserCreateNestedOneWithoutLinkInput
   }
 
-  export type SiteUncheckedCreateWithoutProfileInput = {
+  export type LinkUncheckedCreateWithoutProfileInput = {
     id?: string
     userId: number
     url: string
     title?: string | null
     description?: string | null
     order?: number
-    type?: Sitetype
+    type?: Linktype
     icon?: string | null
     image?: string | null
     status?: Status
@@ -25776,13 +26179,13 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type SiteCreateOrConnectWithoutProfileInput = {
-    where: SiteWhereUniqueInput
-    create: XOR<SiteCreateWithoutProfileInput, SiteUncheckedCreateWithoutProfileInput>
+  export type LinkCreateOrConnectWithoutProfileInput = {
+    where: LinkWhereUniqueInput
+    create: XOR<LinkCreateWithoutProfileInput, LinkUncheckedCreateWithoutProfileInput>
   }
 
-  export type SiteCreateManyProfileInputEnvelope = {
-    data: Enumerable<SiteCreateManyProfileInput>
+  export type LinkCreateManyProfileInputEnvelope = {
+    data: Enumerable<LinkCreateManyProfileInput>
     skipDuplicates?: boolean
   }
 
@@ -25792,8 +26195,6 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutProfileInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -25802,7 +26203,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUpdateManyWithoutUserNestedInput
     Sessions?: SessionUpdateManyWithoutUserNestedInput
     Files?: FileUpdateManyWithoutUserNestedInput
@@ -25810,14 +26213,13 @@ export namespace Prisma {
     Messages?: MessageUpdateManyWithoutUserNestedInput
     Notifications?: NotificationUpdateManyWithoutUserNestedInput
     Customers?: CustomerUpdateManyWithoutUserNestedInput
-    Site?: SiteUpdateManyWithoutUserNestedInput
+    Link?: LinkUpdateManyWithoutUserNestedInput
     Token?: TokenUpdateManyWithoutUserNestedInput
+    Apps?: AppsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProfileInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -25826,7 +26228,9 @@ export namespace Prisma {
     balance?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
-    level?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Files?: FileUncheckedUpdateManyWithoutUserNestedInput
@@ -25834,24 +26238,133 @@ export namespace Prisma {
     Messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
     Notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     Customers?: CustomerUncheckedUpdateManyWithoutUserNestedInput
-    Site?: SiteUncheckedUpdateManyWithoutUserNestedInput
+    Link?: LinkUncheckedUpdateManyWithoutUserNestedInput
     Token?: TokenUncheckedUpdateManyWithoutUserNestedInput
+    Apps?: AppsUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type SiteUpsertWithWhereUniqueWithoutProfileInput = {
-    where: SiteWhereUniqueInput
-    update: XOR<SiteUpdateWithoutProfileInput, SiteUncheckedUpdateWithoutProfileInput>
-    create: XOR<SiteCreateWithoutProfileInput, SiteUncheckedCreateWithoutProfileInput>
+  export type LinkUpsertWithWhereUniqueWithoutProfileInput = {
+    where: LinkWhereUniqueInput
+    update: XOR<LinkUpdateWithoutProfileInput, LinkUncheckedUpdateWithoutProfileInput>
+    create: XOR<LinkCreateWithoutProfileInput, LinkUncheckedCreateWithoutProfileInput>
   }
 
-  export type SiteUpdateWithWhereUniqueWithoutProfileInput = {
-    where: SiteWhereUniqueInput
-    data: XOR<SiteUpdateWithoutProfileInput, SiteUncheckedUpdateWithoutProfileInput>
+  export type LinkUpdateWithWhereUniqueWithoutProfileInput = {
+    where: LinkWhereUniqueInput
+    data: XOR<LinkUpdateWithoutProfileInput, LinkUncheckedUpdateWithoutProfileInput>
   }
 
-  export type SiteUpdateManyWithWhereWithoutProfileInput = {
-    where: SiteScalarWhereInput
-    data: XOR<SiteUpdateManyMutationInput, SiteUncheckedUpdateManyWithoutSiteInput>
+  export type LinkUpdateManyWithWhereWithoutProfileInput = {
+    where: LinkScalarWhereInput
+    data: XOR<LinkUpdateManyMutationInput, LinkUncheckedUpdateManyWithoutLinkInput>
+  }
+
+  export type UserCreateWithoutAppsInput = {
+    username: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    balance?: number | null
+    hashedPassword?: string | null
+    role?: string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Accounts?: AccountCreateNestedManyWithoutUserInput
+    Sessions?: SessionCreateNestedManyWithoutUserInput
+    Files?: FileCreateNestedManyWithoutUserInput
+    Activities?: ActivityCreateNestedManyWithoutUserInput
+    Messages?: MessageCreateNestedManyWithoutUserInput
+    Notifications?: NotificationCreateNestedManyWithoutUserInput
+    Customers?: CustomerCreateNestedManyWithoutUserInput
+    Link?: LinkCreateNestedManyWithoutUserInput
+    Profile?: ProfileCreateNestedManyWithoutUserInput
+    Token?: TokenCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutAppsInput = {
+    id?: number
+    username: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    balance?: number | null
+    hashedPassword?: string | null
+    role?: string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    Sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    Files?: FileUncheckedCreateNestedManyWithoutUserInput
+    Activities?: ActivityUncheckedCreateNestedManyWithoutUserInput
+    Messages?: MessageUncheckedCreateNestedManyWithoutUserInput
+    Notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    Customers?: CustomerUncheckedCreateNestedManyWithoutUserInput
+    Link?: LinkUncheckedCreateNestedManyWithoutUserInput
+    Profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
+    Token?: TokenUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutAppsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutAppsInput, UserUncheckedCreateWithoutAppsInput>
+  }
+
+  export type UserUpsertWithoutAppsInput = {
+    update: XOR<UserUpdateWithoutAppsInput, UserUncheckedUpdateWithoutAppsInput>
+    create: XOR<UserCreateWithoutAppsInput, UserUncheckedCreateWithoutAppsInput>
+  }
+
+  export type UserUpdateWithoutAppsInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    balance?: NullableIntFieldUpdateOperationsInput | number | null
+    hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Accounts?: AccountUpdateManyWithoutUserNestedInput
+    Sessions?: SessionUpdateManyWithoutUserNestedInput
+    Files?: FileUpdateManyWithoutUserNestedInput
+    Activities?: ActivityUpdateManyWithoutUserNestedInput
+    Messages?: MessageUpdateManyWithoutUserNestedInput
+    Notifications?: NotificationUpdateManyWithoutUserNestedInput
+    Customers?: CustomerUpdateManyWithoutUserNestedInput
+    Link?: LinkUpdateManyWithoutUserNestedInput
+    Profile?: ProfileUpdateManyWithoutUserNestedInput
+    Token?: TokenUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutAppsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    balance?: NullableIntFieldUpdateOperationsInput | number | null
+    hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    Sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    Files?: FileUncheckedUpdateManyWithoutUserNestedInput
+    Activities?: ActivityUncheckedUpdateManyWithoutUserNestedInput
+    Messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
+    Notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    Customers?: CustomerUncheckedUpdateManyWithoutUserNestedInput
+    Link?: LinkUncheckedUpdateManyWithoutUserNestedInput
+    Profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
+    Token?: TokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AccountCreateManyUserInput = {
@@ -25918,12 +26431,16 @@ export namespace Prisma {
 
   export type CustomerCreateManyUserInput = {
     id?: string
-    companyId?: string | null
     salutation: string
     firstname: string
     lastname: string
     email?: string | null
     email_type?: string | null
+    level: string
+    sub_create?: Date | string
+    sub_end?: Date | string
+    term?: string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: string | null
     phone_number_type?: string | null
     street_address?: string | null
@@ -25936,19 +26453,18 @@ export namespace Prisma {
     image?: string | null
     total_discount?: number | null
     terms_of_payment?: string | null
-    delivery_terms?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type SiteCreateManyUserInput = {
+  export type LinkCreateManyUserInput = {
     id?: string
     url: string
     title?: string | null
     description?: string | null
     order?: number
-    type?: Sitetype
+    type?: Linktype
     icon?: string | null
     image?: string | null
     status?: Status
@@ -25977,6 +26493,21 @@ export namespace Prisma {
     type: string
     expiresAt: Date | string
     sentTo: string
+  }
+
+  export type AppsCreateManyUserInput = {
+    id?: number
+    name?: string | null
+    description?: string | null
+    order?: number
+    api_key?: string | null
+    api_secret?: string | null
+    site_name?: string | null
+    show_feed?: Yesno
+    show_share?: Yesno
+    show_sub?: Yesno
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -26164,12 +26695,16 @@ export namespace Prisma {
 
   export type CustomerUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -26182,7 +26717,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26193,12 +26727,16 @@ export namespace Prisma {
 
   export type CustomerUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -26211,7 +26749,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26222,12 +26759,16 @@ export namespace Prisma {
 
   export type CustomerUncheckedUpdateManyWithoutCustomersInput = {
     id?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
     salutation?: StringFieldUpdateOperationsInput | string
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     email_type?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: StringFieldUpdateOperationsInput | string
+    sub_create?: DateTimeFieldUpdateOperationsInput | Date | string
+    sub_end?: DateTimeFieldUpdateOperationsInput | Date | string
+    term?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_results?: NullableJsonNullValueInput | InputJsonValue
     phone_number?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number_type?: NullableStringFieldUpdateOperationsInput | string | null
     street_address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -26240,34 +26781,33 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     total_discount?: NullableFloatFieldUpdateOperationsInput | number | null
     terms_of_payment?: NullableStringFieldUpdateOperationsInput | string | null
-    delivery_terms?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SiteUpdateWithoutUserInput = {
+  export type LinkUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
-    type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
+    type?: EnumLinktypeFieldUpdateOperationsInput | Linktype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Profile?: ProfileUpdateOneWithoutSiteNestedInput
+    Profile?: ProfileUpdateOneWithoutLinkNestedInput
   }
 
-  export type SiteUncheckedUpdateWithoutUserInput = {
+  export type LinkUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
-    type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
+    type?: EnumLinktypeFieldUpdateOperationsInput | Linktype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
@@ -26276,13 +26816,13 @@ export namespace Prisma {
     profileId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type SiteUncheckedUpdateManyWithoutSiteInput = {
+  export type LinkUncheckedUpdateManyWithoutLinkInput = {
     id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
-    type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
+    type?: EnumLinktypeFieldUpdateOperationsInput | Linktype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
@@ -26301,7 +26841,7 @@ export namespace Prisma {
     current?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Site?: SiteUpdateManyWithoutProfileNestedInput
+    Link?: LinkUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateWithoutUserInput = {
@@ -26314,7 +26854,7 @@ export namespace Prisma {
     current?: EnumYesnoFieldUpdateOperationsInput | Yesno
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Site?: SiteUncheckedUpdateManyWithoutProfileNestedInput
+    Link?: LinkUncheckedUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateManyWithoutProfileInput = {
@@ -26356,6 +26896,50 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sentTo?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AppsUpdateWithoutUserInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    api_key?: NullableStringFieldUpdateOperationsInput | string | null
+    api_secret?: NullableStringFieldUpdateOperationsInput | string | null
+    site_name?: NullableStringFieldUpdateOperationsInput | string | null
+    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AppsUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    api_key?: NullableStringFieldUpdateOperationsInput | string | null
+    api_secret?: NullableStringFieldUpdateOperationsInput | string | null
+    site_name?: NullableStringFieldUpdateOperationsInput | string | null
+    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AppsUncheckedUpdateManyWithoutAppsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    api_key?: NullableStringFieldUpdateOperationsInput | string | null
+    api_secret?: NullableStringFieldUpdateOperationsInput | string | null
+    site_name?: NullableStringFieldUpdateOperationsInput | string | null
+    show_feed?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_share?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    show_sub?: EnumYesnoFieldUpdateOperationsInput | Yesno
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type InvoiceCreateManyCustomerInput = {
@@ -26478,14 +27062,14 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SiteCreateManyProfileInput = {
+  export type LinkCreateManyProfileInput = {
     id?: string
     userId: number
     url: string
     title?: string | null
     description?: string | null
     order?: number
-    type?: Sitetype
+    type?: Linktype
     icon?: string | null
     image?: string | null
     status?: Status
@@ -26493,29 +27077,29 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type SiteUpdateWithoutProfileInput = {
+  export type LinkUpdateWithoutProfileInput = {
     id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
-    type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
+    type?: EnumLinktypeFieldUpdateOperationsInput | Linktype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutSiteNestedInput
+    user?: UserUpdateOneRequiredWithoutLinkNestedInput
   }
 
-  export type SiteUncheckedUpdateWithoutProfileInput = {
+  export type LinkUncheckedUpdateWithoutProfileInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     url?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
-    type?: EnumSitetypeFieldUpdateOperationsInput | Sitetype
+    type?: EnumLinktypeFieldUpdateOperationsInput | Linktype
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | Status

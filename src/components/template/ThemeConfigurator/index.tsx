@@ -124,8 +124,8 @@ const ThemeConfigurator = (props) => {
   const onSubmit = async (e) => {
     // await sleep(300)
     e.preventDefault();
-    if (!values.title || !values.description) {
-      alert("Input values correctly");
+    if (!values.title || !values.description || !values.theme2 || !values.theme4) {
+      alert("General Setting values is required");
     }
     //  TODO: update profile, and this design, on the fly
     try {
@@ -141,9 +141,9 @@ const ThemeConfigurator = (props) => {
           linkWidth: '200',
           fontFamily: '',
           titleStyle: 'h6',
-          bgCardColor: '#3c6794',
+          bgCardColor: values.theme4,
           linkSpacing: 20,
-          descriptionColor: '#1a1313',
+          descriptionColor: values.theme2,
           descriptionStyle: 'body1'
         }, widgets: {}, current: 'yes'
       })
@@ -276,10 +276,10 @@ const ThemeConfigurator = (props) => {
                         {/*  checked={checked}*/}
                         {/*  onChange={handleCheck}*/}
                         {/*/>*/}
-                        <TextField name="theme.4.titleColor" label="Choice 1" value={values.theme4}
+                        <TextField name="theme4" label="Choice 1" value={values.theme4}
                           onChangeCapture={handleChangeValue} />
                         <TextField name="theme.3.descriptionColor" label="Choice 2" value={colorBg} />
-                        <TextField name="theme.2.text" label="Choice 3" value={values.theme2}
+                        <TextField name="theme2" label="Choice 3" value={values.theme2}
                           onChangeCapture={handleChangeValue} />
 
                       </Stack>
