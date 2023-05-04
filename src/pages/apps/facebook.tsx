@@ -18,7 +18,7 @@ import {
   CardHeader,
   Stack,
   Autocomplete,
-  Alert,
+  Alert, ToggleButton,
 } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2"
 import { Form as FinalForm, Field } from "react-final-form"
@@ -41,6 +41,9 @@ import {faRightToBracket} from "@fortawesome/pro-duotone-svg-icons";
 import {misc} from "../../configs/colors/default";
 import PreviewLinkButton from "../../components/dashboard/PreviewLinkButton";
 import getSiteForProfile from "../../sites/queries/getSiteForProfile";
+import {z} from "zod";
+import HiddenTextField from "../../core/components/HiddenTextField";
+import CheckIcon from "@mui/icons-material/Check";
 
 const NewFacebookPage = () => {
   const router = useRouter()
@@ -48,6 +51,7 @@ const NewFacebookPage = () => {
   // const session = useAuthorizeIf("ROLE","USer")
   const [createServiceMutation] = useMutation(createService)
   const [components, setComponents] = useState(["Sample Component"])
+
 
 
   console.log("session",session.role);
@@ -61,6 +65,7 @@ const NewFacebookPage = () => {
 
   // TODO: need to figure out if this user has already added. new/edit takes place on this page
 
+  // const [show_sub, setShowFeedSelected] = React.useState()
 
 
   const handleAddService = (service_site) => {
@@ -121,12 +126,13 @@ const NewFacebookPage = () => {
                           {/*  renderInput={(params) => <TextField {...params} label="Movie" />}*/}
                           {/*/>*/}
 
-                          {/*<TextField*/}
+                          {/*<HiddenTextField*/}
                           {/*  label="Site Name"*/}
-                          {/*  name="name"*/}
-                          {/*  style={{maxWidth: 380}}*/}
-                          {/*  size="small"*/}
+                          {/*  name="site_name"*/}
+                          {/*  value="facebook"*/}
                           {/*/>*/}
+
+
 
                           <TextField
                             label="API Key"
@@ -141,6 +147,56 @@ const NewFacebookPage = () => {
                             style={{ maxWidth: 380 }}
                             size="small"
                           />
+
+                          <TextField
+                            label="API Secret"
+                            name="api_secret"
+                            style={{ maxWidth: 380 }}
+                            size="small"
+                          />
+
+                          <label>Show Facebook Feed</label>
+                          <ToggleButton
+                            aria-label="Show Facebook Feed"
+                            value="check"
+                            size="small"
+                            name="show_sub"
+                            selected={apps.show_sub === 'yes'}
+                            // onClick
+                            // selected={showFeedSelected}
+
+                            // onChange={() => {
+                            //   setShowFeedSelected(!showFeedSelected)
+                            // }}
+                          >
+                            <CheckIcon />
+                          </ToggleButton>
+
+
+                          <ToggleButton
+                            aria-label="Show Share Buttons"
+                            value="check"
+                            size="small"
+                            // selected={selected}
+                            // onChange={() => {
+                            //   setSelected(!selected)
+                            // }}
+                          >
+                            <CheckIcon />
+                          </ToggleButton>
+
+                          <ToggleButton
+                            aria-label="Show Subscriber Count"
+                            value="check"
+                            size="small"
+                            // selected={selected}
+                            // onChange={() => {
+                            //   setSelected(!selected)
+                            // }}
+                          >
+                            <CheckIcon />
+                          </ToggleButton>
+
 
                           <Box textAlign="center">
                             <Button
