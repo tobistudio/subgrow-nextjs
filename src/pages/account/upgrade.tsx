@@ -42,7 +42,7 @@ export default function UpgradePage() {
   }, [])
 
   const appearance = {
-    theme: 'night',
+    //theme: 'night',
     labels: 'floating'
   }
   const options = {
