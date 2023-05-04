@@ -105,7 +105,7 @@ ALTER TABLE `Session`
 --
 -- Indexes for table `Site`
 --
-ALTER TABLE `Site`
+ALTER TABLE `Link`
   ADD PRIMARY KEY (`id`),
   ADD KEY `Site_userId_fkey` (`userId`);
 

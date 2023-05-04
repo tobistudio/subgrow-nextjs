@@ -49,8 +49,6 @@ export default function Form(paymentIntent: { paymentIntent: string, plan: strin
   const [updateSessionMutation] = useMutation(updateSession);
   const [createCustomerMutation] = useMutation(createCustomers);
   const [paymentResult, setPaymentResult] = React.useState({});
-  //const user = getCurrentUser(NULL,session)
-
   const [email, setEmail] = useState('');
   const [locAmount, setLocAmount] = useState(0);
   const [message, setMessage] = useState('');
@@ -197,8 +195,15 @@ export default function Form(paymentIntent: { paymentIntent: string, plan: strin
     setPayNowAmount(e.target.value);
   }
 
+  // TODO: comes from planConfig
   const CustomChip = () => {
-    return (<Chip label="Save 20%" />)
+
+
+    // annual_discount
+    //
+
+
+    return (<Chip label={`Save ${plansConfig[paymentIntent.plan].annual_discount} %` } />)
   }
 
   const sendCoupon = async () => {

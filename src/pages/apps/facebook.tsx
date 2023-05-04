@@ -60,6 +60,7 @@ const NewFacebookPage = () => {
   // const [show_sub, setShowFeedSelected] = React.useState()
   const [showFeed, setShowFeed] = React.useState(apps.show_feed)
   const [showSub, setShowSub] = React.useState(apps.show_sub)
+  const [showShare, setShowShare] = React.useState(apps.show_share)
 
 
   // const handleCheckChange = (e, {field}) => {
@@ -180,7 +181,7 @@ const NewFacebookPage = () => {
                               control={
                                 <Checkbox
                                   // checked={apps.show_sub === 'yes'}
-                                  checked={showSub === 'yes'}
+                                  checked={showSub}
                                   onChange={handleCheckChange}
                                   name="show_sub"
                                   value="show_sub"
@@ -191,7 +192,7 @@ const NewFacebookPage = () => {
                             <FormControlLabel
                               control={
                                 <Checkbox
-                                  checked={apps.show_feed === 'yes'}
+                                  checked={showFeed}
                                   onChange={handleCheckChange}
                                   value="Show Facebook Feed"
                                   color="primary"
@@ -203,7 +204,7 @@ const NewFacebookPage = () => {
                             <FormControlLabel
                               control={
                                 <Checkbox
-                                  checked={apps.show_share === 'yes'}
+                                  checked={showShare}
                                   onChange={handleCheckChange}
                                   value="show_share"
                                   color="primary"
@@ -326,6 +327,7 @@ const NewFacebookPage = () => {
   )
 }
 
+console.log("plansConfig.level3.role",plansConfig.level3.role);
 // if logged in, send to pricing tables page for upgrade /pricing page
 // if not logged in, login "/auth/login"
 NewFacebookPage.authenticate = { role: plansConfig.level3.role, redirectTo: "/account/upgrade" }
