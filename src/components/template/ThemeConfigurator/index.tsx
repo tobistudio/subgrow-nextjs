@@ -4,7 +4,16 @@ import LayoutSwitcher from "./LayoutSwitcher" // TODO: dawn original layout swit
 import ThemeSwitcher from "./ThemeSwitcher"
 import { useTheme } from '@mui/material/styles';
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts"
-import {Stack, Button, ToggleButton, Box, FormGroup, FormControlLabel, Switch} from "@mui/material"
+import {
+  Stack,
+  Button,
+  ToggleButton,
+  Box,
+  FormGroup,
+  FormControlLabel,
+  Switch,
+  Divider
+} from "@mui/material"
 import { useSession } from "@blitzjs/auth"
 import { CopyBlock, dracula } from "react-code-blocks"
 import { useQuery, useMutation } from "@blitzjs/rpc"
@@ -128,7 +137,11 @@ const ThemeConfigurator = (props) => {
   const onSubmit = async (e) => {
     // await sleep(300)
     e.preventDefault();
-    if (!values.title || !values.description || !values.theme2 || !values.theme4) {
+
+
+    // TODO: better validation, replace dialoge box: one dialog box for errors, questions, etc
+    // if (!values.title || !values.description || !values.theme2 || !values.theme4) {
+    if (!values.title || !values.description) {
       alert("General Setting values is required");
     }
     //  TODO: update profile, and this design, on the fly
@@ -162,7 +175,7 @@ const ThemeConfigurator = (props) => {
   }
 
   const handleChangeValue = (e) => {
-    console.log(values);
+    console.log("handleChangeValue values",values);
     setValues({ ...values, [e.target.name]: e.target.value });
     if (e.target.name === "title") document.getElementById("title")!.innerHTML = e.target.value;
     if (e.target.name === "description") document.getElementById("description")!.innerHTML = e.target.value;
@@ -176,18 +189,35 @@ const ThemeConfigurator = (props) => {
 
   let code = `<div>test</div>`
 
-  const [age, setAge] = React.useState('');
+  const [userTheme, setUserTheme] = React.useState('');
 
+
+  // TODO: dawn this function needs to change the theme, babyblue means use data/userthemes/babyblue.tsx
+  // TODO: the
   const handleThemeChange = (event: SelectChangeEvent) => {
 
     console.log("event.target.value",event.target.value);
 
+    // TODO: if there are unsaved changes, then save them first! or warn user
+
     // TODO: need to get theme from here, or dynamically change material ui theme
     // data/userthemes/babyblue.tsx
 
-    setAge(event.target.value as string);
+    setUserTheme(event.target.value as string);
 
+  };
 
+  // TODO: handle typography change for title
+  const handleTextChange = (event: SelectChangeEvent) => {
+
+    console.log("handleTextChange event.target.value",event.target.value);
+
+    // TODO: if there are unsaved changes, then save them first! or warn user
+
+    // TODO: need to get theme from here, or dynamically change material ui theme
+    // data/userthemes/babyblue.tsx
+
+    setUserTheme(event.target.value as string);
 
   };
 
@@ -233,57 +263,6 @@ const ThemeConfigurator = (props) => {
                     </Alert>
                   )}
 
-
-                  <Accordion
-                    TransitionProps={{ unmountOnExit: true }}
-                    expanded={expanded === 'panel0'}
-                    onChange={handleChange('panel0')}
-                  >
-                    <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                      <Typography>General Settings</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-
-
-                      <Stack spacing={4}>
-                        <TextField
-                          name="title"
-                          label="Profile Title"
-                          placeholder=""
-                          className="input input-md"
-                          // required={true}
-                          size={"small"}
-                          value={values.title}
-                          onChangeCapture={handleChangeValue}
-                        />
-
-
-                        <TextField
-                          name="titleStyle"
-                          label="Title Style"
-                          //value="Test Description"
-                          placeholder=""
-                          className="input input-md"
-                          size={"small"}
-                          // value={values.titleStyle} // comes from usertheme
-                          onChangeCapture={handleChangeValue}
-                        />
-
-                        <TextField
-                          name="description"
-                          label="Description"
-                          //value="Test Description"
-                          placeholder=""
-                          className="input input-md"
-                          size={"small"}
-                          value={values.description}
-                          onChangeCapture={handleChangeValue}
-                        />
-
-                      </Stack>
-                    </AccordionDetails>
-                  </Accordion>
-
                   <Accordion
                     TransitionProps={{ unmountOnExit: true }}
                     expanded={expanded === 'panel1'}
@@ -300,18 +279,21 @@ const ThemeConfigurator = (props) => {
 
                         {/*// TODO: dropdown of different default templates */}
 
+                        {/*// TODO: feature will have a chip saying premium, if it's level3 in planConfig*/}
+
                         <FormControl fullWidth>
-                          <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                          <InputLabel id="demo-simple-select-label">Select Theme</InputLabel>
                           <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            value={age}
-                            label="Age"
+                            value={userTheme}
+                            label="Select Theme"
                             onChange={handleThemeChange}
                           >
+                            <MenuItem value={"usertheme"}>My Theme</MenuItem>
+                            <MenuItem value={"modern"}>Modern</MenuItem>
                             <MenuItem value={"babyblue"}>Baby Blue</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
+
                           </Select>
                         </FormControl>
 
@@ -358,13 +340,61 @@ const ThemeConfigurator = (props) => {
                     </AccordionDetails>
                   </Accordion>
 
-
-                  <Accordion expanded={expanded === 'pallete'} onChange={handleChange('pallete')}>
-                    <AccordionSummary aria-controls="palleted-content" id="palleted-header">
-                      <Typography>Pallete</Typography>
+                  <Accordion
+                    TransitionProps={{ unmountOnExit: true }}
+                    expanded={expanded === 'panel0'}
+                    onChange={handleChange('panel0')}
+                  >
+                    <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+                      <Typography>Text Settings</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
+
+
                       <Stack spacing={4}>
+
+
+                        <TextField
+                          name="title"
+                          label="Profile Title"
+                          placeholder=""
+                          className="input input-md"
+                          // required={true}
+                          size={"small"}
+                          value={values.title}
+                          onChangeCapture={handleChangeValue}
+                        />
+
+                        <FormControl fullWidth>
+                          <InputLabel id="title-style-label">Select Title Style</InputLabel>
+                          <Select
+                            labelId="title-style-label"
+                            id="title-style-select"
+                            value={theme.titleStyle}
+                            label="Select Title Style"
+                            onChange={handleTextChange}
+                            onChangeCapture={handleChangeValue}
+                            size="small"
+                          >
+                            <MenuItem value={"usertheme"}>
+                              <Typography variant={theme.titleStyle}>
+                                My Colors
+                              </Typography>
+                            </MenuItem>
+                            <MenuItem value={"modern"}>
+                              <Typography variant="poster">
+                                Modern
+                              </Typography>
+                            </MenuItem>
+                            <MenuItem value={"babyblue"}>
+                              <Typography variant="h1">
+                                h1
+                              </Typography>
+                            </MenuItem>
+
+                          </Select>
+                        </FormControl>
+
                         <MuiColorInput
                           value={colorTitle}
                           onChange={handleTitleColorChange}
@@ -374,6 +404,50 @@ const ThemeConfigurator = (props) => {
                           size={"small"}
                         />
 
+
+                        <Divider title="Profile Description" />
+
+                        <TextField
+                          name="description"
+                          label="Description"
+                          //value="Test Description"
+                          placeholder=""
+                          className="input input-md"
+                          size={"small"}
+                          value={values.description}
+                          onChangeCapture={handleChangeValue}
+                        />
+
+                        <FormControl>
+                          <InputLabel id="desc-style-label">Select Description Style</InputLabel>
+                          <Select
+                            labelId="desc-style-label"
+                            id="desc-style-select"
+                            value={theme.descriptionStyle}
+                            label="Select Description Style"
+                            onChange={handleTextChange}
+                            onChangeCapture={handleChangeValue}
+                            size="small"
+                          >
+                            <MenuItem value={"usertheme"}>
+                              <Typography variant={theme.descriptionStyle}>
+                                My Colors
+                              </Typography>
+                            </MenuItem>
+                            <MenuItem value={"body1"}>
+                              <Typography variant="body1">
+                                Body 1
+                              </Typography>
+                            </MenuItem>
+                            <MenuItem value={"body2"}>
+                              <Typography variant="body2">
+                                Body 2
+                              </Typography>
+                            </MenuItem>
+
+                          </Select>
+                        </FormControl>
+
                         <MuiColorInput
                           value={colorBg}
                           onChange={handleBgColorChange}
@@ -382,6 +456,18 @@ const ThemeConfigurator = (props) => {
                           label="Background Color"
                           size={"small"}
                         />
+
+                      </Stack>
+                    </AccordionDetails>
+                  </Accordion>
+
+                  <Accordion expanded={expanded === 'pallete'} onChange={handleChange('pallete')}>
+                    <AccordionSummary aria-controls="palleted-content" id="palleted-header">
+                      <Typography>Pallete</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Stack spacing={4}>
+ss
                       </Stack>
                     </AccordionDetails>
                   </Accordion>

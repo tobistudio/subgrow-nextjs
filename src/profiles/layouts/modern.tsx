@@ -62,6 +62,7 @@ const Modern = ({ user, profile, sites }) => {
 
 
 
+
   /*
 
  1 of 2 unhandled errors
@@ -125,6 +126,32 @@ Error: Too many re-renders. React limits the number of renders to prevent an inf
               // justifyContent="center"
               // style={{ minHeight: "100vh" }}
             >
+
+              <Button variant="babyblue">
+                testing button variants
+              </Button>
+
+
+
+              <Typography
+                variant="h1"
+                color="primary.main"
+              >
+                testing typography
+              </Typography>
+
+
+
+              <Typography
+                variant="h1"
+                color="primary.main"
+              >
+                dynamic
+              </Typography>
+
+
+
+
               <Card
                 sx={{ minWidth: 380, maxWidth: 420 }}
                 // style={{backgroundColor: theme.bgCardColor ? theme.bgCardColor : "rgba(206,199,199,0.8)"}}

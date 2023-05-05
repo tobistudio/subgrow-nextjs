@@ -2,7 +2,7 @@
 // Default theme for a user profile
 export const userTheme = {
   "layout": "modern",
-  "titleStyle": "h6",
+  "titleStyle": "h6", // variant for titles
   "titleColor": "#000000",
   "descriptionStyle": "body1",
   "descriptionColor": "#000000",
