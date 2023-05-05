@@ -278,6 +278,7 @@ export type Apps = {
   id: number
   userId: number
   name: string | null
+  status: Status
   description: string | null
   order: number
   api_key: string | null
@@ -16942,6 +16943,7 @@ export namespace Prisma {
     id: number | null
     userId: number | null
     name: string | null
+    status: Status | null
     description: string | null
     order: number | null
     api_key: string | null
@@ -16960,6 +16962,7 @@ export namespace Prisma {
     id: number | null
     userId: number | null
     name: string | null
+    status: Status | null
     description: string | null
     order: number | null
     api_key: string | null
@@ -16978,6 +16981,7 @@ export namespace Prisma {
     id: number
     userId: number
     name: number
+    status: number
     description: number
     order: number
     api_key: number
@@ -17010,6 +17014,7 @@ export namespace Prisma {
     id?: true
     userId?: true
     name?: true
+    status?: true
     description?: true
     order?: true
     api_key?: true
@@ -17028,6 +17033,7 @@ export namespace Prisma {
     id?: true
     userId?: true
     name?: true
+    status?: true
     description?: true
     order?: true
     api_key?: true
@@ -17046,6 +17052,7 @@ export namespace Prisma {
     id?: true
     userId?: true
     name?: true
+    status?: true
     description?: true
     order?: true
     api_key?: true
@@ -17152,6 +17159,7 @@ export namespace Prisma {
     id: number
     userId: number
     name: string | null
+    status: Status
     description: string | null
     order: number
     api_key: string | null
@@ -17189,6 +17197,7 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     name?: boolean
+    status?: boolean
     description?: boolean
     order?: boolean
     api_key?: boolean
@@ -18007,6 +18016,7 @@ export namespace Prisma {
     id: 'id',
     userId: 'userId',
     name: 'name',
+    status: 'status',
     description: 'description',
     order: 'order',
     api_key: 'api_key',
@@ -19376,6 +19386,7 @@ export namespace Prisma {
     id?: IntFilter | number
     userId?: IntFilter | number
     name?: StringNullableFilter | string | null
+    status?: EnumStatusFilter | Status
     description?: StringNullableFilter | string | null
     order?: IntFilter | number
     api_key?: StringNullableFilter | string | null
@@ -19395,6 +19406,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     name?: SortOrder
+    status?: SortOrder
     description?: SortOrder
     order?: SortOrder
     api_key?: SortOrder
@@ -19418,6 +19430,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     name?: SortOrder
+    status?: SortOrder
     description?: SortOrder
     order?: SortOrder
     api_key?: SortOrder
@@ -19444,6 +19457,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter | number
     userId?: IntWithAggregatesFilter | number
     name?: StringNullableWithAggregatesFilter | string | null
+    status?: EnumStatusWithAggregatesFilter | Status
     description?: StringNullableWithAggregatesFilter | string | null
     order?: IntWithAggregatesFilter | number
     api_key?: StringNullableWithAggregatesFilter | string | null
@@ -20883,6 +20897,7 @@ export namespace Prisma {
 
   export type AppsCreateInput = {
     name?: string | null
+    status?: Status
     description?: string | null
     order?: number
     api_key?: string | null
@@ -20902,6 +20917,7 @@ export namespace Prisma {
     id?: number
     userId: number
     name?: string | null
+    status?: Status
     description?: string | null
     order?: number
     api_key?: string | null
@@ -20918,6 +20934,7 @@ export namespace Prisma {
 
   export type AppsUpdateInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | Status
     description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20937,6 +20954,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | Status
     description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20955,6 +20973,7 @@ export namespace Prisma {
     id?: number
     userId: number
     name?: string | null
+    status?: Status
     description?: string | null
     order?: number
     api_key?: string | null
@@ -20971,6 +20990,7 @@ export namespace Prisma {
 
   export type AppsUpdateManyMutationInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | Status
     description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20989,6 +21009,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | Status
     description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22208,6 +22229,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     name?: SortOrder
+    status?: SortOrder
     description?: SortOrder
     order?: SortOrder
     api_key?: SortOrder
@@ -22232,6 +22254,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     name?: SortOrder
+    status?: SortOrder
     description?: SortOrder
     order?: SortOrder
     api_key?: SortOrder
@@ -22250,6 +22273,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     name?: SortOrder
+    status?: SortOrder
     description?: SortOrder
     order?: SortOrder
     api_key?: SortOrder
@@ -23946,6 +23970,7 @@ export namespace Prisma {
 
   export type AppsCreateWithoutUserInput = {
     name?: string | null
+    status?: Status
     description?: string | null
     order?: number
     api_key?: string | null
@@ -23963,6 +23988,7 @@ export namespace Prisma {
   export type AppsUncheckedCreateWithoutUserInput = {
     id?: number
     name?: string | null
+    status?: Status
     description?: string | null
     order?: number
     api_key?: string | null
@@ -24338,6 +24364,7 @@ export namespace Prisma {
     id?: IntFilter | number
     userId?: IntFilter | number
     name?: StringNullableFilter | string | null
+    status?: EnumStatusFilter | Status
     description?: StringNullableFilter | string | null
     order?: IntFilter | number
     api_key?: StringNullableFilter | string | null
@@ -26582,6 +26609,7 @@ export namespace Prisma {
   export type AppsCreateManyUserInput = {
     id?: number
     name?: string | null
+    status?: Status
     description?: string | null
     order?: number
     api_key?: string | null
@@ -26986,6 +27014,7 @@ export namespace Prisma {
 
   export type AppsUpdateWithoutUserInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | Status
     description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27003,6 +27032,7 @@ export namespace Prisma {
   export type AppsUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | Status
     description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27020,6 +27050,7 @@ export namespace Prisma {
   export type AppsUncheckedUpdateManyWithoutAppsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | Status
     description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     api_key?: NullableStringFieldUpdateOperationsInput | string | null

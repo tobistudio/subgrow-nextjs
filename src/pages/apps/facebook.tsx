@@ -5,7 +5,7 @@ import { useMutation, useQuery } from "@blitzjs/rpc"
 import AdminLayout from "core/layouts/AdminLayout"
 import { CreateFacebookSchema } from "apps/schemas"
 import createService from "apps/mutations/createService"
-import getThisUsersApps from "apps/queries/getThisUsersApps"
+import getThisUsersAppBySite from "apps/queries/getThisUsersAppBySite"
 import { FORM_ERROR } from "apps/components/ServiceForm"
 import React, { Suspense, useState } from "react"
 import {
@@ -48,7 +48,7 @@ const NewFacebookPage = () => {
   console.log("session", session.role);
 
   // @ts-ignore
-  const [apps] = useQuery(getThisUsersApps, { userId: session.userId, site_name: "facebook" })
+  const [apps] = useQuery(getThisUsersAppBySite, { userId: session.userId, site_name: "facebook" })
   // const [profile] = useQuery(getCurrentProfileUsername, { username: session.username, current: 'yes' })
   const [appList, setAppList] = React.useState(apps);
 

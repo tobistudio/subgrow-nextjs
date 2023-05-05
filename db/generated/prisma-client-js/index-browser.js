@@ -114,6 +114,7 @@ exports.Prisma.AppsScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   name: 'name',
+  status: 'status',
   description: 'description',
   order: 'order',
   api_key: 'api_key',

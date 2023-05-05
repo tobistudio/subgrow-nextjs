@@ -46,6 +46,9 @@ import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import getProfile from "profiles/queries/getProfile"
 import Typography from '@mui/material/Typography';
 import {RootStateOrAny, useSelector} from "react-redux";
+// import apps from "../../../../data/apps";
+import Grid from "@mui/material/Unstable_Grid2";
+// import AppListBox from "../../../apps/components/AppListBox";
 import getThisUsersApps from "../../../apps/queries/getThisUsersApps";
 
 const Accordion = styled((props: AccordionProps) => (
@@ -86,9 +89,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 const ThemeConfigurator = (props) => {
   const session = useSession()
-
   const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" })
-
   const [selected, setSelected] = React.useState(true);
 
   // setUserprofile(profile)
@@ -105,12 +106,16 @@ const ThemeConfigurator = (props) => {
 
   // TODO: dawn values should come from  `Profile widgets` but that is getting set somewhere else
   const [values, setValues] = React.useState({ title: '', description: '' });
-
   const [colorTitle, setColorTitle] = React.useState("#ffffff")
   const [descriptionColor, setDescriptionColor] = React.useState("#ffffff")
   const [colorBg, setColorBg] = React.useState("#ffffff")
   const [bgCardColor, setBgCardColor] = React.useState("#ffffff")
   const [expanded, setExpanded] = React.useState<string | false>('panel1');
+
+  // Get apps for this user
+  const [apps] = useQuery(getThisUsersApps, { userId: session.userId })
+
+  console.log("apps",apps);
 
   React.useEffect(() => {
     setColorTitle(profile.theme.titleColor);
@@ -146,6 +151,12 @@ const ThemeConfigurator = (props) => {
   }
 
 
+  // TODO: still need to figure out what to do
+  const handleAddAppClick = async (event: React.MouseEvent<HTMLElement>, site_name) => {
+
+    console.log("handleAddAppClick")
+
+  }
 
   const handleBgColorChange = (color) => {
     // @ts-ignore
@@ -345,110 +356,6 @@ const ThemeConfigurator = (props) => {
                     </AccordionDetails>
                   </Accordion>
 
-                  <Accordion
-                    TransitionProps={{ unmountOnExit: true }}
-                    expanded={expanded === 'panel0'}
-                    onChange={handleChange('panel0')}
-                  >
-                    <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                      <Typography>Text Settings</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-
-
-                      <Stack spacing={4}>
-
-
-                        <TextField
-                          name="title"
-                          label="Profile Title"
-                          placeholder=""
-                          className="input input-md"
-                          // required={true}
-                          size={"small"}
-                          value={values.title}
-                          onChangeCapture={handleChangeValue}
-                        />
-
-                        <FormControl fullWidth>
-                          <InputLabel id="title-style-label">Select Title Style</InputLabel>
-                          <Select
-                            labelId="title-style-label"
-                            id="title-style-select"
-                            value={theme.titleStyle}
-                            label="Select Title Style"
-                            onChange={handleTextChange}
-                            onChangeCapture={handleChangeValue}
-                            size="small"
-                          >
-                            <MenuItem value={"usertheme"}>
-                              <Typography variant={theme.titleStyle}>
-                                My Colors
-                              </Typography>
-                            </MenuItem>
-                            <MenuItem value={"modern"}>
-                              <Typography variant="poster">
-                                Modern
-                              </Typography>
-                            </MenuItem>
-                            <MenuItem value={"babyblue"}>
-                              <Typography variant="h1">
-                                h1
-                              </Typography>
-                            </MenuItem>
-
-                          </Select>
-                        </FormControl>
-
-
-
-                        <Divider title="Profile Description" />
-
-                        <TextField
-                          name="description"
-                          label="Description"
-                          //value="Test Description"
-                          placeholder=""
-                          className="input input-md"
-                          size={"small"}
-                          value={values.description}
-                          onChangeCapture={handleChangeValue}
-                        />
-
-                        <FormControl>
-                          <InputLabel id="desc-style-label">Select Description Style</InputLabel>
-                          <Select
-                            labelId="desc-style-label"
-                            id="desc-style-select"
-                            value={theme.descriptionStyle}
-                            label="Select Description Style"
-                            onChange={handleTextChange}
-                            onChangeCapture={handleChangeValue}
-                            size="small"
-                          >
-                            <MenuItem value={"usertheme"}>
-                              <Typography variant={theme.descriptionStyle}>
-                                My Colors
-                              </Typography>
-                            </MenuItem>
-                            <MenuItem value={"body1"}>
-                              <Typography variant="body1">
-                                Body 1
-                              </Typography>
-                            </MenuItem>
-                            <MenuItem value={"body2"}>
-                              <Typography variant="body2">
-                                Body 2
-                              </Typography>
-                            </MenuItem>
-
-                          </Select>
-                        </FormControl>
-
-                      </Stack>
-                    </AccordionDetails>
-                  </Accordion>
-
                   <Accordion expanded={expanded === 'pallete'} onChange={handleChange('pallete')}>
                     <AccordionSummary aria-controls="palleted-content" id="palleted-header">
                       <Typography>Pallete</Typography>
@@ -499,29 +406,197 @@ const ThemeConfigurator = (props) => {
                       </Stack>
                     </AccordionDetails>
                   </Accordion>
-                  <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-                    <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-                      <Typography>Social Network Options</Typography>
+
+                  <Accordion
+                    TransitionProps={{ unmountOnExit: true }}
+                    expanded={expanded === 'panel0'}
+                    onChange={handleChange('panel0')}
+                  >
+                    <AccordionSummary aria-controls="panel0d-content" id="panel0d-header">
+                      <Typography>Text Settings</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+
+
+                      <Stack spacing={4}>
+
+
+                        <TextField
+                          name="title"
+                          label="Profile Title"
+                          placeholder=""
+                          className="input input-md"
+                          // required={true}
+                          size={"small"}
+                          value={values.title}
+                          onChangeCapture={handleChangeValue}
+                        />
+
+                        <FormControl fullWidth>
+                          <InputLabel id="title-style-label">Select Title Style</InputLabel>
+                          <Select
+                            labelId="title-style-label"
+                            id="title-style-select"
+                            value={theme.titleStyle}
+                            label="Select Title Style"
+                            onChange={handleTextChange}
+                            onChangeCapture={handleChangeValue}
+                            size="small"
+                          >
+                            <MenuItem value={"usertheme"}>
+                              <Typography variant={theme.titleStyle}>
+                                My Colors
+                              </Typography>
+                            </MenuItem>
+                            <MenuItem value={"modern"}>
+                              <Typography variant="poster">
+                                Modern
+                              </Typography>
+                            </MenuItem>
+                            <MenuItem value={"babyblue"}>
+                              <Typography variant="h1">
+                                h1
+                              </Typography>
+                            </MenuItem>
+
+                          </Select>
+                        </FormControl>
+
+                        <Divider title="Profile Description" />
+
+                        <TextField
+                          name="description"
+                          label="Description"
+                          //value="Test Description"
+                          placeholder=""
+                          className="input input-md"
+                          size={"small"}
+                          value={values.description}
+                          onChangeCapture={handleChangeValue}
+                        />
+
+                        <FormControl>
+                          <InputLabel id="desc-style-label">Select Description Style</InputLabel>
+                          <Select
+                            labelId="desc-style-label"
+                            id="desc-style-select"
+                            value={theme.descriptionStyle}
+                            label="Select Description Style"
+                            onChange={handleTextChange}
+                            onChangeCapture={handleChangeValue}
+                            size="small"
+                          >
+                            <MenuItem value={"usertheme"}>
+                              <Typography variant={theme.descriptionStyle}>
+                                My Colors
+                              </Typography>
+                            </MenuItem>
+                            <MenuItem value={"body1"}>
+                              <Typography variant="body1">
+                                Body 1
+                              </Typography>
+                            </MenuItem>
+                            <MenuItem value={"body2"}>
+                              <Typography variant="body2">
+                                Body 2
+                              </Typography>
+                            </MenuItem>
+
+                          </Select>
+                        </FormControl>
+
+                      </Stack>
+                    </AccordionDetails>
+                  </Accordion>
+
+
+                  {/*// TODO: for every app this user is signed up to, show accordion*/}
+
+
+                    {/* TODO: this user's apps */}
+                    {/*{apps.map((app) => (*/}
+                    {/*  <Accordion key={app.id} expanded={expanded === app.site_name} onChange={handleChange(app.site_name)}>*/}
+                    {/*    <AccordionSummary aria-controls={`${app.site_name}d-content`} id={`${app.site_name}d-header`}>*/}
+                    {/*      <Typography>{app.name} Settings</Typography>*/}
+                    {/*    </AccordionSummary>*/}
+                    {/*    <AccordionDetails>*/}
+
+
+
+                    {/*      options for this app, perhaps from the Profile widgets*/}
+
+
+
+                    {/*    </AccordionDetails>*/}
+                    {/*  </Accordion>*/}
+                    {/*))}*/}
+
+
+
+
+                  <Accordion expanded={expanded === 'buttons'} onChange={handleChange('buttons')}>
+                    <AccordionSummary aria-controls="buttonsd-content" id="buttonsd-header">
+                      <Typography>Buttons</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
 
                       <Stack spacing={4}>
 
-                        <label>Share Buttons</label>
-                        {
-                          selected &&
-                          <ToggleButton
-                            aria-label="Default Profile"
-                            value="check"
-                            size="small"
+                        <div>
+                          <label>Show Icons</label>
+                          {
+                            selected &&
+                            <ToggleButton
+                              aria-label="Default Profile"
+                              value="check"
+                              size="small"
 
-                            onClick={() => {
-                              setSelected(!selected)
-                            }}
-                          >
-                            <CheckIcon />
-                          </ToggleButton>
-                        }
+                              onClick={() => {
+                                setSelected(!selected)
+                              }}
+                            >
+                              <CheckIcon />
+                            </ToggleButton>
+                          }
+                        </div>
+
+
+                        <div>
+                          <label>Show Images</label>
+                          {
+                            selected &&
+                            <ToggleButton
+                              aria-label="Default Profile"
+                              value="check"
+                              size="small"
+
+                              onClick={() => {
+                                setSelected(!selected)
+                              }}
+                            >
+                              <CheckIcon />
+                            </ToggleButton>
+                          }
+                        </div>
+
+                        <div>
+
+                          <label>Show Share Buttons</label>
+                          {
+                            selected &&
+                            <ToggleButton
+                              aria-label="Default Profile"
+                              value="check"
+                              size="small"
+
+                              onClick={() => {
+                                setSelected(!selected)
+                              }}
+                            >
+                              <CheckIcon />
+                            </ToggleButton>
+                          }
+                        </div>
 
                       </Stack>
 
@@ -535,9 +610,17 @@ const ThemeConfigurator = (props) => {
                     </AccordionSummary>
                     <AccordionDetails>
 
+
+
+
+                        {/*<Grid xs={12} container spacing={{ xs: 1, sm : 2, md: 3, lg: 4, xl: 5 }}>*/}
+                        {/*  {apps.map((app) => (*/}
+                        {/*    <AppListBox key={app.id} app={app} handleAddAppClick={handleAddAppClick} />*/}
+                        {/*  ))}*/}
+                        {/*</Grid>*/}
+
+
                       <Stack spacing={4}>
-
-
                         <Typography>
                           Show fb, twitter, and other services this user has signed up for
 

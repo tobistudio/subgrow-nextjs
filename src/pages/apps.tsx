@@ -10,40 +10,16 @@ import {
   Box,
   Card,
   CardContent,
-  CardHeader,
   Stack,
   Typography,
-  CardMedia,
   Avatar,
-  CardActionArea,
-  CardActions,
-  Button, Tooltip, Switch
+  Tooltip
 } from "@mui/material";
-// import List from '@mui/material/List';
-// import ListItem from '@mui/material/ListItem';
-// import ListItemText from '@mui/material/ListItemText';
-// import ListItemAvatar from '@mui/material/ListItemAvatar';
-// import Avatar from '@mui/material/Avatar';
-// import ImageIcon from '@mui/icons-material/Image';
-// import WorkIcon from '@mui/icons-material/Work';
-// import BeachAccessIcon from '@mui/icons-material/BeachAccess';
-
 
 import Grid from '@mui/material/Unstable_Grid2';
-import PreviewLinkButton from "../components/dashboard/PreviewLinkButton";
-import ConnectedAppsAside from "../apps/components/ConnectedAppsAside";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-  faFacebook,
-  faInstagram,
-  faTiktok,
-  faTwitter,
-  faGoogle,
-} from "@fortawesome/free-brands-svg-icons"
-import { brands } from "../configs/colors/default";
-import IconButton from "@mui/material/IconButton";
-import { ArrowForwardIosTwoTone } from "@mui/icons-material";
 import { useRouter } from "next/router";
+import apps from "../../data/apps";
+import AppListBox from "../apps/components/AppListBox";
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
 
@@ -54,50 +30,11 @@ const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 export const AppsList = () => {
   const router = useRouter()
   const session = useSession()
+
+  // TODO: dawn if user owns apps, must put a check mark on box. if not, plus sign
   // const [apps] = useQuery(getServices,{ userId: session.userId });
 
-  const apps = [
-    {
-      "id": 1,
-      "added": 1,
-      "name": "Facebook",
-      "description": "Connect to facebook",
-      "site_name": "facebook",
-      "icon": <FontAwesomeIcon icon={faFacebook} color={brands.facebook} size="2xl" />
-    },
-    {
-      "id": 2,
-      "added": 1,
-      "name": "Twitter",
-      "description": "Connect to facebook to display feeds",
-      "site_name": "twitter",
-      "icon": <FontAwesomeIcon icon={faTwitter} color={brands.twitter} size="2xl" />
-    },
-    {
-      "id": 3,
-      "added": 0,
-      "name": "Instagram",
-      "description": "Connect to Instagram to display a widget",
-      "site_name": "instagram",
-      "icon": <FontAwesomeIcon icon={faInstagram} color={brands.instagram} size="2xl" />
-    },
-    {
-      "id": 4,
-      "added": 1,
-      "name": "Tik Tok",
-      "description": "Connect to Tik Tok to display a widget",
-      "site_name": "tiktok",
-      "icon": <FontAwesomeIcon icon={faTiktok} color={brands.tiktok} size="2xl" />
-    },
-    {
-      "id": 5,
-      "added": 0,
-      "name": "Tik Tok",
-      "description": "Connect to Tik Tok to display a widget",
-      "site_name": "tiktok",
-      "icon": <FontAwesomeIcon icon={faTiktok} color={brands.tiktok} size="2xl" />
-    }
-  ]
+
 
   // const getAvatarBgColor = ({ category }) => ({
   //   work: yellow[700],
@@ -120,87 +57,16 @@ export const AppsList = () => {
       <Grid xs={12}>
         <Typography sx={{width: "100%", flexGrow: 1 }} variant="h1center" align="center">Available Apps</Typography>
       </Grid>
-       {/*<Typography variant="h1">*/}
-      {/* */}
-      {/*</Typography> sm={4} md={4}*/}
 
-      {/*columns={{ xs: 4, sm: 8, md: 12 }}*/}
       <Grid xs={12} container spacing={{ xs: 1, sm : 2, md: 3, lg: 4, xl: 5 }}>
-
         {apps.map((app) => (
-          <Grid xs={12} sm={6} md={4} lg={3} key={app.id} spacing={5}>
-
-            <Tooltip title={app.added ? "Edit App" : "Add " + app.name}>
-              <Card
-                // sx={{ display: 'flex' }}
-                // variant={app.added ? "owned" : "outlined"}
-                // raised
-                className={app.added ? "owned" : ""}
-                variant={app.added ? "outlined" : "elevation"}
-                // variant={"outlined"}
-                sx={{ display: 'flex' }}
-                onClick={(e) => handleAddAppClick(e, app.site_name)}
-              >
-                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                  <CardContent sx={{ flexDirection: 'end' }}>
-                    <Stack direction="row" spacing={2}>
-                      <Avatar
-                        sx={{ bgcolor: "transparent" }}
-                        style={{ flexDirection: "column", alignItems: 'center', justifyContent: "center", display: "flex" }}
-                      >
-                        {app.icon}
-                      </Avatar>
-                      <div>
-                        <Typography component="div" variant="h5">
-                          {app.name}
-                        </Typography>
-                        <Typography variant="body1" color="text.secondary" component="div">
-                          {app.description}
-                        </Typography>
-                      </div>
-                    </Stack>
-                  </CardContent>
-                  {/*<CardActionArea>*/}
-                  {/*  <Link href={Routes.SitesPage()}>View Sites</Link>*/}
-                  {/*</CardActionArea>*/}
-
-                  {/*<CardActions>*/}
-                  {/*  <Tooltip title={"Add " +  app.name}>*/}
-                  {/*    <IconButton*/}
-                  {/*      aria-label={"Add " +  app.name}*/}
-                  {/*      style={{ marginLeft: "auto", float: "right" }}*/}
-                  {/*      onClick={(e) => handleAddAppClick(e, app.id)}*/}
-                  {/*    >*/}
-                  {/*      /!*<ArrowForwardIosTwoTone color="icon" />*!/*/}
-                  {/*      <ArrowForwardIosTwoTone />*/}
-                  {/*    </IconButton>*/}
-                  {/*  </Tooltip>*/}
-                  {/*</CardActions>*/}
-                </Box>
-
-              </Card>
-
-            </Tooltip>
-
-          </Grid>
+          <AppListBox key={app.id} app={app} handleAddAppClick={handleAddAppClick} />
         ))}
-
       </Grid>
     </div>
   )
 }
 
-// <ListItem>
-//   <ListItemAvatar>
-//     <Avatar>
-//       {app.icon}
-//     </Avatar>
-//   </ListItemAvatar>
-{/*  <ListItemText primary={app.name} secondary={app.description} />*/ }
-
-{/*  /!*<Typography variant="h6">{app.name}</Typography>*!/*/ }
-
-{/*</ListItem>*/ }
 const AppsPage = () => {
   const session = useSession()
   const [sites] = useQuery(getSiteForProfile, { userId: session.userId })
@@ -226,3 +92,19 @@ const AppsPage = () => {
 
 export default AppsPage
 
+{/*<CardActionArea>*/}
+{/*  <Link href={Routes.SitesPage()}>View Sites</Link>*/}
+{/*</CardActionArea>*/}
+
+{/*<CardActions>*/}
+{/*  <Tooltip title={"Add " +  app.name}>*/}
+{/*    <IconButton*/}
+{/*      aria-label={"Add " +  app.name}*/}
+{/*      style={{ marginLeft: "auto", float: "right" }}*/}
+{/*      onClick={(e) => handleAddAppClick(e, app.id)}*/}
+{/*    >*/}
+{/*      /!*<ArrowForwardIosTwoTone color="icon" />*!/*/}
+{/*      <ArrowForwardIosTwoTone />*/}
+{/*    </IconButton>*/}
+{/*  </Tooltip>*/}
+{/*</CardActions>*/}
