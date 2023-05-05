@@ -161,9 +161,9 @@ const ThemeConfigurator = (props) => {
 
   const handleChangeValue = (e) => {
     console.log(values);
+    setValues({ ...values, [e.target.name]: e.target.value });
     if (e.target.name === "title") document.getElementById("title")!.innerHTML = e.target.value;
     if (e.target.name === "description") document.getElementById("description")!.innerHTML = e.target.value;
-    setValues({ ...values, [e.target.name]: e.target.value });
   }
 
   let code = `<div>test</div>`
@@ -280,10 +280,10 @@ const ThemeConfigurator = (props) => {
                         {/*  onChange={handleCheck}*/}
                         {/*/>*/}
                         <TextField name="theme4" label="Choice 1" value={values.theme4}
-                                   onChangeCapture={handleChangeValue} />
+                          onChangeCapture={handleChangeValue} />
                         <TextField name="theme.3.descriptionColor" label="Choice 2" value={colorBg} />
                         <TextField name="theme2" label="Choice 3" value={values.theme2}
-                                   onChangeCapture={handleChangeValue} />
+                          onChangeCapture={handleChangeValue} />
 
                       </Stack>
                     </AccordionDetails>
@@ -358,7 +358,7 @@ const ThemeConfigurator = (props) => {
 
                         </Typography>
                         <Typography>
-                          // TODO: these are premium features. pull icon depending on user level
+                          {/* // TODO: these are premium features. pull icon depending on user level */}
                         </Typography>
                       </Stack>
 
