@@ -310,6 +310,8 @@ model Apps {
   api_key     String?
   api_secret  String?
   site_name   String? // facebook
+  handle      String? // username, twitter name, etc
+  site_data   String? // data from facebook
   show_feed   Boolean  @default(false)
   show_share  Boolean  @default(false)
   show_sub    Boolean  @default(false)
