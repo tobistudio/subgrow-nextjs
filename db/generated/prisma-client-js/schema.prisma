@@ -305,6 +305,8 @@ model Apps {
   id          Int      @id @default(autoincrement())
   userId      Int
   name        String? // may be used later
+  handle String?
+  options       Json?
   description String?
   order       Int      @default(0)
   api_key     String?
