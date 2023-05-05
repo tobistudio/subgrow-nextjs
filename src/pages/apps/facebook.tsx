@@ -1,7 +1,7 @@
 import { Routes } from "@blitzjs/next"
 import { useSession } from "@blitzjs/auth"
 import { useRouter } from "next/router"
-import {useMutation, useQuery} from "@blitzjs/rpc"
+import { useMutation, useQuery } from "@blitzjs/rpc"
 import AdminLayout from "core/layouts/AdminLayout"
 import { CreateFacebookSchema } from "apps/schemas"
 import createService from "apps/mutations/createService"
@@ -35,7 +35,7 @@ import {
   faGoogle,
 } from "@fortawesome/free-brands-svg-icons"
 
-import {plansConfig} from "../../configs/plans.config";
+import { plansConfig } from "../../configs/plans.config";
 import CheckIcon from "@mui/icons-material/Check";
 
 const NewFacebookPage = () => {
@@ -45,14 +45,14 @@ const NewFacebookPage = () => {
   const [createServiceMutation] = useMutation(createService)
   // const [components, setComponents] = useState(["Sample Component"])
 
-  console.log("session",session.role);
+  console.log("session", session.role);
 
   // @ts-ignore
   const [apps] = useQuery(getThisUsersApps, { userId: session.userId, site_name: "facebook" })
   // const [profile] = useQuery(getCurrentProfileUsername, { username: session.username, current: 'yes' })
   const [appList, setAppList] = React.useState(apps);
 
-  console.log("apps",apps);
+  console.log("apps", apps);
 
   // TODO: need to figure out if this user has already added. new/edit takes place on this page
 
@@ -66,13 +66,13 @@ const NewFacebookPage = () => {
   // const handleCheckChange = (e, {field}) => {
   const handleCheckChange = (e) => {
 
-    console.log("field",e.target.checked);
-    console.log("value",e.target.value);
+    console.log("field", e.target.checked);
+    console.log("value", e.target.value);
 
 
-    switch(e.target.value) {
+    switch (e.target.value) {
       case "show_sub":
-        console.log("field",e.target.checked);
+        console.log("field", e.target.checked);
         setShowSub(e.target.checked)
 
         break;
@@ -90,7 +90,7 @@ const NewFacebookPage = () => {
   }
   const handleAddService = (app) => {
 
-    console.log("app",app);
+    console.log("app", app);
 
     // setComponents([...components, "Sample Component " + service_site])
   }
@@ -327,7 +327,7 @@ const NewFacebookPage = () => {
   )
 }
 
-console.log("plansConfig.level3.role",plansConfig.level3.role);
+console.log("plansConfig.level3.role", plansConfig.level3.role);
 // if logged in, send to pricing tables page for upgrade /pricing page
 // if not logged in, login "/auth/login"
 NewFacebookPage.authenticate = { role: plansConfig.level3.role, redirectTo: "/account/upgrade" }

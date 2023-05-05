@@ -20,6 +20,8 @@ export default async function createCoupon(req, res) {
         } else if (coupon.discount_type === 'percentage') {
             console.log(`Percentage discount: ${coupon.percent_off}%`);
             res.json({ percent_off: coupon.percent_off })
+        } else {
+            res.json({ current: 'test code' })
         }
     } catch (error) {
         res.status(400).json({ err: error.message });

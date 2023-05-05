@@ -36,7 +36,6 @@ const Home: BlitzPage = () => {
 
         <ul>
 
-
           <li>
             <Link href="http://localhost:3000/dashboard">dashboard</Link>
           </li>
@@ -49,8 +48,6 @@ const Home: BlitzPage = () => {
           <li>
             <Link href="http://localhost:3000/apps/facebook">Add Facebook App</Link>
           </li>
-
-
 
           <li>
             <Link href="http://localhost:3000/tester">profile</Link>

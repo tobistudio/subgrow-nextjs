@@ -5,7 +5,7 @@ import { Button } from "@mui/material"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSignOut } from "@fortawesome/pro-duotone-svg-icons"
 import { misc } from "../../configs/colors/default"
-import {Routes} from "@blitzjs/next";
+import { Routes } from "@blitzjs/next";
 
 export const LogoutButton = () => {
   const [logoutMutation] = useMutation(logout)
@@ -13,7 +13,7 @@ export const LogoutButton = () => {
   return (
     <Button
       onClick={async () => {
-
+        window.localStorage.clear();
         await logoutMutation()
         Routes.Home()
       }}

@@ -3,6 +3,7 @@ import Head from "next/head"
 import { useQuery } from "@blitzjs/rpc"
 import { useParam } from "@blitzjs/next"
 import ProfileLayout from "core/layouts/ProfileLayout"
+import { useSession } from "@blitzjs/auth"
 import getProfile from "profiles/queries/getProfile"
 import getUserForProfile from "../users/queries/getUserForProfile"
 // import getSiteForProfile from "../sites/queries/getSiteForProfile"
@@ -30,8 +31,10 @@ const styles = (theme) => ({
 
 export const ProfileIndex = () => {
   const profileId = useParam("profileId", "string")
+  const session = useSession()
+
   const [user] = useQuery(getUserForProfile, { username: profileId })
-  const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id), current: "yes" })
+  const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" })
   const [sites] = useQuery(getSiteForProfileByStatus, { userId: user.id, status: "active" })
 
   // TODO: the layout should be set on dashboard page.

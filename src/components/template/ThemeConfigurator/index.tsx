@@ -7,6 +7,7 @@ import NavModeSwitcher from "./NavModeSwitcher"
 // import CopyButton from "./CopyButton"
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts"
 import { Stack, Button, ToggleButton, Box } from "@mui/material"
+import { useSession } from "@blitzjs/auth"
 import { CopyBlock, dracula } from "react-code-blocks"
 import { useQuery, useMutation } from "@blitzjs/rpc"
 import CheckIcon from "@mui/icons-material/Check"
@@ -72,14 +73,15 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }));
 
 const ThemeConfigurator = (props) => {
+  const session = useSession()
 
-  const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id), current: "yes" })
+  const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" })
 
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
   const [selected, setSelected] = React.useState(true);
 
-  //setUserprofile(profile)
+  // setUserprofile(profile)
 
   //const [userprofile, dispatch] = useReducer(tasksReducer, initialTasks);
   // const userprofile = useSelector((state) => state.userprofile)
@@ -124,7 +126,9 @@ const ThemeConfigurator = (props) => {
   const onSubmit = async (e) => {
     // await sleep(300)
     e.preventDefault();
-
+    if (!values.title || !values.description || !values.theme2 || !values.theme4) {
+      alert("General Setting values is required");
+    }
     //  TODO: update profile, and this design, on the fly
     try {
       const site = await createProfileMutation({
@@ -139,9 +143,9 @@ const ThemeConfigurator = (props) => {
           linkWidth: '200',
           fontFamily: '',
           titleStyle: 'h6',
-          bgCardColor: '#3c6794',
+          bgCardColor: values.theme4,
           linkSpacing: 20,
-          descriptionColor: '#1a1313',
+          descriptionColor: values.theme2,
           descriptionStyle: 'body1'
         }, widgets: {}, current: 'yes'
       })
@@ -207,7 +211,7 @@ const ThemeConfigurator = (props) => {
 
               return errors
             }}
-            render={({ handleSubmit, form, submitting, submitError, pristine, values }) => {
+            render={({ handleSubmit, form, submitting, submitError, pristine }) => {
 
               return (
                 <form onSubmit={onSubmit} className={`banner ${submitError ? "error" : ""}`}>
@@ -274,10 +278,10 @@ const ThemeConfigurator = (props) => {
                         {/*  checked={checked}*/}
                         {/*  onChange={handleCheck}*/}
                         {/*/>*/}
-                        <TextField name="theme.4.titleColor" label="Choice 1" value={values.theme4}
+                        <TextField name="theme4" label="Choice 1" value={values.theme4}
                           onChangeCapture={handleChangeValue} />
                         <TextField name="theme.3.descriptionColor" label="Choice 2" value={colorBg} />
-                        <TextField name="theme.2.text" label="Choice 3" value={values.theme2}
+                        <TextField name="theme2" label="Choice 3" value={values.theme2}
                           onChangeCapture={handleChangeValue} />
 
                       </Stack>
