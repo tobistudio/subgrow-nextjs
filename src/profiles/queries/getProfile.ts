@@ -15,9 +15,17 @@ export default resolver.pipe(
   resolver.zod(GetProfile),
   // resolver.authorize(),
   async ({ userId, current }) => {
+    try {
+      if (!userId) {
+        throw new NotFoundError()
+        return;
+      }
+      const profile = await db.profile.findFirst({ where: { userId } })
+      return profile
+    }
+    catch (err) {
+      return err;
+    }
 
-    const profile = await db.profile.findFirst({ where: { userId } })
-    // if (!profile) throw new NotFoundError()
-    return profile
   }
 )

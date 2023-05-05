@@ -7,6 +7,7 @@ import NavModeSwitcher from "./NavModeSwitcher"
 // import CopyButton from "./CopyButton"
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts"
 import { Stack, Button, ToggleButton, Box } from "@mui/material"
+import { useSession } from "@blitzjs/auth"
 import { CopyBlock, dracula } from "react-code-blocks"
 import { useQuery, useMutation } from "@blitzjs/rpc"
 import CheckIcon from "@mui/icons-material/Check"
@@ -72,8 +73,9 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }));
 
 const ThemeConfigurator = (props) => {
+  const session = useSession()
 
-  const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id), current: "yes" })
+  const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" })
 
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 

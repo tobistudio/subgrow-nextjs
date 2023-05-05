@@ -23,9 +23,13 @@ export default resolver.pipe(
   resolver.zod(GetUserForProfile),
   // resolver.authorize(),  // no authorize for this since this is user facing
   async ({ username }) => {
-    const user = await db.user.findFirst({ where: { username } })
-    console.log("user", user)
-    if (!user) throw new NotFoundError()
-    return user
+    try {
+      const user = await db.user.findFirst({ where: { username } })
+      console.log("user", user)
+      return user
+
+    } catch (err) {
+      return err;
+    }
   }
 )
