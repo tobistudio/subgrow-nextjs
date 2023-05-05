@@ -161,7 +161,8 @@ const ThemeConfigurator = (props) => {
 
   const handleChangeValue = (e) => {
     console.log(values);
-
+    if (e.target.name === "title") document.getElementById("title")!.innerHTML = e.target.value;
+    if (e.target.name === "description") document.getElementById("description")!.innerHTML = e.target.value;
     setValues({ ...values, [e.target.name]: e.target.value });
   }
 

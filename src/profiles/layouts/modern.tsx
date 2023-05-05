@@ -115,6 +115,7 @@ Error: Too many re-renders. React limits the number of renders to prevent an inf
                   variant={theme.titleStyle}
                   alignItems={theme.linkAlign ? theme.linkAlign : "center"}
                   className="profile-text"
+                  id="title"
                   style={{ color: theme.titleColor ? theme.titleColor : "rgb(189,196,215)" }}
                 >
                   {userprofile.title ? userprofile.title : userprofile.username}
@@ -126,7 +127,7 @@ Error: Too many re-renders. React limits the number of renders to prevent an inf
                 {/*}*/}
 
                 {userprofile.description ? (
-                  <Typography variant={theme.descriptionStyle} className="profile-text" style={{ color: theme.titleColor ? theme.titleColor : "rgb(189,196,215)" }}>
+                  <Typography variant={theme.descriptionStyle} id="description" className="profile-text description" style={{ color: theme.titleColor ? theme.titleColor : "rgb(189,196,215)" }}>
                     {userprofile.description}
                   </Typography>
                 ) : (
