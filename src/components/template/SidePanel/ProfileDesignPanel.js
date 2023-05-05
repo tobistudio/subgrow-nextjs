@@ -31,7 +31,7 @@ export const ProfileDesignPanel = (props) => {
     <>
       <Drawer
         bodyClass={"body-class"}
-        title="Customize Profile www"
+        title="Customize Profile"
         isOpen={panelExpand}
         onClose={closePanel}
         onRequestClose={closePanel}

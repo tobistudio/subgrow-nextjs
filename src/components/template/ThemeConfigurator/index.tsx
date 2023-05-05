@@ -20,7 +20,7 @@ import InputAdornment from "@mui/material/InputAdornment"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faXmarkLarge } from "@fortawesome/pro-regular-svg-icons"
 import { fonts, misc } from "../../../configs/colors/default"
-import { faFaceAnguished, faFloppyDisk, faGear } from "@fortawesome/pro-duotone-svg-icons"
+import { faEdit, faFloppyDisk, faGear } from "@fortawesome/pro-duotone-svg-icons"
 import { FORM_ERROR } from "final-form"
 import InputLabel from "@mui/material/InputLabel"
 import MenuItem from "@mui/material/MenuItem"
@@ -280,10 +280,10 @@ const ThemeConfigurator = (props) => {
                         {/*  onChange={handleCheck}*/}
                         {/*/>*/}
                         <TextField name="theme4" label="Choice 1" value={values.theme4}
-                          onChangeCapture={handleChangeValue} />
+                                   onChangeCapture={handleChangeValue} />
                         <TextField name="theme.3.descriptionColor" label="Choice 2" value={colorBg} />
                         <TextField name="theme2" label="Choice 3" value={values.theme2}
-                          onChangeCapture={handleChangeValue} />
+                                   onChangeCapture={handleChangeValue} />
 
                       </Stack>
                     </AccordionDetails>
@@ -344,6 +344,27 @@ const ThemeConfigurator = (props) => {
                     </AccordionDetails>
                   </Accordion>
 
+                  <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
+                    <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
+                      <Typography>Apps</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+
+                      <Stack spacing={4}>
+
+
+                        <Typography>
+                          Show fb, twitter, and other services this user has signed up for
+
+                        </Typography>
+                        <Typography>
+                          // TODO: these are premium features. pull icon depending on user level
+                        </Typography>
+                      </Stack>
+
+
+                    </AccordionDetails>
+                  </Accordion>
 
 
                   <Box textAlign="center" mt={4}>
@@ -357,6 +378,18 @@ const ThemeConfigurator = (props) => {
                       }
                     >
                       Save
+                    </Button>
+
+
+                    <Button
+                      variant="outlined"
+                      disabled={submitting}
+                      sx={{ width: 200 }}
+                      startIcon={
+                        <FontAwesomeIcon icon={faEdit} style={{ color: misc.fa_primary }} />
+                      }
+                    >
+                      Edit Links
                     </Button>
                   </Box>
 

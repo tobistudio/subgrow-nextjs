@@ -223,9 +223,6 @@ Linked to sub page
 https://linktr.ee/s/pricing/
 
 
-#### apps page
-https://linktr.ee/marketplace
-
 
 
 #### User Box, icons, drop down user
@@ -233,8 +230,13 @@ https://linktr.ee/marketplace
 
 
 #### Apps Page
+https://linktr.ee/marketplace
 
+Apps and options are set as `widgets` in Profile table
 
+The `Apps` table will only hold generic data about the service, such as facebook API.
+
+{facebook: show_feed: 1}
 
 
 #### individual GA analytics
@@ -411,6 +413,9 @@ https://linktr.ee/s/pricing/
 3. Recreate the session, update publicData with new role
 4. Automatically fill out email field, if possible
 5.
+
+
+
 
 
 
