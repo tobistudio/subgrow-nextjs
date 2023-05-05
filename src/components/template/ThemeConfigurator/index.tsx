@@ -88,8 +88,6 @@ const ThemeConfigurator = (props) => {
 
   const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" })
 
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
-
   const [selected, setSelected] = React.useState(true);
 
   // setUserprofile(profile)
@@ -104,14 +102,18 @@ const ThemeConfigurator = (props) => {
   console.log("ThemeConfigurator. index.tsxjs", userprofile)
 
 
-  const [values, setValues] = React.useState({ title: '', description: '', theme4: '', theme2: '' });
+  // TODO: dawn values should come from  `Profile widgets` but that is getting set somewhere else
+  const [values, setValues] = React.useState({ title: '', description: '' });
 
   const [colorTitle, setColorTitle] = React.useState("#ffffff")
+  const [descriptionColor, setDescriptionColor] = React.useState("#ffffff")
   const [colorBg, setColorBg] = React.useState("#ffffff")
+  const [bgCardColor, setBgCardColor] = React.useState("#ffffff")
   const [expanded, setExpanded] = React.useState<string | false>('panel1');
 
   React.useEffect(() => {
     setColorTitle(profile.theme.titleColor);
+    setDescriptionColor(profile.theme.descriptionColor);
     setColorBg(profile.theme.bgColor);
     setValues({ ...values, title: profile.title, description: profile.description })
   }, [profile]);
@@ -128,8 +130,25 @@ const ThemeConfigurator = (props) => {
     setColorTitle(color)
   }
 
+  const handleDescriptionColorChange = (color) => {
+    document.querySelectorAll(".profile-text").forEach((userItem) => {
+      // @ts-ignore
+      userItem.style.color = color // works fine
+    })
+    setDescriptionColor(color)
+  }
+
+  const handleBgCardColorChange = (color) => {
+    // @ts-ignore
+    document.getElementById("profile-card").style.backgroundColor = color
+    setBgCardColor(color)
+  }
+
+
+
   const handleBgColorChange = (color) => {
     // @ts-ignore
+    // document.getElementById("profile-main").style.backgroundColor = color
     document.getElementById("profile-main").style.backgroundColor = color
     setColorBg(color)
   }
@@ -157,10 +176,10 @@ const ThemeConfigurator = (props) => {
           linkStyle: 'babyblue',
           linkWidth: '200',
           fontFamily: '',
-          titleStyle: 'h6', // TODO: these values come from DB
-          bgCardColor: values.theme4,
+          titleStyle: 'h6', // TODO: dawn these values come from user
+          bgCardColor: bgCardColor,
           linkSpacing: 20,
-          descriptionColor: values.theme2,
+          descriptionColor: descriptionColor,
           descriptionStyle: 'body1'
         }, widgets: {}, current: 'yes'
       })
@@ -298,21 +317,6 @@ const ThemeConfigurator = (props) => {
                         </FormControl>
 
 
-
-                        <TextField
-                          name="description"
-                          label="Description"
-                          //value="Test Description"
-                          placeholder=""
-                          className="input input-md"
-                          size={"small"}
-                          value={values.description}
-                          onChangeCapture={handleChangeValue}
-                        />
-
-
-
-
                         <label>Select Default Mode</label>
 
 
@@ -395,14 +399,6 @@ const ThemeConfigurator = (props) => {
                           </Select>
                         </FormControl>
 
-                        <MuiColorInput
-                          value={colorTitle}
-                          onChange={handleTitleColorChange}
-                          variant="outlined"
-                          name="titleColorPicker"
-                          label="Text Color"
-                          size={"small"}
-                        />
 
 
                         <Divider title="Profile Description" />
@@ -448,15 +444,6 @@ const ThemeConfigurator = (props) => {
                           </Select>
                         </FormControl>
 
-                        <MuiColorInput
-                          value={colorBg}
-                          onChange={handleBgColorChange}
-                          variant="outlined"
-                          name="bgColorPicker"
-                          label="Background Color"
-                          size={"small"}
-                        />
-
                       </Stack>
                     </AccordionDetails>
                   </Accordion>
@@ -467,7 +454,47 @@ const ThemeConfigurator = (props) => {
                     </AccordionSummary>
                     <AccordionDetails>
                       <Stack spacing={4}>
-ss
+
+                        <MuiColorInput
+                          value={colorTitle}
+                          onChange={handleTitleColorChange}
+                          variant="outlined"
+                          name="titleColorPicker"
+                          label="Text Color"
+                          size={"small"}
+                        />
+
+                        <MuiColorInput
+                          value={descriptionColor}
+                          onChange={handleDescriptionColorChange}
+                          variant="outlined"
+                          name="descriptionColorPicker"
+                          label="Text Color"
+                          size={"small"}
+                        />
+
+
+                        <MuiColorInput
+                          value={colorBg}
+                          onChange={handleBgColorChange}
+                          variant="outlined"
+                          name="bgColorPicker"
+                          label="Background Color"
+                          size={"small"}
+                        />
+
+                        <MuiColorInput
+                          value={bgCardColor}
+                          onChange={handleBgCardColorChange}
+                          variant="outlined"
+                          name="bgCardColorPicker"
+                          label="Card Background Color"
+                          size={"small"}
+                        />
+
+
+
+
                       </Stack>
                     </AccordionDetails>
                   </Accordion>

@@ -105,7 +105,7 @@ Error: Too many re-renders. React limits the number of renders to prevent an inf
 
   return (
     <ThemeProvider theme={userTheme}>
-      <div id="profile-main" style={{ minHeight: "100vh", backgroundColor: theme.bgColor ? theme.bgColor : "#202A37" }}>
+      <div style={{ minHeight: "100vh", backgroundColor: theme.bgColor ? theme.bgColor : "#202A37" }}>
         <header className="header-wrapper">
           <Grid container spacing={0} py={1}>
             <Grid spacing={{ xs: 12 }} display="flex" justifyContent="right" alignItems="center">
@@ -116,7 +116,7 @@ Error: Too many re-renders. React limits the number of renders to prevent an inf
             </Grid>
           </Grid>
         </header>
-        <main>
+        <main id="profile-main">
           <FacebookProvider appId="241448415049637">
             <Grid
               container
@@ -149,13 +149,17 @@ Error: Too many re-renders. React limits the number of renders to prevent an inf
                 dynamic
               </Typography>
 
-              <Box
+
+
+
+              <Card
                 id="profile-card" // TODO: use mui?
                 sx={{ minWidth: 380, maxWidth: 420 }} // TODO: user settings may be a bit much
                 // style={{backgroundColor: theme.bgCardColor ? theme.bgCardColor : "rgba(206,199,199,0.8)"}}
-                //style={{ backgroundColor: theme.bgCardColor ? theme.bgCardColor : "rgb(189,196,215)" }}
+                style={{ backgroundColor: theme.bgCardColor ? theme.bgCardColor : "rgb(189,196,215)" }}
+
               >
-                <div>
+                <CardContent>
                   <Typography
                     variant={theme.titleStyle}
                     alignItems={theme.linkAlign ? theme.linkAlign : "center"}
@@ -215,8 +219,8 @@ Error: Too many re-renders. React limits the number of renders to prevent an inf
 
                   {/*  <ShareButton href="http://www.facebook.com" />*/}
                   {/*</FacebookProvider>*/}
-                </div>
-              </Box>
+                </CardContent>
+              </Card>
             </Grid>
 
 

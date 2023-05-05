@@ -7,7 +7,7 @@ export const userTheme = {
   "descriptionStyle": "body1",
   "descriptionColor": "#000000",
   "linkType": "button",
-  "linkStyle": "link-modern",
+  "linkStyle": "modern1",
   "linkSpacing": 20,
   "linkAlign": "center",
   "bgColor": "#000000",
