@@ -119,6 +119,8 @@ exports.Prisma.AppsScalarFieldEnum = {
   api_key: 'api_key',
   api_secret: 'api_secret',
   site_name: 'site_name',
+  handle: 'handle',
+  site_data: 'site_data',
   show_feed: 'show_feed',
   show_share: 'show_share',
   show_sub: 'show_sub',

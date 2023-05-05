@@ -283,6 +283,8 @@ export type Apps = {
   api_key: string | null
   api_secret: string | null
   site_name: string | null
+  handle: string | null
+  site_data: string | null
   show_feed: boolean
   show_share: boolean
   show_sub: boolean
@@ -16945,6 +16947,8 @@ export namespace Prisma {
     api_key: string | null
     api_secret: string | null
     site_name: string | null
+    handle: string | null
+    site_data: string | null
     show_feed: boolean | null
     show_share: boolean | null
     show_sub: boolean | null
@@ -16961,6 +16965,8 @@ export namespace Prisma {
     api_key: string | null
     api_secret: string | null
     site_name: string | null
+    handle: string | null
+    site_data: string | null
     show_feed: boolean | null
     show_share: boolean | null
     show_sub: boolean | null
@@ -16977,6 +16983,8 @@ export namespace Prisma {
     api_key: number
     api_secret: number
     site_name: number
+    handle: number
+    site_data: number
     show_feed: number
     show_share: number
     show_sub: number
@@ -17007,6 +17015,8 @@ export namespace Prisma {
     api_key?: true
     api_secret?: true
     site_name?: true
+    handle?: true
+    site_data?: true
     show_feed?: true
     show_share?: true
     show_sub?: true
@@ -17023,6 +17033,8 @@ export namespace Prisma {
     api_key?: true
     api_secret?: true
     site_name?: true
+    handle?: true
+    site_data?: true
     show_feed?: true
     show_share?: true
     show_sub?: true
@@ -17039,6 +17051,8 @@ export namespace Prisma {
     api_key?: true
     api_secret?: true
     site_name?: true
+    handle?: true
+    site_data?: true
     show_feed?: true
     show_share?: true
     show_sub?: true
@@ -17143,6 +17157,8 @@ export namespace Prisma {
     api_key: string | null
     api_secret: string | null
     site_name: string | null
+    handle: string | null
+    site_data: string | null
     show_feed: boolean
     show_share: boolean
     show_sub: boolean
@@ -17178,6 +17194,8 @@ export namespace Prisma {
     api_key?: boolean
     api_secret?: boolean
     site_name?: boolean
+    handle?: boolean
+    site_data?: boolean
     show_feed?: boolean
     show_share?: boolean
     show_sub?: boolean
@@ -17994,6 +18012,8 @@ export namespace Prisma {
     api_key: 'api_key',
     api_secret: 'api_secret',
     site_name: 'site_name',
+    handle: 'handle',
+    site_data: 'site_data',
     show_feed: 'show_feed',
     show_share: 'show_share',
     show_sub: 'show_sub',
@@ -19361,6 +19381,8 @@ export namespace Prisma {
     api_key?: StringNullableFilter | string | null
     api_secret?: StringNullableFilter | string | null
     site_name?: StringNullableFilter | string | null
+    handle?: StringNullableFilter | string | null
+    site_data?: StringNullableFilter | string | null
     show_feed?: BoolFilter | boolean
     show_share?: BoolFilter | boolean
     show_sub?: BoolFilter | boolean
@@ -19378,6 +19400,8 @@ export namespace Prisma {
     api_key?: SortOrder
     api_secret?: SortOrder
     site_name?: SortOrder
+    handle?: SortOrder
+    site_data?: SortOrder
     show_feed?: SortOrder
     show_share?: SortOrder
     show_sub?: SortOrder
@@ -19399,6 +19423,8 @@ export namespace Prisma {
     api_key?: SortOrder
     api_secret?: SortOrder
     site_name?: SortOrder
+    handle?: SortOrder
+    site_data?: SortOrder
     show_feed?: SortOrder
     show_share?: SortOrder
     show_sub?: SortOrder
@@ -19423,6 +19449,8 @@ export namespace Prisma {
     api_key?: StringNullableWithAggregatesFilter | string | null
     api_secret?: StringNullableWithAggregatesFilter | string | null
     site_name?: StringNullableWithAggregatesFilter | string | null
+    handle?: StringNullableWithAggregatesFilter | string | null
+    site_data?: StringNullableWithAggregatesFilter | string | null
     show_feed?: BoolWithAggregatesFilter | boolean
     show_share?: BoolWithAggregatesFilter | boolean
     show_sub?: BoolWithAggregatesFilter | boolean
@@ -20860,6 +20888,8 @@ export namespace Prisma {
     api_key?: string | null
     api_secret?: string | null
     site_name?: string | null
+    handle?: string | null
+    site_data?: string | null
     show_feed?: boolean
     show_share?: boolean
     show_sub?: boolean
@@ -20877,6 +20907,8 @@ export namespace Prisma {
     api_key?: string | null
     api_secret?: string | null
     site_name?: string | null
+    handle?: string | null
+    site_data?: string | null
     show_feed?: boolean
     show_share?: boolean
     show_sub?: boolean
@@ -20891,6 +20923,8 @@ export namespace Prisma {
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
     site_name?: NullableStringFieldUpdateOperationsInput | string | null
+    handle?: NullableStringFieldUpdateOperationsInput | string | null
+    site_data?: NullableStringFieldUpdateOperationsInput | string | null
     show_feed?: BoolFieldUpdateOperationsInput | boolean
     show_share?: BoolFieldUpdateOperationsInput | boolean
     show_sub?: BoolFieldUpdateOperationsInput | boolean
@@ -20908,6 +20942,8 @@ export namespace Prisma {
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
     site_name?: NullableStringFieldUpdateOperationsInput | string | null
+    handle?: NullableStringFieldUpdateOperationsInput | string | null
+    site_data?: NullableStringFieldUpdateOperationsInput | string | null
     show_feed?: BoolFieldUpdateOperationsInput | boolean
     show_share?: BoolFieldUpdateOperationsInput | boolean
     show_sub?: BoolFieldUpdateOperationsInput | boolean
@@ -20924,6 +20960,8 @@ export namespace Prisma {
     api_key?: string | null
     api_secret?: string | null
     site_name?: string | null
+    handle?: string | null
+    site_data?: string | null
     show_feed?: boolean
     show_share?: boolean
     show_sub?: boolean
@@ -20938,6 +20976,8 @@ export namespace Prisma {
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
     site_name?: NullableStringFieldUpdateOperationsInput | string | null
+    handle?: NullableStringFieldUpdateOperationsInput | string | null
+    site_data?: NullableStringFieldUpdateOperationsInput | string | null
     show_feed?: BoolFieldUpdateOperationsInput | boolean
     show_share?: BoolFieldUpdateOperationsInput | boolean
     show_sub?: BoolFieldUpdateOperationsInput | boolean
@@ -20954,6 +20994,8 @@ export namespace Prisma {
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
     site_name?: NullableStringFieldUpdateOperationsInput | string | null
+    handle?: NullableStringFieldUpdateOperationsInput | string | null
+    site_data?: NullableStringFieldUpdateOperationsInput | string | null
     show_feed?: BoolFieldUpdateOperationsInput | boolean
     show_share?: BoolFieldUpdateOperationsInput | boolean
     show_sub?: BoolFieldUpdateOperationsInput | boolean
@@ -22171,6 +22213,8 @@ export namespace Prisma {
     api_key?: SortOrder
     api_secret?: SortOrder
     site_name?: SortOrder
+    handle?: SortOrder
+    site_data?: SortOrder
     show_feed?: SortOrder
     show_share?: SortOrder
     show_sub?: SortOrder
@@ -22193,6 +22237,8 @@ export namespace Prisma {
     api_key?: SortOrder
     api_secret?: SortOrder
     site_name?: SortOrder
+    handle?: SortOrder
+    site_data?: SortOrder
     show_feed?: SortOrder
     show_share?: SortOrder
     show_sub?: SortOrder
@@ -22209,6 +22255,8 @@ export namespace Prisma {
     api_key?: SortOrder
     api_secret?: SortOrder
     site_name?: SortOrder
+    handle?: SortOrder
+    site_data?: SortOrder
     show_feed?: SortOrder
     show_share?: SortOrder
     show_sub?: SortOrder
@@ -23903,6 +23951,8 @@ export namespace Prisma {
     api_key?: string | null
     api_secret?: string | null
     site_name?: string | null
+    handle?: string | null
+    site_data?: string | null
     show_feed?: boolean
     show_share?: boolean
     show_sub?: boolean
@@ -23918,6 +23968,8 @@ export namespace Prisma {
     api_key?: string | null
     api_secret?: string | null
     site_name?: string | null
+    handle?: string | null
+    site_data?: string | null
     show_feed?: boolean
     show_share?: boolean
     show_sub?: boolean
@@ -24291,6 +24343,8 @@ export namespace Prisma {
     api_key?: StringNullableFilter | string | null
     api_secret?: StringNullableFilter | string | null
     site_name?: StringNullableFilter | string | null
+    handle?: StringNullableFilter | string | null
+    site_data?: StringNullableFilter | string | null
     show_feed?: BoolFilter | boolean
     show_share?: BoolFilter | boolean
     show_sub?: BoolFilter | boolean
@@ -26533,6 +26587,8 @@ export namespace Prisma {
     api_key?: string | null
     api_secret?: string | null
     site_name?: string | null
+    handle?: string | null
+    site_data?: string | null
     show_feed?: boolean
     show_share?: boolean
     show_sub?: boolean
@@ -26935,6 +26991,8 @@ export namespace Prisma {
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
     site_name?: NullableStringFieldUpdateOperationsInput | string | null
+    handle?: NullableStringFieldUpdateOperationsInput | string | null
+    site_data?: NullableStringFieldUpdateOperationsInput | string | null
     show_feed?: BoolFieldUpdateOperationsInput | boolean
     show_share?: BoolFieldUpdateOperationsInput | boolean
     show_sub?: BoolFieldUpdateOperationsInput | boolean
@@ -26950,6 +27008,8 @@ export namespace Prisma {
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
     site_name?: NullableStringFieldUpdateOperationsInput | string | null
+    handle?: NullableStringFieldUpdateOperationsInput | string | null
+    site_data?: NullableStringFieldUpdateOperationsInput | string | null
     show_feed?: BoolFieldUpdateOperationsInput | boolean
     show_share?: BoolFieldUpdateOperationsInput | boolean
     show_sub?: BoolFieldUpdateOperationsInput | boolean
@@ -26965,6 +27025,8 @@ export namespace Prisma {
     api_key?: NullableStringFieldUpdateOperationsInput | string | null
     api_secret?: NullableStringFieldUpdateOperationsInput | string | null
     site_name?: NullableStringFieldUpdateOperationsInput | string | null
+    handle?: NullableStringFieldUpdateOperationsInput | string | null
+    site_data?: NullableStringFieldUpdateOperationsInput | string | null
     show_feed?: BoolFieldUpdateOperationsInput | boolean
     show_share?: BoolFieldUpdateOperationsInput | boolean
     show_sub?: BoolFieldUpdateOperationsInput | boolean

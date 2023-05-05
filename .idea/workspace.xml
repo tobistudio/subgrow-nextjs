@@ -6,8 +6,24 @@
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/template/SidePanel/ProfileDesignPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/SidePanel/ProfileDesignPanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/template/ThemeConfigurator/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/ThemeConfigurator/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/generated/prisma-client-js/index-browser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/generated/prisma-client-js/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/generated/prisma-client-js/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/generated/prisma-client-js/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/generated/prisma-client-js/query_engine-windows.dll.node" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/generated/prisma-client-js/runtime/index-browser.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/generated/prisma-client-js/runtime/index-browser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/generated/prisma-client-js/runtime/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/generated/prisma-client-js/runtime/library.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/generated/prisma-client-js/runtime/library.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/generated/prisma-client-js/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.prisma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index-browser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/schema.prisma" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/seed.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/seeds.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,11 +94,11 @@
       <recent name="$PROJECT_DIR$/src/configs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/db" />
       <recent name="$PROJECT_DIR$/.examples" />
       <recent name="$PROJECT_DIR$/src/pages" />
       <recent name="$PROJECT_DIR$/.scripts" />
       <recent name="$PROJECT_DIR$/src/account/stripe" />
-      <recent name="$PROJECT_DIR$/tests" />
     </key>
   </component>
   <component name="RunManager" selected="Database Script.seed.sql">
