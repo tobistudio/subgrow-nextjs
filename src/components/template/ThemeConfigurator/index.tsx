@@ -1,12 +1,10 @@
 import React, { useReducer, useState } from 'react';
 import ModeSwitcher from "./ModeSwitcher"
-import LayoutSwitcher from "./LayoutSwitcher"
+import LayoutSwitcher from "./LayoutSwitcher" // TODO: dawn original layout switcher
 import ThemeSwitcher from "./ThemeSwitcher"
-import DirectionSwitcher from "./DirectionSwitcher"
-import NavModeSwitcher from "./NavModeSwitcher"
-// import CopyButton from "./CopyButton"
+import { useTheme } from '@mui/material/styles';
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts"
-import { Stack, Button, ToggleButton, Box } from "@mui/material"
+import {Stack, Button, ToggleButton, Box, FormGroup, FormControlLabel, Switch} from "@mui/material"
 import { useSession } from "@blitzjs/auth"
 import { CopyBlock, dracula } from "react-code-blocks"
 import { useQuery, useMutation } from "@blitzjs/rpc"
@@ -15,14 +13,17 @@ import { MuiColorInput } from "mui-color-input"
 import { TextField } from "mui-rff"
 import { Field, Form as FinalForm } from "react-final-form"
 import createProfile from 'profiles/mutations/createProfile';
-import Alert from "@mui/material/Alert"
-import InputAdornment from "@mui/material/InputAdornment"
+import {
+  InputLabel,
+  createTheme,
+  Alert
+} from "@mui/material"
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faXmarkLarge } from "@fortawesome/pro-regular-svg-icons"
-import { fonts, misc } from "../../../configs/colors/default"
+import {brands, fonts, misc, red} from "../../../configs/colors/default"
 import { faEdit, faFloppyDisk, faGear } from "@fortawesome/pro-duotone-svg-icons"
 import { FORM_ERROR } from "final-form"
-import InputLabel from "@mui/material/InputLabel"
 import MenuItem from "@mui/material/MenuItem"
 import FormControl from "@mui/material/FormControl"
 import Select, { SelectChangeEvent } from "@mui/material/Select"
@@ -35,6 +36,7 @@ import MuiAccordionSummary, {
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import getProfile from "profiles/queries/getProfile"
 import Typography from '@mui/material/Typography';
+import {RootStateOrAny, useSelector} from "react-redux";
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -89,7 +91,7 @@ const ThemeConfigurator = (props) => {
   const [createProfileMutation] = useMutation(createProfile);
 
   const [userprofile, setUserprofile] = React.useState()
-
+  const theme = useSelector((state: RootStateOrAny) => state.theme)
   console.log("ThemeConfigurator. index.tsxjs", userprofile)
 
 
@@ -139,10 +141,10 @@ const ThemeConfigurator = (props) => {
           layout: 'modern',
           linkType: 'button',
           linkAlign: 'center',
-          linkStyle: 'link-modern',
+          linkStyle: 'babyblue',
           linkWidth: '200',
           fontFamily: '',
-          titleStyle: 'h6',
+          titleStyle: 'h6', // TODO: these values come from DB
           bgCardColor: values.theme4,
           linkSpacing: 20,
           descriptionColor: values.theme2,
@@ -166,18 +168,34 @@ const ThemeConfigurator = (props) => {
     if (e.target.name === "description") document.getElementById("description")!.innerHTML = e.target.value;
   }
 
+  // TODO: dawn needs to connect to dark mode material ui
+  const onSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+
+    //setChecked(event.target.checked);
+  };
+
   let code = `<div>test</div>`
+
+  const [age, setAge] = React.useState('');
+
+  const handleThemeChange = (event: SelectChangeEvent) => {
+
+    console.log("event.target.value",event.target.value);
+
+    // TODO: need to get theme from here, or dynamically change material ui theme
+    // data/userthemes/babyblue.tsx
+
+    setAge(event.target.value as string);
+
+
+
+  };
 
   return (
     <div className="flex flex-col h-full justify-between">
       <div className="flex flex-col gap-y-10 mb-6">
-        {/*<div className="flex items-center justify-between">*/}
-        {/*  <div>*/}
-        {/*    <h6>Dark Mode</h6>*/}
-        {/*    <span>Switch theme to dark mode</span>*/}
-        {/*  </div>*/}
-        {/*  <ModeSwitcher />*/}
-        {/*</div>*/}
+
+
 
         <Box sx={{ m: 2 }}>
 
@@ -196,19 +214,12 @@ const ThemeConfigurator = (props) => {
             onSubmit={onSubmit}
             validate={(values) => {
               const errors: any = {}
-              // Fixes build error
-              // https://stackoverflow.com/questions/48539216/error-ts2339-property-email-does-not-exist-on-type-object
-              // const errors: any = {}
 
-              if (!values.title) {
-                errors.title = "A Link Name is required"
-              }
+              // if (!values.title) {
+              //   errors.title = "A Link Name is required"
+              // }
 
-              if (!values.url) {
-                errors.url = "URL is required"
-              }
 
-              // set state for button
 
               return errors
             }}
@@ -225,8 +236,8 @@ const ThemeConfigurator = (props) => {
 
                   <Accordion
                     TransitionProps={{ unmountOnExit: true }}
-                    expanded={expanded === 'panel1'}
-                    onChange={handleChange('panel1')}
+                    expanded={expanded === 'panel0'}
+                    onChange={handleChange('panel0')}
                   >
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                       <Typography>General Settings</Typography>
@@ -246,6 +257,66 @@ const ThemeConfigurator = (props) => {
                           onChangeCapture={handleChangeValue}
                         />
 
+
+                        <TextField
+                          name="titleStyle"
+                          label="Title Style"
+                          //value="Test Description"
+                          placeholder=""
+                          className="input input-md"
+                          size={"small"}
+                          // value={values.titleStyle} // comes from usertheme
+                          onChangeCapture={handleChangeValue}
+                        />
+
+                        <TextField
+                          name="description"
+                          label="Description"
+                          //value="Test Description"
+                          placeholder=""
+                          className="input input-md"
+                          size={"small"}
+                          value={values.description}
+                          onChangeCapture={handleChangeValue}
+                        />
+
+                      </Stack>
+                    </AccordionDetails>
+                  </Accordion>
+
+                  <Accordion
+                    TransitionProps={{ unmountOnExit: true }}
+                    expanded={expanded === 'panel1'}
+                    onChange={handleChange('panel1')}
+                  >
+                    <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+                      <Typography>Theme</Typography>
+                    </AccordionSummary>
+
+
+                    <AccordionDetails>
+                      <Stack spacing={4}>
+
+
+                        {/*// TODO: dropdown of different default templates */}
+
+                        <FormControl fullWidth>
+                          <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={age}
+                            label="Age"
+                            onChange={handleThemeChange}
+                          >
+                            <MenuItem value={"babyblue"}>Baby Blue</MenuItem>
+                            <MenuItem value={20}>Twenty</MenuItem>
+                            <MenuItem value={30}>Thirty</MenuItem>
+                          </Select>
+                        </FormControl>
+
+
+
                         <TextField
                           name="description"
                           label="Description"
@@ -259,37 +330,37 @@ const ThemeConfigurator = (props) => {
 
 
 
-                        {/*<TextField*/}
-                        {/*  name="theme.0.titleColor"*/}
-                        {/*  label="titleColor hidden"*/}
-                        {/*  placeholder=""*/}
-                        {/*  value={colorTitle}*/}
-                        {/*/>*/}
 
-                        {/*<TextField*/}
-                        {/*  name="theme.1.descriptionColor"*/}
-                        {/*  label="descriptionColor"*/}
-                        {/*  placeholder=""*/}
-                        {/*  // type="text"*/}
-                        {/*  value={colorBg}*/}
-                        {/*/>*/}
+                        <label>Select Default Mode</label>
 
-                        {/*<Checkbox*/}
-                        {/*  {...label}*/}
-                        {/*  checked={checked}*/}
-                        {/*  onChange={handleCheck}*/}
-                        {/*/>*/}
-                        <TextField name="theme4" label="Choice 1" value={values.theme4}
-                          onChangeCapture={handleChangeValue} />
-                        <TextField name="theme.3.descriptionColor" label="Choice 2" value={colorBg} />
-                        <TextField name="theme2" label="Choice 3" value={values.theme2}
-                          onChangeCapture={handleChangeValue} />
+
+                        <FormGroup>
+                          <FormControlLabel control={<Switch onChange={(checked) => onSwitchChange(checked)} />} label="Dark Mode" />
+                        </FormGroup>
+
+
+                        {/*// TODO: dawn original dark mode, needs to work with material UI*/}
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h6>Dark Mode</h6>
+                            <Typography
+                              color={theme.mode === "dark" ? "#ff0000" : "#008798"}
+                              //color={theme.mode === 'dark'}
+
+                            >
+                              Red Text dark - blue text light
+                            </Typography>
+                          </div>
+                          <ModeSwitcher />
+                        </div>
 
                       </Stack>
                     </AccordionDetails>
                   </Accordion>
-                  <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-                    <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
+
+
+                  <Accordion expanded={expanded === 'pallete'} onChange={handleChange('pallete')}>
+                    <AccordionSummary aria-controls="palleted-content" id="palleted-header">
                       <Typography>Pallete</Typography>
                     </AccordionSummary>
                     <AccordionDetails>

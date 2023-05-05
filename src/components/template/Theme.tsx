@@ -57,6 +57,8 @@ declare module "@mui/material/Button" {
     addlink: true
     modern1: true
     classic1: true
+    tornpaper1: true // Torn Paper https://linktr.ee/s/templates/
+    babyblue: true // baby blue https://linktr.ee/donnahaymagazine
   }
 }
 
@@ -359,6 +361,28 @@ const Theme = (props) => {
             style: {
               backgroundColor: theme.mode === "dark" ? red[500] : red[700],
               color: theme.mode === "dark" ? blue[100] : purple[100],
+              "&:hover": {
+                backgroundColor: theme.mode === "dark" ? blue[700] : purple[700],
+                color: theme.mode === "dark" ? blue[100] : purple[100],
+              },
+            },
+          },
+          {
+            props: { variant: "tornpaper1" },
+            style: {
+              backgroundColor: theme.mode === "dark" ? "#ffff00" : "#ff0000",
+              color: theme.mode === "dark" ? blue[100] : purple[100],
+              "&:hover": {
+                backgroundColor: theme.mode === "dark" ? blue[700] : purple[700],
+                color: theme.mode === "dark" ? blue[100] : purple[100],
+              },
+            },
+          },
+          {
+            props: { variant: "babyblue" },
+            style: {
+              backgroundColor: theme.mode === "dark" ? "#58bafc" : "#A0DCFF",
+              color: theme.mode === "dark" ? "#ffffff" : "#ffffff",
               "&:hover": {
                 backgroundColor: theme.mode === "dark" ? blue[700] : purple[700],
                 color: theme.mode === "dark" ? blue[100] : purple[100],

@@ -88,17 +88,49 @@ http://localhost:3000/sites/1/edit
 Create FB App
 http://localhost:3000/apps/facebook
 
+
 Profile page
 http://localhost:3000/ameshkin3
+
 
 Settings Page
 http://localhost:3000/account/settings
 
 
+// TODO: themes, that can be selected
+https://linktr.ee/s/templates/
+
+
 ## THEMES
 
 
-#### Breakpoints
+
+
+### USER THEMES
+
+
+
+The theming/template system will use mui to apply a default theme to profile page.
+
+1. When the user first signs up, the default theme `modern.tsx` is entered into the database.
+
+This file comes from
+
+`https://github.com/ameshkin/subgrow/blob/bfc85b159894a59008ea3ff926b6d9758d929b79/data/userthemes/modern.tsx`
+
+
+2. On the profile page itself, a logged in user will see a pallete icon
+
+This will open a side panel with design options.
+
+Selections on this page will update the state, and update the theme in real time.
+
+The save button will save this into the `Profile` table.  The files in `data/userthemes` will only be used when the user first signs up.
+
+
+3.
+
+### Breakpoints
 https://mui.com/material-ui/customization/breakpoints/
 
 
@@ -111,6 +143,9 @@ md, medium: 900px
 lg, large: 1200px
 xl, extra-large: 1536px
 These values can be customized.
+
+
+
 
 ## STRIPE CUSTOMER FLOW
 
@@ -322,6 +357,26 @@ A simple mysql database is used with prisma and is currently temporarily hosted
 on godaddy.
 https://www.prisma.io/docs/guides/migrate/seed-database
 
+
+#### Seeding DB
+
+This file contains some sql that can be used to seed the DB withouot prisma.
+
+`.scripts/seed.sql`
+
+
+Database exports are being saved here for the time being.
+
+`data/database`
+
+
+
+```bash
+
+
+
+
+```
 
 
 ```bash

@@ -5,25 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
+      <change afterPath="$PROJECT_DIR$/data/userthemes/babyblue.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/generated/prisma-client-js/index-browser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/generated/prisma-client-js/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/generated/prisma-client-js/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/generated/prisma-client-js/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/generated/prisma-client-js/query_engine-windows.dll.node" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/generated/prisma-client-js/runtime/index-browser.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/generated/prisma-client-js/runtime/index-browser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/generated/prisma-client-js/runtime/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/generated/prisma-client-js/runtime/library.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/generated/prisma-client-js/runtime/library.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/generated/prisma-client-js/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index-browser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/schema.prisma" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/seed.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/seeds.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.scripts/seed.sql" beforeDir="false" afterPath="$PROJECT_DIR$/.scripts/seed.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/userthemes/modern.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/userthemes/modern.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.prisma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/_custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/_custom.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/mutations/signup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/mutations/signup.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/template/Theme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/Theme.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/template/ThemeConfigurator/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/ThemeConfigurator/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/profiles/components/ProfileForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/profiles/components/ProfileForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/profiles/layouts/modern.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/profiles/layouts/modern.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +52,7 @@
     "WebServerToolWindowFactoryState": "true",
     "database.data.extractors.current.export.id": "SQL Inserts",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/amirmeshkin/_code/_business/blitz-app/.examples",
+    "last_opened_file_path": "/Users/amirmeshkin/_code/_business/blitz-app/data/userthemes",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -87,11 +80,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data/userthemes" />
       <recent name="$PROJECT_DIR$/.examples" />
       <recent name="$PROJECT_DIR$/src/pages/api/account" />
       <recent name="$PROJECT_DIR$/src/apps/queries" />
       <recent name="$PROJECT_DIR$/src/apps/components" />
-      <recent name="$PROJECT_DIR$/src/configs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/db" />

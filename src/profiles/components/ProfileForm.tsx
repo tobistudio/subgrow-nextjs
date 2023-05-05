@@ -7,7 +7,14 @@ export { FORM_ERROR } from "core/components/Form"
 // import { Switcher } from "components/ui"
 
 import CheckIcon from "@mui/icons-material/Check"
-import { Checkbox, TextField, ToggleButton } from "@mui/material"
+import {
+  Checkbox,
+  TextField,
+  ToggleButton,
+  FormGroup,
+  FormControlLabel,
+  Switch
+} from "@mui/material"
 import { MuiColorInput } from "mui-color-input"
 // import { useSelector } from "react-redux"
 
@@ -79,37 +86,17 @@ export function ProfileForm<S extends z.ZodType<any, any>>(props: FormProps<S>) 
           required={true}
         />
 
-        {/*<LabeledTextField*/}
-        {/*  name="theme"*/}
-        {/*  label="Theme"*/}
-        {/*  placeholder=""*/}
-        {/*  //value="{}"*/}
-        {/*  className="input input-md"*/}
-        {/*  labelClass="form-label-custom"*/}
-        {/*  wrapperClass="form-item vertical"*/}
-        {/*  required={true}*/}
-        {/*/>*/}
+        {/*// TODO: dark mode switcher that works with material UI*/}
+        <div className={"pt-10"}>
+          <label>Dark Mode</label>
 
-        {/*<LabeledTextField*/}
-        {/*  name="widgets"*/}
-        {/*  label="Profile Widgets"*/}
-        {/*  placeholder=""*/}
-        {/*  className="input input-md"*/}
-        {/*  labelClass="form-label-custom"*/}
-        {/*  wrapperClass="form-item vertical"*/}
-        {/*  //value="{}"*/}
-        {/*  // helperText="The title for this profile page"*/}
-        {/*  required={true}*/}
-        {/*/>*/}
 
-        {/*<div className={"pt-10"}>*/}
-        {/*  <label>Default Profile current</label>*/}
-        {/*  <Switcher*/}
-        {/*    // name="current"*/}
-        {/*    // defaultChecked={isDark}*/}
-        {/*    onChange={(checked) => onSwitchChange(checked)}*/}
-        {/*  />*/}
-        {/*</div>*/}
+          <FormGroup>
+            <FormControlLabel control={<Switch onChange={(checked) => onSwitchChange(checked)} />} label="Label" />
+          </FormGroup>
+
+
+        </div>
 
         <label>Default Profile</label>
         <ToggleButton
@@ -135,8 +122,6 @@ export function ProfileForm<S extends z.ZodType<any, any>>(props: FormProps<S>) 
           // defaultValue="Profile Title"
           //value="Profile Title"
         />
-
-        <p>Allow multiple usernames for premium accounts</p>
 
         <div>
           <label>Title Color</label>
@@ -179,13 +164,10 @@ export function ProfileForm<S extends z.ZodType<any, any>>(props: FormProps<S>) 
         {/*  checked={checked}*/}
         {/*  onChange={handleCheck}*/}
         {/*/>*/}
-        <LabeledTextField name="theme.4.titleColor" label="Choice 1" />
-        <LabeledTextField name="theme.3.descriptionColor" label="Choice 2" value={colorDesc} />
-        <LabeledTextField name="theme.2.text" label="Choice 3" />
+        {/*<LabeledTextField name="theme.4.titleColor" label="Choice 1" />*/}
+        {/*<LabeledTextField name="theme.3.descriptionColor" label="Choice 2" value={colorDesc} />*/}
+        {/*<LabeledTextField name="theme.2.text" label="Choice 3" />*/}
 
-        <p>Select a theme, perhaps dropdown of what&rsquo;s available</p>
-
-        <p>TODO: drag drop profile builder, using the accounts that are set up</p>
       </div>
     </Form>
   )

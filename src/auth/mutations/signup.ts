@@ -3,7 +3,7 @@ import { resolver } from "@blitzjs/rpc"
 import db from "../../../db"
 import { Role } from "../../../types"
 import { Signup } from "../validations"
-import {modernTheme} from "../../../data/userthemes/modern"
+import {userTheme} from "../../../data/userthemes/modern"
 
 export default resolver.pipe(resolver.zod(Signup), async ({ username, email, password }, ctx) => {
   const hashedPassword = await SecurePassword.hash(password.trim())
@@ -17,7 +17,7 @@ export default resolver.pipe(resolver.zod(Signup), async ({ username, email, pas
     counter += 1
   }
 
-  console.log("modernTheme", modernTheme)
+  console.log("userTheme", userTheme)
 
   // TODO: check for username
   // const findUser = await db.user.findUnique({
@@ -41,7 +41,7 @@ export default resolver.pipe(resolver.zod(Signup), async ({ username, email, pas
       username: username,
       userId: user.id,
       title: "Profile Title",
-      theme: modernTheme, // TODO: default from
+      theme: userTheme, // TODO: default from
       widgets: {}, // nothing on default
       current: "yes",
     },
