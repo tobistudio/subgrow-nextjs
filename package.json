@@ -15,7 +15,7 @@
     "prepare": "husky install"
   },
   "prisma": {
-    "schema": "db/schema.prisma"
+    "schema": "db/generated/prisma-client-js/schema.prisma"
   },
   "prettier": {
     "semi": false,
