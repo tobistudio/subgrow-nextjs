@@ -9,7 +9,8 @@ import { useParam } from "@blitzjs/next"
 
 import Layout from "core/layouts/Layout"
 import { UpdateServiceSchema } from "apps/schemas"
-import getService from "apps/queries/getService"
+import getServiceId from "apps/queries/getServiceId"
+// import getService from "apps/queries/getService"
 import updateService from "apps/mutations/updateService"
 import { ServiceForm, FORM_ERROR } from "apps/components/ServiceForm"
 
@@ -17,7 +18,7 @@ export const EditService = () => {
   const router = useRouter()
   const appId = useParam("appId", "number")
   const [service, { setQueryData }] = useQuery(
-    getService,
+    getServiceId,
     { id: appId },
     {
       // This ensures the query never refreshes and overwrites the form data while the user is editing.

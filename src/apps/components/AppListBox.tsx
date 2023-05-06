@@ -1,18 +1,21 @@
-import Grid from "@mui/material/Unstable_Grid2";
-import {Avatar, Box, Card, CardContent, Stack, Tooltip, Typography} from "@mui/material";
 import React from "react";
+import AddIcon from '@mui/icons-material/Add';
+import DoneIcon from '@mui/icons-material/Done';
+import Grid from "@mui/material/Unstable_Grid2";
+import { Avatar, Box, Card, CardContent, Stack, Tooltip, Typography } from "@mui/material";
 
 
-export default function AppListBox({ app, handleAddAppClick }: any) {
+export default function AppListBox({ app, handleAddAppClick, avaliable }: any) {
 
-  return(
-    <Grid xs={12} sm={6} md={4} lg={3} spacing={5}>
+  return (
+    <Grid xs={12} sm={6} md={4} lg={3} spacing={5} >
 
       <Tooltip title={app.added ? "Edit App" : "Add " + app.name}>
         <Card
           // sx={{ display: 'flex' }}
           // variant={app.added ? "owned" : "outlined"}
           // raised
+          style={{ cursor: 'pointer' }}
           className={app.added ? "owned" : ""}
           variant={app.added ? "outlined" : "elevation"}
           // variant={"outlined"}
@@ -35,6 +38,17 @@ export default function AppListBox({ app, handleAddAppClick }: any) {
                   <Typography variant="body1" color="text.secondary" component="div">
                     {app.description}
                   </Typography>
+                </div>
+                <div>
+                  {
+                    avaliable ?
+                      (
+                        <DoneIcon />
+                      ) :
+                      (
+                        <AddIcon />
+                      )
+                  }
                 </div>
               </Stack>
             </CardContent>

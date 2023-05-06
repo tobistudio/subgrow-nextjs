@@ -13,9 +13,9 @@ const GetThisUsersApps = z.object({
   show_sub: z.enum(yesno).default("yes"),
 })
 
-export default resolver.pipe(resolver.zod(GetThisUsersApps), resolver.authorize(),async ({ userId, site_name }) => {
+export default resolver.pipe(resolver.zod(GetThisUsersApps), resolver.authorize(), async ({ userId, site_name }) => {
 
-  const app = await db.apps.findFirst({
+  const app = await db.apps.findMany({
     where: { userId, site_name },
     orderBy: [
       {

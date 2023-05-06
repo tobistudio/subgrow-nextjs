@@ -20,7 +20,8 @@ import {
   ToggleButton,
   FormControlLabel,
   FormGroup,
-  Checkbox
+  Checkbox,
+  Typography
 } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2"
 import { Form as FinalForm, Field } from "react-final-form"
@@ -49,45 +50,21 @@ const NewFacebookPage = () => {
 
   // @ts-ignore
   const [apps] = useQuery(getThisUsersAppBySite, { userId: session.userId, site_name: "facebook" })
+  const [show_list, setShowList] = React.useState({ show_share: false, show_feed: false, show_sub: false });
   // const [profile] = useQuery(getCurrentProfileUsername, { username: session.username, current: 'yes' })
-  const [appList, setAppList] = React.useState(apps);
+  const [appList, setAppList] = React.useState<Array<any>>(apps);
 
-  console.log("apps", apps);
+  console.log("appss", apps);
 
   // TODO: need to figure out if this user has already added. new/edit takes place on this page
 
-  // const [show_sub, setShowFeedSelected] = React.useState()
-  // const [show_sub, setShowFeedSelected] = React.useState()
-  const [showFeed, setShowFeed] = React.useState(apps.show_feed)
-  const [showSub, setShowSub] = React.useState(apps.show_sub)
-  const [showShare, setShowShare] = React.useState(apps.show_share)
 
+  const handleCheckChange = (e: any) => {
+    console.log(show_list);
 
-  // const handleCheckChange = (e, {field}) => {
-  const handleCheckChange = (e) => {
-
-    console.log("field", e.target.checked);
-    console.log("value", e.target.value);
-
-
-    switch (e.target.value) {
-      case "show_sub":
-        console.log("field", e.target.checked);
-        setShowSub(e.target.checked)
-
-        break;
-      case "show_feed":
-
-        setShowFeed(e.target.checked)
-        break;
-      default:
-      // code block
-    }
-
-
-    // [name]: event.target.checked
-    // set state
+    setShowList({ ...show_list, [e.target.value]: e.target.checked })
   }
+
   const handleAddService = (app) => {
 
     console.log("app", app);
@@ -117,7 +94,12 @@ const NewFacebookPage = () => {
                     initialValues={{}}
                     onSubmit={async (values: any) => {
                       try {
-                        const service = await createServiceMutation(values)
+                        if (!values.api_key || !values.api_secret || !values.description || !show_list) {
+                          alert("Input is required");
+                          return;
+                        }
+                        const service = await createServiceMutation({ ...values, ...show_list, userId: session.userId, name: session.username, site_name: "facebook", });
+                        setAppList([...appList, service]);
                         await router.push(Routes.ShowServicePage({ appId: service.id }))
                       } catch (error: any) {
                         console.error(error)
@@ -157,7 +139,7 @@ const NewFacebookPage = () => {
 
                           <TextField
                             label="API Key"
-                            name="api_secret"
+                            name="api_key"
                             style={{ maxWidth: 380 }}
                             size="small"
                           />
@@ -170,8 +152,8 @@ const NewFacebookPage = () => {
                           />
 
                           <TextField
-                            label="API Secret"
-                            name="api_secret"
+                            label="Description"
+                            name="description"
                             style={{ maxWidth: 380 }}
                             size="small"
                           />
@@ -181,7 +163,7 @@ const NewFacebookPage = () => {
                               control={
                                 <Checkbox
                                   // checked={apps.show_sub === 'yes'}
-                                  checked={showSub}
+                                  checked={show_list.show_sub}
                                   onChange={handleCheckChange}
                                   name="show_sub"
                                   value="show_sub"
@@ -192,9 +174,10 @@ const NewFacebookPage = () => {
                             <FormControlLabel
                               control={
                                 <Checkbox
-                                  checked={showFeed}
+                                  checked={show_list.show_feed}
                                   onChange={handleCheckChange}
-                                  value="Show Facebook Feed"
+                                  value="show_feed"
+                                  name="show_feed"
                                   color="primary"
                                 />
                               }
@@ -204,17 +187,16 @@ const NewFacebookPage = () => {
                             <FormControlLabel
                               control={
                                 <Checkbox
-                                  checked={showShare}
+                                  checked={show_list.show_share}
                                   onChange={handleCheckChange}
                                   value="show_share"
+                                  name="show_share"
                                   color="primary"
                                 />
                               }
                               label="Show Share Buttons"
                             />
-
                           </FormGroup>
-
 
                           {/*<label>Show Facebook Feed</label>*/}
                           {/*<ToggleButton*/}
@@ -276,6 +258,25 @@ const NewFacebookPage = () => {
                   />
                 </CardContent>
               </Card>
+
+              {
+                appList &&
+                appList.map((ele, id) =>
+                (
+                  <Card key={id} variant="outlined" style={{ width: '100%', maxWidth: 600, marginTop: 20 }}>
+                    <CardHeader
+                      title="Facebook sub API"
+                    />
+                    <CardContent>
+                      <Box >api_key : {ele.api_key}</Box>
+                      <Box >api_secret : {ele.api_secret}</Box>
+                      <Box >description: {ele.description}</Box>
+                      <Box >show feed : {ele.show_feed ? "true" : "false"} show subscription : {ele.show_sub ? "true" : "false"} show share Buttons : {ele.show_share ? "true" : "false"}</Box>
+                    </CardContent>
+                  </Card>
+                )
+                )
+              }
 
               {/*{components.map((link, i) => (*/}
               {/*  <Box textAlign="center" key={i}>*/}

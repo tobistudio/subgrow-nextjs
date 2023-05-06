@@ -4,6 +4,7 @@ import Head from "next/head"
 import Link from "next/link"
 import { useQuery } from "@blitzjs/rpc"
 import HomeLayout from "core/layouts/HomeLayout"
+import getService from "apps/queries/getService"
 import { useSession } from "@blitzjs/auth"
 import getSiteForProfile from "../sites/queries/getSiteForProfile";
 import {
@@ -32,9 +33,7 @@ export const AppsList = () => {
   const session = useSession()
 
   // TODO: dawn if user owns apps, must put a check mark on box. if not, plus sign
-  // const [apps] = useQuery(getServices,{ userId: session.userId });
-
-
+  const [Avaliable_app] = useQuery(getService, { userId: session.userId });
 
   // const getAvatarBgColor = ({ category }) => ({
   //   work: yellow[700],
@@ -55,12 +54,12 @@ export const AppsList = () => {
   return (
     <div>
       <Grid xs={12}>
-        <Typography sx={{width: "100%", flexGrow: 1 }} variant="h1center" align="center">Available Apps</Typography>
+        <Typography sx={{ width: "100%", flexGrow: 1 }} variant="h1center" align="center">Available Apps</Typography>
       </Grid>
 
-      <Grid xs={12} container spacing={{ xs: 1, sm : 2, md: 3, lg: 4, xl: 5 }}>
+      <Grid xs={12} container spacing={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}>
         {apps.map((app) => (
-          <AppListBox key={app.id} app={app} handleAddAppClick={handleAddAppClick} />
+          <AppListBox key={app.id} app={app} handleAddAppClick={handleAddAppClick} avaliable={app.site_name === Avaliable_app.site_name ? 1 : 0} />
         ))}
       </Grid>
     </div>
@@ -82,7 +81,7 @@ const AppsPage = () => {
 
       <Suspense fallback={<LoadingSvg />}>
 
-          <AppsList />
+        <AppsList />
 
       </Suspense>
 
@@ -92,19 +91,19 @@ const AppsPage = () => {
 
 export default AppsPage
 
-{/*<CardActionArea>*/}
-{/*  <Link href={Routes.SitesPage()}>View Sites</Link>*/}
-{/*</CardActionArea>*/}
+{/*<CardActionArea>*/ }
+{/*  <Link href={Routes.SitesPage()}>View Sites</Link>*/ }
+{/*</CardActionArea>*/ }
 
-{/*<CardActions>*/}
-{/*  <Tooltip title={"Add " +  app.name}>*/}
-{/*    <IconButton*/}
-{/*      aria-label={"Add " +  app.name}*/}
-{/*      style={{ marginLeft: "auto", float: "right" }}*/}
-{/*      onClick={(e) => handleAddAppClick(e, app.id)}*/}
-{/*    >*/}
-{/*      /!*<ArrowForwardIosTwoTone color="icon" />*!/*/}
-{/*      <ArrowForwardIosTwoTone />*/}
-{/*    </IconButton>*/}
-{/*  </Tooltip>*/}
-{/*</CardActions>*/}
+{/*<CardActions>*/ }
+{/*  <Tooltip title={"Add " +  app.name}>*/ }
+{/*    <IconButton*/ }
+{/*      aria-label={"Add " +  app.name}*/ }
+{/*      style={{ marginLeft: "auto", float: "right" }}*/ }
+{/*      onClick={(e) => handleAddAppClick(e, app.id)}*/ }
+{/*    >*/ }
+{/*      /!*<ArrowForwardIosTwoTone color="icon" />*!/*/ }
+{/*      <ArrowForwardIosTwoTone />*/ }
+{/*    </IconButton>*/ }
+{/*  </Tooltip>*/ }
+{/*</CardActions>*/ }

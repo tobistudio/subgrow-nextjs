@@ -26,7 +26,7 @@ export const CreateInstagramSchema = z.object({
 })
 
 export const CreateServiceSchema = z.object({
-  id: z.number(),
+  userId: z.number(),
   name: z.string(),
   site_name: z.string(),
   description: z.string(),

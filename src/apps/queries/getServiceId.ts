@@ -5,12 +5,12 @@ import { z } from "zod"
 
 const GetService = z.object({
   // This accepts type of undefined, but is required at runtime
-  userId: z.number(),
+  id: z.number(),
 })
 
-export default resolver.pipe(resolver.zod(GetService), resolver.authorize(), async ({ userId }) => {
+export default resolver.pipe(resolver.zod(GetService), resolver.authorize(), async ({ id }) => {
 
-  const service = await db.apps.findFirst({ where: { userId } })
+  const service = await db.apps.findFirst({ where: { id } })
 
   if (!service) throw new NotFoundError()
 
