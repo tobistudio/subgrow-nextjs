@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
+      <change afterPath="$PROJECT_DIR$/data/userthemes/babyblue.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/template/Theme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/Theme.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/template/ThemeConfigurator/blah.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/ThemeConfigurator/blah.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/template/ThemeConfigurator/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/ThemeConfigurator/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/configs/theme.config.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/configs/theme.config.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/profiles/layouts/modern-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/profiles/layouts/modern-card.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/profiles/layouts/modern.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/profiles/layouts/modern.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,7 +44,7 @@
     "WebServerToolWindowFactoryState": "true",
     "database.data.extractors.current.export.id": "SQL Inserts",
     "git-widget-placeholder": "develop",
-    "last_opened_file_path": "/Users/amirmeshkin/_code/_business/subgrow.com",
+    "last_opened_file_path": "/Users/amirmeshkin/_code/_business/subgrow.com/data/userthemes",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -76,11 +72,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data/userthemes" />
       <recent name="$PROJECT_DIR$/src/pages/apps" />
       <recent name="$PROJECT_DIR$/src/components/user" />
       <recent name="$PROJECT_DIR$/src/components/template/ThemeConfigurator" />
       <recent name="$PROJECT_DIR$/src/apps/queries" />
-      <recent name="$PROJECT_DIR$/src/profiles/layouts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/.examples" />

@@ -400,12 +400,13 @@ const Theme = (props) => {
           {
             props: { variant: "userbabyblue" }, // user variants
             style: {
-              backgroundColor: theme.mode === "dark" ? "#58bafc" : "#A0DCFF",
-              color: theme.mode === "dark" ? "#ffffff" : "#ffffff",
+              minWidth: 200,
+              maxWidth: 500,
+              backgroundColor: "#ffffff",
+              color: "#A0DCFF",
               "&:hover": {
-                // TODO: still need to figure out what's better, dark mode pallete or state
-                backgroundColor: theme.mode === "dark" ? blue[700] : purple[700],
-                color: theme.mode === "dark" ? blue[100] : purple[100],
+                backgroundColor: "#ffffff",
+                color: "#A0DCFF",
               },
             },
           },

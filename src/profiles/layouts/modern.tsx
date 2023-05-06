@@ -201,8 +201,8 @@ Error: Too many re-renders. React limits the number of renders to prevent an inf
                     <ul className="list-modern">
                       {sites.map((site) => (
                         <li key={site.id} style={{ marginTop: linkMargin }}>
-                          {theme.linkType === "link" ? (
-                            <Link href={site.url} target="_blank" className={theme.linkStyle}>
+                          {theme.links.style === "link" ? (
+                            <Link href={site.url} target="_blank" className={theme.links.className}>
                               {site.title}
                             </Link>
                           ) : (
@@ -210,8 +210,9 @@ Error: Too many re-renders. React limits the number of renders to prevent an inf
                               href={site.url}
                               style={{ width: theme.linkWidth ? theme.linkWidth : 200 }}
                               target="_blank"
-                              variant={theme.buttonStyle ? theme.buttonStyle : "outlined"}
-                              className={theme.linkStyle ? theme.linkStyle : "outlined"}
+                              // variant={theme.buttonStyle ? theme.buttonStyle : "outlined"}
+                              variant={theme.links.variant ? theme.links.variant : "outlined"}
+                              className={theme.links.className}
                               // startIcon={site.icon ? <FontAwesomeIcon icon={site.icon} size="lg" style={{ width: 17, height: 17 }} /> : ''}
                               startIcon={<ProfileLinkButton size={"xl"} icon={site.icon} />}
                             >
