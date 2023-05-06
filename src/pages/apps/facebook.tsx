@@ -38,6 +38,7 @@ import {
 
 import { plansConfig } from "../../configs/plans.config";
 import CheckIcon from "@mui/icons-material/Check";
+import { Apps } from "../../../db/generated/prisma-client-js"
 
 const NewFacebookPage = () => {
   const router = useRouter()
@@ -49,10 +50,10 @@ const NewFacebookPage = () => {
   console.log("session", session.role);
 
   // @ts-ignore
-  const [apps] = useQuery(getThisUsersAppBySite, { userId: session.userId, site_name: "facebook" })
+  const [apps]: Apps[] = useQuery(getThisUsersAppBySite, { userId: session.userId, site_name: "facebook" })
   const [show_list, setShowList] = React.useState({ show_share: false, show_feed: false, show_sub: false });
   // const [profile] = useQuery(getCurrentProfileUsername, { username: session.username, current: 'yes' })
-  const [appList, setAppList] = React.useState<Array<any>>(apps);
+  const [appList, setAppList] = React.useState<Apps | Apps[]>(apps);
 
   console.log("appss", apps);
 
@@ -99,7 +100,7 @@ const NewFacebookPage = () => {
                           return;
                         }
                         const service = await createServiceMutation({ ...values, ...show_list, userId: session.userId, name: session.username, site_name: "facebook", });
-                        setAppList([...appList, service]);
+                        Array.isArray(appList) ? setAppList([...appList, service]) : setAppList([appList, service]);
                         await router.push(Routes.ShowServicePage({ appId: service.id }))
                       } catch (error: any) {
                         console.error(error)
@@ -260,8 +261,7 @@ const NewFacebookPage = () => {
               </Card>
 
               {
-                appList &&
-                appList.map((ele, id) =>
+                (Array.isArray(appList) ? appList : [appList]).map((ele, id) =>
                 (
                   <Card key={id} variant="outlined" style={{ width: '100%', maxWidth: 600, marginTop: 20 }}>
                     <CardHeader

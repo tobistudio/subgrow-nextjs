@@ -19,7 +19,7 @@ export const EditService = () => {
   const appId = useParam("appId", "number")
   const [service, { setQueryData }] = useQuery(
     getServiceId,
-    { id: appId },
+    { id: appId ? appId : 0 },
     {
       // This ensures the query never refreshes and overwrites the form data while the user is editing.
       staleTime: Infinity,
