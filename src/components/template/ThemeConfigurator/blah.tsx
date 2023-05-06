@@ -30,7 +30,7 @@ import {
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faXmarkLarge } from "@fortawesome/pro-regular-svg-icons"
-import {brands, fonts, misc, red} from "../../../configs/colors/default"
+import { brands, fonts, misc, red } from "../../../configs/colors/default"
 import { faEdit, faFloppyDisk, faGear } from "@fortawesome/pro-duotone-svg-icons"
 import { FORM_ERROR } from "final-form"
 import MenuItem from "@mui/material/MenuItem"
@@ -45,7 +45,7 @@ import MuiAccordionSummary, {
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import getProfile from "profiles/queries/getProfile"
 import Typography from '@mui/material/Typography';
-import {RootStateOrAny, useSelector} from "react-redux";
+import { RootStateOrAny, useSelector } from "react-redux";
 // import apps from "../../../../data/apps";
 import Grid from "@mui/material/Unstable_Grid2";
 // import AppListBox from "../../../apps/components/AppListBox";
@@ -115,7 +115,7 @@ const ThemeConfigurator = (props) => {
   // Get apps for this user
   const [apps] = useQuery(getThisUsersApps, { userId: session.userId })
 
-  console.log("apps",apps);
+  console.log("apps", apps);
 
   React.useEffect(() => {
     setColorTitle(profile.theme.titleColor);
@@ -206,7 +206,7 @@ const ThemeConfigurator = (props) => {
   }
 
   const handleChangeValue = (e) => {
-    console.log("handleChangeValue values",values);
+    console.log("handleChangeValue values", values);
     setValues({ ...values, [e.target.name]: e.target.value });
     if (e.target.name === "title") document.getElementById("title")!.innerHTML = e.target.value;
     if (e.target.name === "description") document.getElementById("description")!.innerHTML = e.target.value;
@@ -227,7 +227,7 @@ const ThemeConfigurator = (props) => {
   // TODO: the
   const handleThemeChange = (event: SelectChangeEvent) => {
 
-    console.log("event.target.value",event.target.value);
+    console.log("event.target.value", event.target.value);
 
     // TODO: if there are unsaved changes, then save them first! or warn user
 
@@ -241,7 +241,7 @@ const ThemeConfigurator = (props) => {
   // TODO: handle typography change for title
   const handleTextChange = (event: SelectChangeEvent) => {
 
-    console.log("handleTextChange event.target.value",event.target.value);
+    console.log("handleTextChange event.target.value", event.target.value);
 
     // TODO: if there are unsaved changes, then save them first! or warn user
 
@@ -255,8 +255,6 @@ const ThemeConfigurator = (props) => {
   return (
     <div className="flex flex-col h-full justify-between">
       <div className="flex flex-col gap-y-10 mb-6">
-
-
 
         <Box sx={{ m: 2 }}>
 
@@ -329,11 +327,13 @@ const ThemeConfigurator = (props) => {
                         </FormControl>
 
 
-                        <label>Select Default Mode</label>
+                        <label>Select Default Modes</label>
 
 
                         <FormGroup>
-                          <FormControlLabel control={<Switch onChange={(checked) => onSwitchChange(checked)} />} label="Dark Mode" />
+                          <FormControlLabel control={<Switch onChange={(e) => {
+                            props.setDarkMode(e.target.checked)
+                          }} checked={props.darkMode} />} label="Dark Modes" />
                         </FormGroup>
 
 
@@ -343,7 +343,7 @@ const ThemeConfigurator = (props) => {
                             <h6>Dark Mode</h6>
                             <Typography
                               color={theme.mode === "dark" ? "#ff0000" : "#008798"}
-                              //color={theme.mode === 'dark'}
+                            //color={theme.mode === 'dark'}
 
                             >
                               Red Text dark - blue text light
@@ -513,23 +513,23 @@ const ThemeConfigurator = (props) => {
                   {/*// TODO: for every app this user is signed up to, show accordion*/}
 
 
-                    {/* TODO: this user's apps */}
-                    {/*{apps.map((app) => (*/}
-                    {/*  <Accordion key={app.id} expanded={expanded === app.site_name} onChange={handleChange(app.site_name)}>*/}
-                    {/*    <AccordionSummary aria-controls={`${app.site_name}d-content`} id={`${app.site_name}d-header`}>*/}
-                    {/*      <Typography>{app.name} Settings</Typography>*/}
-                    {/*    </AccordionSummary>*/}
-                    {/*    <AccordionDetails>*/}
+                  {/* TODO: this user's apps */}
+                  {/*{apps.map((app) => (*/}
+                  {/*  <Accordion key={app.id} expanded={expanded === app.site_name} onChange={handleChange(app.site_name)}>*/}
+                  {/*    <AccordionSummary aria-controls={`${app.site_name}d-content`} id={`${app.site_name}d-header`}>*/}
+                  {/*      <Typography>{app.name} Settings</Typography>*/}
+                  {/*    </AccordionSummary>*/}
+                  {/*    <AccordionDetails>*/}
 
 
 
-                    {/*      options for this app, perhaps from the Profile widgets*/}
+                  {/*      options for this app, perhaps from the Profile widgets*/}
 
 
 
-                    {/*    </AccordionDetails>*/}
-                    {/*  </Accordion>*/}
-                    {/*))}*/}
+                  {/*    </AccordionDetails>*/}
+                  {/*  </Accordion>*/}
+                  {/*))}*/}
 
 
 
@@ -613,11 +613,11 @@ const ThemeConfigurator = (props) => {
 
 
 
-                        {/*<Grid xs={12} container spacing={{ xs: 1, sm : 2, md: 3, lg: 4, xl: 5 }}>*/}
-                        {/*  {apps.map((app) => (*/}
-                        {/*    <AppListBox key={app.id} app={app} handleAddAppClick={handleAddAppClick} />*/}
-                        {/*  ))}*/}
-                        {/*</Grid>*/}
+                      {/*<Grid xs={12} container spacing={{ xs: 1, sm : 2, md: 3, lg: 4, xl: 5 }}>*/}
+                      {/*  {apps.map((app) => (*/}
+                      {/*    <AppListBox key={app.id} app={app} handleAddAppClick={handleAddAppClick} />*/}
+                      {/*  ))}*/}
+                      {/*</Grid>*/}
 
 
                       <Stack spacing={4}>

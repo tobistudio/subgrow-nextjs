@@ -5,6 +5,8 @@ import { Routes } from "@blitzjs/next"
 import React, { Suspense, useLayoutEffect, useState } from "react"
 //import { ProfilesList } from "../../pages/profiles"
 import { FacebookProvider } from "react-facebook"
+import { createTheme } from '@mui/material';
+import { Provider, RootStateOrAny, useSelector } from "react-redux"
 import { faFacebook } from "@fortawesome/free-brands-svg-icons"
 import {
   Box,
@@ -18,7 +20,7 @@ import {
   CardHeader,
 } from "@mui/material"
 
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import { ThemeProvider, styled } from '@mui/material/styles';
 
 import Grid from "@mui/material/Unstable_Grid2"
 import { PromiseReturnType } from "blitz"
@@ -33,10 +35,11 @@ import { faPalette } from "@fortawesome/pro-light-svg-icons";
 import SidePanelHeaderToggle from "../../components/template/SidePanel/SidePanelHeaderToggle";
 import { useMutation } from "@blitzjs/rpc";
 import updateLinkOrder from "../../sites/mutations/updateLinkOrder";
-import {useTheme} from "@mui/material/styles";
-import {useSession} from "@blitzjs/auth";
-import {useRouter} from "next/router";
+import { useTheme } from "@mui/material/styles";
+import { useSession } from "@blitzjs/auth";
+import { useRouter } from "next/router";
 import ProfileButton from "../../components/user/ProfileButton";
+import { green, purple } from '@mui/material/colors';
 
 // TODO: perhaps use CreateTheme from mui to create this theme instead of userthemes/modern.tsx
 
@@ -60,30 +63,48 @@ const Modern = ({ user, profile, sites }) => {
 
   const siteTheme = useTheme();
 
-  console.log("siteTheme",siteTheme)
-  console.log("user profile theme",theme)
+  console.log("siteTheme", siteTheme)
+  console.log("user profile theme", theme)
 
 
   // TODO: dawn mui override system
   // Override mui theme with user theme values!
-  const userTheme = createTheme(siteTheme, {
+  // const userTheme = createTheme(siteTheme, {
+  //   palette: {
+  //     mode: 'light',
+  //     primary: {
+  //       // main: theme.palette.secondary.main,
+  //       main: "#d1c9c9",
+  //     },
+  //     secondary: {
+  //       main: green[500],
+  //     },
+  //   },
+  // });
+
+  const type = useSelector((state) => state.theme.mode)
+
+
+  const userTheme = createTheme({
     palette: {
+      mode: type,
       primary: {
-        // main: theme.palette.secondary.main,
-        main: "#ff0000",
+        main: '#2678dd',
+      },
+      secondary: {
+        main: '#BF616A',
       },
     },
   });
 
 
 
-
   /*
-
- 1 of 2 unhandled errors
-
-Unhandled Runtime Error
-Error: Too many re-renders. React limits the number of renders to prevent an infinite loop.
+  
+  1 of 2 unhandled errors
+  
+  Unhandled Runtime Error
+  Error: Too many re-renders. React limits the number of renders to prevent an infinite loop.
    */
   // set profile data in state
   const [userprofile, setUserprofile] = React.useState(profile)
@@ -129,7 +150,7 @@ Error: Too many re-renders. React limits the number of renders to prevent an inf
 
                 {/*// TODO: show this only if the user that is logged in owns profile*/}
 
-                {myownpage ? <SidePanelHeaderToggle usersession={session} type="icon"/> : null}
+                {myownpage ? <SidePanelHeaderToggle usersession={session} type="icon" /> : null}
 
               </Suspense>
             </Grid>
@@ -142,8 +163,8 @@ Error: Too many re-renders. React limits the number of renders to prevent an inf
               spacing={0}
               direction="column"
               alignItems="center"
-              // justifyContent="center"
-              // style={{ minHeight: "100vh" }}
+            // justifyContent="center"
+            // style={{ minHeight: "100vh" }}
             >
 
               <Button variant="userbabyblue">
@@ -171,8 +192,8 @@ Error: Too many re-renders. React limits the number of renders to prevent an inf
               <Box
                 id="profile-card" // TODO: use mui?
                 sx={{ minWidth: 380, maxWidth: 420 }} // TODO: user settings may be a bit much
-                // style={{backgroundColor: theme.bgCardColor ? theme.bgCardColor : "rgba(206,199,199,0.8)"}}
-                //style={{ backgroundColor: theme.bgCardColor ? theme.bgCardColor : "rgb(189,196,215)" }}
+              // style={{backgroundColor: theme.bgCardColor ? theme.bgCardColor : "rgba(206,199,199,0.8)"}}
+              //style={{ backgroundColor: theme.bgCardColor ? theme.bgCardColor : "rgb(189,196,215)" }}
               >
                 <div>
                   <Typography
@@ -271,9 +292,9 @@ Error: Too many re-renders. React limits the number of renders to prevent an inf
         </main>
         {/*{ TODO: custom footer overrides }*/}
         <footer>
-        <span>
-          Sub Grow
-        </span>
+          <span>
+            Sub Grow
+          </span>
 
         </footer>
       </div>
