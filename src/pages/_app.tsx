@@ -17,10 +17,11 @@ import Theme from "../components/template/Theme"
 import useDarkMode from "../utils/hooks/useDarkMode"
 
 function RootErrorFallback({ error }: ErrorFallbackProps) {
-  //const router = useRouter()
+  const router = useRouter()
   if (error instanceof AuthenticationError) {
+    router.replace("/login");
     return <div>Error: You are not authenticated</div>
-    //return router.replace("/auth/login") // TODO: causes tsc error, need a 404 component
+    // TODO: causes tsc error, need a 404 component
   } else if (error instanceof AuthorizationError) {
     return (
       <ErrorComponent

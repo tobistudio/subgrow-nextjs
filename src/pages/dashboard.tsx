@@ -24,6 +24,7 @@ import { faGear } from "@fortawesome/pro-duotone-svg-icons";
 import { fonts } from "../configs/colors/default";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/router";
+import { Links } from "../../db/generated/prisma-client-js"
 const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
 export const DashboardBox = ({ sites, setLinkList }) => {
@@ -61,15 +62,24 @@ export const DashboardBox = ({ sites, setLinkList }) => {
 const Dashboard = () => {
   const session = useSession()
   const router = useRouter()
-  const [sites] = useQuery(getSiteForProfile, { userId: session.userId })
+
   // const [profile] = useQuery(getCurrentProfileUsername, { username: session.username, current: 'yes' })
+  const [sites] = useQuery(getSiteForProfile, { userId: session.userId }, {
+    enabled: !!session.userId, // The query will only run if `session.userId` exists.
+  });
 
   const [linkList, setLinkList] = React.useState(sites);
-  // // TODO: test, should not be needed. auth not being checked yet, so no session id causes error
-  // if (!session.userId) {
-  //   Routes.Home()
-  //   return
-  // }
+  const [current, setCurrent] = React.useState(false);
+
+
+
+  React.useEffect(() => {
+    if (!session.userId) {
+      router.push('/login');
+    } else {
+      // setLinkList(sites);
+    }
+  }, [])
 
   const handleProfileEdit = async (e) => {
     await router.push("/" + session.username)
@@ -83,9 +93,9 @@ const Dashboard = () => {
 
       <Suspense fallback={<LoadingSvg />}>
         {/* sx={{ flexGrow: 1 }}spacing={{ xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }}*/}
-        <Grid xs={12} container spacing={{ xs: 1, sm : 2, md: 3, lg: 4, xl: 5 }}>
+        <Grid xs={12} container spacing={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}>
           <Grid direction="column" xs={12} sm={12} md={8} lg={8} xl={8}>
-            <DashboardBox sites={sites} setLinkList={setLinkList} />
+            {linkList && <DashboardBox sites={linkList} setLinkList={setLinkList} />}
           </Grid>
           <Grid direction="column" xs={12} sm={12} md={4} lg={4} xl={4}>
             <Card variant="outlined">
@@ -102,7 +112,7 @@ const Dashboard = () => {
                 >
                   <Stack spacing={4}>
                     {
-                      linkList.map((ele, id) => <PreviewLinkButton key={id} ele={ele} />)
+                      linkList && linkList.map((ele, id) => <PreviewLinkButton key={id} ele={ele} />)
                     }
                   </Stack>
                 </Box>
