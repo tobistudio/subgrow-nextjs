@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/data/userthemes/babyblue.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/_error.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/template/Theme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/Theme.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/template/ThemeConfigurator/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/ThemeConfigurator/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/profiles/layouts/modern.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/profiles/layouts/modern.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,8 +43,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "true",
     "database.data.extractors.current.export.id": "SQL Inserts",
-    "git-widget-placeholder": "develop",
-    "last_opened_file_path": "/Users/amirmeshkin/_code/_business/subgrow.com/data/userthemes",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/amirmeshkin/_code/_business/blitz-app/.examples",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -72,18 +72,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/data/userthemes" />
-      <recent name="$PROJECT_DIR$/src/pages/apps" />
-      <recent name="$PROJECT_DIR$/src/components/user" />
-      <recent name="$PROJECT_DIR$/src/components/template/ThemeConfigurator" />
+      <recent name="$PROJECT_DIR$/.examples" />
+      <recent name="$PROJECT_DIR$/src/pages/api/account" />
       <recent name="$PROJECT_DIR$/src/apps/queries" />
+      <recent name="$PROJECT_DIR$/src/apps/components" />
+      <recent name="$PROJECT_DIR$/src/configs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/.examples" />
-      <recent name="$PROJECT_DIR$/db" />
       <recent name="$PROJECT_DIR$/src/pages" />
       <recent name="$PROJECT_DIR$/.scripts" />
       <recent name="$PROJECT_DIR$/src/account/stripe" />
+      <recent name="$PROJECT_DIR$/tests" />
     </key>
   </component>
   <component name="RunManager" selected="Database Script.seed.sql">
@@ -138,7 +138,6 @@
       <workItem from="1682113338059" duration="258507000" />
       <workItem from="1682957551758" duration="30153000" />
       <workItem from="1683167141896" duration="17920000" />
-      <workItem from="1683393361856" duration="4240000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1683169784249</created>

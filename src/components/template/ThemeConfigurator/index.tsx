@@ -101,8 +101,8 @@ const ThemeConfigurator = (props) => {
   // const [apps]: any = useQuery(getThisUsersApps, { userId: Number(localStorage.id ? localStorage.id : session.userId)})
   // console.log("apps",apps);
 
-
-  const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" })
+  const [profile, { error_profile }]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" })
+  // const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" })
 
   const [selected, setSelected] = React.useState(true);
 
@@ -111,7 +111,8 @@ const ThemeConfigurator = (props) => {
   //const [userprofile, dispatch] = useReducer(tasksReducer, initialTasks);
   // const userprofile = useSelector((state) => state.userprofile)
 
-  const [createProfileMutation] = useMutation(createProfile);
+  // const [createProfileMutation] = useMutation(createProfile);
+  const [createProfileMutation, { error }] = useMutation(createProfile);
 
   const [userprofile, setUserprofile] = React.useState()
   const theme = useSelector((state: RootStateOrAny) => state.theme)
@@ -135,6 +136,8 @@ const ThemeConfigurator = (props) => {
     setColorBg(profile.theme.bgColor);
     setValues({ ...values, title: profile.title, description: profile.description })
   }, [profile]);
+
+  React.useEffect(() => { if (error) alert(error?.message) }, [error]);
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {

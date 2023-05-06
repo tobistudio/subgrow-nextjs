@@ -82,17 +82,27 @@ const Modern = ({ user, profile, sites }) => {
   //   },
   // });
 
-  const type = useSelector((state) => state.theme.mode)
+  // const type = useSelector((state) => state.theme.mode)
 
-
+/*
+      neutral: {
+        main: '#64748B',
+        contrastText: '#fff',
+      },
+ */
+  // TODO: dawn not sure what happened after merge
   const userTheme = createTheme({
     palette: {
-      mode: type,
+      //mode: type,
       primary: {
         main: '#2678dd',
       },
       secondary: {
         main: '#BF616A',
+      },
+      neutral: {
+        main: '#64748B',
+        contrastText: '#fff',
       },
     },
   });
@@ -100,9 +110,9 @@ const Modern = ({ user, profile, sites }) => {
 
 
   /*
-  
+
   1 of 2 unhandled errors
-  
+
   Unhandled Runtime Error
   Error: Too many re-renders. React limits the number of renders to prevent an infinite loop.
    */
