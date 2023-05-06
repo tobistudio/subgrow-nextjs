@@ -37,21 +37,40 @@ const Home: BlitzPage = () => {
         <ul>
 
           <li>
-            <Link href="http://localhost:3000/dashboard">dashboard</Link>
+            <Link href="/dashboard">dashboard</Link>
           </li>
 
 
           <li>
-            <Link href="http://localhost:3000/apps">apps</Link>
+            <Link href="/apps">apps</Link>
           </li>
 
           <li>
-            <Link href="http://localhost:3000/apps/facebook">Add Facebook App</Link>
+            <Link href="/apps/facebook">Add Facebook App</Link>
           </li>
 
           <li>
-            <Link href="http://localhost:3000/tester">profile</Link>
+            <Link href="/tester">profile</Link>
           </li>
+
+          <li>
+            <Link href="/account/upgrade">upgrade</Link>
+          </li>
+
+
+          <p>unfinished</p>
+
+
+          <li>
+            <Link href="/pricing">upgrade</Link>
+          </li>
+
+
+          <li>
+            <Link href="/account/settings">settings</Link>
+          </li>
+
+
         </ul>
         {/*<PricingTables />*/}
       </main>

@@ -88,10 +88,10 @@ export default api(
       {
         strategy: new TiktokStrategy(
           {
-            clientID: process.env.TIKTOK_CLIENT_KEY,
+            clientID: process.env.NEXT_TIKTOK_CLIENT_KEY,
             // clientID: "7223001495028107269",
             // client_key: "7223001495028107269",
-            clientSecret: process.env.TIKTOK_CLIENT_SECRET,
+            clientSecret: process.env.NEXT_TIKTOK_CLIENT_SECRET,
             scope: ["user.info.basic", "video.list"],
             callbackURL: "/dashboard",
             // redirectURL: "https://localhost:3000/dashboard",

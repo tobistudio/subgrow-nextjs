@@ -5,7 +5,7 @@ import passport from "passport"
 
 // https://www.npmjs.com/package/passport-tiktok-auth
 // const cookieParser = require('cookie-parser');
-const TIKTOK_APP_KEY = process.env.TIKTOK_APP_KEY
+const TIKTOK_APP_KEY = process.env.NEXT_TIKTOK_APP_KEY
 
 export default api(async (_req, res, ctx) => {
   // const csrfState = Math.random().toString(36).substring(2);
