@@ -4,11 +4,12 @@ import React, { useEffect } from "react"
 import { withBlitz } from "blitz-client"
 import { useRouter } from "next/router"
 import "assets/styles/_globals.scss"
+import { createTheme, ThemeProvider } from '@mui/material';
 import "assets/styles/_app.scss"
 import { PersistGate } from "redux-persist/integration/react"
 import { Provider, RootStateOrAny, useSelector } from "react-redux"
 import store, { persistor } from "store/index"
-import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles"
+import { responsiveFontSizes } from "@mui/material/styles"
 import Loading from "components/utility/Loading"
 import { blue, purple } from "@mui/material/colors"
 
@@ -259,7 +260,12 @@ const onBeforeLift = () => {
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [darkMode, setDarkMode] = React.useState(true);
+
   const getLayout = Component.getLayout || ((page) => page)
+
+  React.useEffect(() => console.log("pageProps*********", pageProps), [pageProps]);
+
   return (
     // <ErrorBoundary FallbackComponent={RootErrorFallback}>
     //   {getLayout(<Component {...pageProps} />)}

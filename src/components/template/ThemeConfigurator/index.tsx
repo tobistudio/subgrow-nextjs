@@ -30,9 +30,10 @@ import {
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faXmarkLarge } from "@fortawesome/pro-regular-svg-icons"
-import {brands, fonts, misc, red} from "../../../configs/colors/default"
+import { brands, fonts, misc, red } from "../../../configs/colors/default"
 import { faEdit, faFloppyDisk, faGear } from "@fortawesome/pro-duotone-svg-icons"
 import { FORM_ERROR } from "final-form"
+import { setMode } from "store/theme/themeSlice"
 import MenuItem from "@mui/material/MenuItem"
 import FormControl from "@mui/material/FormControl"
 import Select, { SelectChangeEvent } from "@mui/material/Select"
@@ -45,7 +46,7 @@ import MuiAccordionSummary, {
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import getProfile from "profiles/queries/getProfile"
 import Typography from '@mui/material/Typography';
-import {RootStateOrAny, useSelector} from "react-redux";
+import { RootStateOrAny, useSelector, useDispatch } from "react-redux";
 import getThisUsersApps from "../../../apps/queries/getThisUsersApps";
 
 const Accordion = styled((props: AccordionProps) => (
@@ -89,9 +90,12 @@ const ThemeConfigurator = (props) => {
 
   // pass this down
   const session = useSession()
+  const dispatch = useDispatch();
   // const apps = useQuery(getThisUsersApps, { userId: session.userId })
 
-  console.log("blah",Number(localStorage.id ? localStorage.id : session.userId));
+  console.log("blah", Number(localStorage.id ? localStorage.id : session.userId));
+
+
 
   // TODO: this breaks things, empties out drawer-portal
   // const [apps]: any = useQuery(getThisUsersApps, { userId: Number(localStorage.id ? localStorage.id : session.userId)})
@@ -208,7 +212,7 @@ const ThemeConfigurator = (props) => {
   }
 
   const handleChangeValue = (e) => {
-    console.log("handleChangeValue values",values);
+    console.log("handleChangeValue values", values);
     setValues({ ...values, [e.target.name]: e.target.value });
     if (e.target.name === "title") document.getElementById("title")!.innerHTML = e.target.value;
     if (e.target.name === "description") document.getElementById("description")!.innerHTML = e.target.value;
@@ -229,7 +233,7 @@ const ThemeConfigurator = (props) => {
   // TODO: the
   const handleThemeChange = (event: SelectChangeEvent) => {
 
-    console.log("event.target.value",event.target.value);
+    console.log("event.target.value", event.target.value);
 
     // TODO: if there are unsaved changes, then save them first! or warn user
 
@@ -243,7 +247,7 @@ const ThemeConfigurator = (props) => {
   // TODO: handle typography change for title
   const handleTextChange = (event: SelectChangeEvent) => {
 
-    console.log("handleTextChange event.target.value",event.target.value);
+    console.log("handleTextChange event.target.value", event.target.value);
 
     // TODO: if there are unsaved changes, then save them first! or warn user
 
@@ -335,7 +339,10 @@ const ThemeConfigurator = (props) => {
 
 
                         <FormGroup>
-                          <FormControlLabel control={<Switch onChange={(checked) => onSwitchChange(checked)} />} label="Dark Mode" />
+                          <FormControlLabel control={<Switch onChange={(e) => {
+                            e.target.checked ? dispatch(setMode('light')) : dispatch(setMode('dark'));
+                          }
+                          } />} label="Dark Mode" />
                         </FormGroup>
 
 
@@ -345,7 +352,7 @@ const ThemeConfigurator = (props) => {
                             <h6>Dark Mode</h6>
                             <Typography
                               color={theme.mode === "dark" ? "#ff0000" : "#008798"}
-                              //color={theme.mode === 'dark'}
+                            //color={theme.mode === 'dark'}
 
                             >
                               Red Text dark - blue text light
