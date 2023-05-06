@@ -71,6 +71,7 @@ declare module "@mui/material/Button" {
     classic1: true
     tornpaper1: true // Torn Paper https://linktr.ee/s/templates/
     babyblue: true // baby blue https://linktr.ee/donnahaymagazine
+    userbabyblue: true
   }
 }
 
@@ -397,11 +398,24 @@ const Theme = (props) => {
             },
           },
           {
-            props: { variant: "babyblue" },
+            props: { variant: "userbabyblue" }, // user variants
             style: {
               backgroundColor: theme.mode === "dark" ? "#58bafc" : "#A0DCFF",
               color: theme.mode === "dark" ? "#ffffff" : "#ffffff",
               "&:hover": {
+                // TODO: still need to figure out what's better, dark mode pallete or state
+                backgroundColor: theme.mode === "dark" ? blue[700] : purple[700],
+                color: theme.mode === "dark" ? blue[100] : purple[100],
+              },
+            },
+          },
+          {
+            props: { variant: "babyblue" }, // babyblue for the site
+            style: {
+              backgroundColor: theme.mode === "dark" ? "#58bafc" : "#A0DCFF",
+              color: theme.mode === "dark" ? "#ffffff" : "#ffffff",
+              "&:hover": {
+                // TODO: still need to figure out what's better, dark mode pallete or state
                 backgroundColor: theme.mode === "dark" ? blue[700] : purple[700],
                 color: theme.mode === "dark" ? blue[100] : purple[100],
               },
@@ -536,7 +550,7 @@ const Theme = (props) => {
   // breakpoints
 
   const currentTheme = {
-    ...themeConfig,
+    ...themeConfig, // TODO: don't use this any more
     ...theme,
     ...muitheme,
     // ...{ locale },

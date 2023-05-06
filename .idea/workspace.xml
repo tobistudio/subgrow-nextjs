@@ -6,21 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/apps.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/apps.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/data/features.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/data/order-list.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/data/product-list.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/data/unemployment-by-county-2017.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apps/components/PreviewAppButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/components/PreviewAppButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/generated/prisma-client-js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/template/Theme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/Theme.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/template/UserDropdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/UserDropdown.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user/ProfileIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/ProfileIcon.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/layouts/AdminLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/AdminLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/auth/sessionSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/auth/sessionSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/auth/userSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/auth/userSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/rootReducer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/rootReducer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/theme/themeSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/theme/themeSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/template/ThemeConfigurator/blah.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/ThemeConfigurator/blah.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/template/ThemeConfigurator/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/ThemeConfigurator/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/configs/theme.config.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/configs/theme.config.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/profiles/layouts/modern-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/profiles/layouts/modern-card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/profiles/layouts/modern.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/profiles/layouts/modern.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

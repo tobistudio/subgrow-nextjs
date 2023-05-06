@@ -381,7 +381,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/amirmeshkin/_code/_business/blitz-app/db/generated/prisma-client-js",
+      "value": "/Users/amirmeshkin/_code/_business/subgrow.com/db/generated/prisma-client-js",
       "fromEnvVar": null
     },
     "config": {
