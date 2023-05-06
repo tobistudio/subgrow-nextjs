@@ -1,21 +1,14 @@
-import { NotFoundError } from "blitz"
 import { resolver } from "@blitzjs/rpc"
 import db from "../../../db"
 import { z } from "zod"
 
-const yesno = ["yes", "no"] as const
-
 const GetThisUsersApps = z.object({
   userId: z.number(),
-  // site_name: z.string(),
-  // order: z.number().default(0),
-  // show_feed: z.enum(yesno).default("yes"),
-  // show_sub: z.enum(yesno).default("yes"),
 })
 
 export default resolver.pipe(resolver.zod(GetThisUsersApps), resolver.authorize(),async ({ userId }) => {
 
-  const app = await db.apps.findMany({
+  const apps = await db.apps.findMany({
     where: { userId },
     orderBy: [
       {
@@ -23,25 +16,5 @@ export default resolver.pipe(resolver.zod(GetThisUsersApps), resolver.authorize(
       },
     ],
   })
-
-  // const site_name = 'facebook'
-
-
-
-  // then let's create one and return
-  if (!app) {
-
-    const input = {
-      userId,
-      order: 0,
-    }
-
-    return await db.apps.create({ data: input })
-
-
-  }
-
-
-  // if (!app) throw new NotFoundError()
-  return app
+  return apps
 })

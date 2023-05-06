@@ -35,6 +35,11 @@ export const ProfileIndex = () => {
 
   const [user] = useQuery(getUserForProfile, { username: profileId })
   const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" })
+
+
+  // TODO: need to figure out how to exit here, if this profile doesn't exist
+  // TODO: forward to a /claim-username page
+  // TODO: dawn we need to pull data for this PROFILE, not user!!!!
   const [sites] = useQuery(getSiteForProfileByStatus, { userId: user.id, status: "active" })
 
   // TODO: the layout should be set on dashboard page.

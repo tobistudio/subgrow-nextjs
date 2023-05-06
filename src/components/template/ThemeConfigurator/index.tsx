@@ -84,8 +84,19 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: '1px solid rgba(0, 0, 0, .125)',
 }));
 
+// theme configurator is only for logged in users
 const ThemeConfigurator = (props) => {
+
+  // pass this down
   const session = useSession()
+  // const apps = useQuery(getThisUsersApps, { userId: session.userId })
+
+  console.log("blah",Number(localStorage.id ? localStorage.id : session.userId));
+
+  // TODO: this breaks things, empties out drawer-portal
+  // const [apps]: any = useQuery(getThisUsersApps, { userId: Number(localStorage.id ? localStorage.id : session.userId)})
+  // console.log("apps",apps);
+
 
   const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" })
 
@@ -101,6 +112,8 @@ const ThemeConfigurator = (props) => {
   const [userprofile, setUserprofile] = React.useState()
   const theme = useSelector((state: RootStateOrAny) => state.theme)
   console.log("ThemeConfigurator. index.tsxjs", userprofile)
+
+  // TODO: for some reason, this messes up sidepanel
 
 
   // TODO: dawn values should come from  `Profile widgets` but that is getting set somewhere else

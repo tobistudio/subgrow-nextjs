@@ -103,6 +103,17 @@ https://linktr.ee/s/templates/
 
 ## THEMES
 
+Material UI is used for the site's theme and the user profile theme.
+
+Admin Header
+
+
+Home Header
+
+
+Profile Header
+
+
 
 
 
@@ -456,6 +467,8 @@ https://linktr.ee/s/pricing/
 10. Subscribe feature, mailchimp integration
 11. upload/or preferebly show pics from other services
 12. Custom Header/Footer
+13. Youtube Video Background
+14.
 
 ![exampl1.png](.examples%2Fexampl1.png)
 

@@ -34,14 +34,29 @@ import SidePanelHeaderToggle from "../../components/template/SidePanel/SidePanel
 import { useMutation } from "@blitzjs/rpc";
 import updateLinkOrder from "../../sites/mutations/updateLinkOrder";
 import {useTheme} from "@mui/material/styles";
+import {useSession} from "@blitzjs/auth";
+import {useRouter} from "next/router";
+import ProfileButton from "../../components/user/ProfileButton";
 
 // TODO: perhaps use CreateTheme from mui to create this theme instead of userthemes/modern.tsx
 
 // export const LoginForm = (props: LoginFormProps) => {
 
 const Modern = ({ user, profile, sites }) => {
+  const session = useSession()
   const theme = profile.theme // This is the user's theme
 
+
+  // currentUser not linked to blitz session
+  // const currentUser = useCurrentUser()
+  const router = useRouter()
+  let myownpage
+  if (session.userId) {
+    myownpage = false
+    if ("/" + session.username === router.asPath) {
+      myownpage = true
+    }
+  }
 
   const siteTheme = useTheme();
 
@@ -111,7 +126,11 @@ Error: Too many re-renders. React limits the number of renders to prevent an inf
             <Grid spacing={{ xs: 12 }} display="flex" justifyContent="right" alignItems="center">
               <Suspense>
                 <UserInfo />
-                <SidePanelHeaderToggle type="icon" />
+
+                {/*// TODO: show this only if the user that is logged in owns profile*/}
+
+                {myownpage ? <SidePanelHeaderToggle usersession={session} type="icon"/> : null}
+
               </Suspense>
             </Grid>
           </Grid>

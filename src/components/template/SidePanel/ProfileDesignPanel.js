@@ -4,10 +4,10 @@ import SidePanelContent from "./SidePanelContent"
 import withHeaderItem from "utils/hoc/withHeaderItem"
 import { setPanelExpand } from "store/theme/themeSlice"
 import { useSelector, useDispatch } from "react-redux"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPalette, faPencil } from "@fortawesome/pro-light-svg-icons"
-import { Button } from "@mui/material"
-import { misc } from "../../../configs/colors/default"
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+// import { faPalette, faPencil } from "@fortawesome/pro-light-svg-icons"
+// import { Button } from "@mui/material"
+// import { misc } from "../../../configs/colors/default"
 
 export const ProfileDesignPanel = (props) => {
   const dispatch = useDispatch()

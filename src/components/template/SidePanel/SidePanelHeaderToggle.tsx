@@ -10,19 +10,18 @@ import { setPanelExpand } from "store/theme/themeSlice"
 import {Button} from "@mui/material";
 import {misc} from "../../../configs/colors/default";
 
-
-
 const SidePanelHeaderToggle = (props) => {
   const dispatch = useDispatch()
   const theme = useTheme();
 
-  const { type, className, ...rest } = props
+  const { type, className, usersession, ...rest } = props
 
-  // @ts-ignore
-  const panelExpand = useSelector((state) => state.theme.panelExpand)
-
-  // @ts-ignore
-  const direction = useSelector((state) => state.theme.direction)
+  console.log("usersession",usersession);
+  // // @ts-ignore
+  // const panelExpand = useSelector((state) => state.theme.panelExpand)
+  //
+  // // @ts-ignore
+  // const direction = useSelector((state) => state.theme.direction)
 
   const openPanel = () => {
     console.log("openPanel");
