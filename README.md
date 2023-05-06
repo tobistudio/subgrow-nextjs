@@ -477,6 +477,20 @@ https://linktr.ee/s/pricing/
 
 
 
+## Store
+
+Components should read from the store, and not have props passed down
+
+A component that reads from the store, does not have to rerender
+
+If a component prop changes, everything down must rerender
+https://redux.js.org/style-guide/#connect-more-components-to-read-data-from-the-store
+
+
+
+Redux and Selectors
+https://www.reddit.com/r/reactjs/comments/n9dn3g/using_useselector_in_parent_component_and_passing/
+
 ```bash
 
 # cleanup

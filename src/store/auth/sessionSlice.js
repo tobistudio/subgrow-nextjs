@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+// TODO: this isn't really being used
 export const sessionSlice = createSlice({
     name: 'auth/session',
     initialState: {

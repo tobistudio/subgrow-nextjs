@@ -5,87 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
-      <change beforePath="$PROJECT_DIR$/.examples/AdminPageTemplate.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.examples/ThemeConfigurator/DirectionSwitcher.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.examples/ThemeConfigurator/LayoutSwitcher.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.examples/ThemeConfigurator/ModeSwitcher.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.examples/ThemeConfigurator/NavModeSwitcher.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.examples/ThemeConfigurator/ThemeSwitcher.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.examples/ThemeConfigurator/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.examples/ThemeConfigurator/indexOg.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.examples/UserDropdownNew.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.examples/coupons/create-coupon.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.examples/exampl1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.examples/fields.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.examples/new.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.examples/upgradeOG.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.scripts/nuke.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.scripts/seed.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.scripts/seed.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Account.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Account_1.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Account_2.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Activity.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Activity_1.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Activity_2.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Apps.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Apps_1.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Apps_2.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/BankAccount.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/BankAccount_1.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/BankAccount_2.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Customer.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Customer_1.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Customer_2.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/File.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/File_1.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/File_2.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Invoice.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/InvoiceItems.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/InvoiceItems_1.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/InvoiceItems_2.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Invoice_1.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Invoice_2.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Link.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Link_1.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Link_2.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Message.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Message_1.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Message_2.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Notification.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Notification_1.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Notification_2.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Profile.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Profile_1.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Profile_2.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Session.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Session_1.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Session_2.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/TermsOfPayment.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/TermsOfPayment_1.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/TermsOfPayment_2.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Token.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Token_1.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/Token_2.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/User.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/User_1.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/User_2.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/_prisma_migrations.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/_prisma_migrations_1.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/database/_prisma_migrations_2.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/linkelstar.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/userthemes/babyblue.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/userthemes/babyblue.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/widgets/example.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/widgets/example.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/maps/allstates.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/maps/us-albers.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/maps/world-countries-sans-antarctica.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/styles/tailwind/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/apps.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/apps.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/data/features.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/data/order-list.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/data/product-list.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/data/unemployment-by-county-2017.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/apps/components/PreviewAppButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/components/PreviewAppButton.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/template/Theme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/Theme.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/template/UserDropdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/UserDropdown.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user/ProfileIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/ProfileIcon.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/layouts/AdminLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/AdminLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/auth/sessionSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/auth/sessionSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/auth/userSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/auth/userSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/rootReducer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/rootReducer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/theme/themeSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/theme/themeSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +55,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "true",
     "database.data.extractors.current.export.id": "SQL Inserts",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "develop",
     "last_opened_file_path": "/Users/amirmeshkin/_code/_business/subgrow.com",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

@@ -53,10 +53,7 @@ declare module '@mui/material/styles' {
       instagram: React.CSSProperties['color'];
     };
   }
-
 }
-
-
 
 declare module "@mui/material/Button" {
   interface ButtonPropsVariantOverrides {
@@ -141,11 +138,11 @@ const Theme = (props) => {
 
   const theme = useSelector((state: RootStateOrAny) => state.theme)
 
-  const locale = useSelector((state: RootStateOrAny) => state.locale.currentLang)
+  // const locale = useSelector((state: RootStateOrAny) => state.locale.currentLang)
 
   // border: `2px dashed grey${blue[500]}`,
   // @ts-ignore
-  let mytheme = createTheme({
+  let muitheme = createTheme({
     // mode If connected to state, then mode may not work well here
     // mode: "dark",
 
@@ -541,7 +538,8 @@ const Theme = (props) => {
   const currentTheme = {
     ...themeConfig,
     ...theme,
-    ...{ locale },
+    ...muitheme,
+    // ...{ locale },
   }
 
 
@@ -549,7 +547,7 @@ const Theme = (props) => {
   return (
     <ConfigProvider value={currentTheme}>
       {" "}
-      <ThemeProvider theme={mytheme}>{props.children}</ThemeProvider>
+      <ThemeProvider theme={muitheme}>{props.children}</ThemeProvider>
     </ConfigProvider>
   )
 }

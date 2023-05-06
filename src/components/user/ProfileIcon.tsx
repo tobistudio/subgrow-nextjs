@@ -4,6 +4,7 @@ import { faUser } from "@fortawesome/pro-duotone-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { misc } from "configs/colors/default"
 import { useRouter } from "next/router"
+import {useSession} from "@blitzjs/auth";
 
 export const ProfileButton = (username) => {
   const router = useRouter()
@@ -11,7 +12,7 @@ export const ProfileButton = (username) => {
     <Button
       onClick={async () => {
         // await router.push(Routes.SignupPage())
-        await router.push("/" + username.username)
+        await router.push("/" + username)
       }}
       variant="outlined"
       aria-label="Profile"

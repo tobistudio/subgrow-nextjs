@@ -10,6 +10,7 @@ const currentApps = [
     "name": "Facebook",
     "description": "Connect to facebook",
     "site_name": "facebook",
+    // "icon": <FontAwesomeIcon icon={faFacebook} color={brands.facebook} size="2xl" />
     "icon": <FontAwesomeIcon icon={faFacebook} color={brands.facebook} size="2xl" />
   },
   {

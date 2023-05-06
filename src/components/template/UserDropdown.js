@@ -17,15 +17,17 @@ import { misc } from "../../configs/colors/default"
 import {
   Badge
 } from "@mui/material"
+import {useSession} from "@blitzjs/auth";
 // import Theme from "./Theme";
 
 
 export const UserDropdown = ({ className, user }) => {
   const [logoutMutation] = useMutation(logout)
+  const session = useSession()
   const dropdownItemList = [
     {
       label: "My Profile",
-      path: `/${user.username}`,
+      path: `/${session.username}`,
       icon: <HiOutlineUser />,
     },
     {
