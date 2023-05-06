@@ -82,7 +82,7 @@ const Modern = ({ user, profile, sites }) => {
   //   },
   // });
 
-  const type = useSelector((state) => state.theme.mode)
+  const type = useSelector((state) => state?.theme.mode)
 
 
   const userTheme = createTheme({
@@ -96,8 +96,6 @@ const Modern = ({ user, profile, sites }) => {
       },
     },
   });
-
-
 
   /*
   
