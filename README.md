@@ -473,6 +473,28 @@ https://linktr.ee/s/pricing/
 ![exampl1.png](.examples%2Fexampl1.png)
 
 
+./.next/cache/webpack/
+
+
+
+```bash
+
+# cleanup
+
+./.next/cache/webpack/
+
+
+sudo du -a /dir/ | sort -n -r | head -n 20
+
+find ~/_code/_business/subgrow.com/src -type f -size +1MB
+
+
+
+sudo du -a /Users/amirmeshkin/_code/_business/subgrow.com/src | sort -n -r | head -n 20
+
+
+```
+
 
 
 

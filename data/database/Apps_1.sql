@@ -1,1 +1,0 @@
-INSERT INTO linkelstar.Apps (id, userId, name, description, `order`, api_key, api_secret, site_name, show_feed, show_share, show_sub, createdAt, updatedAt) VALUES (1, 7, null, null, 0, null, null, 'facebook', 0, 0, 0, '2023-05-04 04:14:44.893', '2023-05-04 04:14:44.893');
