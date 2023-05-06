@@ -1,8 +1,7 @@
 import React from "react"
-import { Avatar, Dropdown } from "components/ui"
+import { Dropdown } from "components/ui"
 import withHeaderItem from "utils/hoc/withHeaderItem"
 // import useAuth from 'utils/hooks/useAuth'
-import { useSelector } from "react-redux"
 import Link from "next/link"
 import classNames from "classnames"
 import { HiOutlineUser, HiOutlineCog, HiOutlineLogout } from "react-icons/hi"
@@ -14,25 +13,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 // import { faFacebook } from "@fortawesome/pro-duotone-svg-icons";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons"
 import { misc } from "../../configs/colors/default"
-import {useSession} from "@blitzjs/auth";
+
 import {
-  Card,
   Badge
 } from "@mui/material"
+import {useSession} from "@blitzjs/auth";
+// import Theme from "./Theme";
 
 
 export const UserDropdown = ({ className, user }) => {
-  const { avatar, userName, authority, email } = useSelector((state) => state.auth.user)
-  // const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
-  //const { signOut } = useAuth()
-  //const currentUser = useCurrentUser()
-  // console.log("currentUser", currentUser)
-
   const session = useSession()
-
-
-
   const dropdownItemList = [
     {
       label: "My Profile",
@@ -53,14 +44,19 @@ export const UserDropdown = ({ className, user }) => {
 
   //  className={classNames(className, "flex items-center gap-2")}
   // TODO: show icon for the social media that user is logged in
+  // @ts-ignore
   const UserAvatar = (
     <div>
-      {/*<Avatar size={32} shape="circle" src={avatar} />*/}
-
-      <Badge color="secondary" badgeContent={0} sx={{ flexGrow: 1 }} my={1}>
+      <Badge
+        color="secondary"
+        badgeContent={0}
+        sx={{ flexGrow: 1 }}
+        // my={1}
+      >
         <FontAwesomeIcon
           icon={faFacebook}
           color={misc.fa_primary}
+          // color={theme.brands.facebook}
           style={{ width: 20, height: 20 }}
         />
       </Badge>
@@ -73,7 +69,7 @@ export const UserDropdown = ({ className, user }) => {
 
   return (
     <div style={{ float: "right" }}>
-      <Dropdown menuStyle={{ minWidth: 240 }} renderTitle={UserAvatar} placement="bottom-end">
+      <Dropdown menuStyle={{ "minWidth": 240 }} renderTitle={UserAvatar} placement="bottom-end">
         <Dropdown.Item variant="header">
           <div className="py-2 px-3 flex items-center gap-2">
             {/*<Avatar shape="circle" src={avatar} />*/}

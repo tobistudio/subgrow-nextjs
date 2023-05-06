@@ -381,7 +381,10 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\subgrow\\db\\generated\\prisma-client-js",
+
+      "value": "/Users/amirmeshkin/_code/_business/subgrow.com/db/generated/prisma-client-js",
+
+
       "fromEnvVar": null
     },
     "config": {

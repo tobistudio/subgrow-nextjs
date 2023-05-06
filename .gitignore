@@ -14,6 +14,7 @@ package-lock.json
 # blitz
 /.blitz/
 /.next/
+.next
 *.sqlite
 *.sqlite-journal
 .now

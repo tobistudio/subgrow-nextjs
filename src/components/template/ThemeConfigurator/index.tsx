@@ -191,7 +191,7 @@ const ThemeConfigurator = (props) => {
           layout: 'modern',
           linkType: 'button',
           linkAlign: 'center',
-          linkStyle: 'babyblue',
+          linkStyle: 'userbabyblue',
           linkWidth: '200',
           fontFamily: '',
           titleStyle: 'h6', // TODO: dawn these values come from user
@@ -329,7 +329,7 @@ const ThemeConfigurator = (props) => {
                           >
                             <MenuItem value={"usertheme"}>My Theme</MenuItem>
                             <MenuItem value={"modern"}>Modern</MenuItem>
-                            <MenuItem value={"babyblue"}>Baby Blue</MenuItem>
+                            <MenuItem value={"userbabyblue"}>Baby Blue</MenuItem>
 
                           </Select>
                         </FormControl>
@@ -411,7 +411,7 @@ const ThemeConfigurator = (props) => {
                                 Modern
                               </Typography>
                             </MenuItem>
-                            <MenuItem value={"babyblue"}>
+                            <MenuItem value={"userbabyblue"}>
                               <Typography variant="h1">
                                 h1
                               </Typography>

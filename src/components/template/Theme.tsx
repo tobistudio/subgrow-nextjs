@@ -17,6 +17,13 @@ declare module '@mui/material/styles' {
     };
   }
 
+  interface Theme {
+    brands: {
+      facebook: React.CSSProperties['color'];
+      instagram: React.CSSProperties['color'];
+    };
+  }
+
   interface Palette {
     neutral: Palette['primary'];
   }
@@ -39,9 +46,14 @@ declare module '@mui/material/styles' {
       danger: React.CSSProperties['color'];
     };
   }
+
+  interface ThemeOptions {
+    brands: {
+      facebook: React.CSSProperties['color'];
+      instagram: React.CSSProperties['color'];
+    };
+  }
 }
-
-
 
 declare module "@mui/material/Button" {
   interface ButtonPropsVariantOverrides {
@@ -59,6 +71,7 @@ declare module "@mui/material/Button" {
     classic1: true
     tornpaper1: true // Torn Paper https://linktr.ee/s/templates/
     babyblue: true // baby blue https://linktr.ee/donnahaymagazine
+    userbabyblue: true
   }
 }
 
@@ -119,16 +132,18 @@ declare module "@mui/material/Input" {
   }
 }
 
+// TODO: mui theme maker
+// https://bareynol.github.io/mui-theme-creator/
 const Theme = (props) => {
   // const theme = useSelector((state: RootStateOrAny) => state.theme)
 
   const theme = useSelector((state: RootStateOrAny) => state.theme)
 
-  const locale = useSelector((state: RootStateOrAny) => state.locale.currentLang)
+  // const locale = useSelector((state: RootStateOrAny) => state.locale.currentLang)
 
   // border: `2px dashed grey${blue[500]}`,
   // @ts-ignore
-  let mytheme = createTheme({
+  let muitheme = createTheme({
     // mode If connected to state, then mode may not work well here
     // mode: "dark",
 
@@ -160,6 +175,10 @@ const Theme = (props) => {
         main: '#64748B',
         contrastText: '#fff',
       },
+      // brands: {
+      //   default: '#000000',
+      //   paper: 'rgba(231,228,228,0.5)',
+      // },
     },
     typography: {
       fontSize: 14,
@@ -379,11 +398,25 @@ const Theme = (props) => {
             },
           },
           {
-            props: { variant: "babyblue" },
+            props: { variant: "userbabyblue" }, // user variants
+            style: {
+              minWidth: 200,
+              maxWidth: 500,
+              backgroundColor: "#ffffff",
+              color: "#A0DCFF",
+              "&:hover": {
+                backgroundColor: "#ffffff",
+                color: "#A0DCFF",
+              },
+            },
+          },
+          {
+            props: { variant: "babyblue" }, // babyblue for the site
             style: {
               backgroundColor: theme.mode === "dark" ? "#58bafc" : "#A0DCFF",
               color: theme.mode === "dark" ? "#ffffff" : "#ffffff",
               "&:hover": {
+                // TODO: still need to figure out what's better, dark mode pallete or state
                 backgroundColor: theme.mode === "dark" ? blue[700] : purple[700],
                 color: theme.mode === "dark" ? blue[100] : purple[100],
               },
@@ -507,14 +540,21 @@ const Theme = (props) => {
       danger: '#e53e3e',
       info: '#3f50b5',
     },
+    brands: {
+      facebook: '#e53e3e',
+      instagram: '#3f50b5',
+    },
   })
 
+  //TODO: proper dark mode hooked into state
+  // https://blog.logrocket.com/theming-in-next-js-with-styled-components-and-usedarkmode/
   // breakpoints
 
   const currentTheme = {
-    ...themeConfig,
+    ...themeConfig, // TODO: don't use this any more
     ...theme,
-    ...{ locale },
+    ...muitheme,
+    // ...{ locale },
   }
 
 
@@ -522,7 +562,7 @@ const Theme = (props) => {
   return (
     <ConfigProvider value={currentTheme}>
       {" "}
-      <ThemeProvider theme={mytheme}>{props.children}</ThemeProvider>
+      <ThemeProvider theme={muitheme}>{props.children}</ThemeProvider>
     </ConfigProvider>
   )
 }

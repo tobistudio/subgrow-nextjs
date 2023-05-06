@@ -5,6 +5,7 @@ import { THEME_ENUM } from "constants/theme.constant"
  * we recommend to use the configuration that generated from demo.
  */
 
+// TODO: don't use this any more, combine with mui
 export const themeConfig = {
   themeColor: "indigo",
   direction: THEME_ENUM.DIR_LTR,

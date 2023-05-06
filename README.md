@@ -473,6 +473,42 @@ https://linktr.ee/s/pricing/
 ![exampl1.png](.examples%2Fexampl1.png)
 
 
+./.next/cache/webpack/
+
+
+
+## Store
+
+Components should read from the store, and not have props passed down
+
+A component that reads from the store, does not have to rerender
+
+If a component prop changes, everything down must rerender
+https://redux.js.org/style-guide/#connect-more-components-to-read-data-from-the-store
+
+
+
+Redux and Selectors
+https://www.reddit.com/r/reactjs/comments/n9dn3g/using_useselector_in_parent_component_and_passing/
+
+```bash
+
+# cleanup
+
+./.next/cache/webpack/
+
+
+sudo du -a /dir/ | sort -n -r | head -n 20
+
+find ~/_code/_business/subgrow.com/src -type f -size +1MB
+
+
+
+sudo du -a /Users/amirmeshkin/_code/_business/subgrow.com/src | sort -n -r | head -n 20
+
+
+```
+
 
 
 

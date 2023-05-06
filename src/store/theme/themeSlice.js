@@ -1,3 +1,6 @@
+// TODO: dawn pretty much all of this should be replaced
+// TODO: entire mui theme does not need to be in state. just dark mode.light
+
 import { createSlice } from '@reduxjs/toolkit'
 import { themeConfig } from 'configs/theme.config'
 import {
