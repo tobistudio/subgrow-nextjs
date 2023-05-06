@@ -25,6 +25,19 @@ export const CreateInstagramSchema = z.object({
   show_sub: z.boolean(), // forget???
 })
 
+export const CreateTiktokSchema = z.object({
+  id: z.number(),
+  name: z.string(), // label
+  site_name: z.string().default("instagram"), // lowercase slug defaults to facebook
+  // description: z.string(), // no need
+  api_key: z.string(),
+  api_secret: z.string(),
+  show_feed: z.boolean(), // show feed
+  show_share: z.boolean(), // show share buttons
+  show_sub: z.boolean(), // forget???
+})
+
+
 export const CreateServiceSchema = z.object({
   userId: z.number(),
   name: z.string(),
