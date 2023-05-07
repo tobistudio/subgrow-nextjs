@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
+      <change afterPath="$PROJECT_DIR$/data/brands.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/stripe/SubscriptionForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/stripe/SubscriptionForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/profiles/layouts/modern.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/profiles/layouts/modern.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/userthemes/babyblue.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/userthemes/babyblue.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/userthemes/modern.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/userthemes/modern.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/mutations/signup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/mutations/signup.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +45,7 @@
     "WebServerToolWindowFactoryState": "true",
     "database.data.extractors.current.export.id": "SQL Inserts",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/amirmeshkin/_code/_business/blitz-app/.examples",
+    "last_opened_file_path": "/Users/amirmeshkin/_code/_business/subgrow.com/data",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -71,11 +73,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data" />
       <recent name="$PROJECT_DIR$/.examples" />
       <recent name="$PROJECT_DIR$/src/pages/api/account" />
       <recent name="$PROJECT_DIR$/src/apps/queries" />
       <recent name="$PROJECT_DIR$/src/apps/components" />
-      <recent name="$PROJECT_DIR$/src/configs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/.examples" />

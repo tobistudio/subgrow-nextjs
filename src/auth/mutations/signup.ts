@@ -19,7 +19,7 @@ export default resolver.pipe(resolver.zod(Signup), async ({ username, email, pas
 
   console.log("userTheme", userTheme)
 
-  // TODO: check for username
+  // TODO: check for username in case of system lag
   // const findUser = await db.user.findUnique({
   //   where: { username: username },
   //   select: {
@@ -34,6 +34,11 @@ export default resolver.pipe(resolver.zod(Signup), async ({ username, email, pas
     // select: { id: true, name: true, email: true, role: true },
     select: { id: true, name: true, email: true, role: true, username: true },
   })
+
+  // TODO: after user creation, need to write to data file
+  // https://github.com/ameshkin/subgrow/blob/6f4f5da71facc72335590d9eddf11c587b531e44/data/users.json
+  // users.json may need to be moved to public
+  // TODO: perhaps check for brands as well
 
   // also create a profile
   const profile = await db.profile.create({
