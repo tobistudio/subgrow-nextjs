@@ -31,6 +31,11 @@ import { useRouter } from "next/router";
 import babyTheme from '../../../data/userthemes/babyblue.json'
 import { Theme } from "@emotion/react"
 
+
+import { deepmerge } from '@mui/utils';
+// import { createTheme } from '@mui/material/styles';
+
+
 // TODO: perhaps use CreateTheme from mui to create this theme instead of userthemes/modern.tsx
 
 // export const LoginForm = (props: LoginFormProps) => {
@@ -47,6 +52,11 @@ const Modern = ({ user, profile, sites, themes }) => {
   const type = useSelector((state: RootStateOrAny) => state.theme);
 
   const [usedTheme, setUseTheme] = React.useState("");
+
+
+
+  // TODO: dawn here there should be a merge of the site's theme, with the user's theme
+  // const theme = createTheme(deepmerge(options1, options2));
 
   let myownpage
   if (session.userId) {
