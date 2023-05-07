@@ -33,7 +33,7 @@ import { faPalette } from "@fortawesome/pro-light-svg-icons";
 import SidePanelHeaderToggle from "../../components/template/SidePanel/SidePanelHeaderToggle";
 import { useMutation } from "@blitzjs/rpc";
 import updateLinkOrder from "../../sites/mutations/updateLinkOrder";
-import {useTheme} from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 
 // TODO: perhaps use CreateTheme from mui to create this theme instead of userthemes/modern.tsx
 
@@ -45,20 +45,22 @@ const Modern = ({ user, profile, sites }) => {
 
   const siteTheme = useTheme();
 
-  console.log("siteTheme",siteTheme)
-  console.log("user profile theme",theme)
+  console.log("siteTheme", siteTheme)
+  console.log("user profile theme", theme)
 
 
   // TODO: dawn mui override system
   // Override mui theme with user theme values!
-  const userTheme = createTheme(siteTheme, {
-    palette: {
-      primary: {
-        // main: theme.palette.secondary.main,
-        main: "#ff0000",
-      },
-    },
-  });
+  // const userTheme = createTheme(siteTheme
+  //   // {
+  //   // palette: {
+  //   //   primary: {
+  //   //     // main: theme.palette.secondary.main,
+  //   //     main: "#ff0000",
+  //   //   },
+  //   // },
+  // // }
+  // );
 
 
 
@@ -104,7 +106,7 @@ Error: Too many re-renders. React limits the number of renders to prevent an inf
   // userTheme
 
   return (
-    <ThemeProvider theme={userTheme}>
+    <ThemeProvider theme={siteTheme}>
       <div style={{ minHeight: "100vh", backgroundColor: theme.bgColor ? theme.bgColor : "#202A37" }}>
         <header className="header-wrapper">
           <Grid container spacing={0} py={1}>
@@ -123,8 +125,8 @@ Error: Too many re-renders. React limits the number of renders to prevent an inf
               spacing={0}
               direction="column"
               alignItems="center"
-              // justifyContent="center"
-              // style={{ minHeight: "100vh" }}
+            // justifyContent="center"
+            // style={{ minHeight: "100vh" }}
             >
 
               <Button variant="userbabyblue">
@@ -255,9 +257,9 @@ Error: Too many re-renders. React limits the number of renders to prevent an inf
         </main>
         {/*{ TODO: custom footer overrides }*/}
         <footer>
-        <span>
-          Sub Grow
-        </span>
+          <span>
+            Sub Grow
+          </span>
 
         </footer>
       </div>
