@@ -584,6 +584,9 @@ const Themes = (props) => {
               "&:hover": {
                 backgroundColor: "rgba(160,220,255,0.5)",
                 color: "#ffffff",
+                border: 1,
+                borderColor: "#ff0000",
+                borderWidth: 5,
               },
             },
           },
