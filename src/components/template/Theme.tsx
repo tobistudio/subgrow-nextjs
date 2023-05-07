@@ -82,6 +82,8 @@ declare module "@mui/material/Button" {
     userseethrough: true
     userhoney: true
     useroranges: true
+    userjungle: true
+    userwu: true
   }
 }
 
@@ -160,54 +162,6 @@ const Themes = (props) => {
     if (!session.userId) return;
 
     if (theme.layout.type === "modern") {
-      setUserTheme(createTheme({
-        // palette: {
-        //   primary: {
-        //     main: '#2678dd',
-        //   },
-        //   secondary: {
-        //     main: '#BF616A',
-        //   },
-        //   neutral: {
-        //     main: '#64748B',
-        //     contrastText: '#fff',
-        //   },
-        // },
-        typography: {
-          fontFamily: 'Do Hyeon',
-          [ModernTheme.titleStyle]: {
-            color: ModernTheme.titleColor,
-            textAlign: profile.theme.linkAlign
-
-          },
-          [ModernTheme.descriptionStyle]: {
-            color: ModernTheme.descriptionColor,
-            textAlign: profile.theme.linkAlign
-
-          }
-        },
-        components: {
-          MuiButton: {
-            styleOverrides: {
-              root: {
-                width: ModernTheme.linkWidth,
-                linkSpacing: ModernTheme.linkSpacing,
-              }
-            }
-          }
-        },
-        shape: {
-          borderRadius: 16,
-        },
-        status: {
-          info: '#<your_info_color_here>',
-          danger: '#<your_danger_color_here>',
-        },
-        brands: {
-          facebook: '#<your_facebook_color_here>',
-          instagram: '#<your_instagram_color_here>',
-        },
-      }))
       setSelectTheme({
         typography: {
           fontFamily: 'Do Hyeon',
@@ -245,7 +199,7 @@ const Themes = (props) => {
         },
       })
     } else if (theme.layout.type === "mytheme") {
-      setUserTheme(createTheme({
+      setSelectTheme({
         // palette: {
         //   primary: {
         //     main: '#c3d3e7',
@@ -291,9 +245,9 @@ const Themes = (props) => {
           facebook: '#<your_facebook_color_here>',
           instagram: '#<your_instagram_color_here>',
         },
-      }))
+      })
     } else if (theme.layout.type === "babyblue") {
-      setUserTheme(createTheme({
+      setSelectTheme({
         // palette: {
         //   primary: {
         //     main: '#2678dd',
@@ -339,7 +293,7 @@ const Themes = (props) => {
           instagram: '#<your_instagram_color_here>',
           // Add more brands if needed
         },
-      }))
+      })
     }
   }, [theme])
 
@@ -393,22 +347,23 @@ const Themes = (props) => {
         fontSize: 10,
       },
       h1: {
-        fontSize: 24,
+        fontSize: 50,
         fontWeight: 700,
         paddingBottom: 15,
+        marginBottom: 10,
       },
       h2: {
-        fontSize: 20,
+        fontSize: 24,
         fontWeight: 600,
         paddingBottom: 15,
       },
       h3: {
-        fontSize: 25,
+        fontSize: 22,
         fontWeight: 600,
         paddingBottom: 15,
       },
       h4: {
-        fontSize: 14,
+        fontSize: 20,
         fontWeight: 500,
         paddingBottom: 15,
       },
@@ -425,10 +380,12 @@ const Themes = (props) => {
       body1: {
         fontWeight: 500,
         fontSize: 12,
+        paddingBottom: 5,
       },
       body2: {
         fontWeight: 500,
         fontSize: 10,
+        paddingBottom: 5,
         // color: "#ffffff" // being overridden
       },
       caption: {
@@ -654,13 +611,26 @@ const Themes = (props) => {
           {
             props: { variant: "userhoney" }, // user variants
             style: {
-              minWidth: 200,
-              maxWidth: 500,
+              // minWidth: 200,
+              // maxWidth: 700,
               backgroundColor: "#F0CA06",
               color: "#000000",
               "&:hover": {
                 backgroundColor: "#d09312",
                 color: "#000000",
+              },
+            },
+          },
+          {
+            props: { variant: "userjungle" }, // user variants
+            style: {
+              minWidth: 200,
+              maxWidth: 500,
+              backgroundColor: "#298000",
+              color: "#ffffff",
+              "&:hover": {
+                backgroundColor: "#298000",
+                color: "#ffffff",
               },
             },
           },
@@ -674,6 +644,19 @@ const Themes = (props) => {
               "&:hover": {
                 backgroundColor: "#d57601",
                 color: "#ffffff",
+              },
+            },
+          },
+          {
+            props: { variant: "userwu" }, // user variants
+            style: {
+              minWidth: 200,
+              maxWidth: 500,
+              backgroundColor: "#F7D005",
+              color: "#000000",
+              "&:hover": {
+                backgroundColor: "#deb900",
+                color: "#000000",
               },
             },
           },
@@ -799,7 +782,7 @@ const Themes = (props) => {
       facebook: '#e53e3e',
       instagram: '#3f50b5',
     },
-  })
+  });
 
   //TODO: proper dark mode hooked into state
   // https://blog.logrocket.com/theming-in-next-js-with-styled-components-and-usedarkmode/
@@ -809,11 +792,12 @@ const Themes = (props) => {
     ...themeConfig, // TODO: don't use this any more
     ...theme,
     ...muitheme,
-    ...userTheme
     // ...{ locale },
   }
 
-  const Theme = createTheme(deepmerge(muitheme, userTheme))
+  // const currentTheme = createTheme(deepmerge())
+
+  const Theme = deepmerge(muitheme, selectTheme);
 
 
   return (
