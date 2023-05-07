@@ -1,7 +1,9 @@
 import React, { Suspense } from "react"
 import Link from "next/link"
 import { Routes, BlitzPage } from "@blitzjs/next"
-import { Box, Typography, Grid } from "@mui/material"
+import { Box, Typography } from "@mui/material"
+import Grid from "@mui/material/Unstable_Grid2";
+
 import { RootStateOrAny, useSelector } from "react-redux"
 import HomeLayout from "core/layouts/HomeLayout"
 import Hero from "components/home/Hero"
@@ -31,9 +33,9 @@ const Home: BlitzPage = () => {
   // const theme = useSelector((state: RootStateOrAny) => state.theme)
   return (
     <HomeLayout title="Home" type="home">
-      <main>
+      <main className="home-wrapper">
         {/*<Hero />*/}
-
+        dashboard
         <ul>
 
           <li>
@@ -73,6 +75,34 @@ const Home: BlitzPage = () => {
 
         </ul>
         {/*<PricingTables />*/}
+
+
+        <Grid container>
+          <Grid xs={6}>
+            <Typography variant="h1">h1</Typography>
+
+            <Typography variant="h2">h2</Typography>
+
+            <Typography variant="h3">h3</Typography>
+
+            <Typography variant="h4">h4</Typography>
+
+            <Typography variant="h5">h5</Typography>
+
+            <Typography variant="h6">h6</Typography>
+
+
+
+
+
+          </Grid>
+
+          <Grid xs={6}>
+a
+          </Grid>
+        </Grid>
+
+
       </main>
     </HomeLayout>
   )

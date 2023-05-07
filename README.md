@@ -3,6 +3,11 @@
 Next.js, blitz, react and zod with final form.
 
 
+![example workflow](https://github.com/ameshkin/subgrow/.github/workflows/prod-main.js.yml/badge.svg)
+
+![example workflow](https://github.com/ameshkin/subgrow/actions/workflows/prod-main.js.yml/badge.svg)
+
+
 ```bash
 npm i
 
@@ -507,6 +512,13 @@ find ~/_code/_business/subgrow.com/src -type f -size +1MB
 sudo du -a /Users/amirmeshkin/_code/_business/subgrow.com/src | sort -n -r | head -n 20
 
 
+# get size
+du -sh ~/_code/_business/subgrow.com
+
+3.7G    /Users/amirmeshkin/_code/_business/subgrow.com
+
+
+
 ```
 
 
@@ -517,6 +529,9 @@ sudo du -a /Users/amirmeshkin/_code/_business/subgrow.com/src | sort -n -r | hea
 3. Recreate the session, update publicData with new role
 4. Automatically fill out email field, if possible
 5.
+
+
+
 
 
 

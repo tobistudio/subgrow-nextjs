@@ -42,6 +42,7 @@ import ProfileButton from "../../components/user/ProfileButton";
 import { green, purple } from '@mui/material/colors';
 import babyTheme from '../../../data/userthemes/babyblue.json'
 import { modernTheme } from '../../../data/userthemes/modern'
+import { Theme } from "@emotion/react"
 
 // TODO: perhaps use CreateTheme from mui to create this theme instead of userthemes/modern.tsx
 
@@ -55,6 +56,28 @@ const Modern = ({ user, profile, sites, themes }) => {
   // currentUser not linked to blitz session
   // const currentUser = useCurrentUser()
   const router = useRouter()
+  const siteTheme = useTheme();
+  const type = useSelector((state: RootStateOrAny) => state.theme);
+
+  const [usedTheme, setUseTheme] = React.useState("");
+  const [userTheme, setUserTheme] = React.useState<Theme>(createTheme({
+    palette: {
+      //mode: type,
+      primary: {
+        main: '#2678dd',
+      },
+      secondary: {
+        main: '#BF616A',
+      },
+    },
+    typography: {
+      fontFamily: 'Do Hyeon',
+    },
+    shape: {
+      borderRadius: 16,
+    },
+  }));
+
   let myownpage
   if (session.userId) {
     myownpage = false
@@ -62,10 +85,6 @@ const Modern = ({ user, profile, sites, themes }) => {
       myownpage = true
     }
   }
-
-  const siteTheme = useTheme();
-  const type = useSelector((state: RootStateOrAny) => state.theme);
-  const [usedTheme, setUseTheme] = React.useState("");
 
   // console.log("siteTheme", siteTheme)
   // console.log("user profile theme", theme)
@@ -75,13 +94,65 @@ const Modern = ({ user, profile, sites, themes }) => {
     if (type.layout.type === "modern") {
       console.log("modern");
       setUseTheme('modern')
+      setUserTheme(createTheme({
+        palette: {
+          //mode: type,
+          primary: {
+            main: '#2678dd',
+          },
+          secondary: {
+            main: '#BF616A',
+          },
+
+        },
+        typography: {
+          fontFamily: 'Do Hyeon',
+        },
+        shape: {
+          borderRadius: 16,
+        },
+      }))
     } else if (type.layout.type === "mytheme") {
       console.log("mytheme");
       setUseTheme('mytheme')
+      setUserTheme(createTheme({
+        palette: {
+          //mode: type,
+          primary: {
+            main: '#2678dd',
+          },
+          secondary: {
+            main: '#BF616A',
+          },
 
+        },
+        typography: {
+          fontFamily: 'Do Hyeon',
+        },
+        shape: {
+          borderRadius: 16,
+        },
+      }))
     } else if (type.layout.type === "babyblue") {
       console.log("babyblue");
       setUseTheme('babyblue')
+      setUserTheme(createTheme({
+        palette: {
+          mode: type.mode,
+          primary: {
+            main: '#ffffff',
+          },
+          secondary: {
+            main: '#ffffff',
+          }
+        },
+        typography: {
+          fontFamily: 'Do Hyeon',
+        },
+        shape: {
+          borderRadius: 16,
+        },
+      }))
     }
   }, [type])
 
@@ -92,21 +163,9 @@ const Modern = ({ user, profile, sites, themes }) => {
         },
    */
   // TODO: dawn not sure what happened after merge
-  const userTheme = createTheme({
-    palette: {
-      mode: type.mode,
-      primary: {
-        main: '#2678dd',
-      },
-      secondary: {
-        main: '#BF616A',
-      }
-      // neutral: {
-      //   main: '#64748B',
-      //   contrastText: '#fff',
-      // },
-    },
-  });
+  // TODO: dawn this needs to merge with theme
+  // const userTheme =
+
 
 
   React.useEffect(() => {
@@ -150,11 +209,11 @@ const Modern = ({ user, profile, sites, themes }) => {
     )
   }
 
-  //  theme={userTheme}
+  //
 
   return (
     <ThemeProvider theme={userTheme}>
-      <div id="profile-main" style={{ minHeight: "100vh", backgroundColor: usedTheme === "mytheme" ? (theme.bgColor ? theme.bgColor : "#202A37") :  }}>
+      <div id="profile-main" style={{ minHeight: "100vh", backgroundColor: usedTheme === "mytheme" ? (theme.bgColor ? theme.bgColor : "#202A37") : babyTheme.bgColor }}>
         <header className="header-wrapper">
           <Grid container spacing={0} py={1}>
             <Grid spacing={{ xs: 12 }} display="flex" justifyContent="right" alignItems="center">
@@ -187,7 +246,7 @@ const Modern = ({ user, profile, sites, themes }) => {
 
 
               <Typography
-                variant="h1"
+                variant="h2"
                 color="primary.main"
               >
                 testing typography
@@ -199,7 +258,7 @@ const Modern = ({ user, profile, sites, themes }) => {
                 variant="h1"
                 color="primary.main"
               >
-                dynamic
+                why bigger on this page
               </Typography>
 
               <Box

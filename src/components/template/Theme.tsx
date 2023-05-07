@@ -414,6 +414,17 @@ const Theme = (props) => {
             },
           },
           {
+            props: { variant: "userbabyblue" }, // babyblue for the site
+            style: {
+              backgroundColor: "#A0DCFF",
+              color: "#ffffff",
+              "&:hover": {
+                backgroundColor: "rgba(160,220,255,0.5)",
+                color: "#ffffff",
+              },
+            },
+          },
+          {
             props: { variant: "usernavyblue" }, // user variants
             style: {
               minWidth: 200,
@@ -444,11 +455,11 @@ const Theme = (props) => {
             style: {
               minWidth: 200,
               maxWidth: 500,
-              backgroundColor: "#191e3b",
-              color: "#A0DCFF",
+              backgroundColor: "#F0CA06",
+              color: "#000000",
               "&:hover": {
-                backgroundColor: "rgba(9,15,56,0.5)",
-                color: "#A0DCFF",
+                backgroundColor: "#d09312",
+                color: "#000000",
               },
             },
           },
@@ -460,8 +471,8 @@ const Theme = (props) => {
               backgroundColor: "#ff8f00",
               color: "#ffffff",
               "&:hover": {
-                backgroundColor: "rgba(9,15,56,0.5)",
-                color: "#A0DCFF",
+                backgroundColor: "#d57601",
+                color: "#ffffff",
               },
             },
           },

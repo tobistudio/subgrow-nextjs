@@ -3,7 +3,7 @@ import { Dropdown } from "components/ui"
 import withHeaderItem from "utils/hoc/withHeaderItem"
 // import useAuth from 'utils/hooks/useAuth'
 import Link from "next/link"
-import classNames from "classnames"
+// import classNames from "classnames"
 import { HiOutlineUser, HiOutlineCog, HiOutlineLogout } from "react-icons/hi"
 // import { FiActivity } from "react-icons/fi"
 // import { useCurrentUser } from "../../users/hooks/useCurrentUser"
@@ -50,13 +50,13 @@ export const UserDropdown = ({ className, user }) => {
       <Badge
         color="secondary"
         badgeContent={0}
-        sx={{ flexGrow: 1 }}
+        sx={{ flexGrow: 1, pl: 1 }}
         // my={1}
       >
         <FontAwesomeIcon
           icon={faFacebook}
           color={misc.fa_primary}
-          // color={theme.brands.facebook}
+          size="xl"
           style={{ width: 20, height: 20 }}
         />
       </Badge>

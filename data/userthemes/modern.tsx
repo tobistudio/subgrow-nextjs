@@ -8,13 +8,13 @@ export const modernTheme = {
   "descriptionStyle": "body1",
   "descriptionColor": "#000000",
   "links": {
-    "variant": "babyblue",
+    "variant": "modern1",
     "colors": {
       "light": {
         "color": "#ffffff",
         "borderColor": "#ffffff",
         "borderWidth": 2,
-        "backgroundColor": "#A0DCFF",
+        "backgroundColor": "#005f9b",
       },
       "dark": {
         "color": "#ffffff",
@@ -25,7 +25,7 @@ export const modernTheme = {
     },
   },
   "linkType": "button",
-  "linkStyle": "link-modern",
+  "linkStyle": "modern1",
   "linkSpacing": 20,
   "linkAlign": "center",
   "bgColor": "#000000",

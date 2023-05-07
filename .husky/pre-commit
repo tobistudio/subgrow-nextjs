@@ -9,7 +9,8 @@ npx prisma format
 
 npx prisma validate
 
-npx prisma generate;
+#npx prisma generate;
 
+npm run lint
 
 #  eslint --fix --ignore-path .gitignore --ext .js,.ts,.tsx .
