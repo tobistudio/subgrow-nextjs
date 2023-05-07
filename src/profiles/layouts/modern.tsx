@@ -80,6 +80,7 @@ const Modern = ({ user, profile, sites, themes }) => {
   //   }
   // }, [type])
 
+  // TODO: here is where we get the user's theme
   const userTheme = createTheme(siteTheme, {
     palette: {
       primary: {
