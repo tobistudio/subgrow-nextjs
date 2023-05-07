@@ -8,6 +8,7 @@ import getProfile from "profiles/queries/getProfile"
 import getUserForProfile from "../users/queries/getUserForProfile"
 // import getSiteForProfile from "../sites/queries/getSiteForProfile"
 import getSiteForProfileByStatus from "../sites/queries/getSiteForProfileByStatus"
+import userTheme from '../../data/userthemes/babyblue.json'
 // import Grid from "@mui/material/Unstable_Grid2"
 // import UserInfo from "../components/user/UserInfo"
 // import SidePanel from 'components/template/SidePanel'
@@ -36,7 +37,6 @@ export const ProfileIndex = () => {
   const [user] = useQuery(getUserForProfile, { username: profileId })
   const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" })
 
-
   // TODO: need to figure out how to exit here, if this profile doesn't exist
   // TODO: forward to a /claim-username page
   // TODO: dawn we need to pull data for this PROFILE, not user!!!!
@@ -54,10 +54,10 @@ export const ProfileIndex = () => {
   let layoutType
   switch (userLayout) {
     case "modern":
-      layoutType = <Modern user={user} profile={profile} sites={sites} />
+      layoutType = <Modern user={user} profile={profile} sites={sites} themes={userTheme} />
       break
     default:
-      layoutType = <Modern user={user} profile={profile} sites={sites} />
+      layoutType = <Modern user={user} profile={profile} sites={sites} themes={userTheme} />
   }
 
   // @ts-ignore

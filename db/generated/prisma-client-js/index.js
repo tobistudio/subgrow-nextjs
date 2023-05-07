@@ -381,10 +381,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-
-      "value": "/Users/amirmeshkin/_code/_business/subgrow.com/db/generated/prisma-client-js",
-
-
+      "value": "D:\\subgrow\\db\\generated\\prisma-client-js",
       "fromEnvVar": null
     },
     "config": {
@@ -405,8 +402,7 @@ const config = {
     "db"
   ],
   "activeProvider": "mysql",
-  "dataProxy": false,
-  "postinstall": false
+  "dataProxy": false
 }
 config.dirname = dirname
 config.document = dmmf

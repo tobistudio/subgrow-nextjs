@@ -264,12 +264,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   const getLayout = Component.getLayout || ((page) => page)
 
-  React.useEffect(() => console.log("pageProps*********", pageProps), [pageProps]);
-
   return (
-    // <ErrorBoundary FallbackComponent={RootErrorFallback}>
-    //   {getLayout(<Component {...pageProps} />)}
-    // </ErrorBoundary>
     <Provider store={store}>
       <PersistGate loading={<Loading />} onBeforeLift={onBeforeLift} persistor={persistor}>
         <Theme>

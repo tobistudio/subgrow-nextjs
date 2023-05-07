@@ -162,7 +162,7 @@ export default function Form(paymentIntent: { paymentIntent: string, plan: strin
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: 'http://localhost:3000/',
+        return_url: '/',
         receipt_email: email,
         payment_method_data: {
           billing_details: {

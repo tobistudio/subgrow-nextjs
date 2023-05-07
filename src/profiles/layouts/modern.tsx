@@ -45,10 +45,10 @@ import { green, purple } from '@mui/material/colors';
 
 // export const LoginForm = (props: LoginFormProps) => {
 
-const Modern = ({ user, profile, sites }) => {
+const Modern = ({ user, profile, sites, themes }) => {
+
   const session = useSession()
   const theme = profile.theme // This is the user's theme
-
 
   // currentUser not linked to blitz session
   // const currentUser = useCurrentUser()
@@ -65,25 +65,9 @@ const Modern = ({ user, profile, sites }) => {
 
   console.log("siteTheme", siteTheme)
   console.log("user profile theme", theme)
+  console.log("sites", sites);
 
-
-  // TODO: dawn mui override system
-  // Override mui theme with user theme values!
-  // const userTheme = createTheme(siteTheme, {
-  //   palette: {
-  //     mode: 'light',
-  //     primary: {
-  //       // main: theme.palette.secondary.main,
-  //       main: "#d1c9c9",
-  //     },
-  //     secondary: {
-  //       main: green[500],
-  //     },
-  //   },
-  // });
-
-  const type = useSelector((state) => state?.theme.mode)
-
+  const type = useSelector((state: RootStateOrAny) => state.theme)
 
   /*
         neutral: {
@@ -94,7 +78,7 @@ const Modern = ({ user, profile, sites }) => {
   // TODO: dawn not sure what happened after merge
   const userTheme = createTheme({
     palette: {
-      //mode: type,
+      mode: 'light',
       primary: {
         main: '#2678dd',
       },
@@ -146,7 +130,7 @@ const Modern = ({ user, profile, sites }) => {
     )
   }
 
-  // userTheme
+  //  theme={userTheme}
 
   return (
     <ThemeProvider theme={userTheme}>
@@ -200,72 +184,70 @@ const Modern = ({ user, profile, sites }) => {
 
               <Box
                 id="profile-card" // TODO: use mui?
-                sx={{ minWidth: 380, maxWidth: 420 }} // TODO: user settings may be a bit much
-              // style={{backgroundColor: theme.bgCardColor ? theme.bgCardColor : "rgba(206,199,199,0.8)"}}
-              //style={{ backgroundColor: theme.bgCardColor ? theme.bgCardColor : "rgb(189,196,215)" }}
+                sx={{ minWidth: 380 }} // , maxWidth: 420
               >
-                <div>
-                  <Typography
-                    variant={theme.titleStyle}
-                    alignItems={theme.linkAlign ? theme.linkAlign : "center"}
-                    className="profile-text"
-                    id="title"
-                    style={{ color: theme.titleColor ? theme.titleColor : "rgb(189,196,215)" }}
-                  >
-                    {userprofile.title ? userprofile.title : userprofile.username}
+
+                <Typography
+                  variant={theme.titleStyle}
+                  alignItems={theme.linkAlign ? theme.linkAlign : "center"}
+                  className="profile-text"
+                  id="title"
+                  style={{ color: theme.titleColor ? theme.titleColor : "rgb(189,196,215)" }}
+                >
+                  {userprofile.title ? userprofile.title : userprofile.username}
+                </Typography>
+
+                {userprofile.description ? (
+                  <Typography variant={theme.descriptionStyle} id="description" className="profile-text description" style={{ color: theme.descriptionColor ? theme.descriptionColor : "rgb(189,196,215)" }}>
+                    {userprofile.description}
                   </Typography>
+                ) : (
+                  ""
+                )}
 
-                  {userprofile.description ? (
-                    <Typography variant={theme.descriptionStyle} id="description" className="profile-text description" style={{ color: theme.descriptionColor ? theme.descriptionColor : "rgb(189,196,215)" }}>
-                      {userprofile.description}
-                    </Typography>
-                  ) : (
-                    ""
-                  )}
-
-                  <Box
-                    display="flex"
-                    alignItems={theme.linkAlign ? theme.linkAlign : "center"}
-                    justifyContent={theme.linkAlign ? theme.linkAlign : "center"}
-                  >
-                    <ul className="list-modern">
-                      {sites.map((site) => (
-                        <li key={site.id} style={{ marginTop: linkMargin }}>
-                          {theme.links.style === "link" ? (
-                            <Link href={site.url} target="_blank" className={theme.links.className}>
-                              {site.title}
-                            </Link>
-                          ) : (
-                            <Button
-                              href={site.url}
-                              style={{ width: theme.linkWidth ? theme.linkWidth : 200 }}
-                              target="_blank"
-                              // variant={theme.buttonStyle ? theme.buttonStyle : "outlined"}
-                              variant={theme.links.variant ? theme.links.variant : "outlined"}
-                              className={theme.links.className}
-                              // startIcon={site.icon ? <FontAwesomeIcon icon={site.icon} size="lg" style={{ width: 17, height: 17 }} /> : ''}
-                              startIcon={<ProfileLinkButton size={"xl"} icon={site.icon} />}
-                            >
-                              {site.title}
-                            </Button>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  </Box>
+                <Box
+                  display="flex"
+                  alignItems={themes.linkAlign ? themes.linkAlign : "center"}
+                  justifyContent={themes.linkAlign ? themes.linkAlign : "center"}
+                >
+                  <ul className="list-modern">
+                    {sites.map((site) => (
+                      <li key={site.id} style={{ marginTop: linkMargin }}>
+                        {themes.links.style === "link" ? (
+                          <Link href={site.url} target="_blank" className={themes.links.className}>
+                            {site.title}
+                          </Link>
+                        ) : (
+                          <Button
+                            href={site.url}
+                            style={{ width: themes.linkWidth ? themes.linkWidth : 200 }}
+                            target="_blank"
+                            // variant={theme.buttonStyle ? theme.buttonStyle : "outlined"}
+                            variant={themes.links.variant ? themes.links.variant : "outlined"}
+                            className={themes.links.className}
+                            // startIcon={site.icon ? <FontAwesomeIcon icon={site.icon} size="lg" style={{ width: 17, height: 17 }} /> : ''}
+                            startIcon={<ProfileLinkButton size={"xl"} icon={site.icon} />}
+                          >
+                            {site.title}
+                          </Button>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </Box>
 
 
 
-                  {/*<FacebookProvider appId="241448415049637">*/}
-                  {/*  /!*<EmbeddedPost href="https://www.facebook.com/amir.meshkin" width="500" />*!/*/}
-                  {/*  /!*width: 100px;*!/*/}
-                  {/*  /!*height: 100px;*!/*/}
-                  {/*  /!*background-color: #ff0000;*!/*/}
-                  {/*  <Like href="http://www.facebook.com" colorScheme="dark" showFaces share />*/}
+                {/*<FacebookProvider appId="241448415049637">*/}
+                {/*  /!*<EmbeddedPost href="https://www.facebook.com/amir.meshkin" width="500" />*!/*/}
+                {/*  /!*width: 100px;*!/*/}
+                {/*  /!*height: 100px;*!/*/}
+                {/*  /!*background-color: #ff0000;*!/*/}
+                {/*  <Like href="http://www.facebook.com" colorScheme="dark" showFaces share />*/}
 
-                  {/*  <ShareButton href="http://www.facebook.com" />*/}
-                  {/*</FacebookProvider>*/}
-                </div>
+                {/*  <ShareButton href="http://www.facebook.com" />*/}
+                {/*</FacebookProvider>*/}
+
               </Box>
             </Grid>
 

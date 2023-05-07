@@ -57,10 +57,9 @@ export const DashboardBox = ({ sites, setLinkList }) => {
 }
 
 const Dashboard = () => {
+
   const session = useSession()
   const router = useRouter()
-
-  // const [profile] = useQuery(getCurrentProfileUsername, { username: session.username, current: 'yes' })
   const [sites] = useQuery(getSiteForProfile, { userId: session.userId }, {
     enabled: !!session.userId, // The query will only run if `session.userId` exists.
   });
@@ -68,13 +67,9 @@ const Dashboard = () => {
   const [linkList, setLinkList] = React.useState(sites);
   const [current, setCurrent] = React.useState(false);
 
-
-
   React.useEffect(() => {
     if (!session.userId) {
       router.push('/login');
-    } else {
-      // setLinkList(sites);
     }
   }, [])
 
@@ -89,12 +84,11 @@ const Dashboard = () => {
       </Head>
 
       <Suspense fallback={<LoadingSvg />}>
-        {/* sx={{ flexGrow: 1 }}spacing={{ xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }}*/}
-        <Grid xs={12} container spacing={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}>
-          <Grid direction="column" xs={12} sm={12} md={8} lg={8} xl={8}>
+        <Grid container spacing={{ xs: 12, sm: 2, md: 3, lg: 4, xl: 5 }}>
+          <Grid direction="column" spacing={{ xs: 12, sm: 12, md: 8, lg: 8, xl: 8 }}>
             {linkList && <DashboardBox sites={linkList} setLinkList={setLinkList} />}
           </Grid>
-          <Grid direction="column" xs={12} sm={12} md={4} lg={4} xl={4}>
+          <Grid direction="column" spacing={{ xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }}>
             <Card variant="outlined">
               <CardHeader
                 title="Preview"

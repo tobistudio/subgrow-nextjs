@@ -72,6 +72,10 @@ declare module "@mui/material/Button" {
     tornpaper1: true // Torn Paper https://linktr.ee/s/templates/
     babyblue: true // baby blue https://linktr.ee/donnahaymagazine
     userbabyblue: true
+    usernavyblue: true
+    userseethrough: true
+    userhoney: true
+    useroranges: true
   }
 }
 
@@ -398,19 +402,6 @@ const Theme = (props) => {
             },
           },
           {
-            props: { variant: "userbabyblue" }, // user variants
-            style: {
-              minWidth: 200,
-              maxWidth: 500,
-              backgroundColor: "#ffffff",
-              color: "#A0DCFF",
-              "&:hover": {
-                backgroundColor: "#ffffff",
-                color: "#A0DCFF",
-              },
-            },
-          },
-          {
             props: { variant: "babyblue" }, // babyblue for the site
             style: {
               backgroundColor: theme.mode === "dark" ? "#58bafc" : "#A0DCFF",
@@ -419,6 +410,58 @@ const Theme = (props) => {
                 // TODO: still need to figure out what's better, dark mode pallete or state
                 backgroundColor: theme.mode === "dark" ? blue[700] : purple[700],
                 color: theme.mode === "dark" ? blue[100] : purple[100],
+              },
+            },
+          },
+          {
+            props: { variant: "usernavyblue" }, // user variants
+            style: {
+              minWidth: 200,
+              maxWidth: 500,
+              backgroundColor: "#191e3b",
+              color: "#A0DCFF",
+              "&:hover": {
+                backgroundColor: "#090f38",
+                color: "#A0DCFF",
+              },
+            },
+          },
+          {
+            props: { variant: "userseethrough" }, // user variants
+            style: {
+              minWidth: 200,
+              maxWidth: 500,
+              backgroundColor: "#191e3b",
+              color: "#A0DCFF",
+              "&:hover": {
+                backgroundColor: "rgba(9,15,56,0.5)",
+                color: "#A0DCFF",
+              },
+            },
+          },
+          {
+            props: { variant: "userhoney" }, // user variants
+            style: {
+              minWidth: 200,
+              maxWidth: 500,
+              backgroundColor: "#191e3b",
+              color: "#A0DCFF",
+              "&:hover": {
+                backgroundColor: "rgba(9,15,56,0.5)",
+                color: "#A0DCFF",
+              },
+            },
+          },
+          {
+            props: { variant: "useroranges" }, // user variants
+            style: {
+              minWidth: 200,
+              maxWidth: 500,
+              backgroundColor: "#ff8f00",
+              color: "#ffffff",
+              "&:hover": {
+                backgroundColor: "rgba(9,15,56,0.5)",
+                color: "#A0DCFF",
               },
             },
           },

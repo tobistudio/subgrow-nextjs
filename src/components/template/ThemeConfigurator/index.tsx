@@ -48,6 +48,7 @@ import getProfile from "profiles/queries/getProfile"
 import Typography from '@mui/material/Typography';
 import { RootStateOrAny, useSelector, useDispatch } from "react-redux";
 import getThisUsersApps from "../../../apps/queries/getThisUsersApps";
+import { useRouter } from 'next/router';
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -91,32 +92,27 @@ const ThemeConfigurator = (props) => {
   // pass this down
   const session = useSession()
   const dispatch = useDispatch();
+  const router = useRouter();
   // const apps = useQuery(getThisUsersApps, { userId: session.userId })
-
-  console.log("blah", Number(localStorage.id ? localStorage.id : session.userId));
-
-
-
   // TODO: this breaks things, empties out drawer-portal
   // const [apps]: any = useQuery(getThisUsersApps, { userId: Number(localStorage.id ? localStorage.id : session.userId)})
   // console.log("apps",apps);
 
-  const [profile, { error_profile }]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" })
+  const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" }, {
+    enabled: !!session.userId, // The query will only run if `session.userId` exists.
+  })
   // const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" })
 
   const [selected, setSelected] = React.useState(true);
 
   // setUserprofile(profile)
 
-  //const [userprofile, dispatch] = useReducer(tasksReducer, initialTasks);
   // const userprofile = useSelector((state) => state.userprofile)
 
-  // const [createProfileMutation] = useMutation(createProfile);
-  const [createProfileMutation, { error }] = useMutation(createProfile);
+  const [createProfileMutation] = useMutation(createProfile);
 
   const [userprofile, setUserprofile] = React.useState()
   const theme = useSelector((state: RootStateOrAny) => state.theme)
-  console.log("ThemeConfigurator. index.tsxjs", userprofile)
 
   // TODO: for some reason, this messes up sidepanel
 
@@ -136,6 +132,12 @@ const ThemeConfigurator = (props) => {
     setColorBg(profile.theme.bgColor);
     setValues({ ...values, title: profile.title, description: profile.description })
   }, [profile]);
+
+  React.useEffect(() => {
+    if (!session.userId) {
+      router.push('/login');
+    }
+  }, [])
 
   // React.useEffect(() => { if (error) alert(error?.message) }, [error]);
 
@@ -165,19 +167,14 @@ const ThemeConfigurator = (props) => {
     setBgCardColor(color)
   }
 
-
-
   const handleBgColorChange = (color) => {
     // @ts-ignore
-    // document.getElementById("profile-main").style.backgroundColor = color
     document.getElementById("profile-main").style.backgroundColor = color
     setColorBg(color)
   }
 
   const onSubmit = async (e) => {
-    // await sleep(300)
     e.preventDefault();
-
 
     // TODO: better validation, replace dialoge box: one dialog box for errors, questions, etc
     // if (!values.title || !values.description || !values.theme2 || !values.theme4) {
@@ -197,7 +194,7 @@ const ThemeConfigurator = (props) => {
           linkStyle: 'userbabyblue',
           linkWidth: '200',
           fontFamily: '',
-          titleStyle: 'h6', // TODO: dawn these values come from user
+          titleStyle: profile.theme.titleStyle, // TODO: dawn these values come from user
           bgCardColor: bgCardColor,
           linkSpacing: 20,
           descriptionColor: descriptionColor,
@@ -273,7 +270,6 @@ const ThemeConfigurator = (props) => {
 
           // TODO: link to state, or update db, figure out how to get live updates to page
 
-
            */}
           {/*http://localhost:3002/profiles/clgsj3mz400019ko0kqmdd2qn/edit*/}
 
@@ -288,9 +284,6 @@ const ThemeConfigurator = (props) => {
               // if (!values.title) {
               //   errors.title = "A Link Name is required"
               // }
-
-
-
               return errors
             }}
             render={({ handleSubmit, form, submitting, submitError, pristine }) => {
@@ -337,9 +330,7 @@ const ThemeConfigurator = (props) => {
                           </Select>
                         </FormControl>
 
-
                         <label>Select Default Mode</label>
-
 
                         <FormGroup>
                           <FormControlLabel control={<Switch onChange={(e) => {
@@ -422,8 +413,6 @@ const ThemeConfigurator = (props) => {
 
                           </Select>
                         </FormControl>
-
-
 
                         <Divider title="Profile Description" />
 
@@ -515,9 +504,6 @@ const ThemeConfigurator = (props) => {
                           label="Card Background Color"
                           size={"small"}
                         />
-
-
-
 
                       </Stack>
                     </AccordionDetails>
@@ -646,8 +632,6 @@ export default ThemeConfigurator
 
 // TODO: theme json box, and saved in state on every save
 // data/userthemes/modern.json
-
-
 
 
 /*
