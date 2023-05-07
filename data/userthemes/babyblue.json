@@ -1,36 +1,35 @@
 {
-  "layout": "babyblue",
-  "layoutName": "Baby Blue",
-  "titleStyle": "h6",
-  "titleColor": "#ffffff",
-  "descriptionStyle": "body1",
-  "descriptionColor": "#ffffff",
+  "card": false,
   "links": {
     "style": "button",
-    "variant": "userbabyblue",
-    "className": "userbabyblue",
     "colors": {
-      "light": {
-        "color": "#ffffff",
-        "borderColor": "#ffffff",
-        "borderWidth": 2,
-        "backgroundColor": "#A0DCFF"
-      },
       "dark": {
         "color": "#ffffff",
         "borderColor": "#c01212",
         "borderWidth": 2,
         "backgroundColor": "#00649b"
+      },
+      "light": {
+        "color": "#ffffff",
+        "borderColor": "#ffffff",
+        "borderWidth": 2,
+        "backgroundColor": "#A0DCFF"
       }
-    }
+    },
+    "variant": "userbabyblue"
   },
-  "linkType": "button",
-  "linkStyle": "userbabyblue",
-  "linkSpacing": 20,
-  "linkAlign": "center",
+  "layout": "babyblue",
   "bgColor": "#A0DCFF",
-  "card": false,
-  "bgCardColor": "",
+  "linkType": "button",
+  "linkAlign": "center",
+  "linkStyle": "userbabyblue",
   "linkWidth": "200",
-  "fontFamily": ""
+  "fontFamily": "",
+  "layoutName": "Baby Blue",
+  "titleColor": "#ffffff",
+  "titleStyle": "h6",
+  "bgCardColor": "",
+  "linkSpacing": 20,
+  "descriptionColor": "#ffffff",
+  "descriptionStyle": "body1"
 }

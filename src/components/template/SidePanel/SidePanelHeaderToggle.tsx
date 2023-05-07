@@ -1,14 +1,14 @@
 import classNames from "classnames"
-import {useDispatch, useSelector} from "react-redux";
-import {useTheme} from "@mui/material/styles";
+import { useDispatch, useSelector } from "react-redux";
+import { useTheme } from "@mui/material/styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 // export const LoginForm = (props: LoginFormProps) => {
-import {faPalette, faPencil} from "@fortawesome/pro-light-svg-icons";
+import { faPalette, faPencil } from "@fortawesome/pro-light-svg-icons";
 import SidePanelContent from "./SidePanelContent"
 import withHeaderItem from "utils/hoc/withHeaderItem"
 import { setPanelExpand } from "store/theme/themeSlice"
-import {Button} from "@mui/material";
-import {misc} from "../../../configs/colors/default";
+import { Button } from "@mui/material";
+import { misc } from "../../../configs/colors/default";
 
 const SidePanelHeaderToggle = (props) => {
   const dispatch = useDispatch()
@@ -16,7 +16,7 @@ const SidePanelHeaderToggle = (props) => {
 
   const { type, className, usersession, ...rest } = props
 
-  console.log("usersession",usersession);
+  // console.log("usersession",usersession);
   // // @ts-ignore
   // const panelExpand = useSelector((state) => state.theme.panelExpand)
   //
@@ -37,8 +37,8 @@ const SidePanelHeaderToggle = (props) => {
   }
 
   let output
-  if(type === 'button')  {
-    output =       <Button
+  if (type === 'button') {
+    output = <Button
       onClick={openPanel}
       variant="outlined"
       aria-label="profileadsfasdf"

@@ -32,5 +32,4 @@ export const userTheme = {
   "bgCardColor": "#021931",
   "linkWidth": "200",
   "fontFamily": "", //
-  "showShare": true // TODO: should be saved in widgets
 }

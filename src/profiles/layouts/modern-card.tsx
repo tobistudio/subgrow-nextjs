@@ -73,7 +73,7 @@ Error: Too many re-renders. React limits the number of renders to prevent an inf
   // set profile data in state
   const [userprofile, setUserprofile] = React.useState(profile)
 
-  console.log("setting state modern userprofile", userprofile)
+  // console.log("setting state modern userprofile", userprofile)
   // profile = React.getProfile()
 
 

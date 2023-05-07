@@ -40,6 +40,8 @@ import { useSession } from "@blitzjs/auth";
 import { useRouter } from "next/router";
 import ProfileButton from "../../components/user/ProfileButton";
 import { green, purple } from '@mui/material/colors';
+import babyTheme from '../../../data/userthemes/babyblue.json'
+import { modernTheme } from '../../../data/userthemes/modern'
 
 // TODO: perhaps use CreateTheme from mui to create this theme instead of userthemes/modern.tsx
 
@@ -62,12 +64,26 @@ const Modern = ({ user, profile, sites, themes }) => {
   }
 
   const siteTheme = useTheme();
+  const type = useSelector((state: RootStateOrAny) => state.theme);
+  const [usedTheme, setUseTheme] = React.useState("");
 
-  console.log("siteTheme", siteTheme)
-  console.log("user profile theme", theme)
-  console.log("sites", sites);
+  // console.log("siteTheme", siteTheme)
+  // console.log("user profile theme", theme)
+  // console.log("sites", sites);
 
-  const type = useSelector((state: RootStateOrAny) => state.theme)
+  React.useEffect(() => {
+    if (type.layout.type === "modern") {
+      console.log("modern");
+      setUseTheme('modern')
+    } else if (type.layout.type === "mytheme") {
+      console.log("mytheme");
+      setUseTheme('mytheme')
+
+    } else if (type.layout.type === "babyblue") {
+      console.log("babyblue");
+      setUseTheme('babyblue')
+    }
+  }, [type])
 
   /*
         neutral: {
@@ -78,13 +94,13 @@ const Modern = ({ user, profile, sites, themes }) => {
   // TODO: dawn not sure what happened after merge
   const userTheme = createTheme({
     palette: {
-      mode: 'light',
+      mode: type.mode,
       primary: {
         main: '#2678dd',
       },
       secondary: {
         main: '#BF616A',
-      },
+      }
       // neutral: {
       //   main: '#64748B',
       //   contrastText: '#fff',
@@ -92,6 +108,10 @@ const Modern = ({ user, profile, sites, themes }) => {
     },
   });
 
+
+  React.useEffect(() => {
+    console.log("materail ui********", userTheme);
+  }, [userTheme]);
   /*
 
   1 of 2 unhandled errors
@@ -102,13 +122,13 @@ const Modern = ({ user, profile, sites, themes }) => {
   // set profile data in state
   const [userprofile, setUserprofile] = React.useState(profile)
 
-  console.log("setting state modern userprofile", userprofile)
+  // console.log("setting state modern userprofile", userprofile)
   // profile = React.getProfile()
 
 
   // TODO: needs to also be linked to state, for updates
-
-  const linkMargin = userprofile.theme.linkSpacing ? userprofile.theme.linkSpacing : 20
+  const linkMargin = 20
+  // const linkMargin = userprofile.theme.linkSpacing ? userprofile.theme.linkSpacing : 20
 
   const shareFb = () => {
     // provider does init
@@ -134,7 +154,7 @@ const Modern = ({ user, profile, sites, themes }) => {
 
   return (
     <ThemeProvider theme={userTheme}>
-      <div id="profile-main" style={{ minHeight: "100vh", backgroundColor: theme.bgColor ? theme.bgColor : "#202A37" }}>
+      <div id="profile-main" style={{ minHeight: "100vh", backgroundColor: usedTheme === "mytheme" ? (theme.bgColor ? theme.bgColor : "#202A37") :  }}>
         <header className="header-wrapper">
           <Grid container spacing={0} py={1}>
             <Grid spacing={{ xs: 12 }} display="flex" justifyContent="right" alignItems="center">
@@ -160,7 +180,7 @@ const Modern = ({ user, profile, sites, themes }) => {
             // style={{ minHeight: "100vh" }}
             >
 
-              <Button variant="userbabyblue">
+              <Button variant="modern1">
                 testing button variants
               </Button>
 
@@ -184,7 +204,7 @@ const Modern = ({ user, profile, sites, themes }) => {
 
               <Box
                 id="profile-card" // TODO: use mui?
-                sx={{ minWidth: 380 }} // , maxWidth: 420
+                sx={{ minWidth: 380, padding: 2, borderRadius: 2 }} // , maxWidth: 420
               >
 
                 <Typography

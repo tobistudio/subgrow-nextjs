@@ -33,7 +33,7 @@ import { faXmarkLarge } from "@fortawesome/pro-regular-svg-icons"
 import { brands, fonts, misc, red } from "../../../configs/colors/default"
 import { faEdit, faFloppyDisk, faGear } from "@fortawesome/pro-duotone-svg-icons"
 import { FORM_ERROR } from "final-form"
-import { setMode } from "store/theme/themeSlice"
+import { setMode, setLayout } from "store/theme/themeSlice"
 import MenuItem from "@mui/material/MenuItem"
 import FormControl from "@mui/material/FormControl"
 import Select, { SelectChangeEvent } from "@mui/material/Select"
@@ -234,7 +234,7 @@ const ThemeConfigurator = (props) => {
   const handleThemeChange = (event: SelectChangeEvent) => {
 
     console.log("event.target.value", event.target.value);
-
+    dispatch(setLayout(event.target.value))
     // TODO: if there are unsaved changes, then save them first! or warn user
 
     // TODO: need to get theme from here, or dynamically change material ui theme
@@ -323,9 +323,9 @@ const ThemeConfigurator = (props) => {
                             label="Select Theme"
                             onChange={handleThemeChange}
                           >
-                            <MenuItem value={"usertheme"}>My Theme</MenuItem>
+                            <MenuItem value={"mytheme"}>My Theme</MenuItem>
                             <MenuItem value={"modern"}>Modern</MenuItem>
-                            <MenuItem value={"userbabyblue"}>Baby Blue</MenuItem>
+                            <MenuItem value={"babyblue"}>Baby Blue</MenuItem>
 
                           </Select>
                         </FormControl>

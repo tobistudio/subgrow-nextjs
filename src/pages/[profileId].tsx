@@ -37,6 +37,33 @@ export const ProfileIndex = () => {
   const [user] = useQuery(getUserForProfile, { username: profileId })
   const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" })
 
+  // TODO: dawn bl
+  let bl = Number(localStorage.id ? localStorage.id : session.userId)
+
+  // console.log("bl", bl);
+  /*
+  NotFoundError {name: 'NotFoundError', message: 'This could not be found', code: undefined, statusCode: 404, meta: undefined, …}
+code
+:
+undefined
+message
+:
+"This could not be found"
+meta
+:
+undefined
+name
+:
+"NotFoundError"
+statusCode
+:
+404
+url
+:
+undefined
+   */
+  // TODO: dawn profile comes back blank
+  // console.log("profile", profile);
   // TODO: need to figure out how to exit here, if this profile doesn't exist
   // TODO: forward to a /claim-username page
   // TODO: dawn we need to pull data for this PROFILE, not user!!!!
