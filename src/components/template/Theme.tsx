@@ -154,6 +154,7 @@ const Themes = (props) => {
   })
 
   const [userTheme, setUserTheme] = React.useState<any>();
+  const [selectTheme, setSelectTheme] = React.useState({});
 
   React.useEffect(() => {
     if (!session.userId) return;
@@ -207,6 +208,42 @@ const Themes = (props) => {
           instagram: '#<your_instagram_color_here>',
         },
       }))
+      setSelectTheme({
+        typography: {
+          fontFamily: 'Do Hyeon',
+          [ModernTheme.titleStyle]: {
+            color: ModernTheme.titleColor,
+            textAlign: profile.theme.linkAlign
+
+          },
+          [ModernTheme.descriptionStyle]: {
+            color: ModernTheme.descriptionColor,
+            textAlign: profile.theme.linkAlign
+
+          }
+        },
+        components: {
+          MuiButton: {
+            styleOverrides: {
+              root: {
+                width: ModernTheme.linkWidth,
+                linkSpacing: ModernTheme.linkSpacing,
+              }
+            }
+          }
+        },
+        shape: {
+          borderRadius: 16,
+        },
+        status: {
+          info: '#<your_info_color_here>',
+          danger: '#<your_danger_color_here>',
+        },
+        brands: {
+          facebook: '#<your_facebook_color_here>',
+          instagram: '#<your_instagram_color_here>',
+        },
+      })
     } else if (theme.layout.type === "mytheme") {
       setUserTheme(createTheme({
         // palette: {
