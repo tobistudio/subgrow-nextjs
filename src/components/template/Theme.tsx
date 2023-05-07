@@ -795,10 +795,7 @@ const Themes = (props) => {
     // ...{ locale },
   }
 
-  // const currentTheme = createTheme(deepmerge())
-
   const Theme = deepmerge(muitheme, selectTheme);
-
 
   return (
     <ConfigProvider value={currentTheme}>
