@@ -1,4 +1,4 @@
-import upgrade from "pages/account/upgrade"
+import upgrade from "../src/pages/account/upgrade"
 
 it("stripe page shows up", () => {
   const result = upgrade()
