@@ -8,6 +8,7 @@ import getProfile from "profiles/queries/getProfile"
 import { useSession } from "@blitzjs/auth"
 import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles"
 import { blue, green, purple, red, brands, card, card_el, chip, chip_dark } from "configs/colors/default"
+import { deepmerge } from '@mui/utils';
 import { ModernTheme } from '../../../data/userthemes/modern'
 import babyTheme from '../../../data/userthemes/babyblue.json'
 
@@ -775,10 +776,7 @@ const Themes = (props) => {
     // ...{ locale },
   }
 
-  const Theme = {
-    ...muitheme,
-    ...userTheme
-  }
+  const Theme = createTheme(deepmerge(muitheme, userTheme))
 
 
   return (
