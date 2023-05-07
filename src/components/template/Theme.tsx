@@ -8,6 +8,7 @@ import getProfile from "profiles/queries/getProfile"
 import { useSession } from "@blitzjs/auth"
 import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles"
 import { blue, green, purple, red, brands, card, card_el, chip, chip_dark } from "configs/colors/default"
+import { deepmerge } from '@mui/utils';
 import { ModernTheme } from '../../../data/userthemes/modern'
 import babyTheme from '../../../data/userthemes/babyblue.json'
 
@@ -157,157 +158,146 @@ const Themes = (props) => {
   })
 
   const [userTheme, setUserTheme] = React.useState<any>();
+  const [selectTheme, setSelectTheme] = React.useState({});
 
-  // React.useEffect(() => {
-  //   if (!session.userId) return;
-  //
-  //   if (theme.layout.type === "modern") {
-  //     setUserTheme(createTheme({
-  //       // palette: {
-  //       //   primary: {
-  //       //     main: '#2678dd',
-  //       //   },
-  //       //   secondary: {
-  //       //     main: '#BF616A',
-  //       //   },
-  //       //   neutral: {
-  //       //     main: '#64748B',
-  //       //     contrastText: '#fff',
-  //       //   },
-  //       // },
-  //       typography: {
-  //         fontFamily: 'Do Hyeon',
-  //         [ModernTheme.titleStyle]: {
-  //           color: ModernTheme.titleColor,
-  //           textAlign: profile.theme.linkAlign
-  //
-  //         },
-  //         [ModernTheme.descriptionStyle]: {
-  //           color: ModernTheme.descriptionColor,
-  //           textAlign: profile.theme.linkAlign
-  //
-  //         }
-  //       },
-  //       components: {
-  //         MuiButton: {
-  //           styleOverrides: {
-  //             root: {
-  //               width: ModernTheme.linkWidth,
-  //               linkSpacing: ModernTheme.linkSpacing,
-  //             }
-  //           }
-  //         }
-  //       },
-  //       shape: {
-  //         borderRadius: 16,
-  //       },
-  //       status: {
-  //         info: '#<your_info_color_here>',
-  //         danger: '#<your_danger_color_here>',
-  //       },
-  //       brands: {
-  //         facebook: '#<your_facebook_color_here>',
-  //         instagram: '#<your_instagram_color_here>',
-  //       },
-  //     }))
-  //   } else if (theme.layout.type === "mytheme") {
-  //     setUserTheme(createTheme({
-  //       // palette: {
-  //       //   primary: {
-  //       //     main: '#c3d3e7',
-  //       //   },
-  //       //   secondary: {
-  //       //     main: '#BF616A',
-  //       //   },
-  //       //   neutral: {
-  //       //     main: '#64748B',
-  //       //     contrastText: '#fff',
-  //       //   },
-  //       // },
-  //       typography: {
-  //         fontFamily: 'Do Hyeon',
-  //         [profile.theme.titleStyle]: {
-  //           color: profile.theme.titleColor,
-  //           textAlign: profile.theme.linkAlign
-  //         },
-  //         [profile.theme.descriptionStyle]: {
-  //           color: profile.theme.descriptionColor,
-  //           textAlign: profile.theme.linkAlign
-  //         },
-  //
-  //       },
-  //       components: {
-  //         MuiButton: {
-  //           styleOverrides: {
-  //             root: {
-  //               width: profile.theme.linkWidth,
-  //               linkSpacing: profile.theme.linkSpacing,
-  //             }
-  //           }
-  //         }
-  //       },
-  //       shape: {
-  //         borderRadius: 16,
-  //       },
-  //       status: {
-  //         info: '#<your_info_color_here>',
-  //         danger: '#<your_danger_color_here>',
-  //       },
-  //       brands: {
-  //         facebook: '#<your_facebook_color_here>',
-  //         instagram: '#<your_instagram_color_here>',
-  //       },
-  //     }))
-  //   } else if (theme.layout.type === "babyblue") {
-  //     setUserTheme(createTheme({
-  //       // palette: {
-  //       //   primary: {
-  //       //     main: '#2678dd',
-  //       //   },
-  //       //   secondary: {
-  //       //     main: '#BF616A',
-  //       //   },
-  //       //   neutral: {
-  //       //     main: '#64748B',
-  //       //     contrastText: '#fff',
-  //       //   },
-  //       // },
-  //       typography: {
-  //         fontFamily: 'Do Hyeon',
-  //         [babyTheme.titleStyle]: {
-  //           color: babyTheme.titleColor,
-  //           textAlign: babyTheme.linkAlign
-  //         },
-  //         [babyTheme.descriptionStyle]: {
-  //           color: babyTheme.descriptionColor,
-  //           textAlign: babyTheme.linkAlign
-  //         }
-  //       },
-  //       components: {
-  //         MuiButton: {
-  //           styleOverrides: {
-  //             root: {
-  //               width: babyTheme.linkWidth,
-  //               linkSpacing: babyTheme.linkSpacing,
-  //             }
-  //           }
-  //         }
-  //       },
-  //       shape: {
-  //         borderRadius: 16,
-  //       },
-  //       status: {
-  //         info: '#<your_info_color_here>',
-  //         danger: '#<your_danger_color_here>',
-  //       },
-  //       brands: {
-  //         facebook: '#<your_facebook_color_here>',
-  //         instagram: '#<your_instagram_color_here>',
-  //         // Add more brands if needed
-  //       },
-  //     }))
-  //   }
-  // }, [theme])
+  React.useEffect(() => {
+    if (!session.userId) return;
+
+    if (theme.layout.type === "modern") {
+      setSelectTheme({
+        typography: {
+          fontFamily: 'Do Hyeon',
+          [ModernTheme.titleStyle]: {
+            color: ModernTheme.titleColor,
+            textAlign: profile.theme.linkAlign
+
+          },
+          [ModernTheme.descriptionStyle]: {
+            color: ModernTheme.descriptionColor,
+            textAlign: profile.theme.linkAlign
+
+          }
+        },
+        components: {
+          MuiButton: {
+            styleOverrides: {
+              root: {
+                width: ModernTheme.linkWidth,
+                linkSpacing: ModernTheme.linkSpacing,
+              }
+            }
+          }
+        },
+        shape: {
+          borderRadius: 16,
+        },
+        status: {
+          info: '#<your_info_color_here>',
+          danger: '#<your_danger_color_here>',
+        },
+        brands: {
+          facebook: '#<your_facebook_color_here>',
+          instagram: '#<your_instagram_color_here>',
+        },
+      })
+    } else if (theme.layout.type === "mytheme") {
+      setSelectTheme({
+        // palette: {
+        //   primary: {
+        //     main: '#c3d3e7',
+        //   },
+        //   secondary: {
+        //     main: '#BF616A',
+        //   },
+        //   neutral: {
+        //     main: '#64748B',
+        //     contrastText: '#fff',
+        //   },
+        // },
+        typography: {
+          fontFamily: 'Do Hyeon',
+          [profile.theme.titleStyle]: {
+            color: profile.theme.titleColor,
+            textAlign: profile.theme.linkAlign
+          },
+          [profile.theme.descriptionStyle]: {
+            color: profile.theme.descriptionColor,
+            textAlign: profile.theme.linkAlign
+          },
+
+        },
+        components: {
+          MuiButton: {
+            styleOverrides: {
+              root: {
+                width: profile.theme.linkWidth,
+                linkSpacing: profile.theme.linkSpacing,
+              }
+            }
+          }
+        },
+        shape: {
+          borderRadius: 16,
+        },
+        status: {
+          info: '#<your_info_color_here>',
+          danger: '#<your_danger_color_here>',
+        },
+        brands: {
+          facebook: '#<your_facebook_color_here>',
+          instagram: '#<your_instagram_color_here>',
+        },
+      })
+    } else if (theme.layout.type === "babyblue") {
+      setSelectTheme({
+        // palette: {
+        //   primary: {
+        //     main: '#2678dd',
+        //   },
+        //   secondary: {
+        //     main: '#BF616A',
+        //   },
+        //   neutral: {
+        //     main: '#64748B',
+        //     contrastText: '#fff',
+        //   },
+        // },
+        typography: {
+          fontFamily: 'Do Hyeon',
+          [babyTheme.titleStyle]: {
+            color: babyTheme.titleColor,
+            textAlign: babyTheme.linkAlign
+          },
+          [babyTheme.descriptionStyle]: {
+            color: babyTheme.descriptionColor,
+            textAlign: babyTheme.linkAlign
+          }
+        },
+        components: {
+          MuiButton: {
+            styleOverrides: {
+              root: {
+                width: babyTheme.linkWidth,
+                linkSpacing: babyTheme.linkSpacing,
+              }
+            }
+          }
+        },
+        shape: {
+          borderRadius: 16,
+        },
+        status: {
+          info: '#<your_info_color_here>',
+          danger: '#<your_danger_color_here>',
+        },
+        brands: {
+          facebook: '#<your_facebook_color_here>',
+          instagram: '#<your_instagram_color_here>',
+          // Add more brands if needed
+        },
+      })
+    }
+  }, [theme])
 
 
   // const locale = useSelector((state: RootStateOrAny) => state.locale.currentLang)
@@ -822,7 +812,7 @@ const Themes = (props) => {
       facebook: '#e53e3e',
       instagram: '#3f50b5',
     },
-  })
+  });
 
   //TODO: proper dark mode hooked into state
   // https://blog.logrocket.com/theming-in-next-js-with-styled-components-and-usedarkmode/
@@ -832,15 +822,10 @@ const Themes = (props) => {
     ...themeConfig, // TODO: don't use this any more
     ...theme,
     ...muitheme,
-    ...userTheme
     // ...{ locale },
   }
 
-  const Theme = {
-    ...muitheme,
-    ...userTheme
-  }
-
+  const Theme = deepmerge(muitheme, selectTheme);
 
   return (
     <ConfigProvider value={currentTheme}>

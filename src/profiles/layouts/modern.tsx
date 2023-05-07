@@ -66,9 +66,9 @@ const Modern = ({ user, profile, sites, themes }) => {
     }
   }
 
-  console.log("siteTheme", siteTheme)
-  console.log("user profile theme", theme)
-  console.log("sites", sites);
+  // console.log("siteTheme", siteTheme)
+  // console.log("user profile theme", theme)
+  // console.log("sites", sites);
 
   React.useEffect(() => {
     if (type.layout.type === "modern") {
