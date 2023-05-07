@@ -151,9 +151,7 @@ const Themes = (props) => {
   const session = useSession()
 
   const theme = useSelector((state: RootStateOrAny) => state.theme)
-  const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" }, {
-    enabled: !!session.userId, // The query will only run if `session.userId` exists.
-  })
+  const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" })
 
   const [userTheme, setUserTheme] = React.useState<any>();
   const [selectTheme, setSelectTheme] = React.useState({});
@@ -167,12 +165,12 @@ const Themes = (props) => {
           fontFamily: 'Do Hyeon',
           [ModernTheme.titleStyle]: {
             color: ModernTheme.titleColor,
-            textAlign: profile.theme.linkAlign
+            textAlign: ModernTheme.linkAlign
 
           },
           [ModernTheme.descriptionStyle]: {
             color: ModernTheme.descriptionColor,
-            textAlign: profile.theme.linkAlign
+            textAlign: ModernTheme.linkAlign
 
           }
         },
@@ -792,6 +790,7 @@ const Themes = (props) => {
     ...themeConfig, // TODO: don't use this any more
     ...theme,
     ...muitheme,
+    ...selectTheme
     // ...{ locale },
   }
 
