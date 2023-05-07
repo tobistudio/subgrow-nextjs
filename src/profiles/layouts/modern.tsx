@@ -80,13 +80,13 @@ const Modern = ({ user, profile, sites, themes }) => {
   //   }
   // }, [type])
 
-  const userTheme = createTheme({
-    palette: {
-      primary: {
-        main: "#ff0000",
-      },
-    },
-  });
+  // const userTheme = createTheme({
+  //   palette: {
+  //     primary: {
+  //       main: "#ff0000",
+  //     },
+  //   },
+  // });
 
 
 
@@ -141,166 +141,168 @@ const Modern = ({ user, profile, sites, themes }) => {
   //
 
   return (
-    <ThemeProvider theme={userTheme}>
-      <div id="profile-main" style={{ minHeight: "100vh", backgroundColor: usedTheme === "mytheme" ? (theme.bgColor ? theme.bgColor : "#202A37") : babyTheme.bgColor }}>
-        <header className="header-wrapper">
-          <Grid container spacing={0} py={1}>
-            <Grid spacing={{ xs: 12 }} display="flex" justifyContent="right" alignItems="center">
-              <Suspense>
-                <UserInfo />
+    // <ThemeProvider theme={userTheme}>
+    <div id="profile-main"
+    // style={{ minHeight: "100vh", backgroundColor: usedTheme === "mytheme" ? (theme.bgColor ? theme.bgColor : "#202A37") : babyTheme.bgColor }}
+    >
+      <header className="header-wrapper">
+        <Grid container spacing={0} py={1}>
+          <Grid spacing={{ xs: 12 }} display="flex" justifyContent="right" alignItems="center">
+            <Suspense>
+              <UserInfo />
 
-                {/*// TODO: show this only if the user that is logged in owns profile*/}
+              {/*// TODO: show this only if the user that is logged in owns profile*/}
 
-                {myownpage ? <SidePanelHeaderToggle usersession={session} type="icon" /> : null}
+              {myownpage ? <SidePanelHeaderToggle usersession={session} type="icon" /> : null}
 
-              </Suspense>
-            </Grid>
+            </Suspense>
           </Grid>
-        </header>
-        <main>
-          <FacebookProvider appId="241448415049637">
-            <Grid
-              container
-              spacing={0}
-              direction="column"
-              alignItems="center"
-              // justifyContent="center"
-              // style={{ minHeight: "100vh" }}
+        </Grid>
+      </header>
+      <main>
+        <FacebookProvider appId="241448415049637">
+          <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+          // justifyContent="center"
+          // style={{ minHeight: "100vh" }}
+          >
+
+            <Button variant="modern1">
+              testing button variants
+            </Button>
+
+
+
+            <Typography
+              variant="h2"
+              color="primary.main"
+            >
+              testing typography
+            </Typography>
+
+
+
+            <Typography
+              variant="h1"
+              color="primary.main"
+            >
+              why bigger on this page
+            </Typography>
+
+            <Box
+              id="profile-card" // TODO: use mui?
+              sx={{ minWidth: 380, padding: 2, borderRadius: 2 }} // , maxWidth: 420
             >
 
-              <Button variant="modern1">
-                testing button variants
-              </Button>
-
-
-
               <Typography
-                variant="h2"
-                color="primary.main"
+                variant={theme.titleStyle}
+                alignItems={theme.linkAlign ? theme.linkAlign : "center"}
+                className="profile-text"
+                id="title"
+              // style={{ color: theme.titleColor ? theme.titleColor : "rgb(189,196,215)" }}
               >
-                testing typography
+                {userprofile.title ? userprofile.title : userprofile.username}
               </Typography>
 
-
-
-              <Typography
-                variant="h1"
-                color="primary.main"
-              >
-                why bigger on this page
-              </Typography>
+              {userprofile.description ? (
+                <Typography variant={theme.descriptionStyle} id="description" className="description"
+                // style={{ color: theme.descriptionColor ? theme.descriptionColor : "rgb(189,196,215)" }}
+                >
+                  {userprofile.description}
+                </Typography>
+              ) : (
+                ""
+              )}
 
               <Box
-                id="profile-card" // TODO: use mui?
-                sx={{ minWidth: 380, padding: 2, borderRadius: 2 }} // , maxWidth: 420
+                display="flex"
+                alignItems={themes.linkAlign ? themes.linkAlign : "center"}
+                justifyContent={themes.linkAlign ? themes.linkAlign : "center"}
               >
-
-                <Typography
-                  variant={theme.titleStyle}
-                  alignItems={theme.linkAlign ? theme.linkAlign : "center"}
-                  className="profile-text"
-                  id="title"
-                  // style={{ color: theme.titleColor ? theme.titleColor : "rgb(189,196,215)" }}
-                >
-                  {userprofile.title ? userprofile.title : userprofile.username}
-                </Typography>
-
-                {userprofile.description ? (
-                  <Typography variant={theme.descriptionStyle} id="description" className="description"
-                    // style={{ color: theme.descriptionColor ? theme.descriptionColor : "rgb(189,196,215)" }}
-                  >
-                    {userprofile.description}
-                  </Typography>
-                ) : (
-                  ""
-                )}
-
-                <Box
-                  display="flex"
-                  alignItems={themes.linkAlign ? themes.linkAlign : "center"}
-                  justifyContent={themes.linkAlign ? themes.linkAlign : "center"}
-                >
-                  <ul className="list-modern">
-                    {sites.map((site) => (
-                      <li key={site.id} style={{ marginTop: linkMargin }}>
-                        {themes.links.style === "link" ? (
-                          <Link href={site.url} target="_blank" className={themes.links.className}>
-                            {site.title}
-                          </Link>
-                        ) : (
-                          <Button
-                            href={site.url}
-                            style={{ width: themes.linkWidth ? themes.linkWidth : 200 }}
-                            target="_blank"
-                            // variant={theme.buttonStyle ? theme.buttonStyle : "outlined"}
-                            variant={themes.links.variant ? themes.links.variant : "outlined"}
-                            className={themes.links.className}
-                            // startIcon={site.icon ? <FontAwesomeIcon icon={site.icon} size="lg" style={{ width: 17, height: 17 }} /> : ''}
-                            startIcon={<ProfileLinkButton size={"xl"} icon={site.icon} />}
-                          >
-                            {site.title}
-                          </Button>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </Box>
-
-
-
-                {/*<FacebookProvider appId="241448415049637">*/}
-                {/*  /!*<EmbeddedPost href="https://www.facebook.com/amir.meshkin" width="500" />*!/*/}
-                {/*  /!*width: 100px;*!/*/}
-                {/*  /!*height: 100px;*!/*/}
-                {/*  /!*background-color: #ff0000;*!/*/}
-                {/*  <Like href="http://www.facebook.com" colorScheme="dark" showFaces share />*/}
-
-                {/*  <ShareButton href="http://www.facebook.com" />*/}
-                {/*</FacebookProvider>*/}
-
+                <ul className="list-modern">
+                  {sites.map((site) => (
+                    <li key={site.id} style={{ marginTop: linkMargin }}>
+                      {themes.links.style === "link" ? (
+                        <Link href={site.url} target="_blank" className={themes.links.className}>
+                          {site.title}
+                        </Link>
+                      ) : (
+                        <Button
+                          href={site.url}
+                          style={{ width: themes.linkWidth ? themes.linkWidth : 200 }}
+                          target="_blank"
+                          // variant={theme.buttonStyle ? theme.buttonStyle : "outlined"}
+                          variant={themes.links.variant ? themes.links.variant : "outlined"}
+                          className={themes.links.className}
+                          // startIcon={site.icon ? <FontAwesomeIcon icon={site.icon} size="lg" style={{ width: 17, height: 17 }} /> : ''}
+                          startIcon={<ProfileLinkButton size={"xl"} icon={site.icon} />}
+                        >
+                          {site.title}
+                        </Button>
+                      )}
+                    </li>
+                  ))}
+                </ul>
               </Box>
-            </Grid>
 
 
-            {/*// TODO: dawn apps area is where we will show widgets, tik tok feed, etc*/}
-            <Grid
-              container
-              spacing={0}
-              direction="column"
-              alignItems="center"
-              justifyContent="center"
-            >
-              App Area
 
-              {/*// TODO: DECIDE. does show share buttons, other items come from theme or profile???*/}
-              <Stack spacing={4}>
-                {userprofile.theme.showShare &&
-                  <Button
-                    variant="contained"
-                    onClick={() => {
-                      shareFb()
-                    }}
-                    startIcon={<FontAwesomeIcon icon={faFacebook} style={{ width: 15, height: 15 }} />}
-                  >
-                    <span>share</span>
-                  </Button>
-                }
-              </Stack>
+              {/*<FacebookProvider appId="241448415049637">*/}
+              {/*  /!*<EmbeddedPost href="https://www.facebook.com/amir.meshkin" width="500" />*!/*/}
+              {/*  /!*width: 100px;*!/*/}
+              {/*  /!*height: 100px;*!/*/}
+              {/*  /!*background-color: #ff0000;*!/*/}
+              {/*  <Like href="http://www.facebook.com" colorScheme="dark" showFaces share />*/}
 
-            </Grid>
+              {/*  <ShareButton href="http://www.facebook.com" />*/}
+              {/*</FacebookProvider>*/}
 
-          </FacebookProvider>
-        </main>
-        {/*{ TODO: custom footer overrides }*/}
-        <footer>
+            </Box>
+          </Grid>
+
+
+          {/*// TODO: dawn apps area is where we will show widgets, tik tok feed, etc*/}
+          <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+          >
+            App Area
+
+            {/*// TODO: DECIDE. does show share buttons, other items come from theme or profile???*/}
+            <Stack spacing={4}>
+              {userprofile.theme.showShare &&
+                <Button
+                  variant="contained"
+                  onClick={() => {
+                    shareFb()
+                  }}
+                  startIcon={<FontAwesomeIcon icon={faFacebook} style={{ width: 15, height: 15 }} />}
+                >
+                  <span>share</span>
+                </Button>
+              }
+            </Stack>
+
+          </Grid>
+
+        </FacebookProvider>
+      </main>
+      {/*{ TODO: custom footer overrides }*/}
+      <footer>
         <span>
           Sub Grow
         </span>
 
-        </footer>
-      </div>
+      </footer>
+    </div>
 
-    </ThemeProvider>
+    // </ThemeProvider>
   )
 }
 
