@@ -76,6 +76,8 @@ declare module "@mui/material/Button" {
     userseethrough: true
     userhoney: true
     useroranges: true
+    userjungle: true
+    userwu: true
   }
 }
 
@@ -192,22 +194,23 @@ const Theme = (props) => {
         fontSize: 10,
       },
       h1: {
-        fontSize: 24,
+        fontSize: 26,
         fontWeight: 700,
         paddingBottom: 15,
+        marginBottom: 10,
       },
       h2: {
-        fontSize: 20,
+        fontSize: 24,
         fontWeight: 600,
         paddingBottom: 15,
       },
       h3: {
-        fontSize: 25,
+        fontSize: 22,
         fontWeight: 600,
         paddingBottom: 15,
       },
       h4: {
-        fontSize: 14,
+        fontSize: 20,
         fontWeight: 500,
         paddingBottom: 15,
       },
@@ -224,10 +227,12 @@ const Theme = (props) => {
       body1: {
         fontWeight: 500,
         fontSize: 12,
+        paddingBottom: 5,
       },
       body2: {
         fontWeight: 500,
         fontSize: 10,
+        paddingBottom: 5,
         // color: "#ffffff" // being overridden
       },
       caption: {
@@ -453,13 +458,26 @@ const Theme = (props) => {
           {
             props: { variant: "userhoney" }, // user variants
             style: {
-              minWidth: 200,
-              maxWidth: 500,
+              // minWidth: 200,
+              // maxWidth: 700,
               backgroundColor: "#F0CA06",
               color: "#000000",
               "&:hover": {
                 backgroundColor: "#d09312",
                 color: "#000000",
+              },
+            },
+          },
+          {
+            props: { variant: "userjungle" }, // user variants
+            style: {
+              minWidth: 200,
+              maxWidth: 500,
+              backgroundColor: "#298000",
+              color: "#ffffff",
+              "&:hover": {
+                backgroundColor: "#298000",
+                color: "#ffffff",
               },
             },
           },
@@ -473,6 +491,19 @@ const Theme = (props) => {
               "&:hover": {
                 backgroundColor: "#d57601",
                 color: "#ffffff",
+              },
+            },
+          },
+          {
+            props: { variant: "userwu" }, // user variants
+            style: {
+              minWidth: 200,
+              maxWidth: 500,
+              backgroundColor: "#F7D005",
+              color: "#000000",
+              "&:hover": {
+                backgroundColor: "#deb900",
+                color: "#000000",
               },
             },
           },
