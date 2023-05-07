@@ -16,8 +16,6 @@ import {
   Stack,
 } from "@mui/material"
 
-import { ThemeProvider, styled } from '@mui/material/styles';
-
 import Grid from "@mui/material/Unstable_Grid2"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ProfileLinkButton from "../components/ProfileLinkButton";
@@ -31,7 +29,6 @@ import { useRouter } from "next/router";
 // import ProfileButton from "../../components/user/ProfileButton";
 // import { green, purple } from '@mui/material/colors';
 import babyTheme from '../../../data/userthemes/babyblue.json'
-// import { userTheme } from '../../../data/userthemes/modern'
 import { Theme } from "@emotion/react"
 
 // TODO: perhaps use CreateTheme from mui to create this theme instead of userthemes/modern.tsx
@@ -50,23 +47,6 @@ const Modern = ({ user, profile, sites, themes }) => {
   const type = useSelector((state: RootStateOrAny) => state.theme);
 
   const [usedTheme, setUseTheme] = React.useState("");
-  const [userTheme, setUserTheme] = React.useState<Theme>(createTheme({
-    palette: {
-      //mode: type,
-      primary: {
-        main: '#2678dd',
-      },
-      secondary: {
-        main: '#BF616A',
-      },
-    },
-    typography: {
-      fontFamily: 'Do Hyeon',
-    },
-    shape: {
-      borderRadius: 16,
-    },
-  }));
 
   let myownpage
   if (session.userId) {
@@ -76,73 +56,17 @@ const Modern = ({ user, profile, sites, themes }) => {
     }
   }
 
-  // console.log("siteTheme", siteTheme)
-  // console.log("user profile theme", theme)
-  // console.log("sites", sites);
+  console.log("siteTheme", siteTheme)
+  console.log("user profile theme", theme)
+  console.log("sites", sites);
 
   React.useEffect(() => {
     if (type.layout.type === "modern") {
-      console.log("modern");
       setUseTheme('modern')
-      setUserTheme(createTheme({
-        palette: {
-          //mode: type,
-          primary: {
-            main: '#2678dd',
-          },
-          secondary: {
-            main: '#BF616A',
-          },
-
-        },
-        typography: {
-          fontFamily: 'Do Hyeon',
-        },
-        shape: {
-          borderRadius: 16,
-        },
-      }))
     } else if (type.layout.type === "mytheme") {
-      console.log("mytheme");
       setUseTheme('mytheme')
-      setUserTheme(createTheme({
-        palette: {
-          //mode: type,
-          primary: {
-            main: '#2678dd',
-          },
-          secondary: {
-            main: '#BF616A',
-          },
-
-        },
-        typography: {
-          fontFamily: 'Do Hyeon',
-        },
-        shape: {
-          borderRadius: 16,
-        },
-      }))
     } else if (type.layout.type === "babyblue") {
-      console.log("babyblue");
       setUseTheme('babyblue')
-      setUserTheme(createTheme({
-        palette: {
-          mode: type.mode,
-          primary: {
-            main: '#ffffff',
-          },
-          secondary: {
-            main: '#ffffff',
-          }
-        },
-        typography: {
-          fontFamily: 'Do Hyeon',
-        },
-        shape: {
-          borderRadius: 16,
-        },
-      }))
     }
   }, [type])
 
@@ -156,11 +80,6 @@ const Modern = ({ user, profile, sites, themes }) => {
   // TODO: dawn this needs to merge with theme
   // const userTheme =
 
-
-
-  React.useEffect(() => {
-    console.log("materail ui********", userTheme);
-  }, [userTheme]);
   /*
 
   1 of 2 unhandled errors
@@ -202,164 +121,166 @@ const Modern = ({ user, profile, sites, themes }) => {
   //
 
   return (
-    <ThemeProvider theme={userTheme}>
-      <div id="profile-main" style={{ minHeight: "100vh", backgroundColor: usedTheme === "mytheme" ? (theme.bgColor ? theme.bgColor : "#202A37") : babyTheme.bgColor }}>
-        <header className="header-wrapper">
-          <Grid container spacing={0} py={1}>
-            <Grid spacing={{ xs: 12 }} display="flex" justifyContent="right" alignItems="center">
-              <Suspense>
-                <UserInfo />
+    // <ThemeProvider theme={userTheme}>
+    <div id="profile-main" style={{ minHeight: "100vh", backgroundColor: usedTheme === "mytheme" ? (theme.bgColor ? theme.bgColor : "#202A37") : babyTheme.bgColor }}>
+      <header className="header-wrapper">
+        <Grid container spacing={0} py={1}>
+          <Grid spacing={{ xs: 12 }} display="flex" justifyContent="right" alignItems="center">
+            <Suspense>
+              <UserInfo />
 
-                {/*// TODO: show this only if the user that is logged in owns profile*/}
+              {/*// TODO: show this only if the user that is logged in owns profile*/}
 
-                {myownpage ? <SidePanelHeaderToggle usersession={session} type="icon" /> : null}
+              {myownpage ? <SidePanelHeaderToggle usersession={session} type="icon" /> : null}
 
-              </Suspense>
-            </Grid>
+            </Suspense>
           </Grid>
-        </header>
-        <main>
-          <FacebookProvider appId="241448415049637">
-            <Grid
-              container
-              spacing={0}
-              direction="column"
-              alignItems="center"
-            // justifyContent="center"
-            // style={{ minHeight: "100vh" }}
+        </Grid>
+      </header>
+      <main>
+        <FacebookProvider appId="241448415049637">
+          <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+          // justifyContent="center"
+          // style={{ minHeight: "100vh" }}
+          >
+
+            <Button variant="modern1">
+              testing button variants
+            </Button>
+
+
+
+            <Typography
+              variant="h2"
+              color="primary.main"
+            >
+              testing typography
+            </Typography>
+
+
+
+            <Typography
+              variant="h1"
+              color="primary.main"
+            >
+              why bigger on this page
+            </Typography>
+
+            <Box
+              id="profile-card" // TODO: use mui?
+              sx={{ minWidth: 380, padding: 2, borderRadius: 2 }} // , maxWidth: 420
             >
 
-              <Button variant="modern1">
-                testing button variants
-              </Button>
-
-
-
               <Typography
-                variant="h2"
-                color="primary.main"
+                variant={theme.titleStyle}
+                alignItems={theme.linkAlign ? theme.linkAlign : "center"}
+                className="profile-text"
+                id="title"
+              // style={{ color: theme.titleColor ? theme.titleColor : "rgb(189,196,215)" }}
               >
-                testing typography
+                {userprofile.title ? userprofile.title : userprofile.username}
               </Typography>
 
-
-
-              <Typography
-                variant="h1"
-                color="primary.main"
-              >
-                why bigger on this page
-              </Typography>
+              {userprofile.description ? (
+                <Typography variant={theme.descriptionStyle} id="description" className="description"
+                // style={{ color: theme.descriptionColor ? theme.descriptionColor : "rgb(189,196,215)" }}
+                >
+                  {userprofile.description}
+                </Typography>
+              ) : (
+                ""
+              )}
 
               <Box
-                id="profile-card" // TODO: use mui?
-                sx={{ minWidth: 380, padding: 2, borderRadius: 2 }} // , maxWidth: 420
+                display="flex"
+                alignItems={themes.linkAlign ? themes.linkAlign : "center"}
+                justifyContent={themes.linkAlign ? themes.linkAlign : "center"}
               >
-
-                <Typography
-                  variant={theme.titleStyle}
-                  alignItems={theme.linkAlign ? theme.linkAlign : "center"}
-                  className="profile-text"
-                  id="title"
-                  style={{ color: theme.titleColor ? theme.titleColor : "rgb(189,196,215)" }}
-                >
-                  {userprofile.title ? userprofile.title : userprofile.username}
-                </Typography>
-
-                {userprofile.description ? (
-                  <Typography variant={theme.descriptionStyle} id="description" className="profile-text description" style={{ color: theme.descriptionColor ? theme.descriptionColor : "rgb(189,196,215)" }}>
-                    {userprofile.description}
-                  </Typography>
-                ) : (
-                  ""
-                )}
-
-                <Box
-                  display="flex"
-                  alignItems={themes.linkAlign ? themes.linkAlign : "center"}
-                  justifyContent={themes.linkAlign ? themes.linkAlign : "center"}
-                >
-                  <ul className="list-modern">
-                    {sites.map((site) => (
-                      <li key={site.id} style={{ marginTop: linkMargin }}>
-                        {themes.links.style === "link" ? (
-                          <Link href={site.url} target="_blank" className={themes.links.className}>
-                            {site.title}
-                          </Link>
-                        ) : (
-                          <Button
-                            href={site.url}
-                            style={{ width: themes.linkWidth ? themes.linkWidth : 200 }}
-                            target="_blank"
-                            // variant={theme.buttonStyle ? theme.buttonStyle : "outlined"}
-                            variant={themes.links.variant ? themes.links.variant : "outlined"}
-                            className={themes.links.className}
-                            // startIcon={site.icon ? <FontAwesomeIcon icon={site.icon} size="lg" style={{ width: 17, height: 17 }} /> : ''}
-                            startIcon={<ProfileLinkButton size={"xl"} icon={site.icon} />}
-                          >
-                            {site.title}
-                          </Button>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </Box>
-
-
-
-                {/*<FacebookProvider appId="241448415049637">*/}
-                {/*  /!*<EmbeddedPost href="https://www.facebook.com/amir.meshkin" width="500" />*!/*/}
-                {/*  /!*width: 100px;*!/*/}
-                {/*  /!*height: 100px;*!/*/}
-                {/*  /!*background-color: #ff0000;*!/*/}
-                {/*  <Like href="http://www.facebook.com" colorScheme="dark" showFaces share />*/}
-
-                {/*  <ShareButton href="http://www.facebook.com" />*/}
-                {/*</FacebookProvider>*/}
-
+                <ul className="list-modern">
+                  {sites.map((site) => (
+                    <li key={site.id} style={{ marginTop: linkMargin }}>
+                      {themes.links.style === "link" ? (
+                        <Link href={site.url} target="_blank" className={themes.links.className}>
+                          {site.title}
+                        </Link>
+                      ) : (
+                        <Button
+                          href={site.url}
+                          style={{ width: themes.linkWidth ? themes.linkWidth : 200 }}
+                          target="_blank"
+                          // variant={theme.buttonStyle ? theme.buttonStyle : "outlined"}
+                          variant={themes.links.variant ? themes.links.variant : "outlined"}
+                          className={themes.links.className}
+                          // startIcon={site.icon ? <FontAwesomeIcon icon={site.icon} size="lg" style={{ width: 17, height: 17 }} /> : ''}
+                          startIcon={<ProfileLinkButton size={"xl"} icon={site.icon} />}
+                        >
+                          {site.title}
+                        </Button>
+                      )}
+                    </li>
+                  ))}
+                </ul>
               </Box>
-            </Grid>
 
 
-            {/*// TODO: dawn apps area is where we will show widgets, tik tok feed, etc*/}
-            <Grid
-              container
-              spacing={0}
-              direction="column"
-              alignItems="center"
-              justifyContent="center"
-            >
-              App Area
 
-              {/*// TODO: DECIDE. does show share buttons, other items come from theme or profile???*/}
-              <Stack spacing={4}>
-                {userprofile.theme.showShare &&
-                  <Button
-                    variant="contained"
-                    onClick={() => {
-                      shareFb()
-                    }}
-                    startIcon={<FontAwesomeIcon icon={faFacebook} style={{ width: 15, height: 15 }} />}
-                  >
-                    <span>share</span>
-                  </Button>
-                }
-              </Stack>
+              {/*<FacebookProvider appId="241448415049637">*/}
+              {/*  /!*<EmbeddedPost href="https://www.facebook.com/amir.meshkin" width="500" />*!/*/}
+              {/*  /!*width: 100px;*!/*/}
+              {/*  /!*height: 100px;*!/*/}
+              {/*  /!*background-color: #ff0000;*!/*/}
+              {/*  <Like href="http://www.facebook.com" colorScheme="dark" showFaces share />*/}
 
-            </Grid>
+              {/*  <ShareButton href="http://www.facebook.com" />*/}
+              {/*</FacebookProvider>*/}
 
-          </FacebookProvider>
-        </main>
-        {/*{ TODO: custom footer overrides }*/}
-        <footer>
-          <span>
-            Sub Grow
-          </span>
+            </Box>
+          </Grid>
 
-        </footer>
-      </div>
 
-    </ThemeProvider>
+          {/*// TODO: dawn apps area is where we will show widgets, tik tok feed, etc*/}
+          <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+          >
+            App Area
+
+            {/*// TODO: DECIDE. does show share buttons, other items come from theme or profile???*/}
+            <Stack spacing={4}>
+              {userprofile.theme.showShare &&
+                <Button
+                  variant="contained"
+                  onClick={() => {
+                    shareFb()
+                  }}
+                  startIcon={<FontAwesomeIcon icon={faFacebook} style={{ width: 15, height: 15 }} />}
+                >
+                  <span>share</span>
+                </Button>
+              }
+            </Stack>
+
+          </Grid>
+
+        </FacebookProvider>
+      </main>
+      {/*{ TODO: custom footer overrides }*/}
+      <footer>
+        <span>
+          Sub Grow
+        </span>
+
+      </footer>
+    </div>
+
+    // </ThemeProvider>
   )
 }
 

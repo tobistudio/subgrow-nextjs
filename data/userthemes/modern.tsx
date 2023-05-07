@@ -1,12 +1,12 @@
 
 // Default theme for a user profile
-export const userTheme = {
+export const ModernTheme = {
   "layout": "modern", // drop down name value
   "layoutName": "Modern",
   "titleStyle": "h6",
-  "titleColor": "#000000",
+  "titleColor": "#2c2c2c",
   "descriptionStyle": "body1",
-  "descriptionColor": "#000000",
+  "descriptionColor": "#3a3939",
   "links": {
     "variant": "modern1",
     "colors": {
