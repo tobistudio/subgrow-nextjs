@@ -1,5 +1,4 @@
-import AdminLayout from "../../core/layouts/AdminLayout"
-import Head from "next/head"
+import { deepmerge } from '@mui/utils';
 import Link from "next/link"
 import { Routes } from "@blitzjs/next"
 import React, { Suspense, useLayoutEffect, useState } from "react"
@@ -31,8 +30,6 @@ import { useRouter } from "next/router";
 import babyTheme from '../../../data/userthemes/babyblue.json'
 import { Theme } from "@emotion/react"
 
-
-import { deepmerge } from '@mui/utils';
 // import { createTheme } from '@mui/material/styles';
 
 
@@ -81,13 +78,25 @@ const Modern = ({ user, profile, sites, themes }) => {
   // }, [type])
 
   // TODO: here is where we get the user's theme
-  const userTheme = createTheme(siteTheme, {
+  // const userTheme = createTheme(siteTheme, {
+  //   palette: {
+  //     primary: {
+  //       main: "#2edc00",
+  //     },
+  //   },
+  // });
+
+
+  const blah = {
     palette: {
       primary: {
-        main: "#ff0000",
+        main: "#2edc00",
       },
     },
-  });
+  }
+
+
+  const userTheme = createTheme(deepmerge(siteTheme, blah));
 
 
 
@@ -271,7 +280,10 @@ const Modern = ({ user, profile, sites, themes }) => {
               alignItems="center"
               justifyContent="center"
             >
-              App Area
+
+
+              <Stack spacing={4}>
+
 
               <Button
                 variant="userhoney"
@@ -279,6 +291,18 @@ const Modern = ({ user, profile, sites, themes }) => {
                 <span>userhoney</span>
               </Button>
 
+
+              <Button variant="userbabyblue">userbabyblue</Button>
+              <Button variant="usernavyblue">usernavyblue</Button>
+              <Button variant="useroranges">useroranges</Button>
+              <Button variant="userseethrough">userseethrough</Button>
+              <Button variant="userjungle">userjungle</Button>
+              <Button variant="userjungle">userjungle</Button>
+              <Button variant="userwu">userwu</Button>
+              <Button variant="usermustard">usermustard</Button>
+              <Button variant="usertronline">usertronline</Button>
+
+              </Stack>
 
               {/*// TODO: DECIDE. does show share buttons, other items come from theme or profile???*/}
               <Stack spacing={4}>
