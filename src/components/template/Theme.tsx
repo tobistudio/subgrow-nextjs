@@ -72,6 +72,8 @@ declare module "@mui/material/Button" {
     tornpaper1: true // Torn Paper https://linktr.ee/s/templates/
     babyblue: true // baby blue https://linktr.ee/donnahaymagazine
     userbabyblue: true
+    usernavyblue: true
+    userseethrough: true
   }
 }
 
@@ -398,19 +400,6 @@ const Theme = (props) => {
             },
           },
           {
-            props: { variant: "userbabyblue" }, // user variants
-            style: {
-              minWidth: 200,
-              maxWidth: 500,
-              backgroundColor: "#ffffff",
-              color: "#A0DCFF",
-              "&:hover": {
-                backgroundColor: "#ffffff",
-                color: "#A0DCFF",
-              },
-            },
-          },
-          {
             props: { variant: "babyblue" }, // babyblue for the site
             style: {
               backgroundColor: theme.mode === "dark" ? "#58bafc" : "#A0DCFF",
@@ -422,6 +411,33 @@ const Theme = (props) => {
               },
             },
           },
+          {
+            props: { variant: "usernavyblue" }, // user variants
+            style: {
+              minWidth: 200,
+              maxWidth: 500,
+              backgroundColor: "#191e3b",
+              color: "#A0DCFF",
+              "&:hover": {
+                backgroundColor: "#090f38",
+                color: "#A0DCFF",
+              },
+            },
+          },
+          {
+            props: { variant: "userseethrough" }, // user variants
+            style: {
+              minWidth: 200,
+              maxWidth: 500,
+              backgroundColor: "#191e3b",
+              color: "#A0DCFF",
+              "&:hover": {
+                backgroundColor: "rgba(9,15,56,0.5)",
+                color: "#A0DCFF",
+              },
+            },
+          },
+
         ],
       },
       MuiTextField: {
