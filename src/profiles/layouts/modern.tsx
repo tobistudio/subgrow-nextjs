@@ -91,21 +91,21 @@ const Modern = ({ user, profile, sites }) => {
       },
  */
   // TODO: dawn not sure what happened after merge
-  const userTheme = createTheme({
-    palette: {
-      //mode: type,
-      primary: {
-        main: '#2678dd',
-      },
-      secondary: {
-        main: '#BF616A',
-      },
-      neutral: {
-        main: '#64748B',
-        contrastText: '#fff',
-      },
-    },
-  });
+  // const userTheme = createTheme({
+  //   palette: {
+  //     //mode: type,
+  //     primary: {
+  //       main: '#2678dd',
+  //     },
+  //     secondary: {
+  //       main: '#BF616A',
+  //     },
+  //     neutral: {
+  //       main: '#64748B',
+  //       contrastText: '#fff',
+  //     },
+  //   },
+  // });
 
 
 
@@ -147,10 +147,10 @@ const Modern = ({ user, profile, sites }) => {
     )
   }
 
-  // userTheme
+  //  theme={userTheme}
 
   return (
-    <ThemeProvider theme={userTheme}>
+    <ThemeProvider>
       <div id="profile-main" style={{ minHeight: "100vh", backgroundColor: theme.bgColor ? theme.bgColor : "#202A37" }}>
         <header className="header-wrapper">
           <Grid container spacing={0} py={1}>
@@ -201,11 +201,15 @@ const Modern = ({ user, profile, sites }) => {
 
               <Box
                 id="profile-card" // TODO: use mui?
-                sx={{ minWidth: 380, maxWidth: 420 }} // TODO: user settings may be a bit much
+                sx={{ minWidth: 380}} // , maxWidth: 420
+                // direction="column"
+                // alignItems="center"
+
+
               // style={{backgroundColor: theme.bgCardColor ? theme.bgCardColor : "rgba(206,199,199,0.8)"}}
               //style={{ backgroundColor: theme.bgCardColor ? theme.bgCardColor : "rgb(189,196,215)" }}
               >
-                <div>
+
                   <Typography
                     variant={theme.titleStyle}
                     alignItems={theme.linkAlign ? theme.linkAlign : "center"}
@@ -266,7 +270,7 @@ const Modern = ({ user, profile, sites }) => {
 
                   {/*  <ShareButton href="http://www.facebook.com" />*/}
                   {/*</FacebookProvider>*/}
-                </div>
+
               </Box>
             </Grid>
 
