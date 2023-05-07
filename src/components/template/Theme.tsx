@@ -11,7 +11,7 @@ import { blue, green, purple, red, brands, card, card_el, chip, chip_dark } from
 
 declare module '@mui/material/styles' {
   interface Theme {
-    status: {
+    status?: {
       danger: React.CSSProperties['color'];
       info: React.CSSProperties['color'];
     };
@@ -25,11 +25,11 @@ declare module '@mui/material/styles' {
   }
 
   interface Palette {
-    neutral: Palette['primary'];
+    neutral?: Palette['primary'];
   }
 
   interface PaletteOptions {
-    neutral: PaletteOptions['primary'];
+    neutral?: PaletteOptions['primary'];
   }
 
   interface PaletteColor {
