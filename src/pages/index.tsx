@@ -136,6 +136,8 @@ const Home: BlitzPage = () => {
               <Button variant="userjungle">userjungle</Button>
               <Button variant="userjungle">userjungle</Button>
               <Button variant="userwu">userwu</Button>
+              <Button variant="usermustard">usermustard</Button>
+              <Button variant="usertronline">usertronline</Button>
 
             </Stack>
 

@@ -84,6 +84,8 @@ declare module "@mui/material/Button" {
     useroranges: true
     userjungle: true
     userwu: true
+    usermustard: true
+    usertronline: true
   }
 }
 
@@ -655,6 +657,35 @@ const Themes = (props) => {
               "&:hover": {
                 backgroundColor: "#deb900",
                 color: "#000000",
+              },
+            },
+          },
+          {
+            props: { variant: "usermustard" }, // user variants
+            style: {
+              minWidth: 200,
+              maxWidth: 500,
+              backgroundColor: "#a10000",
+              color: "#ffbd00",
+              "&:hover": {
+                backgroundColor: "#8a0000",
+                color: "#ffbd00",
+              },
+            },
+          },
+          {
+            props: { variant: "usertronline" }, // user variants
+            style: {
+              minWidth: 200,
+              maxWidth: 500,
+              backgroundColor: "transparent",
+              border: 5,
+              borderColor: "#ff0000",
+              borderWidth: 5,
+              color: "#0039f3",
+              "&:hover": {
+                backgroundColor: "transparent",
+                color: "#000fbb",
               },
             },
           },
