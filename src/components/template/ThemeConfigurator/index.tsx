@@ -101,8 +101,8 @@ const ThemeConfigurator = (props) => {
   // const [apps]: any = useQuery(getThisUsersApps, { userId: Number(localStorage.id ? localStorage.id : session.userId)})
   // console.log("apps",apps);
 
-
-  const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" })
+  const [profile, { error_profile }]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" })
+  // const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" })
 
   const [selected, setSelected] = React.useState(true);
 
@@ -111,7 +111,8 @@ const ThemeConfigurator = (props) => {
   //const [userprofile, dispatch] = useReducer(tasksReducer, initialTasks);
   // const userprofile = useSelector((state) => state.userprofile)
 
-  const [createProfileMutation] = useMutation(createProfile);
+  // const [createProfileMutation] = useMutation(createProfile);
+  const [createProfileMutation, { error }] = useMutation(createProfile);
 
   const [userprofile, setUserprofile] = React.useState()
   const theme = useSelector((state: RootStateOrAny) => state.theme)
@@ -135,6 +136,8 @@ const ThemeConfigurator = (props) => {
     setColorBg(profile.theme.bgColor);
     setValues({ ...values, title: profile.title, description: profile.description })
   }, [profile]);
+
+  // React.useEffect(() => { if (error) alert(error?.message) }, [error]);
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
@@ -191,7 +194,7 @@ const ThemeConfigurator = (props) => {
           layout: 'modern',
           linkType: 'button',
           linkAlign: 'center',
-          linkStyle: 'babyblue',
+          linkStyle: 'userbabyblue',
           linkWidth: '200',
           fontFamily: '',
           titleStyle: 'h6', // TODO: dawn these values come from user
@@ -329,7 +332,7 @@ const ThemeConfigurator = (props) => {
                           >
                             <MenuItem value={"usertheme"}>My Theme</MenuItem>
                             <MenuItem value={"modern"}>Modern</MenuItem>
-                            <MenuItem value={"babyblue"}>Baby Blue</MenuItem>
+                            <MenuItem value={"userbabyblue"}>Baby Blue</MenuItem>
 
                           </Select>
                         </FormControl>
@@ -411,7 +414,7 @@ const ThemeConfigurator = (props) => {
                                 Modern
                               </Typography>
                             </MenuItem>
-                            <MenuItem value={"babyblue"}>
+                            <MenuItem value={"userbabyblue"}>
                               <Typography variant="h1">
                                 h1
                               </Typography>

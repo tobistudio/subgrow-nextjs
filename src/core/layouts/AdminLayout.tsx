@@ -31,6 +31,9 @@ const AdminLayout: BlitzLayout<{
   type,
   children,
 }) => {
+
+  // TODO: get user, session, and profile and pass down
+
   let header, footer
   // TODO: only prints header
   switch (type) {
@@ -89,7 +92,8 @@ const AdminLayout: BlitzLayout<{
               xs: 0,
               sm: 1,
               md: 2,
-              lg: 5
+              lg: 3,
+              xl: 4
             }
           }}
         >{children}</Container>

@@ -1,7 +1,8 @@
 
 // Default theme for a user profile
 export const userTheme = {
-  "layout": "babyblue",
+  "layout": "babyblue", // drop down name value
+  "layoutName": "Baby Blue",
   "titleStyle": "h6",
   "titleColor": "#000000",
   "descriptionStyle": "body1",

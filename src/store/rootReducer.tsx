@@ -1,15 +1,16 @@
 import { combineReducers } from "redux"
 import theme from "./theme/themeSlice"
-import auth from "./auth"
+// import auth from "./auth"
 import base from "./base"
-import locale from "./locale/localeSlice"
+// import locale from "./locale/localeSlice"
 
+// TODO: dawn link state to our app, use for user, session, profile
 const rootReducer = (asyncReducers) => (state, action: any) => {
   const combinedReducer = combineReducers({
-    theme,
-    auth,
-    base,
-    locale,
+    theme, // TODO: replace with mui theme
+    // auth, // TODO: dawn replace with this site's store
+    base, // TODO: not used
+    // locale, // TODO: PHASE III multi lingual no need yet
     ...asyncReducers,
   })
 

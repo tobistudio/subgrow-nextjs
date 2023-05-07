@@ -21,6 +21,7 @@ import {
   Switch,
   Tooltip,
 } from "@mui/material"
+import { useTheme } from '@mui/material/styles';
 import Grid from "@mui/material/Unstable_Grid2"
 
 import IconButton, { IconButtonProps } from "@mui/material/IconButton"
@@ -72,6 +73,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 // need {} or else it's a object in object
 export default function LinkListCard({ link, setLinks }: any) {
   const router = useRouter()
+  const theme = useTheme();
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
   const [createSiteMutation] = useMutation(createSiteWidget)
   const [updateLinkMutation] = useMutation(updateLinkOrder)
@@ -264,7 +266,8 @@ export default function LinkListCard({ link, setLinks }: any) {
                     disabled={submitting}
                     sx={{ width: 200 }}
                     startIcon={
-                      <FontAwesomeIcon icon={faFloppyDisk} style={{ color: misc.fa_primary }} />
+                      // <FontAwesomeIcon icon={faFloppyDisk} style={{ color: misc.fa_primary }} />
+                      <FontAwesomeIcon icon={faFloppyDisk} color={theme.brands.facebook} />
                     }
                   >
                     Save Link
@@ -289,6 +292,3 @@ export default function LinkListCard({ link, setLinks }: any) {
     </Card>
   )
 }
-
-// TODO: add draggable and ordering
-// TODO: refresh the list of links after an add or delete

@@ -85,22 +85,33 @@ const Modern = ({ user, profile, sites }) => {
   const type = useSelector((state) => state?.theme.mode)
 
 
+  /*
+        neutral: {
+          main: '#64748B',
+          contrastText: '#fff',
+        },
+   */
+  // TODO: dawn not sure what happened after merge
   const userTheme = createTheme({
     palette: {
-      mode: type,
+      //mode: type,
       primary: {
         main: '#2678dd',
       },
       secondary: {
         main: '#BF616A',
       },
+      // neutral: {
+      //   main: '#64748B',
+      //   contrastText: '#fff',
+      // },
     },
   });
 
   /*
-  
+
   1 of 2 unhandled errors
-  
+
   Unhandled Runtime Error
   Error: Too many re-renders. React limits the number of renders to prevent an infinite loop.
    */
@@ -165,7 +176,7 @@ const Modern = ({ user, profile, sites }) => {
             // style={{ minHeight: "100vh" }}
             >
 
-              <Button variant="babyblue">
+              <Button variant="userbabyblue">
                 testing button variants
               </Button>
 
@@ -220,8 +231,8 @@ const Modern = ({ user, profile, sites }) => {
                     <ul className="list-modern">
                       {sites.map((site) => (
                         <li key={site.id} style={{ marginTop: linkMargin }}>
-                          {theme.linkType === "link" ? (
-                            <Link href={site.url} target="_blank" className={theme.linkStyle}>
+                          {theme.links.style === "link" ? (
+                            <Link href={site.url} target="_blank" className={theme.links.className}>
                               {site.title}
                             </Link>
                           ) : (
@@ -229,8 +240,9 @@ const Modern = ({ user, profile, sites }) => {
                               href={site.url}
                               style={{ width: theme.linkWidth ? theme.linkWidth : 200 }}
                               target="_blank"
-                              variant={theme.buttonStyle ? theme.buttonStyle : "outlined"}
-                              className={theme.linkStyle ? theme.linkStyle : "outlined"}
+                              // variant={theme.buttonStyle ? theme.buttonStyle : "outlined"}
+                              variant={theme.links.variant ? theme.links.variant : "outlined"}
+                              className={theme.links.className}
                               // startIcon={site.icon ? <FontAwesomeIcon icon={site.icon} size="lg" style={{ width: 17, height: 17 }} /> : ''}
                               startIcon={<ProfileLinkButton size={"xl"} icon={site.icon} />}
                             >

@@ -1,0 +1,36 @@
+{
+  "layout": "babyblue",
+  "layoutName": "Baby Blue",
+  "titleStyle": "h6",
+  "titleColor": "#ffffff",
+  "descriptionStyle": "body1",
+  "descriptionColor": "#ffffff",
+  "links": {
+    "style": "button",
+    "variant": "userbabyblue",
+    "className": "userbabyblue",
+    "colors": {
+      "light": {
+        "color": "#ffffff",
+        "borderColor": "#ffffff",
+        "borderWidth": 2,
+        "backgroundColor": "#A0DCFF"
+      },
+      "dark": {
+        "color": "#ffffff",
+        "borderColor": "#c01212",
+        "borderWidth": 2,
+        "backgroundColor": "#00649b"
+      }
+    }
+  },
+  "linkType": "button",
+  "linkStyle": "userbabyblue",
+  "linkSpacing": 20,
+  "linkAlign": "center",
+  "bgColor": "#A0DCFF",
+  "card": false,
+  "bgCardColor": "",
+  "linkWidth": "200",
+  "fontFamily": ""
+}
