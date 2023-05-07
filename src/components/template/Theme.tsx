@@ -3,9 +3,14 @@ import { RootStateOrAny, useSelector } from "react-redux"
 import { ConfigProvider } from "components/ui"
 import useDarkMode from "utils/hooks/useDarkMode"
 import { themeConfig } from "configs/theme.config"
+import { useQuery } from "@blitzjs/rpc"
+import getProfile from "profiles/queries/getProfile"
+import { useSession } from "@blitzjs/auth"
 import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles"
-// import { blue, green, purple } from "@mui/material/colors"
 import { blue, green, purple, red, brands, card, card_el, chip, chip_dark } from "configs/colors/default"
+import { ModernTheme } from '../../../data/userthemes/modern'
+import babyTheme from '../../../data/userthemes/babyblue.json'
+
 
 // <ThemeProvider theme={theme}>
 
@@ -140,10 +145,168 @@ declare module "@mui/material/Input" {
 
 // TODO: mui theme maker
 // https://bareynol.github.io/mui-theme-creator/
-const Theme = (props) => {
+const Themes = (props) => {
   // const theme = useSelector((state: RootStateOrAny) => state.theme)
+  const session = useSession()
 
   const theme = useSelector((state: RootStateOrAny) => state.theme)
+  const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" }, {
+    enabled: !!session.userId, // The query will only run if `session.userId` exists.
+  })
+
+  const [userTheme, setUserTheme] = React.useState<any>();
+
+  React.useEffect(() => {
+    if (!session.userId) return;
+
+    if (theme.layout.type === "modern") {
+      setUserTheme(createTheme({
+        // palette: {
+        //   primary: {
+        //     main: '#2678dd',
+        //   },
+        //   secondary: {
+        //     main: '#BF616A',
+        //   },
+        //   neutral: {
+        //     main: '#64748B',
+        //     contrastText: '#fff',
+        //   },
+        // },
+        typography: {
+          fontFamily: 'Do Hyeon',
+          [ModernTheme.titleStyle]: {
+            color: ModernTheme.titleColor,
+            textAlign: profile.theme.linkAlign
+
+          },
+          [ModernTheme.descriptionStyle]: {
+            color: ModernTheme.descriptionColor,
+            textAlign: profile.theme.linkAlign
+
+          }
+        },
+        components: {
+          MuiButton: {
+            styleOverrides: {
+              root: {
+                width: ModernTheme.linkWidth,
+                linkSpacing: ModernTheme.linkSpacing,
+              }
+            }
+          }
+        },
+        shape: {
+          borderRadius: 16,
+        },
+        status: {
+          info: '#<your_info_color_here>',
+          danger: '#<your_danger_color_here>',
+        },
+        brands: {
+          facebook: '#<your_facebook_color_here>',
+          instagram: '#<your_instagram_color_here>',
+        },
+      }))
+    } else if (theme.layout.type === "mytheme") {
+      setUserTheme(createTheme({
+        // palette: {
+        //   primary: {
+        //     main: '#c3d3e7',
+        //   },
+        //   secondary: {
+        //     main: '#BF616A',
+        //   },
+        //   neutral: {
+        //     main: '#64748B',
+        //     contrastText: '#fff',
+        //   },
+        // },
+        typography: {
+          fontFamily: 'Do Hyeon',
+          [profile.theme.titleStyle]: {
+            color: profile.theme.titleColor,
+            textAlign: profile.theme.linkAlign
+          },
+          [profile.theme.descriptionStyle]: {
+            color: profile.theme.descriptionColor,
+            textAlign: profile.theme.linkAlign
+          },
+
+        },
+        components: {
+          MuiButton: {
+            styleOverrides: {
+              root: {
+                width: profile.theme.linkWidth,
+                linkSpacing: profile.theme.linkSpacing,
+              }
+            }
+          }
+        },
+        shape: {
+          borderRadius: 16,
+        },
+        status: {
+          info: '#<your_info_color_here>',
+          danger: '#<your_danger_color_here>',
+        },
+        brands: {
+          facebook: '#<your_facebook_color_here>',
+          instagram: '#<your_instagram_color_here>',
+        },
+      }))
+    } else if (theme.layout.type === "babyblue") {
+      setUserTheme(createTheme({
+        // palette: {
+        //   primary: {
+        //     main: '#2678dd',
+        //   },
+        //   secondary: {
+        //     main: '#BF616A',
+        //   },
+        //   neutral: {
+        //     main: '#64748B',
+        //     contrastText: '#fff',
+        //   },
+        // },
+        typography: {
+          fontFamily: 'Do Hyeon',
+          [babyTheme.titleStyle]: {
+            color: babyTheme.titleColor,
+            textAlign: babyTheme.linkAlign
+          },
+          [babyTheme.descriptionStyle]: {
+            color: babyTheme.descriptionColor,
+            textAlign: babyTheme.linkAlign
+          }
+        },
+        components: {
+          MuiButton: {
+            styleOverrides: {
+              root: {
+                width: babyTheme.linkWidth,
+                linkSpacing: babyTheme.linkSpacing,
+              }
+            }
+          }
+        },
+        shape: {
+          borderRadius: 16,
+        },
+        status: {
+          info: '#<your_info_color_here>',
+          danger: '#<your_danger_color_here>',
+        },
+        brands: {
+          facebook: '#<your_facebook_color_here>',
+          instagram: '#<your_instagram_color_here>',
+          // Add more brands if needed
+        },
+      }))
+    }
+  }, [theme])
+
 
   // const locale = useSelector((state: RootStateOrAny) => state.locale.currentLang)
 
@@ -639,17 +802,22 @@ const Theme = (props) => {
     ...themeConfig, // TODO: don't use this any more
     ...theme,
     ...muitheme,
+    ...userTheme
     // ...{ locale },
   }
 
+  const Theme = {
+    ...muitheme,
+    ...userTheme
+  }
 
 
   return (
     <ConfigProvider value={currentTheme}>
       {" "}
-      <ThemeProvider theme={muitheme}>{props.children}</ThemeProvider>
+      <ThemeProvider theme={Theme}>{props.children}</ThemeProvider>
     </ConfigProvider>
   )
 }
 
-export default Theme
+export default Themes

@@ -137,7 +137,7 @@ const ThemeConfigurator = (props) => {
   }
 
   const handleDescriptionColorChange = (color) => {
-    document.querySelectorAll(".profile-text").forEach((userItem) => {
+    document.querySelectorAll(".description").forEach((userItem) => {
       // @ts-ignore
       userItem.style.color = color // works fine
     })
