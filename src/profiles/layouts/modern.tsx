@@ -80,13 +80,14 @@ const Modern = ({ user, profile, sites, themes }) => {
   //   }
   // }, [type])
 
-  // const userTheme = createTheme({
-  //   palette: {
-  //     primary: {
-  //       main: "#ff0000",
-  //     },
-  //   },
-  // });
+  // TODO: here is where we get the user's theme
+  const userTheme = createTheme(siteTheme, {
+    palette: {
+      primary: {
+        main: "#ff0000",
+      },
+    },
+  });
 
 
 
@@ -250,12 +251,27 @@ const Modern = ({ user, profile, sites, themes }) => {
 
 
 
-              {/*<FacebookProvider appId="241448415049637">*/}
-              {/*  /!*<EmbeddedPost href="https://www.facebook.com/amir.meshkin" width="500" />*!/*/}
-              {/*  /!*width: 100px;*!/*/}
-              {/*  /!*height: 100px;*!/*/}
-              {/*  /!*background-color: #ff0000;*!/*/}
-              {/*  <Like href="http://www.facebook.com" colorScheme="dark" showFaces share />*/}
+              <Button
+                variant="userhoney"
+              >
+                <span>userhoney</span>
+              </Button>
+
+
+              {/*// TODO: DECIDE. does show share buttons, other items come from theme or profile???*/}
+              <Stack spacing={4}>
+                {userprofile.theme.showShare &&
+                  <Button
+                    variant="contained"
+                    onClick={() => {
+                      shareFb()
+                    }}
+                    startIcon={<FontAwesomeIcon icon={faFacebook} style={{ width: 15, height: 15 }} />}
+                  >
+                    <span>share</span>
+                  </Button>
+                }
+              </Stack>
 
               {/*  <ShareButton href="http://www.facebook.com" />*/}
               {/*</FacebookProvider>*/}
