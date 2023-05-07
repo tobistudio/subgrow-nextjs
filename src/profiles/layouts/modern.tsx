@@ -87,7 +87,7 @@ const Modern = ({ user, profile, sites, themes }) => {
   // });
 
 
-  const blah = {
+  const userTheme = {
     palette: {
       primary: {
         main: "#2edc00",
@@ -95,8 +95,10 @@ const Modern = ({ user, profile, sites, themes }) => {
     },
   }
 
+  // TODO: once we have user's custom theme, or selected template, we put ONLY userTheme into state
 
-  const userTheme = createTheme(deepmerge(siteTheme, blah));
+  const combinedTheme = deepmerge(siteTheme, userTheme);
+  // const combinedTheme = createTheme(deepmerge(siteTheme, userTheme));
 
 
 
@@ -151,7 +153,7 @@ const Modern = ({ user, profile, sites, themes }) => {
   //
 
   return (
-    <ThemeProvider theme={userTheme}>
+    <ThemeProvider theme={combinedTheme}>
       <div id="profile-main" style={{ minHeight: "100vh", backgroundColor: usedTheme === "mytheme" ? (theme.bgColor ? theme.bgColor : "#202A37") : babyTheme.bgColor }}>
         <header className="header-wrapper">
           <Grid container spacing={0} py={1}>
