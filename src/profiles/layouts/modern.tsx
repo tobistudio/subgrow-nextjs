@@ -80,7 +80,7 @@ const Modern = ({ user, profile, sites, themes }) => {
   //   }
   // }, [type])
 
-  const userTheme = createTheme({
+  const userTheme = createTheme(siteTheme, {
     palette: {
       primary: {
         main: "#ff0000",
@@ -271,6 +271,13 @@ const Modern = ({ user, profile, sites, themes }) => {
               justifyContent="center"
             >
               App Area
+
+              <Button
+                variant="userhoney"
+              >
+                <span>userhoney</span>
+              </Button>
+
 
               {/*// TODO: DECIDE. does show share buttons, other items come from theme or profile???*/}
               <Stack spacing={4}>

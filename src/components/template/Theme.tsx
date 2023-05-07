@@ -349,7 +349,7 @@ const Themes = (props) => {
         fontSize: 10,
       },
       h1: {
-        fontSize: 50,
+        fontSize: 28,
         fontWeight: 700,
         paddingBottom: 15,
         marginBottom: 10,
