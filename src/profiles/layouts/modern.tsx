@@ -93,21 +93,28 @@ const Modern = ({ user, profile, sites }) => {
       },
  */
   // TODO: dawn not sure what happened after merge
-  // const userTheme = createTheme({
-  //   palette: {
-  //     //mode: type,
-  //     primary: {
-  //       main: '#2678dd',
-  //     },
-  //     secondary: {
-  //       main: '#BF616A',
-  //     },
-  //     neutral: {
-  //       main: '#64748B',
-  //       contrastText: '#fff',
-  //     },
-  //   },
-  // });
+  // TODO: dawn this needs to merge with theme
+  const userTheme = createTheme({
+    palette: {
+      //mode: type,
+      primary: {
+        main: '#2678dd',
+      },
+      secondary: {
+        main: '#BF616A',
+      },
+      neutral: {
+        main: '#64748B',
+        contrastText: '#fff',
+      },
+    },
+    typography: {
+      fontFamily: 'Do Hyeon',
+    },
+    shape: {
+      borderRadius: 16,
+    },
+  });
 
 
 
@@ -149,10 +156,10 @@ const Modern = ({ user, profile, sites }) => {
     )
   }
 
-  //  theme={userTheme}
+  //
 
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={userTheme}>
       <div id="profile-main" style={{ minHeight: "100vh", backgroundColor: theme.bgColor ? theme.bgColor : "#202A37" }}>
         <header className="header-wrapper">
           <Grid container spacing={0} py={1}>
@@ -186,7 +193,7 @@ const Modern = ({ user, profile, sites }) => {
 
 
               <Typography
-                variant="h1"
+                variant="h2"
                 color="primary.main"
               >
                 testing typography
@@ -198,7 +205,7 @@ const Modern = ({ user, profile, sites }) => {
                 variant="h1"
                 color="primary.main"
               >
-                dynamic
+                why bigger on this page
               </Typography>
 
               <Box

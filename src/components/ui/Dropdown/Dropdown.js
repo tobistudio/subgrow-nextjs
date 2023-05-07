@@ -153,7 +153,7 @@ const Dropdown = React.forwardRef((props, ref) => {
 
   return (
     <DropdownContext.Provider value={{ activeKey }}>
-      <div {...dropdownProps} ref={ref} style={style} className="dropdown pl-3">
+      <div {...dropdownProps} ref={ref} style={style} className="dropdown">
         {toggleElement}
         <DropdownMenuContext.Provider value={menuControl}>
           {menuElement}
