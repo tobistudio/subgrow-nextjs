@@ -74,6 +74,8 @@ declare module "@mui/material/Button" {
     userbabyblue: true
     usernavyblue: true
     userseethrough: true
+    userhoney: true
+    useroranges: true
   }
 }
 
@@ -437,7 +439,32 @@ const Theme = (props) => {
               },
             },
           },
-
+          {
+            props: { variant: "userhoney" }, // user variants
+            style: {
+              minWidth: 200,
+              maxWidth: 500,
+              backgroundColor: "#191e3b",
+              color: "#A0DCFF",
+              "&:hover": {
+                backgroundColor: "rgba(9,15,56,0.5)",
+                color: "#A0DCFF",
+              },
+            },
+          },
+          {
+            props: { variant: "useroranges" }, // user variants
+            style: {
+              minWidth: 200,
+              maxWidth: 500,
+              backgroundColor: "#ff8f00",
+              color: "#ffffff",
+              "&:hover": {
+                backgroundColor: "rgba(9,15,56,0.5)",
+                color: "#A0DCFF",
+              },
+            },
+          },
         ],
       },
       MuiTextField: {
