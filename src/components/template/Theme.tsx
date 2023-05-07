@@ -576,8 +576,11 @@ const Themes = (props) => {
           {
             props: { variant: "userbabyblue" }, // babyblue for the site
             style: {
-              backgroundColor: "#A0DCFF",
-              color: "#ffffff",
+              backgroundColor: "#ffffff",
+              color: "#A0DCFF",
+              border: 1,
+              borderColor: "#ff0000",
+              borderWidth: 5,
               "&:hover": {
                 backgroundColor: "rgba(160,220,255,0.5)",
                 color: "#ffffff",
