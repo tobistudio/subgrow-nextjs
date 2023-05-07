@@ -6,42 +6,32 @@ import React, { Suspense, useLayoutEffect, useState } from "react"
 //import { ProfilesList } from "../../pages/profiles"
 import { FacebookProvider } from "react-facebook"
 import { createTheme } from '@mui/material';
-import { Provider, RootStateOrAny, useSelector } from "react-redux"
+import { RootStateOrAny, useSelector } from "react-redux"
 import { faFacebook } from "@fortawesome/free-brands-svg-icons"
 import {
   Box,
   Typography,
-  Container,
+
   Button,
-  Card,
-  CardActions,
-  CardContent,
   Stack,
-  CardHeader,
 } from "@mui/material"
 
 import { ThemeProvider, styled } from '@mui/material/styles';
 
 import Grid from "@mui/material/Unstable_Grid2"
-import { PromiseReturnType } from "blitz"
-import login from "../../auth/mutations/login"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faUser } from "@fortawesome/pro-duotone-svg-icons";
-import { misc } from "../../configs/colors/default";
 import ProfileLinkButton from "../components/ProfileLinkButton";
 import UserInfo from "../../components/user/UserInfo";
-import classNames from "classnames";
-import { faPalette } from "@fortawesome/pro-light-svg-icons";
 import SidePanelHeaderToggle from "../../components/template/SidePanel/SidePanelHeaderToggle";
-import { useMutation } from "@blitzjs/rpc";
-import updateLinkOrder from "../../sites/mutations/updateLinkOrder";
+// import { useMutation } from "@blitzjs/rpc";
+// import updateLinkOrder from "../../sites/mutations/updateLinkOrder";
 import { useTheme } from "@mui/material/styles";
 import { useSession } from "@blitzjs/auth";
 import { useRouter } from "next/router";
-import ProfileButton from "../../components/user/ProfileButton";
-import { green, purple } from '@mui/material/colors';
+// import ProfileButton from "../../components/user/ProfileButton";
+// import { green, purple } from '@mui/material/colors';
 import babyTheme from '../../../data/userthemes/babyblue.json'
-import { modernTheme } from '../../../data/userthemes/modern'
+// import { userTheme } from '../../../data/userthemes/modern'
 import { Theme } from "@emotion/react"
 
 // TODO: perhaps use CreateTheme from mui to create this theme instead of userthemes/modern.tsx
