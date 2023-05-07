@@ -50,6 +50,8 @@ const Modern = ({ user, profile, sites }) => {
   const theme = profile.theme // This is the user's theme
 
 
+
+  console.log("theme",theme);
   // currentUser not linked to blitz session
   // const currentUser = useCurrentUser()
   const router = useRouter()
@@ -124,8 +126,8 @@ const Modern = ({ user, profile, sites }) => {
 
 
   // TODO: needs to also be linked to state, for updates
-
-  const linkMargin = userprofile.theme.linkSpacing ? userprofile.theme.linkSpacing : 20
+  const linkMargin = 20
+  // const linkMargin = userprofile.theme.linkSpacing ? userprofile.theme.linkSpacing : 20
 
   const shareFb = () => {
     // provider does init
