@@ -59,7 +59,6 @@ const NewTikTokPage = () => {
 
   // TODO: need to figure out if this user has already added. new/edit takes place on this page
 
-
   const handleCheckChange = (e: any) => {
     console.log(show_list);
 
