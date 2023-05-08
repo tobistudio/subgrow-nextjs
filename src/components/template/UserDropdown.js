@@ -1,16 +1,11 @@
 import React from "react"
 import { Dropdown } from "components/ui"
 import withHeaderItem from "utils/hoc/withHeaderItem"
-// import useAuth from 'utils/hooks/useAuth'
 import Link from "next/link"
-// import classNames from "classnames"
-import { HiOutlineUser, HiOutlineCog, HiOutlineLogout } from "react-icons/hi"
-// import { FiActivity } from "react-icons/fi"
-// import { useCurrentUser } from "../../users/hooks/useCurrentUser"
+
 import { useMutation } from "@blitzjs/rpc"
 import logout from "../../auth/mutations/logout"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-// import { faFacebook } from "@fortawesome/pro-duotone-svg-icons";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons"
 import { misc } from "../../configs/colors/default"
 
@@ -18,8 +13,12 @@ import {
   Badge
 } from "@mui/material"
 import {useSession} from "@blitzjs/auth";
-// import Theme from "./Theme";
-
+import {
+  faUser,
+  faGear,
+  faSignOut,
+  faLink
+} from "@fortawesome/pro-duotone-svg-icons";
 
 export const UserDropdown = ({ className, user }) => {
   const [logoutMutation] = useMutation(logout)
@@ -28,12 +27,27 @@ export const UserDropdown = ({ className, user }) => {
     {
       label: "My Profile",
       path: `/${session.username}`,
-      icon: <HiOutlineUser />,
+      icon:<FontAwesomeIcon
+        icon={faUser}
+        size="sm"
+      />,
+    },
+    {
+      label: "Links",
+      path: `/dashboard`,
+      icon:<FontAwesomeIcon
+        icon={faLink}
+        size="sm"
+      />,
     },
     {
       label: "Settings",
       path: "/account/settings",
-      icon: <HiOutlineCog />,
+      icon:<FontAwesomeIcon
+        icon={faGear}
+        size="sm"
+        //color={misc.fa_primary} // TODO: find out if it's a good idea to use useTheme here for colors
+      />,
     },
     // {
     //   label: "Activity Log",
@@ -94,7 +108,7 @@ export const UserDropdown = ({ className, user }) => {
         {dropdownItemList.map((item) => (
           <Dropdown.Item eventKey={item.label} key={item.label} className="mb-1">
             <Link className="flex gap-2 items-center" href={item.path}>
-              <span className="text-xl pt-1 opacity-50">{item.icon}</span>
+              {item.icon}
               <span>{item.label}</span>
             </Link>
           </Dropdown.Item>
@@ -110,9 +124,12 @@ export const UserDropdown = ({ className, user }) => {
           eventKey="Sign Out"
           className="gap-2"
         >
-          <span className="text-xl opacity-50 pt-1">
-            <HiOutlineLogout />
-          </span>
+
+      <FontAwesomeIcon
+        icon={faSignOut}
+        size="sm"
+      />
+
           <span>Sign Out</span>
         </Dropdown.Item>
       </Dropdown>
