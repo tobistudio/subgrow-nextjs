@@ -273,7 +273,7 @@ const Modern = ({ profile, sites }) => {
 
 
               <Avatar
-                alt={userprofile.username}
+                alt={profile.username}
                 src="https://placehold.co/100x100/EEE/31343C"
                 sx={{
                   width: 100,
@@ -296,7 +296,10 @@ const Modern = ({ profile, sites }) => {
               // style={{ color: profileTheme.titleColor ? profileTheme.titleColor : "rgb(189,196,215)" }}
               >
                 {/*{userprofile.title ? userprofile.title : userprofile.username}*/}
-                {userprofile.title ? userprofile.title : userprofile.username}
+                {profile.title ? profile.title : profile.username}
+
+
+
               </Typography>
 
               {userprofile.description ? (
