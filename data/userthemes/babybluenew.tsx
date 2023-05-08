@@ -27,8 +27,8 @@ const options = {
   "linkWidth": "200",
   "fontFamily": "",
   "layoutName": "Baby Blue",
-  "titleColor": "#ffffff",
-  "titleStyle": "h6",
+  // "titleColor": "#ffffff",
+  "titleStyle": "babybluetext", // color should not come from here
   "bgCardColor": "",
   "linkSpacing": 20,
   "descriptionColor": "#ffffff",

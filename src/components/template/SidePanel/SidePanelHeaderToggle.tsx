@@ -41,7 +41,7 @@ const SidePanelHeaderToggle = (props) => {
     output = <Button
       onClick={openPanel}
       variant="outlined"
-      aria-label="profileadsfasdf"
+      aria-label="profile"
       startIcon={
         <FontAwesomeIcon
           icon={faPencil}

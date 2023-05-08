@@ -8,9 +8,6 @@ import getProfile from "profiles/queries/getProfile"
 import { useSession } from "@blitzjs/auth"
 import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles"
 import { blue, green, purple, red, brands, card, card_el, chip, chip_dark } from "configs/colors/default"
-import { deepmerge } from '@mui/utils';
-import { ModernTheme } from '../../../data/userthemes/modern'
-import babyTheme from '../../../data/userthemes/babyblue.json'
 
 
 // <ThemeProvider theme={theme}>
@@ -86,6 +83,8 @@ declare module "@mui/material/Button" {
     userwu: true
     usermustard: true
     usertronline: true
+    usermodern1: true
+    userpeppermint: true
   }
 }
 
@@ -111,6 +110,7 @@ declare module "@mui/material/styles" {
     radiolabel: React.CSSProperties
     h1center: React.CSSProperties
     modern1: React.CSSProperties
+    babybluetext: React.CSSProperties
   }
 
   // allow configuration using `createTheme`
@@ -119,6 +119,7 @@ declare module "@mui/material/styles" {
     radiolabel?: React.CSSProperties
     h1center?: React.CSSProperties
     modern1?: React.CSSProperties
+    babybluetext?: React.CSSProperties
   }
 
   interface CardVariantsOptions {
@@ -133,6 +134,7 @@ declare module "@mui/material/Typography" {
     radiolabel: true
     h1center: true
     modern1: true
+    babybluetext: true
   }
 }
 // TypeError: Cannot read properties of undefined (reading 'muiName')
@@ -408,9 +410,12 @@ const Themes = (props) => {
       },
       modern1: {
         fontSize: "1rem",
-        color: "#111111",
+        color: "#ffffff",
       },
-
+      babybluetext: {
+        fontSize: "1rem",
+        color: "#ffffff",
+      },
     },
     components: {
       MuiChip: {
@@ -428,6 +433,8 @@ const Themes = (props) => {
           variantMapping: {
             // Map the new variant to render a <h1> by default
             poster: "h3",
+            babybluetext: "h1",
+            modern1: "h1",
           },
         },
       },
@@ -694,6 +701,38 @@ const Themes = (props) => {
               "&:hover": {
                 backgroundColor: "transparent",
                 color: "#000fbb",
+              },
+            },
+          },
+          {
+            props: { variant: "usermodern1" },
+            style: {
+              // backgroundColor: "#2374F2",
+              backgroundColor: "#001644",
+              // color: brands.facebook,
+              color: "#ffffff",
+              border: `2px solid`,
+              borderColor: "#3c52b2",
+              borderWidth: 2,
+              // border: `2px dashed grey${blue[500]}`,
+              "&:hover": {
+                backgroundColor: "#3c52b2",
+                color: "#dee3f8",
+              },
+            },
+          },
+          {
+            props: { variant: "userpeppermint" },
+            style: {
+              backgroundColor: "#e9efef",
+              color: "#000000",
+              border: `2px dashed`,
+              borderColor: "#e10000",
+              borderWidth: 4,
+              "&:hover": {
+                // backgroundColor: "#3c52b2",
+                backgroundColor: "#e9efef",
+                color: "#dee3f8",
               },
             },
           },

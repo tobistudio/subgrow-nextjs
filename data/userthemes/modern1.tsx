@@ -1,23 +1,23 @@
 
 // Default theme for a user profile
-export const ModernTheme = {
+export const modern1 = {
   "options": {
     "layout": "modern",
-    "bgColor": "#A0DCFF",
+    "bgColor": "#031a2d",
     "linkAlign": "center",
     "linkStyle": "modern1",
     "linkWidth": "200",
     "fontFamily": "",
     "layoutName": "Baby Blue",
     "titleColor": "#ffffff",
-    "titleStyle": "h6",
+    "titleStyle": "modern1",
     "bgCardColor": "",
     "linkSpacing": 20,
     "descriptionColor": "#ffffff",
     "descriptionStyle": "body1",
     "links": {
       "type": "button",
-      "variant": "modern1",
+      "variant": "usermodern1",
       "style": {
         "color": "#ffffff",
         "borderColor": "#ffffff",
@@ -29,8 +29,9 @@ export const ModernTheme = {
   "muiTheme": {
     "palette": {
       "background": {
-        "light": "#9a2424",
-        "default": "#d97474"
+        "light": "#031a2d",
+        "default": "#031a2d",
+        "dark": "#031a2d"
       },
       "primary": {
         "main": "#ff0000"

@@ -205,13 +205,6 @@ Debit
 4000056655665556
 
 
-```json
-  {
-    "schema": "db/schema.prisma"
-  }
-
-```
-
 #### ACCOUNT
 
 1. settings
@@ -231,42 +224,23 @@ We MAY need a cron to go through Customer table and check `sub_end` field
 If past this date, then change `level` in customer, user, and session tables
 
 
+## ADMIN SYSTEM
 
+A separate admin system will have capability to do the following.
+
+
+1. upgrade a user, level3 sessions, user, and in stripe
+2. create coupon?
+3. Add free days to a user
+4. Link to stripe page for customer, subscription, etc
 
 
 1. username system
 
-After a user signs up
+
 
 ## TODO LIST
 
-#### Subscription Page
-// TODO: subscription
-
-
-// TODO: add stripe subscriptions
-// https://stripe.com/docs/billing/subscriptions/coupons
-
-// https://www.mohammadfaisal.dev/blog/how-to-create-a-stripe-subscription-with-reactjs-and-nodejs
-// https://stripe.com/docs/billing/subscriptions/build-subscriptions?ui=checkout
-
-// PHASE I
-// 1. Subscription Page
-// https://github.com/stripe-samples/checkout-single-subscription
-
-// PHASE II
-// 1. // TODO: coupon code
-// 2. easy to change subscription, with a modal showing pricing tables component
-//
-
-
-// Followed at first
-// https://www.mohammadfaisal.dev/blog/how-to-create-a-stripe-subscription-with-reactjs-and-nodejs
-
-
-// TODO: after upgrade, need to also change the role in
-// Session
-LEVEL3
 
 #### pricing tables
 Linked to sub page

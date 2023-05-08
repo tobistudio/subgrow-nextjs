@@ -9,7 +9,7 @@ import getProfile from "profiles/queries/getProfile"
 import getUserForProfile from "../users/queries/getUserForProfile"
 // import getSiteForProfile from "../sites/queries/getSiteForProfile"
 import getSiteForProfileByStatus from "../sites/queries/getSiteForProfileByStatus"
-import { ModernTheme } from "../../data/userthemes/modern"
+import { modern1 } from "../../data/userthemes/modern1"
 // import userTheme from '../../data/userthemes/babyblue.json'
 // import Grid from "@mui/material/Unstable_Grid2"
 // import UserInfo from "../components/user/UserInfo"
@@ -51,7 +51,7 @@ export const ProfileIndex = () => {
   // }, [])
 
   const tester_profile = {
-    theme: ModernTheme,
+    theme: modern1,
     title: "tester",
     description: "tester",
     template: "custom"
