@@ -1,7 +1,9 @@
 import { deepmerge } from '@mui/utils';
 import Link from "next/link"
+import dynamic from 'next/dynamic';
+
 import { Routes } from "@blitzjs/next"
-import React, { Suspense, useLayoutEffect, useState } from "react"
+import React, {lazy, Suspense, useLayoutEffect, useState} from "react"
 //import { ProfilesList } from "../../pages/profiles"
 import { FacebookProvider } from "react-facebook"
 import { createTheme } from '@mui/material';
@@ -29,6 +31,15 @@ import { useRouter } from "next/router";
 // import { green, purple } from '@mui/material/colors';
 import babyTheme from '../../../data/userthemes/babyblue.json'
 import { Theme } from "@emotion/react"
+// import {profileTheme} from "../../../data/userthemes/babybluenew";
+
+// TODO: lazy load theme
+// const babyBlue = lazy(() => import("../../../data/userthemes/babybluenew"))
+
+
+import {babyBlue} from "../../../data/userthemes/babybluenew";
+
+//const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
 // import { createTheme } from '@mui/material/styles';
 
@@ -37,16 +48,51 @@ import { Theme } from "@emotion/react"
 
 // export const LoginForm = (props: LoginFormProps) => {
 
-const Modern = ({ user, profile, sites, themes }) => {
+const Modern = ({ user, profile, sites }) => {
 
   const session = useSession()
-  const theme = profile.theme // This is the user's theme
+
+  // TODO: profile should come from store/ state
+  // If there is a custom template, use it
+  console.log("profile.template",profile);
+  console.log("profile.template",profile.template);
+  let profileTheme
+    switch(profile.template) {
+      case 'custom':
+        profileTheme = profile.theme // This is the user's theme
+        break;
+      case 'babybluenew':
+        // user theme is a will comes from
+
+        // profileTheme = lazy(() => import("../../../data/userthemes/babybluenew"))
+
+
+        profileTheme = babyBlue
+
+
+
+
+        //profileTheme = lazy(() => import("../../../data/userthemes/babybluenew"))
+        // /Users/amirmeshkin/_code/_business/subgrow.com/data/userthemes/babybluenew.tsx
+
+        // profileTheme = dynamic(() => import('../../../data/userthemes/babybluenew'), {
+        //   loading: () => <p>Loading...</p>,
+        // });
+
+
+
+        break;
+      default:
+      // code block
+    }
+
+
 
   // currentUser not linked to blitz session
   // const currentUser = useCurrentUser()
   const router = useRouter()
   const siteTheme = useTheme();
-  const type = useSelector((state: RootStateOrAny) => state.theme);
+  //const type = useSelector((state: RootStateOrAny) => state.theme);
 
   const [usedTheme, setUseTheme] = React.useState("");
 
@@ -98,7 +144,8 @@ const Modern = ({ user, profile, sites, themes }) => {
 
   // TODO: once we have user's custom theme, or selected template, we put ONLY userTheme into state
 
-  const combinedTheme = deepmerge(siteTheme, userTheme);
+  // const combinedTheme = deepmerge(siteTheme, userTheme);
+  const combinedTheme = deepmerge(siteTheme, profileTheme);
   // const combinedTheme = createTheme(deepmerge(siteTheme, userTheme));
 
 
@@ -129,7 +176,7 @@ const Modern = ({ user, profile, sites, themes }) => {
 
   // TODO: needs to also be linked to state, for updates
   const linkMargin = 20
-  // const linkMargin = userprofile.theme.linkSpacing ? userprofile.theme.linkSpacing : 20
+  // const linkMargin = userprofile.profileTheme.linkSpacing ? userprofile.profileTheme.linkSpacing : 20
 
   const shareFb = () => {
     // provider does init
@@ -151,11 +198,15 @@ const Modern = ({ user, profile, sites, themes }) => {
     )
   }
 
+
+  console.log("profileTheme",profileTheme)
+  console.log("profileTheme.options",profileTheme.options)
+
   //
 
   return (
     <ThemeProvider theme={combinedTheme}>
-      <div id="profile-main" style={{ minHeight: "100vh", backgroundColor: usedTheme === "mytheme" ? (theme.bgColor ? theme.bgColor : "#202A37") : babyTheme.bgColor }}>
+      <div id="profile-main" style={{ minHeight: "100vh", backgroundColor: usedTheme === "mytheme" ? (profileTheme.bgColor ? profileTheme.bgColor : "#202A37") : "#000000"}}>
         <header className="header-wrapper">
           <Grid container spacing={0} py={1}>
             <Grid spacing={{ xs: 12 }} display="flex" justifyContent="right" alignItems="center">
@@ -208,19 +259,20 @@ const Modern = ({ user, profile, sites, themes }) => {
                 sx={{ minWidth: 380, padding: 2, borderRadius: 2 }} // , maxWidth: 420
               >
 
+                {/*// TODO: show handle, make it an option  */}
                 <Typography
-                  variant={theme.titleStyle}
-                  alignItems={theme.linkAlign ? theme.linkAlign : "center"}
+                  variant={profileTheme.options.titleStyle}
+                  alignItems={profileTheme.options.linkAlign ? profileTheme.options.linkAlign : "center"}
                   className="profile-text"
                   id="title"
-                  // style={{ color: theme.titleColor ? theme.titleColor : "rgb(189,196,215)" }}
+                  // style={{ color: profileTheme.titleColor ? profileTheme.titleColor : "rgb(189,196,215)" }}
                 >
                   {userprofile.title ? userprofile.title : userprofile.username}
                 </Typography>
 
                 {userprofile.description ? (
-                  <Typography variant={theme.descriptionStyle} id="description" className="description"
-                    // style={{ color: theme.descriptionColor ? theme.descriptionColor : "rgb(189,196,215)" }}
+                  <Typography variant={profileTheme.options.descriptionStyle} id="description" className="description"
+                    // style={{ color: profileTheme.descriptionColor ? profileTheme.descriptionColor : "rgb(189,196,215)" }}
                   >
                     {userprofile.description}
                   </Typography>
@@ -230,24 +282,24 @@ const Modern = ({ user, profile, sites, themes }) => {
 
                 <Box
                   display="flex"
-                  alignItems={themes.linkAlign ? themes.linkAlign : "center"}
-                  justifyContent={themes.linkAlign ? themes.linkAlign : "center"}
+                  alignItems={profileTheme.options.linkAlign ? profileTheme.options.linkAlign : "center"}
+                  justifyContent={profileTheme.options.linkAlign ? profileTheme.options.linkAlign : "center"}
                 >
                   <ul className="list-modern">
                     {sites.map((site) => (
                       <li key={site.id} style={{ marginTop: linkMargin }}>
-                        {themes.links.style === "link" ? (
-                          <Link href={site.url} target="_blank" className={themes.links.className}>
+                        {profileTheme.options.linkType === "link" ? (
+                          <Link href={site.url} target="_blank" className={profileTheme.options.links.className}>
                             {site.title}
                           </Link>
                         ) : (
                           <Button
                             href={site.url}
-                            style={{ width: themes.linkWidth ? themes.linkWidth : 200 }}
+                            style={{ width: profileTheme.options.linkWidth ? profileTheme.options.linkWidth : 200 }}
                             target="_blank"
-                            // variant={theme.buttonStyle ? theme.buttonStyle : "outlined"}
-                            variant={themes.links.variant ? themes.links.variant : "outlined"}
-                            className={themes.links.className}
+                            // variant={profileTheme.buttonStyle ? profileTheme.buttonStyle : "outlined"}
+                            variant={profileTheme.options.links.variant ? profileTheme.options.links.variant : "outlined"}
+                            className={profileTheme.options.links.className}
                             // startIcon={site.icon ? <FontAwesomeIcon icon={site.icon} size="lg" style={{ width: 17, height: 17 }} /> : ''}
                             startIcon={<ProfileLinkButton size={"xl"} icon={site.icon} />}
                           >
@@ -307,20 +359,20 @@ const Modern = ({ user, profile, sites, themes }) => {
 
               </Stack>
 
-              {/*// TODO: DECIDE. does show share buttons, other items come from theme or profile???*/}
-              <Stack spacing={4}>
-                {userprofile.theme.showShare &&
-                  <Button
-                    variant="contained"
-                    onClick={() => {
-                      shareFb()
-                    }}
-                    startIcon={<FontAwesomeIcon icon={faFacebook} style={{ width: 15, height: 15 }} />}
-                  >
-                    <span>share</span>
-                  </Button>
-                }
-              </Stack>
+              {/*// TODO: showing share buttons, etc should probably come from Apps table    */}
+              {/*<Stack spacing={4}>*/}
+              {/*  {userprofile.profileTheme.showShare &&*/}
+              {/*    <Button*/}
+              {/*      variant="contained"*/}
+              {/*      onClick={() => {*/}
+              {/*        shareFb()*/}
+              {/*      }}*/}
+              {/*      startIcon={<FontAwesomeIcon icon={faFacebook} style={{ width: 15, height: 15 }} />}*/}
+              {/*    >*/}
+              {/*      <span>share</span>*/}
+              {/*    </Button>*/}
+              {/*  }*/}
+              {/*</Stack>*/}
 
             </Grid>
 

@@ -261,6 +261,7 @@ exports.Prisma.ProfileScalarFieldEnum = {
   title: 'title',
   username: 'username',
   description: 'description',
+  template: 'template',
   theme: 'theme',
   widgets: 'widgets',
   current: 'current',

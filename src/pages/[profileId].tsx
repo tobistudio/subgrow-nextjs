@@ -8,7 +8,7 @@ import getProfile from "profiles/queries/getProfile"
 import getUserForProfile from "../users/queries/getUserForProfile"
 // import getSiteForProfile from "../sites/queries/getSiteForProfile"
 import getSiteForProfileByStatus from "../sites/queries/getSiteForProfileByStatus"
-import userTheme from '../../data/userthemes/babyblue.json'
+// import userTheme from '../../data/userthemes/babyblue.json'
 // import Grid from "@mui/material/Unstable_Grid2"
 // import UserInfo from "../components/user/UserInfo"
 // import SidePanel from 'components/template/SidePanel'
@@ -70,22 +70,26 @@ undefined
   const [sites] = useQuery(getSiteForProfileByStatus, { userId: user.id, status: "active" })
 
   // TODO: the layout should be set on dashboard page.
-  let userLayout
-  // shouldn't be empty, for errors
-  if (profile?.theme?.layout) {
-    userLayout = profile.theme.layout
-  } else {
-    userLayout = "modern"
-  }
+  // remove "layout", everything should use modern
+  const layoutType = <Modern user={user} profile={profile} sites={sites} />
 
-  let layoutType
-  switch (userLayout) {
-    case "modern":
-      layoutType = <Modern user={user} profile={profile} sites={sites} themes={userTheme} />
-      break
-    default:
-      layoutType = <Modern user={user} profile={profile} sites={sites} themes={userTheme} />
-  }
+
+  // let userLayout
+  // // shouldn't be empty, for errors
+  // if (profile?.theme?.layout) {
+  //   userLayout = profile.theme.layout
+  // } else {
+  //   userLayout = "modern"
+  // }
+  //
+  // let layoutType
+  // switch (userLayout) {
+  //   case "modern":
+  //     layoutType = <Modern user={user} profile={profile} sites={sites} />
+  //     break
+  //   default:
+  //     layoutType = <Modern user={user} profile={profile} sites={sites} />
+  // }
 
   // @ts-ignore
   return (

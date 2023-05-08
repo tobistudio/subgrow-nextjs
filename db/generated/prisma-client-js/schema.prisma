@@ -293,6 +293,7 @@ model Profile {
   title       String
   username    String   @unique
   description String?
+  template    String?  @default("modern1")
   theme       Json?
   widgets     Json?
   current     Yesno    @default(no)

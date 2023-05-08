@@ -18,8 +18,8 @@
       }
     },
  */
-export const userTheme = {
-  "card": false,
+
+const options = {
   "links": {
     "type": "button",
     "variant": "userbabyblue",
@@ -28,13 +28,6 @@ export const userTheme = {
       "borderColor": "#ffffff",
       "borderWidth": 2,
       "borderRadius": 2,
-    },
-  },
-  "text": { // title and description
-    "variant": "userbabyblue",
-    "palette": {
-      "color": "#ffffff",
-      "backgroundColor": "#A0DCFF"
     },
   },
   "layout": "babyblue",
@@ -52,3 +45,18 @@ export const userTheme = {
   "descriptionColor": "#ffffff",
   "descriptionStyle": "body1"
 }
+
+const muiTheme = {
+  palette: {
+    primary: {
+      main: "#2edc00",
+    },
+  },
+}
+
+
+export const babyBlue = {
+  options: options,
+  muiTheme: muiTheme,
+}
+
