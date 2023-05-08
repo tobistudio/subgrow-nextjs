@@ -576,15 +576,17 @@ const Themes = (props) => {
             style: {
               backgroundColor: "#ffffff",
               color: "#A0DCFF",
-              border: 1,
-              borderColor: "#ff0000",
-              borderWidth: 5,
+              border: "solid",
+              borderColor: "#A0DCFF",
+              borderWidth: 2,
+              borderRadius: 7,
               "&:hover": {
                 backgroundColor: "rgba(160,220,255,0.5)",
                 color: "#ffffff",
-                border: 1,
-                borderColor: "#ff0000",
-                borderWidth: 5,
+                border: "solid",
+                borderColor: "#ffffff",
+                borderWidth: 2,
+                borderRadius: 7,
               },
             },
           },
@@ -831,12 +833,13 @@ const Themes = (props) => {
     // ...{ locale },
   }
 
-  const Theme = deepmerge(muitheme, selectTheme);
+  // merge should happen on a user's profile.  Not in theme
+  //const Theme = deepmerge(muitheme, selectTheme);
 
   return (
     <ConfigProvider value={currentTheme}>
       {" "}
-      <ThemeProvider theme={Theme}>{props.children}</ThemeProvider>
+      <ThemeProvider theme={muitheme}>{props.children}</ThemeProvider>
     </ConfigProvider>
   )
 }

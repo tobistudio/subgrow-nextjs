@@ -28,3 +28,39 @@ export default function ProfileLinkButton({ icon, size  }: any) {
   )
 
 }
+
+/*
+{sites.map((site) => (
+                    <div key={site.id} >
+                      {profileTheme.options.links.type === "link" ? (
+                        <Link href={site.url} target="_blank" className={profileTheme.options.links.className}>
+                          {site.title}
+                        </Link>
+                      ) : (
+                        <Button
+                          href={site.url}
+                          sx={{
+                            // maxWidth: 600,
+                            // width: "100%",
+                            // xs: {
+                            //   maxWidth: 600,
+                            //   width: 400
+                            // },
+                            // xl: {
+                            //   // maxWidth: 600,
+                            //   width: 800
+                            // }
+                          }} // perhaps we should not let user control
+                          target="_blank"
+                          // variant={profileTheme.buttonStyle ? profileTheme.buttonStyle : "outlined"}
+                          variant={profileTheme.options.links.variant ? profileTheme.options.links.variant : "outlined"}
+                          className={profileTheme.options.links.className}
+                          // startIcon={site.icon ? <FontAwesomeIcon icon={site.icon} size="lg" style={{ width: 17, height: 17 }} /> : ''}
+                          startIcon={<ProfileLinkButton size={"xl"} icon={site.icon} />}
+                        >
+                          {site.title}
+                        </Button>
+                      )}
+                    </div>
+                  ))}
+ */

@@ -1,8 +1,9 @@
-import AdminLayout from "../../core/layouts/AdminLayout"
-import Head from "next/head"
+import { deepmerge } from '@mui/utils';
 import Link from "next/link"
+import dynamic from 'next/dynamic';
+
 import { Routes } from "@blitzjs/next"
-import React, { Suspense, useLayoutEffect, useState } from "react"
+import React, { lazy, Suspense, useLayoutEffect, useState } from "react"
 //import { ProfilesList } from "../../pages/profiles"
 import { FacebookProvider } from "react-facebook"
 import { createTheme } from '@mui/material';
@@ -17,22 +18,30 @@ import {
 } from "@mui/material"
 
 import Grid from "@mui/material/Unstable_Grid2"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import ProfileLinkButton from "../components/ProfileLinkButton";
-import UserInfo from "../../components/user/UserInfo";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import ProfileButton from "../components/ProfileButton";
+import ProfileLink from "../components/ProfileLink";
+// import UserInfo from "../../components/user/UserInfo";
 import SidePanelHeaderToggle from "../../components/template/SidePanel/SidePanelHeaderToggle";
 // import { useMutation } from "@blitzjs/rpc";
 // import updateLinkOrder from "../../sites/mutations/updateLinkOrder";
 import { useTheme, ThemeProvider } from "@mui/material/styles";
 import { useSession } from "@blitzjs/auth";
 import { useRouter } from "next/router";
-// import ProfileButton from "../../components/user/ProfileButton";
+
 // import { green, purple } from '@mui/material/colors';
-import babyTheme from '../../../data/userthemes/babyblue.json'
-import { Theme } from "@emotion/react"
+// import babyTheme from '../../../data/userthemes/babyblue.json'
+// import { Theme } from "@emotion/react"
+// import {profileTheme} from "../../../data/userthemes/babybluenew";
+
+// TODO: lazy load theme
+// const babyBlue = lazy(() => import("../../../data/userthemes/babybluenew"))
 
 
-import { deepmerge } from '@mui/utils';
+import { babyBlue } from "../../../data/userthemes/babybluenew";
+
+//const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
+
 // import { createTheme } from '@mui/material/styles';
 
 
@@ -40,16 +49,51 @@ import { deepmerge } from '@mui/utils';
 
 // export const LoginForm = (props: LoginFormProps) => {
 
-const Modern = ({ user, profile, sites, themes }) => {
+const Modern = ({ user, profile, sites }) => {
 
   const session = useSession()
-  const theme = profile.theme // This is the user's theme
+
+  // TODO: profile should come from store/ state
+  // If there is a custom template, use it
+  console.log("profile.template", profile);
+  console.log("profile.template", profile.template);
+  let profileTheme
+  switch (profile.template) {
+    case 'custom':
+      profileTheme = profile.theme // This is the user's theme
+      break;
+    case 'babybluenew':
+      // user theme is a will comes from
+
+      // profileTheme = lazy(() => import("../../../data/userthemes/babybluenew"))
+
+
+      profileTheme = babyBlue
+
+
+
+
+      //profileTheme = lazy(() => import("../../../data/userthemes/babybluenew"))
+      // /Users/amirmeshkin/_code/_business/subgrow.com/data/userthemes/babybluenew.tsx
+
+      // profileTheme = dynamic(() => import('../../../data/userthemes/babybluenew'), {
+      //   loading: () => <p>Loading...</p>,
+      // });
+
+
+
+      break;
+    default:
+    // code block
+  }
+
+
 
   // currentUser not linked to blitz session
   // const currentUser = useCurrentUser()
   const router = useRouter()
   const siteTheme = useTheme();
-  const type = useSelector((state: RootStateOrAny) => state.theme);
+  //const type = useSelector((state: RootStateOrAny) => state.theme);
 
   const [usedTheme, setUseTheme] = React.useState("");
 
@@ -58,13 +102,14 @@ const Modern = ({ user, profile, sites, themes }) => {
   // TODO: dawn here there should be a merge of the site's theme, with the user's theme
   // const theme = createTheme(deepmerge(options1, options2));
 
-  let myownpage
+  let myownpage = false
   if (session.userId) {
-    myownpage = false
     if ("/" + session.username === router.asPath) {
       myownpage = true
     }
   }
+
+  // TODO: entire theme put into state, or background color profileTheme.muiTheme.palette.background.default
 
   // console.log("siteTheme", siteTheme)
   // console.log("user profile theme", theme)
@@ -81,13 +126,19 @@ const Modern = ({ user, profile, sites, themes }) => {
   // }, [type])
 
   // TODO: here is where we get the user's theme
-  const userTheme = createTheme(siteTheme, {
-    palette: {
-      primary: {
-        main: "#ff0000",
-      },
-    },
-  });
+  // const userTheme = createTheme(siteTheme, {
+  //   palette: {
+  //     primary: {
+  //       main: "#2edc00",
+  //     },
+  //   },
+  // });
+
+  // TODO: once we have user's custom theme, or selected template, we put ONLY userTheme into state
+
+  // const combinedTheme = deepmerge(siteTheme, userTheme);
+  const combinedTheme = deepmerge(siteTheme, profileTheme.muiTheme);
+  // const combinedTheme = createTheme(deepmerge(siteTheme, userTheme));
 
 
 
@@ -117,7 +168,7 @@ const Modern = ({ user, profile, sites, themes }) => {
 
   // TODO: needs to also be linked to state, for updates
   const linkMargin = 20
-  // const linkMargin = userprofile.theme.linkSpacing ? userprofile.theme.linkSpacing : 20
+  // const linkMargin = userprofile.profileTheme.linkSpacing ? userprofile.profileTheme.linkSpacing : 20
 
   const shareFb = () => {
     // provider does init
@@ -139,78 +190,85 @@ const Modern = ({ user, profile, sites, themes }) => {
     )
   }
 
-  //
+
+  console.log("profileTheme", profileTheme)
+  console.log("profileTheme.options", profileTheme.options)
+
+  // if template set to custom, use whatever
+
+
+  // (profileTheme.bgColor ? profileTheme.bgColor : "#202A37")
+  // TODO: mui background default not working, so manually adjust
 
   return (
-    // <ThemeProvider theme={userTheme}>
-    <div id="profile-main"
-    // style={{ minHeight: "100vh", backgroundColor: usedTheme === "mytheme" ? (theme.bgColor ? theme.bgColor : "#202A37") : babyTheme.bgColor }}
-    >
-      <header className="header-wrapper">
-        <Grid container spacing={0} py={1}>
-          <Grid spacing={{ xs: 12 }} display="flex" justifyContent="right" alignItems="center">
-            <Suspense>
-              <UserInfo />
+    <ThemeProvider theme={combinedTheme}>
+      <div id="profile-main" style={{ minHeight: "100vh", backgroundColor: profile.template === "custom" ? profileTheme.muiTheme.palette.background.default : profileTheme.muiTheme.palette.background.default }}>
+        {/*<div id="profile-main" style={{ minHeight: "100vh", backgroundColor: profile.template === "custom" ?  profileTheme.bgColor : ""}}>*/}
 
-              {/*// TODO: show this only if the user that is logged in owns profile*/}
+        {/*<div id="profile-main" style={{ minHeight: "100vh", backgroundColor: usedTheme === "mytheme" ? (profileTheme.bgColor ? profileTheme.bgColor : "#202A37") : "#000000"}}>*/}
+        <header className="header-wrapper">
+          <Grid container spacing={0} py={1}>
+            <Grid spacing={{ xs: 12 }} display="flex" justifyContent="right" alignItems="center">
+              <Suspense>
+                {/*<UserInfo />*/}
 
-              {myownpage ? <SidePanelHeaderToggle usersession={session} type="icon" /> : null}
+                {/*// TODO: show this only if the user that is logged in owns profile*/}
 
-            </Suspense>
+                {myownpage ? <SidePanelHeaderToggle usersession={session} type="icon" /> : null}
+
+              </Suspense>
+            </Grid>
           </Grid>
-        </Grid>
-      </header>
-      <main>
-        <FacebookProvider appId="241448415049637">
-          <Grid
-            container
-            spacing={0}
-            direction="column"
-            alignItems="center"
-          // justifyContent="center"
-          // style={{ minHeight: "100vh" }}
-          >
-
-            <Button variant="modern1">
-              testing button variants
-            </Button>
-
-
-
-            <Typography
-              variant="h2"
-              color="primary.main"
+        </header>
+        <main>
+          <FacebookProvider appId="241448415049637">
+            <Grid
+              container
+              spacing={0}
+              direction="column"
+              alignItems="center"
+            // justifyContent="center"
+            // style={{ minHeight: "100vh" }}
             >
-              testing typography
-            </Typography>
+
+              <Button variant="modern1">
+                testing button variants
+              </Button>
 
 
-
-            <Typography
-              variant="h1"
-              color="primary.main"
-            >
-              why bigger on this page
-            </Typography>
-
-            <Box
-              id="profile-card" // TODO: use mui?
-              sx={{ minWidth: 380, padding: 2, borderRadius: 2 }} // , maxWidth: 420
-            >
 
               <Typography
-                variant={theme.titleStyle}
-                alignItems={theme.linkAlign ? theme.linkAlign : "center"}
+                variant="h2"
+                color="primary.main"
+              >
+                testing typography
+              </Typography>
+
+
+
+              <Typography
+                variant="h1"
+                color="primary.main"
+              >
+                why bigger on this page
+              </Typography>
+
+
+
+              {/*// TODO: show handle, make it an option  */}
+              <Typography
+                variant={profileTheme.options.titleStyle}
+                alignItems={profileTheme.options.linkAlign ? profileTheme.options.linkAlign : "center"}
                 className="profile-text"
                 id="title"
-              // style={{ color: theme.titleColor ? theme.titleColor : "rgb(189,196,215)" }}
+              // style={{ color: profileTheme.titleColor ? profileTheme.titleColor : "rgb(189,196,215)" }}
               >
                 {userprofile.title ? userprofile.title : userprofile.username}
               </Typography>
 
               {userprofile.description ? (
-                <Typography variant={theme.descriptionStyle} id="description" className="description"
-                // style={{ color: theme.descriptionColor ? theme.descriptionColor : "rgb(189,196,215)" }}
+                <Typography variant={profileTheme.options.descriptionStyle} id="description" className="description"
+                // style={{ color: profileTheme.descriptionColor ? profileTheme.descriptionColor : "rgb(189,196,215)" }}
                 >
                   {userprofile.description}
                 </Typography>
@@ -218,107 +276,79 @@ const Modern = ({ user, profile, sites, themes }) => {
                 ""
               )}
 
-              <Box
-                display="flex"
-                alignItems={themes.linkAlign ? themes.linkAlign : "center"}
-                justifyContent={themes.linkAlign ? themes.linkAlign : "center"}
+
+
+
+              {/*// TODO: dawn apps area is where we will show widgets, tik tok feed, etc*/}
+              <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
               >
-                <ul className="list-modern">
-                  {sites.map((site) => (
-                    <li key={site.id} style={{ marginTop: linkMargin }}>
-                      {themes.links.style === "link" ? (
-                        <Link href={site.url} target="_blank" className={themes.links.className}>
-                          {site.title}
-                        </Link>
-                      ) : (
-                        <Button
-                          href={site.url}
-                          style={{ width: themes.linkWidth ? themes.linkWidth : 200 }}
-                          target="_blank"
-                          // variant={theme.buttonStyle ? theme.buttonStyle : "outlined"}
-                          variant={themes.links.variant ? themes.links.variant : "outlined"}
-                          className={themes.links.className}
-                          // startIcon={site.icon ? <FontAwesomeIcon icon={site.icon} size="lg" style={{ width: 17, height: 17 }} /> : ''}
-                          startIcon={<ProfileLinkButton size={"xl"} icon={site.icon} />}
-                        >
-                          {site.title}
-                        </Button>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </Box>
+
+                {/*style={{ marginTop: linkMargin }}*/}
 
 
-
-              <Button
-                variant="userhoney"
-              >
-                <span>userhoney</span>
-              </Button>
+                {profileTheme.options.links.type === 'button'
+                  ? <ProfileButton sites={sites} variant={profileTheme.options.links.variant} />
+                  : <ProfileLink sites={sites} variant={profileTheme.options.links.variant} />}
 
 
-              {/*// TODO: DECIDE. does show share buttons, other items come from theme or profile???*/}
-              <Stack spacing={4}>
-                {userprofile.theme.showShare &&
+                <Stack spacing={5}>
+
+
                   <Button
-                    variant="contained"
-                    onClick={() => {
-                      shareFb()
-                    }}
-                    startIcon={<FontAwesomeIcon icon={faFacebook} style={{ width: 15, height: 15 }} />}
+                    variant="userhoney"
                   >
-                    <span>share</span>
+                    <span>userhoney</span>
                   </Button>
-                }
-              </Stack>
-
-              {/*  <ShareButton href="http://www.facebook.com" />*/}
-              {/*</FacebookProvider>*/}
-
-            </Box>
-          </Grid>
 
 
-          {/*// TODO: dawn apps area is where we will show widgets, tik tok feed, etc*/}
-          <Grid
-            container
-            spacing={0}
-            direction="column"
-            alignItems="center"
-            justifyContent="center"
-          >
-            App Area
+                  <Button variant="userbabyblue">userbabyblue</Button>
+                  <Button variant="usernavyblue">usernavyblue</Button>
+                  <Button variant="useroranges">useroranges</Button>
+                  <Button variant="userseethrough">userseethrough</Button>
+                  <Button variant="userjungle">userjungle</Button>
+                  <Button variant="userjungle">userjungle</Button>
+                  <Button variant="userwu">userwu</Button>
+                  <Button variant="usermustard">usermustard</Button>
+                  <Button variant="usertronline">usertronline</Button>
 
-            {/*// TODO: DECIDE. does show share buttons, other items come from theme or profile???*/}
-            <Stack spacing={4}>
-              {userprofile.theme.showShare &&
-                <Button
-                  variant="contained"
-                  onClick={() => {
-                    shareFb()
-                  }}
-                  startIcon={<FontAwesomeIcon icon={faFacebook} style={{ width: 15, height: 15 }} />}
-                >
-                  <span>share</span>
-                </Button>
-              }
-            </Stack>
+                </Stack>
 
-          </Grid>
+                {/*// TODO: showing share buttons, etc should probably come from Apps table    */}
+                {/*<Stack spacing={4}>*/}
+                {/*  {userprofile.profileTheme.showShare &&*/}
+                {/*    <Button*/}
+                {/*      variant="contained"*/}
+                {/*      onClick={() => {*/}
+                {/*        shareFb()*/}
+                {/*      }}*/}
+                {/*      startIcon={<FontAwesomeIcon icon={faFacebook} style={{ width: 15, height: 15 }} />}*/}
+                {/*    >*/}
+                {/*      <span>share</span>*/}
+                {/*    </Button>*/}
+                {/*  }*/}
+                {/*</Stack>*/}
 
-        </FacebookProvider>
-      </main>
-      {/*{ TODO: custom footer overrides }*/}
-      <footer>
-        <span>
-          Sub Grow
-        </span>
+              </Grid>
 
-      </footer>
-    </div>
+            </Grid>
 
-    // </ThemeProvider>
+          </FacebookProvider>
+        </main>
+        {/*{ TODO: custom footer overrides }*/}
+        <footer>
+          <span>
+            Sub Grow
+          </span>
+
+        </footer>
+      </div>
+
+    </ThemeProvider>
   )
 }
 

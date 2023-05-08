@@ -263,6 +263,7 @@ export type Profile = {
   title: string
   username: string
   description: string | null
+  template: string | null
   theme: Prisma.JsonValue | null
   widgets: Prisma.JsonValue | null
   current: Yesno
@@ -15913,6 +15914,7 @@ export namespace Prisma {
     title: string | null
     username: string | null
     description: string | null
+    template: string | null
     current: Yesno | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -15924,6 +15926,7 @@ export namespace Prisma {
     title: string | null
     username: string | null
     description: string | null
+    template: string | null
     current: Yesno | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -15935,6 +15938,7 @@ export namespace Prisma {
     title: number
     username: number
     description: number
+    template: number
     theme: number
     widgets: number
     current: number
@@ -15958,6 +15962,7 @@ export namespace Prisma {
     title?: true
     username?: true
     description?: true
+    template?: true
     current?: true
     createdAt?: true
     updatedAt?: true
@@ -15969,6 +15974,7 @@ export namespace Prisma {
     title?: true
     username?: true
     description?: true
+    template?: true
     current?: true
     createdAt?: true
     updatedAt?: true
@@ -15980,6 +15986,7 @@ export namespace Prisma {
     title?: true
     username?: true
     description?: true
+    template?: true
     theme?: true
     widgets?: true
     current?: true
@@ -16081,6 +16088,7 @@ export namespace Prisma {
     title: string
     username: string
     description: string | null
+    template: string | null
     theme: JsonValue | null
     widgets: JsonValue | null
     current: Yesno
@@ -16113,6 +16121,7 @@ export namespace Prisma {
     title?: boolean
     username?: boolean
     description?: boolean
+    template?: boolean
     theme?: boolean
     widgets?: boolean
     current?: boolean
@@ -18196,6 +18205,7 @@ export namespace Prisma {
     title: 'title',
     username: 'username',
     description: 'description',
+    template: 'template',
     theme: 'theme',
     widgets: 'widgets',
     current: 'current',
@@ -19316,6 +19326,7 @@ export namespace Prisma {
     title?: StringFilter | string
     username?: StringFilter | string
     description?: StringNullableFilter | string | null
+    template?: StringNullableFilter | string | null
     theme?: JsonNullableFilter
     widgets?: JsonNullableFilter
     current?: EnumYesnoFilter | Yesno
@@ -19331,6 +19342,7 @@ export namespace Prisma {
     title?: SortOrder
     username?: SortOrder
     description?: SortOrder
+    template?: SortOrder
     theme?: SortOrder
     widgets?: SortOrder
     current?: SortOrder
@@ -19351,6 +19363,7 @@ export namespace Prisma {
     title?: SortOrder
     username?: SortOrder
     description?: SortOrder
+    template?: SortOrder
     theme?: SortOrder
     widgets?: SortOrder
     current?: SortOrder
@@ -19372,6 +19385,7 @@ export namespace Prisma {
     title?: StringWithAggregatesFilter | string
     username?: StringWithAggregatesFilter | string
     description?: StringNullableWithAggregatesFilter | string | null
+    template?: StringNullableWithAggregatesFilter | string | null
     theme?: JsonNullableWithAggregatesFilter
     widgets?: JsonNullableWithAggregatesFilter
     current?: EnumYesnoWithAggregatesFilter | Yesno
@@ -20806,6 +20820,7 @@ export namespace Prisma {
     title: string
     username: string
     description?: string | null
+    template?: string | null
     theme?: NullableJsonNullValueInput | InputJsonValue
     widgets?: NullableJsonNullValueInput | InputJsonValue
     current?: Yesno
@@ -20821,6 +20836,7 @@ export namespace Prisma {
     title: string
     username: string
     description?: string | null
+    template?: string | null
     theme?: NullableJsonNullValueInput | InputJsonValue
     widgets?: NullableJsonNullValueInput | InputJsonValue
     current?: Yesno
@@ -20834,6 +20850,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    template?: NullableStringFieldUpdateOperationsInput | string | null
     theme?: NullableJsonNullValueInput | InputJsonValue
     widgets?: NullableJsonNullValueInput | InputJsonValue
     current?: EnumYesnoFieldUpdateOperationsInput | Yesno
@@ -20849,6 +20866,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    template?: NullableStringFieldUpdateOperationsInput | string | null
     theme?: NullableJsonNullValueInput | InputJsonValue
     widgets?: NullableJsonNullValueInput | InputJsonValue
     current?: EnumYesnoFieldUpdateOperationsInput | Yesno
@@ -20863,6 +20881,7 @@ export namespace Prisma {
     title: string
     username: string
     description?: string | null
+    template?: string | null
     theme?: NullableJsonNullValueInput | InputJsonValue
     widgets?: NullableJsonNullValueInput | InputJsonValue
     current?: Yesno
@@ -20875,6 +20894,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    template?: NullableStringFieldUpdateOperationsInput | string | null
     theme?: NullableJsonNullValueInput | InputJsonValue
     widgets?: NullableJsonNullValueInput | InputJsonValue
     current?: EnumYesnoFieldUpdateOperationsInput | Yesno
@@ -20888,6 +20908,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    template?: NullableStringFieldUpdateOperationsInput | string | null
     theme?: NullableJsonNullValueInput | InputJsonValue
     widgets?: NullableJsonNullValueInput | InputJsonValue
     current?: EnumYesnoFieldUpdateOperationsInput | Yesno
@@ -22173,6 +22194,7 @@ export namespace Prisma {
     title?: SortOrder
     username?: SortOrder
     description?: SortOrder
+    template?: SortOrder
     theme?: SortOrder
     widgets?: SortOrder
     current?: SortOrder
@@ -22190,6 +22212,7 @@ export namespace Prisma {
     title?: SortOrder
     username?: SortOrder
     description?: SortOrder
+    template?: SortOrder
     current?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -22201,6 +22224,7 @@ export namespace Prisma {
     title?: SortOrder
     username?: SortOrder
     description?: SortOrder
+    template?: SortOrder
     current?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -23908,6 +23932,7 @@ export namespace Prisma {
     title: string
     username: string
     description?: string | null
+    template?: string | null
     theme?: NullableJsonNullValueInput | InputJsonValue
     widgets?: NullableJsonNullValueInput | InputJsonValue
     current?: Yesno
@@ -23921,6 +23946,7 @@ export namespace Prisma {
     title: string
     username: string
     description?: string | null
+    template?: string | null
     theme?: NullableJsonNullValueInput | InputJsonValue
     widgets?: NullableJsonNullValueInput | InputJsonValue
     current?: Yesno
@@ -24304,6 +24330,7 @@ export namespace Prisma {
     title?: StringFilter | string
     username?: StringFilter | string
     description?: StringNullableFilter | string | null
+    template?: StringNullableFilter | string | null
     theme?: JsonNullableFilter
     widgets?: JsonNullableFilter
     current?: EnumYesnoFilter | Yesno
@@ -24762,6 +24789,7 @@ export namespace Prisma {
     title: string
     username: string
     description?: string | null
+    template?: string | null
     theme?: NullableJsonNullValueInput | InputJsonValue
     widgets?: NullableJsonNullValueInput | InputJsonValue
     current?: Yesno
@@ -24776,6 +24804,7 @@ export namespace Prisma {
     title: string
     username: string
     description?: string | null
+    template?: string | null
     theme?: NullableJsonNullValueInput | InputJsonValue
     widgets?: NullableJsonNullValueInput | InputJsonValue
     current?: Yesno
@@ -24852,6 +24881,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    template?: NullableStringFieldUpdateOperationsInput | string | null
     theme?: NullableJsonNullValueInput | InputJsonValue
     widgets?: NullableJsonNullValueInput | InputJsonValue
     current?: EnumYesnoFieldUpdateOperationsInput | Yesno
@@ -24866,6 +24896,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    template?: NullableStringFieldUpdateOperationsInput | string | null
     theme?: NullableJsonNullValueInput | InputJsonValue
     widgets?: NullableJsonNullValueInput | InputJsonValue
     current?: EnumYesnoFieldUpdateOperationsInput | Yesno
@@ -26589,6 +26620,7 @@ export namespace Prisma {
     title: string
     username: string
     description?: string | null
+    template?: string | null
     theme?: NullableJsonNullValueInput | InputJsonValue
     widgets?: NullableJsonNullValueInput | InputJsonValue
     current?: Yesno
@@ -26950,6 +26982,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    template?: NullableStringFieldUpdateOperationsInput | string | null
     theme?: NullableJsonNullValueInput | InputJsonValue
     widgets?: NullableJsonNullValueInput | InputJsonValue
     current?: EnumYesnoFieldUpdateOperationsInput | Yesno
@@ -26963,6 +26996,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    template?: NullableStringFieldUpdateOperationsInput | string | null
     theme?: NullableJsonNullValueInput | InputJsonValue
     widgets?: NullableJsonNullValueInput | InputJsonValue
     current?: EnumYesnoFieldUpdateOperationsInput | Yesno
@@ -26976,6 +27010,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    template?: NullableStringFieldUpdateOperationsInput | string | null
     theme?: NullableJsonNullValueInput | InputJsonValue
     widgets?: NullableJsonNullValueInput | InputJsonValue
     current?: EnumYesnoFieldUpdateOperationsInput | Yesno

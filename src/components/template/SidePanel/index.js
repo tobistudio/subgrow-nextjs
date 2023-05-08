@@ -6,10 +6,10 @@ import SidePanelContent from "./SidePanelContent"
 import withHeaderItem from "utils/hoc/withHeaderItem"
 import { setPanelExpand } from "store/theme/themeSlice"
 import { useSelector, useDispatch } from "react-redux"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import {faPalette} from "@fortawesome/pro-duotone-svg-icons";
-import {fonts} from "../../../configs/colors/default";
-import {faPalette} from "@fortawesome/pro-light-svg-icons";
+import { fonts } from "../../../configs/colors/default";
+import { faPalette } from "@fortawesome/pro-light-svg-icons";
 import { useTheme } from '@mui/material/styles';
 
 export const SidePanel = (props) => {
@@ -36,11 +36,13 @@ export const SidePanel = (props) => {
 
 
   let size
-  if(theme.breakpoints.up('md')) {
+  if (theme.breakpoints.up('md')) {
 
   }
 
-  console.log("md",theme.breakpoints.up('md'));
+  React.useEffect(() => console.log("************", panelExpand), [panelExpand])
+
+  console.log("md", theme.breakpoints.up('md'));
 
   return (
     <>
@@ -52,7 +54,7 @@ export const SidePanel = (props) => {
         placement={direction === "rtl" ? "left" : "right"}
         //width={375} // TODO: based on size
         width={"50%"} // TODO: based on size
-        //width={theme.breakpoints.between('sm', 'md')}
+      //width={theme.breakpoints.between('sm', 'md')}
 
       >
         <SidePanelContent callBackClose={closePanel} />

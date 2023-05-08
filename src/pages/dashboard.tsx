@@ -84,11 +84,11 @@ const Dashboard = () => {
       </Head>
 
       <Suspense fallback={<LoadingSvg />}>
-        <Grid container spacing={{ xs: 12, sm: 2, md: 3, lg: 4, xl: 5 }}>
-          <Grid direction="column" spacing={{ xs: 12, sm: 12, md: 8, lg: 8, xl: 8 }}>
+        <Grid container spacing={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}>
+          <Grid direction="column" xs={12} sm={12} md={8} lg={8} xl={8}>
             {linkList && <DashboardBox sites={linkList} setLinkList={setLinkList} />}
           </Grid>
-          <Grid direction="column" spacing={{ xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }}>
+          <Grid direction="column" xs={12} sm={12} md={4} lg={4} xl={4}>
             <Card variant="outlined">
               <CardHeader
                 title="Preview"

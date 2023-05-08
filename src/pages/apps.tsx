@@ -8,13 +8,7 @@ import getService from "apps/queries/getService"
 import { useSession } from "@blitzjs/auth"
 import getSiteForProfile from "../sites/queries/getSiteForProfile";
 import {
-  Box,
-  Card,
-  CardContent,
-  Stack,
   Typography,
-  Avatar,
-  Tooltip
 } from "@mui/material";
 
 import Grid from '@mui/material/Unstable_Grid2';
@@ -52,7 +46,7 @@ export const AppsList = () => {
   }
 
   return (
-    <div>
+    <Grid container spacing={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}>
       <Grid xs={12}>
         <Typography sx={{ width: "100%", flexGrow: 1 }} variant="h1center" align="center">Available Apps</Typography>
       </Grid>
@@ -62,7 +56,7 @@ export const AppsList = () => {
           <AppListBox key={app.id} app={app} handleAddAppClick={handleAddAppClick} avaliable={app.site_name === Avaliable_app.site_name ? 1 : 0} />
         ))}
       </Grid>
-    </div>
+    </Grid>
   )
 }
 

@@ -4,11 +4,13 @@ import { useQuery } from "@blitzjs/rpc"
 import { useParam } from "@blitzjs/next"
 import ProfileLayout from "core/layouts/ProfileLayout"
 import { useSession } from "@blitzjs/auth"
+import { useRouter } from "next/router";
 import getProfile from "profiles/queries/getProfile"
 import getUserForProfile from "../users/queries/getUserForProfile"
 // import getSiteForProfile from "../sites/queries/getSiteForProfile"
 import getSiteForProfileByStatus from "../sites/queries/getSiteForProfileByStatus"
-import userTheme from '../../data/userthemes/babyblue.json'
+import { ModernTheme } from "../../data/userthemes/modern"
+// import userTheme from '../../data/userthemes/babyblue.json'
 // import Grid from "@mui/material/Unstable_Grid2"
 // import UserInfo from "../components/user/UserInfo"
 // import SidePanel from 'components/template/SidePanel'
@@ -31,7 +33,9 @@ const styles = (theme) => ({
 })
 
 export const ProfileIndex = () => {
+
   const profileId = useParam("profileId", "string")
+  const router = useRouter()
   const session = useSession()
 
   const [user] = useQuery(getUserForProfile, { username: profileId })
@@ -39,6 +43,19 @@ export const ProfileIndex = () => {
 
   // TODO: dawn bl
   let bl = Number(localStorage.id ? localStorage.id : session.userId)
+
+  // React.useEffect(() => {
+  //   if (!user.id) {
+  //     router.push('/login');
+  //   }
+  // }, [])
+
+  const tester_profile = {
+    theme: ModernTheme,
+    title: "tester",
+    description: "tester",
+    template: "custom"
+  }
 
   // console.log("bl", bl);
   /*
@@ -67,25 +84,29 @@ undefined
   // TODO: need to figure out how to exit here, if this profile doesn't exist
   // TODO: forward to a /claim-username page
   // TODO: dawn we need to pull data for this PROFILE, not user!!!!
-  const [sites] = useQuery(getSiteForProfileByStatus, { userId: user.id, status: "active" })
+  const [sites] = useQuery(getSiteForProfileByStatus, { userId: (profileId === 'tester' && !user.id) ? 0 : user.id, status: "active" })
 
   // TODO: the layout should be set on dashboard page.
-  let userLayout
-  // shouldn't be empty, for errors
-  if (profile?.theme?.layout) {
-    userLayout = profile.theme.layout
-  } else {
-    userLayout = "modern"
-  }
+  // remove "layout", everything should use modern
+  const layoutType = <Modern user={user} profile={(profileId === 'tester' && !profile.theme) ? tester_profile : profile} sites={sites} />
 
-  let layoutType
-  switch (userLayout) {
-    case "modern":
-      layoutType = <Modern user={user} profile={profile} sites={sites} themes={userTheme} />
-      break
-    default:
-      layoutType = <Modern user={user} profile={profile} sites={sites} themes={userTheme} />
-  }
+
+  // let userLayout
+  // // shouldn't be empty, for errors
+  // if (profile?.theme?.layout) {
+  //   userLayout = profile.theme.layout
+  // } else {
+  //   userLayout = "modern"
+  // }
+  //
+  // let layoutType
+  // switch (userLayout) {
+  //   case "modern":
+  //     layoutType = <Modern user={user} profile={profile} sites={sites} />
+  //     break
+  //   default:
+  //     layoutType = <Modern user={user} profile={profile} sites={sites} />
+  // }
 
   // @ts-ignore
   return (
