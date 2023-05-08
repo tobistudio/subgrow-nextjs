@@ -159,7 +159,7 @@ const Modern = ({ user, profile, sites, themes }) => {
           <Grid container spacing={0} py={1}>
             <Grid spacing={{ xs: 12 }} display="flex" justifyContent="right" alignItems="center">
               <Suspense>
-                <UserInfo />
+                {/*<UserInfo />*/}
 
                 {/*// TODO: show this only if the user that is logged in owns profile*/}
 
