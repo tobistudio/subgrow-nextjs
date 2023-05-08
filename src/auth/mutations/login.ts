@@ -1,4 +1,3 @@
-// import { SecurePassword } from "@blitzjs/auth"
 import { SecurePassword } from "@blitzjs/auth/secure-password"
 import { resolver } from "@blitzjs/rpc"
 import { AuthenticationError } from "blitz"
@@ -9,7 +8,10 @@ import { Login } from "../validations"
 export const authenticateUser = async (rawEmail: string, rawPassword: string) => {
   const { email, password } = Login.parse({ email: rawEmail, password: rawPassword })
   const user = await db.user.findFirst({ where: { email } })
-  if (!user) throw new AuthenticationError()
+  if (!user) throw new AuthenticationError() // only throws on dev
+  // if (!user) {
+  //   return null
+  // }
 
   const result = await SecurePassword.verify(user.hashedPassword, password)
 

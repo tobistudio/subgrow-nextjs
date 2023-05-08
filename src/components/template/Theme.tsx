@@ -9,9 +9,6 @@ import { useSession } from "@blitzjs/auth"
 import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles"
 import { blue, green, purple, red, brands, card, card_el, chip, chip_dark } from "configs/colors/default"
 
-
-// <ThemeProvider theme={theme}>
-
 declare module '@mui/material/styles' {
   interface Theme {
     status?: {
@@ -94,16 +91,6 @@ declare module "@mui/material/Card" {
   }
 }
 
-
-// declare module "@mui/material/Card" {
-//   interface CardVariants {
-//     owned: true
-//   }
-//   interface CardPropsVariantOverrides {
-//     owned: true
-//   }
-// }
-
 declare module "@mui/material/styles" {
   interface TypographyVariants {
     poster: React.CSSProperties
@@ -154,13 +141,11 @@ declare module "@mui/material/Input" {
 // TODO: mui theme maker
 // https://bareynol.github.io/mui-theme-creator/
 const Themes = (props) => {
-  // const theme = useSelector((state: RootStateOrAny) => state.theme)
-  const session = useSession()
 
   const theme = useSelector((state: RootStateOrAny) => state.theme)
-  const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" })
+  //const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" })
 
-  const [userTheme, setUserTheme] = React.useState<any>();
+//  const [userTheme, setUserTheme] = React.useState<any>();
   const [selectTheme, setSelectTheme] = React.useState({});
 
   // React.useEffect(() => {
@@ -306,7 +291,7 @@ const Themes = (props) => {
   // const locale = useSelector((state: RootStateOrAny) => state.locale.currentLang)
 
   // border: `2px dashed grey${blue[500]}`,
-  // @ts-ignore
+
   let muitheme = createTheme({
     // mode If connected to state, then mode may not work well here
     // mode: "dark",
@@ -876,7 +861,7 @@ const Themes = (props) => {
     ...themeConfig, // TODO: don't use this any more
     ...theme,
     ...muitheme,
-    ...selectTheme
+    // ...selectTheme
     // ...{ locale },
   }
 

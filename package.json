@@ -1,6 +1,7 @@
 {
   "name": "subgrow",
   "version": "0.0.1",
+  "author" : "Amir Meshkin <amir.meshkin@gmail.com>",
   "scripts": {
     "db": "prisma format && prisma validate && prisma generate && prisma db push",
     "clean": "rm -Rf node_modules && rm -Rf .next && yarn",

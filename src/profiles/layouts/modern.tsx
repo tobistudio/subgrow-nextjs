@@ -58,8 +58,8 @@ const Modern = ({ profile, sites }) => {
 
   // TODO: profile should come from store/ state
   // If there is a custom template, use it
-  console.log("profile.template", profile);
-  console.log("profile.template", profile.template);
+  // console.log("profile.template", profile);
+  // console.log("profile.template", profile.template);
   let profileTheme
   switch (profile.template) {
     case 'custom':
@@ -72,21 +72,7 @@ const Modern = ({ profile, sites }) => {
       // user theme is a will comes from
 
       // profileTheme = lazy(() => import("../../../data/userthemes/babybluenew"))
-
-
       profileTheme = babyBlue
-
-
-
-
-      //profileTheme = lazy(() => import("../../../data/userthemes/babybluenew"))
-      // /Users/amirmeshkin/_code/_business/subgrow.com/data/userthemes/babybluenew.tsx
-
-      // profileTheme = dynamic(() => import('../../../data/userthemes/babybluenew'), {
-      //   loading: () => <p>Loading...</p>,
-      // });
-
-
 
       break;
     default:
@@ -147,34 +133,14 @@ const Modern = ({ profile, sites }) => {
   // const combinedTheme = createTheme(deepmerge(siteTheme, userTheme));
 
 
-
-  /*
-        neutral: {
-          main: '#64748B',
-          contrastText: '#fff',
-        },
-   */
-  // TODO: dawn not sure what happened after merge
-  // TODO: dawn this needs to merge with theme
-  // const userTheme =
-
-  /*
-
-  1 of 2 unhandled errors
-
-  Unhandled Runtime Error
-  Error: Too many re-renders. React limits the number of renders to prevent an infinite loop.
-   */
   // set profile data in state
   const [userprofile, setUserprofile] = React.useState(profile)
+  //
+  // console.log("setting state modern userprofile", userprofile)
+  //
+  // console.log("profileTheme", profileTheme)
+  // console.log("profileTheme.options", profileTheme.options)
 
-  console.log("setting state modern userprofile", userprofile)
-  // profile = React.getProfile()
-
-
-  // TODO: needs to also be linked to state, for updates
-  const linkMargin = 20
-  // const linkMargin = userprofile.profileTheme.linkSpacing ? userprofile.profileTheme.linkSpacing : 20
 
   const shareFb = () => {
     // provider does init
@@ -197,8 +163,6 @@ const Modern = ({ profile, sites }) => {
   }
 
 
-  console.log("profileTheme", profileTheme)
-  console.log("profileTheme.options", profileTheme.options)
 
   // if template set to custom, use whatever
 
