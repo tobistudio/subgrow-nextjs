@@ -8,9 +8,6 @@ import getProfile from "profiles/queries/getProfile"
 import { useSession } from "@blitzjs/auth"
 import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles"
 import { blue, green, purple, red, brands, card, card_el, chip, chip_dark } from "configs/colors/default"
-import { deepmerge } from '@mui/utils';
-import { ModernTheme } from '../../../data/userthemes/modern'
-import babyTheme from '../../../data/userthemes/babyblue.json'
 
 
 // <ThemeProvider theme={theme}>
@@ -86,6 +83,7 @@ declare module "@mui/material/Button" {
     userwu: true
     usermustard: true
     usertronline: true
+    usermodern1: true
   }
 }
 
@@ -413,14 +411,12 @@ const Themes = (props) => {
       },
       modern1: {
         fontSize: "1rem",
-        color: "#111111",
+        color: "#ffffff",
       },
       babybluetext: {
         fontSize: "1rem",
         color: "#ffffff",
       },
-
-
     },
     components: {
       MuiChip: {
@@ -439,6 +435,7 @@ const Themes = (props) => {
             // Map the new variant to render a <h1> by default
             poster: "h3",
             babybluetext: "h1",
+            modern1: "h1",
           },
         },
       },
@@ -705,6 +702,24 @@ const Themes = (props) => {
               "&:hover": {
                 backgroundColor: "transparent",
                 color: "#000fbb",
+              },
+            },
+          },
+          {
+            props: { variant: "usermodern1" },
+            style: {
+              // backgroundColor: "#2374F2",
+              backgroundColor: "#e9efef",
+              // color: brands.facebook,
+              color: "#4267B2",
+              border: `2px dashed #ff0000`,
+              borderColor: "#ff0000",
+              borderWidth: 5,
+              // border: `2px dashed grey${blue[500]}`,
+              "&:hover": {
+                // backgroundColor: "#3c52b2",
+                backgroundColor: brands.facebook_h_bg,
+                color: "#dee3f8",
               },
             },
           },

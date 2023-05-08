@@ -15,6 +15,7 @@ import {
 
   Button,
   Stack,
+  Avatar
 } from "@mui/material"
 
 import Grid from "@mui/material/Unstable_Grid2"
@@ -40,6 +41,8 @@ import { useRouter } from "next/router";
 
 import {babyBlue} from "../../../data/userthemes/babybluenew";
 
+import {modern1} from "../../../data/userthemes/modern1";
+
 //const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
 // import { createTheme } from '@mui/material/styles';
@@ -61,6 +64,9 @@ const Modern = ({ user, profile, sites }) => {
   switch(profile.template) {
     case 'custom':
       profileTheme = profile.theme // This is the user's theme
+      break;
+    case 'modern1':
+      profileTheme = modern1 // This is the user's theme
       break;
     case 'babybluenew':
       // user theme is a will comes from
@@ -228,6 +234,15 @@ const Modern = ({ user, profile, sites }) => {
               spacing={0}
               direction="column"
               alignItems="center"
+              sx={{
+                py: {
+                  xs: 7,
+                  sm: 7,
+                  md: 10,
+                  lg: 11,
+                  xl: 12
+                }
+              }}
               // justifyContent="center"
               // style={{ minHeight: "100vh" }}
             >
@@ -258,6 +273,18 @@ const Modern = ({ user, profile, sites }) => {
               {/*// we do not want to allow image uploads. Only links to images on the net*/}
 
 
+              <Avatar
+                alt={userprofile.username}
+                src="/static/images/avatar/1.jpg"
+                sx={{
+                  width: 100,
+                  height: 100,
+                  mb: {
+                    xs: 4,
+                    sm: 3
+                  }
+              }}
+              />
 
               {/*// TODO: show handle, make it an option  */}
               <Typography
@@ -302,27 +329,27 @@ const Modern = ({ user, profile, sites }) => {
                   : <ProfileLink sites={sites} variant={profileTheme.options.links.variant}/>}
 
 
-                <Stack spacing={5}>
+                {/*<Stack spacing={5}>*/}
 
 
-                  <Button
-                    variant="userhoney"
-                  >
-                    <span>userhoney</span>
-                  </Button>
+                {/*  <Button*/}
+                {/*    variant="userhoney"*/}
+                {/*  >*/}
+                {/*    <span>userhoney</span>*/}
+                {/*  </Button>*/}
 
 
-                  <Button variant="userbabyblue">userbabyblue</Button>
-                  <Button variant="usernavyblue">usernavyblue</Button>
-                  <Button variant="useroranges">useroranges</Button>
-                  <Button variant="userseethrough">userseethrough</Button>
-                  <Button variant="userjungle">userjungle</Button>
-                  <Button variant="userjungle">userjungle</Button>
-                  <Button variant="userwu">userwu</Button>
-                  <Button variant="usermustard">usermustard</Button>
-                  <Button variant="usertronline">usertronline</Button>
+                {/*  <Button variant="userbabyblue">userbabyblue</Button>*/}
+                {/*  <Button variant="usernavyblue">usernavyblue</Button>*/}
+                {/*  <Button variant="useroranges">useroranges</Button>*/}
+                {/*  <Button variant="userseethrough">userseethrough</Button>*/}
+                {/*  <Button variant="userjungle">userjungle</Button>*/}
+                {/*  <Button variant="userjungle">userjungle</Button>*/}
+                {/*  <Button variant="userwu">userwu</Button>*/}
+                {/*  <Button variant="usermustard">usermustard</Button>*/}
+                {/*  <Button variant="usertronline">usertronline</Button>*/}
 
-                </Stack>
+                {/*</Stack>*/}
 
                 {/*// TODO: showing share buttons, etc should probably come from Apps table    */}
                 {/*<Stack spacing={4}>*/}
@@ -345,11 +372,10 @@ const Modern = ({ user, profile, sites }) => {
 
           </FacebookProvider>
         </main>
-        {/*{ TODO: custom footer overrides }*/}
         <footer>
-        <span>
-          Sub Grow
-        </span>
+        {/*<span>*/}
+        {/*  Sub Grow*/}
+        {/*</span>*/}
 
         </footer>
       </div>
@@ -359,3 +385,6 @@ const Modern = ({ user, profile, sites }) => {
 }
 
 export default Modern
+
+// TODO: custom footer overrides
+// TODO: user's google analytics

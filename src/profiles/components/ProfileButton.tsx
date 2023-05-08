@@ -14,7 +14,17 @@ export default function ProfileButton({ sites, variant  }: any) {
       // direction={{ xs: 'column', sm: 'row' }}
       // direction=
       spacing={{ xs: 2, sm: 3, md: 4, lg: 5  }}
-      width={300}
+      width={400}
+      sx={{
+       width: {
+         xs: 300,
+         sm: 400,
+         md: 400,
+         lg: 600,
+         xl: 600,
+
+       }
+      }}
     >
       {sites.map((site) => (
 

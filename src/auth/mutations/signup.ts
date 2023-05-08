@@ -3,7 +3,7 @@ import { resolver } from "@blitzjs/rpc"
 import db from "../../../db"
 import { Role } from "../../../types"
 import { Signup } from "../validations"
-import { ModernTheme } from "../../../data/userthemes/modern"
+import { ModernTheme } from "../../../data/userthemes/modern1"
 
 export default resolver.pipe(resolver.zod(Signup), async ({ username, email, password }, ctx) => {
   const hashedPassword = await SecurePassword.hash(password.trim())
