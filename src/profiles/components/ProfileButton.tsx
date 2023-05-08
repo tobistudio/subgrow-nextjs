@@ -7,14 +7,7 @@ import Link from "next/link"
 //  className={profileTheme.options.links.className}
 export default function ProfileButton({ sites, variant  }: any) {
 
-  let out
-  // if(type === 'link') {
-  //   out = <Link href={site.url} target="_blank">{site.title}</Link>
-  // }
-
-  // style={{"width": "100%"}}
-  // TODO: problem is, the href makes these buttons into a links
-  // no way around setting widths
+  // TODO: depending on options, show social media icons
   return (
     <Stack
       // spacing={5}

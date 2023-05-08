@@ -6,8 +6,6 @@ import Link from "next/link"
 
 export default function ProfileLink({ sites, type, variant  }: any) {
 
-  let out
-
   return (
     <Stack
 
