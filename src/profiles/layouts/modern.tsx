@@ -200,7 +200,7 @@ const Modern = ({ user, profile, sites }) => {
 
   // (profileTheme.bgColor ? profileTheme.bgColor : "#202A37")
   // TODO: mui background default not working, so manually adjust
-
+  // <Grid direction="column" xs={12} sm={12} md={8} lg={8} xl={8}>
   return (
     <ThemeProvider theme={combinedTheme}>
       <div id="profile-main" style={{ minHeight: "100vh", backgroundColor: profile.template === "custom" ?  profileTheme.muiTheme.palette.background.default : profileTheme.muiTheme.palette.background.default}}>
@@ -232,27 +232,30 @@ const Modern = ({ user, profile, sites }) => {
               // style={{ minHeight: "100vh" }}
             >
 
-              <Button variant="modern1">
-                testing button variants
-              </Button>
+              {/*<Button variant="modern1">*/}
+              {/*  testing button variants*/}
+              {/*</Button>*/}
 
 
 
-              <Typography
-                variant="h2"
-                color="primary.main"
-              >
-                testing typography
-              </Typography>
+              {/*<Typography*/}
+              {/*  variant="h2"*/}
+              {/*  color="primary.main"*/}
+              {/*>*/}
+              {/*  testing typography*/}
+              {/*</Typography>*/}
 
 
 
-              <Typography
-                variant="h1"
-                color="primary.main"
-              >
-                why bigger on this page
-              </Typography>
+              {/*<Typography*/}
+              {/*  variant="h1"*/}
+              {/*  color="primary.main"*/}
+              {/*>*/}
+              {/*  why bigger on this page*/}
+              {/*</Typography>*/}
+
+              {/*// TODO: user should select which image to show, from FB, Twitter, Etc*/}
+              {/*// we do not want to allow image uploads. Only links to images on the net*/}
 
 
 
@@ -260,6 +263,8 @@ const Modern = ({ user, profile, sites }) => {
               <Typography
                 variant={profileTheme.options.titleStyle}
                 alignItems={profileTheme.options.linkAlign ? profileTheme.options.linkAlign : "center"}
+                py={2}
+                //spacing={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}
                 className="profile-text"
                 id="title"
                 // style={{ color: profileTheme.titleColor ? profileTheme.titleColor : "rgb(189,196,215)" }}

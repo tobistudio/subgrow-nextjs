@@ -111,6 +111,7 @@ declare module "@mui/material/styles" {
     radiolabel: React.CSSProperties
     h1center: React.CSSProperties
     modern1: React.CSSProperties
+    babybluetext: React.CSSProperties
   }
 
   // allow configuration using `createTheme`
@@ -119,6 +120,7 @@ declare module "@mui/material/styles" {
     radiolabel?: React.CSSProperties
     h1center?: React.CSSProperties
     modern1?: React.CSSProperties
+    babybluetext?: React.CSSProperties
   }
 
   interface CardVariantsOptions {
@@ -133,6 +135,7 @@ declare module "@mui/material/Typography" {
     radiolabel: true
     h1center: true
     modern1: true
+    babybluetext: true
   }
 }
 // TypeError: Cannot read properties of undefined (reading 'muiName')
@@ -412,6 +415,11 @@ const Themes = (props) => {
         fontSize: "1rem",
         color: "#111111",
       },
+      babybluetext: {
+        fontSize: "1rem",
+        color: "#ffffff",
+      },
+
 
     },
     components: {
@@ -430,6 +438,7 @@ const Themes = (props) => {
           variantMapping: {
             // Map the new variant to render a <h1> by default
             poster: "h3",
+            babybluetext: "h1",
           },
         },
       },
