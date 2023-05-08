@@ -87,7 +87,8 @@ undefined
   //const [sites] = useQuery(getSiteForProfileByStatus, { userId: (profileId === 'tester' && !user.id) ? 0 : user.id, status: "active" })
 
 
-  const [sites] = useQuery(getSiteForProfileByStatus, { userId: (profileId === 'tester' && !profileUser.id) ? 0 : profileUser.id, status: "active" })
+  // const [sites] = useQuery(getSiteForProfileByStatus, { userId: (profileId === 'tester' && !profileUser.id) ? 0 : profileUser.id, status: "active" })
+  const [sites] = useQuery(getSiteForProfileByStatus, { userId: profileUser.id, status: "active" })
 
 
   // TODO: the layout should be set on dashboard page.
