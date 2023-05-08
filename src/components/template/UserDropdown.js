@@ -10,7 +10,7 @@ import { faFacebook } from "@fortawesome/free-brands-svg-icons"
 import { misc } from "../../configs/colors/default"
 
 import {
-  Badge
+  Badge, Typography
 } from "@mui/material"
 import {useSession} from "@blitzjs/auth";
 import {
@@ -29,7 +29,9 @@ export const UserDropdown = ({ className, user }) => {
       path: `/${session.username}`,
       icon:<FontAwesomeIcon
         icon={faUser}
-        size="sm"
+        style={{width: 17}}
+        pr={2}
+        color="#3f50b5"
       />,
     },
     {
@@ -37,7 +39,9 @@ export const UserDropdown = ({ className, user }) => {
       path: `/dashboard`,
       icon:<FontAwesomeIcon
         icon={faLink}
-        size="sm"
+        style={{width: 17}}
+        pr={2}
+        color="#3f50b5"
       />,
     },
     {
@@ -45,7 +49,9 @@ export const UserDropdown = ({ className, user }) => {
       path: "/account/settings",
       icon:<FontAwesomeIcon
         icon={faGear}
-        size="sm"
+        style={{width: 17}}
+        pr={2}
+        color="#3f50b5"
         //color={misc.fa_primary} // TODO: find out if it's a good idea to use useTheme here for colors
       />,
     },
@@ -58,7 +64,7 @@ export const UserDropdown = ({ className, user }) => {
 
   //  className={classNames(className, "flex items-center gap-2")}
   // TODO: show icon for the social media that user is logged in
-  // @ts-ignore
+
   const UserAvatar = (
     <div>
       <Badge
@@ -88,49 +94,42 @@ export const UserDropdown = ({ className, user }) => {
           <div className="py-2 px-3 flex items-center gap-2">
             {/*<Avatar shape="circle" src={avatar} />*/}
 
-            <FontAwesomeIcon
-              icon={faFacebook}
-              color={misc.fa_primary}
-              style={{ width: 15, height: 15 }}
-            />
+            {/*<Typography variant="caption" sx={{*/}
+            {/*  pt:1*/}
+            {/*}}>*/}
+            {/*  {session.username}*/}
+            {/*</Typography>*/}
 
-            {
-              // TODO: perhaps show social media icon for what you're logged in with
-            }
 
-            <div>
-              <div className="font-bold text-gray-900 dark:text-gray-100">{session.name}</div>
-              <div className="text-xs">{session.username}</div>
-            </div>
           </div>
         </Dropdown.Item>
-        <Dropdown.Item variant="divider" />
+
         {dropdownItemList.map((item) => (
           <Dropdown.Item eventKey={item.label} key={item.label} className="mb-1">
             <Link className="flex gap-2 items-center" href={item.path}>
               {item.icon}
-              <span>{item.label}</span>
+              <Typography variant="menuitem">{item.label}</Typography>
             </Link>
           </Dropdown.Item>
         ))}
         <Dropdown.Item variant="divider" />
+
         <Dropdown.Item
           //onClick={signOut} // TODO
           onClick={async () => {
             await logoutMutation()
-
-
           }}
           eventKey="Sign Out"
           className="gap-2"
         >
 
-      <FontAwesomeIcon
-        icon={faSignOut}
-        size="sm"
-      />
+          <FontAwesomeIcon
+            icon={faSignOut}
+            style={{width: 17}}
+            color="#3f50b5"
+          />
 
-          <span>Sign Out</span>
+          <Typography variant="menuitem">Sign Out</Typography>
         </Dropdown.Item>
       </Dropdown>
     </div>

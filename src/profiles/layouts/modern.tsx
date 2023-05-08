@@ -52,7 +52,7 @@ import { modern1 } from "../../../data/userthemes/modern1";
 
 // export const LoginForm = (props: LoginFormProps) => {
 
-const Modern = ({ user, profile, sites }) => {
+const Modern = ({ profile, sites }) => {
 
   const session = useSession()
 
@@ -168,7 +168,7 @@ const Modern = ({ user, profile, sites }) => {
   // set profile data in state
   const [userprofile, setUserprofile] = React.useState(profile)
 
-  // console.log("setting state modern userprofile", userprofile)
+  console.log("setting state modern userprofile", userprofile)
   // profile = React.getProfile()
 
 
@@ -273,7 +273,7 @@ const Modern = ({ user, profile, sites }) => {
 
 
               <Avatar
-                alt={userprofile.username}
+                alt={profile.username}
                 src="https://placehold.co/100x100/EEE/31343C"
                 sx={{
                   width: 100,
@@ -295,7 +295,9 @@ const Modern = ({ user, profile, sites }) => {
                 id="title"
               // style={{ color: profileTheme.titleColor ? profileTheme.titleColor : "rgb(189,196,215)" }}
               >
-                {userprofile.title}
+                {/*{userprofile.title ? userprofile.title : userprofile.username}*/}
+                {profile.title ? profile.title : profile.username}
+
               </Typography>
 
               {userprofile.description ? (
