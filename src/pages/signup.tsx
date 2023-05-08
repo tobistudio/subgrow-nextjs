@@ -1,3 +1,4 @@
+import React, { Suspense } from "react"
 import { useRouter } from "next/router"
 import HomeLayout from "core/layouts/HomeLayout"
 import { SignupForm } from "auth/components/SignupForm"
@@ -8,17 +9,18 @@ const SignupPage: BlitzPage = () => {
 
   return (
     <HomeLayout type="signup" title="Sign Up">
-      {/*<SignupForm onSuccess={() => router.push(Routes.Home())} />*/}
-      <SignupForm
-        onSuccess={(_user) => {
-          console.log("SignupForm onSuccess,", _user)
-          // TODO: very slow to forward to next page, needs loading
-          const next = router.query.next
-            ? decodeURIComponent(router.query.next as string)
-            : "/dashboard"
-          return router.push(next)
-        }}
-      />
+      <Suspense fallback={"loading..."}>
+        <SignupForm
+          onSuccess={(_user) => {
+            console.log("SignupForm onSuccess,", _user)
+            // TODO: very slow to forward to next page, needs loading
+            const next = router.query.next
+              ? decodeURIComponent(router.query.next as string)
+              : "/dashboard"
+            return router.push(next)
+          }}
+        />
+      </Suspense>
     </HomeLayout>
   )
 }
