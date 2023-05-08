@@ -84,6 +84,7 @@ declare module "@mui/material/Button" {
     usermustard: true
     usertronline: true
     usermodern1: true
+    userpeppermint: true
   }
 }
 
@@ -709,16 +710,30 @@ const Themes = (props) => {
             props: { variant: "usermodern1" },
             style: {
               // backgroundColor: "#2374F2",
-              backgroundColor: "#e9efef",
+              backgroundColor: "#001644",
               // color: brands.facebook,
-              color: "#4267B2",
-              border: `2px dashed #ff0000`,
-              borderColor: "#ff0000",
-              borderWidth: 5,
+              color: "#ffffff",
+              border: `2px solid`,
+              borderColor: "#3c52b2",
+              borderWidth: 2,
               // border: `2px dashed grey${blue[500]}`,
               "&:hover": {
+                backgroundColor: "#3c52b2",
+                color: "#dee3f8",
+              },
+            },
+          },
+          {
+            props: { variant: "userpeppermint" },
+            style: {
+              backgroundColor: "#e9efef",
+              color: "#000000",
+              border: `2px dashed`,
+              borderColor: "#e10000",
+              borderWidth: 4,
+              "&:hover": {
                 // backgroundColor: "#3c52b2",
-                backgroundColor: brands.facebook_h_bg,
+                backgroundColor: "#e9efef",
                 color: "#dee3f8",
               },
             },

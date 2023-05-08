@@ -17,7 +17,7 @@ export const modern1 = {
     "descriptionStyle": "body1",
     "links": {
       "type": "button",
-      "variant": "modern1",
+      "variant": "usermodern1",
       "style": {
         "color": "#ffffff",
         "borderColor": "#ffffff",
