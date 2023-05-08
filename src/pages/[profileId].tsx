@@ -38,7 +38,7 @@ export const ProfileIndex = () => {
   const router = useRouter()
   const session = useSession()
 
-  const [user] = useQuery(getUserForProfile, { username: profileId })
+  const [profileUser] = useQuery(getUserForProfile, { username: profileId })
   const [profile]: any = useQuery(getProfile, { userId: Number(localStorage.id ? localStorage.id : session.userId), current: "yes" })
 
   // TODO: dawn bl
@@ -84,11 +84,17 @@ undefined
   // TODO: need to figure out how to exit here, if this profile doesn't exist
   // TODO: forward to a /claim-username page
   // TODO: dawn we need to pull data for this PROFILE, not user!!!!
-  const [sites] = useQuery(getSiteForProfileByStatus, { userId: (profileId === 'tester' && !user.id) ? 0 : user.id, status: "active" })
+  //const [sites] = useQuery(getSiteForProfileByStatus, { userId: (profileId === 'tester' && !user.id) ? 0 : user.id, status: "active" })
+
+
+  const [sites] = useQuery(getSiteForProfileByStatus, { userId: (profileId === 'tester' && !profileUser.id) ? 0 : profileUser.id, status: "active" })
+
 
   // TODO: the layout should be set on dashboard page.
   // remove "layout", everything should use modern
-  const layoutType = <Modern user={user} profile={(profileId === 'tester' && !profile.theme) ? tester_profile : profile} sites={sites} />
+  // const layoutType = <Modern user={user} profile={(profileId === 'tester' && !profile.theme) ? tester_profile : profile} sites={sites} />
+  // const layoutType = <Modern profile={(profileId === 'tester' && !profile.theme) ? tester_profile : profile} sites={sites} />
+  const layoutType = <Modern profile={profile} sites={sites} />
 
 
   // let userLayout
