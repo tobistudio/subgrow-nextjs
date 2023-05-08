@@ -48,8 +48,9 @@ const options = {
 const muiTheme = {
   palette: {
     background: {
-      light: '#bb1919', // not working
-      default: '#d97474', // not working
+      light: '#A0DCFF', // not working automatically
+      default: '#A0DCFF', // only using default for now
+      dark: '#A0DCFF',
     },
     primary: {
       main: "#ffffff",

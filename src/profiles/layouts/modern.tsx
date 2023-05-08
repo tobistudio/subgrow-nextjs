@@ -18,19 +18,20 @@ import {
 } from "@mui/material"
 
 import Grid from "@mui/material/Unstable_Grid2"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import ProfileLinkButton from "../components/ProfileLinkButton";
-import UserInfo from "../../components/user/UserInfo";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import ProfileButton from "../components/ProfileButton";
+import ProfileLink from "../components/ProfileLink";
+// import UserInfo from "../../components/user/UserInfo";
 import SidePanelHeaderToggle from "../../components/template/SidePanel/SidePanelHeaderToggle";
 // import { useMutation } from "@blitzjs/rpc";
 // import updateLinkOrder from "../../sites/mutations/updateLinkOrder";
 import { useTheme, ThemeProvider } from "@mui/material/styles";
 import { useSession } from "@blitzjs/auth";
 import { useRouter } from "next/router";
-// import ProfileButton from "../../components/user/ProfileButton";
+
 // import { green, purple } from '@mui/material/colors';
-import babyTheme from '../../../data/userthemes/babyblue.json'
-import { Theme } from "@emotion/react"
+// import babyTheme from '../../../data/userthemes/babyblue.json'
+// import { Theme } from "@emotion/react"
 // import {profileTheme} from "../../../data/userthemes/babybluenew";
 
 // TODO: lazy load theme
@@ -57,34 +58,34 @@ const Modern = ({ user, profile, sites }) => {
   console.log("profile.template",profile);
   console.log("profile.template",profile.template);
   let profileTheme
-    switch(profile.template) {
-      case 'custom':
-        profileTheme = profile.theme // This is the user's theme
-        break;
-      case 'babybluenew':
-        // user theme is a will comes from
+  switch(profile.template) {
+    case 'custom':
+      profileTheme = profile.theme // This is the user's theme
+      break;
+    case 'babybluenew':
+      // user theme is a will comes from
 
-        // profileTheme = lazy(() => import("../../../data/userthemes/babybluenew"))
-
-
-        profileTheme = babyBlue
+      // profileTheme = lazy(() => import("../../../data/userthemes/babybluenew"))
 
 
-
-
-        //profileTheme = lazy(() => import("../../../data/userthemes/babybluenew"))
-        // /Users/amirmeshkin/_code/_business/subgrow.com/data/userthemes/babybluenew.tsx
-
-        // profileTheme = dynamic(() => import('../../../data/userthemes/babybluenew'), {
-        //   loading: () => <p>Loading...</p>,
-        // });
+      profileTheme = babyBlue
 
 
 
-        break;
-      default:
-      // code block
-    }
+
+      //profileTheme = lazy(() => import("../../../data/userthemes/babybluenew"))
+      // /Users/amirmeshkin/_code/_business/subgrow.com/data/userthemes/babybluenew.tsx
+
+      // profileTheme = dynamic(() => import('../../../data/userthemes/babybluenew'), {
+      //   loading: () => <p>Loading...</p>,
+      // });
+
+
+
+      break;
+    default:
+    // code block
+  }
 
 
 
@@ -203,9 +204,9 @@ const Modern = ({ user, profile, sites }) => {
   return (
     <ThemeProvider theme={combinedTheme}>
       <div id="profile-main" style={{ minHeight: "100vh", backgroundColor: profile.template === "custom" ?  profileTheme.muiTheme.palette.background.default : profileTheme.muiTheme.palette.background.default}}>
-      {/*<div id="profile-main" style={{ minHeight: "100vh", backgroundColor: profile.template === "custom" ?  profileTheme.bgColor : ""}}>*/}
+        {/*<div id="profile-main" style={{ minHeight: "100vh", backgroundColor: profile.template === "custom" ?  profileTheme.bgColor : ""}}>*/}
 
-      {/*<div id="profile-main" style={{ minHeight: "100vh", backgroundColor: usedTheme === "mytheme" ? (profileTheme.bgColor ? profileTheme.bgColor : "#202A37") : "#000000"}}>*/}
+        {/*<div id="profile-main" style={{ minHeight: "100vh", backgroundColor: usedTheme === "mytheme" ? (profileTheme.bgColor ? profileTheme.bgColor : "#202A37") : "#000000"}}>*/}
         <header className="header-wrapper">
           <Grid container spacing={0} py={1}>
             <Grid spacing={{ xs: 12 }} display="flex" justifyContent="right" alignItems="center">
@@ -253,125 +254,87 @@ const Modern = ({ user, profile, sites }) => {
                 why bigger on this page
               </Typography>
 
-              <Box
-                id="profile-card" // TODO: use mui?
-                sx={{ minWidth: 380, padding: 2, borderRadius: 2 }} // , maxWidth: 420
-              >
 
-                {/*// TODO: show handle, make it an option  */}
-                <Typography
-                  variant={profileTheme.options.titleStyle}
-                  alignItems={profileTheme.options.linkAlign ? profileTheme.options.linkAlign : "center"}
-                  className="profile-text"
-                  id="title"
-                  // style={{ color: profileTheme.titleColor ? profileTheme.titleColor : "rgb(189,196,215)" }}
+
+              {/*// TODO: show handle, make it an option  */}
+              <Typography
+                variant={profileTheme.options.titleStyle}
+                alignItems={profileTheme.options.linkAlign ? profileTheme.options.linkAlign : "center"}
+                className="profile-text"
+                id="title"
+                // style={{ color: profileTheme.titleColor ? profileTheme.titleColor : "rgb(189,196,215)" }}
+              >
+                {userprofile.title ? userprofile.title : userprofile.username}
+              </Typography>
+
+              {userprofile.description ? (
+                <Typography variant={profileTheme.options.descriptionStyle} id="description" className="description"
+                  // style={{ color: profileTheme.descriptionColor ? profileTheme.descriptionColor : "rgb(189,196,215)" }}
                 >
-                  {userprofile.title ? userprofile.title : userprofile.username}
+                  {userprofile.description}
                 </Typography>
-
-                {userprofile.description ? (
-                  <Typography variant={profileTheme.options.descriptionStyle} id="description" className="description"
-                    // style={{ color: profileTheme.descriptionColor ? profileTheme.descriptionColor : "rgb(189,196,215)" }}
-                  >
-                    {userprofile.description}
-                  </Typography>
-                ) : (
-                  ""
-                )}
-
-                <Box
-                  display="flex"
-                  alignItems={profileTheme.options.linkAlign ? profileTheme.options.linkAlign : "center"}
-                  justifyContent={profileTheme.options.linkAlign ? profileTheme.options.linkAlign : "center"}
-                >
-                  <ul className="list-modern">
-                    {sites.map((site) => (
-                      <li key={site.id} style={{ marginTop: linkMargin }}>
-                        {profileTheme.options.links.type === "link" ? (
-                          <Link href={site.url} target="_blank" className={profileTheme.options.links.className}>
-                            {site.title}
-                          </Link>
-                        ) : (
-                          <Button
-                            href={site.url}
-                            style={{ width: profileTheme.options.linkWidth ? profileTheme.options.linkWidth : 200 }}
-                            target="_blank"
-                            // variant={profileTheme.buttonStyle ? profileTheme.buttonStyle : "outlined"}
-                            variant={profileTheme.options.links.variant ? profileTheme.options.links.variant : "outlined"}
-                            className={profileTheme.options.links.className}
-                            // startIcon={site.icon ? <FontAwesomeIcon icon={site.icon} size="lg" style={{ width: 17, height: 17 }} /> : ''}
-                            startIcon={<ProfileLinkButton size={"xl"} icon={site.icon} />}
-                          >
-                            {site.title}
-                          </Button>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </Box>
+              ) : (
+                ""
+              )}
 
 
 
-                {/*<FacebookProvider appId="241448415049637">*/}
-                {/*  /!*<EmbeddedPost href="https://www.facebook.com/amir.meshkin" width="500" />*!/*/}
-                {/*  /!*width: 100px;*!/*/}
-                {/*  /!*height: 100px;*!/*/}
-                {/*  /!*background-color: #ff0000;*!/*/}
-                {/*  <Like href="http://www.facebook.com" colorScheme="dark" showFaces share />*/}
 
-                {/*  <ShareButton href="http://www.facebook.com" />*/}
-                {/*</FacebookProvider>*/}
-
-              </Box>
-            </Grid>
-
-
-            {/*// TODO: dawn apps area is where we will show widgets, tik tok feed, etc*/}
-            <Grid
-              container
-              spacing={0}
-              direction="column"
-              alignItems="center"
-              justifyContent="center"
-            >
-
-
-              <Stack spacing={4}>
-
-
-              <Button
-                variant="userhoney"
+              {/*// TODO: dawn apps area is where we will show widgets, tik tok feed, etc*/}
+              <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
               >
-                <span>userhoney</span>
-              </Button>
+
+                {/*style={{ marginTop: linkMargin }}*/}
 
 
-              <Button variant="userbabyblue">userbabyblue</Button>
-              <Button variant="usernavyblue">usernavyblue</Button>
-              <Button variant="useroranges">useroranges</Button>
-              <Button variant="userseethrough">userseethrough</Button>
-              <Button variant="userjungle">userjungle</Button>
-              <Button variant="userjungle">userjungle</Button>
-              <Button variant="userwu">userwu</Button>
-              <Button variant="usermustard">usermustard</Button>
-              <Button variant="usertronline">usertronline</Button>
+                {profileTheme.options.links.type === 'button'
+                  ? <ProfileButton sites={sites} variant={profileTheme.options.links.variant}/>
+                  : <ProfileLink sites={sites} variant={profileTheme.options.links.variant}/>}
 
-              </Stack>
 
-              {/*// TODO: showing share buttons, etc should probably come from Apps table    */}
-              {/*<Stack spacing={4}>*/}
-              {/*  {userprofile.profileTheme.showShare &&*/}
-              {/*    <Button*/}
-              {/*      variant="contained"*/}
-              {/*      onClick={() => {*/}
-              {/*        shareFb()*/}
-              {/*      }}*/}
-              {/*      startIcon={<FontAwesomeIcon icon={faFacebook} style={{ width: 15, height: 15 }} />}*/}
-              {/*    >*/}
-              {/*      <span>share</span>*/}
-              {/*    </Button>*/}
-              {/*  }*/}
-              {/*</Stack>*/}
+                <Stack spacing={5}>
+
+
+                  <Button
+                    variant="userhoney"
+                  >
+                    <span>userhoney</span>
+                  </Button>
+
+
+                  <Button variant="userbabyblue">userbabyblue</Button>
+                  <Button variant="usernavyblue">usernavyblue</Button>
+                  <Button variant="useroranges">useroranges</Button>
+                  <Button variant="userseethrough">userseethrough</Button>
+                  <Button variant="userjungle">userjungle</Button>
+                  <Button variant="userjungle">userjungle</Button>
+                  <Button variant="userwu">userwu</Button>
+                  <Button variant="usermustard">usermustard</Button>
+                  <Button variant="usertronline">usertronline</Button>
+
+                </Stack>
+
+                {/*// TODO: showing share buttons, etc should probably come from Apps table    */}
+                {/*<Stack spacing={4}>*/}
+                {/*  {userprofile.profileTheme.showShare &&*/}
+                {/*    <Button*/}
+                {/*      variant="contained"*/}
+                {/*      onClick={() => {*/}
+                {/*        shareFb()*/}
+                {/*      }}*/}
+                {/*      startIcon={<FontAwesomeIcon icon={faFacebook} style={{ width: 15, height: 15 }} />}*/}
+                {/*    >*/}
+                {/*      <span>share</span>*/}
+                {/*    </Button>*/}
+                {/*  }*/}
+                {/*</Stack>*/}
+
+              </Grid>
 
             </Grid>
 
