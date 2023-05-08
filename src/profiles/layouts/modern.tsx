@@ -109,6 +109,8 @@ const Modern = ({ user, profile, sites }) => {
     }
   }
 
+  // TODO: entire theme put into state, or background color profileTheme.muiTheme.palette.background.default
+
   // console.log("siteTheme", siteTheme)
   // console.log("user profile theme", theme)
   // console.log("sites", sites);
@@ -131,16 +133,6 @@ const Modern = ({ user, profile, sites }) => {
   //     },
   //   },
   // });
-
-
-  //
-  const userTheme = {
-    palette: {
-      primary: {
-        main: "#2edc00",
-      },
-    },
-  }
 
   // TODO: once we have user's custom theme, or selected template, we put ONLY userTheme into state
 
@@ -202,11 +194,18 @@ const Modern = ({ user, profile, sites }) => {
   console.log("profileTheme",profileTheme)
   console.log("profileTheme.options",profileTheme.options)
 
-  //
+  // if template set to custom, use whatever
+
+
+  // (profileTheme.bgColor ? profileTheme.bgColor : "#202A37")
+  // TODO: mui background default not working, so manually adjust
 
   return (
     <ThemeProvider theme={combinedTheme}>
-      <div id="profile-main" style={{ minHeight: "100vh", backgroundColor: usedTheme === "mytheme" ? (profileTheme.bgColor ? profileTheme.bgColor : "#202A37") : "#000000"}}>
+      <div id="profile-main" style={{ minHeight: "100vh", backgroundColor: profile.template === "custom" ?  profileTheme.muiTheme.palette.background.default : profileTheme.muiTheme.palette.background.default}}>
+      {/*<div id="profile-main" style={{ minHeight: "100vh", backgroundColor: profile.template === "custom" ?  profileTheme.bgColor : ""}}>*/}
+
+      {/*<div id="profile-main" style={{ minHeight: "100vh", backgroundColor: usedTheme === "mytheme" ? (profileTheme.bgColor ? profileTheme.bgColor : "#202A37") : "#000000"}}>*/}
         <header className="header-wrapper">
           <Grid container spacing={0} py={1}>
             <Grid spacing={{ xs: 12 }} display="flex" justifyContent="right" alignItems="center">

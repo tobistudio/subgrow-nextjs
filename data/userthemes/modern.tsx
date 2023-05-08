@@ -1,35 +1,43 @@
 
 // Default theme for a user profile
 export const ModernTheme = {
-  "layout": "modern", // drop down name value
-  "layoutName": "Modern",
-  "titleStyle": "h6",
-  "titleColor": "#2c2c2c",
-  "descriptionStyle": "body1",
-  "descriptionColor": "#3a3939",
-  "links": {
-    "variant": "modern1",
-    "colors": {
-      "light": {
+  "options": {
+    "layout": "modern",
+    "bgColor": "#A0DCFF",
+    "linkAlign": "center",
+    "linkStyle": "modern1",
+    "linkWidth": "200",
+    "fontFamily": "",
+    "layoutName": "Baby Blue",
+    "titleColor": "#ffffff",
+    "titleStyle": "h6",
+    "bgCardColor": "",
+    "linkSpacing": 20,
+    "descriptionColor": "#ffffff",
+    "descriptionStyle": "body1",
+    "links": {
+      "type": "button",
+      "variant": "modern1",
+      "style": {
         "color": "#ffffff",
         "borderColor": "#ffffff",
         "borderWidth": 2,
-        "backgroundColor": "#005f9b",
-      },
-      "dark": {
-        "color": "#ffffff",
-        "borderColor": "#c01212",
-        "borderWidth": 2,
-        "backgroundColor": "#00649b",
+        "borderRadius": 2
       }
-    },
+    }
   },
-  "linkType": "button",
-  "linkStyle": "modern1",
-  "linkSpacing": 20,
-  "linkAlign": "center",
-  "bgColor": "#000000",
-  "bgCardColor": "#021931",
-  "linkWidth": "200",
-  "fontFamily": "", //
+  "muiTheme": {
+    "palette": {
+      "background": {
+        "light": "#9a2424",
+        "default": "#d97474"
+      },
+      "primary": {
+        "main": "#ff0000"
+      },
+      "text": {
+        "primary": "#ef5a5a"
+      }
+    }
+  }
 }

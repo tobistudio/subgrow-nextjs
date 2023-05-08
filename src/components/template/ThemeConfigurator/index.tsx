@@ -628,6 +628,9 @@ const ThemeConfigurator = (props) => {
 
 export default ThemeConfigurator
 
+// TODO: if a custom theme is selected, such as babyblue, then all fields are disabled except
+// Template Switcher dropdown
+
 // TODO: check level, and hide some premium features
 
 // TODO: theme json box, and saved in state on every save

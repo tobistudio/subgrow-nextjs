@@ -44,12 +44,19 @@ const options = {
     },
   },
 }
-
+//  theme={light ? themeLight : themeDark}
 const muiTheme = {
   palette: {
-    primary: {
-      main: "#2edc00",
+    background: {
+      light: '#bb1919', // not working
+      default: '#d97474', // not working
     },
+    primary: {
+      main: "#ffffff",
+    },
+    text: {
+      primary: "#bb0000"
+    }
   },
 }
 
