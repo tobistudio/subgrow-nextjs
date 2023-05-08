@@ -3,13 +3,14 @@ import { useRouter } from "next/router"
 import HomeLayout from "core/layouts/HomeLayout"
 import { SignupForm } from "auth/components/SignupForm"
 import { BlitzPage, Routes } from "@blitzjs/next"
+const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
 const SignupPage: BlitzPage = () => {
   const router = useRouter()
 
   return (
     <HomeLayout type="signup" title="Sign Up">
-      <Suspense fallback={"loading..."}>
+      <Suspense fallback={<LoadingSvg />}>
         <SignupForm
           onSuccess={(_user) => {
             console.log("SignupForm onSuccess,", _user)
