@@ -295,7 +295,7 @@ const Modern = ({ user, profile, sites }) => {
                 id="title"
               // style={{ color: profileTheme.titleColor ? profileTheme.titleColor : "rgb(189,196,215)" }}
               >
-                {userprofile.title ? userprofile.title : userprofile.username}
+                {userprofile.title}
               </Typography>
 
               {userprofile.description ? (
