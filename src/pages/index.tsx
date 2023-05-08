@@ -43,6 +43,15 @@ const Home: BlitzPage = () => {
           </li>
 
           <li>
+            <Link href="/login">Login</Link>
+          </li>
+
+          <li>
+            <Link href="/signup">sign up</Link>
+          </li>
+
+
+          <li>
             <Link href="/tester">profile</Link>
           </li>
 
@@ -128,12 +137,13 @@ const Home: BlitzPage = () => {
               User Buttons
             </Typography>
             <Stack spacing={4}>
+              <Button variant="usermodern1">usermodern1</Button>
               <Button variant="userhoney">userhoney</Button>
               <Button variant="userbabyblue">userbabyblue</Button>
               <Button variant="usernavyblue">usernavyblue</Button>
               <Button variant="useroranges">useroranges</Button>
               <Button variant="userseethrough">userseethrough</Button>
-              <Button variant="userjungle">userjungle</Button>
+
               <Button variant="userjungle">userjungle</Button>
               <Button variant="userwu">userwu</Button>
               <Button variant="usermustard">usermustard</Button>

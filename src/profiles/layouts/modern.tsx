@@ -275,7 +275,7 @@ const Modern = ({ user, profile, sites }) => {
 
               <Avatar
                 alt={userprofile.username}
-                src="/static/images/avatar/1.jpg"
+                src="https://placehold.co/100x100/EEE/31343C"
                 sx={{
                   width: 100,
                   height: 100,
