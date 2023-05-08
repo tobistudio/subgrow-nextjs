@@ -20,19 +20,8 @@
  */
 
 const options = {
-  "links": {
-    "type": "button",
-    "variant": "userbabyblue",
-    "style": {
-      "color": "#ffffff",
-      "borderColor": "#ffffff",
-      "borderWidth": 2,
-      "borderRadius": 2,
-    },
-  },
   "layout": "babyblue",
   "bgColor": "#A0DCFF",
-  "linkType": "button",
   "linkAlign": "center",
   "linkStyle": "userbabyblue",
   "linkWidth": "200",
@@ -43,7 +32,17 @@ const options = {
   "bgCardColor": "",
   "linkSpacing": 20,
   "descriptionColor": "#ffffff",
-  "descriptionStyle": "body1"
+  "descriptionStyle": "body1",
+  "links": {
+    "type": "button",
+    "variant": "userbabyblue",
+    "style": {
+      "color": "#ffffff",
+      "borderColor": "#ffffff",
+      "borderWidth": 2,
+      "borderRadius": 2,
+    },
+  },
 }
 
 const muiTheme = {

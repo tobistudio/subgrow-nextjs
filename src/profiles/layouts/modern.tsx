@@ -145,7 +145,7 @@ const Modern = ({ user, profile, sites }) => {
   // TODO: once we have user's custom theme, or selected template, we put ONLY userTheme into state
 
   // const combinedTheme = deepmerge(siteTheme, userTheme);
-  const combinedTheme = deepmerge(siteTheme, profileTheme);
+  const combinedTheme = deepmerge(siteTheme, profileTheme.muiTheme);
   // const combinedTheme = createTheme(deepmerge(siteTheme, userTheme));
 
 
@@ -288,7 +288,7 @@ const Modern = ({ user, profile, sites }) => {
                   <ul className="list-modern">
                     {sites.map((site) => (
                       <li key={site.id} style={{ marginTop: linkMargin }}>
-                        {profileTheme.options.linkType === "link" ? (
+                        {profileTheme.options.links.type === "link" ? (
                           <Link href={site.url} target="_blank" className={profileTheme.options.links.className}>
                             {site.title}
                           </Link>
