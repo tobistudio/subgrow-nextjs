@@ -109,6 +109,7 @@ declare module "@mui/material/styles" {
     poster: React.CSSProperties
     radiolabel: React.CSSProperties
     h1center: React.CSSProperties
+    menuitem: React.CSSProperties
     modern1: React.CSSProperties
     babybluetext: React.CSSProperties
   }
@@ -118,6 +119,7 @@ declare module "@mui/material/styles" {
     poster?: React.CSSProperties
     radiolabel?: React.CSSProperties
     h1center?: React.CSSProperties
+    menuitem?: React.CSSProperties
     modern1?: React.CSSProperties
     babybluetext?: React.CSSProperties
   }
@@ -133,6 +135,7 @@ declare module "@mui/material/Typography" {
     poster: true
     radiolabel: true
     h1center: true
+    menuitem: true
     modern1: true
     babybluetext: true
   }
@@ -393,7 +396,7 @@ const Themes = (props) => {
       caption: {
         fontWeight: 500,
         fontSize: 10,
-        // color: "#ffffff" // being overridden
+        color: "#cccccc" // being overridden
       },
       poster: {
         fontSize: "4rem",
@@ -407,6 +410,11 @@ const Themes = (props) => {
         fontWeight: 700,
         marginBottom: 15,
         textAlign: "center"
+      },
+      menuitem: {
+        fontSize: 13,
+        color: "#707070",
+        fontWeight: 400,
       },
       modern1: {
         fontSize: "1rem",

@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
+      <change afterPath="$PROJECT_DIR$/src/assets/styles/components/_menu-item.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/styles/components/_user-dropdown.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/components/_user-dropdown.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/_app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/_app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/components/_menu-item.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/template/Theme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/Theme.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/template/UserDropdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/UserDropdown.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
