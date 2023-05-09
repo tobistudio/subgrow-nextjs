@@ -703,9 +703,9 @@ const Themes = (props) => {
             props: { variant: "cardactionbtn" }, // user variants
             style: {
               backgroundColor: "transparent",
-              border: `2px solid`,
+              border: `1px solid`,
               borderColor: "#3c52b2",
-              borderWidth: 2,
+              borderWidth: 1,
               color: "#3c52b2",
               "&:hover": {
                 backgroundColor: "#3c52b2",

@@ -68,6 +68,7 @@ export const TikTokWidget = () => {
 
                 <Button
                   href={`https://www.tiktok.com/${ele.cardItem.link}`}
+                  target="_blank"
                   variant="cardactionbtn"
                   size="small"
                   >
