@@ -46,11 +46,11 @@ export const TikTokWidget = () => {
                                     {ele.cardItem.description}
                                 </Typography>
                             </CardContent>
-                            <CardActions>
-                                <Button size="small">Share</Button>
-                                <a href={`https://www.tiktok.com/${ele.cardItem.link}`}>Learn More</a>
-                            </CardActions>
                         </CardActionArea>
+                        <CardActions>
+                            <Button size="small">Share</Button>
+                            <a href={`https://www.tiktok.com/${ele.cardItem.link}`}>Learn More</a>
+                        </CardActions>
                     </Card>
                 )
             }
