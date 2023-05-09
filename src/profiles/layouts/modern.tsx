@@ -355,7 +355,6 @@ const Modern = ({ profile, sites }) => {
           <div>
             {
               tiktokWidget.map((ele, id) =>
-                id < 2 &&
                 <Card sx={{ maxWidth: 345 }} key={id}>
                   <CardMedia
                     sx={{ height: 140 }}
