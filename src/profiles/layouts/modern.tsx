@@ -11,11 +11,16 @@ import { RootStateOrAny, useSelector } from "react-redux"
 import { faFacebook } from "@fortawesome/free-brands-svg-icons"
 import {
   Box,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
   Typography,
   Button,
   Stack,
   Avatar
 } from "@mui/material"
+import axios from 'axios'
 
 import Grid from "@mui/material/Unstable_Grid2"
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -55,6 +60,17 @@ import { modern1 } from "../../../data/userthemes/modern1";
 const Modern = ({ profile, sites }) => {
 
   const session = useSession()
+
+  const [tiktokWidget, setTikTokWidget] = React.useState<Array<any>>([]);
+
+  React.useEffect(() => {
+    const getWidget = async () => {
+      let result: Array<any> = await axios.get('/api/auth/tiktok/getWidgets');
+      console.log("result", result);
+      setTikTokWidget(result);
+    }
+    getWidget()
+  }, [])
 
   // TODO: profile should come from store/ state
   // If there is a custom template, use it
@@ -293,7 +309,30 @@ const Modern = ({ profile, sites }) => {
                 {profileTheme.options.links.type === 'button'
                   ? <ProfileButton sites={sites} variant={profileTheme.options.links.variant} />
                   : <ProfileLink sites={sites} variant={profileTheme.options.links.variant} />}
-
+                {
+                  tiktokWidget.map((ele, id) =>
+                    id < 2 &&
+                    <Card sx={{ maxWidth: 345 }} key={id}>
+                      <CardMedia
+                        sx={{ height: 140 }}
+                        image={ele.cardItem.cover}
+                        title="green iguana"
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                          {ele.cardItem.title}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {ele.cardItem.description}
+                        </Typography>
+                      </CardContent>
+                      <CardActions>
+                        <Button size="small">Share</Button>
+                        <a href={ele.cardItem.link}>Learn More</a>
+                      </CardActions>
+                    </Card>
+                  )
+                }
 
                 {/*<Stack spacing={5}>*/}
 

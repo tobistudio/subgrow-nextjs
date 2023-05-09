@@ -3,8 +3,6 @@ import Link from "next/link"
 import { Routes, BlitzPage } from "@blitzjs/next"
 import { Button, Typography, Stack, Chip } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2";
-import axios from 'axios'
-
 import { RootStateOrAny, useSelector } from "react-redux"
 import HomeLayout from "core/layouts/HomeLayout"
 import Hero from "components/home/Hero"
@@ -32,15 +30,7 @@ import PricingTables from "components/lists/PricingTables"
 
 const Home: BlitzPage = () => {
 
-  React.useEffect(() => {
-    console.log(1);
 
-    const getWidget = async () => {
-      let result = await axios.get('/api/auth/tiktok/getWidgets');
-      console.log("result", result);
-    }
-    getWidget()
-  }, [])
   // const theme = useSelector((state: RootStateOrAny) => state.theme)
   return (
     <HomeLayout title="Home" type="home">
