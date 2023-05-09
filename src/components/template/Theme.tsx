@@ -67,6 +67,7 @@ declare module "@mui/material/Button" {
     outlined: true
     gbutton: true
     addlink: true
+    cardactionbtn: true
     modern1: true
     classic1: true
     tornpaper1: true // Torn Paper https://linktr.ee/s/templates/
@@ -82,6 +83,7 @@ declare module "@mui/material/Button" {
     usertronline: true
     usermodern1: true
     userpeppermint: true
+
   }
 }
 
@@ -686,6 +688,20 @@ const Themes = (props) => {
             style: {
               minWidth: 200,
               maxWidth: 500,
+              backgroundColor: "transparent",
+              border: `2px solid`,
+              borderColor: "#3c52b2",
+              borderWidth: 2,
+              color: "#3c52b2",
+              "&:hover": {
+                backgroundColor: "#3c52b2",
+                color: "#ffffff",
+              },
+            },
+          },
+          {
+            props: { variant: "cardactionbtn" }, // user variants
+            style: {
               backgroundColor: "transparent",
               border: `2px solid`,
               borderColor: "#3c52b2",

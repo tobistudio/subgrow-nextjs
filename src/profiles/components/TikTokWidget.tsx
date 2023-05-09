@@ -33,12 +33,13 @@ export const TikTokWidget = () => {
           id < 2 &&
           <Card sx={{
             my: {
-              xs: 1,
-              sm: 2,
-              md: 3,
-              lg: 4,
-              xl: 5
+              xs: 5,
+              sm: 6,
+              md: 7,
+              lg: 8,
+              xl: 10
             },
+            mx: 5,
             maxWidth: 500
 
           }} key={id}>
@@ -58,8 +59,22 @@ export const TikTokWidget = () => {
               </CardContent>
             </CardActionArea>
             <CardActions>
-              <Button size="small">Share</Button>
-              <a href={`https://www.tiktok.com/${ele.cardItem.link}`}>Learn More</a>
+              <Stack direction="row" spacing={2}>
+              <Button
+                variant="cardactionbtn"
+                size="small">
+                Share
+              </Button>
+
+                <Button
+                  href={`https://www.tiktok.com/${ele.cardItem.link}`}
+                  variant="cardactionbtn"
+                  size="small"
+                  >
+                  View More
+                </Button>
+              </Stack>
+
             </CardActions>
           </Card>
         )
