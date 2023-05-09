@@ -1,16 +1,15 @@
 #!/bin/sh
-# . "$(dirname "$0")/_/husky.sh"
+ . "$(dirname "$0")/_/husky.sh"
 
 # npx pretty-quick --staged
 
 npm run lint
 
-npx prisma format
-
-npx prisma validate
+#npx prisma format
+#
+#npx prisma validate
 
 #npx prisma generate;
 
-npm run lint
 
 #  eslint --fix --ignore-path .gitignore --ext .js,.ts,.tsx .

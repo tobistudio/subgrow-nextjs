@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
+      <change beforePath="$PROJECT_DIR$/.husky/pre-commit" beforeDir="false" afterPath="$PROJECT_DIR$/.husky/pre-commit" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/template/Theme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/template/Theme.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/layouts/HomeLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/HomeLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/profiles/layouts/modern.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/profiles/layouts/modern.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +138,7 @@
       <workItem from="1682113338059" duration="258507000" />
       <workItem from="1682957551758" duration="30153000" />
       <workItem from="1683167141896" duration="17920000" />
-      <workItem from="1683649483739" duration="3542000" />
+      <workItem from="1683649483739" duration="3661000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1683169784249</created>

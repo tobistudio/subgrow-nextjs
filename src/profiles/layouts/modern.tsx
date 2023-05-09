@@ -63,6 +63,7 @@ const Modern = ({ profile, sites }) => {
 
   const [tiktokWidget, setTikTokWidget] = React.useState<Array<any>>([]);
 
+  // TODO: this is fine for now, but obvoiusly, this will come from widgets {} in profile
   React.useEffect(() => {
     const getWidget = async () => {
       let result: Array<any> = await axios.get('/api/auth/tiktok/getWidgets');
