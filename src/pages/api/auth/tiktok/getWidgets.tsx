@@ -9,18 +9,18 @@ export default async function handler(req, res) {
     //   throw new Error('Failed to fetch TikTok videos');
     // }
 
-    const data = await response.json();
+    // const data = await response.json();
 
     // Randomly select a video
-    const video = data.body[Math.floor(Math.random() * data.body.length)];
-    const author = video.author.uniqueId.replace(/\s/g, '');
-    const videoId = video.id;
+    // const video = data.body[Math.floor(Math.random() * data.body.length)];
+    // const author = video.author.uniqueId.replace(/\s/g, '');
+    // const videoId = video.id;
 
-    // Construct TikTok widget URL
-    const url = `https://www.tiktok.com/@${author}/video/${videoId}`;
+    // // Construct TikTok widget URL
+    // const url = `https://www.tiktok.com/@${author}/video/${videoId}`;
 
     // Send TikTok widget URL as response
-    res.status(200).json({ url });
+    res.status(200).json({ response });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Failed to fetch TikTok widget' });
