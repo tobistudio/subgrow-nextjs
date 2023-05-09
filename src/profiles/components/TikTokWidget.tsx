@@ -36,7 +36,7 @@ export const TikTokWidget = () => {
                             <CardMedia
                                 sx={{ height: 140 }}
                                 image={ele.cardItem.cover}
-                                title="green iguana"
+                                title={ele.cardItem.title}
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="div">
