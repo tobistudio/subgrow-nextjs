@@ -25,17 +25,12 @@ const UserInfo = () => {
 
     return (
       <Stack direction="row" spacing={2}>
-        {myownpage ? <ProfileDesignPanel /> : <ProfileButton username={currentUser.username} />}
-        <LogoutButton />
+        {myownpage && <ProfileDesignPanel />}
       </Stack>
     )
   } else {
     return (
-      <Stack direction="row" spacing={2}>
-        <SignupButton />
-        <LoginButton title="login" />
-      </Stack>
-    )
+      <></>)
   }
 }
 

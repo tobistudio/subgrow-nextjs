@@ -46,6 +46,9 @@ export const SidePanel = (props) => {
 
   return (
     <>
+      <div className={classNames("text-2xl", className)} onClick={openPanel} {...rest}>
+        <HiOutlineCog />
+      </div>
       <Drawer
         title="Profile Design index DO NOT USE"
         isOpen={panelExpand}

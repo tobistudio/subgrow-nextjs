@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPalette, faPencil } from "@fortawesome/pro-light-svg-icons";
 import SidePanelContent from "./SidePanelContent"
 import withHeaderItem from "utils/hoc/withHeaderItem"
-import { setPanelExpand } from "store/theme/themeSlice"
+import { setPanelExpand, setLayout } from "store/theme/themeSlice"
 import { Button } from "@mui/material";
 import { misc } from "../../../configs/colors/default";
 

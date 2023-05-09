@@ -12,7 +12,7 @@ import getSiteForProfileByStatus from "../sites/queries/getSiteForProfileByStatu
 import { modern1 } from "../../data/userthemes/modern1"
 // import userTheme from '../../data/userthemes/babyblue.json'
 // import Grid from "@mui/material/Unstable_Grid2"
-// import UserInfo from "../components/user/UserInfo"
+import UserInfo from "../components/user/UserInfo"
 // import SidePanel from 'components/template/SidePanel'
 
 // TODO: tik tok video feed
@@ -121,7 +121,9 @@ undefined
       <Head>
         <title>{profile.title ? profile.username : profile.username}</title>
       </Head>
-
+      <Suspense>
+        <UserInfo />
+      </Suspense>
       {layoutType}
 
     </>
