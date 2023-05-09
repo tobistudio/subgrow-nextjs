@@ -24,10 +24,8 @@ export const TikTokWidget = () => {
         getWidget()
     }, [])
 
-    React.useEffect(() => console.log("sdfs", tiktokWidget), [tiktokWidget]);
-
     return (
-        <div>
+        <div className='tiktok-widget'>
             {tiktokWidget &&
                 tiktokWidget.map((ele, id) =>
                     id < 2 &&
