@@ -13,8 +13,8 @@ import deleteService from "apps/mutations/deleteService"
 export const Service = () => {
   const router = useRouter()
   const appId = useParam("appId", "number")
-  // const [service] = useQuery(getServiceId, { id: appId ? appId : 0 })
-  const [service] = useQuery(getServiceId, { id: appId as number })
+  const [service] = useQuery(getServiceId, { id: appId ? appId : 0 })
+  // const [service] = useQuery(getServiceId, { id: appId as number })
   const [deleteServiceMutation] = useMutation(deleteService)
 
   return (

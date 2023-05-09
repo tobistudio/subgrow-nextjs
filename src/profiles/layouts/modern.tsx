@@ -224,8 +224,8 @@ const Modern = ({ profile, sites }) => {
                   xl: 12
                 }
               }}
-            // justifyContent="center"
-            // style={{ minHeight: "100vh" }}
+              // justifyContent="center"
+              // style={{ minHeight: "100vh" }}
             >
 
               {/*<Button variant="modern1">*/}
@@ -275,7 +275,7 @@ const Modern = ({ profile, sites }) => {
                 //spacing={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}
                 className="profile-text"
                 id="title"
-              // style={{ color: profileTheme.titleColor ? profileTheme.titleColor : "rgb(189,196,215)" }}
+                // style={{ color: profileTheme.titleColor ? profileTheme.titleColor : "rgb(189,196,215)" }}
               >
                 {/*{userprofile.title ? userprofile.title : userprofile.username}*/}
                 {profile.title ? profile.title : profile.username}
@@ -284,7 +284,7 @@ const Modern = ({ profile, sites }) => {
 
               {userprofile.description ? (
                 <Typography variant={profileTheme.options.descriptionStyle} id="description" className="description"
-                // style={{ color: profileTheme.descriptionColor ? profileTheme.descriptionColor : "rgb(189,196,215)" }}
+                  // style={{ color: profileTheme.descriptionColor ? profileTheme.descriptionColor : "rgb(189,196,215)" }}
                 >
                   {userprofile.description}
                 </Typography>
@@ -310,7 +310,9 @@ const Modern = ({ profile, sites }) => {
                 {profileTheme.options.links.type === 'button'
                   ? <ProfileButton sites={sites} variant={profileTheme.options.links.variant} />
                   : <ProfileLink sites={sites} variant={profileTheme.options.links.variant} />}
-                {
+
+
+                {tiktokWidget &&
                   tiktokWidget.map((ele, id) =>
                     id < 2 &&
                     <Card sx={{ maxWidth: 345 }} key={id}>
@@ -334,6 +336,7 @@ const Modern = ({ profile, sites }) => {
                     </Card>
                   )
                 }
+
 
                 {/*<Stack spacing={5}>*/}
 
