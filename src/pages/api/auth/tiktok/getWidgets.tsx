@@ -5,9 +5,9 @@ export default async function handler(req, res) {
     // Fetch TikTok videos from trending endpoint
     const response = await fetch('https://www.tiktok.com/node/share/discover?noUser=1&count=10');
 
-    if (!response.ok) {
-      throw new Error('Failed to fetch TikTok videos');
-    }
+    // if (!response.ok) {
+    //   throw new Error('Failed to fetch TikTok videos');
+    // }
 
     const data = await response.json();
 
