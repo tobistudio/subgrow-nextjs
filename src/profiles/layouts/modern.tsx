@@ -20,8 +20,7 @@ import {
   Stack,
   Avatar
 } from "@mui/material"
-import axios from 'axios'
-
+import { TikTokWidget } from './TikTokWidget';
 import Grid from "@mui/material/Unstable_Grid2"
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ProfileButton from "../components/ProfileButton";
@@ -60,17 +59,6 @@ import { modern1 } from "../../../data/userthemes/modern1";
 const Modern = ({ profile, sites }) => {
 
   const session = useSession()
-
-  const [tiktokWidget, setTikTokWidget] = React.useState<Array<any>>([]);
-
-  React.useEffect(() => {
-    const getWidget = async () => {
-      let result = await axios.get('/api/auth/tiktok/getWidgets');
-      console.log("result", result);
-      setTikTokWidget(result!.data);
-    }
-    getWidget()
-  }, [])
 
   // TODO: profile should come from store/ state
   // If there is a custom template, use it
@@ -223,8 +211,8 @@ const Modern = ({ profile, sites }) => {
                   xl: 12
                 }
               }}
-              // justifyContent="center"
-              // style={{ minHeight: "100vh" }}
+            // justifyContent="center"
+            // style={{ minHeight: "100vh" }}
             >
 
               {/*<Button variant="modern1">*/}
@@ -274,7 +262,7 @@ const Modern = ({ profile, sites }) => {
                 //spacing={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}
                 className="profile-text"
                 id="title"
-                // style={{ color: profileTheme.titleColor ? profileTheme.titleColor : "rgb(189,196,215)" }}
+              // style={{ color: profileTheme.titleColor ? profileTheme.titleColor : "rgb(189,196,215)" }}
               >
                 {/*{userprofile.title ? userprofile.title : userprofile.username}*/}
                 {profile.title ? profile.title : profile.username}
@@ -283,7 +271,7 @@ const Modern = ({ profile, sites }) => {
 
               {userprofile.description ? (
                 <Typography variant={profileTheme.options.descriptionStyle} id="description" className="description"
-                  // style={{ color: profileTheme.descriptionColor ? profileTheme.descriptionColor : "rgb(189,196,215)" }}
+                // style={{ color: profileTheme.descriptionColor ? profileTheme.descriptionColor : "rgb(189,196,215)" }}
                 >
                   {userprofile.description}
                 </Typography>
@@ -311,30 +299,7 @@ const Modern = ({ profile, sites }) => {
                   : <ProfileLink sites={sites} variant={profileTheme.options.links.variant} />}
 
 
-                {tiktokWidget &&
-                  tiktokWidget.map((ele, id) =>
-                    id < 2 &&
-                    <Card sx={{ maxWidth: 345 }} key={id}>
-                      <CardMedia
-                        sx={{ height: 140 }}
-                        image={ele.cardItem.cover}
-                        title="green iguana"
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                          {ele.cardItem.title}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          {ele.cardItem.description}
-                        </Typography>
-                      </CardContent>
-                      <CardActions>
-                        <Button size="small">Share</Button>
-                        <a href={`https://www.tiktok.com/${ele.cardItem.link}`}>Learn More</a>
-                      </CardActions>
-                    </Card>
-                  )
-                }
+                <TikTokWidget />
 
 
                 {/*<Stack spacing={5}>*/}
