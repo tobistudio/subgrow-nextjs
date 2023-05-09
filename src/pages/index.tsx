@@ -33,73 +33,85 @@ const Home: BlitzPage = () => {
       <main className="home-wrapper">
         {/*<Hero />*/}
 
+        <Grid container>
+          <Grid xs={12} sm={12} md={6}>
+            <Typography variant="h1">Pages</Typography>
 
-        {/*<ListItemButton component="a" href="#simple-list">*/}
-        {/*  <ListItemText primary="dashboard" />*/}
-        {/*</ListItemButton>*/}
-        <Typography variant="h1">Pages</Typography>
+            <ul>
 
-        <ul>
+              <li>
+                <Link href="/dashboard">dashboard</Link>
+              </li>
 
-          <li>
-            <Link href="/dashboard">dashboard</Link>
-          </li>
+              <li>
+                <Link href="/login">Login</Link>
+              </li>
 
-          <li>
-            <Link href="/login">Login</Link>
-          </li>
-
-          <li>
-            <Link href="/signup">sign up</Link>
-          </li>
+              <li>
+                <Link href="/signup">sign up</Link>
+              </li>
 
 
-          <li>
-            <Link href="/tester">profile</Link>
-          </li>
+              <li>
+                <Link href="/tester">profile</Link>
+              </li>
 
 
-          <li>
-            <Link href="/apps">apps</Link>
-          </li>
+              <li>
+                <Link href="/apps">apps</Link>
+              </li>
 
-          <li>
-            <Link href="/apps/facebook">Add Facebook App</Link>
-          </li>
+              <li>
+                <Link href="/apps/facebook">Add Facebook App</Link>
+              </li>
 
-          <li>
-            <Link href="/apps/tiktok">Add Tiktok App</Link>
-          </li>
+              <li>
+                <Link href="/apps/tiktok">Add Tiktok App</Link>
+              </li>
 
 
 
-          <li>
-            <Link href="/account/upgrade">upgrade</Link>
-          </li>
+              <li>
+                <Link href="/account/upgrade">upgrade</Link>
+              </li>
 
 
 
 
-          <Typography variant="h3">unfinished</Typography>
+              <Typography variant="h3">unfinished</Typography>
 
 
-          <li>
-            <Link href="/themes">themes or templates</Link>
-          </li>
+              <li>
+                <Link href="/themes">themes or templates</Link>
+              </li>
 
-          <li>
-            <Link href="/pricing">pricing</Link>
-          </li>
-
-
-          <li>
-            <Link href="/account/settings">settings</Link>
-          </li>
+              <li>
+                <Link href="/pricing">pricing</Link>
+              </li>
 
 
-        </ul>
-        {/*<PricingTables />*/}
+              <li>
+                <Link href="/account/settings">settings</Link>
+              </li>
 
+
+            </ul>
+          </Grid>
+          <Grid xs={12} sm={12} md={6}>
+            <Typography variant="h1">
+              Standard Buttons
+            </Typography>
+
+
+
+
+            <Stack spacing={4}>
+              <Button variant="outlined">outlined</Button>
+              <Button variant="contained">contained</Button>
+            </Stack>
+
+          </Grid>
+        </Grid>
 
         <Grid container>
           <Grid xs={12} sm={12} md={6}>
@@ -133,12 +145,14 @@ const Home: BlitzPage = () => {
             <Typography variant="radiolabel">radiolabel</Typography>
 
           </Grid>
-
           <Grid xs={12} sm={12} md={6}>
 
+
+
             <Typography variant="h1">
-              Site Buttons
+              Custom Buttons
             </Typography>
+
             <Stack spacing={4}>
               <Button variant="babyblue">babyblue</Button>
 
@@ -171,8 +185,6 @@ const Home: BlitzPage = () => {
 
           </Grid>
         </Grid>
-
-
 
         <Grid container>
           <Grid xs={12} sm={12} md={6}>
