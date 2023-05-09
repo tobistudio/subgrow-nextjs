@@ -328,7 +328,7 @@ const Modern = ({ profile, sites }) => {
                       </CardContent>
                       <CardActions>
                         <Button size="small">Share</Button>
-                        <a href={ele.cardItem.link}>Learn More</a>
+                        <a href={`https://www.tiktok.com/${ele.cardItem.link}`}>Learn More</a>
                       </CardActions>
                     </Card>
                   )
