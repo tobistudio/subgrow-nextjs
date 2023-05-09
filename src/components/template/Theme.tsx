@@ -403,7 +403,7 @@ const Themes = (props) => {
       },
       modern1: {
         fontSize: "1rem",
-        color: "#ffffff",
+        color: "#95a9ff",
       },
       babybluetext: {
         fontSize: "1rem",

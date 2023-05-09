@@ -1,5 +1,5 @@
 import Head from "next/head"
-import React, { FC } from "react"
+import React, { Suspense } from "react"
 import { BlitzLayout } from "@blitzjs/next"
 import { Container } from "@mui/material"
 
@@ -8,6 +8,7 @@ import { Container } from "@mui/material"
 // #202A37
 const HomeHeader = React.lazy(() => import("core/layouts/theme1/headers/HomeHeader"))
 const HomeFooter = React.lazy(() => import("core/layouts/theme1/footers/HomeFooter"))
+const LoadingSvg = React.lazy(() => import("assets/svg/LoadingSvg"))
 
 const HomeLayout: BlitzLayout<{
   title?: string
@@ -75,7 +76,8 @@ const HomeLayout: BlitzLayout<{
         <title>{title || "links"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <Suspense fallback={<LoadingSvg />}>
+        <main>
         <Container fixed>{header}</Container>
         <Container
           className={"home-wrapper"}
@@ -95,6 +97,7 @@ const HomeLayout: BlitzLayout<{
         </Container>
         <Container fixed maxWidth="xl">{footer}</Container>
       </main>
+      </Suspense>
     </>
   )
 }
