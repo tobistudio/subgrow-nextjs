@@ -3,12 +3,12 @@ import { resolver } from "@blitzjs/rpc"
 import db from "../../../db"
 import { z } from "zod"
 
-const GetService = z.object({
+const GetServiceId = z.object({
   // This accepts type of undefined, but is required at runtime
   id: z.number(),
 })
 
-export default resolver.pipe(resolver.zod(GetService), resolver.authorize(), async ({ id }) => {
+export default resolver.pipe(resolver.zod(GetServiceId), resolver.authorize(), async ({ id }) => {
 
   const service = await db.apps.findFirst({ where: { id } })
 

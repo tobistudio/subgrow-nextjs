@@ -1,12 +1,10 @@
-import React, { Suspense } from "react"
+import React from "react"
 import Link from "next/link"
-import { Routes, BlitzPage } from "@blitzjs/next"
-import { Button, Typography, Stack, Chip } from "@mui/material"
+import { BlitzPage } from "@blitzjs/next"
+import {Button, Typography, Stack, Chip, ListItemButton,ListItemText } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2";
-import { RootStateOrAny, useSelector } from "react-redux"
 import HomeLayout from "core/layouts/HomeLayout"
-import Hero from "components/home/Hero"
-import PricingTables from "components/lists/PricingTables"
+
 
 /*
  * This file is just for a pleasant getting started page for your new app.
@@ -29,14 +27,18 @@ import PricingTables from "components/lists/PricingTables"
  */
 
 const Home: BlitzPage = () => {
-
-
   // const theme = useSelector((state: RootStateOrAny) => state.theme)
   return (
     <HomeLayout title="Home" type="home">
       <main className="home-wrapper">
         {/*<Hero />*/}
-        dashboard
+
+
+        {/*<ListItemButton component="a" href="#simple-list">*/}
+        {/*  <ListItemText primary="dashboard" />*/}
+        {/*</ListItemButton>*/}
+        <Typography variant="h1">Pages</Typography>
+
         <ul>
 
           <li>
@@ -76,7 +78,9 @@ const Home: BlitzPage = () => {
           </li>
 
 
-          <p>unfinished</p>
+
+
+          <Typography variant="h3">unfinished</Typography>
 
 
           <li>
@@ -111,11 +115,22 @@ const Home: BlitzPage = () => {
 
             <Typography variant="h6">h6</Typography>
 
-
             <Typography variant="body1">body1</Typography>
 
             <Typography variant="body2">body2</Typography>
 
+
+            <Typography variant="caption">caption</Typography>
+
+            <Typography variant="poster">poster</Typography>
+
+
+            <Typography variant="menuitem">menuitem</Typography>
+
+            <Typography variant="babybluetext">babybluetext</Typography>
+            <Typography variant="modern1">modern1</Typography>
+
+            <Typography variant="radiolabel">radiolabel</Typography>
 
           </Grid>
 
