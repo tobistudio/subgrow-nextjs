@@ -20,7 +20,7 @@ import {
   Stack,
   Avatar
 } from "@mui/material"
-import { TikTokWidget } from './TikTokWidget';
+import { TikTokWidget } from '../components/TikTokWidget';
 import Grid from "@mui/material/Unstable_Grid2"
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ProfileButton from "../components/ProfileButton";
