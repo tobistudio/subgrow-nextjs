@@ -19,11 +19,12 @@ export const TikTokWidget = () => {
     React.useEffect(() => {
         const getWidget = async () => {
             let result = await axios.get('/api/auth/tiktok/getWidgets');
-            console.log("result", result);
             setTikTokWidget(result!.data);
         }
         getWidget()
     }, [])
+
+    React.useEffect(() => console.log("sdfs", tiktokWidget), [tiktokWidget]);
 
     return (
         <div>
