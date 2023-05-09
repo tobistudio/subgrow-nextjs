@@ -46,9 +46,6 @@ export const SidePanel = (props) => {
 
   return (
     <>
-      <div className={classNames("text-2xl", className)} onClick={openPanel} {...rest}>
-        <HiOutlineCog />
-      </div>
       <Drawer
         title="Profile Design index DO NOT USE"
         isOpen={panelExpand}
@@ -56,7 +53,7 @@ export const SidePanel = (props) => {
         onRequestClose={closePanel}
         placement={direction === "rtl" ? "left" : "right"}
         //width={375} // TODO: based on size
-        width={"50%"} // TODO: based on size
+        width={"35%"} // TODO: based on size
       //width={theme.breakpoints.between('sm', 'md')}
 
       >
