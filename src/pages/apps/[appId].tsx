@@ -6,14 +6,15 @@ import { useRouter } from "next/router"
 import { useQuery, useMutation } from "@blitzjs/rpc"
 import { useParam } from "@blitzjs/next"
 import Layout from "core/layouts/Layout"
-import getService from "apps/queries/getService"
+// import getService from "apps/queries/getService"
 import getServiceId from "apps/queries/getServiceId"
 import deleteService from "apps/mutations/deleteService"
 
 export const Service = () => {
   const router = useRouter()
   const appId = useParam("appId", "number")
-  const [service] = useQuery(getServiceId, { id: appId ? appId : 0 })
+  // const [service] = useQuery(getServiceId, { id: appId ? appId : 0 })
+  const [service] = useQuery(getServiceId, { id: appId as number })
   const [deleteServiceMutation] = useMutation(deleteService)
 
   return (
