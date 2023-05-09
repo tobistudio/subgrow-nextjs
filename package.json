@@ -1,7 +1,7 @@
 {
   "name": "subgrow",
   "version": "0.0.1",
-  "author" : "Amir Meshkin <amir.meshkin@gmail.com>",
+  "author": "Amir Meshkin <amir.meshkin@gmail.com>",
   "scripts": {
     "db": "prisma format && prisma validate && prisma generate && prisma db push",
     "clean": "rm -Rf node_modules && rm -Rf .next && yarn",
@@ -56,6 +56,7 @@
     "@testing-library/react": "14.0.0",
     "@testing-library/react-hooks": "8.0.1",
     "autoprefixer": "10.4.14",
+    "axios": "1.4.0",
     "babel-plugin-preval": "5.1.0",
     "blitz": "2.0.0-beta.26",
     "classnames": "2.3.2",
@@ -73,6 +74,7 @@
     "next": "13.3.0",
     "next-i18next": "13.2.2",
     "next-redux-wrapper": "8.1.0",
+    "node-fetch": "3.3.1",
     "npm": "9.6.5",
     "passport": "0.6.0",
     "passport-facebook": "3.0.0",
@@ -97,6 +99,7 @@
     "react-portal": "4.2.2",
     "react-redux": "^7.2.8",
     "react-select": "5.7.2",
+    "react-tiktok": "1.0.0",
     "redux-persist": "6.0.0",
     "sass": "1.62.0",
     "secure-password": "4.0.0",

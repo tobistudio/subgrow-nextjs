@@ -12,7 +12,6 @@ import { faFacebook } from "@fortawesome/free-brands-svg-icons"
 import {
   Box,
   Typography,
-
   Button,
   Stack,
   Avatar
@@ -29,6 +28,7 @@ import SidePanelHeaderToggle from "../../components/template/SidePanel/SidePanel
 import { useTheme, ThemeProvider } from "@mui/material/styles";
 import { useSession } from "@blitzjs/auth";
 import { useRouter } from "next/router";
+// import { TikTokEmbed } from 'react-tiktok';
 
 // import { green, purple } from '@mui/material/colors';
 // import babyTheme from '../../../data/userthemes/babyblue.json'
@@ -187,6 +187,7 @@ const Modern = ({ profile, sites }) => {
                 {myownpage ? <SidePanelHeaderToggle usersession={session} type="icon" /> : null}
 
               </Suspense>
+              {/* <TikTokEmbed id="6934708789650498566" /> */}
             </Grid>
           </Grid>
         </header>

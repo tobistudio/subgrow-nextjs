@@ -26,6 +26,8 @@ export const AppsList = () => {
   const router = useRouter()
   const session = useSession()
 
+
+
   // TODO: dawn if user owns apps, must put a check mark on box. if not, plus sign
   const [Avaliable_app] = useQuery(getService, { userId: session.userId });
 
