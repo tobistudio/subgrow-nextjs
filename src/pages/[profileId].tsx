@@ -7,13 +7,9 @@ import { useSession } from "@blitzjs/auth"
 import { useRouter } from "next/router";
 import getProfile from "profiles/queries/getProfile"
 import getUserForProfile from "../users/queries/getUserForProfile"
-// import getSiteForProfile from "../sites/queries/getSiteForProfile"
 import getSiteForProfileByStatus from "../sites/queries/getSiteForProfileByStatus"
 import { modern1 } from "../../data/userthemes/modern1"
-// import userTheme from '../../data/userthemes/babyblue.json'
-// import Grid from "@mui/material/Unstable_Grid2"
 import UserInfo from "../components/user/UserInfo"
-// import SidePanel from 'components/template/SidePanel'
 
 // TODO: tik tok video feed
 // https://open-api.tiktok.com/oauth/access_token/
