@@ -1,12 +1,13 @@
-## setup
-
-Next.js, blitz, react and zod with final form.
+# SUB GROW
 
 
-![example workflow](https://github.com/ameshkin/subgrow/.github/workflows/prod-main.js.yml/badge.svg)
 
-![example workflow](https://github.com/ameshkin/subgrow/actions/workflows/prod-main.js.yml/badge.svg)
+## dev setup
 
+Next.js, blitz, material ui, react and zod with final form.
+
+
+[![Node.js CI](https://github.com/ameshkin/subgrow/actions/workflows/prod-main.js.yml/badge.svg?branch=main)](https://github.com/ameshkin/subgrow/actions/workflows/prod-main.js.yml)
 
 ```bash
 npm i
@@ -15,6 +16,7 @@ npm i
 blitz dev
 
 # build app
+blitz build
 
 # seed db
 
@@ -217,11 +219,13 @@ Changes status of user table to `inactive` but keeps all data
 
 #### CRON
 
-1. Subscription cancel
-
 We MAY need a cron to go through Customer table and check `sub_end` field
 
 If past this date, then change `level` in customer, user, and session tables
+
+
+1. Subscription cancel
+
 
 
 ## ADMIN SYSTEM

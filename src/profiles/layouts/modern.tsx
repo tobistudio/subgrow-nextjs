@@ -87,7 +87,7 @@ const Modern = ({ profile, sites }) => {
   const siteTheme = useTheme();
   //const type = useSelector((state: RootStateOrAny) => state.theme);
 
-  const [usedTheme, setUseTheme] = React.useState("");
+  // const [usedTheme, setUseTheme] = React.useState("");
 
 
 

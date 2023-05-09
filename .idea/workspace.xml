@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="6a860224-ac01-4127-ab83-8a1a99984057" name="Changes" comment="test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/stripe/SubscriptionForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/stripe/SubscriptionForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/layouts/AdminLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/layouts/AdminLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/signup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/signup.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/profiles/layouts/modern.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/profiles/layouts/modern.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

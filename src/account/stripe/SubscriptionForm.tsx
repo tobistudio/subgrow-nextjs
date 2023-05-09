@@ -340,7 +340,7 @@ export default function Form(paymentIntent: { paymentIntent: string, plan: strin
                     ),
                   }}
                 />
-                <Button onClick={sendCoupon} variant="contained">Add Coupon</Button>
+                <Button onClick={sendCoupon} variant="outlined">Add Coupon</Button>
               </Stack>
             </Box>
             {errorMessage && errorMessage}

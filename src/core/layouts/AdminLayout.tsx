@@ -26,11 +26,11 @@ const AdminLayout: BlitzLayout<{
   rootClass?: string
   children?: React.ReactNode
 }> = ({
-  //const AdminLayout: BlitzLayout<{ title?: string; type?: string; children?: React.FC }> = ({
-  title,
-  type,
-  children,
-}) => {
+        //const AdminLayout: BlitzLayout<{ title?: string; type?: string; children?: React.FC }> = ({
+        title,
+        type,
+        children,
+      }) => {
 
   // TODO: get user, session, and profile and pass down
 
@@ -77,30 +77,30 @@ const AdminLayout: BlitzLayout<{
   return (
     <>
       <Suspense fallback={<LoadingSvg />}>
-      <Head>
-        <title>{title || "Sub Grow Admin"}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+        <Head>
+          <title>{title || "Sub Grow Admin"}</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-      <main>
-        <Container fixed>{header}</Container>
-        <Container
-          className={"admin-wrapper"}
-          fixed
-          // maxWidth="xl"
-          sx={{
-            py: {
-              xs: 0,
-              sm: 1,
-              md: 2,
-              lg: 3,
-              xl: 4
-            }
-          }}
-        >{children}</Container>
+        <main>
+          <Container fixed>{header}</Container>
+          <Container
+            className={"admin-wrapper"}
+            fixed
+            // maxWidth="xl"
+            sx={{
+              py: {
+                xs: 0,
+                sm: 1,
+                md: 2,
+                lg: 3,
+                xl: 4
+              }
+            }}
+          >{children}</Container>
 
-      <Container fixed maxWidth="xl">{footer}</Container>
-      </main>
+          <Container fixed maxWidth="xl">{footer}</Container>
+        </main>
       </Suspense>
     </>
   )
