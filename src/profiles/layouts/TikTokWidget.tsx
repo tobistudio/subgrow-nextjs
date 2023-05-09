@@ -31,7 +31,7 @@ export const TikTokWidget = () => {
             {tiktokWidget &&
                 tiktokWidget.map((ele, id) =>
                     id < 2 &&
-                    <Card sx={{ maxWidth: 345 }} key={id}>
+                    <Card sx={{ maxWidth: 345, minWidth: 300, width: '100%', margin: 20 }} key={id}>
                         <CardActionArea>
                             <CardMedia
                                 sx={{ height: 140 }}
