@@ -50,6 +50,7 @@ export const TikTokWidget = () => {
                         </CardActions>
                     </Card>
                 )
-            }</div>
+            }
+        </div>
     )
 }
