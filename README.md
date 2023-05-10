@@ -107,11 +107,6 @@ http://localhost:3000/account/settings
 // TODO: themes, that can be selected
 https://linktr.ee/s/templates/
 
-
-## THEMES
-
-Material UI is used for the site's theme and the user profile theme.
-
 Admin Header
 
 
